@@ -1,14 +1,14 @@
 player_detection:
-  model: "yolo11x.pt"
-  confidence: 0.5
+  model: "yolo11m.pt"
+  confidence: 0.4
   tracker: "bytetrack.yaml"
 
 ball_detection:
-  model: "models/ball_detector_best.pt"  # Will be trained
+  model: "models/yolo5_last.pt"
   confidence: 0.15
 
 court_detection:
-  model: "models/court_keypoints_best.pth"  # Will be trained
+  model: "models/keypoints_model.pth"
   input_size: [224, 224]
 
 interpolation:
