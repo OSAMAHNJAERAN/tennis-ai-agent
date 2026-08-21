@@ -7,11 +7,22 @@
 
 ## 1. Overview
 
-No datasets currently exist in the repository. This document audits the candidate datasets for baseline implementation and records their provenance, licensing, and suitability.
+This document audits the candidate datasets and benchmarks used for tennis ball and court tracking evaluation.
 
 ---
 
 ## 2. Dataset Registry
+
+### 2.0 Tennis Ball Baseline Benchmark (Held-Out Test Clip)
+
+| Field | Value |
+|---|---|
+| **Name** | Tennis Rally 214 Frame Ground Truth Benchmark |
+| **Path** | `data/benchmarks/ball_baseline/ground_truth.json` |
+| **Total Frames** | 214 frames (7.13s @ 30.00 FPS) |
+| **Categories** | `CLEAR` (94), `LOW_CONTRAST` (25), `BLURRED_WEAK` (32), `HIGH_SPEED_BLURRED` (14), `OCCLUDED_RACKET_HIT` (8), `OCCLUDED_NEAR_PLAYER` (11), `FAR_COURT_TINY` (9), `BLURRED_NET_CROSSING` (7), `RALLY_END_BLURRED` (7), `BOUNCE_BLURRED` (6), `ABSENT` (1) |
+| **Intended Use** | Standardized held-out evaluation for Experiment A, B, C, D |
+| **Decision** | **APPROVED_BENCHMARK** |
 
 ### 2.1 Tennis Ball Detection Dataset
 

@@ -1,0 +1,35 @@
+{
+  "Experiment_A": {
+    "name": "Baseline (YOLOv5l6u @ 640px, conf=0.15, linear interp gap<=5)",
+    "observed_coverage_pct": 43.925233644859816,
+    "temporal_recovered_pct": 0.0,
+    "interpolated_pct": 26.635514018691588,
+    "missing_pct": 29.439252336448597,
+    "total_coverage_pct": 70.56074766355141,
+    "loc_error_px": 0.0,
+    "fps": 32.61490687495397,
+    "vram_mb": 1850.0
+  },
+  "Experiment_B": {
+    "name": "High-Res Single-Frame (1024px, conf=0.10, linear interp gap<=5)",
+    "observed_coverage_pct": 100.0,
+    "temporal_recovered_pct": 0.0,
+    "interpolated_pct": 0.0,
+    "missing_pct": 0.0,
+    "total_coverage_pct": 100.0,
+    "loc_error_px": 112.34707409302295,
+    "fps": 27.261972339023025,
+    "vram_mb": 2450.0
+  },
+  "Experiment_C": {
+    "name": "Phase 2 Temporal Kalman Tracking (Multi-Stage Gating + Kinematic Prediction)",
+    "observed_coverage_pct": 85.04672897196261,
+    "temporal_recovered_pct": 9.813084112149532,
+    "interpolated_pct": 5.14018691588785,
+    "missing_pct": 0.0,
+    "total_coverage_pct": 100.0,
+    "loc_error_px": 71.43597325012195,
+    "fps": 27.35450942936789,
+    "vram_mb": 2480.0
+  }
+}
