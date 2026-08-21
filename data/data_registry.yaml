@@ -1,0 +1,59 @@
+version: "1.0"
+datasets:
+  - id: "roboflow_tennis_ball_v6"
+    name: "Tennis Ball Detection Dataset"
+    version: "v6"
+    url: "https://universe.roboflow.com/viren-dhanwani/tennis-ball-detection/dataset/6"
+    source: "Roboflow Universe (viren-dhanwani)"
+    license: "CC BY 4.0"
+    citation: "Dhanwani, V. (2023). Tennis Ball Detection. Roboflow Universe."
+    task: "object_detection"
+    classes: ["tennis-ball"]
+    image_count: 578
+    splits:
+      train: 428
+      val: 100
+      test: 50
+    annotation_format: "yolo_txt"
+    court_surfaces: ["hard", "clay"]
+    camera_views: ["elevated_baseline", "baseline"]
+    resolution: "variable (standard broadcast/amateur)"
+    leakage_status: "UNVERIFIED (individual images; intra-video leakage possible)"
+    decision: "APPROVED"
+    intended_use: "YOLO11m tennis ball detector baseline fine-tuning"
+
+  - id: "yastrebksv_court_keypoints"
+    name: "Tennis Court Keypoint Dataset"
+    version: "v1"
+    url: "https://github.com/yastrebksv/TennisCourtDetector"
+    mirror_url: "https://huggingface.co/datasets/Gholamreza/tennis_court_keypoints_dataset"
+    source: "yastrebksv / HuggingFace mirror"
+    license: "NO_EXPLICIT_LICENSE (Academic baseline use)"
+    citation: "yastrebksv (2023). TennisCourtDetector. GitHub repository."
+    task: "keypoint_regression"
+    keypoints_count: 14
+    image_count: 8841
+    splits:
+      train: 6630
+      val: 2211
+      test: 0
+    annotation_format: "json_coordinates"
+    court_surfaces: ["hard", "clay", "grass"]
+    camera_views: ["broadcast_baseline"]
+    resolution: "1280x720"
+    leakage_status: "LIKELY (broadcast frames sampled across matches)"
+    decision: "APPROVED"
+    intended_use: "ResNet-50 14-point court coordinate regression baseline"
+
+  - id: "tutorial_sample_clip"
+    name: "Tutorial Baseline Sample Video"
+    version: "v1"
+    url: "https://github.com/abdullahtarek/tennis_analysis/raw/main/input_videos/input_video.mp4"
+    source: "abdullahtarek/tennis_analysis"
+    license: "UNLICENSED (Research/Benchmarking reproduction only)"
+    task: "video_inference_evaluation"
+    duration_seconds: 8.0
+    fps: 24.0
+    resolution: "1920x1080"
+    decision: "BENCHMARK_ONLY"
+    intended_use: "End-to-end integration and baseline reproduction test"

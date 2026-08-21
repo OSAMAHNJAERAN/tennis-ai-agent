@@ -1,0 +1,31 @@
+player_detection:
+  model: "yolo11x.pt"
+  confidence: 0.5
+  tracker: "bytetrack.yaml"
+
+ball_detection:
+  model: "models/ball_detector_best.pt"  # Will be trained
+  confidence: 0.15
+
+court_detection:
+  model: "models/court_keypoints_best.pth"  # Will be trained
+  input_size: [224, 224]
+
+interpolation:
+  max_gap: 5
+  method: "linear"
+
+analytics:
+  speed_smoothing_window: 5
+  max_position_jump_meters: 5.0
+
+visualization:
+  mini_court_width: 250
+  mini_court_height: 500
+  draw_trajectory: true
+  trajectory_length: 20
+
+output:
+  save_annotated_video: true
+  save_json: true
+  video_codec: "mp4v"

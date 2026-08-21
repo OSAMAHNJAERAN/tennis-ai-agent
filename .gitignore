@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ML/Training artifacts
+runs/
+wandb/
+mlruns/
+*.onnx
+*.engine
+*.trt
+
+# Large model weights (download separately)
+models/*.pt
+models/*.pth
+models/*.onnx
+!models/.gitkeep
+
+# Datasets (download separately)
+data/raw/
+data/processed/
+data/sample_videos/*.mp4
+data/sample_videos/*.avi
+!data/.gitkeep
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/sample_videos/.gitkeep
+
+# Training outputs
+experiments/*/artifacts/
+experiments/*/models/
+experiments/*/predictions/
+
+# Output videos
+outputs/
+!outputs/.gitkeep
+
+# Environment
+.env
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Roboflow cache
+.roboflow/
+
+# Ultralytics cache
+.ultralytics/
