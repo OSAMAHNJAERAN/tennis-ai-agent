@@ -84,34 +84,41 @@ class TennisEventDetector:
 
         # 3. Dynamic Candidate Frame Selection
         candidate_scores = np.zeros(n)
-        for i in range(2, n - 2):
+        for i in range(3, n - 3):
             if positions[i] is None:
                 continue
             d = derivatives[i]
+            speed = d.speed_px_s or 0.0
+            
+            # Reject stationary/rolling/jitter noise below active speed threshold
+            if speed < 180.0:  # < 6 px/frame at 30 FPS
+                continue
+                
             dir_deg = math.degrees(d.direction_change_rad) if d.direction_change_rad is not None else 0.0
             acc = d.accel_mag_px_s2 or 0.0
             curv = d.curvature or 0.0
             
-            p_prev = positions[i - 1]
-            p_next = positions[i + 1]
+            p_prev = positions[i - 2]
+            p_curr = positions[i]
+            p_next = positions[i + 2]
             y_inversion = False
-            if p_prev and p_next and p_prev[1] is not None and p_next[1] is not None:
-                vy_in = positions[i][1] - p_prev[1]
-                vy_out = p_next[1] - positions[i][1]
-                if (vy_in > 0.4 and vy_out < -0.4) or (vy_in < -0.4 and vy_out > 0.4):
+            if p_prev and p_next and p_curr:
+                vy_in = (p_curr[1] - p_prev[1]) / 2.0
+                vy_out = (p_next[1] - p_curr[1]) / 2.0
+                if (vy_in > 1.5 and vy_out < -1.5) or (vy_in < -1.5 and vy_out > 1.5):
                     y_inversion = True
 
             score = 0.0
             if y_inversion:
-                score += 35.0
-            if dir_deg >= 15.0:
-                score += dir_deg
-            if acc >= 500.0:
-                score += min(30.0, acc / 180.0)
-            if curv >= 0.0008:
-                score += min(30.0, curv * 5000.0)
+                score += 40.0
+            if dir_deg >= 25.0:
+                score += min(50.0, dir_deg * 0.8)
+            if acc >= 800.0:
+                score += min(30.0, acc / 200.0)
+            if curv >= 0.005 and speed > 250.0:
+                score += min(25.0, curv * 2000.0)
                 
-            if score >= 22.0:
+            if score >= 30.0:
                 candidate_scores[i] = score
 
         selected_frames = []
@@ -119,7 +126,7 @@ class TennisEventDetector:
         scores_copy = candidate_scores.copy()
         while True:
             best_frame = int(np.argmax(scores_copy))
-            if scores_copy[best_frame] < 22.0:
+            if scores_copy[best_frame] < 30.0:
                 break
             selected_frames.append(best_frame)
             win_start = max(0, best_frame - suppression_radius)
@@ -145,17 +152,21 @@ class TennisEventDetector:
             
             h_p1 = (p1_box.y2 - p1_box.y1) if p1_box else 180.0
             h_p2 = (p2_box.y2 - p2_box.y1) if p2_box else 100.0
-            reach_p1 = max(self.player_reach_radius_px, 0.9 * h_p1)
-            reach_p2 = max(self.player_reach_radius_px * 0.75, 1.1 * h_p2)
+            reach_p1 = max(self.player_reach_radius_px, 1.2 * h_p1)
+            reach_p2 = max(self.player_reach_radius_px * 0.85, 1.4 * h_p2)
 
             is_near_p1 = d_p1 <= reach_p1
             is_near_p2 = d_p2 <= reach_p2
+            
+            d_deriv = derivatives[f]
+            dir_deg = math.degrees(d_deriv.direction_change_rad) if d_deriv.direction_change_rad is not None else 0.0
+            speed = d_deriv.speed_px_s or 0.0
             
             if selected_types is not None and idx < len(selected_types):
                 ev_type, player_id = selected_types[idx]
                 base_conf = 0.95
             else:
-                if idx == 0 and f <= 45:
+                if idx == 0 and f <= 60:
                     ev_type = EventType.SERVE_CONTACT
                     player_id = 2 if d_p2 <= d_p1 else 1
                     base_conf = 0.95
@@ -168,9 +179,12 @@ class TennisEventDetector:
                     player_id = 2
                     base_conf = 0.92
                 elif not is_near_p1 and not is_near_p2:
+                    # Enforce that bounce must have vertical trajectory signature and active speed
+                    if speed < 150.0:
+                        continue  # Discard low-speed unattached noise
                     ev_type = EventType.BOUNCE
                     player_id = None
-                    base_conf = 0.93
+                    base_conf = 0.90
                 else:
                     if d_p1 < d_p2:
                         ev_type = EventType.PLAYER_1_HIT

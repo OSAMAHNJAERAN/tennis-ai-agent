@@ -82,7 +82,18 @@ class TennisShotClassifier:
         court_side_sign = 1.0 if player_id == 1 else -1.0
         handedness_sign = 1.0 if handedness == PlayerHandedness.RIGHT_HANDED else (-1.0 if handedness == PlayerHandedness.LEFT_HANDED else 1.0)
 
-        # 3. Tier 2: YOLO11-Pose Temporal Feature Extraction
+        # 3. Compute Multi-Cue Kinematic and Spatial Features
+        # A. Ball-Player Lateral Spatial Geometry
+        geo_valid = False
+        norm_geo_dx = 0.0
+        if player_box is not None and ball_point is not None and ball_point.x_px is not None:
+            bw = max(10.0, player_box.x2 - player_box.x1)
+            player_cx = (player_box.x1 + player_box.x2) / 2.0
+            raw_dx = (ball_point.x_px - player_cx) / bw
+            norm_geo_dx = court_side_sign * handedness_sign * raw_dx
+            geo_valid = True
+
+        # B. YOLO11-Pose Temporal Feature Extraction
         pose_feat = None
         if self.pose_extractor is not None and frames is not None and all_player_boxes is not None:
             pose_feat = self.pose_extractor.extract_hit_window_features(
@@ -93,55 +104,74 @@ class TennisShotClassifier:
                 handedness=handedness
             )
 
-        if pose_feat and pose_feat.get("valid") and pose_feat.get("mean_pose_confidence", 0.0) >= self.min_pose_confidence:
-            norm_disp = pose_feat["normalized_wrist_displacement"]
-            pose_conf = pose_feat["mean_pose_confidence"]
+        pose_valid = (
+            pose_feat is not None 
+            and pose_feat.get("valid", False) 
+            and pose_feat.get("mean_pose_confidence", 0.0) >= self.min_pose_confidence
+        )
+        norm_pose_dx = pose_feat["normalized_wrist_displacement"] if pose_valid else 0.0
+        pose_conf = pose_feat.get("mean_pose_confidence", 0.0) if pose_valid else 0.0
 
-            if norm_disp > self.ambiguity_threshold:
-                conf = min(0.95, 0.70 + abs(norm_disp) * 0.25)
+        # 4. Multi-Cue Fusion & Classification Tiers
+        # Tier 2A: Dual Consensus (Pose + Geometry Agree)
+        if pose_valid and geo_valid:
+            if norm_pose_dx > self.ambiguity_threshold and norm_geo_dx > 0.05:
+                conf = min(0.98, 0.85 + abs(norm_pose_dx) * 0.15)
                 return (
                     ShotType.FOREHAND,
                     conf,
                     ShotClassificationSource.YOLO11_POSE_TEMPORAL,
-                    {"event": 0.90, "pose": pose_conf, "displacement": abs(norm_disp)},
-                    f"Pose dominant wrist extension on forehand side (disp={norm_disp:+.2f}, conf={pose_conf:.2f})."
+                    {"event": 0.95, "pose": pose_conf, "geometry": abs(norm_geo_dx)},
+                    f"Consensus Forehand: Pose (disp={norm_pose_dx:+.2f}) and Geometry (geo_dx={norm_geo_dx:+.2f}) agree."
                 )
-            elif norm_disp < -self.ambiguity_threshold:
-                conf = min(0.95, 0.70 + abs(norm_disp) * 0.25)
+            elif norm_pose_dx < -self.ambiguity_threshold and norm_geo_dx < -0.05:
+                conf = min(0.98, 0.85 + abs(norm_pose_dx) * 0.15)
                 return (
                     ShotType.BACKHAND,
                     conf,
                     ShotClassificationSource.YOLO11_POSE_TEMPORAL,
-                    {"event": 0.90, "pose": pose_conf, "displacement": abs(norm_disp)},
-                    f"Pose dominant wrist extension on backhand side (disp={norm_disp:+.2f}, conf={pose_conf:.2f})."
+                    {"event": 0.95, "pose": pose_conf, "geometry": abs(norm_geo_dx)},
+                    f"Consensus Backhand: Pose (disp={norm_pose_dx:+.2f}) and Geometry (geo_dx={norm_geo_dx:+.2f}) agree."
                 )
 
-        # 4. Tier 3: Geometry-Only Baseline Fallback
-        if player_box is not None and ball_point is not None and ball_point.x_px is not None:
-            bw = max(10.0, player_box.x2 - player_box.x1)
-            player_cx = (player_box.x1 + player_box.x2) / 2.0
-            raw_dx = (ball_point.x_px - player_cx) / bw
-
-            # Normalize for court side and handedness
-            norm_geo_dx = court_side_sign * handedness_sign * raw_dx
-
-            if norm_geo_dx > 0.20:
-                conf = min(0.85, 0.65 + abs(norm_geo_dx) * 0.20)
+        # Tier 2B: Unambiguous Lateral Ball Geometry
+        if geo_valid:
+            if norm_geo_dx > 0.10:
+                conf = min(0.90, 0.70 + abs(norm_geo_dx) * 0.20)
                 return (
                     ShotType.FOREHAND,
                     conf,
                     ShotClassificationSource.GEOMETRY_BASELINE,
-                    {"event": 0.85, "pose": 0.0, "geometry": abs(norm_geo_dx)},
-                    f"Geometry baseline: Ball offset on forehand side (geo_dx={norm_geo_dx:+.2f})."
+                    {"event": 0.85, "pose": pose_conf, "geometry": abs(norm_geo_dx)},
+                    f"Geometry: Ball offset on forehand side (geo_dx={norm_geo_dx:+.2f})."
                 )
-            elif norm_geo_dx < -0.20:
-                conf = min(0.85, 0.65 + abs(norm_geo_dx) * 0.20)
+            elif norm_geo_dx < -0.10:
+                conf = min(0.90, 0.70 + abs(norm_geo_dx) * 0.20)
                 return (
                     ShotType.BACKHAND,
                     conf,
                     ShotClassificationSource.GEOMETRY_BASELINE,
-                    {"event": 0.85, "pose": 0.0, "geometry": abs(norm_geo_dx)},
-                    f"Geometry baseline: Ball offset on backhand side (geo_dx={norm_geo_dx:+.2f})."
+                    {"event": 0.85, "pose": pose_conf, "geometry": abs(norm_geo_dx)},
+                    f"Geometry: Ball offset on backhand side (geo_dx={norm_geo_dx:+.2f})."
+                )
+
+        # Tier 2C: High-Confidence Pose Extension Alone
+        if pose_valid and pose_conf >= 0.50:
+            if norm_pose_dx > self.ambiguity_threshold * 1.5:
+                return (
+                    ShotType.FOREHAND,
+                    0.80,
+                    ShotClassificationSource.YOLO11_POSE_TEMPORAL,
+                    {"event": 0.80, "pose": pose_conf, "displacement": abs(norm_pose_dx)},
+                    f"Pose: Dominant wrist extension on forehand side (disp={norm_pose_dx:+.2f})."
+                )
+            elif norm_pose_dx < -self.ambiguity_threshold * 1.5:
+                return (
+                    ShotType.BACKHAND,
+                    0.80,
+                    ShotClassificationSource.YOLO11_POSE_TEMPORAL,
+                    {"event": 0.80, "pose": pose_conf, "displacement": abs(norm_pose_dx)},
+                    f"Pose: Dominant wrist extension on backhand side (disp={norm_pose_dx:+.2f})."
                 )
 
         # 5. Tier 4: Safe Abstention to UNKNOWN
@@ -149,6 +179,6 @@ class TennisShotClassifier:
             ShotType.UNKNOWN,
             0.50,
             ShotClassificationSource.ABSTENTION_UNKNOWN,
-            {"event": 0.70, "pose": 0.0, "geometry": 0.0},
+            {"event": 0.70, "pose": pose_conf, "geometry": abs(norm_geo_dx) if geo_valid else 0.0},
             "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
         )

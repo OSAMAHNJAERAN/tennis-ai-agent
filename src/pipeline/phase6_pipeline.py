@@ -6,6 +6,7 @@ from typing import Dict, Any, List, Optional, Tuple
 import cv2
 import numpy as np
 import torch
+import gc
 from tqdm import tqdm
 
 from src.utils.video_io import read_video, save_video
@@ -395,8 +396,17 @@ class Phase6Pipeline:
         # Map shot frame to evidence
         shot_frame_map = {s.frame_index: s for s in shot_evidences}
 
-        for i, frame in enumerate(tqdm(frames, desc="  Rendering Video")):
-            ann_frame = frame.copy()
+        # Free in-memory frames list to release RAM (up to 11 GB on 1080p clips)
+        del frames
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
+        cap = cv2.VideoCapture(input_video_path)
+        for i in tqdm(range(total_frames), desc="  Rendering Video"):
+            ret, ann_frame = cap.read()
+            if not ret or ann_frame is None:
+                break
 
             # 1. Player Boxes
             player_bboxes = {}
@@ -481,6 +491,7 @@ class Phase6Pipeline:
             ann_frame = VideoAnnotator.compose_frame(ann_frame, mc_img)
             writer.write(ann_frame)
 
+        cap.release()
         writer.release()
         print(f"  -> Rendered Phase 6 Video: {output_video_path} in {time.time()-t0:.2f}s")
 
