@@ -101,8 +101,24 @@ datasets:
     rallies_count: 5
     video_sources_count: 5
     classes: ["FOREHAND", "BACKHAND", "SERVE", "UNKNOWN"]
-    status: "INDEPENDENT_PRODUCTION_BENCHMARK"
-    intended_use: "End-to-end empirical evaluation of production CV pipeline on strictly disjoint video-source partitions."
+    status: "DIAGNOSTIC_BENCHMARK"
+    intended_use: "Empirical evaluation of production CV pipeline on diagnostic video-source partitions."
+
+  - id: "cross_match_final_holdout"
+    name: "True Cross-Match Independent Tennis Holdout Benchmark"
+    version: "v1.0"
+    url: "https://commons.wikimedia.org"
+    source: "Wikimedia Commons (US Open Championships)"
+    license: "CC BY-SA 2.0 / CC BY-SA 4.0"
+    task: "end_to_end_cross_match_qualification"
+    video_count: 3
+    frame_count: 2672
+    strokes_count: 20
+    rallies_count: 3
+    video_sources_count: 3
+    classes: ["FOREHAND", "BACKHAND", "SERVE"]
+    status: "PRODUCTION_QUALIFICATION_BENCHMARK"
+    intended_use: "One-shot cross-match generalization qualification across independent tournament footage."
 
 models:
   - id: "yolo11s_tennis_ball_best"

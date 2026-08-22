@@ -1,0 +1,63 @@
+# Frozen Phase 6.4 Production Qualification Configuration
+# T88J709 Tennis Vision System
+
+version: "1.0"
+phase: "6.4"
+status: "FROZEN_PRODUCTION"
+
+models:
+  ball_detector:
+    path: "artifacts/models/ball/yolo11s_tennis_ball_best.pt"
+    architecture: "Ultralytics YOLO11s"
+    imgsz: 1024
+    candidate_low_conf: 0.01
+    seed_high_conf: 0.08
+    device: "cuda:0"
+  player_detector:
+    path: "yolo11m.pt"
+    architecture: "Ultralytics YOLO11m"
+    imgsz: 640
+    conf: 0.35
+    iou: 0.50
+    device: "cuda:0"
+  pose_detector:
+    path: "yolo11n-pose.pt"
+    architecture: "Ultralytics YOLO11n-Pose"
+    imgsz: 640
+    conf: 0.25
+    device: "cuda:0"
+  court_detector:
+    path: "models/keypoints_model.pth"
+    architecture: "ResNet-50 14-Keypoints"
+    device: "cuda:0"
+
+tracking:
+  ball:
+    max_prediction_gap: 4
+    max_interpolation_gap: 3
+    max_valid_speed_px_per_frame: 80.0
+    adaptive_gating_base_radius: 45.0
+    max_gating_radius: 120.0
+    spatial_consistency_radius: 50.0
+  player:
+    min_on_court_ratio: 0.05
+    reacquisition_timeout_frames: 45
+    velocity_smoothing_alpha: 0.70
+
+event_detection:
+  min_event_interval: 12
+  suppression_radius: 10
+  reach_scale_factor: 0.65
+  candidate_score_threshold: 18.0
+  bounce_elevation_threshold: 0.15
+
+shot_classification:
+  pose_weight: 0.65
+  geometry_weight: 0.35
+  abstention_threshold: 0.40
+  contact_eval_window: 2
+
+output_contract:
+  schema_version: "1.0"
+  allow_nullable_analytics: true
+  zero_fabrication_strictly_forbidden: true
