@@ -1,0 +1,27 @@
+{
+  "splits_description": "Data split definition for line-calling evaluation",
+  "splits": {
+    "calibration": [
+      {
+        "video_id": "input_video_rally_1",
+        "bounce_id": 1,
+        "frame": 81,
+        "description": "Serve fault bounce in receiver court"
+      }
+    ],
+    "evaluation": [
+      {
+        "video_id": "input_video_rally_1",
+        "bounce_id": 2,
+        "frame": 138,
+        "description": "Far baseline rally bounce"
+      },
+      {
+        "video_id": "input_video_rally_1",
+        "bounce_id": 3,
+        "frame": 178,
+        "description": "Near right sideline rally bounce"
+      }
+    ]
+  }
+}
