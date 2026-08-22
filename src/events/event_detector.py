@@ -81,13 +81,13 @@ class EventDetectorSettings:
 
     # Seconds and frame-diagonal-normalized kinematics.
     feature_half_window_seconds: float = 0.067
-    candidate_min_interval_seconds: float = 0.120
-    candidate_score_threshold: float = 0.33
-    candidate_min_normalized_speed_per_s: float = 0.050
-    candidate_min_direction_change_deg: float = 14.0
-    candidate_min_normalized_velocity_change_per_s: float = 0.045
-    candidate_min_normalized_acceleration_per_s2: float = 0.40
-    candidate_min_normalized_vertical_speed_per_s: float = 0.018
+    candidate_min_interval_seconds: float = 0.100
+    candidate_score_threshold: float = 0.28
+    candidate_min_normalized_speed_per_s: float = 0.005
+    candidate_min_direction_change_deg: float = 12.0
+    candidate_min_normalized_velocity_change_per_s: float = 0.040
+    candidate_min_normalized_acceleration_per_s2: float = 0.35
+    candidate_min_normalized_vertical_speed_per_s: float = 0.015
     candidate_min_continuity_ratio: float = 0.60
     max_normalized_edge_speed_per_s: float = 3.00
 
@@ -99,9 +99,9 @@ class EventDetectorSettings:
     racket_region_top_normalized: float = -0.35
     racket_region_bottom_normalized: float = 0.85
 
-    player_contact_min_score: float = 0.47
+    player_contact_min_score: float = 0.38
     player_contact_min_independent_cues: int = 3
-    court_contact_min_score: float = 0.44
+    court_contact_min_score: float = 0.36
     court_contact_min_independent_cues: int = 3
     physical_type_margin: float = 0.05
     departure_window_seconds: float = 0.120
@@ -263,13 +263,20 @@ class TennisEventDetector:
 
     @staticmethod
     def _velocity(
-        first: Optional[Tuple[float, float]], second: Optional[Tuple[float, float]],
-        first_time: float, second_time: float,
+        first: Optional[Tuple[Optional[float], Optional[float]]],
+        second: Optional[Tuple[Optional[float], Optional[float]]],
+        first_time: float,
+        second_time: float,
     ) -> Optional[Tuple[float, float]]:
-        if first is None or second is None or second_time <= first_time:
+        if (
+            first is None or second is None
+            or first[0] is None or first[1] is None
+            or second[0] is None or second[1] is None
+            or second_time <= first_time
+        ):
             return None
         dt = second_time - first_time
-        return ((second[0] - first[0]) / dt, (second[1] - first[1]) / dt)
+        return ((float(second[0]) - float(first[0])) / dt, (float(second[1]) - float(first[1])) / dt)
 
     def _features(
         self,
@@ -728,15 +735,15 @@ class TennisEventDetector:
                 "ball_leaves_player_region", "ball_state_quality", "pose_support",
             )
         )
+        racket_weight = 1.0 if racket_region else (0.5 if (normalized_y is not None and -0.5 <= normalized_y <= 1.25) else 0.0)
         player_score = (
-            0.32 * proximity + 0.24 * kinematic + 0.14 * continuity
-            + 0.12 * departure + 0.12 * quality + 0.06 * (pose or 0.0)
+            0.30 * proximity + 0.22 * kinematic + 0.16 * continuity
+            + 0.12 * departure + 0.12 * quality + 0.08 * racket_weight
         )
         player_pass = (
             item.state != BallState.MISSING.value
-            and bool(player["attribution_clear"])
+            and proximity > 0.0
             and racket_region
-            and independent_player >= self.settings.player_contact_min_independent_cues
             and player_score >= self.settings.player_contact_min_score
         )
 
@@ -745,7 +752,7 @@ class TennisEventDetector:
             if row["distance_normalized"] is not None
         ]
         far_support = self._clip(min(distances) / self.settings.player_reach_normalized) if distances else 1.0
-        vertical = 1.0 if item.court_rebound else (0.65 if item.vertical_inversion else 0.0)
+        vertical = 1.0 if item.court_rebound else (0.70 if item.vertical_inversion else 0.0)
         bounce_change = max(direction, velocity, strengths.get("acceleration", 0.0))
 
         bounce_cues = {
@@ -757,23 +764,17 @@ class TennisEventDetector:
         }
         independent_bounce = sum(bounce_cues.values())
         bounce_score = (
-            0.34 * vertical + 0.24 * bounce_change + 0.18 * continuity
+            0.36 * vertical + 0.22 * bounce_change + 0.18 * continuity
             + 0.14 * quality + 0.10 * far_support
         )
         bounce_pass = (
             self.settings.enable_bounce_contact_check
             and item.state != BallState.MISSING.value
             and vertical > 0
-            and independent_bounce >= self.settings.court_contact_min_independent_cues
             and bounce_score >= self.settings.court_contact_min_score
-            and (
-                far_support >= 0.5
-                or normalized_y is None
-                or normalized_y >= 0.90
-            )
             and not (
                 distance is not None and distance <= 1e-9
-                and normalized_y is not None and normalized_y <= 1.05
+                and normalized_y is not None and normalized_y >= 0.90
             )
         )
 
@@ -784,7 +785,7 @@ class TennisEventDetector:
                     physical = PhysicalEventType.PLAYER_CONTACT
                 elif bounce_score >= player_score + self.settings.physical_type_margin:
                     physical = PhysicalEventType.COURT_CONTACT
-                elif distance is not None and distance <= 0.80:
+                elif distance is not None and distance <= 0.65:
                     physical = PhysicalEventType.PLAYER_CONTACT
                 else:
                     physical = PhysicalEventType.COURT_CONTACT
@@ -792,6 +793,13 @@ class TennisEventDetector:
                 physical = PhysicalEventType.PLAYER_CONTACT
             elif bounce_pass:
                 physical = PhysicalEventType.COURT_CONTACT
+            elif (
+                self.settings.enable_semantic_unknown_abstention
+                and item.state != BallState.MISSING.value
+                and max(player_score, bounce_score) >= 0.32
+                and kinematic >= 0.40
+            ):
+                physical = PhysicalEventType.UNKNOWN
         else:
             if player_pass:
                 physical = PhysicalEventType.PLAYER_CONTACT
@@ -873,12 +881,18 @@ class TennisEventDetector:
             semantic_score = bounce_score
             trace["activity_state"] = "COURT_CONTACT_CANDIDATE"
         else:
-            if self.settings.enable_player_attribution_fusion:
+            if not bool(player["attribution_clear"]):
+                event_type = EventType.UNKNOWN_EVENT
+                player_id = None
+                semantic_score = player_score
+            elif self.settings.enable_player_attribution_fusion:
                 player_id = selected_player if selected_player is not None else 1
+                event_type = EventType.PLAYER_1_HIT if player_id == 1 else EventType.PLAYER_2_HIT
+                semantic_score = player_score
             else:
                 player_id = selected_player
-            event_type = EventType.PLAYER_1_HIT if player_id == 1 else EventType.PLAYER_2_HIT
-            semantic_score = player_score
+                event_type = EventType.PLAYER_1_HIT if player_id == 1 else EventType.PLAYER_2_HIT
+                semantic_score = player_score
             if self.settings.enable_serve_semantics:
                 serve = self._serve_evidence(
                     item.frame, item, selected, trajectory, frame_height, frame_diagonal
@@ -900,7 +914,7 @@ class TennisEventDetector:
 
         trace["serve_evidence"] = serve
         trace["candidate_event_type"] = event_type.value
-        trace["stage_pass"]["event_type_classification"] = True
+        trace["stage_pass"]["event_type_classification"] = trace["stage_pass"]["player_attribution"]
         trace["verification_pass"] = True
         confidence = self._clip(semantic_score * quality)
         assert point.x_px is not None and point.y_px is not None
@@ -1038,8 +1052,8 @@ class TennisEventDetector:
         frame_size: Optional[Tuple[int, int]] = None,
         camera_offsets_px: Optional[Sequence[Optional[Tuple[float, float]]]] = None,
     ) -> List[TennisEvent]:
-        return self.analyze(
-            ball_trajectory, player1_boxes, player2_boxes,
-            homography_matrix=homography_matrix, fps=fps, frame_size=frame_size,
-            camera_offsets_px=camera_offsets_px,
-        ).events
+        analysis = self.analyze(
+            ball_trajectory, player1_boxes, player2_boxes, homography_matrix, fps,
+            frame_size, camera_offsets_px,
+        )
+        return [e for e in analysis.events if e.event_type != EventType.UNKNOWN_EVENT]

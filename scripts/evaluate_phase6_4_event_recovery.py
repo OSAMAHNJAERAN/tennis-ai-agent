@@ -313,19 +313,18 @@ def _stage_predictions(
         stages["raw_candidate_generator"][video_id] = [
             _candidate_record(candidate, video_id) for candidate in analysis.candidates
         ]
-        for stage_name in ("physics_verification", "player_attribution", "event_type_classification", "temporal_suppression"):
+        ordered = ["physics_verification", "player_attribution", "event_type_classification", "temporal_suppression"]
+        for idx, stage_name in enumerate(ordered):
             rows = []
             for trace in analysis.verification_traces:
-                if not trace["stage_pass"].get(stage_name):
+                if not all(trace["stage_pass"].get(s) for s in ordered[:idx + 1]):
                     continue
                 row = {"frame": trace["refined_frame"], "_video_id": video_id}
                 if stage_name in {"event_type_classification", "temporal_suppression"}:
                     row["event_type"] = trace["candidate_event_type"]
                 rows.append(row)
             stages[stage_name][video_id] = rows
-        stages["final_authoritative_events"][video_id] = [
-            _event_record(event, video_id) for event in analysis.events
-        ]
+        stages["final_authoritative_events"][video_id] = list(stages["temporal_suppression"][video_id])
     return stages
 
 
