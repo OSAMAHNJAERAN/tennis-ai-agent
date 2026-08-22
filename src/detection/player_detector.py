@@ -1,5 +1,6 @@
 import numpy as np
 from typing import List
+import torch
 from ultralytics import YOLO
 from src.utils.bbox_utils import BBox
 
@@ -22,7 +23,8 @@ class PlayerDetector:
         Returns:
             List of detected bounding boxes for persons.
         """
-        results = self.model(frame, classes=[0], verbose=False)
+        with torch.no_grad():
+            results = self.model(frame, classes=[0], verbose=False)
         bboxes = []
         for result in results:
             for box in result.boxes:
@@ -42,7 +44,8 @@ class PlayerDetector:
         Returns:
             List of tracked bounding boxes for persons.
         """
-        results = self.model.track(frame, classes=[0], persist=persist, tracker="bytetrack.yaml", verbose=False)
+        with torch.no_grad():
+            results = self.model.track(frame, classes=[0], persist=persist, tracker="bytetrack.yaml", verbose=False)
         bboxes = []
         for result in results:
             if result.boxes.id is not None:

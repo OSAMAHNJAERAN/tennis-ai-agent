@@ -43,12 +43,13 @@ class YOLO11BallDetector:
         Extracts all ball candidate proposals with conf >= low_conf.
         """
         eval_imgsz = imgsz or self.imgsz
-        results = self.model.predict(
-            frame,
-            imgsz=eval_imgsz,
-            conf=self.low_conf,
-            verbose=False
-        )[0]
+        with torch.no_grad():
+            results = self.model.predict(
+                frame,
+                imgsz=eval_imgsz,
+                conf=self.low_conf,
+                verbose=False
+            )[0]
         
         candidates = []
         if len(results.boxes) > 0:
@@ -73,11 +74,28 @@ class YOLO11BallDetector:
         """
         Single-frame inference returning highest confidence detection >= threshold.
         """
-        min_conf = conf or self.high_conf
-        candidates = self.extract_candidates(frame, imgsz=imgsz)
-        high_conf_cands = [c for c in candidates if c.confidence >= min_conf]
-        if not high_conf_cands:
+        eval_imgsz = imgsz or self.imgsz
+        eval_conf = conf or self.high_conf
+        with torch.no_grad():
+            results = self.model.predict(
+                frame,
+                imgsz=eval_imgsz,
+                conf=eval_conf,
+                verbose=False
+            )[0]
+            
+        if len(results.boxes) == 0:
             return None
             
-        best = max(high_conf_cands, key=lambda c: c.confidence)
-        return best.bbox
+        confs = results.boxes.conf.cpu().numpy()
+        best_idx = int(np.argmax(confs))
+        xyxy = results.boxes.xyxy[best_idx].cpu().numpy()
+        
+        return BBox(
+            x1=float(xyxy[0]),
+            y1=float(xyxy[1]),
+            x2=float(xyxy[2]),
+            y2=float(xyxy[3]),
+            confidence=float(confs[best_idx]),
+            class_id=0
+        )

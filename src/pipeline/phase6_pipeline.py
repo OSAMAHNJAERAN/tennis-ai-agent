@@ -5,6 +5,7 @@ import yaml
 from typing import Dict, Any, List, Optional, Tuple
 import cv2
 import numpy as np
+import torch
 from tqdm import tqdm
 
 from src.utils.video_io import read_video, save_video
@@ -174,6 +175,8 @@ class Phase6Pipeline:
         p1_cov = (sum(1 for b in p1_boxes if b is not None) / total_frames) * 100.0
         p2_cov = (sum(1 for b in p2_boxes if b is not None) / total_frames) * 100.0
         print(f"  -> Player Tracking Coverage: P1: {p1_cov:.1f}%, P2: {p2_cov:.1f}% in {time.time()-t0:.2f}s")
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         # 4. Ball Detection (YOLO11s)
         print("\n[Step 4/11] Running YOLO11s Tennis Ball Detection...")
@@ -184,6 +187,8 @@ class Phase6Pipeline:
             cands = self.ball_detector.extract_candidates(frame, imgsz=imgsz)
             raw_candidates_per_frame.append(cands)
         print(f"  -> Extracted raw ball candidates in {time.time()-t0:.2f}s")
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         # 5. Temporal Ball Tracking
         print("\n[Step 5/11] Running Temporal Kalman Ball Tracking...")
@@ -381,7 +386,9 @@ class Phase6Pipeline:
         output_video_path = os.path.join(output_dir, "annotated.mp4")
         mini_court = MiniCourt(width=250, height=500)
 
-        annotated_frames = []
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        writer = cv2.VideoWriter(output_video_path, fourcc, fps, (w, h))
+
         recent_ball_positions = []
         bounces_court_points = [ev.court_position_m for ev in detected_events if ev.event_type == EventType.BOUNCE and ev.court_position_m]
 
@@ -472,9 +479,9 @@ class Phase6Pipeline:
                 cv2.circle(mc_img, (bx, by), 7, (255, 255, 255), 1)
 
             ann_frame = VideoAnnotator.compose_frame(ann_frame, mc_img)
-            annotated_frames.append(ann_frame)
+            writer.write(ann_frame)
 
-        save_video(annotated_frames, output_video_path, fps=fps)
+        writer.release()
         print(f"  -> Rendered Phase 6 Video: {output_video_path} in {time.time()-t0:.2f}s")
 
         # 12. Export Structured JSON Artifacts

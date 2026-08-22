@@ -169,12 +169,7 @@ def main():
 
     # Initialize Production Pipeline
     print("\nInitializing Production Phase 6.4 Pipeline (YOLO11 + Keypoints + Temporal Tracker)...")
-    pipeline = Phase6Pipeline(
-        ball_model_path="artifacts/models/ball/yolo11s_tennis_ball_best.pt",
-        court_model_path="models/keypoints_model.pth",
-        player_model_path="yolo11m.pt",
-        pose_model_path="yolo11n-pose.pt"
-    )
+    pipeline = Phase6Pipeline(config_path="configs/phase6_analytics/pipeline.yaml")
     
     # Process Final Cross-Match Holdout Videos
     holdout_results = {}
@@ -188,41 +183,39 @@ def main():
         assert actual_hash == meta["sha256"], f"SHA256 mismatch on {vid_id}!"
         print(f"  SHA256 Verified: {actual_hash}")
         
-        t0 = time.time()
         out_dir = f"outputs/phase6_4_qualification/final_cross_match_holdout/{vid_id}"
         os.makedirs(out_dir, exist_ok=True)
         
-        results = pipeline.process_video(
-            video_path=vpath,
-            output_video_path=os.path.join(out_dir, f"{vid_id}_annotated.mp4"),
-            court_surface=meta.get("court_surface", "hard"),
-            ball_candidate_low_conf=0.01,
-            ball_seed_high_conf=0.08
-        )
+        t0 = time.time()
+        res = pipeline.run(input_video_path=vpath, output_dir=out_dir)
         t_elapsed = time.time() - t0
-        fps = results["frames_processed"] / t_elapsed if t_elapsed > 0 else 0.0
+        fps = res.get("processing_fps", meta["frame_count"] / t_elapsed if t_elapsed > 0 else 0.0)
         
-        # Save output artifacts compliant with Contract V1
-        for artifact_name in ["shot_events.json", "rallies.json", "point_analytics.json", "match_analytics.json", "line_calls.json", "match_state.json"]:
-            if artifact_name in results:
-                with open(os.path.join(out_dir, artifact_name), "w") as af:
-                    json.dump(results[artifact_name], af, indent=2)
-                    
+        # Load output shot events
+        with open(os.path.join(out_dir, "shot_events.json"), "r") as sf:
+            pred_data = json.load(sf)
+            pred_shots = pred_data.get("shot_events", [])
+            
+        with open(os.path.join(out_dir, "detections.json"), "r") as det_f:
+            det_data = json.load(det_f)
+            total_f = len(det_data["frames"])
+            p1_cov = sum(1 for f in det_data["frames"] if f.get("player_1") is not None) / total_f if total_f > 0 else 0.0
+            p2_cov = sum(1 for f in det_data["frames"] if f.get("player_2") is not None) / total_f if total_f > 0 else 0.0
+            
         # Compute metrics
         gt_shots = holdout_shots_gt.get(vid_id, [])
         gt_events = holdout_events_gt.get(vid_id, [])
-        pred_shots = results.get("shot_events", [])
         
         v_metrics = evaluate_split_metrics(pred_shots, gt_shots, gt_events)
         v_metrics["pipeline_fps"] = round(fps, 2)
-        v_metrics["player_1_coverage"] = results.get("player_coverage", {}).get("p1", 0.0)
-        v_metrics["player_2_coverage"] = results.get("player_coverage", {}).get("p2", 0.0)
+        v_metrics["player_1_coverage"] = p1_cov
+        v_metrics["player_2_coverage"] = p2_cov
         
         holdout_results[vid_id] = v_metrics
         all_holdout_preds.extend(pred_shots)
         all_holdout_gt_shots.extend(gt_shots)
         
-        print(f"  Done {vid_id}: {results['frames_processed']} frames in {t_elapsed:.2f}s ({fps:.1f} FPS)")
+        print(f"  Done {vid_id}: {meta['frame_count']} frames in {t_elapsed:.2f}s ({fps:.1f} FPS)")
         print(f"  P1 Cov: {v_metrics['player_1_coverage']*100:.1f}%, P2 Cov: {v_metrics['player_2_coverage']*100:.1f}%")
         print(f"  Event Recall: {v_metrics['event_detection']['recall']*100:.1f}%, Precision: {v_metrics['event_detection']['precision']*100:.1f}%")
         print(f"  Shot Macro F1: {v_metrics['conditional_shot_classification']['macro_f1']:.4f}")
