@@ -1,0 +1,43 @@
+# T88J709 Phase 6.1 Validation Configuration (Frozen)
+version: "6.1"
+status: "FROZEN_FOR_HELD_OUT_TEST"
+
+classification:
+  mode: "fused" # Tiered: Semantic Serve -> YOLO11-Pose -> Geometry Fallback -> UNKNOWN Abstention
+  ambiguity_threshold: 0.15
+  min_pose_confidence: 0.50
+  geometry_fallback_enabled: true
+  safe_abstention_unknown: true
+
+pose_extractor:
+  model_checkpoint: "yolo11n-pose.pt"
+  crop_padding_pct: 0.25
+  temporal_window_radius: 3 # [t-3 ... t+3]
+  min_joint_conf: 0.35
+  enable_temporal_kinematics: true
+
+handedness:
+  player_1: "RIGHT_HANDED"
+  player_2: "RIGHT_HANDED"
+  dynamic_inference: false
+
+direction:
+  center_x: 5.485
+  min_depth_displacement_m: 4.0
+  corridor_middle_min_x: 4.20
+  corridor_middle_max_x: 6.77
+  cross_court_dx_min: 1.50
+
+court_zones:
+  short_depth_max_m: 4.50
+  mid_depth_max_m: 9.00
+  lateral_left_max_m: 3.65
+  lateral_center_max_m: 7.32
+
+service_targets:
+  t_max_dist_center_m: 0.85
+  wide_min_dist_center_m: 2.50
+
+rallies:
+  min_strokes: 1
+  dead_ball_suppression: true

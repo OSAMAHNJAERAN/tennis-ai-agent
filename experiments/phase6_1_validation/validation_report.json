@@ -1,0 +1,492 @@
+{
+  "benchmark_id": "t88j709_real_shot_classification_v1",
+  "splits": {
+    "development": {
+      "geometry": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 0.9091,
+        "coverage": 0.9091,
+        "total_samples": 11
+      },
+      "pose": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 0.9091,
+        "coverage": 0.9091,
+        "total_samples": 11
+      },
+      "fused": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 0.9091,
+        "coverage": 0.9091,
+        "total_samples": 11
+      },
+      "confusion_matrix": {
+        "FOREHAND": {
+          "FOREHAND": 4,
+          "BACKHAND": 0,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        },
+        "BACKHAND": {
+          "FOREHAND": 0,
+          "BACKHAND": 3,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        },
+        "SERVE": {
+          "FOREHAND": 0,
+          "BACKHAND": 0,
+          "SERVE": 3,
+          "UNKNOWN": 0
+        },
+        "UNKNOWN": {
+          "FOREHAND": 0,
+          "BACKHAND": 0,
+          "SERVE": 0,
+          "UNKNOWN": 1
+        }
+      },
+      "near_court": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 0.8333,
+        "coverage": 0.8333,
+        "total_samples": 6
+      },
+      "far_court": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 5
+      }
+    },
+    "validation": {
+      "geometry": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 11
+      },
+      "pose": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 11
+      },
+      "fused": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 11
+      },
+      "confusion_matrix": {
+        "FOREHAND": {
+          "FOREHAND": 6,
+          "BACKHAND": 0,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        },
+        "BACKHAND": {
+          "FOREHAND": 0,
+          "BACKHAND": 3,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        },
+        "SERVE": {
+          "FOREHAND": 0,
+          "BACKHAND": 0,
+          "SERVE": 2,
+          "UNKNOWN": 0
+        },
+        "UNKNOWN": {
+          "FOREHAND": 0,
+          "BACKHAND": 0,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        }
+      },
+      "near_court": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 5
+      },
+      "far_court": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 6
+      }
+    },
+    "held_out_test": {
+      "geometry": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 7
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 15
+      },
+      "pose": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 0.8571,
+          "f1": 0.9231,
+          "support": 7
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "macro_f1": 0.9744,
+        "weighted_f1": 0.9641,
+        "coverage": 0.9333,
+        "total_samples": 15
+      },
+      "fused": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 7
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 15
+      },
+      "confusion_matrix": {
+        "FOREHAND": {
+          "FOREHAND": 7,
+          "BACKHAND": 0,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        },
+        "BACKHAND": {
+          "FOREHAND": 0,
+          "BACKHAND": 5,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        },
+        "SERVE": {
+          "FOREHAND": 0,
+          "BACKHAND": 0,
+          "SERVE": 3,
+          "UNKNOWN": 0
+        },
+        "UNKNOWN": {
+          "FOREHAND": 0,
+          "BACKHAND": 0,
+          "SERVE": 0,
+          "UNKNOWN": 0
+        }
+      },
+      "near_court": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 8
+      },
+      "far_court": {
+        "FOREHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 2
+        },
+        "BACKHAND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "SERVE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "coverage": 1.0,
+        "total_samples": 7
+      }
+    }
+  },
+  "shot_direction": {
+    "CROSS_COURT": {
+      "precision": 1.0,
+      "recall": 0.9524,
+      "f1": 0.9756,
+      "support": 21
+    },
+    "DOWN_THE_LINE": {
+      "precision": 0.8889,
+      "recall": 0.7273,
+      "f1": 0.8,
+      "support": 11
+    },
+    "MIDDLE": {
+      "precision": 0.5714,
+      "recall": 1.0,
+      "f1": 0.7273,
+      "support": 4
+    },
+    "macro_f1": 0.8343,
+    "weighted_f1": 0.8944,
+    "coverage": 1.0,
+    "total_samples": 36
+  },
+  "rally_validation": {
+    "total_rallies": 8,
+    "exact_match_rate": 1.0,
+    "stroke_mae": 0.0
+  },
+  "pose_quality_audit": {
+    "near_player": {
+      "shoulders_pct": 100.0,
+      "elbows_pct": 98.2,
+      "wrists_pct": 94.7,
+      "usable_windows_pct": 96.5
+    },
+    "far_player": {
+      "shoulders_pct": 94.1,
+      "elbows_pct": 88.2,
+      "wrists_pct": 76.5,
+      "usable_windows_pct": 82.4
+    }
+  }
+}

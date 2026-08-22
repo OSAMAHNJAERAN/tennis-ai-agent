@@ -77,7 +77,18 @@ datasets:
     events_count: 7
     classes: ["SERVE_CONTACT", "BOUNCE", "PLAYER_1_HIT", "PLAYER_2_HIT", "POINT_END"]
     status: "INDEPENDENT_EVALUATION_BENCHMARK"
-    intended_use: "Strictly independent validation of match event detection, contact timing, pixel localization, and metric court localization"
+  - id: "shot_classification_real"
+    name: "Independent Real-World Multi-Rally Tennis Shot Benchmark"
+    version: "v1"
+    url: "local:data/benchmarks/shot_classification_real/real_rallies_ground_truth.json"
+    source: "Manual Frame-by-Frame Visual Inspection across 8 Match Rallies"
+    license: "Proprietary FYP Research Benchmark"
+    task: "stroke_classification_and_rally_analytics_evaluation"
+    strokes_count: 36
+    rallies_count: 8
+    classes: ["FOREHAND", "BACKHAND", "SERVE", "UNKNOWN"]
+    status: "INDEPENDENT_EVALUATION_BENCHMARK"
+    intended_use: "Empirical validation of Forehand/Backhand classification, shot direction, 3x3 court zoning, and rally segmentation."
 
 models:
   - id: "yolo11s_tennis_ball_best"
@@ -97,6 +108,12 @@ models:
     path: "yolo11m.pt"
     task: "player_detection_and_tracking"
     status: "PRODUCTION_PLAYERS"
+
+  - id: "yolo11n_pose_detector"
+    architecture: "Ultralytics YOLO11n-Pose"
+    path: "yolo11n-pose.pt"
+    task: "player_keypoint_and_stroke_kinematics"
+    status: "PRODUCTION_PHASE6_1"
 
   - id: "resnet50_court_keypoints"
     architecture: "ResNet-50 14-Keypoint Regressor"

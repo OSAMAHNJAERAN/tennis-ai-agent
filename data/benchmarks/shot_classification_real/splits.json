@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "splitting_strategy": "RALLY_AND_VIDEO_SOURCE_LEVEL",
+  "splits": {
+    "development": {
+      "rally_ids": [
+        1,
+        2,
+        3
+      ],
+      "stroke_count": 11,
+      "description": "Development calibration and feature engineering set (Video 1 + Video 2 Rallies 1-2)."
+    },
+    "validation": {
+      "rally_ids": [
+        4,
+        5
+      ],
+      "stroke_count": 11,
+      "description": "Tuning and confidence threshold calibration set (Video 2 Rally 3 + Video 3 Rally 1)."
+    },
+    "held_out_test": {
+      "rally_ids": [
+        6,
+        7,
+        8
+      ],
+      "stroke_count": 14,
+      "description": "Strictly unseen held-out test set evaluated once with frozen configuration (Video 3 Rallies 2-4, including Left-Handed match play)."
+    }
+  }
+}

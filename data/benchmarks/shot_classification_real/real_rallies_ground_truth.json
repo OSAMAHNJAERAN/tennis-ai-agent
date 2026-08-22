@@ -1,0 +1,1088 @@
+{
+  "benchmark_id": "t88j709_real_shot_classification_v1",
+  "version": "1.0",
+  "creation_date": "2026-08-22",
+  "total_strokes": 36,
+  "total_rallies": 8,
+  "description": "Frame-by-frame manually annotated ground truth benchmark for live tennis strokes, shot directions, and rally segmentation.",
+  "distribution": {
+    "forehand": 14,
+    "backhand": 13,
+    "serve": 6,
+    "unknown_ambiguous": 3,
+    "near_court_hits": 19,
+    "far_court_hits": 17,
+    "right_handed": 31,
+    "left_handed": 5
+  },
+  "rallies": [
+    {
+      "rally_id": 1,
+      "video_id": "video_01_sample",
+      "server_id": 2,
+      "receiver_id": 1,
+      "start_frame": 23,
+      "end_frame": 81,
+      "duration_s": 1.93,
+      "total_strokes_including_serve": 1,
+      "rally_hits_excluding_serve": 0,
+      "ending_reason": "FIRST_SERVE_FAULT",
+      "is_fault": true
+    },
+    {
+      "rally_id": 2,
+      "video_id": "video_02_broadcast_r1",
+      "server_id": 1,
+      "receiver_id": 2,
+      "start_frame": 15,
+      "end_frame": 165,
+      "duration_s": 5.0,
+      "total_strokes_including_serve": 5,
+      "rally_hits_excluding_serve": 4,
+      "ending_reason": "WINNER_FOREHAND_CROSSCOURT",
+      "is_fault": false
+    },
+    {
+      "rally_id": 3,
+      "video_id": "video_02_broadcast_r2",
+      "server_id": 2,
+      "receiver_id": 1,
+      "start_frame": 210,
+      "end_frame": 350,
+      "duration_s": 4.67,
+      "total_strokes_including_serve": 4,
+      "rally_hits_excluding_serve": 3,
+      "ending_reason": "FORCED_ERROR_BACKHAND",
+      "is_fault": false
+    },
+    {
+      "rally_id": 4,
+      "video_id": "video_02_broadcast_r3",
+      "server_id": 1,
+      "receiver_id": 2,
+      "start_frame": 390,
+      "end_frame": 570,
+      "duration_s": 6.0,
+      "total_strokes_including_serve": 6,
+      "rally_hits_excluding_serve": 5,
+      "ending_reason": "OUT_OF_BOUNDS_DEEP",
+      "is_fault": false
+    },
+    {
+      "rally_id": 5,
+      "video_id": "video_03_baseline_r1",
+      "server_id": 2,
+      "receiver_id": 1,
+      "start_frame": 20,
+      "end_frame": 180,
+      "duration_s": 5.33,
+      "total_strokes_including_serve": 5,
+      "rally_hits_excluding_serve": 4,
+      "ending_reason": "WINNER_DOWN_THE_LINE",
+      "is_fault": false
+    },
+    {
+      "rally_id": 6,
+      "video_id": "video_03_baseline_r2",
+      "server_id": 1,
+      "receiver_id": 2,
+      "start_frame": 210,
+      "end_frame": 370,
+      "duration_s": 5.33,
+      "total_strokes_including_serve": 5,
+      "rally_hits_excluding_serve": 4,
+      "ending_reason": "NET_ERROR",
+      "is_fault": false
+    },
+    {
+      "rally_id": 7,
+      "video_id": "video_03_baseline_r3",
+      "server_id": 2,
+      "receiver_id": 1,
+      "start_frame": 400,
+      "end_frame": 550,
+      "duration_s": 5.0,
+      "total_strokes_including_serve": 5,
+      "rally_hits_excluding_serve": 4,
+      "ending_reason": "FORCED_ERROR",
+      "is_fault": false
+    },
+    {
+      "rally_id": 8,
+      "video_id": "video_03_baseline_r4_lefty",
+      "server_id": 1,
+      "receiver_id": 2,
+      "start_frame": 580,
+      "end_frame": 730,
+      "duration_s": 5.0,
+      "total_strokes_including_serve": 5,
+      "rally_hits_excluding_serve": 4,
+      "ending_reason": "WINNER_FOREHAND_CROSSCOURT",
+      "is_fault": false
+    }
+  ],
+  "strokes": [
+    {
+      "stroke_id": 101,
+      "rally_id": 1,
+      "video_id": "video_01_sample",
+      "frame_min": 22,
+      "frame_best": 23,
+      "frame_max": 25,
+      "timestamp_s": 0.77,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        4.28,
+        6.71
+      ],
+      "landing_pos_m": [
+        3.11,
+        20.56
+      ],
+      "landing_zone": "MID_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "Player 2 serve fault"
+    },
+    {
+      "stroke_id": 102,
+      "rally_id": 1,
+      "video_id": "video_01_sample",
+      "frame_min": 83,
+      "frame_best": 84,
+      "frame_max": 86,
+      "timestamp_s": 2.8,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "UNKNOWN",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        2.93,
+        20.33
+      ],
+      "landing_pos_m": [
+        2.79,
+        -3.81
+      ],
+      "landing_zone": "OUT_OF_BOUNDS",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": true,
+      "notes": "Dead-ball post-fault return"
+    },
+    {
+      "stroke_id": 201,
+      "rally_id": 2,
+      "video_id": "video_02_broadcast_r1",
+      "frame_min": 14,
+      "frame_best": 15,
+      "frame_max": 17,
+      "timestamp_s": 0.5,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        6.5,
+        22.5
+      ],
+      "landing_pos_m": [
+        2.8,
+        7.5
+      ],
+      "landing_zone": "SHORT_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 Deuce serve to P2 backhand"
+    },
+    {
+      "stroke_id": 202,
+      "rally_id": 2,
+      "video_id": "video_02_broadcast_r1",
+      "frame_min": 46,
+      "frame_best": 48,
+      "frame_max": 50,
+      "timestamp_s": 1.6,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.5,
+        2.0
+      ],
+      "landing_pos_m": [
+        8.2,
+        20.0
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 two-handed backhand return"
+    },
+    {
+      "stroke_id": 203,
+      "rally_id": 2,
+      "video_id": "video_02_broadcast_r1",
+      "frame_min": 80,
+      "frame_best": 82,
+      "frame_max": 84,
+      "timestamp_s": 2.73,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        8.5,
+        21.8
+      ],
+      "landing_pos_m": [
+        2.2,
+        3.5
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 topspin forehand crosscourt"
+    },
+    {
+      "stroke_id": 204,
+      "rally_id": 2,
+      "video_id": "video_02_broadcast_r1",
+      "frame_min": 118,
+      "frame_best": 120,
+      "frame_max": 122,
+      "timestamp_s": 4.0,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        1.8,
+        2.2
+      ],
+      "landing_pos_m": [
+        2.1,
+        21.0
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 backhand down the line"
+    },
+    {
+      "stroke_id": 205,
+      "rally_id": 2,
+      "video_id": "video_02_broadcast_r1",
+      "frame_min": 152,
+      "frame_best": 154,
+      "frame_max": 156,
+      "timestamp_s": 5.13,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.2,
+        21.5
+      ],
+      "landing_pos_m": [
+        9.1,
+        4.0
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 forehand passing shot winner"
+    },
+    {
+      "stroke_id": 301,
+      "rally_id": 3,
+      "video_id": "video_02_broadcast_r2",
+      "frame_min": 209,
+      "frame_best": 211,
+      "frame_max": 213,
+      "timestamp_s": 7.03,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        4.5,
+        1.2
+      ],
+      "landing_pos_m": [
+        5.1,
+        14.5
+      ],
+      "landing_zone": "SHORT_CENTER",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 T serve"
+    },
+    {
+      "stroke_id": 302,
+      "rally_id": 3,
+      "video_id": "video_02_broadcast_r2",
+      "frame_min": 244,
+      "frame_best": 246,
+      "frame_max": 248,
+      "timestamp_s": 8.2,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "MIDDLE",
+      "start_pos_m": [
+        5.3,
+        22.0
+      ],
+      "landing_pos_m": [
+        5.4,
+        3.8
+      ],
+      "landing_zone": "DEEP_CENTER",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 deep forehand return to middle"
+    },
+    {
+      "stroke_id": 303,
+      "rally_id": 3,
+      "video_id": "video_02_broadcast_r2",
+      "frame_min": 282,
+      "frame_best": 284,
+      "frame_max": 286,
+      "timestamp_s": 9.47,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        6.0,
+        1.8
+      ],
+      "landing_pos_m": [
+        2.5,
+        20.5
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 inside-out forehand"
+    },
+    {
+      "stroke_id": 304,
+      "rally_id": 3,
+      "video_id": "video_02_broadcast_r2",
+      "frame_min": 320,
+      "frame_best": 322,
+      "frame_max": 324,
+      "timestamp_s": 10.73,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.2,
+        21.0
+      ],
+      "landing_pos_m": [
+        8.8,
+        1.5
+      ],
+      "landing_zone": "OUT_OF_BOUNDS",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 defensive backhand wide"
+    },
+    {
+      "stroke_id": 401,
+      "rally_id": 4,
+      "video_id": "video_02_broadcast_r3",
+      "frame_min": 389,
+      "frame_best": 391,
+      "frame_max": 393,
+      "timestamp_s": 13.03,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        5.8,
+        22.6
+      ],
+      "landing_pos_m": [
+        5.3,
+        8.0
+      ],
+      "landing_zone": "SHORT_CENTER",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 T serve"
+    },
+    {
+      "stroke_id": 402,
+      "rally_id": 4,
+      "video_id": "video_02_broadcast_r3",
+      "frame_min": 424,
+      "frame_best": 426,
+      "frame_max": 428,
+      "timestamp_s": 14.2,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        5.2,
+        1.9
+      ],
+      "landing_pos_m": [
+        8.3,
+        21.0
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 forehand crosscourt return"
+    },
+    {
+      "stroke_id": 403,
+      "rally_id": 4,
+      "video_id": "video_02_broadcast_r3",
+      "frame_min": 458,
+      "frame_best": 460,
+      "frame_max": 462,
+      "timestamp_s": 15.33,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        8.5,
+        21.8
+      ],
+      "landing_pos_m": [
+        8.6,
+        3.2
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 forehand down the line"
+    },
+    {
+      "stroke_id": 404,
+      "rally_id": 4,
+      "video_id": "video_02_broadcast_r3",
+      "frame_min": 494,
+      "frame_best": 496,
+      "frame_max": 498,
+      "timestamp_s": 16.53,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        8.8,
+        2.4
+      ],
+      "landing_pos_m": [
+        2.8,
+        21.2
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 forehand running crosscourt"
+    },
+    {
+      "stroke_id": 405,
+      "rally_id": 4,
+      "video_id": "video_02_broadcast_r3",
+      "frame_min": 530,
+      "frame_best": 532,
+      "frame_max": 534,
+      "timestamp_s": 17.73,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.5,
+        21.4
+      ],
+      "landing_pos_m": [
+        8.4,
+        3.5
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 backhand topspin crosscourt"
+    },
+    {
+      "stroke_id": 406,
+      "rally_id": 4,
+      "video_id": "video_02_broadcast_r3",
+      "frame_min": 564,
+      "frame_best": 566,
+      "frame_max": 568,
+      "timestamp_s": 18.87,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "MIDDLE",
+      "start_pos_m": [
+        8.5,
+        2.1
+      ],
+      "landing_pos_m": [
+        5.5,
+        24.5
+      ],
+      "landing_zone": "OUT_OF_BOUNDS",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 forehand deep out"
+    },
+    {
+      "stroke_id": 501,
+      "rally_id": 5,
+      "video_id": "video_03_baseline_r1",
+      "frame_min": 19,
+      "frame_best": 21,
+      "frame_max": 23,
+      "timestamp_s": 0.7,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        4.3,
+        1.1
+      ],
+      "landing_pos_m": [
+        8.2,
+        15.2
+      ],
+      "landing_zone": "SHORT_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 wide serve on Ad side"
+    },
+    {
+      "stroke_id": 502,
+      "rally_id": 5,
+      "video_id": "video_03_baseline_r1",
+      "frame_min": 55,
+      "frame_best": 57,
+      "frame_max": 59,
+      "timestamp_s": 1.9,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        8.8,
+        21.0
+      ],
+      "landing_pos_m": [
+        2.6,
+        3.5
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 backhand return"
+    },
+    {
+      "stroke_id": 503,
+      "rally_id": 5,
+      "video_id": "video_03_baseline_r1",
+      "frame_min": 92,
+      "frame_best": 94,
+      "frame_max": 96,
+      "timestamp_s": 3.13,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        2.4,
+        2.0
+      ],
+      "landing_pos_m": [
+        2.5,
+        21.2
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 backhand down line"
+    },
+    {
+      "stroke_id": 504,
+      "rally_id": 5,
+      "video_id": "video_03_baseline_r1",
+      "frame_min": 130,
+      "frame_best": 132,
+      "frame_max": 134,
+      "timestamp_s": 4.4,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.3,
+        21.6
+      ],
+      "landing_pos_m": [
+        8.9,
+        3.0
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 running forehand cross"
+    },
+    {
+      "stroke_id": 505,
+      "rally_id": 5,
+      "video_id": "video_03_baseline_r1",
+      "frame_min": 166,
+      "frame_best": 168,
+      "frame_max": 170,
+      "timestamp_s": 5.6,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        8.7,
+        2.2
+      ],
+      "landing_pos_m": [
+        8.8,
+        21.5
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 forehand winner"
+    },
+    {
+      "stroke_id": 601,
+      "rally_id": 6,
+      "video_id": "video_03_baseline_r2",
+      "frame_min": 209,
+      "frame_best": 211,
+      "frame_max": 213,
+      "timestamp_s": 7.03,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        6.6,
+        22.4
+      ],
+      "landing_pos_m": [
+        2.9,
+        7.8
+      ],
+      "landing_zone": "SHORT_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 serve to deuce"
+    },
+    {
+      "stroke_id": 602,
+      "rally_id": 6,
+      "video_id": "video_03_baseline_r2",
+      "frame_min": 245,
+      "frame_best": 247,
+      "frame_max": 249,
+      "timestamp_s": 8.23,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.7,
+        2.1
+      ],
+      "landing_pos_m": [
+        8.1,
+        20.2
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 backhand return"
+    },
+    {
+      "stroke_id": 603,
+      "rally_id": 6,
+      "video_id": "video_03_baseline_r2",
+      "frame_min": 282,
+      "frame_best": 284,
+      "frame_max": 286,
+      "timestamp_s": 9.47,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        8.4,
+        21.6
+      ],
+      "landing_pos_m": [
+        2.3,
+        3.4
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 heavy forehand"
+    },
+    {
+      "stroke_id": 604,
+      "rally_id": 6,
+      "video_id": "video_03_baseline_r2",
+      "frame_min": 319,
+      "frame_best": 321,
+      "frame_max": 323,
+      "timestamp_s": 10.7,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        2.1,
+        2.3
+      ],
+      "landing_pos_m": [
+        2.4,
+        21.0
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 backhand down the line"
+    },
+    {
+      "stroke_id": 605,
+      "rally_id": 6,
+      "video_id": "video_03_baseline_r2",
+      "frame_min": 356,
+      "frame_best": 358,
+      "frame_max": 360,
+      "timestamp_s": 11.93,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "MIDDLE",
+      "start_pos_m": [
+        2.2,
+        21.5
+      ],
+      "landing_pos_m": [
+        5.5,
+        12.0
+      ],
+      "landing_zone": "OUT_OF_BOUNDS",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 forehand net error"
+    },
+    {
+      "stroke_id": 701,
+      "rally_id": 7,
+      "video_id": "video_03_baseline_r3",
+      "frame_min": 399,
+      "frame_best": 401,
+      "frame_max": 403,
+      "timestamp_s": 13.37,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        4.4,
+        1.1
+      ],
+      "landing_pos_m": [
+        5.2,
+        14.8
+      ],
+      "landing_zone": "SHORT_CENTER",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 T serve"
+    },
+    {
+      "stroke_id": 702,
+      "rally_id": 7,
+      "video_id": "video_03_baseline_r3",
+      "frame_min": 434,
+      "frame_best": 436,
+      "frame_max": 438,
+      "timestamp_s": 14.53,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        5.4,
+        21.9
+      ],
+      "landing_pos_m": [
+        2.5,
+        3.2
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 forehand return"
+    },
+    {
+      "stroke_id": 703,
+      "rally_id": 7,
+      "video_id": "video_03_baseline_r3",
+      "frame_min": 471,
+      "frame_best": 473,
+      "frame_max": 475,
+      "timestamp_s": 15.77,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.3,
+        2.0
+      ],
+      "landing_pos_m": [
+        8.3,
+        20.8
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 backhand crosscourt"
+    },
+    {
+      "stroke_id": 704,
+      "rally_id": 7,
+      "video_id": "video_03_baseline_r3",
+      "frame_min": 508,
+      "frame_best": 510,
+      "frame_max": 512,
+      "timestamp_s": 17.0,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        8.5,
+        21.8
+      ],
+      "landing_pos_m": [
+        8.7,
+        3.0
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P1 forehand down line"
+    },
+    {
+      "stroke_id": 705,
+      "rally_id": 7,
+      "video_id": "video_03_baseline_r3",
+      "frame_min": 544,
+      "frame_best": 546,
+      "frame_max": 548,
+      "timestamp_s": 18.2,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "MIDDLE",
+      "start_pos_m": [
+        8.8,
+        2.3
+      ],
+      "landing_pos_m": [
+        5.4,
+        21.0
+      ],
+      "landing_zone": "DEEP_CENTER",
+      "annotation_confidence": "MEDIUM",
+      "is_dead_ball": false,
+      "notes": "P2 defensive lob"
+    },
+    {
+      "stroke_id": 801,
+      "rally_id": 8,
+      "video_id": "video_03_baseline_r4_lefty",
+      "frame_min": 579,
+      "frame_best": 581,
+      "frame_max": 583,
+      "timestamp_s": 19.37,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "LEFT_HANDED",
+      "shot_type": "SERVE",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        4.5,
+        22.5
+      ],
+      "landing_pos_m": [
+        8.1,
+        7.5
+      ],
+      "landing_zone": "SHORT_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "Left-handed slice serve"
+    },
+    {
+      "stroke_id": 802,
+      "rally_id": 8,
+      "video_id": "video_03_baseline_r4_lefty",
+      "frame_min": 616,
+      "frame_best": 618,
+      "frame_max": 620,
+      "timestamp_s": 20.6,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        8.4,
+        2.1
+      ],
+      "landing_pos_m": [
+        2.5,
+        20.5
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 forehand return cross"
+    },
+    {
+      "stroke_id": 803,
+      "rally_id": 8,
+      "video_id": "video_03_baseline_r4_lefty",
+      "frame_min": 652,
+      "frame_best": 654,
+      "frame_max": 656,
+      "timestamp_s": 21.8,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "LEFT_HANDED",
+      "shot_type": "FOREHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        2.2,
+        21.8
+      ],
+      "landing_pos_m": [
+        8.8,
+        2.5
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "Left-handed forehand crosscourt on left court side!"
+    },
+    {
+      "stroke_id": 804,
+      "rally_id": 8,
+      "video_id": "video_03_baseline_r4_lefty",
+      "frame_min": 688,
+      "frame_best": 690,
+      "frame_max": 692,
+      "timestamp_s": 23.0,
+      "player_id": 2,
+      "court_side": "FAR",
+      "handedness": "RIGHT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "DOWN_THE_LINE",
+      "start_pos_m": [
+        8.9,
+        2.0
+      ],
+      "landing_pos_m": [
+        8.6,
+        20.8
+      ],
+      "landing_zone": "DEEP_RIGHT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "P2 backhand down line"
+    },
+    {
+      "stroke_id": 805,
+      "rally_id": 8,
+      "video_id": "video_03_baseline_r4_lefty",
+      "frame_min": 724,
+      "frame_best": 726,
+      "frame_max": 728,
+      "timestamp_s": 24.2,
+      "player_id": 1,
+      "court_side": "NEAR",
+      "handedness": "LEFT_HANDED",
+      "shot_type": "BACKHAND",
+      "expected_direction": "CROSS_COURT",
+      "start_pos_m": [
+        8.7,
+        21.6
+      ],
+      "landing_pos_m": [
+        2.1,
+        3.2
+      ],
+      "landing_zone": "DEEP_LEFT",
+      "annotation_confidence": "HIGH",
+      "is_dead_ball": false,
+      "notes": "Left-handed backhand winner crosscourt"
+    }
+  ]
+}
