@@ -1,6 +1,6 @@
 """
-Unit tests for Phase 6.4: Cross-Match Generalization & Production Qualification.
-Validates true cross-match media integrity, split disjointness, output schema versioning,
+Unit tests for Phase 6.4 cross-match diagnostic integrity.
+Validates media integrity, scientific split metadata, output schema versioning,
 and nullable analytics handling.
 """
 
@@ -11,14 +11,14 @@ import pytest
 
 
 def test_cross_match_media_integrity_and_hashes():
-    """Verifies that all cross-match final holdout video files exist with valid SHA256 hashes."""
+    """Verifies that all cross-match diagnostic video files have valid hashes."""
     meta_path = "data/benchmarks/cross_match_final_holdout/videos.json"
     assert os.path.exists(meta_path), "Cross-match videos.json missing"
     
     with open(meta_path, "r") as f:
         videos = json.load(f)["videos"]
         
-    assert len(videos) == 3, f"Expected 3 holdout videos, found {len(videos)}"
+    assert len(videos) == 3, f"Expected 3 diagnostic videos, found {len(videos)}"
     
     for vid_id, meta in videos.items():
         vpath = meta["path"]
@@ -35,17 +35,17 @@ def test_cross_match_media_integrity_and_hashes():
         assert h.hexdigest() == meta["sha256"], f"SHA256 hash mismatch for {vid_id}"
 
 
-def test_cross_match_split_strict_disjointness():
-    """Verifies that the cross-match holdout split is 100% disjoint in videos, sources, and hashes."""
+def test_cross_match_split_is_not_mislabeled_as_pristine():
+    """The inspected/tuned cross-match videos must never re-enter pristine GT."""
     splits_path = "data/benchmarks/cross_match_final_holdout/splits.json"
     with open(splits_path, "r") as f:
         splits = json.load(f)
         
-    diag_vids = set(splits["development"] + splits["validation"] + splits["diagnostic"])
-    holdout_vids = set(splits["final_cross_match_holdout"])
-    
-    # Video ID disjointness
-    assert len(diag_vids.intersection(holdout_vids)) == 0, "Video ID overlap found in split"
+    diagnostic = set(splits["cross_match_diagnostic"])
+    pristine = set(splits["pristine_final_holdout"])
+    assert diagnostic == {"video_08", "video_09", "video_10"}
+    assert not diagnostic.intersection(pristine)
+    assert splits["qualification_evidence"] is False
 
 
 def test_analytics_output_contract_schema_versioning():

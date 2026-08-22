@@ -44,7 +44,8 @@ class RallyAnalyzer:
         serve_attempt: int = 1,
         winner_id: Optional[int] = None,
         ending_reason: str = "",
-        point_id: int = 1
+        point_id: int = 1,
+        fps: Optional[float] = None,
     ) -> List[RallySegment]:
         """
         Segments shot sequences into formal rally records.
@@ -65,13 +66,15 @@ class RallyAnalyzer:
 
         dur = max(0.0, end_s.timestamp_s - start_s.timestamp_s)
         if dur == 0.0 and len(live_shots) > 1:
-            dur = (end_s.frame_index - start_s.frame_index) / 30.0
+            if fps is None or fps <= 0:
+                raise ValueError("Positive fps is required when shot timestamps are unavailable")
+            dur = (end_s.frame_index - start_s.frame_index) / fps
 
         rally = RallySegment(
             rally_id=1,
             point_id=point_id,
             start_frame=start_s.frame_index,
-            end_frame=end_s.bounce_frame or (end_s.frame_index + 30),
+            end_frame=end_s.bounce_frame or end_s.frame_index,
             start_time_s=start_s.timestamp_s,
             end_time_s=end_s.timestamp_s + (dur if dur > 0 else 1.0),
             duration_s=round(dur, 2),

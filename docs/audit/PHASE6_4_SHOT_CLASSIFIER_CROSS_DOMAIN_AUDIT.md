@@ -4,7 +4,9 @@
 
 This forensic audit analyzes all shot classification failures on correctly detected live hit events across the cross-match diagnostic videos (`video_08`, `video_09`, `video_10`).
 
-- **Measured Macro F1**: 0.1783 (Target: $\ge 0.80$)
+- **Historical diagnostic Macro F1**: 0.1783 under the superseded matcher
+- **Corrected preserved-artifact diagnostic Macro F1**: 0.1667
+- **Final pristine target**: $\ge 0.80$
 - **Forehand F1**: 0.3529
 - **Backhand F1**: 0.1818
 - **Serve F1**: 0.0000

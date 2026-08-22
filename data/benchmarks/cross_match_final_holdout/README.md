@@ -1,4 +1,11 @@
-# Cross-Match Final Holdout Benchmark (Phase 6.4)
+# Cross-Match Diagnostic Benchmark (Phase 6.4)
+
+> **Scientific status:** `CROSS_MATCH_DIAGNOSTIC`. The directory name is a
+> retained legacy path, not the current semantic split. These clips were
+> originally intended as a final holdout, but became development/diagnostic
+> data after predictions were inspected and used for debugging, failure
+> analysis, event tuning, shot-classifier refinement, and performance work.
+> They must not be cited as pristine or independent final qualification.
 
 ## Benchmark Metadata
 
@@ -8,4 +15,5 @@
 - **Total Physical Frames**: 2,672 frames @ 30.00 FPS
 - **Ground Truth Events**: 40 physical events (20 live strokes, 20 bounces)
 - **Ground Truth Rallies**: 3 complete rallies
-- **Disjointness**: 100% Match-Disjoint, Player-Disjoint, Court-Disjoint, Camera-Disjoint from Davis Cup diagnostic series.
+- **Development use**: diagnostics, ablations, calibration, and regression.
+- **Historical disjointness**: match/player/source differences from the Davis Cup series remain factual, but no longer make this an unseen holdout.

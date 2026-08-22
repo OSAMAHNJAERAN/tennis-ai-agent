@@ -51,9 +51,10 @@ pose_estimation:
 
 shot_classification:
   ambiguity_threshold: 0.15
-  players_handedness:
-    1: "RIGHT_HANDED"
-    2: "RIGHT_HANDED"
+  # Handedness and body orientation must be established from independent
+  # metadata/evidence. Missing entries preserve UNKNOWN and trigger abstention.
+  players_handedness: {}
+  court_orientation_sign: {}
 
 visualization:
   draw_trajectories: true

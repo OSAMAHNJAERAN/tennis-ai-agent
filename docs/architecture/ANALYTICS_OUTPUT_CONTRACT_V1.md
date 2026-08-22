@@ -40,7 +40,7 @@ Contains the sequential list of linked physical strokes across the match.
 | `source_court_position_m` | Array[2] | meters | Yes | $[x, y]$ | Ball position on canonical court at impact. |
 | `landing_court_position_m`| Array[2] | meters | Yes | $[x, y]$ | Ball landing position on subsequent bounce. |
 | `landing_zone` | String | - | Yes | Enum | 3x3 Court Zone (`SHORT_LEFT`, `DEEP_CENTER`, `OUT_OF_BOUNDS`, etc.). |
-| `speed_kmh` | Float | km/h | Yes | 2D Doppler | Estimated post-contact ball speed (`null` if track lost). |
+| `speed_kmh` | Float | km/h | Yes | 2D court projection | 2D Court-Projected Ball Speed Estimate (`null` if track or calibration is inadequate); not radar or true 3D speed. |
 | `is_dead_ball` | Boolean | - | No | Scoring Gate | `true` if contact occurred after dead-ball call. |
 | `reason` | String | - | No | Audit Trail | Human-readable physical rationale. |
 
@@ -83,7 +83,7 @@ Aggregated tactical summaries, player movement tracking, and stroke distribution
 ---
 
 ### 2.4 `line_calls.json`
-Uncertainty-aware assisted line call records with millimeter signed distances.
+Uncertainty-aware decision-support line-call records with millimeter signed distances. These are research estimates, not professional officiating certification.
 
 | Field Name | Type | Units | Nullable? | Description |
 | :--- | :--- | :--- | :--- | :--- |
@@ -92,7 +92,7 @@ Uncertainty-aware assisted line call records with millimeter signed distances.
 | `frame_index` | Integer | frames | No | Contact bounce frame index. |
 | `decision` | String | - | No | `IN`, `OUT`, `REVIEW_REQUIRED`. |
 | `signed_distance_mm` | Float | mm | Yes | Distance to closest boundary line (negative = inside). |
-| `contact_patch_radius_mm`| Float | mm | No | Modeled ball deformation patch radius (ITF 12.5mm). |
+| `contact_patch_radius_mm`| Float | mm | No | Empirical ground-contact patch model parameter; it is not the full ball radius and its uncertainty participates in `REVIEW_REQUIRED`. |
 | `uncertainty_1sigma_mm` | Float | mm | No | Spatial uncertainty standard deviation. |
 | `confidence` | Float | $[0, 1]$| No | Statistical confidence of line call. |
 | `closest_line` | String | - | No | E.g. `BASELINE_NEAR`, `SERVICE_LINE_FAR_DEUCE`. |

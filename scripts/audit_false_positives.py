@@ -1,64 +1,132 @@
+"""Persist an auditable false-positive table for cross-match diagnostics."""
+
+from __future__ import annotations
+
+import argparse
+import csv
 import json
 import os
+from collections import Counter
 
-with open('data/benchmarks/cross_match_final_holdout/ground_truth_events.json') as f:
-    gt_events = json.load(f)['events']
-with open('data/benchmarks/cross_match_final_holdout/ground_truth_shots.json') as f:
-    gt_shots = json.load(f)['shots']
+try:
+    from scripts.evaluate_phase6_4_cross_match import _event_type, _frame, one_to_one_matches
+except ModuleNotFoundError:  # Direct ``python scripts/...`` execution.
+    from evaluate_phase6_4_cross_match import _event_type, _frame, one_to_one_matches
 
-print("=== DETAILED EVENT MATCHING & FALSE POSITIVE FORENSICS ===")
-categories = {}
 
-for vid in ['video_08', 'video_09', 'video_10']:
-    p_path = f'outputs/phase6_4_qualification/final_cross_match_holdout/{vid}/match_events.json'
-    if not os.path.exists(p_path):
-        continue
-    with open(p_path) as f:
-        preds = json.load(f).get('events', [])
-    gts = gt_events.get(vid, [])
-    
-    print(f"\n==================== {vid} ====================")
-    matched_gts = set()
-    
-    for p in preds:
-        f_idx = p['frame']
-        e_type = p['event_type']
-        p_id = p.get('player_id')
-        is_dead = p.get('is_dead_ball', False)
-        
-        # Check matching against unmatched GTs
-        match = None
-        for g in gts:
-            if g['event_id'] in matched_gts:
+def _load(path):
+    with open(path, encoding="utf-8") as stream:
+        return json.load(stream)
+
+
+def _classify(prediction, gt_events, rally_end, dead_ids, tolerance):
+    frame = _frame(prediction)
+    event_type = _event_type(prediction)
+    evidence = prediction.get("evidence", {})
+    if prediction.get("event_id") in dead_ids or frame > rally_end:
+        return "POST_RALLY_BALL_NOISE"
+
+    nearest = min(gt_events, key=lambda gt: abs(_frame(gt) - frame))
+    difference = abs(_frame(nearest) - frame)
+    nearest_type = _event_type(nearest)
+    if difference <= tolerance and event_type != nearest_type:
+        if event_type == "PLAYER_HIT" and nearest_type == "BOUNCE":
+            return "BOUNCE_AS_HIT"
+        if event_type == "BOUNCE" and nearest_type == "PLAYER_HIT":
+            return "HIT_AS_BOUNCE"
+        if event_type == "SERVE_CONTACT":
+            return "FALSE_SERVE"
+        return "UNKNOWN_CAUSE"
+    if difference <= 20:
+        return "TIMING_DRIFT"
+    if event_type == "PLAYER_HIT":
+        distances = [
+            value for value in (
+                evidence.get("player1_distance_px"), evidence.get("player2_distance_px")
+            ) if value is not None
+        ]
+        if distances and min(distances) > 100:
+            return "PLAYER_PROXIMITY_ONLY"
+    if evidence.get("ball_state") in ("PREDICTED", "INTERPOLATED", "OCCLUDED"):
+        return "LOW_CONF_BALL_ARTIFACT"
+    if evidence.get("trajectory_continuity") is False:
+        return "TRAJECTORY_DISCONTINUITY"
+    return "BALL_NOISE"
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--output-root", default="outputs/phase6_4_qualification/final_cross_match_holdout"
+    )
+    parser.add_argument(
+        "--output-json", default="artifacts/validation/phase6_4_false_positive_audit.json"
+    )
+    parser.add_argument(
+        "--output-csv", default="artifacts/validation/phase6_4_false_positive_audit.csv"
+    )
+    args = parser.parse_args()
+
+    events_gt = _load("data/benchmarks/cross_match_final_holdout/ground_truth_events.json")["events"]
+    rallies_gt = _load("data/benchmarks/cross_match_final_holdout/ground_truth_rallies.json")["rallies"]
+    videos = _load("data/benchmarks/cross_match_final_holdout/videos.json")["videos"]
+    rows = []
+    for video_id in ("video_08", "video_09", "video_10"):
+        output_dir = os.path.join(args.output_root, video_id)
+        predictions = _load(os.path.join(output_dir, "match_events.json")).get("events", [])
+        gt = events_gt[video_id]
+        fps = float(videos[video_id]["fps"])
+        tolerance = max(1, round(0.2 * fps))
+        matches = one_to_one_matches(predictions, gt, tolerance, require_event_type=True)
+        matched_predictions = {pred_index for pred_index, _, _ in matches}
+        scoring_path = os.path.join(output_dir, "scoring_events.json")
+        scoring = _load(scoring_path).get("scoring_events", []) if os.path.exists(scoring_path) else []
+        dead_ids = {
+            item["event_id"] for item in scoring
+            if item.get("outcome_type") == "DEAD_BALL_IGNORED"
+        }
+        rally_end = max(rally["end_frame"] for rally in rallies_gt[video_id])
+        for pred_index, prediction in enumerate(predictions):
+            if pred_index in matched_predictions:
                 continue
-            if abs(g['frame_best'] - f_idx) <= 6 and g['event_type'] == e_type:
-                match = g
-                matched_gts.add(g['event_id'])
-                break
-                
-        if match:
-            print(f"TP: Frame {f_idx:4d} | {e_type:15s} | Matched GT #{match['event_id']} (f{match['frame_best']})")
-        else:
-            closest_gt = min(gts, key=lambda g: abs(g['frame_best'] - f_idx))
-            dist = closest_gt['frame_best'] - f_idx
-            # Classify reason
-            if is_dead:
-                cat = "POST_RALLY_DEAD_BALL"
-            elif closest_gt['event_type'] != e_type and abs(dist) <= 6:
-                if e_type == "PLAYER_HIT" and closest_gt['event_type'] == "BOUNCE":
-                    cat = "BOUNCE_AS_HIT"
-                elif e_type == "BOUNCE" and closest_gt['event_type'] == "PLAYER_HIT":
-                    cat = "HIT_AS_BOUNCE"
-                else:
-                    cat = "EVENT_TYPE_CONFUSION"
-            elif abs(dist) > 20:
-                cat = "BALL_NOISE_OR_ARTIFACT"
-            else:
-                cat = "TIMING_DRIFT_OR_JITTER"
-                
-            categories[cat] = categories.get(cat, 0) + 1
-            print(f"FP: Frame {f_idx:4d} | {e_type:15s} | P{p_id} | Dead:{str(is_dead):5s} | Cat: {cat:22s} | Near GT: {closest_gt['event_type']} @ f{closest_gt['frame_best']} ({dist:+d}f)")
+            frame = _frame(prediction)
+            nearest = min(gt, key=lambda item: abs(_frame(item) - frame))
+            rows.append({
+                "video_id": video_id,
+                "prediction_event_id": prediction.get("event_id"),
+                "frame_index": frame,
+                "timestamp_s": prediction.get("timestamp_s", frame / fps),
+                "predicted_type": _event_type(prediction),
+                "predicted_player_id": prediction.get("player_id"),
+                "nearest_gt_event_id": nearest.get("event_id"),
+                "nearest_gt_frame": _frame(nearest),
+                "nearest_gt_type": _event_type(nearest),
+                "timing_delta_frames": frame - _frame(nearest),
+                "taxonomy": _classify(prediction, gt, rally_end, dead_ids, tolerance),
+                "trajectory_state": prediction.get("trajectory_state"),
+                "confidence": prediction.get("confidence"),
+            })
 
-print("\n=== FALSE POSITIVE CATEGORY TOTALS ===")
-for c, cnt in sorted(categories.items(), key=lambda x: -x[1]):
-    print(f"  {c:25s}: {cnt}")
+    taxonomy = Counter(row["taxonomy"] for row in rows)
+    report = {
+        "schema_version": "1.0",
+        "scientific_split": "CROSS_MATCH_DIAGNOSTIC",
+        "qualification_evidence": False,
+        "matching": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
+        "tolerance_seconds": 0.2,
+        "false_positive_count": len(rows),
+        "taxonomy_counts": dict(sorted(taxonomy.items())),
+        "false_positives": rows,
+    }
+    os.makedirs(os.path.dirname(args.output_json), exist_ok=True)
+    with open(args.output_json, "w", encoding="utf-8") as stream:
+        json.dump(report, stream, indent=2)
+    with open(args.output_csv, "w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]) if rows else ["video_id"])
+        writer.writeheader()
+        writer.writerows(rows)
+    print(json.dumps({"false_positive_count": len(rows), "taxonomy_counts": taxonomy}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

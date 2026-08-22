@@ -3,7 +3,7 @@
 
 version: "1.0"
 phase: "6.4"
-status: "FROZEN_PRODUCTION"
+status: "FREEZE_CANDIDATE_NOT_QUALIFIED"
 
 models:
   ball_detector:
@@ -56,6 +56,9 @@ shot_classification:
   geometry_weight: 0.35
   abstention_threshold: 0.40
   contact_eval_window: 2
+  players_handedness: {}
+  court_orientation_sign: {}
+  unknown_handedness_policy: "ABSTAIN"
 
 output_contract:
   schema_version: "1.0"

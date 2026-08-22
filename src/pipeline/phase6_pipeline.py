@@ -1,6 +1,7 @@
 import os
 import time
 import json
+import os
 import yaml
 from typing import Dict, Any, List, Optional, Tuple
 import cv2
@@ -121,15 +122,21 @@ class Phase6Pipeline:
             )
 
         shot_cfg = self.config.get('shot_classification', {})
+        configured_handedness = shot_cfg.get('players_handedness', {})
         handedness_map = {
-            1: PlayerHandedness(shot_cfg.get('players_handedness', {}).get(1, "RIGHT_HANDED")),
-            2: PlayerHandedness(shot_cfg.get('players_handedness', {}).get(2, "RIGHT_HANDED"))
+            int(player_id): PlayerHandedness(value)
+            for player_id, value in configured_handedness.items()
+        }
+        orientation_map = {
+            int(player_id): float(sign)
+            for player_id, sign in shot_cfg.get('court_orientation_sign', {}).items()
         }
         self.shot_classifier = TennisShotClassifier(
             pose_extractor=self.pose_extractor,
             min_pose_confidence=pose_cfg.get('min_pose_confidence', 0.35),
             ambiguity_threshold=shot_cfg.get('ambiguity_threshold', 0.15),
-            handedness_map=handedness_map
+            handedness_map=handedness_map,
+            court_orientation_map=orientation_map,
         )
         self.shot_linker = TennisShotLinker(classifier=self.shot_classifier)
 
@@ -219,6 +226,7 @@ class Phase6Pipeline:
             homography_matrix=homography_matrix,
             fps=fps
         )
+        event_candidates = self.event_detector.detect_candidates(ball_points, fps=fps)
         print(f"  -> Detected {len(detected_events)} physical match events in {time.time()-t0:.2f}s")
 
         # 7. Line Calling & Scoring State Machine Execution
@@ -245,7 +253,7 @@ class Phase6Pipeline:
                 server_end = ServerCourtEnd.FAR_COURT if curr_st.server_id == 2 else ServerCourtEnd.NEAR_COURT
                 expected_box = curr_st.get_expected_service_box(server_end)
 
-                if curr_st.ball_state == BallPlayState.SERVE_STARTED or ev_frame < 100:
+                if curr_st.ball_state == BallPlayState.SERVE_STARTED:
                     call_ctx = LineCallContext.SERVE
                     tgt_box = expected_box
                 else:
@@ -292,13 +300,14 @@ class Phase6Pipeline:
             })
 
         print(f"  -> Scoring State Complete ({len(dead_event_ids)} dead-ball events suppressed) in {time.time()-t0:.2f}s")
+        authoritative_events = [ev for ev in detected_events if ev.event_id not in dead_event_ids]
 
         # 8. Speed Estimation & Player Metrics
         print("\n[Step 8/11] Computing 2D Ball Speed & Player Locomotion...")
         t0 = time.time()
         per_frame_speeds, speed_segments, speed_summary = BallSpeedEstimator.estimate_speeds(
             trajectory=ball_points,
-            events=detected_events,
+            events=authoritative_events,
             fps=fps
         )
         for i in range(total_frames):
@@ -354,7 +363,8 @@ class Phase6Pipeline:
             receiver_id=final_st.receiver_id,
             serve_attempt=final_st.serve_attempt,
             winner_id=final_st.last_point_winner,
-            ending_reason=final_st.last_point_reason
+            ending_reason=final_st.last_point_reason,
+            fps=fps,
         )
 
         point_analytics = MatchAnalyticsAggregator.build_point_analytics(
@@ -391,7 +401,7 @@ class Phase6Pipeline:
         writer = cv2.VideoWriter(output_video_path, fourcc, fps, (w, h))
 
         recent_ball_positions = []
-        bounces_court_points = [ev.court_position_m for ev in detected_events if ev.event_type == EventType.BOUNCE and ev.court_position_m]
+        bounces_court_points = [ev.court_position_m for ev in authoritative_events if ev.event_type == EventType.BOUNCE and ev.court_position_m]
 
         # Map shot frame to evidence
         shot_frame_map = {s.frame_index: s for s in shot_evidences}
@@ -427,7 +437,7 @@ class Phase6Pipeline:
             ann_frame = VideoAnnotator.draw_ball_trajectory(ann_frame, recent_ball_positions, max_trail=25)
 
             # 4. Physical Match Events Badge
-            for ev in detected_events:
+            for ev in authoritative_events:
                 if abs(ev.frame_index - i) <= 6:
                     ann_frame = VideoAnnotator.draw_event_badge(ann_frame, ev.event_type.value, (0, 255, 255), i)
 
@@ -449,7 +459,11 @@ class Phase6Pipeline:
                     cv2.putText(ann_frame, call_text, (55, 142), cv2.FONT_HERSHEY_SIMPLEX, 0.70, (255, 255, 255), 2, cv2.LINE_AA)
 
             # 7. Dead-Ball Annotation
-            if 81 <= i <= 95:
+            dead_event_frames = {
+                outcome["frame"] for outcome in scoring_outcomes
+                if outcome["outcome_type"] == PointOutcomeType.DEAD_BALL_IGNORED.value
+            }
+            if any(0 <= i - dead_frame <= max(1, round(0.5 * fps)) for dead_frame in dead_event_frames):
                 cv2.rectangle(ann_frame, (40, 215), (550, 255), (50, 50, 50), -1)
                 cv2.rectangle(ann_frame, (40, 215), (550, 255), (0, 165, 255), 2)
                 cv2.putText(ann_frame, "IGNORED — BALL NOT IN PLAY (DEAD BALL)", (50, 242),
@@ -517,38 +531,39 @@ class Phase6Pipeline:
 
         # Save shot_events.json
         with open(os.path.join(output_dir, "shot_events.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"shot_events": [s.to_dict() for s in shot_evidences]}), f, indent=2)
+            json.dump(_sanitize({"schema_version": "1.0", "shot_events": [s.to_dict() for s in shot_evidences]}), f, indent=2)
 
         # Save rallies.json
         with open(os.path.join(output_dir, "rallies.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"rallies": [r.to_dict() for r in rallies]}), f, indent=2)
+            json.dump(_sanitize({"schema_version": "1.0", "rallies": [r.to_dict() for r in rallies]}), f, indent=2)
 
         # Save point_analytics.json
         with open(os.path.join(output_dir, "point_analytics.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"points": point_analytics}), f, indent=2)
+            json.dump(_sanitize({"schema_version": "1.0", "points": point_analytics}), f, indent=2)
 
         # Save match_analytics.json
         with open(os.path.join(output_dir, "match_analytics.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize(match_analytics), f, indent=2)
+            json.dump(_sanitize({"schema_version": "1.0", **match_analytics}), f, indent=2)
 
         # Save match_state.json
         with open(os.path.join(output_dir, "match_state.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize(final_st.to_dict()), f, indent=2)
+            json.dump(_sanitize({"schema_version": "1.0", **final_st.to_dict()}), f, indent=2)
 
         # Save scoring_events.json
         with open(os.path.join(output_dir, "scoring_events.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"scoring_events": scoring_outcomes}), f, indent=2)
+            json.dump(_sanitize({"schema_version": "1.0", "scoring_events": scoring_outcomes}), f, indent=2)
 
         # Save score_history.json
         self.scoring_engine.save_history_json(os.path.join(output_dir, "score_history.json"))
 
         # Save line_calls.json
         with open(os.path.join(output_dir, "line_calls.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"line_calls": [e.to_dict() for e in line_call_evidences]}), f, indent=2)
+            json.dump(_sanitize({"schema_version": "1.0", "line_calls": [e.to_dict() for e in line_call_evidences]}), f, indent=2)
 
         # Save match_events.json
         events_data = {
-            "events_count": len(detected_events),
+            "schema_version": "1.0",
+            "events_count": len(authoritative_events),
             "events": [
                 {
                     "event_id": ev.event_id,
@@ -562,26 +577,47 @@ class Phase6Pipeline:
                     "trajectory_state": ev.trajectory_state,
                     "evidence": ev.evidence
                 }
-                for ev in detected_events
+                for ev in authoritative_events
             ]
         }
         with open(os.path.join(output_dir, "match_events.json"), "w", encoding="utf-8") as f:
-            json.dump(events_data, f, indent=2)
+            json.dump(_sanitize(events_data), f, indent=2)
+
+        # Candidate evidence is intentionally separate from authoritative match
+        # events so diagnostics cannot silently affect scoring or analytics.
+        with open(os.path.join(output_dir, "event_candidates.json"), "w", encoding="utf-8") as f:
+            json.dump(_sanitize({
+                "schema_version": "1.0",
+                "semantic_role": "HIGH_RECALL_CANDIDATE_NOT_AUTHORITATIVE",
+                "candidates": [
+                    {
+                        "frame_index": c.frame_index,
+                        "timestamp_s": c.timestamp_s,
+                        "score": c.score,
+                        "ball_position_px": list(c.ball_position_px),
+                        "trajectory_state": c.trajectory_state,
+                        "evidence": c.evidence,
+                    }
+                    for c in event_candidates
+                ],
+            }), f, indent=2)
 
         # Save player_metrics.json
         with open(os.path.join(output_dir, "player_metrics.json"), "w", encoding="utf-8") as f:
             json.dump({
+                "schema_version": "1.0",
                 "player_1": {"total_distance_m": round(p1_dist, 2), "mean_speed_kmh": round(p1_speed, 2)},
                 "player_2": {"total_distance_m": round(p2_dist, 2), "mean_speed_kmh": round(p2_speed, 2)}
             }, f, indent=2)
 
         # Save ball_metrics.json
         with open(os.path.join(output_dir, "ball_metrics.json"), "w", encoding="utf-8") as f:
-            json.dump({"summary": speed_summary, "segments": [s.__dict__ for s in speed_segments]}, f, indent=2)
+            json.dump({"schema_version": "1.0", "summary": speed_summary, "segments": [s.__dict__ for s in speed_segments]}, f, indent=2)
 
         # Save court_geometry.json
         with open(os.path.join(output_dir, "court_geometry.json"), "w", encoding="utf-8") as f:
             json.dump({
+                "schema_version": "1.0",
                 "reprojection_error_px": reproj_err,
                 "is_valid": is_h_valid,
                 "homography_matrix": homography_matrix.tolist() if is_h_valid else None
@@ -589,6 +625,7 @@ class Phase6Pipeline:
 
         # Save detections.json
         det_data = {
+            "schema_version": "1.0",
             "metadata": {"video": input_video_path, "frames": total_frames, "fps": fps},
             "frames": []
         }
@@ -610,6 +647,7 @@ class Phase6Pipeline:
 
         # Save trajectories.json
         traj_data = {
+            "schema_version": "1.0",
             "ball_trajectory": [
                 {
                     "frame_index": int(p.frame_index),
@@ -631,6 +669,7 @@ class Phase6Pipeline:
         # Save metrics.json
         with open(os.path.join(output_dir, "metrics.json"), "w", encoding="utf-8") as f:
             json.dump({
+                "schema_version": "1.0",
                 "processing_fps": fps_proc,
                 "total_time_s": t_total,
                 "total_frames": total_frames,

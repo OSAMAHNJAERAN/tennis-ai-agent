@@ -66,4 +66,4 @@ class ScoreEventHistory:
     def save_json(self, filepath: str) -> None:
         """Saves event history log to JSON file."""
         with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(self.to_list(), f, indent=2)
+            json.dump({"schema_version": "1.0", "score_history": self.to_list()}, f, indent=2)
