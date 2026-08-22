@@ -1,0 +1,73 @@
+{
+  "benchmark_id": "tennis_scoring_real_video_v1",
+  "video_path": "data/sample_videos/input_video.mp4",
+  "total_frames": 214,
+  "fps": 30.0,
+  "description": "Real video match sequence testing serve fault and dead-ball return suppression.",
+  "initial_state": {
+    "match_id": "match_real_001",
+    "format": "BEST_OF_3",
+    "set_format": "TIE_BREAK_SET",
+    "player_1_id": 1,
+    "player_2_id": 2,
+    "server_id": 2,
+    "receiver_id": 1,
+    "current_set": 1,
+    "current_game": 1,
+    "sets_p1": 0,
+    "sets_p2": 0,
+    "games_p1": 0,
+    "games_p2": 0,
+    "points_p1": 0,
+    "points_p2": 0,
+    "serve_attempt": 1,
+    "service_side": "DEUCE"
+  },
+  "events_ground_truth": [
+    {
+      "event_id": 1,
+      "frame": 23,
+      "event_type": "SERVE_CONTACT",
+      "player_id": 2,
+      "expected_ball_state": "SERVE_STARTED",
+      "expected_score_p1": "0",
+      "expected_score_p2": "0"
+    },
+    {
+      "event_id": 2,
+      "frame": 81,
+      "event_type": "BOUNCE",
+      "line_call_decision": "SERVE_FAULT",
+      "expected_outcome": "FIRST_SERVE_FAULT",
+      "expected_serve_attempt": 2,
+      "expected_ball_state": "DEAD",
+      "expected_score_p1": "0",
+      "expected_score_p2": "0",
+      "points_awarded": false
+    },
+    {
+      "event_id": 3,
+      "frame": 84,
+      "event_type": "PLAYER_1_HIT",
+      "player_id": 1,
+      "expected_outcome": "DEAD_BALL_IGNORED",
+      "expected_serve_attempt": 2,
+      "expected_ball_state": "DEAD",
+      "expected_score_p1": "0",
+      "expected_score_p2": "0",
+      "points_awarded": false
+    }
+  ],
+  "expected_final_match_state": {
+    "sets_p1": 0,
+    "sets_p2": 0,
+    "games_p1": 0,
+    "games_p2": 0,
+    "points_display_p1": "0",
+    "points_display_p2": "0",
+    "serve_attempt": 2,
+    "server_id": 2,
+    "service_side": "DEUCE",
+    "point_state": "SECOND_SERVE_WAITING"
+  }
+}

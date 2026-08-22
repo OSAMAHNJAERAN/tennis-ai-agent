@@ -1,0 +1,234 @@
+{
+  "benchmark_id": "tennis_scoring_synthetic_qa_v1",
+  "total_cases": 18,
+  "cases": [
+    {
+      "case_id": "rule_01_standard_game_4_0_love",
+      "description": "Server wins 4 straight points to win game to Love (0-0 -> 15-0 -> 30-0 -> 40-0 -> Game).",
+      "initial_server": 1,
+      "points_awarded_sequence": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "expected_games_p1": 1,
+      "expected_games_p2": 0,
+      "expected_next_server": 2
+    },
+    {
+      "case_id": "rule_02_receiver_breaks_serve",
+      "description": "Receiver (Player 2) breaks serve 0-40 (0-15 -> 0-30 -> 0-40 -> Game P2).",
+      "initial_server": 1,
+      "points_awarded_sequence": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "expected_games_p1": 0,
+      "expected_games_p2": 1,
+      "expected_next_server": 2
+    },
+    {
+      "case_id": "rule_03_deuce_and_advantage_p1_win",
+      "description": "40-40 Deuce -> Ad P1 -> Game P1.",
+      "initial_server": 1,
+      "points_awarded_sequence": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1
+      ],
+      "expected_games_p1": 1,
+      "expected_games_p2": 0,
+      "expected_next_server": 2
+    },
+    {
+      "case_id": "rule_04_deuce_oscillations_p2_win",
+      "description": "40-40 Deuce -> Ad P1 -> Deuce -> Ad P2 -> Game P2.",
+      "initial_server": 1,
+      "points_awarded_sequence": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2
+      ],
+      "expected_games_p1": 0,
+      "expected_games_p2": 1,
+      "expected_next_server": 2
+    },
+    {
+      "case_id": "rule_05_first_fault_no_point",
+      "description": "First serve fault transitions attempt 1->2 with 0 points awarded.",
+      "type": "fault_test",
+      "fault_sequence": [
+        "FIRST_FAULT"
+      ],
+      "expected_serve_attempt": 2,
+      "expected_points_p1": 0,
+      "expected_points_p2": 0
+    },
+    {
+      "case_id": "rule_06_double_fault_receiver_point",
+      "description": "First fault followed by second fault awards point to receiver.",
+      "type": "fault_test",
+      "fault_sequence": [
+        "FIRST_FAULT",
+        "SECOND_FAULT"
+      ],
+      "expected_serve_attempt": 1,
+      "expected_points_p1": 0,
+      "expected_points_p2": 1
+    },
+    {
+      "case_id": "rule_07_service_let_replay",
+      "description": "Service let preserves attempt and score.",
+      "type": "let_test",
+      "expected_points_p1": 0,
+      "expected_points_p2": 0
+    },
+    {
+      "case_id": "rule_08_standard_set_6_4",
+      "description": "Player 1 wins 6 games to 4 to win first set 6-4.",
+      "games_sequence": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1
+      ],
+      "expected_sets_p1": 1,
+      "expected_sets_p2": 0,
+      "expected_set_score": "6-4"
+    },
+    {
+      "case_id": "rule_09_set_7_5_win",
+      "description": "5-5 -> 6-5 -> 7-5 set win without entering tie-break.",
+      "games_sequence": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1
+      ],
+      "expected_sets_p1": 1,
+      "expected_sets_p2": 0,
+      "expected_set_score": "7-5"
+    },
+    {
+      "case_id": "rule_10_tie_break_activation_at_6_6",
+      "description": "6-6 triggers 7-point tie-break game.",
+      "games_sequence": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "expected_tie_break_active": true,
+      "expected_games_p1": 6,
+      "expected_games_p2": 6
+    },
+    {
+      "case_id": "rule_11_tie_break_7_5_win",
+      "description": "7-point tie-break won 7-5 -> Set won 7-6.",
+      "tie_break_points": [
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        1
+      ],
+      "expected_sets_p1": 1,
+      "expected_tb_score": "7-5"
+    },
+    {
+      "case_id": "rule_12_extended_tie_break_12_10",
+      "description": "10-10 -> 11-10 -> 12-10 extended tie-break win.",
+      "extended_tb_score": [
+        12,
+        10
+      ],
+      "expected_sets_p1": 1,
+      "expected_tb_score": "12-10"
+    },
+    {
+      "case_id": "rule_13_tie_break_service_rotation",
+      "description": "Tie-break service rotation: Point 1 by Server, then 2 by Opponent, then alternate every 2.",
+      "rotation_check_points": 7
+    },
+    {
+      "case_id": "rule_14_service_side_alternation",
+      "description": "Service side alternates Deuce -> Ad -> Deuce based on even/odd points.",
+      "total_points_test": 6
+    },
+    {
+      "case_id": "rule_15_best_of_3_match_win",
+      "description": "Winning 2 sets concludes Best-of-3 match.",
+      "sets_won": [
+        2,
+        0
+      ],
+      "expected_match_complete": true,
+      "expected_winner": 1
+    },
+    {
+      "case_id": "rule_16_best_of_5_configuration",
+      "description": "Best-of-5 requires 3 sets to conclude match.",
+      "format": "BEST_OF_5",
+      "sets_won": [
+        2,
+        1
+      ],
+      "expected_match_complete": false
+    },
+    {
+      "case_id": "rule_17_review_required_pause",
+      "description": "Line call REVIEW_REQUIRED sets POINT_REVIEW_PENDING without awarding points.",
+      "expected_state": "POINT_REVIEW_PENDING",
+      "points_awarded": false
+    },
+    {
+      "case_id": "rule_18_idempotent_event_suppression",
+      "description": "Duplicate event IDs do not alter match state.",
+      "expected_idempotency_pass": true
+    }
+  ]
+}
