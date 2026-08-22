@@ -1,0 +1,643 @@
+{
+  "schema_version": "1.0",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE; GT interval expanded by 0.2 seconds",
+  "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
+  "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
+  "input_provenance": {
+    "ground_truth_events": {
+      "path": "data/benchmarks/cross_match_final_holdout/ground_truth_events.json",
+      "sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+      "size_bytes": 5772
+    },
+    "video_manifest": {
+      "path": "data/benchmarks/cross_match_final_holdout/videos.json",
+      "sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+      "size_bytes": 2755
+    },
+    "active_event_config": {
+      "path": "configs/phase6_analytics/pipeline.yaml",
+      "sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
+      "size_bytes": 3455
+    },
+    "event_detector_implementation": {
+      "path": "src/events/event_detector.py",
+      "sha256": "a3d5280d688813439dc7a2d414a659bd0455734d0744918aea655fb5b16d46d1",
+      "size_bytes": 49950
+    },
+    "recovery_evaluator": {
+      "path": "scripts/evaluate_phase6_4_event_recovery.py",
+      "sha256": "2417d0d2ac17f9c38b5e5a7e2c56b716828843a94d568e5eae713e1b41449e2d",
+      "size_bytes": 38810
+    },
+    "preserved_video_inputs": {
+      "video_08": {
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_08/trajectories.json",
+          "sha256": "bf5cfb53ce49390f09f101880fd85fa709d38052d7f4dd1e0c5e4c0b33bd5188",
+          "size_bytes": 120263
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_08/detections.json",
+          "sha256": "42ba06d742648ec455e05a09e845edea5053532cb41856004244bbb3c3d94cb7",
+          "size_bytes": 273316
+        }
+      },
+      "video_09": {
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_09/trajectories.json",
+          "sha256": "7ffbaf034c862399303115c5087e42bd01523b296e1df76f8c29946e049f7f3f",
+          "size_bytes": 105086
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_09/detections.json",
+          "sha256": "99225dede27b815241ca9295d5fd09f5de12c57618ba9a39d242a0af73a31210",
+          "size_bytes": 239779
+        }
+      },
+      "video_10": {
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_10/trajectories.json",
+          "sha256": "2fb55ed2e0917e4cb83000baec59e28ec5c94b175adf857411511f024b2c12d9",
+          "size_bytes": 458634
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_10/detections.json",
+          "sha256": "1f083b84ab40c41c9d76c16a8a0d5e6abd56f35d916ae0b2acd96e607c712100",
+          "size_bytes": 914024
+        }
+      }
+    }
+  },
+  "pre_recovery_observable_stage_limit": "Old artifacts combine physics/player/type stages and retain stale refined timestamps.",
+  "pre_recovery_observable_stage_metrics": {
+    "candidate_output_already_thresholded_and_nms": {
+      "matched": {
+        "BOUNCE": 11,
+        "OVERALL": 22,
+        "PLAYER_HIT": 8,
+        "SERVE_CONTACT": 3
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.47058823529411764,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.55
+      },
+      "timing_mae_frames": 4.090909090909091,
+      "timing_mae_ms": 136.36363636363637
+    },
+    "any_integrated_verifier_emission_type_agnostic": {
+      "matched": {
+        "PLAYER_HIT": 6,
+        "OVERALL": 14,
+        "SERVE_CONTACT": 2,
+        "BOUNCE": 6
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 0.6666666666666666,
+        "PLAYER_HIT": 0.35294117647058826,
+        "BOUNCE": 0.3,
+        "OVERALL": 0.35
+      },
+      "timing_mae_frames": 3.9285714285714284,
+      "timing_mae_ms": 130.95238095238093
+    },
+    "correctly_typed_integrated_verifier_emission": {
+      "matched": {
+        "PLAYER_HIT": 6,
+        "OVERALL": 7,
+        "BOUNCE": 1
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 0.0,
+        "PLAYER_HIT": 0.35294117647058826,
+        "BOUNCE": 0.05,
+        "OVERALL": 0.175
+      },
+      "timing_mae_frames": 3.7142857142857144,
+      "timing_mae_ms": 123.80952380952381
+    },
+    "scoring_filtered_final_authoritative": {
+      "matched": {
+        "BOUNCE": 1,
+        "OVERALL": 4,
+        "PLAYER_HIT": 3
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 0.0,
+        "PLAYER_HIT": 0.17647058823529413,
+        "BOUNCE": 0.05,
+        "OVERALL": 0.1
+      },
+      "timing_mae_frames": 4.75,
+      "timing_mae_ms": 158.33333333333334
+    },
+    "limitation": "Physics-only, player-attribution-only, and pre-NMS stages were not persisted; scoring rows are the only artifact-observable verifier proxy."
+  },
+  "final_stage_metrics": [
+    {
+      "stage": "raw_candidate_generator",
+      "matched": {
+        "PLAYER_HIT": 11,
+        "OVERALL": 25,
+        "SERVE_CONTACT": 3,
+        "BOUNCE": 11
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "timing_mae_frames": 2.76,
+      "timing_mae_ms": 92.0,
+      "type_matching_required": false
+    },
+    {
+      "stage": "physics_verification",
+      "matched": {
+        "PLAYER_HIT": 9,
+        "OVERALL": 20,
+        "SERVE_CONTACT": 3,
+        "BOUNCE": 8
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.5294117647058824,
+        "BOUNCE": 0.4,
+        "OVERALL": 0.5
+      },
+      "timing_mae_frames": 3.15,
+      "timing_mae_ms": 105.0,
+      "type_matching_required": false
+    },
+    {
+      "stage": "player_attribution",
+      "matched": {
+        "PLAYER_HIT": 9,
+        "OVERALL": 20,
+        "SERVE_CONTACT": 3,
+        "BOUNCE": 8
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.5294117647058824,
+        "BOUNCE": 0.4,
+        "OVERALL": 0.5
+      },
+      "timing_mae_frames": 3.15,
+      "timing_mae_ms": 105.0,
+      "type_matching_required": false
+    },
+    {
+      "stage": "event_type_classification",
+      "matched": {
+        "PLAYER_HIT": 9,
+        "OVERALL": 20,
+        "SERVE_CONTACT": 3,
+        "BOUNCE": 8
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.5294117647058824,
+        "BOUNCE": 0.4,
+        "OVERALL": 0.5
+      },
+      "timing_mae_frames": 3.15,
+      "timing_mae_ms": 105.0,
+      "type_matching_required": false
+    },
+    {
+      "stage": "temporal_suppression",
+      "matched": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 19,
+        "BOUNCE": 7,
+        "PLAYER_HIT": 9
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.5294117647058824,
+        "BOUNCE": 0.35,
+        "OVERALL": 0.475
+      },
+      "timing_mae_frames": 3.789473684210526,
+      "timing_mae_ms": 126.3157894736842,
+      "type_matching_required": false
+    },
+    {
+      "stage": "final_authoritative_events",
+      "matched": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 19,
+        "BOUNCE": 7,
+        "PLAYER_HIT": 9
+      },
+      "support": {
+        "SERVE_CONTACT": 3,
+        "OVERALL": 40,
+        "BOUNCE": 20,
+        "PLAYER_HIT": 17
+      },
+      "recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.5294117647058824,
+        "BOUNCE": 0.35,
+        "OVERALL": 0.475
+      },
+      "timing_mae_frames": 3.789473684210526,
+      "timing_mae_ms": 126.3157894736842,
+      "type_matching_required": false
+    }
+  ],
+  "ball_state_distribution_around_outcomes": {
+    "true_positive": {
+      "DETECTED": 6,
+      "PREDICTED": 1,
+      "TRACKED": 1
+    },
+    "false_positive": {
+      "DETECTED": 57,
+      "INTERPOLATED": 7,
+      "PREDICTED": 17,
+      "TRACKED": 11
+    },
+    "false_negative": {
+      "DETECTED": 11,
+      "INTERPOLATED": 5,
+      "MISSING": 14,
+      "PREDICTED": 1,
+      "TRACKED": 1
+    }
+  },
+  "normalized_player_reach_distributions": {
+    "720p": {
+      "near_player_distance_over_height": {
+        "count": 111,
+        "minimum": 0.0,
+        "median": 0.19991370851423523,
+        "p90": 2.6476363965552676,
+        "maximum": 4.308853170078697
+      },
+      "far_player_distance_over_height": {
+        "count": 111,
+        "minimum": 0.0,
+        "median": 0.46186572516020385,
+        "p90": 3.415670734143495,
+        "maximum": 9.424619710542133
+      },
+      "player_scale_px": {
+        "count": 111,
+        "minimum": 100.01260375976562,
+        "median": 229.5554656982422,
+        "p90": 390.9433135986328,
+        "maximum": 516.7602691650391
+      }
+    },
+    "1080p": {
+      "near_player_distance_over_height": {
+        "count": 122,
+        "minimum": 0.0,
+        "median": 1.2450796787394651,
+        "p90": 3.6179868459129088,
+        "maximum": 8.811790308564674
+      },
+      "far_player_distance_over_height": {
+        "count": 122,
+        "minimum": 2.1430291505350154,
+        "median": 6.4312258830762605,
+        "p90": 10.260090218689959,
+        "maximum": 19.52455949584159
+      },
+      "player_scale_px": {
+        "count": 122,
+        "minimum": 97.60440063476562,
+        "median": 125.37799072265625,
+        "p90": 179.52679443359375,
+        "maximum": 199.734619140625
+      }
+    }
+  },
+  "resolution_metrics": {
+    "720p": {
+      "event_detection": {
+        "true_positives": 15,
+        "false_positives": 26,
+        "false_negatives": 7,
+        "precision": 0.36585365853658536,
+        "recall": 0.6818181818181818,
+        "f1": 0.47619047619047616,
+        "mean_timing_error_frames": 3.4,
+        "mean_timing_error_ms": 113.33333333333333,
+        "matching_tolerance_frames": 6,
+        "matching_tolerance_ms": 200.0,
+        "effective_frame_tolerance_ms": 200.0,
+        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
+        "scope": "HITS_ONLY_COMPATIBILITY"
+      },
+      "event_detection_per_class": {
+        "SERVE_CONTACT": {
+          "true_positives": 0,
+          "false_positives": 13,
+          "false_negatives": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null
+        },
+        "PLAYER_HIT": {
+          "true_positives": 2,
+          "false_positives": 8,
+          "false_negatives": 7,
+          "precision": 0.2,
+          "recall": 0.2222222222222222,
+          "f1": 0.2105263157894737,
+          "timing_mae_frames": 3.5,
+          "timing_mae_ms": 116.66666666666667
+        },
+        "BOUNCE": {
+          "true_positives": 4,
+          "false_positives": 14,
+          "false_negatives": 7,
+          "precision": 0.2222222222222222,
+          "recall": 0.36363636363636365,
+          "f1": 0.27586206896551724,
+          "timing_mae_frames": 4.75,
+          "timing_mae_ms": 158.33333333333334
+        }
+      },
+      "conditional_shot_classification": {
+        "per_class": {
+          "FOREHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "BACKHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "SERVE": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          }
+        },
+        "macro_f1": 0.0,
+        "matched_hit_count": 0,
+        "unknown_abstentions": 0,
+        "unknown_rate": null,
+        "coverage": null
+      },
+      "end_to_end_shot_recognition": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "1080p": {
+      "event_detection": {
+        "true_positives": 4,
+        "false_positives": 55,
+        "false_negatives": 14,
+        "precision": 0.06779661016949153,
+        "recall": 0.2222222222222222,
+        "f1": 0.1038961038961039,
+        "mean_timing_error_frames": 5.25,
+        "mean_timing_error_ms": 175.0,
+        "matching_tolerance_frames": 6,
+        "matching_tolerance_ms": 200.0,
+        "effective_frame_tolerance_ms": 200.0,
+        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
+        "scope": "HITS_ONLY_COMPATIBILITY"
+      },
+      "event_detection_per_class": {
+        "SERVE_CONTACT": {
+          "true_positives": 0,
+          "false_positives": 6,
+          "false_negatives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null
+        },
+        "PLAYER_HIT": {
+          "true_positives": 0,
+          "false_positives": 7,
+          "false_negatives": 8,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null
+        },
+        "BOUNCE": {
+          "true_positives": 2,
+          "false_positives": 44,
+          "false_negatives": 7,
+          "precision": 0.043478260869565216,
+          "recall": 0.2222222222222222,
+          "f1": 0.07272727272727274,
+          "timing_mae_frames": 6.0,
+          "timing_mae_ms": 200.0
+        }
+      },
+      "conditional_shot_classification": {
+        "per_class": {
+          "FOREHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "BACKHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "SERVE": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          }
+        },
+        "macro_f1": 0.0,
+        "matched_hit_count": 0,
+        "unknown_abstentions": 0,
+        "unknown_rate": null,
+        "coverage": null
+      },
+      "end_to_end_shot_recognition": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "grouped_leave_one_video_out": [
+    {
+      "development_groups": [
+        "video_09",
+        "video_10"
+      ],
+      "validation_group": "video_08",
+      "source_match_grouping": "2012 US Open Men's Singles",
+      "resolution": "1280x720",
+      "threshold_refit_on_development_groups": false,
+      "validation_metrics": {
+        "true_positives": 6,
+        "false_positives": 14,
+        "false_negatives": 4,
+        "precision": 0.3,
+        "recall": 0.6,
+        "f1": 0.4,
+        "mean_timing_error_frames": 3.8333333333333335,
+        "mean_timing_error_ms": 127.77777777777779,
+        "matching_tolerance_frames": 6,
+        "matching_tolerance_ms": 200.0,
+        "effective_frame_tolerance_ms": 200.0,
+        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
+        "scope": "HITS_ONLY_COMPATIBILITY"
+      }
+    },
+    {
+      "development_groups": [
+        "video_08",
+        "video_10"
+      ],
+      "validation_group": "video_09",
+      "source_match_grouping": "2012 US Open Women's Singles",
+      "resolution": "1280x720",
+      "threshold_refit_on_development_groups": false,
+      "validation_metrics": {
+        "true_positives": 9,
+        "false_positives": 12,
+        "false_negatives": 3,
+        "precision": 0.42857142857142855,
+        "recall": 0.75,
+        "f1": 0.5454545454545454,
+        "mean_timing_error_frames": 3.111111111111111,
+        "mean_timing_error_ms": 103.70370370370371,
+        "matching_tolerance_frames": 6,
+        "matching_tolerance_ms": 200.0,
+        "effective_frame_tolerance_ms": 200.0,
+        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
+        "scope": "HITS_ONLY_COMPATIBILITY"
+      }
+    },
+    {
+      "development_groups": [
+        "video_08",
+        "video_09"
+      ],
+      "validation_group": "video_10",
+      "source_match_grouping": "2024 US Open Men's Quarterfinals",
+      "resolution": "1920x1080",
+      "threshold_refit_on_development_groups": false,
+      "validation_metrics": {
+        "true_positives": 4,
+        "false_positives": 55,
+        "false_negatives": 14,
+        "precision": 0.06779661016949153,
+        "recall": 0.2222222222222222,
+        "f1": 0.1038961038961039,
+        "mean_timing_error_frames": 5.25,
+        "mean_timing_error_ms": 175.0,
+        "matching_tolerance_frames": 6,
+        "matching_tolerance_ms": 200.0,
+        "effective_frame_tolerance_ms": 200.0,
+        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
+        "scope": "HITS_ONLY_COMPATIBILITY"
+      }
+    }
+  ]
+}

@@ -277,8 +277,11 @@ def main() -> None:
     if args.run_inference:
         from src.pipeline.phase6_pipeline import Phase6Pipeline
 
-        pipeline = Phase6Pipeline(config_path="configs/phase6_analytics/pipeline.yaml")
         for video_id, metadata in videos.items():
+            # Each clip is an independent diagnostic source.  Reusing one
+            # stateful scoring/tracking pipeline leaks event IDs and dead-ball
+            # state across videos and makes output depend on evaluation order.
+            pipeline = Phase6Pipeline(config_path="configs/phase6_analytics/pipeline.yaml")
             if compute_sha256(metadata["path"]) != metadata["sha256"]:
                 raise RuntimeError(f"SHA256 mismatch for {video_id}")
             output_dir = os.path.join(args.output_root, video_id)

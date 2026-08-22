@@ -1,0 +1,150 @@
+{
+  "phase": "6.4",
+  "schema_version": "1.0",
+  "stage_metrics": [
+    {
+      "matched": {
+        "BOUNCE": 12,
+        "OVERALL": 26,
+        "PLAYER_HIT": 11,
+        "SERVE_CONTACT": 3
+      },
+      "recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "stage": "raw_candidate_generator",
+      "support": {
+        "BOUNCE": 20,
+        "OVERALL": 40,
+        "PLAYER_HIT": 17,
+        "SERVE_CONTACT": 3
+      },
+      "timing_mae_frames": 3.3076923076923075,
+      "timing_mae_ms": 110.25641025641025,
+      "type_matching_required": false
+    },
+    {
+      "matched": {
+        "BOUNCE": 9,
+        "OVERALL": 19,
+        "PLAYER_HIT": 7,
+        "SERVE_CONTACT": 3
+      },
+      "recall": {
+        "BOUNCE": 0.45,
+        "OVERALL": 0.475,
+        "PLAYER_HIT": 0.4117647058823529,
+        "SERVE_CONTACT": 1.0
+      },
+      "stage": "physics_verification",
+      "support": {
+        "BOUNCE": 20,
+        "OVERALL": 40,
+        "PLAYER_HIT": 17,
+        "SERVE_CONTACT": 3
+      },
+      "timing_mae_frames": 3.1578947368421053,
+      "timing_mae_ms": 105.26315789473685,
+      "type_matching_required": false
+    },
+    {
+      "matched": {
+        "BOUNCE": 9,
+        "OVERALL": 19,
+        "PLAYER_HIT": 7,
+        "SERVE_CONTACT": 3
+      },
+      "recall": {
+        "BOUNCE": 0.45,
+        "OVERALL": 0.475,
+        "PLAYER_HIT": 0.4117647058823529,
+        "SERVE_CONTACT": 1.0
+      },
+      "stage": "contact_family_classification",
+      "support": {
+        "BOUNCE": 20,
+        "OVERALL": 40,
+        "PLAYER_HIT": 17,
+        "SERVE_CONTACT": 3
+      },
+      "timing_mae_frames": 3.1578947368421053,
+      "timing_mae_ms": 105.26315789473685,
+      "type_matching_required": false
+    },
+    {
+      "matched": {
+        "BOUNCE": 4,
+        "OVERALL": 9,
+        "PLAYER_HIT": 4,
+        "SERVE_CONTACT": 1
+      },
+      "recall": {
+        "BOUNCE": 0.2,
+        "OVERALL": 0.225,
+        "PLAYER_HIT": 0.23529411764705882,
+        "SERVE_CONTACT": 0.3333333333333333
+      },
+      "stage": "tennis_semantic_classification",
+      "support": {
+        "BOUNCE": 20,
+        "OVERALL": 40,
+        "PLAYER_HIT": 17,
+        "SERVE_CONTACT": 3
+      },
+      "timing_mae_frames": 4.0,
+      "timing_mae_ms": 133.33333333333334,
+      "type_matching_required": true
+    },
+    {
+      "matched": {
+        "BOUNCE": 4,
+        "OVERALL": 9,
+        "PLAYER_HIT": 4,
+        "SERVE_CONTACT": 1
+      },
+      "recall": {
+        "BOUNCE": 0.2,
+        "OVERALL": 0.225,
+        "PLAYER_HIT": 0.23529411764705882,
+        "SERVE_CONTACT": 0.3333333333333333
+      },
+      "stage": "temporal_suppression",
+      "support": {
+        "BOUNCE": 20,
+        "OVERALL": 40,
+        "PLAYER_HIT": 17,
+        "SERVE_CONTACT": 3
+      },
+      "timing_mae_frames": 4.0,
+      "timing_mae_ms": 133.33333333333334,
+      "type_matching_required": true
+    },
+    {
+      "matched": {
+        "BOUNCE": 4,
+        "OVERALL": 9,
+        "PLAYER_HIT": 4,
+        "SERVE_CONTACT": 1
+      },
+      "recall": {
+        "BOUNCE": 0.2,
+        "OVERALL": 0.225,
+        "PLAYER_HIT": 0.23529411764705882,
+        "SERVE_CONTACT": 0.3333333333333333
+      },
+      "stage": "final_authoritative_events",
+      "support": {
+        "BOUNCE": 20,
+        "OVERALL": 40,
+        "PLAYER_HIT": 17,
+        "SERVE_CONTACT": 3
+      },
+      "timing_mae_frames": 4.0,
+      "timing_mae_ms": 133.33333333333334,
+      "type_matching_required": true
+    }
+  ]
+}

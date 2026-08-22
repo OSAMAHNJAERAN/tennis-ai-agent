@@ -1,0 +1,574 @@
+{
+  "phase": "6.4",
+  "recommended_variant": "I_FINAL_INTEGRATED_SEMANTIC_SYSTEM",
+  "schema_version": "1.0",
+  "variants": [
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 30,
+      "false_positives": 49,
+      "offline_fps": 12354.86420771066,
+      "overall_f1": 0.20202020202020202,
+      "overall_precision": 0.1694915254237288,
+      "overall_recall": 0.25,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.16326530612244897,
+          "false_negatives": 16,
+          "false_positives": 25,
+          "precision": 0.13793103448275862,
+          "recall": 0.2,
+          "timing_mae_frames": 4.25,
+          "timing_mae_ms": 141.66666666666666,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.25531914893617025,
+          "false_negatives": 11,
+          "false_positives": 24,
+          "precision": 0.2,
+          "recall": 0.35294117647058826,
+          "timing_mae_frames": 3.8333333333333335,
+          "timing_mae_ms": 127.77777777777779,
+          "true_positives": 6
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.0,
+          "false_negatives": 3,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null,
+          "true_positives": 0
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": false,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": false,
+        "enable_event_time_refinement": false,
+        "enable_player_attribution_fusion": false,
+        "enable_player_temporal_proximity": false,
+        "enable_semantic_unknown_abstention": false,
+        "enable_serve_semantics": false
+      },
+      "timing_mae_frames": 4.0,
+      "timing_mae_ms": 133.33333333333334,
+      "true_positives": 10,
+      "unknown_abstention_count": 0,
+      "variant": "A_BASELINE_fa70671",
+      "wrong_event_type_count": 10,
+      "wrong_player_count": 4
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 31,
+      "false_positives": 50,
+      "offline_fps": 12249.235981475409,
+      "overall_f1": 0.18181818181818182,
+      "overall_precision": 0.15254237288135594,
+      "overall_recall": 0.225,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.15384615384615385,
+          "false_negatives": 16,
+          "false_positives": 28,
+          "precision": 0.125,
+          "recall": 0.2,
+          "timing_mae_frames": 4.25,
+          "timing_mae_ms": 141.66666666666666,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.22727272727272727,
+          "false_negatives": 12,
+          "false_positives": 22,
+          "precision": 0.18518518518518517,
+          "recall": 0.29411764705882354,
+          "timing_mae_frames": 4.0,
+          "timing_mae_ms": 133.33333333333334,
+          "true_positives": 5
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.0,
+          "false_negatives": 3,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null,
+          "true_positives": 0
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": false,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": false,
+        "enable_player_attribution_fusion": false,
+        "enable_player_temporal_proximity": false,
+        "enable_semantic_unknown_abstention": false,
+        "enable_serve_semantics": false
+      },
+      "timing_mae_frames": 4.111111111111111,
+      "timing_mae_ms": 137.037037037037,
+      "true_positives": 9,
+      "unknown_abstention_count": 0,
+      "variant": "B_CONTACT_FAMILY_STAGE_ONLY",
+      "wrong_event_type_count": 12,
+      "wrong_player_count": 3
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 30,
+      "false_positives": 41,
+      "offline_fps": 11979.440765587337,
+      "overall_f1": 0.2197802197802198,
+      "overall_precision": 0.19607843137254902,
+      "overall_recall": 0.25,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.1904761904761905,
+          "false_negatives": 16,
+          "false_positives": 18,
+          "precision": 0.18181818181818182,
+          "recall": 0.2,
+          "timing_mae_frames": 4.25,
+          "timing_mae_ms": 141.66666666666666,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.2608695652173913,
+          "false_negatives": 11,
+          "false_positives": 23,
+          "precision": 0.20689655172413793,
+          "recall": 0.35294117647058826,
+          "timing_mae_frames": 2.6666666666666665,
+          "timing_mae_ms": 88.88888888888889,
+          "true_positives": 6
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.0,
+          "false_negatives": 3,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null,
+          "true_positives": 0
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": false,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": false,
+        "enable_player_attribution_fusion": false,
+        "enable_player_temporal_proximity": true,
+        "enable_semantic_unknown_abstention": false,
+        "enable_serve_semantics": false
+      },
+      "timing_mae_frames": 3.3,
+      "timing_mae_ms": 110.0,
+      "true_positives": 10,
+      "unknown_abstention_count": 0,
+      "variant": "C_TEMPORAL_PLAYER_PROXIMITY",
+      "wrong_event_type_count": 9,
+      "wrong_player_count": 4
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 30,
+      "false_positives": 38,
+      "offline_fps": 10575.07891974078,
+      "overall_f1": 0.22727272727272727,
+      "overall_precision": 0.20833333333333334,
+      "overall_recall": 0.25,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.1904761904761905,
+          "false_negatives": 16,
+          "false_positives": 18,
+          "precision": 0.18181818181818182,
+          "recall": 0.2,
+          "timing_mae_frames": 4.5,
+          "timing_mae_ms": 150.0,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.2790697674418605,
+          "false_negatives": 11,
+          "false_positives": 20,
+          "precision": 0.23076923076923078,
+          "recall": 0.35294117647058826,
+          "timing_mae_frames": 3.1666666666666665,
+          "timing_mae_ms": 105.55555555555556,
+          "true_positives": 6
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.0,
+          "false_negatives": 3,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null,
+          "true_positives": 0
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": false,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": true,
+        "enable_player_attribution_fusion": false,
+        "enable_player_temporal_proximity": true,
+        "enable_semantic_unknown_abstention": false,
+        "enable_serve_semantics": false
+      },
+      "timing_mae_frames": 3.7,
+      "timing_mae_ms": 123.33333333333333,
+      "true_positives": 10,
+      "unknown_abstention_count": 0,
+      "variant": "D_EVENT_TIME_REFINEMENT",
+      "wrong_event_type_count": 9,
+      "wrong_player_count": 4
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 30,
+      "false_positives": 38,
+      "offline_fps": 10643.121226601876,
+      "overall_f1": 0.22727272727272727,
+      "overall_precision": 0.20833333333333334,
+      "overall_recall": 0.25,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.1904761904761905,
+          "false_negatives": 16,
+          "false_positives": 18,
+          "precision": 0.18181818181818182,
+          "recall": 0.2,
+          "timing_mae_frames": 4.5,
+          "timing_mae_ms": 150.0,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.2790697674418605,
+          "false_negatives": 11,
+          "false_positives": 20,
+          "precision": 0.23076923076923078,
+          "recall": 0.35294117647058826,
+          "timing_mae_frames": 3.1666666666666665,
+          "timing_mae_ms": 105.55555555555556,
+          "true_positives": 6
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.0,
+          "false_negatives": 3,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null,
+          "true_positives": 0
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": false,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": true,
+        "enable_player_attribution_fusion": true,
+        "enable_player_temporal_proximity": true,
+        "enable_semantic_unknown_abstention": false,
+        "enable_serve_semantics": false
+      },
+      "timing_mae_frames": 3.7,
+      "timing_mae_ms": 123.33333333333333,
+      "true_positives": 10,
+      "unknown_abstention_count": 0,
+      "variant": "E_PLAYER_ATTRIBUTION_FUSION",
+      "wrong_event_type_count": 9,
+      "wrong_player_count": 4
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 30,
+      "false_positives": 38,
+      "offline_fps": 10928.755978926622,
+      "overall_f1": 0.22727272727272727,
+      "overall_precision": 0.20833333333333334,
+      "overall_recall": 0.25,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.1904761904761905,
+          "false_negatives": 16,
+          "false_positives": 18,
+          "precision": 0.18181818181818182,
+          "recall": 0.2,
+          "timing_mae_frames": 4.5,
+          "timing_mae_ms": 150.0,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.2790697674418605,
+          "false_negatives": 11,
+          "false_positives": 20,
+          "precision": 0.23076923076923078,
+          "recall": 0.35294117647058826,
+          "timing_mae_frames": 3.1666666666666665,
+          "timing_mae_ms": 105.55555555555556,
+          "true_positives": 6
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.0,
+          "false_negatives": 3,
+          "false_positives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "timing_mae_frames": null,
+          "timing_mae_ms": null,
+          "true_positives": 0
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": true,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": true,
+        "enable_player_attribution_fusion": true,
+        "enable_player_temporal_proximity": true,
+        "enable_semantic_unknown_abstention": false,
+        "enable_serve_semantics": false
+      },
+      "timing_mae_frames": 3.7,
+      "timing_mae_ms": 123.33333333333333,
+      "true_positives": 10,
+      "unknown_abstention_count": 0,
+      "variant": "F_BOUNCE_VERIFIER",
+      "wrong_event_type_count": 9,
+      "wrong_player_count": 4
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 31,
+      "false_positives": 39,
+      "offline_fps": 10809.410705115351,
+      "overall_f1": 0.20454545454545456,
+      "overall_precision": 0.1875,
+      "overall_recall": 0.225,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.1904761904761905,
+          "false_negatives": 16,
+          "false_positives": 18,
+          "precision": 0.18181818181818182,
+          "recall": 0.2,
+          "timing_mae_frames": 4.5,
+          "timing_mae_ms": 150.0,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.27586206896551724,
+          "false_negatives": 13,
+          "false_positives": 8,
+          "precision": 0.3333333333333333,
+          "recall": 0.23529411764705882,
+          "timing_mae_frames": 3.25,
+          "timing_mae_ms": 108.33333333333333,
+          "true_positives": 4
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.11764705882352941,
+          "false_negatives": 2,
+          "false_positives": 13,
+          "precision": 0.07142857142857142,
+          "recall": 0.3333333333333333,
+          "timing_mae_frames": 5.0,
+          "timing_mae_ms": 166.66666666666666,
+          "true_positives": 1
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": true,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": true,
+        "enable_player_attribution_fusion": true,
+        "enable_player_temporal_proximity": true,
+        "enable_semantic_unknown_abstention": false,
+        "enable_serve_semantics": true
+      },
+      "timing_mae_frames": 4.0,
+      "timing_mae_ms": 133.33333333333334,
+      "true_positives": 9,
+      "unknown_abstention_count": 0,
+      "variant": "G_SERVE_CONTEXT_CLASSIFIER",
+      "wrong_event_type_count": 12,
+      "wrong_player_count": 1
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 31,
+      "false_positives": 39,
+      "offline_fps": 10734.917315062712,
+      "overall_f1": 0.20454545454545456,
+      "overall_precision": 0.1875,
+      "overall_recall": 0.225,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.1904761904761905,
+          "false_negatives": 16,
+          "false_positives": 18,
+          "precision": 0.18181818181818182,
+          "recall": 0.2,
+          "timing_mae_frames": 4.5,
+          "timing_mae_ms": 150.0,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.27586206896551724,
+          "false_negatives": 13,
+          "false_positives": 8,
+          "precision": 0.3333333333333333,
+          "recall": 0.23529411764705882,
+          "timing_mae_frames": 3.25,
+          "timing_mae_ms": 108.33333333333333,
+          "true_positives": 4
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.11764705882352941,
+          "false_negatives": 2,
+          "false_positives": 13,
+          "precision": 0.07142857142857142,
+          "recall": 0.3333333333333333,
+          "timing_mae_frames": 5.0,
+          "timing_mae_ms": 166.66666666666666,
+          "true_positives": 1
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": true,
+        "enable_camera_motion_compensation": false,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": true,
+        "enable_player_attribution_fusion": true,
+        "enable_player_temporal_proximity": true,
+        "enable_semantic_unknown_abstention": true,
+        "enable_serve_semantics": true
+      },
+      "timing_mae_frames": 4.0,
+      "timing_mae_ms": 133.33333333333334,
+      "true_positives": 9,
+      "unknown_abstention_count": 0,
+      "variant": "H_CALIBRATED_UNKNOWN_ABSTENTION",
+      "wrong_event_type_count": 12,
+      "wrong_player_count": 1
+    },
+    {
+      "candidate_recall": {
+        "BOUNCE": 0.6,
+        "OVERALL": 0.65,
+        "PLAYER_HIT": 0.6470588235294118,
+        "SERVE_CONTACT": 1.0
+      },
+      "false_negatives": 31,
+      "false_positives": 39,
+      "offline_fps": 10939.822409928827,
+      "overall_f1": 0.20454545454545456,
+      "overall_precision": 0.1875,
+      "overall_recall": 0.225,
+      "per_class": {
+        "BOUNCE": {
+          "f1": 0.1904761904761905,
+          "false_negatives": 16,
+          "false_positives": 18,
+          "precision": 0.18181818181818182,
+          "recall": 0.2,
+          "timing_mae_frames": 4.5,
+          "timing_mae_ms": 150.0,
+          "true_positives": 4
+        },
+        "PLAYER_HIT": {
+          "f1": 0.27586206896551724,
+          "false_negatives": 13,
+          "false_positives": 8,
+          "precision": 0.3333333333333333,
+          "recall": 0.23529411764705882,
+          "timing_mae_frames": 3.25,
+          "timing_mae_ms": 108.33333333333333,
+          "true_positives": 4
+        },
+        "SERVE_CONTACT": {
+          "f1": 0.11764705882352941,
+          "false_negatives": 2,
+          "false_positives": 13,
+          "precision": 0.07142857142857142,
+          "recall": 0.3333333333333333,
+          "timing_mae_frames": 5.0,
+          "timing_mae_ms": 166.66666666666666,
+          "true_positives": 1
+        }
+      },
+      "switches": {
+        "enable_bounce_verification": true,
+        "enable_camera_motion_compensation": true,
+        "enable_contact_family_stage": true,
+        "enable_event_time_refinement": true,
+        "enable_player_attribution_fusion": true,
+        "enable_player_temporal_proximity": true,
+        "enable_semantic_unknown_abstention": true,
+        "enable_serve_semantics": true
+      },
+      "timing_mae_frames": 4.0,
+      "timing_mae_ms": 133.33333333333334,
+      "true_positives": 9,
+      "unknown_abstention_count": 0,
+      "variant": "I_FINAL_INTEGRATED_SEMANTIC_SYSTEM",
+      "wrong_event_type_count": 12,
+      "wrong_player_count": 1
+    }
+  ]
+}
