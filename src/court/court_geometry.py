@@ -40,37 +40,37 @@ class TennisCourtGeometry:
     def get_canonical_keypoints() -> np.ndarray:
         """
         Returns the 14 canonical keypoint positions in meters.
-        Indices match standard tutorial conventions:
-        0: (1.37, 0)       # top-left baseline singles
-        1: (9.60, 0)       # top-right baseline singles  
-        2: (1.37, 23.77)   # bottom-left baseline singles
-        3: (9.60, 23.77)   # bottom-right baseline singles
-        4: (0, 0)          # top-left baseline doubles
-        5: (0, 23.77)      # bottom-left baseline doubles
-        6: (10.97, 0)      # top-right baseline doubles
-        7: (10.97, 23.77)  # bottom-right baseline doubles
-        8: (1.37, 5.485)   # top-left service
-        9: (1.37, 18.285)  # bottom-left service
-        10: (9.60, 5.485)  # top-right service
-        11: (9.60, 18.285) # bottom-right service
-        12: (5.485, 5.485) # top center T
-        13: (5.485, 18.285)# bottom center T
+        Indices match ResNet-50 detector output order:
+        0: (0.00, 0.00)       # top-left baseline doubles
+        1: (10.97, 0.00)      # top-right baseline doubles
+        2: (0.00, 23.77)      # bottom-left baseline doubles
+        3: (10.97, 23.77)     # bottom-right baseline doubles
+        4: (1.37, 0.00)       # top-left baseline singles
+        5: (1.37, 23.77)      # bottom-left baseline singles
+        6: (9.60, 0.00)       # top-right baseline singles
+        7: (9.60, 23.77)      # bottom-right baseline singles
+        8: (1.37, 5.485)      # top-left service intersection
+        9: (9.60, 5.485)      # top-right service intersection
+        10: (1.37, 18.285)    # bottom-left service intersection
+        11: (9.60, 18.285)    # bottom-right service intersection
+        12: (5.485, 5.485)    # top center T
+        13: (5.485, 18.285)   # bottom center T
         """
         return np.array([
-            [1.37, 0.0],       # 0
-            [9.60, 0.0],       # 1
-            [1.37, 23.77],     # 2
-            [9.60, 23.77],     # 3
-            [0.0, 0.0],        # 4
-            [0.0, 23.77],      # 5
-            [10.97, 0.0],      # 6
-            [10.97, 23.77],    # 7
-            [1.37, 5.485],     # 8
-            [1.37, 18.285],    # 9
-            [9.60, 5.485],     # 10
-            [9.60, 18.285],    # 11
-            [5.485, 5.485],    # 12
-            [5.485, 18.285]    # 13
+            [0.00, 0.00],       # 0: Top-left outer doubles corner
+            [10.97, 0.00],      # 1: Top-right outer doubles corner
+            [0.00, 23.77],      # 2: Bottom-left outer doubles corner
+            [10.97, 23.77],     # 3: Bottom-right outer doubles corner
+            [1.37, 0.00],       # 4: Top-left inner singles corner
+            [1.37, 23.77],      # 5: Bottom-left inner singles corner
+            [9.60, 0.00],       # 6: Top-right inner singles corner
+            [9.60, 23.77],      # 7: Bottom-right inner singles corner
+            [1.37, 5.485],      # 8: Top-left service intersection
+            [9.60, 5.485],      # 9: Top-right service intersection
+            [1.37, 18.285],     # 10: Bottom-left service intersection
+            [9.60, 18.285],     # 11: Bottom-right service intersection
+            [5.485, 5.485],     # 12: Top center T
+            [5.485, 18.285]     # 13: Bottom center T
         ], dtype=np.float32)
 
     @staticmethod

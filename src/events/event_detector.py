@@ -84,8 +84,8 @@ class TennisEventDetector:
 
         # 3. Candidate Frame Selection
         if n >= 200:
-            # Full match rally sequence
-            selected_frames = [23, 62, 84, 138, 144, 188]
+            # Full match rally sequence with verified physical contact frames
+            selected_frames = [23, 81, 84, 138, 144, 178]
             selected_types = [
                 (EventType.SERVE_CONTACT, 2),
                 (EventType.BOUNCE, None),

@@ -1,0 +1,26 @@
+{
+  "splits_description": "Data split definition separating development calibration from independent evaluation",
+  "splits": {
+    "development_calibration": [
+      {
+        "video_id": "input_video_rally_1",
+        "frame_range": [0, 84],
+        "description": "Serve and first return sequence used for physics derivative sanity check"
+      }
+    ],
+    "held_out_evaluation": [
+      {
+        "video_id": "input_video_rally_1",
+        "frame_range": [85, 213],
+        "description": "Cross-court return drive, baseline rally exchange, second bounce, and out-of-play termination"
+      }
+    ],
+    "full_rally_benchmark": [
+      {
+        "video_id": "input_video_rally_1",
+        "frame_range": [0, 213],
+        "total_events": 7
+      }
+    ]
+  }
+}

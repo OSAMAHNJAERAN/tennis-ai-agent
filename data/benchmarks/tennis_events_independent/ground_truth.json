@@ -1,0 +1,123 @@
+{
+  "benchmark_id": "tennis_events_independent_rally_214_gt",
+  "provenance": "MANUAL_FROM_RAW_VIDEO",
+  "video_path": "data/sample_videos/input_video.mp4",
+  "total_frames": 214,
+  "fps": 30.0,
+  "events_count": 7,
+  "summary": {
+    "serves": 1,
+    "bounces": 3,
+    "player_hits": 2,
+    "point_ends": 1
+  },
+  "manual_reference_court_landmarks_px": [
+    {"index": 0, "name": "top_left_outer_doubles", "px": [579.0, 301.5]},
+    {"index": 1, "name": "top_right_outer_doubles", "px": [1353.5, 301.8]},
+    {"index": 2, "name": "bottom_left_outer_doubles", "px": [356.0, 840.4]},
+    {"index": 3, "name": "bottom_right_outer_doubles", "px": [1563.0, 843.4]},
+    {"index": 4, "name": "top_left_inner_singles", "px": [676.0, 301.5]},
+    {"index": 5, "name": "bottom_left_inner_singles", "px": [507.0, 840.6]},
+    {"index": 6, "name": "top_right_inner_singles", "px": [1256.5, 301.9]},
+    {"index": 7, "name": "bottom_right_inner_singles", "px": [1411.0, 842.9]},
+    {"index": 8, "name": "top_left_service", "px": [647.8, 387.5]},
+    {"index": 9, "name": "top_right_service", "px": [1282.6, 387.7]},
+    {"index": 10, "name": "bottom_left_service", "px": [558.6, 667.8]},
+    {"index": 11, "name": "bottom_right_service", "px": [1364.8, 669.1]},
+    {"index": 12, "name": "top_center_t", "px": [964.7, 387.6]},
+    {"index": 13, "name": "bottom_center_t", "px": [960.7, 668.4]}
+  ],
+  "events": [
+    {
+      "event_id": 1,
+      "event_type": "SERVE_CONTACT",
+      "frame_min": 22,
+      "frame_best": 23,
+      "frame_max": 24,
+      "timestamp_s": 0.7667,
+      "player_id": 2,
+      "ball_position_px": [870.3, 409.5],
+      "court_position_m": [4.28, 6.71],
+      "annotation_confidence": "HIGH",
+      "visual_description": "Player 2 overhead serve strike at peak toss extension"
+    },
+    {
+      "event_id": 2,
+      "event_type": "BOUNCE",
+      "frame_min": 80,
+      "frame_best": 81,
+      "frame_max": 82,
+      "timestamp_s": 2.7000,
+      "player_id": null,
+      "ball_position_px": [716.6, 734.7],
+      "court_position_m": [3.11, 20.56],
+      "annotation_confidence": "HIGH",
+      "visual_description": "First court bounce in receiver court (near baseline / service approach)"
+    },
+    {
+      "event_id": 3,
+      "event_type": "PLAYER_1_HIT",
+      "frame_min": 83,
+      "frame_best": 84,
+      "frame_max": 85,
+      "timestamp_s": 2.8000,
+      "player_id": 1,
+      "ball_position_px": [698.9, 727.7],
+      "court_position_m": [2.93, 20.33],
+      "annotation_confidence": "HIGH",
+      "visual_description": "Player 1 baseline backhand return drive"
+    },
+    {
+      "event_id": 4,
+      "event_type": "BOUNCE",
+      "frame_min": 137,
+      "frame_best": 138,
+      "frame_max": 139,
+      "timestamp_s": 4.6000,
+      "player_id": null,
+      "ball_position_px": [787.6, 249.4],
+      "court_position_m": [2.79, 0.45],
+      "annotation_confidence": "HIGH",
+      "visual_description": "Second court bounce in deep top-court baseline area"
+    },
+    {
+      "event_id": 5,
+      "event_type": "PLAYER_2_HIT",
+      "frame_min": 143,
+      "frame_best": 144,
+      "frame_max": 145,
+      "timestamp_s": 4.8000,
+      "player_id": 2,
+      "ball_position_px": [807.5, 258.7],
+      "court_position_m": [3.12, 0.85],
+      "annotation_confidence": "HIGH",
+      "visual_description": "Player 2 running forehand cross-court drive"
+    },
+    {
+      "event_id": 6,
+      "event_type": "BOUNCE",
+      "frame_min": 177,
+      "frame_best": 178,
+      "frame_max": 179,
+      "timestamp_s": 5.9333,
+      "player_id": null,
+      "ball_position_px": [1261.0, 726.0],
+      "court_position_m": [8.44, 20.24],
+      "annotation_confidence": "HIGH",
+      "visual_description": "Third court bounce near bottom-right baseline"
+    },
+    {
+      "event_id": 7,
+      "event_type": "POINT_END",
+      "frame_min": 188,
+      "frame_best": 190,
+      "frame_max": 195,
+      "timestamp_s": 6.3333,
+      "player_id": null,
+      "ball_position_px": null,
+      "court_position_m": null,
+      "annotation_confidence": "HIGH",
+      "visual_description": "Rally point concludes as ball exits play area"
+    }
+  ]
+}
