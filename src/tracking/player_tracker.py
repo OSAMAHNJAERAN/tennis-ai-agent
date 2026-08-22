@@ -67,40 +67,76 @@ class PlayerTracker:
             candidates = [(tid, stats['total_dist'] / stats['count'], stats['total_y'] / stats['count'], stats['count']) 
                           for tid, stats in track_stats.items()]
 
-        # Separate into near court (y > court_mid_y) and far court (y <= court_mid_y)
-        near_candidates = [c for c in candidates if c[2] > court_mid_y]
-        far_candidates = [c for c in candidates if c[2] <= court_mid_y]
+        # Sort candidates by proximity to court lines/keypoints (closest to court surface first)
+        candidates.sort(key=lambda x: (x[1], -x[3]))
 
-        # Player 1 = Near player (closest to court in near half)
-        # Player 2 = Far player (closest to court in far half)
-        p1_track_id = None
-        p2_track_id = None
+        if len(candidates) >= 2:
+            top_two = [candidates[0], candidates[1]]
+            # Sort top two by vertical y-position: larger avg_y is Near Player (P1), smaller avg_y is Far Player (P2)
+            top_two.sort(key=lambda x: x[2], reverse=True)
+            p1_track_id = top_two[0][0]
+            p2_track_id = top_two[1][0]
+        elif len(candidates) == 1:
+            p1_track_id = candidates[0][0]
+            p2_track_id = None
+        else:
+            p1_track_id = None
+            p2_track_id = None
 
-        if near_candidates:
-            # Sort by distance to court (ascending), then presence count (descending)
-            near_candidates.sort(key=lambda x: (x[1], -x[3]))
-            p1_track_id = near_candidates[0][0]
+        # Build per-frame lists with active track linking and reacquisition fallback
+        import math
+        player1_boxes: List[Optional[BBox]] = [None] * num_frames
+        player2_boxes: List[Optional[BBox]] = [None] * num_frames
+
+        last_p1_box = None
+        last_p2_box = None
+
+        for i in range(num_frames):
+            frame_dets = detections[i]
             
-        if far_candidates:
-            far_candidates.sort(key=lambda x: (x[1], -x[3]))
-            p2_track_id = far_candidates[0][0]
+            # Primary choice: from assigned track IDs
+            box_p1 = track_stats[p1_track_id]['bboxes'].get(i) if p1_track_id in track_stats else None
+            box_p2 = track_stats[p2_track_id]['bboxes'].get(i) if p2_track_id in track_stats else None
+            
+            # Dynamic separator between near and far court
+            if last_p1_box is not None and last_p2_box is not None:
+                dynamic_mid_y = (last_p1_box.y1 + last_p2_box.y2) / 2.0
+            else:
+                dynamic_mid_y = court_mid_y + 40.0
 
-        # If both ended up on one side or one side empty, pick the top 2 overall closest tracks
-        if p1_track_id is None or p2_track_id is None or p1_track_id == p2_track_id:
-            candidates.sort(key=lambda x: (x[1], -x[3]))
-            if len(candidates) >= 2:
-                # Assign the lower one (larger y) to p1, upper to p2
-                c1, c2 = candidates[0], candidates[1]
-                if c1[2] > c2[2]:
-                    p1_track_id, p2_track_id = c1[0], c2[0]
-                else:
-                    p1_track_id, p2_track_id = c2[0], c1[0]
-            elif len(candidates) == 1:
-                p1_track_id = candidates[0][0]
+            # Reacquisition / Track ID switch recovery for Near Court (Player 1)
+            if box_p1 is None and frame_dets:
+                near_cands = [d for d in frame_dets if ((d.y1 + d.y2) / 2.0 > dynamic_mid_y or d.y2 > dynamic_mid_y)]
+                if near_cands:
+                    if last_p1_box is not None:
+                        near_cands.sort(key=lambda b: (
+                            math.hypot((b.x1+b.x2)/2 - (last_p1_box.x1+last_p1_box.x2)/2, (b.y1+b.y2)/2 - (last_p1_box.y1+last_p1_box.y2)/2)
+                            - 50.0 * b.confidence
+                        ))
+                    else:
+                        near_cands.sort(key=lambda b: -(b.y2 + 50.0 * b.confidence))
+                    box_p1 = near_cands[0]
 
-        # Build per-frame lists
-        player1_boxes = [track_stats[p1_track_id]['bboxes'].get(i, None) if p1_track_id in track_stats else None for i in range(num_frames)]
-        player2_boxes = [track_stats[p2_track_id]['bboxes'].get(i, None) if p2_track_id in track_stats else None for i in range(num_frames)]
+            # Reacquisition / Track ID switch recovery for Far Court (Player 2)
+            if box_p2 is None and frame_dets:
+                far_cands = [d for d in frame_dets if ((d.y1 + d.y2) / 2.0 <= dynamic_mid_y or d.y1 <= dynamic_mid_y)]
+                if far_cands:
+                    if last_p2_box is not None:
+                        far_cands.sort(key=lambda b: (
+                            math.hypot((b.x1+b.x2)/2 - (last_p2_box.x1+last_p2_box.x2)/2, (b.y1+b.y2)/2 - (last_p2_box.y1+last_p2_box.y2)/2)
+                            - 50.0 * b.confidence
+                        ))
+                    else:
+                        far_cands.sort(key=lambda b: (b.y1 - 50.0 * b.confidence))
+                    box_p2 = far_cands[0]
+
+            if box_p1 is not None:
+                last_p1_box = box_p1
+            if box_p2 is not None:
+                last_p2_box = box_p2
+
+            player1_boxes[i] = box_p1
+            player2_boxes[i] = box_p2
 
         return {1: player1_boxes, 2: player2_boxes}
 

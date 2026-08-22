@@ -123,15 +123,15 @@ class KinematicFilter:
 class TemporalBallTracker:
     """
     Multi-stage Physics-Informed Temporal Ball Tracker.
-    Combines high-confidence anchor detections, trajectory-gated low-confidence candidate recovery,
-    kinematic Kalman prediction, and gap-limited interpolation.
+    Combines multi-candidate anchor seeding, adaptive kinematic Kalman gating,
+    bidirectional track confirmation, and gap-limited interpolation.
     """
     def __init__(
         self,
-        high_conf_thresh: float = 0.20,
-        low_conf_thresh: float = 0.03,
+        high_conf_thresh: float = 0.08,
+        low_conf_thresh: float = 0.01,
         max_prediction_gap: int = 4,
-        max_interpolation_gap: int = 5,
+        max_interpolation_gap: int = 3,
         max_valid_speed_px_per_frame: float = 80.0
     ):
         self.high_conf_thresh = high_conf_thresh
@@ -147,13 +147,6 @@ class TemporalBallTracker:
     ) -> List[TemporalBallPoint]:
         """
         Executes multi-pass temporal tracking across frame candidates.
-        
-        Args:
-            frame_candidates: List of candidate detections per frame.
-            fps: Video native frame rate.
-            
-        Returns:
-            List of TemporalBallPoint objects for each frame.
         """
         num_frames = len(frame_candidates)
         dt = 1.0 / fps if fps > 0 else 1.0 / 30.0
@@ -171,7 +164,7 @@ class TemporalBallTracker:
             for i in range(num_frames)
         ]
 
-        # Pass 1: Identify High-Confidence Anchors
+        # Pass 1: Identify High-Confidence Anchors & Consistent Pair Seeds
         for i, candidates in enumerate(frame_candidates):
             high_conf = [c for c in candidates if c.confidence >= self.high_conf_thresh]
             if high_conf:
@@ -182,45 +175,43 @@ class TemporalBallTracker:
                 trajectory[i].state = BallState.DETECTED
                 trajectory[i].source = "high_conf_detector"
 
-        # Pass 2: Forward-Backward Temporal Kinematic Gating for Low-Conf Candidates
+        # Pass 2: Forward Temporal Kinematic Gating with Adaptive Search
         kf = KinematicFilter(dt=dt)
-        
-        # Forward Pass
         consecutive_missing = 0
+
         for i in range(num_frames):
             p = trajectory[i]
+            candidates = frame_candidates[i]
+
             if p.state == BallState.DETECTED and p.x_px is not None and p.y_px is not None:
                 kf.update(p.x_px, p.y_px, measurement_var=2.0)
                 consecutive_missing = 0
             elif kf.initialized and consecutive_missing < self.max_prediction_gap:
                 pred_x, pred_y = kf.predict()
-                gating_radius = kf.get_gating_radius()
-                
-                # Check candidate pool for frame i within gating radius
-                candidates = frame_candidates[i]
+                base_radius = kf.get_gating_radius()
+                adaptive_radius = min(150.0, base_radius + 15.0 * consecutive_missing)
+
+                # Search candidate pool
                 valid_candidates = []
                 for c in candidates:
                     if c.confidence >= self.low_conf_thresh:
                         dist = math.hypot(c.x_px - pred_x, c.y_px - pred_y)
-                        if dist <= gating_radius:
+                        if dist <= adaptive_radius:
                             valid_candidates.append((c, dist))
-                            
+
                 if valid_candidates:
-                    # Pick candidate closest to prediction with confidence weight
-                    valid_candidates.sort(key=lambda item: item[1] - 10.0 * item[0].confidence)
-                    best_cand = valid_candidates[0][0]
-                    
+                    valid_candidates.sort(key=lambda item: item[1] - 25.0 * item[0].confidence)
+                    best_cand, best_dist = valid_candidates[0]
+
                     trajectory[i].x_px = float(best_cand.x_px)
                     trajectory[i].y_px = float(best_cand.y_px)
-                    # Trajectory confidence is a harmonic combination of detector conf and proximity
-                    prox_score = max(0.0, 1.0 - (valid_candidates[0][1] / gating_radius))
+                    prox_score = max(0.0, 1.0 - (best_dist / adaptive_radius))
                     trajectory[i].confidence = float(0.5 * best_cand.confidence + 0.5 * prox_score)
-                    trajectory[i].state = BallState.TRACKED
+                    trajectory[i].state = BallState.TRACKED if best_cand.confidence < self.high_conf_thresh else BallState.DETECTED
                     trajectory[i].source = "gated_candidate"
-                    kf.update(best_cand.x_px, best_cand.y_px, measurement_var=5.0)
+                    kf.update(best_cand.x_px, best_cand.y_px, measurement_var=4.0)
                     consecutive_missing = 0
                 else:
-                    # Pure kinematic prediction for small gaps
                     consecutive_missing += 1
                     if consecutive_missing <= self.max_prediction_gap:
                         trajectory[i].x_px = float(pred_x)
@@ -229,24 +220,63 @@ class TemporalBallTracker:
                         trajectory[i].confidence = float(0.6 * decay)
                         trajectory[i].state = BallState.PREDICTED
                         trajectory[i].source = "kinematic_kalman"
+            elif not kf.initialized and candidates:
+                # Seed check from multi-candidate pair
+                valid_seeds = [c for c in candidates if c.confidence >= self.low_conf_thresh]
+                if valid_seeds:
+                    best_seed = max(valid_seeds, key=lambda c: c.confidence)
+                    if best_seed.confidence >= 0.05:
+                        kf.initialize(best_seed.x_px, best_seed.y_px)
+                        trajectory[i].x_px = float(best_seed.x_px)
+                        trajectory[i].y_px = float(best_seed.y_px)
+                        trajectory[i].confidence = float(best_seed.confidence)
+                        trajectory[i].state = BallState.TRACKED
+                        trajectory[i].source = "seed_candidate"
+                        consecutive_missing = 0
             else:
                 consecutive_missing += 1
 
-        # Pass 3: Physics Consistency Verification & Impossible Jump Rejection
+        # Pass 3: Backward Confirmation Pass for Early Missing Frames
+        kf_back = KinematicFilter(dt=dt)
+        for i in range(num_frames - 1, -1, -1):
+            p = trajectory[i]
+            if p.state in (BallState.DETECTED, BallState.TRACKED) and p.x_px is not None and p.y_px is not None:
+                kf_back.update(p.x_px, p.y_px, measurement_var=2.0)
+            elif kf_back.initialized and p.state == BallState.MISSING:
+                pred_x, pred_y = kf_back.predict()
+                back_radius = kf_back.get_gating_radius()
+                candidates = frame_candidates[i]
+                valid_candidates = []
+                for c in candidates:
+                    if c.confidence >= self.low_conf_thresh:
+                        dist = math.hypot(c.x_px - pred_x, c.y_px - pred_y)
+                        if dist <= back_radius:
+                            valid_candidates.append((c, dist))
+                if valid_candidates:
+                    valid_candidates.sort(key=lambda item: item[1] - 25.0 * item[0].confidence)
+                    best_cand, best_dist = valid_candidates[0]
+                    trajectory[i].x_px = float(best_cand.x_px)
+                    trajectory[i].y_px = float(best_cand.y_px)
+                    prox_score = max(0.0, 1.0 - (best_dist / back_radius))
+                    trajectory[i].confidence = float(0.5 * best_cand.confidence + 0.5 * prox_score)
+                    trajectory[i].state = BallState.TRACKED
+                    trajectory[i].source = "backward_gated_candidate"
+                    kf_back.update(best_cand.x_px, best_cand.y_px, measurement_var=4.0)
+
+        # Pass 4: Physics Consistency Verification & Impossible Jump Rejection
         for i in range(1, num_frames):
             curr = trajectory[i]
             prev = trajectory[i - 1]
             if curr.x_px is not None and prev.x_px is not None:
                 step_dist = math.hypot(curr.x_px - prev.x_px, curr.y_px - prev.y_px)
                 if step_dist > self.max_valid_speed and curr.state in (BallState.PREDICTED, BallState.TRACKED):
-                    # Reject inconsistent outlier
                     curr.x_px = None
-                    curr.y_py = None
+                    curr.y_px = None
                     curr.confidence = None
                     curr.state = BallState.MISSING
                     curr.source = "rejected_outlier"
 
-        # Pass 4: Fallback Gap-Limited Interpolation for Remaining Short Gaps (<= 3 frames)
+        # Pass 5: Fallback Gap-Limited Interpolation for Remaining Short Gaps (<= 3 frames)
         valid_indices = [idx for idx, pt in enumerate(trajectory) if pt.x_px is not None and pt.state in (BallState.DETECTED, BallState.TRACKED, BallState.PREDICTED)]
         
         for k in range(len(valid_indices) - 1):
@@ -254,7 +284,7 @@ class TemporalBallTracker:
             idx_end = valid_indices[k + 1]
             gap = idx_end - idx_start - 1
             
-            if 0 < gap <= 3:  # Only interpolate very short bridging gaps
+            if 0 < gap <= self.max_interpolation_gap:
                 p_start = trajectory[idx_start]
                 p_end = trajectory[idx_end]
                 
@@ -270,7 +300,7 @@ class TemporalBallTracker:
                         trajectory[mid_idx].state = BallState.INTERPOLATED
                         trajectory[mid_idx].source = "linear_interpolation"
 
-        # Pass 5: Compute Velocity & Smooth Speeds
+        # Pass 6: Compute Velocity & Smooth Speeds
         for i in range(num_frames):
             p = trajectory[i]
             if p.x_px is not None and i > 0 and trajectory[i-1].x_px is not None:

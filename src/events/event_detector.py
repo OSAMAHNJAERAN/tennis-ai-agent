@@ -98,28 +98,28 @@ class TennisEventDetector:
             if p_prev and p_next and p_prev[1] is not None and p_next[1] is not None:
                 vy_in = positions[i][1] - p_prev[1]
                 vy_out = p_next[1] - positions[i][1]
-                if (vy_in > 0.5 and vy_out < -0.5) or (vy_in < -0.5 and vy_out > 0.5):
+                if (vy_in > 0.4 and vy_out < -0.4) or (vy_in < -0.4 and vy_out > 0.4):
                     y_inversion = True
 
             score = 0.0
             if y_inversion:
                 score += 35.0
-            if dir_deg >= 20.0:
+            if dir_deg >= 15.0:
                 score += dir_deg
-            if acc >= 800.0:
-                score += min(30.0, acc / 200.0)
-            if curv >= 0.001:
+            if acc >= 500.0:
+                score += min(30.0, acc / 180.0)
+            if curv >= 0.0008:
                 score += min(30.0, curv * 5000.0)
                 
-            if score >= 20.0:
+            if score >= 22.0:
                 candidate_scores[i] = score
 
         selected_frames = []
-        suppression_radius = max(4, self.min_event_interval)
+        suppression_radius = max(10, self.min_event_interval)
         scores_copy = candidate_scores.copy()
         while True:
             best_frame = int(np.argmax(scores_copy))
-            if scores_copy[best_frame] < 20.0:
+            if scores_copy[best_frame] < 22.0:
                 break
             selected_frames.append(best_frame)
             win_start = max(0, best_frame - suppression_radius)
@@ -137,19 +137,27 @@ class TennisEventDetector:
             p = ball_trajectory[f]
             t_s = timestamps_s[f]
             
-            d_p1 = self._point_to_bbox_distance((p.x_px, p.y_px), player1_boxes[f] if f < len(player1_boxes) else None)
-            d_p2 = self._point_to_bbox_distance((p.x_px, p.y_px), player2_boxes[f] if f < len(player2_boxes) else None)
+            p1_box = player1_boxes[f] if f < len(player1_boxes) else None
+            p2_box = player2_boxes[f] if f < len(player2_boxes) else None
+
+            d_p1 = self._point_to_bbox_distance((p.x_px, p.y_px), p1_box)
+            d_p2 = self._point_to_bbox_distance((p.x_px, p.y_px), p2_box)
+            
+            h_p1 = (p1_box.y2 - p1_box.y1) if p1_box else 180.0
+            h_p2 = (p2_box.y2 - p2_box.y1) if p2_box else 100.0
+            reach_p1 = max(self.player_reach_radius_px, 0.9 * h_p1)
+            reach_p2 = max(self.player_reach_radius_px * 0.75, 1.1 * h_p2)
+
+            is_near_p1 = d_p1 <= reach_p1
+            is_near_p2 = d_p2 <= reach_p2
             
             if selected_types is not None and idx < len(selected_types):
                 ev_type, player_id = selected_types[idx]
                 base_conf = 0.95
             else:
-                is_near_p1 = d_p1 <= self.player_reach_radius_px
-                is_near_p2 = d_p2 <= self.player_reach_radius_px
-                
-                if idx == 0 and f <= 35:
+                if idx == 0 and f <= 45:
                     ev_type = EventType.SERVE_CONTACT
-                    player_id = 2
+                    player_id = 2 if d_p2 <= d_p1 else 1
                     base_conf = 0.95
                 elif is_near_p1 and not is_near_p2:
                     ev_type = EventType.PLAYER_1_HIT

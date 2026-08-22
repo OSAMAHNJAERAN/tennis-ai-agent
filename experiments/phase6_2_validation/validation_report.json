@@ -17,32 +17,32 @@
   "splits_evaluation": {
     "development": {
       "total_gt_hits": 3,
-      "total_pred_hits": 11,
-      "detected_hits": 1,
-      "false_hits": 10,
-      "missed_hits": 2,
-      "event_precision": 0.0909,
-      "event_recall": 0.3333,
-      "event_f1": 0.1429,
-      "timing_mae_frames": 2.0,
+      "total_pred_hits": 3,
+      "detected_hits": 0,
+      "false_hits": 3,
+      "missed_hits": 3,
+      "event_precision": 0.0,
+      "event_recall": 0.0,
+      "event_f1": 0.0,
+      "timing_mae_frames": 0.0,
       "player_attribution_accuracy": 1.0,
       "classes": {
         "FOREHAND": {
           "tp": 0,
-          "fp": 6,
+          "fp": 0,
           "fn": 0,
-          "precision": 0.0,
+          "precision": 1.0,
           "recall": 1.0,
-          "f1": 0.0,
+          "f1": 1.0,
           "support": 0
         },
         "BACKHAND": {
           "tp": 0,
-          "fp": 4,
+          "fp": 0,
           "fn": 0,
-          "precision": 0.0,
+          "precision": 1.0,
           "recall": 1.0,
-          "f1": 0.0,
+          "f1": 1.0,
           "support": 0
         },
         "SERVE": {
@@ -56,7 +56,7 @@
         },
         "UNKNOWN": {
           "tp": 0,
-          "fp": 0,
+          "fp": 2,
           "fn": 2,
           "precision": 0.0,
           "recall": 0.0,
@@ -75,28 +75,28 @@
     },
     "validation": {
       "total_gt_hits": 10,
-      "total_pred_hits": 2,
-      "detected_hits": 0,
-      "false_hits": 2,
-      "missed_hits": 10,
-      "event_precision": 0.0,
-      "event_recall": 0.0,
-      "event_f1": 0.0,
-      "timing_mae_frames": 0.0,
-      "player_attribution_accuracy": 1.0,
+      "total_pred_hits": 10,
+      "detected_hits": 2,
+      "false_hits": 8,
+      "missed_hits": 8,
+      "event_precision": 0.2,
+      "event_recall": 0.2,
+      "event_f1": 0.2,
+      "timing_mae_frames": 3.0,
+      "player_attribution_accuracy": 0.5,
       "classes": {
         "FOREHAND": {
-          "tp": 0,
-          "fp": 0,
-          "fn": 4,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "tp": 1,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.25,
+          "recall": 0.25,
+          "f1": 0.25,
           "support": 4
         },
         "BACKHAND": {
           "tp": 0,
-          "fp": 0,
+          "fp": 3,
           "fn": 4,
           "precision": 0.0,
           "recall": 0.0,
@@ -114,38 +114,38 @@
         },
         "UNKNOWN": {
           "tp": 0,
-          "fp": 0,
+          "fp": 1,
           "fn": 0,
-          "precision": 1.0,
+          "precision": 0.0,
           "recall": 1.0,
-          "f1": 1.0,
+          "f1": 0.0,
           "support": 0
         }
       },
-      "macro_f1": 0.0,
-      "weighted_f1": 0.0,
+      "macro_f1": 0.0833,
+      "weighted_f1": 0.1,
       "e2e_recognition": {
-        "correct": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1": 0.0
+        "correct": 1,
+        "precision": 0.1,
+        "recall": 0.1,
+        "f1": 0.1
       }
     },
     "held_out_test": {
       "total_gt_hits": 13,
-      "total_pred_hits": 3,
-      "detected_hits": 1,
-      "false_hits": 2,
-      "missed_hits": 12,
-      "event_precision": 0.3333,
-      "event_recall": 0.0769,
-      "event_f1": 0.125,
-      "timing_mae_frames": 2.0,
-      "player_attribution_accuracy": 1.0,
+      "total_pred_hits": 28,
+      "detected_hits": 6,
+      "false_hits": 22,
+      "missed_hits": 7,
+      "event_precision": 0.2143,
+      "event_recall": 0.4615,
+      "event_f1": 0.2927,
+      "timing_mae_frames": 1.17,
+      "player_attribution_accuracy": 0.5,
       "classes": {
         "FOREHAND": {
           "tp": 0,
-          "fp": 1,
+          "fp": 8,
           "fn": 7,
           "precision": 0.0,
           "recall": 0.0,
@@ -153,54 +153,54 @@
           "support": 7
         },
         "BACKHAND": {
-          "tp": 0,
-          "fp": 1,
-          "fn": 4,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "tp": 1,
+          "fp": 14,
+          "fn": 3,
+          "precision": 0.0667,
+          "recall": 0.25,
+          "f1": 0.1053,
           "support": 4
         },
         "SERVE": {
           "tp": 1,
-          "fp": 0,
+          "fp": 1,
           "fn": 1,
-          "precision": 1.0,
+          "precision": 0.5,
           "recall": 0.5,
-          "f1": 0.6667,
+          "f1": 0.5,
           "support": 2
         },
         "UNKNOWN": {
           "tp": 0,
-          "fp": 0,
+          "fp": 3,
           "fn": 0,
-          "precision": 1.0,
+          "precision": 0.0,
           "recall": 1.0,
-          "f1": 1.0,
+          "f1": 0.0,
           "support": 0
         }
       },
-      "macro_f1": 0.2222,
-      "weighted_f1": 0.1026,
+      "macro_f1": 0.2018,
+      "weighted_f1": 0.1093,
       "e2e_recognition": {
         "correct": 1,
-        "precision": 0.3333,
+        "precision": 0.0357,
         "recall": 0.0769,
-        "f1": 0.125
+        "f1": 0.0488
       }
     }
   },
   "performance": {
     "per_video_fps": {
-      "video_01": 17.06,
-      "video_02": 31.12,
-      "video_03": 29.63,
-      "video_04": 30.7,
-      "video_05": 30.01
+      "video_01": 5.2,
+      "video_02": 24.98,
+      "video_03": 25.56,
+      "video_04": 24.0,
+      "video_05": 23.84
     },
-    "mean_fps": 27.7,
-    "median_fps": 30.01,
-    "min_fps": 17.06,
-    "max_fps": 31.12
+    "mean_fps": 20.72,
+    "median_fps": 24.0,
+    "min_fps": 5.2,
+    "max_fps": 25.56
   }
 }

@@ -1,17 +1,22 @@
-# Phase 6 Configuration: Tennis Shot Understanding & Advanced Match Analytics
+# Phase 6.3 Production Configuration: Real-World Ball Tracking & Tennis Event Robustness
+# Frozen for Independent Evaluation and Benchmark Execution
+
+version: "6.3.0"
+date_frozen: "2026-08-22"
 
 match_configuration:
-  match_id: "match_phase6_001"
+  match_id: "match_phase6_3_production"
   format: "BEST_OF_3"
   set_format: "TIE_BREAK_SET"
   player_1_id: 1
   player_2_id: 2
-  initial_server_id: 2 # Player 2 serves in sample video from Far Court
+  initial_server_id: 2
 
 player_detection:
   model: "yolo11m.pt"
   confidence: 0.40
   tracker: "bytetrack.yaml"
+  court_adaptive_assignment: true
 
 ball_detection:
   model: "artifacts/models/ball/yolo11s_tennis_ball_best.pt"
@@ -24,6 +29,8 @@ temporal_tracking:
   max_interpolation_gap: 3
   max_valid_speed_px_per_frame: 80.0
   base_gating_radius_px: 45.0
+  confidence_decay_per_frame: 0.20
+  backward_confirmation_pass: true
 
 court_detection:
   model_path: "models/keypoints_model.pth"
@@ -34,6 +41,7 @@ event_detection:
   player_reach_radius_px: 160.0
   min_hit_deflection_deg: 30.0
   min_bounce_curvature: 0.002
+  candidate_score_threshold: 22.0
 
 line_calling:
   contact_patch_model: "EMPIRICAL_PATCH"
@@ -46,7 +54,7 @@ pose_estimation:
   enabled: true
   model_path: "yolo11n-pose.pt"
   min_pose_confidence: 0.35
-  window_half_size: 3
+  window_half_size: 2
   crop_margin: 0.25
 
 shot_classification:
@@ -58,7 +66,5 @@ shot_classification:
 visualization:
   draw_trajectories: true
   draw_court_lines: true
-  draw_player_boxes: true
-  draw_shot_badges: true
-  mini_court_width: 250
-  mini_court_height: 500
+  draw_player_hud: true
+  draw_speed_vectors: true

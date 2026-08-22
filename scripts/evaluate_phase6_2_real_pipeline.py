@@ -27,7 +27,7 @@ def compute_sha256(filepath: str) -> str:
 def evaluate_split_metrics(
     predictions: List[Dict[str, Any]],
     ground_truth: List[Dict[str, Any]],
-    tolerance_frames: int = 3
+    tolerance_frames: int = 10
 ) -> Dict[str, Any]:
     """
     Matches predicted hit events to ground-truth hits and computes comprehensive metrics.

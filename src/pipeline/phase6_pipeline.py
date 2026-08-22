@@ -482,36 +482,51 @@ class Phase6Pipeline:
         t_total = time.time() - t_pipeline_start
         fps_proc = total_frames / t_total
 
+        def _sanitize(obj):
+            if isinstance(obj, dict):
+                return {k: _sanitize(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [_sanitize(v) for v in obj]
+            elif isinstance(obj, (np.floating, float)):
+                return float(obj)
+            elif isinstance(obj, (np.integer, int)):
+                return int(obj)
+            elif isinstance(obj, np.ndarray):
+                return obj.tolist()
+            elif isinstance(obj, (np.bool_, bool)):
+                return bool(obj)
+            return obj
+
         # Save shot_events.json
         with open(os.path.join(output_dir, "shot_events.json"), "w", encoding="utf-8") as f:
-            json.dump({"shot_events": [s.to_dict() for s in shot_evidences]}, f, indent=2)
+            json.dump(_sanitize({"shot_events": [s.to_dict() for s in shot_evidences]}), f, indent=2)
 
         # Save rallies.json
         with open(os.path.join(output_dir, "rallies.json"), "w", encoding="utf-8") as f:
-            json.dump({"rallies": [r.to_dict() for r in rallies]}, f, indent=2)
+            json.dump(_sanitize({"rallies": [r.to_dict() for r in rallies]}), f, indent=2)
 
         # Save point_analytics.json
         with open(os.path.join(output_dir, "point_analytics.json"), "w", encoding="utf-8") as f:
-            json.dump({"points": point_analytics}, f, indent=2)
+            json.dump(_sanitize({"points": point_analytics}), f, indent=2)
 
         # Save match_analytics.json
         with open(os.path.join(output_dir, "match_analytics.json"), "w", encoding="utf-8") as f:
-            json.dump(match_analytics, f, indent=2)
+            json.dump(_sanitize(match_analytics), f, indent=2)
 
         # Save match_state.json
         with open(os.path.join(output_dir, "match_state.json"), "w", encoding="utf-8") as f:
-            json.dump(final_st.to_dict(), f, indent=2)
+            json.dump(_sanitize(final_st.to_dict()), f, indent=2)
 
         # Save scoring_events.json
         with open(os.path.join(output_dir, "scoring_events.json"), "w", encoding="utf-8") as f:
-            json.dump({"scoring_events": scoring_outcomes}, f, indent=2)
+            json.dump(_sanitize({"scoring_events": scoring_outcomes}), f, indent=2)
 
         # Save score_history.json
         self.scoring_engine.save_history_json(os.path.join(output_dir, "score_history.json"))
 
         # Save line_calls.json
         with open(os.path.join(output_dir, "line_calls.json"), "w", encoding="utf-8") as f:
-            json.dump({"line_calls": [e.to_dict() for e in line_call_evidences]}, f, indent=2)
+            json.dump(_sanitize({"line_calls": [e.to_dict() for e in line_call_evidences]}), f, indent=2)
 
         # Save match_events.json
         events_data = {
