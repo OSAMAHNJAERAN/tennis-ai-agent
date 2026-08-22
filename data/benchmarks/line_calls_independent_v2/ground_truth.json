@@ -1,0 +1,201 @@
+{
+  "benchmark_id": "tennis_line_calls_independent_v2",
+  "provenance": "MANUAL_REAL_VIDEO_AND_FINITE_LINE_SYNTHETIC_SUITE",
+  "video_path": "data/sample_videos/input_video.mp4",
+  "real_video_bounces": [
+    {
+      "case_id": "real_bounce_frame_81",
+      "bounce_frame": 81,
+      "context": "SERVE",
+      "target_service_box": "NEAR_DEUCE",
+      "expected_decision": "SERVE_FAULT",
+      "nearest_line": "NEAR_SERVICE_LINE",
+      "manual_ball_position_px": [
+        716.6,
+        734.7
+      ],
+      "manual_court_position_m": [
+        3.11,
+        20.56
+      ],
+      "expected_signed_distance_cm": -227.5,
+      "category": "CLEAR_FAULT_LONG",
+      "description": "Serve lands deep past near service line (Y=18.285m) into backcourt (Y=20.56m)"
+    },
+    {
+      "case_id": "real_bounce_frame_138",
+      "bounce_frame": 138,
+      "context": "RALLY",
+      "target_service_box": null,
+      "expected_decision": "OUT",
+      "nearest_line": "FAR_BASELINE",
+      "manual_ball_position_px": [
+        787.6,
+        249.4
+      ],
+      "manual_court_position_m": [
+        2.79,
+        -3.8
+      ],
+      "expected_signed_distance_cm": -380.0,
+      "category": "CLEAR_OUT_DEEP",
+      "description": "Rally return drive landing deep past top baseline (Y=0.00m) by 3.8m"
+    },
+    {
+      "case_id": "real_bounce_frame_178",
+      "bounce_frame": 178,
+      "context": "RALLY",
+      "target_service_box": null,
+      "expected_decision": "IN",
+      "nearest_line": "RIGHT_SIDELINE",
+      "manual_ball_position_px": [
+        1261.0,
+        726.0
+      ],
+      "manual_court_position_m": [
+        8.44,
+        20.24
+      ],
+      "expected_signed_distance_cm": 116.0,
+      "category": "CLEAR_IN",
+      "description": "Passing shot landing cleanly inside right singles sideline (X=9.60m) and near baseline"
+    }
+  ],
+  "synthetic_geometry_suite": [
+    {
+      "case_id": "syn_clear_in",
+      "context": "RALLY",
+      "court_position_m": [
+        5.485,
+        11.885
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "IN",
+      "nearest_line": "LEFT_SIDELINE",
+      "category": "CLEAR_IN"
+    },
+    {
+      "case_id": "syn_painted_line_in",
+      "context": "RALLY",
+      "court_position_m": [
+        9.58,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "IN",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "PAINTED_LINE_TOUCH"
+    },
+    {
+      "case_id": "syn_clear_out",
+      "context": "RALLY",
+      "court_position_m": [
+        10.5,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "OUT",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "CLEAR_OUT"
+    },
+    {
+      "case_id": "syn_marginal_outside_abstain",
+      "context": "RALLY",
+      "court_position_m": [
+        9.62,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "REVIEW_REQUIRED",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "AMBIGUOUS_CLOSE_CALL"
+    },
+    {
+      "case_id": "syn_outside_past_patch_out",
+      "context": "RALLY",
+      "court_position_m": [
+        9.75,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "OUT",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "NEAR_LINE_OUT"
+    },
+    {
+      "case_id": "syn_ambiguous_review",
+      "context": "RALLY",
+      "court_position_m": [
+        9.64,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "OUT",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "NEAR_LINE_OUT_CONFIDENT"
+    },
+    {
+      "case_id": "syn_serve_in",
+      "context": "SERVE",
+      "target_service_box": "NEAR_DEUCE",
+      "court_position_m": [
+        3.0,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "SERVE_IN",
+      "nearest_line": "LEFT_SIDELINE",
+      "category": "SERVE_IN"
+    },
+    {
+      "case_id": "syn_serve_wide_fault",
+      "context": "SERVE",
+      "target_service_box": "NEAR_DEUCE",
+      "court_position_m": [
+        0.9,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "SERVE_FAULT",
+      "nearest_line": "LEFT_SIDELINE",
+      "category": "SERVE_FAULT"
+    },
+    {
+      "case_id": "syn_serve_long_fault",
+      "context": "SERVE",
+      "target_service_box": "NEAR_DEUCE",
+      "court_position_m": [
+        3.0,
+        19.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "SERVE_FAULT",
+      "nearest_line": "NEAR_SERVICE_LINE",
+      "category": "SERVE_FAULT"
+    },
+    {
+      "case_id": "syn_far_court_ambiguous",
+      "context": "RALLY",
+      "court_position_m": [
+        2.0,
+        0.2
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "REVIEW_REQUIRED",
+      "nearest_line": "FAR_BASELINE",
+      "category": "FAR_COURT_AMBIGUOUS"
+    },
+    {
+      "case_id": "syn_predicted_state_abstain",
+      "context": "RALLY",
+      "court_position_m": [
+        5.0,
+        15.0
+      ],
+      "tracker_state": "PREDICTED",
+      "expected_decision": "REVIEW_REQUIRED",
+      "nearest_line": "NONE",
+      "category": "PREDICTED_STATE_ABSTAIN"
+    }
+  ]
+}

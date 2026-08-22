@@ -19,7 +19,7 @@ from src.events.event_detector import TennisEventDetector, TennisEvent, EventTyp
 from src.analytics.ball_speed_estimator import BallSpeedEstimator
 from src.analytics.player_analytics import calculate_distance, calculate_speed
 from src.visualization.video_annotator import VideoAnnotator
-from src.line_calling.line_geometry import CourtLineGeometry, CourtLineType, ServiceBoxType
+from src.line_calling.line_geometry import CourtLineGeometry, CourtLineType, ServiceBoxType, ContactPatchModelType
 from src.line_calling.contact_refinement import BounceContactRefiner
 from src.line_calling.line_call_engine import TennisLineCallEngine, LineCallDecision, LineCallContext, LineCallEvidence
 
@@ -64,10 +64,20 @@ class Phase4Pipeline:
             min_hit_deflection_deg=self.config.get('event_detection', {}).get('min_hit_deflection_deg', 40.0),
             min_bounce_curvature=self.config.get('event_detection', {}).get('min_bounce_curvature', 0.005)
         )
+        model_name = self.config.get('line_calling', {}).get('contact_patch_model', 'EMPIRICAL_PATCH')
+        try:
+            patch_model = ContactPatchModelType(model_name)
+        except Exception:
+            patch_model = ContactPatchModelType.EMPIRICAL_PATCH
+
         self.line_call_engine = TennisLineCallEngine(
-            refiner=BounceContactRefiner(search_window_radius=self.config.get('line_calling', {}).get('contact_refinement_window', 2)),
-            effective_ball_radius_cm=self.config.get('line_calling', {}).get('effective_ball_radius_cm', 3.35),
-            uncertainty_safety_factor=self.config.get('line_calling', {}).get('uncertainty_safety_factor', 1.5)
+            refiner=BounceContactRefiner(
+                window_radius=self.config.get('line_calling', {}).get('contact_refinement_window', 3)
+            ),
+            contact_patch_model=patch_model,
+            contact_patch_radius_cm=self.config.get('line_calling', {}).get('contact_patch_radius_cm', 1.25),
+            uncertainty_safety_factor=self.config.get('line_calling', {}).get('uncertainty_safety_factor', 1.5),
+            line_width_uncertainty_cm=self.config.get('line_calling', {}).get('line_width_uncertainty_cm', 1.25)
         )
 
     def run(self, input_video_path: str, output_dir: str) -> Dict[str, Any]:

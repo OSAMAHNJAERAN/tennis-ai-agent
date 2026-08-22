@@ -1,0 +1,149 @@
+{
+  "benchmark_id": "tennis_line_calls_independent_v2",
+  "summary": {
+    "real_video_evaluation": {
+      "total_cases": 3,
+      "correct_decisions": 3,
+      "accuracy_pct": 100.0,
+      "abstention_count": 0,
+      "abstention_pct": 0.0
+    },
+    "synthetic_qa_evaluation": {
+      "total_cases": 11,
+      "correct_cases": 11,
+      "accuracy_pct": 100.0,
+      "abstention_count": 3
+    }
+  },
+  "real_video_details": [
+    {
+      "case_id": "real_bounce_frame_81",
+      "bounce_frame": 81,
+      "context": "SERVE",
+      "expected_decision": "SERVE_FAULT",
+      "predicted_decision": "SERVE_FAULT",
+      "nearest_line": "NEAR_SERVICE_LINE",
+      "edge_margin_cm": -212.71,
+      "uncertainty_cm": 1.48,
+      "confidence": 0.98,
+      "refinement_method": "PIECEWISE_IMPACT_INTERSECTION",
+      "is_correct": true
+    },
+    {
+      "case_id": "real_bounce_frame_138",
+      "bounce_frame": 138,
+      "context": "RALLY",
+      "expected_decision": "OUT",
+      "predicted_decision": "OUT",
+      "nearest_line": "FAR_BASELINE",
+      "edge_margin_cm": -342.75,
+      "uncertainty_cm": 35.02,
+      "confidence": 0.898,
+      "refinement_method": "PIECEWISE_IMPACT_INTERSECTION",
+      "is_correct": true
+    },
+    {
+      "case_id": "real_bounce_frame_178",
+      "bounce_frame": 178,
+      "context": "RALLY",
+      "expected_decision": "IN",
+      "predicted_decision": "IN",
+      "nearest_line": "RIGHT_SIDELINE",
+      "edge_margin_cm": 115.28,
+      "uncertainty_cm": 1.48,
+      "confidence": 0.98,
+      "refinement_method": "LOCAL_TRAJECTORY_INFLECTION_FIT",
+      "is_correct": true
+    }
+  ],
+  "synthetic_qa_details": [
+    {
+      "case_id": "syn_clear_in",
+      "category": "CLEAR_IN",
+      "expected_decision": "IN",
+      "predicted_decision": "IN",
+      "margin_cm": 412.75,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_painted_line_in",
+      "category": "PAINTED_LINE_TOUCH",
+      "expected_decision": "IN",
+      "predicted_decision": "IN",
+      "margin_cm": 3.25,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_clear_out",
+      "category": "CLEAR_OUT",
+      "expected_decision": "OUT",
+      "predicted_decision": "OUT",
+      "margin_cm": -88.75,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_marginal_outside_abstain",
+      "category": "AMBIGUOUS_CLOSE_CALL",
+      "expected_decision": "REVIEW_REQUIRED",
+      "predicted_decision": "REVIEW_REQUIRED",
+      "margin_cm": -0.75,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_outside_past_patch_out",
+      "category": "NEAR_LINE_OUT",
+      "expected_decision": "OUT",
+      "predicted_decision": "OUT",
+      "margin_cm": -13.75,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_ambiguous_review",
+      "category": "NEAR_LINE_OUT_CONFIDENT",
+      "expected_decision": "OUT",
+      "predicted_decision": "OUT",
+      "margin_cm": -2.75,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_serve_in",
+      "category": "SERVE_IN",
+      "expected_decision": "SERVE_IN",
+      "predicted_decision": "SERVE_IN",
+      "margin_cm": 164.25,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_serve_wide_fault",
+      "category": "SERVE_FAULT",
+      "expected_decision": "SERVE_FAULT",
+      "predicted_decision": "SERVE_FAULT",
+      "margin_cm": -45.75,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_serve_long_fault",
+      "category": "SERVE_FAULT",
+      "expected_decision": "SERVE_FAULT",
+      "predicted_decision": "SERVE_FAULT",
+      "margin_cm": -70.25,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_far_court_ambiguous",
+      "category": "FAR_COURT_AMBIGUOUS",
+      "expected_decision": "REVIEW_REQUIRED",
+      "predicted_decision": "REVIEW_REQUIRED",
+      "margin_cm": 21.25,
+      "is_correct": true
+    },
+    {
+      "case_id": "syn_predicted_state_abstain",
+      "category": "PREDICTED_STATE_ABSTAIN",
+      "expected_decision": "REVIEW_REQUIRED",
+      "predicted_decision": "REVIEW_REQUIRED",
+      "margin_cm": 0.0,
+      "is_correct": true
+    }
+  ]
+}

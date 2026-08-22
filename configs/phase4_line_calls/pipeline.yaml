@@ -28,9 +28,11 @@ event_detection:
   min_bounce_curvature: 0.005
 
 line_calling:
-  effective_ball_radius_cm: 3.35
+  contact_patch_model: "EMPIRICAL_PATCH"
+  contact_patch_radius_cm: 1.25
+  line_width_uncertainty_cm: 1.25
   uncertainty_safety_factor: 1.5
-  contact_refinement_window: 2
+  contact_refinement_window: 3
 
 visualization:
   mini_court_width: 250

@@ -1,0 +1,141 @@
+{
+  "benchmark_id": "line_calls_synthetic_geometry_qa_v2",
+  "total_synthetic_cases": 11,
+  "cases": [
+    {
+      "case_id": "syn_clear_in",
+      "context": "RALLY",
+      "court_position_m": [
+        5.485,
+        11.885
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "IN",
+      "nearest_line": "LEFT_SIDELINE",
+      "category": "CLEAR_IN"
+    },
+    {
+      "case_id": "syn_painted_line_in",
+      "context": "RALLY",
+      "court_position_m": [
+        9.58,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "IN",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "PAINTED_LINE_TOUCH"
+    },
+    {
+      "case_id": "syn_clear_out",
+      "context": "RALLY",
+      "court_position_m": [
+        10.5,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "OUT",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "CLEAR_OUT"
+    },
+    {
+      "case_id": "syn_marginal_outside_abstain",
+      "context": "RALLY",
+      "court_position_m": [
+        9.62,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "REVIEW_REQUIRED",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "AMBIGUOUS_CLOSE_CALL"
+    },
+    {
+      "case_id": "syn_outside_past_patch_out",
+      "context": "RALLY",
+      "court_position_m": [
+        9.75,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "OUT",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "NEAR_LINE_OUT"
+    },
+    {
+      "case_id": "syn_ambiguous_review",
+      "context": "RALLY",
+      "court_position_m": [
+        9.64,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "OUT",
+      "nearest_line": "RIGHT_SIDELINE",
+      "category": "NEAR_LINE_OUT_CONFIDENT"
+    },
+    {
+      "case_id": "syn_serve_in",
+      "context": "SERVE",
+      "target_service_box": "NEAR_DEUCE",
+      "court_position_m": [
+        3.0,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "SERVE_IN",
+      "nearest_line": "LEFT_SIDELINE",
+      "category": "SERVE_IN"
+    },
+    {
+      "case_id": "syn_serve_wide_fault",
+      "context": "SERVE",
+      "target_service_box": "NEAR_DEUCE",
+      "court_position_m": [
+        0.9,
+        15.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "SERVE_FAULT",
+      "nearest_line": "LEFT_SIDELINE",
+      "category": "SERVE_FAULT"
+    },
+    {
+      "case_id": "syn_serve_long_fault",
+      "context": "SERVE",
+      "target_service_box": "NEAR_DEUCE",
+      "court_position_m": [
+        3.0,
+        19.0
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "SERVE_FAULT",
+      "nearest_line": "NEAR_SERVICE_LINE",
+      "category": "SERVE_FAULT"
+    },
+    {
+      "case_id": "syn_far_court_ambiguous",
+      "context": "RALLY",
+      "court_position_m": [
+        2.0,
+        0.2
+      ],
+      "tracker_state": "DETECTED",
+      "expected_decision": "REVIEW_REQUIRED",
+      "nearest_line": "FAR_BASELINE",
+      "category": "FAR_COURT_AMBIGUOUS"
+    },
+    {
+      "case_id": "syn_predicted_state_abstain",
+      "context": "RALLY",
+      "court_position_m": [
+        5.0,
+        15.0
+      ],
+      "tracker_state": "PREDICTED",
+      "expected_decision": "REVIEW_REQUIRED",
+      "nearest_line": "NONE",
+      "category": "PREDICTED_STATE_ABSTAIN"
+    }
+  ]
+}
