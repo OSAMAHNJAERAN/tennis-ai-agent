@@ -1,0 +1,34 @@
+# Phase 2.1 Corrected YOLO11 High-Accuracy Ball Detection & Temporal Tracking
+
+player_detection:
+  model: "yolo11m.pt"
+  confidence: 0.40
+  tracker: "bytetrack.yaml"
+
+ball_detection:
+  model: "artifacts/models/ball/yolo11s_tennis_ball_best.pt"
+  imgsz: 640
+  high_conf: 0.25
+  low_conf: 0.05
+
+temporal_tracking:
+  max_prediction_gap: 3
+  max_interpolation_gap: 3
+  max_valid_speed_px_per_frame: 60.0
+  base_gating_radius_px: 40.0
+
+court_detection:
+  model: "models/keypoints_model.pth"
+  input_size: [224, 224]
+
+visualization:
+  mini_court_width: 250
+  mini_court_height: 500
+  draw_trajectory: true
+  trajectory_length: 25
+  show_legend: true
+
+output:
+  save_annotated_video: true
+  save_json: true
+  video_codec: "mp4v"

@@ -1,0 +1,158 @@
+{
+  "Legacy_A": {
+    "name": "Legacy YOLOv5l6u @ 640px, conf=0.15, linear interp (Historical)",
+    "status": "LEGACY / INVALID FOR FINAL ARCHITECTURE",
+    "observed_coverage_pct": 43.925233644859816,
+    "temporal_recovered_pct": 0.0,
+    "interpolated_pct": 26.635514018691588,
+    "missing_pct": 29.439252336448597,
+    "total_coverage_pct": 70.56074766355141,
+    "loc_error": {
+      "mean": 0.0,
+      "median": 0.0,
+      "p90": 0.0,
+      "p95": 0.0,
+      "max": 0.0
+    },
+    "fps": 23.919184494221287,
+    "vram_mb": 1850.0
+  },
+  "Legacy_B": {
+    "name": "Legacy YOLOv5l6u @ 1024px, conf=0.10, linear interp (Historical)",
+    "status": "LEGACY / INVALID FOR FINAL ARCHITECTURE",
+    "observed_coverage_pct": 100.0,
+    "temporal_recovered_pct": 0.0,
+    "interpolated_pct": 0.0,
+    "missing_pct": 0.0,
+    "total_coverage_pct": 100.0,
+    "loc_error": {
+      "mean": 112.34707409302295,
+      "median": 1.6968902600635976,
+      "p90": 501.42643730395577,
+      "p95": 659.777706381902,
+      "max": 677.3091213089334
+    },
+    "fps": 26.67641541416975,
+    "vram_mb": 2450.0
+  },
+  "Legacy_C": {
+    "name": "Legacy YOLOv5l6u + Temporal Kalman Tracker (Historical)",
+    "status": "LEGACY / INVALID FOR FINAL ARCHITECTURE",
+    "observed_coverage_pct": 85.04672897196261,
+    "temporal_recovered_pct": 9.813084112149532,
+    "interpolated_pct": 5.14018691588785,
+    "missing_pct": 0.0,
+    "total_coverage_pct": 100.0,
+    "loc_error": {
+      "mean": 71.43597325012195,
+      "median": 1.861277660884632,
+      "p90": 429.046960334805,
+      "p95": 448.84546455932366,
+      "max": 524.5188101823504
+    },
+    "fps": 25.701858109462446,
+    "vram_mb": 2480.0
+  },
+  "Y11-A": {
+    "name": "YOLO11 @ 640px, conf=0.20, linear interp (Current Candidate)",
+    "status": "CURRENT CANDIDATE",
+    "observed_coverage_pct": 80.8411214953271,
+    "temporal_recovered_pct": 0.0,
+    "interpolated_pct": 15.887850467289718,
+    "missing_pct": 3.2710280373831773,
+    "total_coverage_pct": 96.72897196261682,
+    "loc_error": {
+      "mean": 1.446283557252991,
+      "median": 1.304274276364221,
+      "p90": 2.310244301813871,
+      "p95": 2.9588539572172294,
+      "max": 7.152048517189709
+    },
+    "fps": 93.39946104792952,
+    "vram_mb": 1650.0
+  },
+  "Y11-B": {
+    "name": "YOLO11 @ 1024px, conf=0.15, linear interp (Current Candidate)",
+    "status": "CURRENT CANDIDATE",
+    "observed_coverage_pct": 100.0,
+    "temporal_recovered_pct": 0.0,
+    "interpolated_pct": 0.0,
+    "missing_pct": 0.0,
+    "total_coverage_pct": 100.0,
+    "loc_error": {
+      "mean": 120.66821180929695,
+      "median": 1.7765320470913806,
+      "p90": 561.1309158198897,
+      "p95": 666.5742425415175,
+      "max": 762.8432609648264
+    },
+    "fps": 73.99012850615591,
+    "vram_mb": 2150.0
+  },
+  "Y11-C": {
+    "name": "YOLO11 @ 640px + Gating (T_high=0.25, T_low=0.08)",
+    "status": "CURRENT CANDIDATE",
+    "observed_coverage_pct": 82.2429906542056,
+    "temporal_recovered_pct": 11.214953271028037,
+    "interpolated_pct": 4.672897196261682,
+    "missing_pct": 1.8691588785046727,
+    "total_coverage_pct": 98.13084112149532,
+    "loc_error": {
+      "mean": 4.359522375781919,
+      "median": 1.314185073289174,
+      "p90": 2.4637897734564067,
+      "p95": 3.462431667603987,
+      "max": 255.75996339833495
+    },
+    "fps": 89.54118312974987,
+    "vram_mb": 1680.0
+  },
+  "Y11-D": {
+    "name": "YOLO11 @ 1024px + Full Physics Kalman Tracker (Final Winner)",
+    "status": "FINAL WINNER",
+    "observed_coverage_pct": 82.2429906542056,
+    "temporal_recovered_pct": 9.813084112149532,
+    "interpolated_pct": 6.074766355140187,
+    "missing_pct": 1.8691588785046727,
+    "total_coverage_pct": 98.13084112149532,
+    "loc_error": {
+      "mean": 4.359522375781919,
+      "median": 1.314185073289174,
+      "p90": 2.4637897734564067,
+      "p95": 3.462431667603987,
+      "max": 255.75996339833495
+    },
+    "state_breakdown_loc_errors": {
+      "direct_detected": {
+        "mean": 1.3858083645612558,
+        "median": 1.2984026276442129,
+        "p90": 2.2482049061637945,
+        "p95": 2.7697701681813474,
+        "max": 3.8923471174585025
+      },
+      "gated_tracked": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p90": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "kalman_predicted": {
+        "mean": 94.56218071614204,
+        "median": 14.552550624934758,
+        "p90": 207.5184808436549,
+        "p95": 231.6392221209949,
+        "max": 255.75996339833495
+      },
+      "interpolated": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p90": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      }
+    },
+    "fps": 49.95854822381813,
+    "vram_mb": 2180.0
+  }
+}

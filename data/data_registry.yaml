@@ -52,8 +52,40 @@ datasets:
     source: "abdullahtarek/tennis_analysis"
     license: "UNLICENSED (Research/Benchmarking reproduction only)"
     task: "video_inference_evaluation"
-    duration_seconds: 8.0
-    fps: 24.0
+    duration_seconds: 7.13
+    fps: 30.0
     resolution: "1920x1080"
     decision: "BENCHMARK_ONLY"
     intended_use: "End-to-end integration and baseline reproduction test"
+
+models:
+  - id: "yolo11s_tennis_ball_best"
+    architecture: "Ultralytics YOLO11s"
+    path: "artifacts/models/ball/yolo11s_tennis_ball_best.pt"
+    task: "tennis_ball_detection"
+    dataset: "roboflow_tennis_ball_v6"
+    test_metrics:
+      precision: 0.8843
+      recall: 0.8000
+      map50: 0.8594
+      map50_95: 0.3839
+    status: "PRODUCTION_PHASE2"
+
+  - id: "yolo11m_player_detector"
+    architecture: "Ultralytics YOLO11m"
+    path: "yolo11m.pt"
+    task: "player_detection_and_tracking"
+    status: "PRODUCTION_PLAYERS"
+
+  - id: "resnet50_court_keypoints"
+    architecture: "ResNet-50 14-Keypoint Regressor"
+    path: "models/keypoints_model.pth"
+    task: "court_keypoint_detection"
+    status: "PRODUCTION_COURT"
+
+  - id: "yolo5_last_legacy"
+    architecture: "YOLOv5l6u"
+    path: "models/yolo5_last.pt"
+    task: "tennis_ball_detection"
+    status: "LEGACY_ARCHIVED_DO_NOT_USE_IN_PRODUCTION"
+

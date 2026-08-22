@@ -120,8 +120,36 @@ tennis_ai_agent_bundle/
 
 ---
 
-## 7. Baseline Results & Failure Analysis
+## 7. Baseline Results & Historical Analysis
 
 See:
 - `docs/experiments/BASELINE_RESULTS.md`
 - `docs/experiments/BASELINE_FAILURE_ANALYSIS.md`
+
+---
+
+## 8. Phase 2.1: YOLO11 High-Accuracy Ball Detection & Temporal Tracking
+
+### Train YOLO11 Ball Detector
+```bash
+python scripts/train/train_ball_yolo11.py --config configs/phase2_yolo11/ball_yolo11s.yaml
+```
+
+### Benchmark Evaluation (YOLOv5 vs YOLO11)
+```bash
+python scripts/evaluate/evaluate_phase2_yolo11_experiments.py
+```
+
+### Run Corrected End-to-End Pipeline
+```bash
+python scripts/inference/run_phase2_yolo11.py \
+  --input data/sample_videos/input_video.mp4 \
+  --output outputs/phase2_yolo11_final \
+  --config configs/phase2_yolo11/pipeline.yaml
+```
+
+See:
+- `docs/experiments/PHASE2_YOLO11_EXPERIMENTS.md`
+- `docs/experiments/PHASE2_YOLO11_RESULTS.md`
+- `docs/experiments/PHASE2_YOLO11_FAILURE_ANALYSIS.md`
+

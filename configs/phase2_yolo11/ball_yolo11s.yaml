@@ -1,0 +1,20 @@
+# Training configuration for YOLO11s Tennis Ball Detector
+
+model: "yolo11s.pt"
+data: "data/raw/tennis_ball_dataset/dataset.yaml"
+epochs: 50
+patience: 15
+batch: 8
+imgsz: 640
+device: 0
+optimizer: "AdamW"
+lr0: 0.001
+lrf: 0.01
+weight_decay: 0.0005
+warmup_epochs: 3.0
+warmup_momentum: 0.8
+plots: true
+save: true
+cache: false
+project: "experiments/phase2_yolo11/train"
+name: "yolo11s_ball_640"

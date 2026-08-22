@@ -14,7 +14,7 @@ from src.court.court_geometry import TennisCourtGeometry
 from src.court.court_keypoint_detector import CourtKeypointDetector
 from src.court.homography import compute_homography, transform_point, validate_homography
 from src.detection.player_detector import PlayerDetector
-from src.detection.improved_ball_detector import ImprovedBallDetector
+from src.detection.yolo11_ball_detector import YOLO11BallDetector
 from src.tracking.player_tracker import PlayerTracker
 from src.tracking.temporal_ball_tracker import (
     TemporalBallTracker, 
@@ -52,9 +52,9 @@ class Phase2Pipeline:
         
         # Ball detector settings
         ball_cfg = self.config.get('ball_detection', {})
-        self.ball_model_path = ball_cfg.get('model', 'models/yolo5_last.pt')
+        self.ball_model_path = ball_cfg.get('model', 'artifacts/models/ball/yolo11s_tennis_ball_best.pt')
         self.imgsz = int(ball_cfg.get('imgsz', 1024))
-        self.high_conf = float(ball_cfg.get('high_conf', 0.20))
+        self.high_conf = float(ball_cfg.get('high_conf', 0.15))
         self.low_conf = float(ball_cfg.get('low_conf', 0.02))
         
         # Temporal tracker settings
@@ -111,9 +111,9 @@ class Phase2Pipeline:
         print(f"  -> Player 1 Coverage: {p1_cov:.1f}% | Player 2 Coverage: {p2_cov:.1f}% in {time.time()-t0:.2f}s")
 
         # 4. Multi-Stage Temporal Ball Tracking
-        print("[Step 4/8] Running High-Resolution Candidate Extraction & Temporal Kalman Tracking...")
+        print("[Step 4/8] Running High-Resolution Candidate Extraction & Temporal Kalman Tracking (YOLO11)...")
         t0 = time.time()
-        ball_detector = ImprovedBallDetector(
+        ball_detector = YOLO11BallDetector(
             model_path=self.ball_model_path,
             imgsz=self.imgsz,
             high_conf=self.high_conf,
