@@ -97,10 +97,7 @@ class Phase6Pipeline:
             max_valid_speed_px_per_frame=self.config['temporal_tracking'].get('max_valid_speed_px_per_frame', 60.0)
         )
         self.event_detector = TennisEventDetector(
-            min_event_interval_frames=self.config.get('event_detection', {}).get('min_event_interval', 10),
-            player_reach_radius_px=self.config.get('event_detection', {}).get('player_reach_radius_px', 140.0),
-            min_hit_deflection_deg=self.config.get('event_detection', {}).get('min_hit_deflection_deg', 40.0),
-            min_bounce_curvature=self.config.get('event_detection', {}).get('min_bounce_curvature', 0.005)
+            config=self.config.get('event_detection', {})
         )
         
         model_name = self.config.get('line_calling', {}).get('contact_patch_model', 'EMPIRICAL_PATCH')
@@ -218,7 +215,7 @@ class Phase6Pipeline:
         # 5. Temporal Ball Tracking
         print("\n[Step 5/11] Running Temporal Kalman Ball Tracking...")
         t0 = time.time()
-        ball_points = self.temporal_tracker.track_video_candidates(raw_candidates_per_frame, fps=fps)
+        ball_points = self.temporal_tracker.track_video_candidates(raw_candidates_per_frame, fps=fps, frame_size=(width, height))
 
         for p in ball_points:
             if p.x_px is not None and p.y_px is not None and is_h_valid:
@@ -236,14 +233,17 @@ class Phase6Pipeline:
         # 6. Event Detection
         print("\n[Step 6/11] Detecting Tennis Match Events (Serves, Bounces, Hits)...")
         t0 = time.time()
-        detected_events = self.event_detector.detect_events(
+        event_analysis = self.event_detector.analyze(
             ball_trajectory=ball_points,
             player1_boxes=p1_boxes,
             player2_boxes=p2_boxes,
             homography_matrix=homography_matrix,
-            fps=fps
+            fps=fps,
+            frame_size=(w, h),
         )
-        event_candidates = self.event_detector.detect_candidates(ball_points, fps=fps)
+        detected_events = event_analysis.events
+        event_candidates = event_analysis.candidates
+        event_verification_trace = event_analysis.verification_traces
         print(f"  -> Detected {len(detected_events)} physical match events in {time.time()-t0:.2f}s")
 
         # 7. Line Calling & Scoring State Machine Execution
@@ -317,7 +317,10 @@ class Phase6Pipeline:
             })
 
         print(f"  -> Scoring State Complete ({len(dead_event_ids)} dead-ball events suppressed) in {time.time()-t0:.2f}s")
-        authoritative_events = [ev for ev in detected_events if ev.event_id not in dead_event_ids]
+        # Physical events remain authoritative vision observations.  Scoring is
+        # a downstream consumer and may flag an event as dead-ball for score/
+        # shot consumers, but it must never delete the physical observation.
+        authoritative_events = list(detected_events)
 
         # 8. Speed Estimation & Player Metrics
         print("\n[Step 8/11] Computing 2D Ball Speed & Player Locomotion...")
@@ -597,6 +600,8 @@ class Phase6Pipeline:
                     {
                         "frame_index": c.frame_index,
                         "timestamp_s": c.timestamp_s,
+                        "discovery_frame_index": c.discovery_frame_index,
+                        "discovery_timestamp_s": c.discovery_timestamp_s,
                         "score": c.score,
                         "ball_position_px": list(c.ball_position_px),
                         "trajectory_state": c.trajectory_state,
@@ -604,6 +609,15 @@ class Phase6Pipeline:
                     }
                     for c in event_candidates
                 ],
+            }), f, indent=2)
+
+        with open(os.path.join(output_dir, "event_verification_trace.json"), "w", encoding="utf-8") as f:
+            json.dump(_sanitize({
+                "schema_version": "1.0",
+                "semantic_role": "AUDIT_TRACE_NOT_AUTHORITATIVE",
+                "coordinate_system": event_analysis.coordinate_system,
+                "settings": event_analysis.settings,
+                "traces": event_verification_trace,
             }), f, indent=2)
 
         # Save player_metrics.json

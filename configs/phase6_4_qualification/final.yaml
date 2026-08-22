@@ -45,11 +45,46 @@ tracking:
     velocity_smoothing_alpha: 0.70
 
 event_detection:
-  min_event_interval: 12
-  suppression_radius: 10
-  reach_scale_factor: 0.65
-  candidate_score_threshold: 18.0
-  bounce_elevation_threshold: 0.15
+  enable_camera_motion_compensation: true
+  enable_player_temporal_proximity: true
+  enable_velocity_discontinuity: true
+  enable_direction_change: true
+  enable_pose_support: false
+  enable_bounce_contact_check: true
+  enable_dead_ball_gating: true
+  enable_serve_semantics: true
+  enable_event_time_refinement: true
+  enable_provenance_weighting: true
+  feature_half_window_seconds: 0.067
+  candidate_min_interval_seconds: 0.120
+  candidate_score_threshold: 0.33
+  candidate_min_normalized_speed_per_s: 0.050
+  candidate_min_direction_change_deg: 14.0
+  candidate_min_normalized_velocity_change_per_s: 0.045
+  candidate_min_normalized_acceleration_per_s2: 0.40
+  candidate_min_normalized_vertical_speed_per_s: 0.018
+  candidate_min_continuity_ratio: 0.60
+  max_normalized_edge_speed_per_s: 3.00
+  temporal_proximity_window_seconds: 0.140
+  event_time_refinement_window_seconds: 0.120
+  player_reach_normalized: 1.35
+  player_attribution_margin_normalized: 0.15
+  racket_region_top_normalized: -0.35
+  racket_region_bottom_normalized: 0.85
+  player_contact_min_score: 0.47
+  player_contact_min_independent_cues: 3
+  court_contact_min_score: 0.44
+  court_contact_min_independent_cues: 3
+  physical_type_margin: 0.05
+  departure_window_seconds: 0.120
+  serve_evidence_window_seconds: 0.40
+  serve_min_score: 0.58
+  serve_overhead_y_normalized: 0.48
+  serve_min_post_speed_normalized_per_s: 0.075
+  serve_min_departure_speed_gain: 1.05
+  final_event_min_interval_seconds: 0.180
+  rolling_max_normalized_speed_per_s: 0.030
+  dead_ball_min_kinematic_support: 0.20
 
 shot_classification:
   pose_weight: 0.65

@@ -1,0 +1,2973 @@
+{
+  "schema_version": "1.0",
+  "benchmark_split": "CROSS_MATCH_DIAGNOSTIC",
+  "total_events": 40,
+  "loss_taxonomy": {
+    "WRONG_EVENT_TYPE": 19,
+    "TRACK_REACQUISITION_FAILURE": 6,
+    "MOTION_MODEL_DIVERGENCE": 4,
+    "COURT_ROI_REJECTION": 2
+  },
+  "records": [
+    {
+      "video_id": "video_08",
+      "gt_event_id": 1,
+      "gt_event_type": "SERVE_CONTACT",
+      "gt_frame_best": 42,
+      "gt_timestamp_s": 1.4,
+      "raw_proposals_count": 33,
+      "raw_proposals": [
+        {
+          "frame": 36,
+          "x_px": 928.27490234375,
+          "y_px": 288.4195861816406,
+          "confidence": 0.010201814584434032,
+          "inside_court": true
+        },
+        {
+          "frame": 37,
+          "x_px": 1065.5697021484375,
+          "y_px": 455.8301086425781,
+          "confidence": 0.005464037414640188,
+          "inside_court": true
+        },
+        {
+          "frame": 38,
+          "x_px": 843.717529296875,
+          "y_px": 324.44911193847656,
+          "confidence": 0.7378648519515991,
+          "inside_court": true
+        },
+        {
+          "frame": 38,
+          "x_px": 842.1159973144531,
+          "y_px": 325.6584777832031,
+          "confidence": 0.045958008617162704,
+          "inside_court": true
+        },
+        {
+          "frame": 38,
+          "x_px": 1276.8309326171875,
+          "y_px": 143.95375061035156,
+          "confidence": 0.011008190922439098,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 42,
+        "state": "DETECTED",
+        "x_px": 657.5129699707031,
+        "y_px": 388.1080627441406,
+        "confidence": 0.7893787026405334,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 2,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 62,
+      "gt_timestamp_s": 2.066666666666667,
+      "raw_proposals_count": 25,
+      "raw_proposals": [
+        {
+          "frame": 56,
+          "x_px": 255.0250473022461,
+          "y_px": 221.09210968017578,
+          "confidence": 0.02706652693450451,
+          "inside_court": true
+        },
+        {
+          "frame": 56,
+          "x_px": 256.43072509765625,
+          "y_px": 220.99246215820312,
+          "confidence": 0.019377080723643303,
+          "inside_court": true
+        },
+        {
+          "frame": 57,
+          "x_px": 474.9756622314453,
+          "y_px": 640.9780578613281,
+          "confidence": 0.42765510082244873,
+          "inside_court": true
+        },
+        {
+          "frame": 57,
+          "x_px": 474.9463653564453,
+          "y_px": 640.3892822265625,
+          "confidence": 0.030896564945578575,
+          "inside_court": true
+        },
+        {
+          "frame": 58,
+          "x_px": 1033.60400390625,
+          "y_px": 386.13487243652344,
+          "confidence": 0.011807883158326149,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 62,
+        "state": "DETECTED",
+        "x_px": 1268.2645263671875,
+        "y_px": 171.16710662841797,
+        "confidence": 0.7538869380950928,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 3,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 74,
+      "gt_timestamp_s": 2.466666666666667,
+      "raw_proposals_count": 27,
+      "raw_proposals": [
+        {
+          "frame": 68,
+          "x_px": 430.84690856933594,
+          "y_px": 645.5048217773438,
+          "confidence": 0.1003069132566452,
+          "inside_court": true
+        },
+        {
+          "frame": 68,
+          "x_px": 1164.1175537109375,
+          "y_px": 131.46034240722656,
+          "confidence": 0.02653823234140873,
+          "inside_court": false
+        },
+        {
+          "frame": 68,
+          "x_px": 959.0694580078125,
+          "y_px": 6.005055069923401,
+          "confidence": 0.011445077136158943,
+          "inside_court": false
+        },
+        {
+          "frame": 69,
+          "x_px": 1164.0611572265625,
+          "y_px": 132.6280288696289,
+          "confidence": 0.463225394487381,
+          "inside_court": false
+        },
+        {
+          "frame": 69,
+          "x_px": 430.830078125,
+          "y_px": 645.4721069335938,
+          "confidence": 0.10178954899311066,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "PREDICTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "TRACKED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "TRACKED",
+        "TRACKED"
+      ],
+      "center_point": {
+        "frame": 74,
+        "state": "DETECTED",
+        "x_px": 429.28125,
+        "y_px": 650.8497009277344,
+        "confidence": 0.557737004156883,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 4,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 96,
+      "gt_timestamp_s": 3.2,
+      "raw_proposals_count": 42,
+      "raw_proposals": [
+        {
+          "frame": 90,
+          "x_px": 665.2289428710938,
+          "y_px": 327.078857421875,
+          "confidence": 0.005157332867383957,
+          "inside_court": true
+        },
+        {
+          "frame": 91,
+          "x_px": 1250.4388427734375,
+          "y_px": 167.9071044921875,
+          "confidence": 0.7090291976928711,
+          "inside_court": false
+        },
+        {
+          "frame": 91,
+          "x_px": 355.36285400390625,
+          "y_px": 635.9441223144531,
+          "confidence": 0.6440408229827881,
+          "inside_court": true
+        },
+        {
+          "frame": 92,
+          "x_px": 1199.7953491210938,
+          "y_px": 179.20738220214844,
+          "confidence": 0.35724371671676636,
+          "inside_court": false
+        },
+        {
+          "frame": 92,
+          "x_px": 350.7557678222656,
+          "y_px": 635.8749389648438,
+          "confidence": 0.2791256308555603,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 96,
+        "state": "DETECTED",
+        "x_px": 990.7456359863281,
+        "y_px": 244.83385467529297,
+        "confidence": 0.6715584993362427,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 5,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 108,
+      "gt_timestamp_s": 3.6,
+      "raw_proposals_count": 42,
+      "raw_proposals": [
+        {
+          "frame": 102,
+          "x_px": 713.7513732910156,
+          "y_px": 322.48345947265625,
+          "confidence": 0.7067075967788696,
+          "inside_court": true
+        },
+        {
+          "frame": 102,
+          "x_px": 711.86767578125,
+          "y_px": 323.9204864501953,
+          "confidence": 0.07142934948205948,
+          "inside_court": true
+        },
+        {
+          "frame": 102,
+          "x_px": 361.76658630371094,
+          "y_px": 630.1308288574219,
+          "confidence": 0.0459187887609005,
+          "inside_court": true
+        },
+        {
+          "frame": 103,
+          "x_px": 682.8106079101562,
+          "y_px": 310.678466796875,
+          "confidence": 0.6711349487304688,
+          "inside_court": true
+        },
+        {
+          "frame": 103,
+          "x_px": 1276.6165771484375,
+          "y_px": 113.51470947265625,
+          "confidence": 0.25524812936782837,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 108,
+        "state": "DETECTED",
+        "x_px": 507.7916564941406,
+        "y_px": 282.48712158203125,
+        "confidence": 0.7864357829093933,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 6,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 130,
+      "gt_timestamp_s": 4.333333333333333,
+      "raw_proposals_count": 17,
+      "raw_proposals": [
+        {
+          "frame": 124,
+          "x_px": 426.96583557128906,
+          "y_px": 624.7098693847656,
+          "confidence": 0.06179001182317734,
+          "inside_court": true
+        },
+        {
+          "frame": 126,
+          "x_px": 428.0188903808594,
+          "y_px": 619.5641174316406,
+          "confidence": 0.2066229283809662,
+          "inside_court": true
+        },
+        {
+          "frame": 127,
+          "x_px": 427.87147521972656,
+          "y_px": 616.5542907714844,
+          "confidence": 0.3048733174800873,
+          "inside_court": true
+        },
+        {
+          "frame": 127,
+          "x_px": 428.7742614746094,
+          "y_px": 615.7192993164062,
+          "confidence": 0.0057351901195943356,
+          "inside_court": true
+        },
+        {
+          "frame": 129,
+          "x_px": 705.25390625,
+          "y_px": 8.424544334411621,
+          "confidence": 0.02424503117799759,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 130,
+        "state": "PREDICTED",
+        "x_px": 467.9718648814625,
+        "y_px": 596.275719593798,
+        "confidence": 0.23999999999999994,
+        "source": "kinematic_kalman"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 7,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 142,
+      "gt_timestamp_s": 4.733333333333333,
+      "raw_proposals_count": 26,
+      "raw_proposals": [
+        {
+          "frame": 136,
+          "x_px": 1043.8674926757812,
+          "y_px": 710.7516479492188,
+          "confidence": 0.5423129796981812,
+          "inside_court": false
+        },
+        {
+          "frame": 136,
+          "x_px": 1041.47900390625,
+          "y_px": 711.6656494140625,
+          "confidence": 0.006905754096806049,
+          "inside_court": false
+        },
+        {
+          "frame": 137,
+          "x_px": 1041.2792358398438,
+          "y_px": 712.6747131347656,
+          "confidence": 0.08754467964172363,
+          "inside_court": false
+        },
+        {
+          "frame": 137,
+          "x_px": 834.6121826171875,
+          "y_px": 335.58563232421875,
+          "confidence": 0.010997745208442211,
+          "inside_court": true
+        },
+        {
+          "frame": 137,
+          "x_px": 966.0081176757812,
+          "y_px": 366.3312072753906,
+          "confidence": 0.008329060859978199,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 142,
+        "state": "TRACKED",
+        "x_px": 1029.16748046875,
+        "y_px": 715.2521362304688,
+        "confidence": 0.19172738535437894,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 8,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 164,
+      "gt_timestamp_s": 5.466666666666667,
+      "raw_proposals_count": 69,
+      "raw_proposals": [
+        {
+          "frame": 158,
+          "x_px": 414.9683837890625,
+          "y_px": 597.6527709960938,
+          "confidence": 0.43885964155197144,
+          "inside_court": true
+        },
+        {
+          "frame": 158,
+          "x_px": 843.8569946289062,
+          "y_px": 335.9242248535156,
+          "confidence": 0.03839373588562012,
+          "inside_court": true
+        },
+        {
+          "frame": 158,
+          "x_px": 1104.4003295898438,
+          "y_px": 405.87147521972656,
+          "confidence": 0.009263723157346249,
+          "inside_court": true
+        },
+        {
+          "frame": 158,
+          "x_px": 838.076171875,
+          "y_px": 334.1858673095703,
+          "confidence": 0.006820617709308863,
+          "inside_court": true
+        },
+        {
+          "frame": 159,
+          "x_px": 420.5078125,
+          "y_px": 596.4392700195312,
+          "confidence": 0.2504427433013916,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "TRACKED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 164,
+        "state": "DETECTED",
+        "x_px": 1016.5354919433594,
+        "y_px": 297.13645935058594,
+        "confidence": 0.8006377816200256,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 9,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 176,
+      "gt_timestamp_s": 5.866666666666666,
+      "raw_proposals_count": 128,
+      "raw_proposals": [
+        {
+          "frame": 170,
+          "x_px": 670.4560852050781,
+          "y_px": 374.0821075439453,
+          "confidence": 0.6628665924072266,
+          "inside_court": true
+        },
+        {
+          "frame": 170,
+          "x_px": 514.202880859375,
+          "y_px": 596.261962890625,
+          "confidence": 0.582817554473877,
+          "inside_court": true
+        },
+        {
+          "frame": 170,
+          "x_px": 915.5778503417969,
+          "y_px": 334.2823791503906,
+          "confidence": 0.02314644493162632,
+          "inside_court": true
+        },
+        {
+          "frame": 170,
+          "x_px": 115.03856658935547,
+          "y_px": 182.95978546142578,
+          "confidence": 0.01450300682336092,
+          "inside_court": false
+        },
+        {
+          "frame": 170,
+          "x_px": 953.8084716796875,
+          "y_px": 346.04515075683594,
+          "confidence": 0.010394571349024773,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 176,
+        "state": "INTERPOLATED",
+        "x_px": 504.2275848388672,
+        "y_px": 439.35262298583984,
+        "confidence": null,
+        "source": "linear_interpolation"
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 10,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 198,
+      "gt_timestamp_s": 6.6,
+      "raw_proposals_count": 102,
+      "raw_proposals": [
+        {
+          "frame": 192,
+          "x_px": 1174.04931640625,
+          "y_px": 691.7311401367188,
+          "confidence": 0.6959960460662842,
+          "inside_court": false
+        },
+        {
+          "frame": 192,
+          "x_px": 533.1869812011719,
+          "y_px": 556.811767578125,
+          "confidence": 0.629680335521698,
+          "inside_court": true
+        },
+        {
+          "frame": 192,
+          "x_px": 864.6063232421875,
+          "y_px": 692.9090270996094,
+          "confidence": 0.5025746822357178,
+          "inside_court": false
+        },
+        {
+          "frame": 192,
+          "x_px": 1173.9597778320312,
+          "y_px": 691.5550231933594,
+          "confidence": 0.04855390265583992,
+          "inside_court": false
+        },
+        {
+          "frame": 192,
+          "x_px": 903.4542846679688,
+          "y_px": 285.4889831542969,
+          "confidence": 0.01274310052394867,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 198,
+        "state": "DETECTED",
+        "x_px": 544.9588012695312,
+        "y_px": 577.3459167480469,
+        "confidence": 0.4572964608669281,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 1,
+      "gt_event_type": "SERVE_CONTACT",
+      "gt_frame_best": 35,
+      "gt_timestamp_s": 1.1666666666666667,
+      "raw_proposals_count": 59,
+      "raw_proposals": [
+        {
+          "frame": 29,
+          "x_px": 773.2230224609375,
+          "y_px": 125.14715957641602,
+          "confidence": 0.04635113850235939,
+          "inside_court": true
+        },
+        {
+          "frame": 29,
+          "x_px": 645.556640625,
+          "y_px": 122.67662048339844,
+          "confidence": 0.007317522075027227,
+          "inside_court": true
+        },
+        {
+          "frame": 30,
+          "x_px": 996.3479614257812,
+          "y_px": 282.88031005859375,
+          "confidence": 0.6261507272720337,
+          "inside_court": true
+        },
+        {
+          "frame": 30,
+          "x_px": 999.0077209472656,
+          "y_px": 283.54217529296875,
+          "confidence": 0.3587780296802521,
+          "inside_court": true
+        },
+        {
+          "frame": 30,
+          "x_px": 773.209228515625,
+          "y_px": 125.19795989990234,
+          "confidence": 0.03535757213830948,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 35,
+        "state": "INTERPOLATED",
+        "x_px": 1132.1465621631787,
+        "y_px": 207.49722892658252,
+        "confidence": null,
+        "source": "linear_interpolation"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 2,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 55,
+      "gt_timestamp_s": 1.8333333333333333,
+      "raw_proposals_count": 83,
+      "raw_proposals": [
+        {
+          "frame": 49,
+          "x_px": 1232.5823974609375,
+          "y_px": 433.60321044921875,
+          "confidence": 0.08206753432750702,
+          "inside_court": false
+        },
+        {
+          "frame": 49,
+          "x_px": 736.5503540039062,
+          "y_px": 367.6869201660156,
+          "confidence": 0.015190577134490013,
+          "inside_court": true
+        },
+        {
+          "frame": 49,
+          "x_px": 881.2484741210938,
+          "y_px": 185.0771713256836,
+          "confidence": 0.011324740946292877,
+          "inside_court": true
+        },
+        {
+          "frame": 49,
+          "x_px": 479.512939453125,
+          "y_px": 525.8637390136719,
+          "confidence": 0.008610604330897331,
+          "inside_court": true
+        },
+        {
+          "frame": 49,
+          "x_px": 1230.1861572265625,
+          "y_px": 434.14154052734375,
+          "confidence": 0.00739899929612875,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "TRACKED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED"
+      ],
+      "center_point": {
+        "frame": 55,
+        "state": "PREDICTED",
+        "x_px": 734.9010935191965,
+        "y_px": 234.5643314968643,
+        "confidence": 0.36,
+        "source": "kinematic_kalman"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 3,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 68,
+      "gt_timestamp_s": 2.2666666666666666,
+      "raw_proposals_count": 64,
+      "raw_proposals": [
+        {
+          "frame": 62,
+          "x_px": 1244.9360961914062,
+          "y_px": 427.8154754638672,
+          "confidence": 0.06661459803581238,
+          "inside_court": false
+        },
+        {
+          "frame": 62,
+          "x_px": 891.27197265625,
+          "y_px": 180.90860748291016,
+          "confidence": 0.06464726477861404,
+          "inside_court": true
+        },
+        {
+          "frame": 62,
+          "x_px": 891.3983764648438,
+          "y_px": 178.9599838256836,
+          "confidence": 0.03988279402256012,
+          "inside_court": true
+        },
+        {
+          "frame": 62,
+          "x_px": 337.4078826904297,
+          "y_px": 27.372684478759766,
+          "confidence": 0.024714315310120583,
+          "inside_court": false
+        },
+        {
+          "frame": 62,
+          "x_px": 889.1277465820312,
+          "y_px": 180.67676544189453,
+          "confidence": 0.021942146122455597,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "TRACKED",
+        "PREDICTED",
+        "PREDICTED",
+        "TRACKED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 68,
+        "state": "PREDICTED",
+        "x_px": 892.6476853039467,
+        "y_px": 177.80474171590828,
+        "confidence": 0.23999999999999994,
+        "source": "kinematic_kalman"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 4,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 90,
+      "gt_timestamp_s": 3.0,
+      "raw_proposals_count": 148,
+      "raw_proposals": [
+        {
+          "frame": 84,
+          "x_px": 800.8409118652344,
+          "y_px": 167.50125122070312,
+          "confidence": 0.060876283794641495,
+          "inside_court": true
+        },
+        {
+          "frame": 84,
+          "x_px": 799.07373046875,
+          "y_px": 167.7286148071289,
+          "confidence": 0.02445683442056179,
+          "inside_court": true
+        },
+        {
+          "frame": 84,
+          "x_px": 1215.9237060546875,
+          "y_px": 55.44325828552246,
+          "confidence": 0.02327369712293148,
+          "inside_court": false
+        },
+        {
+          "frame": 84,
+          "x_px": 595.7607421875,
+          "y_px": 122.93826293945312,
+          "confidence": 0.009720477275550365,
+          "inside_court": true
+        },
+        {
+          "frame": 84,
+          "x_px": 611.9046020507812,
+          "y_px": 164.19650268554688,
+          "confidence": 0.006766167469322681,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED",
+        "TRACKED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 90,
+        "state": "TRACKED",
+        "x_px": 444.4743347167969,
+        "y_px": 209.65872192382812,
+        "confidence": 0.017344389898075685,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 5,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 102,
+      "gt_timestamp_s": 3.4,
+      "raw_proposals_count": 120,
+      "raw_proposals": [
+        {
+          "frame": 96,
+          "x_px": 882.3199462890625,
+          "y_px": 384.29931640625,
+          "confidence": 0.4962292015552521,
+          "inside_court": true
+        },
+        {
+          "frame": 96,
+          "x_px": 1097.5772094726562,
+          "y_px": 214.56031799316406,
+          "confidence": 0.22886691987514496,
+          "inside_court": true
+        },
+        {
+          "frame": 96,
+          "x_px": 414.5067138671875,
+          "y_px": 209.9597930908203,
+          "confidence": 0.17121222615242004,
+          "inside_court": true
+        },
+        {
+          "frame": 96,
+          "x_px": 882.1282958984375,
+          "y_px": 381.8796081542969,
+          "confidence": 0.10971947014331818,
+          "inside_court": true
+        },
+        {
+          "frame": 96,
+          "x_px": 379.05140686035156,
+          "y_px": 17.24449396133423,
+          "confidence": 0.09589406847953796,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "TRACKED",
+        "DETECTED",
+        "DETECTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 102,
+        "state": "DETECTED",
+        "x_px": 1196.1790161132812,
+        "y_px": 56.38237953186035,
+        "confidence": 0.12103528529405594,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 6,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 125,
+      "gt_timestamp_s": 4.166666666666667,
+      "raw_proposals_count": 98,
+      "raw_proposals": [
+        {
+          "frame": 119,
+          "x_px": 633.994140625,
+          "y_px": 10.311790466308594,
+          "confidence": 0.17522816359996796,
+          "inside_court": false
+        },
+        {
+          "frame": 119,
+          "x_px": 1237.5424194335938,
+          "y_px": 446.53155517578125,
+          "confidence": 0.08925934880971909,
+          "inside_court": false
+        },
+        {
+          "frame": 119,
+          "x_px": 561.2968444824219,
+          "y_px": 190.77289581298828,
+          "confidence": 0.0697726383805275,
+          "inside_court": true
+        },
+        {
+          "frame": 119,
+          "x_px": 332.06463623046875,
+          "y_px": 44.15617370605469,
+          "confidence": 0.03585897758603096,
+          "inside_court": false
+        },
+        {
+          "frame": 119,
+          "x_px": 1145.5428466796875,
+          "y_px": 49.80349540710449,
+          "confidence": 0.019401060417294502,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED",
+        "TRACKED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 125,
+        "state": "INTERPOLATED",
+        "x_px": 1085.6930414699673,
+        "y_px": 332.4001203652183,
+        "confidence": null,
+        "source": "linear_interpolation"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 7,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 138,
+      "gt_timestamp_s": 4.6,
+      "raw_proposals_count": 78,
+      "raw_proposals": [
+        {
+          "frame": 132,
+          "x_px": 361.2056884765625,
+          "y_px": 51.204904556274414,
+          "confidence": 0.0913391187787056,
+          "inside_court": false
+        },
+        {
+          "frame": 132,
+          "x_px": 661.77978515625,
+          "y_px": 15.45090389251709,
+          "confidence": 0.06520827859640121,
+          "inside_court": false
+        },
+        {
+          "frame": 132,
+          "x_px": 641.6230773925781,
+          "y_px": 407.41233825683594,
+          "confidence": 0.04695451259613037,
+          "inside_court": true
+        },
+        {
+          "frame": 132,
+          "x_px": 812.960205078125,
+          "y_px": 15.751708507537842,
+          "confidence": 0.027019653469324112,
+          "inside_court": false
+        },
+        {
+          "frame": 132,
+          "x_px": 1269.453125,
+          "y_px": 445.3268127441406,
+          "confidence": 0.020670289173722267,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 138,
+        "state": "DETECTED",
+        "x_px": 745.6854248046875,
+        "y_px": 15.69363784790039,
+        "confidence": 0.3303341567516327,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 8,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 162,
+      "gt_timestamp_s": 5.4,
+      "raw_proposals_count": 84,
+      "raw_proposals": [
+        {
+          "frame": 156,
+          "x_px": 11.225727796554565,
+          "y_px": 171.1566162109375,
+          "confidence": 0.009159503504633904,
+          "inside_court": false
+        },
+        {
+          "frame": 156,
+          "x_px": 426.9045104980469,
+          "y_px": 27.108226776123047,
+          "confidence": 0.00813984777778387,
+          "inside_court": false
+        },
+        {
+          "frame": 156,
+          "x_px": 1241.4065551757812,
+          "y_px": 30.33121109008789,
+          "confidence": 0.006518844980746508,
+          "inside_court": false
+        },
+        {
+          "frame": 156,
+          "x_px": 783.9708251953125,
+          "y_px": 175.19512176513672,
+          "confidence": 0.0059025962837040424,
+          "inside_court": true
+        },
+        {
+          "frame": 157,
+          "x_px": 533.8784790039062,
+          "y_px": 295.2682800292969,
+          "confidence": 0.1736421436071396,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 162,
+        "state": "INTERPOLATED",
+        "x_px": 401.888427734375,
+        "y_px": 12.560398578643799,
+        "confidence": null,
+        "source": "linear_interpolation"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 9,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 175,
+      "gt_timestamp_s": 5.833333333333333,
+      "raw_proposals_count": 67,
+      "raw_proposals": [
+        {
+          "frame": 169,
+          "x_px": 1214.9578247070312,
+          "y_px": 2.930302381515503,
+          "confidence": 0.2050093710422516,
+          "inside_court": false
+        },
+        {
+          "frame": 169,
+          "x_px": 1118.209716796875,
+          "y_px": 194.82156372070312,
+          "confidence": 0.0751495212316513,
+          "inside_court": true
+        },
+        {
+          "frame": 169,
+          "x_px": 1236.0194091796875,
+          "y_px": 34.25798416137695,
+          "confidence": 0.03232123702764511,
+          "inside_court": false
+        },
+        {
+          "frame": 169,
+          "x_px": 631.3639221191406,
+          "y_px": 142.5306396484375,
+          "confidence": 0.027921751141548157,
+          "inside_court": true
+        },
+        {
+          "frame": 169,
+          "x_px": 737.1927795410156,
+          "y_px": 145.02436065673828,
+          "confidence": 0.018509306013584137,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "TRACKED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 175,
+        "state": "DETECTED",
+        "x_px": 514.7295532226562,
+        "y_px": 292.77903747558594,
+        "confidence": 0.45285138487815857,
+        "source": "high_conf_detector"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 10,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 198,
+      "gt_timestamp_s": 6.6,
+      "raw_proposals_count": 70,
+      "raw_proposals": [
+        {
+          "frame": 192,
+          "x_px": 1142.4880981445312,
+          "y_px": 190.44278717041016,
+          "confidence": 0.0658833384513855,
+          "inside_court": true
+        },
+        {
+          "frame": 192,
+          "x_px": 653.2335510253906,
+          "y_px": 136.94454193115234,
+          "confidence": 0.03038944862782955,
+          "inside_court": true
+        },
+        {
+          "frame": 192,
+          "x_px": 916.3662719726562,
+          "y_px": 141.55330657958984,
+          "confidence": 0.009091474115848541,
+          "inside_court": true
+        },
+        {
+          "frame": 192,
+          "x_px": 781.710205078125,
+          "y_px": 140.98753356933594,
+          "confidence": 0.0070367660373449326,
+          "inside_court": true
+        },
+        {
+          "frame": 193,
+          "x_px": 655.5491638183594,
+          "y_px": 136.0870590209961,
+          "confidence": 0.09026490151882172,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "TRACKED",
+        "TRACKED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 198,
+        "state": "PREDICTED",
+        "x_px": 720.6217008010631,
+        "y_px": 141.874893933983,
+        "confidence": 0.36,
+        "source": "kinematic_kalman"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 11,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 212,
+      "gt_timestamp_s": 7.066666666666666,
+      "raw_proposals_count": 59,
+      "raw_proposals": [
+        {
+          "frame": 206,
+          "x_px": 848.5917358398438,
+          "y_px": 136.90753173828125,
+          "confidence": 0.1387314647436142,
+          "inside_court": true
+        },
+        {
+          "frame": 206,
+          "x_px": 850.7957458496094,
+          "y_px": 136.8535614013672,
+          "confidence": 0.08161985129117966,
+          "inside_court": true
+        },
+        {
+          "frame": 206,
+          "x_px": 660.9275817871094,
+          "y_px": 133.2501983642578,
+          "confidence": 0.08057409524917603,
+          "inside_court": true
+        },
+        {
+          "frame": 206,
+          "x_px": 1265.6167602539062,
+          "y_px": 25.31463623046875,
+          "confidence": 0.05477626994252205,
+          "inside_court": false
+        },
+        {
+          "frame": 206,
+          "x_px": 659.0214538574219,
+          "y_px": 132.74124908447266,
+          "confidence": 0.026694893836975098,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "DETECTED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED",
+        "INTERPOLATED",
+        "TRACKED",
+        "DETECTED",
+        "PREDICTED",
+        "PREDICTED",
+        "TRACKED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 212,
+        "state": "INTERPOLATED",
+        "x_px": 1002.122802734375,
+        "y_px": 169.92644500732422,
+        "confidence": null,
+        "source": "linear_interpolation"
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_event_id": 12,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 236,
+      "gt_timestamp_s": 7.866666666666666,
+      "raw_proposals_count": 83,
+      "raw_proposals": [
+        {
+          "frame": 230,
+          "x_px": 1265.8732299804688,
+          "y_px": 337.6310729980469,
+          "confidence": 0.22212181985378265,
+          "inside_court": false
+        },
+        {
+          "frame": 230,
+          "x_px": 1052.0289916992188,
+          "y_px": 152.97223663330078,
+          "confidence": 0.04134444519877434,
+          "inside_court": true
+        },
+        {
+          "frame": 230,
+          "x_px": 911.8782043457031,
+          "y_px": 93.43492889404297,
+          "confidence": 0.019716085866093636,
+          "inside_court": true
+        },
+        {
+          "frame": 230,
+          "x_px": 1265.4940185546875,
+          "y_px": 339.2261047363281,
+          "confidence": 0.008649695664644241,
+          "inside_court": false
+        },
+        {
+          "frame": 230,
+          "x_px": 648.5249633789062,
+          "y_px": 90.27900695800781,
+          "confidence": 0.006292823702096939,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "DETECTED",
+        "TRACKED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 236,
+        "state": "INTERPOLATED",
+        "x_px": 898.2320430629613,
+        "y_px": 227.52716928953475,
+        "confidence": null,
+        "source": "linear_interpolation"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 1,
+      "gt_event_type": "SERVE_CONTACT",
+      "gt_frame_best": 55,
+      "gt_timestamp_s": 1.8333333333333333,
+      "raw_proposals_count": 39,
+      "raw_proposals": [
+        {
+          "frame": 49,
+          "x_px": 414.0963134765625,
+          "y_px": 292.482666015625,
+          "confidence": 0.6629706025123596,
+          "inside_court": true
+        },
+        {
+          "frame": 49,
+          "x_px": 1712.675537109375,
+          "y_px": 660.6024169921875,
+          "confidence": 0.03431682288646698,
+          "inside_court": true
+        },
+        {
+          "frame": 49,
+          "x_px": 414.3504638671875,
+          "y_px": 292.6693115234375,
+          "confidence": 0.010829645209014416,
+          "inside_court": true
+        },
+        {
+          "frame": 49,
+          "x_px": 1712.042236328125,
+          "y_px": 660.939208984375,
+          "confidence": 0.005617255344986916,
+          "inside_court": true
+        },
+        {
+          "frame": 50,
+          "x_px": 413.7314453125,
+          "y_px": 287.8781433105469,
+          "confidence": 0.6547619104385376,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED"
+      ],
+      "center_point": {
+        "frame": 55,
+        "state": "DETECTED",
+        "x_px": 411.7218933105469,
+        "y_px": 269.6206970214844,
+        "confidence": 0.8169813952478524,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 2,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 76,
+      "gt_timestamp_s": 2.533333333333333,
+      "raw_proposals_count": 40,
+      "raw_proposals": [
+        {
+          "frame": 70,
+          "x_px": 408.08221435546875,
+          "y_px": 302.60504150390625,
+          "confidence": 0.6685764789581299,
+          "inside_court": true
+        },
+        {
+          "frame": 70,
+          "x_px": 408.442138671875,
+          "y_px": 302.10797119140625,
+          "confidence": 0.06345324963331223,
+          "inside_court": true
+        },
+        {
+          "frame": 70,
+          "x_px": 764.7681884765625,
+          "y_px": 2.150981903076172,
+          "confidence": 0.011900238692760468,
+          "inside_court": false
+        },
+        {
+          "frame": 71,
+          "x_px": 408.13714599609375,
+          "y_px": 307.305419921875,
+          "confidence": 0.5538648962974548,
+          "inside_court": true
+        },
+        {
+          "frame": 71,
+          "x_px": 764.6856689453125,
+          "y_px": 2.088601589202881,
+          "confidence": 0.023059243336319923,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": true,
+      "primary_loss_cause": "NONE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 76,
+        "state": "DETECTED",
+        "x_px": 405.9255676269531,
+        "y_px": 295.0465087890625,
+        "confidence": 0.6742807840714146,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 3,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 88,
+      "gt_timestamp_s": 2.933333333333333,
+      "raw_proposals_count": 19,
+      "raw_proposals": [
+        {
+          "frame": 82,
+          "x_px": 402.9552001953125,
+          "y_px": 276.8619384765625,
+          "confidence": 0.6951430439949036,
+          "inside_court": true
+        },
+        {
+          "frame": 82,
+          "x_px": 401.92486572265625,
+          "y_px": 276.8182678222656,
+          "confidence": 0.03071919083595276,
+          "inside_court": true
+        },
+        {
+          "frame": 83,
+          "x_px": 402.72149658203125,
+          "y_px": 274.7257385253906,
+          "confidence": 0.6965113878250122,
+          "inside_court": true
+        },
+        {
+          "frame": 83,
+          "x_px": 401.33013916015625,
+          "y_px": 274.12652587890625,
+          "confidence": 0.02840196155011654,
+          "inside_court": true
+        },
+        {
+          "frame": 84,
+          "x_px": 402.22845458984375,
+          "y_px": 272.467041015625,
+          "confidence": 0.6565573811531067,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "TRACKED",
+        "DETECTED",
+        "DETECTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "TRACKED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 88,
+        "state": "DETECTED",
+        "x_px": 401.50421142578125,
+        "y_px": 264.7493591308594,
+        "confidence": 0.7659683411922825,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 4,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 110,
+      "gt_timestamp_s": 3.6666666666666665,
+      "raw_proposals_count": 24,
+      "raw_proposals": [
+        {
+          "frame": 104,
+          "x_px": 178.50579833984375,
+          "y_px": 120.46923065185547,
+          "confidence": 0.0385737419128418,
+          "inside_court": false
+        },
+        {
+          "frame": 108,
+          "x_px": 1625.877197265625,
+          "y_px": 860.3670654296875,
+          "confidence": 0.025034118443727493,
+          "inside_court": true
+        },
+        {
+          "frame": 108,
+          "x_px": 955.7972412109375,
+          "y_px": 1052.756591796875,
+          "confidence": 0.01302417367696762,
+          "inside_court": false
+        },
+        {
+          "frame": 108,
+          "x_px": 701.3487548828125,
+          "y_px": 853.2017211914062,
+          "confidence": 0.007868409156799316,
+          "inside_court": true
+        },
+        {
+          "frame": 108,
+          "x_px": 1234.1611328125,
+          "y_px": 256.8267822265625,
+          "confidence": 0.007822906598448753,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": false,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "TRACK_REACQUISITION_FAILURE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "PREDICTED",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING"
+      ],
+      "center_point": {
+        "frame": 110,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 5,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 122,
+      "gt_timestamp_s": 4.066666666666666,
+      "raw_proposals_count": 17,
+      "raw_proposals": [
+        {
+          "frame": 116,
+          "x_px": 429.594970703125,
+          "y_px": 249.693359375,
+          "confidence": 0.00587804988026619,
+          "inside_court": true
+        },
+        {
+          "frame": 116,
+          "x_px": 116.89793395996094,
+          "y_px": 561.5836181640625,
+          "confidence": 0.005590285174548626,
+          "inside_court": false
+        },
+        {
+          "frame": 117,
+          "x_px": 116.78334045410156,
+          "y_px": 561.6209106445312,
+          "confidence": 0.005498445127159357,
+          "inside_court": false
+        },
+        {
+          "frame": 118,
+          "x_px": 1104.073486328125,
+          "y_px": 448.361572265625,
+          "confidence": 0.006664680782705545,
+          "inside_court": true
+        },
+        {
+          "frame": 120,
+          "x_px": 1034.004150390625,
+          "y_px": 893.5509643554688,
+          "confidence": 0.03981687128543854,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": false,
+      "usable_trajectory": false,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "TRACK_REACQUISITION_FAILURE",
+      "window_trajectory_states": [
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING"
+      ],
+      "center_point": {
+        "frame": 122,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 6,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 145,
+      "gt_timestamp_s": 4.833333333333333,
+      "raw_proposals_count": 15,
+      "raw_proposals": [
+        {
+          "frame": 140,
+          "x_px": 1755.56689453125,
+          "y_px": 884.1253662109375,
+          "confidence": 0.011096077971160412,
+          "inside_court": false
+        },
+        {
+          "frame": 142,
+          "x_px": 179.37423706054688,
+          "y_px": 124.90919494628906,
+          "confidence": 0.007638041395694017,
+          "inside_court": false
+        },
+        {
+          "frame": 143,
+          "x_px": 179.36184692382812,
+          "y_px": 124.85324096679688,
+          "confidence": 0.010448039509356022,
+          "inside_court": false
+        },
+        {
+          "frame": 144,
+          "x_px": 1165.6651611328125,
+          "y_px": 443.23065185546875,
+          "confidence": 0.041584089398384094,
+          "inside_court": true
+        },
+        {
+          "frame": 144,
+          "x_px": 179.90447998046875,
+          "y_px": 124.99137878417969,
+          "confidence": 0.025024371221661568,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "MOTION_MODEL_DIVERGENCE",
+      "window_trajectory_states": [
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED",
+        "DETECTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 145,
+        "state": "TRACKED",
+        "x_px": 1165.6341552734375,
+        "y_px": 443.35003662109375,
+        "confidence": 0.06031109765172005,
+        "source": "reacquired_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 7,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 158,
+      "gt_timestamp_s": 5.266666666666667,
+      "raw_proposals_count": 18,
+      "raw_proposals": [
+        {
+          "frame": 153,
+          "x_px": 1166.0379638671875,
+          "y_px": 444.3299560546875,
+          "confidence": 0.028389370068907738,
+          "inside_court": true
+        },
+        {
+          "frame": 153,
+          "x_px": 178.92855834960938,
+          "y_px": 128.1090850830078,
+          "confidence": 0.014703254215419292,
+          "inside_court": false
+        },
+        {
+          "frame": 153,
+          "x_px": 1234.753662109375,
+          "y_px": 264.120361328125,
+          "confidence": 0.009906179271638393,
+          "inside_court": true
+        },
+        {
+          "frame": 153,
+          "x_px": 429.675048828125,
+          "y_px": 281.71820068359375,
+          "confidence": 0.005423331167548895,
+          "inside_court": true
+        },
+        {
+          "frame": 154,
+          "x_px": 1166.029052734375,
+          "y_px": 444.3688659667969,
+          "confidence": 0.03444003686308861,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "MOTION_MODEL_DIVERGENCE",
+      "window_trajectory_states": [
+        "INTERPOLATED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING"
+      ],
+      "center_point": {
+        "frame": 158,
+        "state": "PREDICTED",
+        "x_px": 1166.3360508020285,
+        "y_px": 444.2286532404233,
+        "confidence": 0.36,
+        "source": "kinematic_kalman"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 8,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 182,
+      "gt_timestamp_s": 6.066666666666666,
+      "raw_proposals_count": 43,
+      "raw_proposals": [
+        {
+          "frame": 176,
+          "x_px": 427.5489501953125,
+          "y_px": 230.78689575195312,
+          "confidence": 0.03064357303082943,
+          "inside_court": true
+        },
+        {
+          "frame": 177,
+          "x_px": 426.73797607421875,
+          "y_px": 308.908447265625,
+          "confidence": 0.07336103916168213,
+          "inside_court": true
+        },
+        {
+          "frame": 177,
+          "x_px": 427.37060546875,
+          "y_px": 230.30722045898438,
+          "confidence": 0.01761220023036003,
+          "inside_court": true
+        },
+        {
+          "frame": 177,
+          "x_px": 425.5976867675781,
+          "y_px": 309.26068115234375,
+          "confidence": 0.005545902531594038,
+          "inside_court": true
+        },
+        {
+          "frame": 178,
+          "x_px": 427.580322265625,
+          "y_px": 230.3035430908203,
+          "confidence": 0.3970309793949127,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "TRACKED",
+        "TRACKED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "DETECTED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED"
+      ],
+      "center_point": {
+        "frame": 182,
+        "state": "DETECTED",
+        "x_px": 426.2730407714844,
+        "y_px": 229.86367797851562,
+        "confidence": 0.344458834259885,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 9,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 195,
+      "gt_timestamp_s": 6.5,
+      "raw_proposals_count": 8,
+      "raw_proposals": [
+        {
+          "frame": 189,
+          "x_px": 1711.9267578125,
+          "y_px": 679.3198852539062,
+          "confidence": 0.04141087085008621,
+          "inside_court": true
+        },
+        {
+          "frame": 190,
+          "x_px": 1711.96630859375,
+          "y_px": 679.3134765625,
+          "confidence": 0.048383668065071106,
+          "inside_court": true
+        },
+        {
+          "frame": 191,
+          "x_px": 1711.9599609375,
+          "y_px": 679.30810546875,
+          "confidence": 0.046905651688575745,
+          "inside_court": true
+        },
+        {
+          "frame": 193,
+          "x_px": 425.55511474609375,
+          "y_px": 308.47735595703125,
+          "confidence": 0.020930003374814987,
+          "inside_court": true
+        },
+        {
+          "frame": 193,
+          "x_px": 425.3099365234375,
+          "y_px": 307.8912658691406,
+          "confidence": 0.009874898940324783,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": false,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "TRACK_REACQUISITION_FAILURE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "PREDICTED",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING"
+      ],
+      "center_point": {
+        "frame": 195,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 10,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 218,
+      "gt_timestamp_s": 7.266666666666667,
+      "raw_proposals_count": 10,
+      "raw_proposals": [
+        {
+          "frame": 217,
+          "x_px": 1754.4921875,
+          "y_px": 891.8648681640625,
+          "confidence": 0.007354537956416607,
+          "inside_court": false
+        },
+        {
+          "frame": 218,
+          "x_px": 1754.5006103515625,
+          "y_px": 891.857177734375,
+          "confidence": 0.007673238404095173,
+          "inside_court": false
+        },
+        {
+          "frame": 219,
+          "x_px": 1753.6824951171875,
+          "y_px": 891.80810546875,
+          "confidence": 0.017461568117141724,
+          "inside_court": false
+        },
+        {
+          "frame": 221,
+          "x_px": 1428.067626953125,
+          "y_px": 938.1524658203125,
+          "confidence": 0.023735549300909042,
+          "inside_court": true
+        },
+        {
+          "frame": 222,
+          "x_px": 1770.314453125,
+          "y_px": 666.861328125,
+          "confidence": 0.023597370833158493,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": false,
+      "usable_trajectory": false,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "TRACK_REACQUISITION_FAILURE",
+      "window_trajectory_states": [
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING"
+      ],
+      "center_point": {
+        "frame": 218,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 11,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 232,
+      "gt_timestamp_s": 7.733333333333333,
+      "raw_proposals_count": 7,
+      "raw_proposals": [
+        {
+          "frame": 226,
+          "x_px": 1428.0916748046875,
+          "y_px": 938.17333984375,
+          "confidence": 0.018740860745310783,
+          "inside_court": true
+        },
+        {
+          "frame": 226,
+          "x_px": 418.63360595703125,
+          "y_px": 238.00936889648438,
+          "confidence": 0.01012747548520565,
+          "inside_court": true
+        },
+        {
+          "frame": 226,
+          "x_px": 418.9212951660156,
+          "y_px": 235.54798889160156,
+          "confidence": 0.008326244540512562,
+          "inside_court": true
+        },
+        {
+          "frame": 227,
+          "x_px": 1428.0548095703125,
+          "y_px": 938.0975341796875,
+          "confidence": 0.024007579311728477,
+          "inside_court": true
+        },
+        {
+          "frame": 227,
+          "x_px": 418.072509765625,
+          "y_px": 237.74874877929688,
+          "confidence": 0.009605142287909985,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": false,
+      "usable_trajectory": false,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "TRACK_REACQUISITION_FAILURE",
+      "window_trajectory_states": [
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING"
+      ],
+      "center_point": {
+        "frame": 232,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 12,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 256,
+      "gt_timestamp_s": 8.533333333333333,
+      "raw_proposals_count": 24,
+      "raw_proposals": [
+        {
+          "frame": 250,
+          "x_px": 1083.9111328125,
+          "y_px": 400.15869140625,
+          "confidence": 0.00868399441242218,
+          "inside_court": true
+        },
+        {
+          "frame": 251,
+          "x_px": 179.27586364746094,
+          "y_px": 127.57029724121094,
+          "confidence": 0.007148770149797201,
+          "inside_court": false
+        },
+        {
+          "frame": 252,
+          "x_px": 1769.934326171875,
+          "y_px": 662.68310546875,
+          "confidence": 0.05443867668509483,
+          "inside_court": false
+        },
+        {
+          "frame": 252,
+          "x_px": 1752.514892578125,
+          "y_px": 892.575439453125,
+          "confidence": 0.01324397325515747,
+          "inside_court": false
+        },
+        {
+          "frame": 253,
+          "x_px": 1769.9765625,
+          "y_px": 663.0604248046875,
+          "confidence": 0.03101108968257904,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "MOTION_MODEL_DIVERGENCE",
+      "window_trajectory_states": [
+        "MISSING",
+        "MISSING",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 256,
+        "state": "TRACKED",
+        "x_px": 1769.9761962890625,
+        "y_px": 662.4635009765625,
+        "confidence": 0.5179594148896387,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 13,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 270,
+      "gt_timestamp_s": 9.0,
+      "raw_proposals_count": 15,
+      "raw_proposals": [
+        {
+          "frame": 264,
+          "x_px": 1234.027587890625,
+          "y_px": 264.84820556640625,
+          "confidence": 0.01541656069457531,
+          "inside_court": true
+        },
+        {
+          "frame": 265,
+          "x_px": 1233.89892578125,
+          "y_px": 265.0294189453125,
+          "confidence": 0.014458149671554565,
+          "inside_court": true
+        },
+        {
+          "frame": 265,
+          "x_px": 1769.56884765625,
+          "y_px": 662.24658203125,
+          "confidence": 0.011246140114963055,
+          "inside_court": false
+        },
+        {
+          "frame": 265,
+          "x_px": 1231.95068359375,
+          "y_px": 265.45086669921875,
+          "confidence": 0.00522958068177104,
+          "inside_court": true
+        },
+        {
+          "frame": 266,
+          "x_px": 1233.995849609375,
+          "y_px": 265.039794921875,
+          "confidence": 0.009523196145892143,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": false,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "TRACK_REACQUISITION_FAILURE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING"
+      ],
+      "center_point": {
+        "frame": 270,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 14,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 294,
+      "gt_timestamp_s": 9.8,
+      "raw_proposals_count": 7,
+      "raw_proposals": [
+        {
+          "frame": 290,
+          "x_px": 1234.1484375,
+          "y_px": 262.750732421875,
+          "confidence": 0.00649795588105917,
+          "inside_court": true
+        },
+        {
+          "frame": 296,
+          "x_px": 417.0618896484375,
+          "y_px": 235.14756774902344,
+          "confidence": 0.007057092618197203,
+          "inside_court": true
+        },
+        {
+          "frame": 298,
+          "x_px": 416.7522888183594,
+          "y_px": 235.32302856445312,
+          "confidence": 0.006595895625650883,
+          "inside_court": true
+        },
+        {
+          "frame": 299,
+          "x_px": 416.73828125,
+          "y_px": 235.19676208496094,
+          "confidence": 0.005022994242608547,
+          "inside_court": true
+        },
+        {
+          "frame": 300,
+          "x_px": 789.7232666015625,
+          "y_px": 597.2471923828125,
+          "confidence": 0.05381462350487709,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "MOTION_MODEL_DIVERGENCE",
+      "window_trajectory_states": [
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "TRACKED"
+      ],
+      "center_point": {
+        "frame": 294,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 15,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 308,
+      "gt_timestamp_s": 10.266666666666667,
+      "raw_proposals_count": 32,
+      "raw_proposals": [
+        {
+          "frame": 302,
+          "x_px": 789.6681518554688,
+          "y_px": 596.9119873046875,
+          "confidence": 0.008666275069117546,
+          "inside_court": true
+        },
+        {
+          "frame": 302,
+          "x_px": 1755.421875,
+          "y_px": 883.4375610351562,
+          "confidence": 0.005298945587128401,
+          "inside_court": false
+        },
+        {
+          "frame": 303,
+          "x_px": 789.638427734375,
+          "y_px": 596.876708984375,
+          "confidence": 0.016702275723218918,
+          "inside_court": true
+        },
+        {
+          "frame": 303,
+          "x_px": 1755.421630859375,
+          "y_px": 883.4393310546875,
+          "confidence": 0.005488152615725994,
+          "inside_court": false
+        },
+        {
+          "frame": 304,
+          "x_px": 789.6796875,
+          "y_px": 596.8838500976562,
+          "confidence": 0.013953282497823238,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "PREDICTED",
+        "PREDICTED",
+        "DETECTED",
+        "INTERPOLATED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 308,
+        "state": "TRACKED",
+        "x_px": 789.6775512695312,
+        "y_px": 596.919677734375,
+        "confidence": 0.5088561799696751,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 16,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 332,
+      "gt_timestamp_s": 11.066666666666666,
+      "raw_proposals_count": 5,
+      "raw_proposals": [
+        {
+          "frame": 331,
+          "x_px": 183.03955078125,
+          "y_px": 121.28279113769531,
+          "confidence": 0.005295563954859972,
+          "inside_court": false
+        },
+        {
+          "frame": 334,
+          "x_px": 183.1204071044922,
+          "y_px": 120.84840393066406,
+          "confidence": 0.005757540464401245,
+          "inside_court": false
+        },
+        {
+          "frame": 336,
+          "x_px": 183.37840270996094,
+          "y_px": 120.47747802734375,
+          "confidence": 0.00947168655693531,
+          "inside_court": false
+        },
+        {
+          "frame": 337,
+          "x_px": 183.7000732421875,
+          "y_px": 120.39643859863281,
+          "confidence": 0.02382325939834118,
+          "inside_court": false
+        },
+        {
+          "frame": 338,
+          "x_px": 183.70179748535156,
+          "y_px": 120.38328552246094,
+          "confidence": 0.06584396958351135,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": false,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "COURT_ROI_REJECTION",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "PREDICTED",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "TRACKED",
+        "TRACKED"
+      ],
+      "center_point": {
+        "frame": 332,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 17,
+      "gt_event_type": "PLAYER_HIT",
+      "gt_frame_best": 345,
+      "gt_timestamp_s": 11.5,
+      "raw_proposals_count": 14,
+      "raw_proposals": [
+        {
+          "frame": 339,
+          "x_px": 183.95870971679688,
+          "y_px": 119.94735717773438,
+          "confidence": 0.0879063680768013,
+          "inside_court": false
+        },
+        {
+          "frame": 339,
+          "x_px": 183.34335327148438,
+          "y_px": 121.26612854003906,
+          "confidence": 0.009355337359011173,
+          "inside_court": false
+        },
+        {
+          "frame": 340,
+          "x_px": 183.82632446289062,
+          "y_px": 120.15055847167969,
+          "confidence": 0.05268055573105812,
+          "inside_court": false
+        },
+        {
+          "frame": 341,
+          "x_px": 183.78419494628906,
+          "y_px": 120.07041931152344,
+          "confidence": 0.015985704958438873,
+          "inside_court": false
+        },
+        {
+          "frame": 342,
+          "x_px": 183.83082580566406,
+          "y_px": 120.07292175292969,
+          "confidence": 0.016316218301653862,
+          "inside_court": false
+        }
+      ],
+      "correct_proposal_selectable": false,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": false,
+      "final_event_emitted": false,
+      "primary_loss_cause": "COURT_ROI_REJECTION",
+      "window_trajectory_states": [
+        "DETECTED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "PREDICTED",
+        "PREDICTED"
+      ],
+      "center_point": {
+        "frame": 345,
+        "state": "TRACKED",
+        "x_px": 184.093017578125,
+        "y_px": 119.14041137695312,
+        "confidence": 0.5340908549742337,
+        "source": "gated_candidate"
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_event_id": 18,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 370,
+      "gt_timestamp_s": 12.333333333333334,
+      "raw_proposals_count": 19,
+      "raw_proposals": [
+        {
+          "frame": 364,
+          "x_px": 1170.9537353515625,
+          "y_px": 435.55120849609375,
+          "confidence": 0.006866947747766972,
+          "inside_court": true
+        },
+        {
+          "frame": 365,
+          "x_px": 1171.845947265625,
+          "y_px": 435.5137939453125,
+          "confidence": 0.016292447224259377,
+          "inside_court": true
+        },
+        {
+          "frame": 366,
+          "x_px": 1171.8280029296875,
+          "y_px": 435.52032470703125,
+          "confidence": 0.01917385123670101,
+          "inside_court": true
+        },
+        {
+          "frame": 367,
+          "x_px": 866.055908203125,
+          "y_px": 1012.2379150390625,
+          "confidence": 0.028792545199394226,
+          "inside_court": true
+        },
+        {
+          "frame": 367,
+          "x_px": 1171.853759765625,
+          "y_px": 435.52874755859375,
+          "confidence": 0.015764128416776657,
+          "inside_court": true
+        }
+      ],
+      "correct_proposal_selectable": true,
+      "temporal_association_accepted": true,
+      "usable_trajectory": true,
+      "event_candidate_generated": true,
+      "final_event_emitted": false,
+      "primary_loss_cause": "WRONG_EVENT_TYPE",
+      "window_trajectory_states": [
+        "PREDICTED",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "MISSING",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "TRACKED",
+        "DETECTED"
+      ],
+      "center_point": {
+        "frame": 370,
+        "state": "MISSING",
+        "x_px": null,
+        "y_px": null,
+        "confidence": null,
+        "source": "none"
+      }
+    }
+  ]
+}
