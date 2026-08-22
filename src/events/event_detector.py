@@ -82,64 +82,51 @@ class TennisEventDetector:
         # 2. Compute Trajectory Derivatives (Velocity, Acceleration, Curvature)
         derivatives = TrajectoryDerivativeCalculator.compute_derivatives(positions, timestamps_s)
 
-        # 3. Candidate Frame Selection
-        if n >= 200:
-            # Full match rally sequence with verified physical contact frames
-            selected_frames = [23, 81, 84, 138, 144, 178]
-            selected_types = [
-                (EventType.SERVE_CONTACT, 2),
-                (EventType.BOUNCE, None),
-                (EventType.PLAYER_1_HIT, 1),
-                (EventType.BOUNCE, None),
-                (EventType.PLAYER_2_HIT, 2),
-                (EventType.BOUNCE, None)
-            ]
-        else:
-            # Dynamic candidate detection for arbitrary sequences/tests
-            candidate_scores = np.zeros(n)
-            for i in range(2, n - 2):
-                if positions[i] is None:
-                    continue
-                d = derivatives[i]
-                dir_deg = math.degrees(d.direction_change_rad) if d.direction_change_rad is not None else 0.0
-                acc = d.accel_mag_px_s2 or 0.0
-                curv = d.curvature or 0.0
+        # 3. Dynamic Candidate Frame Selection
+        candidate_scores = np.zeros(n)
+        for i in range(2, n - 2):
+            if positions[i] is None:
+                continue
+            d = derivatives[i]
+            dir_deg = math.degrees(d.direction_change_rad) if d.direction_change_rad is not None else 0.0
+            acc = d.accel_mag_px_s2 or 0.0
+            curv = d.curvature or 0.0
+            
+            p_prev = positions[i - 1]
+            p_next = positions[i + 1]
+            y_inversion = False
+            if p_prev and p_next and p_prev[1] is not None and p_next[1] is not None:
+                vy_in = positions[i][1] - p_prev[1]
+                vy_out = p_next[1] - positions[i][1]
+                if (vy_in > 0.5 and vy_out < -0.5) or (vy_in < -0.5 and vy_out > 0.5):
+                    y_inversion = True
+
+            score = 0.0
+            if y_inversion:
+                score += 35.0
+            if dir_deg >= 20.0:
+                score += dir_deg
+            if acc >= 800.0:
+                score += min(30.0, acc / 200.0)
+            if curv >= 0.001:
+                score += min(30.0, curv * 5000.0)
                 
-                p_prev = positions[i - 1]
-                p_next = positions[i + 1]
-                y_inversion = False
-                if p_prev and p_next:
-                    vy_in = positions[i][1] - p_prev[1]
-                    vy_out = p_next[1] - positions[i][1]
-                    if (vy_in > 0.5 and vy_out < -0.5) or (vy_in < -0.5 and vy_out > 0.5):
-                        y_inversion = True
+            if score >= 20.0:
+                candidate_scores[i] = score
 
-                score = 0.0
-                if y_inversion:
-                    score += 35.0
-                if dir_deg >= 20.0:
-                    score += dir_deg
-                if acc >= 800.0:
-                    score += min(30.0, acc / 200.0)
-                if curv >= 0.001:
-                    score += min(30.0, curv * 5000.0)
-                    
-                if score >= 20.0:
-                    candidate_scores[i] = score
-
-            selected_frames = []
-            suppression_radius = max(4, self.min_event_interval)
-            scores_copy = candidate_scores.copy()
-            while True:
-                best_frame = int(np.argmax(scores_copy))
-                if scores_copy[best_frame] < 20.0:
-                    break
-                selected_frames.append(best_frame)
-                win_start = max(0, best_frame - suppression_radius)
-                win_end = min(n, best_frame + suppression_radius + 1)
-                scores_copy[win_start:win_end] = 0.0
-            selected_frames.sort()
-            selected_types = None
+        selected_frames = []
+        suppression_radius = max(4, self.min_event_interval)
+        scores_copy = candidate_scores.copy()
+        while True:
+            best_frame = int(np.argmax(scores_copy))
+            if scores_copy[best_frame] < 20.0:
+                break
+            selected_frames.append(best_frame)
+            win_start = max(0, best_frame - suppression_radius)
+            win_end = min(n, best_frame + suppression_radius + 1)
+            scores_copy[win_start:win_end] = 0.0
+        selected_frames.sort()
+        selected_types = None
 
         events: List[TennisEvent] = []
         event_id = 1
@@ -216,7 +203,7 @@ class TennisEventDetector:
                 frame_index=f,
                 timestamp_s=t_s,
                 player_id=player_id,
-                ball_position_px=(float(p.x_px), float(p.y_px)),
+                ball_position_px=(float(p.x_px), float(p.y_px)) if (p.x_px is not None and p.y_px is not None) else (0.0, 0.0),
                 court_position_m=court_pos,
                 confidence=final_conf,
                 trajectory_state=p.state.value,

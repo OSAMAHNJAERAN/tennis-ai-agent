@@ -78,7 +78,7 @@ datasets:
     classes: ["SERVE_CONTACT", "BOUNCE", "PLAYER_1_HIT", "PLAYER_2_HIT", "POINT_END"]
     status: "INDEPENDENT_EVALUATION_BENCHMARK"
   - id: "shot_classification_real"
-    name: "Independent Real-World Multi-Rally Tennis Shot Benchmark"
+    name: "Independent Real-World Multi-Rally Tennis Shot Benchmark (V1 Development Archive)"
     version: "v1"
     url: "local:data/benchmarks/shot_classification_real/real_rallies_ground_truth.json"
     source: "Manual Frame-by-Frame Visual Inspection across 8 Match Rallies"
@@ -87,8 +87,22 @@ datasets:
     strokes_count: 36
     rallies_count: 8
     classes: ["FOREHAND", "BACKHAND", "SERVE", "UNKNOWN"]
-    status: "INDEPENDENT_EVALUATION_BENCHMARK"
-    intended_use: "Empirical validation of Forehand/Backhand classification, shot direction, 3x3 court zoning, and rally segmentation."
+    status: "DEVELOPMENT_BENCHMARK_ARCHIVE"
+    intended_use: "Feature development & baseline validation."
+
+  - id: "shot_classification_real_v2"
+    name: "Independent Real-World Multi-Video Tennis Shot Benchmark (V2 Production)"
+    version: "v2"
+    url: "local:data/benchmarks/shot_classification_real_v2/ground_truth.json"
+    source: "Manual Frame-by-Frame Visual Inspection of 5 Physical MP4 Match Videos"
+    license: "CC BY-SA 4.0 / Academic Research"
+    task: "physical_media_end_to_end_shot_and_rally_evaluation"
+    strokes_count: 26
+    rallies_count: 5
+    video_sources_count: 5
+    classes: ["FOREHAND", "BACKHAND", "SERVE", "UNKNOWN"]
+    status: "INDEPENDENT_PRODUCTION_BENCHMARK"
+    intended_use: "End-to-end empirical evaluation of production CV pipeline on strictly disjoint video-source partitions."
 
 models:
   - id: "yolo11s_tennis_ball_best"
