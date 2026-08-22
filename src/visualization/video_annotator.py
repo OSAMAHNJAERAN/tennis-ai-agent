@@ -58,7 +58,35 @@ class VideoAnnotator:
         return img
 
     @staticmethod
-    def compose_frame(frame: np.ndarray, mini_court_image: np.ndarray, stats_text: dict) -> np.ndarray:
+    def draw_event_badge(frame: np.ndarray, event_text: str, event_color: tuple, frame_idx: int) -> np.ndarray:
+        """Draws a high-visibility event banner at top-center of the broadcast frame."""
+        img = frame.copy()
+        h, w = img.shape[:2]
+        
+        # Banner dimensions
+        bw, bh = 340, 50
+        bx1 = (w - bw) // 2
+        by1 = 25
+        bx2 = bx1 + bw
+        by2 = by1 + bh
+        
+        # Semi-transparent dark background
+        overlay = img.copy()
+        cv2.rectangle(overlay, (bx1, by1), (bx2, by2), (20, 20, 20), -1)
+        cv2.addWeighted(overlay, 0.75, img, 0.25, 0, img)
+        
+        # Border in event color
+        cv2.rectangle(img, (bx1, by1), (bx2, by2), event_color, 2)
+        
+        # Centered Text
+        text_size = cv2.getTextSize(event_text, cv2.FONT_HERSHEY_DUPLEX, 0.75, 2)[0]
+        tx = bx1 + (bw - text_size[0]) // 2
+        ty = by1 + (bh + text_size[1]) // 2 - 2
+        cv2.putText(img, event_text, (tx, ty), cv2.FONT_HERSHEY_DUPLEX, 0.75, (255, 255, 255), 2)
+        return img
+
+    @staticmethod
+    def compose_frame(frame: np.ndarray, mini_court_image: np.ndarray, stats_text: dict = None) -> np.ndarray:
         img = frame.copy()
         
         # Place mini_court in top-right corner
@@ -69,3 +97,4 @@ class VideoAnnotator:
             img[0:h, frame_w-w:frame_w] = mini_court_image
             
         return img
+

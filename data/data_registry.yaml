@@ -55,8 +55,17 @@ datasets:
     duration_seconds: 7.13
     fps: 30.0
     resolution: "1920x1080"
-    decision: "BENCHMARK_ONLY"
-    intended_use: "End-to-end integration and baseline reproduction test"
+  - id: "tennis_events_benchmark"
+    name: "Ground Truth Tennis Match Events Benchmark"
+    version: "v1"
+    url: "local:data/benchmarks/tennis_events/ground_truth.json"
+    source: "T88J709 Project Manual Video Annotation"
+    license: "Proprietary FYP Research Benchmark"
+    task: "tennis_event_evaluation"
+    events_count: 6
+    classes: ["SERVE_CONTACT", "BOUNCE", "PLAYER_1_HIT", "PLAYER_2_HIT"]
+    status: "APPROVED_BENCHMARK"
+    intended_use: "Evaluation of tennis event detection, timing error, and bounce localization"
 
 models:
   - id: "yolo11s_tennis_ball_best"

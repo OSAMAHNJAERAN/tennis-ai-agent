@@ -60,13 +60,13 @@ def read_video(path: str) -> Tuple[List[np.ndarray], VideoMetadata]:
     return frames, metadata
 
 def save_video(frames: List[np.ndarray], path: str, fps: float) -> None:
-    """Saves frames to a video file using actual FPS and H.264 codec."""
+    """Saves frames to a video file using actual FPS and mp4v codec."""
     if not frames:
         return
         
     height, width = frames[0].shape[:2]
-    # Use H.264 codec (avc1) for maximum compatibility
-    fourcc = cv2.VideoWriter_fourcc(*'avc1')
+    # Use MP4V codec for cross-platform Windows compatibility
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     
     out = cv2.VideoWriter(path, fourcc, fps, (width, height))
     for frame in frames:
