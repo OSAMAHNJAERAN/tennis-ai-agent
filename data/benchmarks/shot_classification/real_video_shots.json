@@ -1,0 +1,30 @@
+{
+  "benchmark_id": "shot_classification_real_video_v1",
+  "video_path": "data/sample_videos/input_video.mp4",
+  "total_frames": 214,
+  "description": "Real video match sequence annotations for serve and shot events.",
+  "hits_ground_truth": [
+    {
+      "event_id": 1,
+      "frame": 23,
+      "player_id": 2,
+      "shot_type": "SERVE",
+      "handedness": "RIGHT_HANDED",
+      "expected_direction": "CROSS_COURT",
+      "is_dead_ball": false,
+      "annotation_confidence": "HIGH",
+      "notes": "Player 2 service stroke from Far Court."
+    },
+    {
+      "event_id": 3,
+      "frame": 84,
+      "player_id": 1,
+      "shot_type": "UNKNOWN",
+      "handedness": "RIGHT_HANDED",
+      "expected_direction": "UNKNOWN",
+      "is_dead_ball": true,
+      "annotation_confidence": "HIGH",
+      "notes": "Practice return hit after Frame 81 first serve fault. Strictly DEAD BALL."
+    }
+  ]
+}

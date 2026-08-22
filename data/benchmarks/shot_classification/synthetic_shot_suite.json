@@ -1,0 +1,155 @@
+{
+  "benchmark_id": "shot_analytics_synthetic_qa_v1",
+  "total_cases": 15,
+  "cases": [
+    {
+      "case_id": "shot_01_serve_contact_passthrough",
+      "description": "SERVE_CONTACT event maps directly to SERVE shot type.",
+      "event_type": "SERVE_CONTACT",
+      "player_id": 2,
+      "is_dead_ball": false,
+      "expected_shot_type": "SERVE"
+    },
+    {
+      "case_id": "shot_02_forehand_right_handed_near_court",
+      "description": "Near court right-handed player hitting ball on right side of body.",
+      "event_type": "PLAYER_1_HIT",
+      "player_id": 1,
+      "handedness": "RIGHT_HANDED",
+      "simulated_wrist_displacement": 0.35,
+      "simulated_geometry_dx": 0.4,
+      "expected_shot_type": "FOREHAND"
+    },
+    {
+      "case_id": "shot_03_backhand_right_handed_near_court",
+      "description": "Near court right-handed player hitting ball on left side of body.",
+      "event_type": "PLAYER_1_HIT",
+      "player_id": 1,
+      "handedness": "RIGHT_HANDED",
+      "simulated_wrist_displacement": -0.35,
+      "simulated_geometry_dx": -0.4,
+      "expected_shot_type": "BACKHAND"
+    },
+    {
+      "case_id": "shot_04_forehand_left_handed_near_court",
+      "description": "Near court left-handed player hitting ball on left side of body (their dominant side).",
+      "event_type": "PLAYER_1_HIT",
+      "player_id": 1,
+      "handedness": "LEFT_HANDED",
+      "simulated_wrist_displacement": 0.35,
+      "simulated_geometry_dx": -0.4,
+      "expected_shot_type": "FOREHAND"
+    },
+    {
+      "case_id": "shot_05_forehand_right_handed_far_court",
+      "description": "Far court right-handed player facing camera hitting ball on their right side.",
+      "event_type": "PLAYER_2_HIT",
+      "player_id": 2,
+      "handedness": "RIGHT_HANDED",
+      "simulated_wrist_displacement": 0.3,
+      "simulated_geometry_dx": -0.35,
+      "expected_shot_type": "FOREHAND"
+    },
+    {
+      "case_id": "shot_06_dead_ball_hit_suppressed",
+      "description": "Frame 84 return shot after first serve fault is dead and suppressed to UNKNOWN.",
+      "event_type": "PLAYER_1_HIT",
+      "player_id": 1,
+      "is_dead_ball": true,
+      "expected_shot_type": "UNKNOWN",
+      "expected_is_dead_ball": true
+    },
+    {
+      "case_id": "shot_07_ambiguous_pose_safe_abstention",
+      "description": "Low confidence pose with ambiguous displacement safely abstains to UNKNOWN.",
+      "event_type": "PLAYER_1_HIT",
+      "player_id": 1,
+      "simulated_wrist_displacement": 0.02,
+      "simulated_geometry_dx": 0.03,
+      "expected_shot_type": "UNKNOWN"
+    },
+    {
+      "case_id": "dir_01_cross_court_left_to_right",
+      "description": "Ball struck at X=2.0m landing at X=8.5m across center line.",
+      "start_pos": [
+        2.0,
+        22.0
+      ],
+      "end_pos": [
+        8.5,
+        4.0
+      ],
+      "expected_direction": "CROSS_COURT"
+    },
+    {
+      "case_id": "dir_02_down_the_line_left",
+      "description": "Ball struck at X=2.0m landing at X=2.5m along left sideline.",
+      "start_pos": [
+        2.0,
+        22.0
+      ],
+      "end_pos": [
+        2.5,
+        4.0
+      ],
+      "expected_direction": "DOWN_THE_LINE"
+    },
+    {
+      "case_id": "dir_03_middle_channel_landing",
+      "description": "Ball struck at X=2.0m landing at X=5.5m in central corridor.",
+      "start_pos": [
+        2.0,
+        22.0
+      ],
+      "end_pos": [
+        5.5,
+        4.0
+      ],
+      "expected_direction": "MIDDLE"
+    },
+    {
+      "case_id": "zone_01_short_left_zone",
+      "description": "Landing at X=2.0m, Y=14.0m is SHORT_LEFT (inside near service court).",
+      "court_pos": [
+        2.0,
+        14.0
+      ],
+      "expected_zone": "SHORT_LEFT"
+    },
+    {
+      "case_id": "zone_02_deep_center_zone",
+      "description": "Landing at X=5.5m, Y=22.0m is DEEP_CENTER (near baseline).",
+      "court_pos": [
+        5.5,
+        22.0
+      ],
+      "expected_zone": "DEEP_CENTER"
+    },
+    {
+      "case_id": "serve_01_placement_wide",
+      "description": "Serve landing near singles sideline (X=2.0m) is WIDE.",
+      "bounce_pos": [
+        2.0,
+        15.0
+      ],
+      "expected_placement": "WIDE"
+    },
+    {
+      "case_id": "serve_02_placement_t",
+      "description": "Serve landing near center line (X=5.2m) is T.",
+      "bounce_pos": [
+        5.2,
+        15.0
+      ],
+      "expected_placement": "T"
+    },
+    {
+      "case_id": "rally_01_stroke_counts",
+      "description": "Rally stroke count dual metric reporting (including vs excluding serve).",
+      "shots_count": 5,
+      "has_serve": true,
+      "expected_total_strokes": 5,
+      "expected_rally_hits": 4
+    }
+  ]
+}

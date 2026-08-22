@@ -1,0 +1,64 @@
+# Phase 6 Configuration: Tennis Shot Understanding & Advanced Match Analytics
+
+match_configuration:
+  match_id: "match_phase6_001"
+  format: "BEST_OF_3"
+  set_format: "TIE_BREAK_SET"
+  player_1_id: 1
+  player_2_id: 2
+  initial_server_id: 2 # Player 2 serves in sample video from Far Court
+
+player_detection:
+  model: "yolo11m.pt"
+  confidence: 0.40
+  tracker: "bytetrack.yaml"
+
+ball_detection:
+  model: "artifacts/models/ball/yolo11s_tennis_ball_best.pt"
+  imgsz: 640
+  high_conf: 0.25
+  low_conf: 0.05
+
+temporal_tracking:
+  max_prediction_gap: 3
+  max_interpolation_gap: 3
+  max_valid_speed_px_per_frame: 60.0
+  base_gating_radius_px: 40.0
+
+court_detection:
+  model_path: "models/keypoints_model.pth"
+  input_size: [224, 224]
+
+event_detection:
+  min_event_interval: 10
+  player_reach_radius_px: 140.0
+  min_hit_deflection_deg: 40.0
+  min_bounce_curvature: 0.005
+
+line_calling:
+  contact_patch_model: "EMPIRICAL_PATCH"
+  contact_patch_radius_cm: 1.25
+  uncertainty_safety_factor: 1.5
+  line_width_uncertainty_cm: 1.25
+  contact_refinement_window: 3
+
+pose_estimation:
+  enabled: true
+  model_path: "yolo11n-pose.pt"
+  min_pose_confidence: 0.35
+  window_half_size: 3
+  crop_margin: 0.25
+
+shot_classification:
+  ambiguity_threshold: 0.15
+  players_handedness:
+    1: "RIGHT_HANDED"
+    2: "RIGHT_HANDED"
+
+visualization:
+  draw_trajectories: true
+  draw_court_lines: true
+  draw_player_boxes: true
+  draw_shot_badges: true
+  mini_court_width: 250
+  mini_court_height: 500
