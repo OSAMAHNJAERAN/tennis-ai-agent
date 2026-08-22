@@ -4,8 +4,16 @@ import json
 
 from scripts.evaluate_phase6_4_cross_match import evaluate_split_metrics, one_to_one_matches
 from src.events.event_detector import EventCandidate, EventType, TennisEventDetector
+from src.analytics.rally_analyzer import RallyAnalyzer
+from src.pipeline.phase6_pipeline import sanitize_json_value
 from src.shot_analysis.shot_classifier import TennisShotClassifier
-from src.shot_analysis.shot_types import PlayerHandedness, ShotType
+from src.shot_analysis.shot_types import (
+    PlayerHandedness,
+    ShotClassificationSource,
+    ShotDirection,
+    ShotEventEvidence,
+    ShotType,
+)
 from src.tracking.temporal_ball_tracker import BallState, TemporalBallPoint
 from src.utils.bbox_utils import BBox
 
@@ -139,3 +147,29 @@ def test_diagnostic_manifest_cannot_claim_qualification():
         manifest = json.load(stream)
     assert manifest["scientific_split"] == "CROSS_MATCH_DIAGNOSTIC"
     assert manifest["qualification_evidence"] is False
+
+
+def test_rally_time_bounds_use_frames_and_do_not_exceed_terminal_frame():
+    shot = ShotEventEvidence(
+        shot_id=1,
+        match_event_id=1,
+        frame_index=300,
+        timestamp_s=99.0,
+        player_id=1,
+        shot_type=ShotType.UNKNOWN,
+        shot_confidence=0.0,
+        classification_source=ShotClassificationSource.ABSTENTION_UNKNOWN,
+        direction=ShotDirection.UNKNOWN,
+        direction_confidence=0.0,
+        direction_source="GEOMETRY_DERIVED",
+        bounce_frame=360,
+    )
+    rally = RallyAnalyzer.analyze_rallies([shot], fps=30.0)[0]
+    assert rally.start_time_s == 10.0
+    assert rally.end_time_s == 12.0
+    assert rally.duration_s == 2.0
+
+
+def test_contract_boolean_is_not_serialized_as_integer():
+    assert sanitize_json_value({"is_dead_ball": False}) == {"is_dead_ball": False}
+    assert isinstance(sanitize_json_value({"value": True})["value"], bool)

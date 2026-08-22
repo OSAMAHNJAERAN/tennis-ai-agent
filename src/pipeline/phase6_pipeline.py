@@ -1,7 +1,6 @@
 import os
 import time
 import json
-import os
 import yaml
 from typing import Dict, Any, List, Optional, Tuple
 import cv2
@@ -51,6 +50,24 @@ from src.analytics.rally_analyzer import RallyAnalyzer, RallySegment
 from src.analytics.serve_analyzer import ServeAnalyzer
 from src.analytics.shot_statistics import ShotStatisticsAnalyzer
 from src.analytics.match_analytics import MatchAnalyticsAggregator
+
+
+def sanitize_json_value(obj: Any) -> Any:
+    """Convert NumPy values without coercing JSON booleans to integers."""
+    if isinstance(obj, dict):
+        return {key: sanitize_json_value(value) for key, value in obj.items()}
+    if isinstance(obj, list):
+        return [sanitize_json_value(value) for value in obj]
+    # bool is a subclass of int, so it must be handled first.
+    if isinstance(obj, (np.bool_, bool)):
+        return bool(obj)
+    if isinstance(obj, (np.floating, float)):
+        return float(obj)
+    if isinstance(obj, (np.integer, int)):
+        return int(obj)
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    return obj
 
 class Phase6Pipeline:
     """
@@ -514,20 +531,7 @@ class Phase6Pipeline:
         t_total = time.time() - t_pipeline_start
         fps_proc = total_frames / t_total
 
-        def _sanitize(obj):
-            if isinstance(obj, dict):
-                return {k: _sanitize(v) for k, v in obj.items()}
-            elif isinstance(obj, list):
-                return [_sanitize(v) for v in obj]
-            elif isinstance(obj, (np.floating, float)):
-                return float(obj)
-            elif isinstance(obj, (np.integer, int)):
-                return int(obj)
-            elif isinstance(obj, np.ndarray):
-                return obj.tolist()
-            elif isinstance(obj, (np.bool_, bool)):
-                return bool(obj)
-            return obj
+        _sanitize = sanitize_json_value
 
         # Save shot_events.json
         with open(os.path.join(output_dir, "shot_events.json"), "w", encoding="utf-8") as f:
