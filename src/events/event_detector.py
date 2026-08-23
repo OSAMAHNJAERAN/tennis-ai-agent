@@ -287,8 +287,8 @@ class TennisEventDetector:
         timestamps = [float(p.timestamp_seconds) for p in trajectory]
         if any(b <= a for a, b in zip(timestamps, timestamps[1:])):
             raise ValueError("trajectory timestamps must be strictly increasing")
-        diagonal = math.hypot(*frame_size)
-        half_window = self.settings.feature_half_window_seconds
+        diagonal = max(1.0, math.hypot(*frame_size))
+        scales = (0.045, self.settings.feature_half_window_seconds)
         result: List[_Feature] = []
         for index, point in enumerate(trajectory):
             raw = (
@@ -302,87 +302,119 @@ class TennisEventDetector:
             if raw is None or point.state == BallState.MISSING:
                 result.append(feature)
                 continue
-            before_i = self._nearest_index(timestamps, timestamps[index] - half_window)
-            after_i = self._nearest_index(timestamps, timestamps[index] + half_window)
-            feature.pre_velocity = self._velocity(
-                positions[before_i], positions[index], timestamps[before_i], timestamps[index]
-            )
-            feature.post_velocity = self._velocity(
-                positions[index], positions[after_i], timestamps[index], timestamps[after_i]
-            )
-            if feature.pre_velocity:
-                feature.pre_speed = math.hypot(*feature.pre_velocity)
-            if feature.post_velocity:
-                feature.post_speed = math.hypot(*feature.post_velocity)
-            speeds = [v for v in (feature.pre_speed, feature.post_speed) if v is not None]
-            if speeds:
-                feature.normalized_speed = sum(speeds) / len(speeds) / diagonal
-            feature.edge_continuity = (
-                feature.pre_speed is not None
-                and feature.post_speed is not None
-                and feature.pre_speed / diagonal <= self.settings.max_normalized_edge_speed_per_s
-                and feature.post_speed / diagonal <= self.settings.max_normalized_edge_speed_per_s
-            )
-            if feature.pre_velocity and feature.post_velocity and feature.edge_continuity:
-                dv = (
-                    feature.post_velocity[0] - feature.pre_velocity[0],
-                    feature.post_velocity[1] - feature.pre_velocity[1],
+
+            best_kinematic_s = -1.0
+            best_tuple = None
+
+            for half_window in scales:
+                before_i = self._nearest_index(timestamps, timestamps[index] - half_window)
+                after_i = self._nearest_index(timestamps, timestamps[index] + half_window)
+                pre_velocity = self._velocity(
+                    positions[before_i], positions[index], timestamps[before_i], timestamps[index]
                 )
-                dv_mag = math.hypot(*dv)
-                feature.normalized_velocity_change = dv_mag / diagonal
-                dt = max(1e-9, 0.5 * (timestamps[after_i] - timestamps[before_i]))
-                feature.normalized_acceleration = dv_mag / dt / diagonal
-                pre_mag, post_mag = math.hypot(*feature.pre_velocity), math.hypot(*feature.post_velocity)
-                if pre_mag > 1e-6 and post_mag > 1e-6:
-                    cosine = max(-1.0, min(1.0, (
-                        feature.pre_velocity[0] * feature.post_velocity[0]
-                        + feature.pre_velocity[1] * feature.post_velocity[1]
-                    ) / (pre_mag * post_mag)))
-                    feature.direction_change = math.degrees(math.acos(cosine))
-                    cross = abs(feature.pre_velocity[0] * dv[1] - feature.pre_velocity[1] * dv[0])
-                    feature.normalized_curvature = cross * diagonal / max(pre_mag ** 3, 1e-9)
-                vertical_min = self.settings.candidate_min_normalized_vertical_speed_per_s * diagonal
-                feature.vertical_inversion = (
-                    feature.pre_velocity[1] * feature.post_velocity[1] < 0
-                    and abs(feature.pre_velocity[1]) >= vertical_min
-                    and abs(feature.post_velocity[1]) >= vertical_min
+                post_velocity = self._velocity(
+                    positions[index], positions[after_i], timestamps[index], timestamps[after_i]
                 )
-                feature.court_rebound = (
-                    feature.pre_velocity[1] >= vertical_min
-                    and feature.post_velocity[1] <= -vertical_min
+                pre_speed = math.hypot(*pre_velocity) if pre_velocity else None
+                post_speed = math.hypot(*post_velocity) if post_velocity else None
+                speeds = [v for v in (pre_speed, post_speed) if v is not None]
+                normalized_speed = sum(speeds) / len(speeds) / diagonal if speeds else None
+                edge_continuity = (
+                    pre_speed is not None
+                    and post_speed is not None
+                    and pre_speed / diagonal <= self.settings.max_normalized_edge_speed_per_s
+                    and post_speed / diagonal <= self.settings.max_normalized_edge_speed_per_s
                 )
-            local = range(
-                bisect_left(timestamps, timestamps[index] - 2 * half_window),
-                bisect_right(timestamps, timestamps[index] + 2 * half_window),
-            )
-            feature.continuity = (
-                sum(positions[i] is not None for i in local) / len(local) if local else 0.0
-            )
-            speed_s = self._clip((feature.normalized_speed or 0.0) / self.settings.candidate_min_normalized_speed_per_s)
-            direction_s = (
-                self._clip((feature.direction_change or 0.0) / (2 * self.settings.candidate_min_direction_change_deg))
-                if self.settings.enable_direction_change else 0.0
-            )
-            velocity_s = (
-                self._clip((feature.normalized_velocity_change or 0.0) / (2 * self.settings.candidate_min_normalized_velocity_change_per_s))
-                if self.settings.enable_velocity_discontinuity else 0.0
-            )
-            acceleration_s = self._clip(
-                (feature.normalized_acceleration or 0.0) / (2 * self.settings.candidate_min_normalized_acceleration_per_s2)
-            )
-            vertical_s = 1.0 if feature.vertical_inversion else 0.0
-            continuity_s = (
-                self._clip(feature.continuity / self.settings.candidate_min_continuity_ratio)
-                if feature.edge_continuity else 0.0
-            )
-            kinematic_s = max(direction_s, velocity_s, acceleration_s, vertical_s)
-            feature.strengths = {
-                "speed": speed_s, "direction_change": direction_s,
-                "velocity_discontinuity": velocity_s, "acceleration": acceleration_s,
-                "vertical_inversion": vertical_s, "continuity": continuity_s,
-                "kinematic": kinematic_s,
-            }
-            feature.score = 0.68 * kinematic_s + 0.17 * speed_s + 0.15 * continuity_s
+
+                normalized_velocity_change = None
+                normalized_acceleration = None
+                direction_change = None
+                normalized_curvature = None
+                vertical_inversion = False
+                court_rebound = False
+
+                if pre_velocity and post_velocity and edge_continuity:
+                    dv = (
+                        post_velocity[0] - pre_velocity[0],
+                        post_velocity[1] - pre_velocity[1],
+                    )
+                    dv_mag = math.hypot(*dv)
+                    normalized_velocity_change = dv_mag / diagonal
+                    dt = max(1e-9, 0.5 * (timestamps[after_i] - timestamps[before_i]))
+                    normalized_acceleration = dv_mag / dt / diagonal
+                    pre_mag, post_mag = math.hypot(*pre_velocity), math.hypot(*post_velocity)
+                    if pre_mag > 1e-6 and post_mag > 1e-6:
+                        cosine = max(-1.0, min(1.0, (
+                            pre_velocity[0] * post_velocity[0]
+                            + pre_velocity[1] * post_velocity[1]
+                        ) / (pre_mag * post_mag)))
+                        direction_change = math.degrees(math.acos(cosine))
+                        cross = abs(pre_velocity[0] * dv[1] - pre_velocity[1] * dv[0])
+                        normalized_curvature = cross * diagonal / max(pre_mag ** 3, 1e-9)
+                    vertical_min = self.settings.candidate_min_normalized_vertical_speed_per_s * diagonal
+                    vertical_inversion = (
+                        pre_velocity[1] * post_velocity[1] < 0
+                        and abs(pre_velocity[1]) >= vertical_min
+                        and abs(post_velocity[1]) >= vertical_min
+                    )
+                    court_rebound = (
+                        pre_velocity[1] >= vertical_min
+                        and post_velocity[1] <= -vertical_min
+                    )
+
+                local = range(
+                    bisect_left(timestamps, timestamps[index] - 2 * half_window),
+                    bisect_right(timestamps, timestamps[index] + 2 * half_window),
+                )
+                continuity = (
+                    sum(positions[i] is not None for i in local) / len(local) if local else 0.0
+                )
+                speed_s = self._clip((normalized_speed or 0.0) / self.settings.candidate_min_normalized_speed_per_s)
+                direction_s = (
+                    self._clip((direction_change or 0.0) / (2 * self.settings.candidate_min_direction_change_deg))
+                    if self.settings.enable_direction_change else 0.0
+                )
+                velocity_s = (
+                    self._clip((normalized_velocity_change or 0.0) / (2 * self.settings.candidate_min_normalized_velocity_change_per_s))
+                    if self.settings.enable_velocity_discontinuity else 0.0
+                )
+                acceleration_s = self._clip(
+                    (normalized_acceleration or 0.0) / (2 * self.settings.candidate_min_normalized_acceleration_per_s2)
+                )
+                vertical_s = 1.0 if vertical_inversion else 0.0
+                continuity_s = (
+                    self._clip(continuity / self.settings.candidate_min_continuity_ratio)
+                    if edge_continuity else 0.0
+                )
+                kinematic_s = max(direction_s, velocity_s, acceleration_s, vertical_s)
+
+                if kinematic_s >= best_kinematic_s:
+                    best_kinematic_s = kinematic_s
+                    best_tuple = (
+                        pre_velocity, post_velocity, pre_speed, post_speed,
+                        normalized_speed, edge_continuity, normalized_velocity_change,
+                        normalized_acceleration, direction_change, normalized_curvature,
+                        vertical_inversion, court_rebound, continuity,
+                        speed_s, direction_s, velocity_s, acceleration_s, vertical_s, continuity_s, kinematic_s
+                    )
+
+            if best_tuple:
+                (
+                    feature.pre_velocity, feature.post_velocity, feature.pre_speed, feature.post_speed,
+                    feature.normalized_speed, feature.edge_continuity, feature.normalized_velocity_change,
+                    feature.normalized_acceleration, feature.direction_change, feature.normalized_curvature,
+                    feature.vertical_inversion, feature.court_rebound, feature.continuity,
+                    speed_s, direction_s, velocity_s, acceleration_s, vertical_s, continuity_s, kinematic_s
+                ) = best_tuple
+
+                feature.strengths = {
+                    "speed": speed_s, "direction_change": direction_s,
+                    "velocity_discontinuity": velocity_s, "acceleration": acceleration_s,
+                    "vertical_inversion": vertical_s, "continuity": continuity_s,
+                    "kinematic": kinematic_s,
+                }
+                feature.score = 0.68 * kinematic_s + 0.17 * speed_s + 0.15 * continuity_s
+
             result.append(feature)
         return result
 

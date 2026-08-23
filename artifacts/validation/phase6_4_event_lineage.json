@@ -8,9 +8,9 @@
     "first_failure_counts": {
       "CONTACT_FAMILY_WRONG": 10,
       "PHYSICAL_CONTACT_REJECTED": 6,
-      "FULLY_CORRECT": 4,
+      "FULLY_CORRECT": 5,
       "SEMANTIC_TYPE_WRONG": 7,
-      "NO_EVENT_CANDIDATE": 5,
+      "NO_EVENT_CANDIDATE": 4,
       "TRACK_NOT_USABLE": 8
     },
     "stage_survival": {
@@ -23,24 +23,24 @@
         "recall_ceiling": 0.8
       },
       "STAGE_2_PHYSICAL_CANDIDATE": {
-        "surviving": 29,
-        "recall_ceiling": 0.725
+        "surviving": 30,
+        "recall_ceiling": 0.75
       },
       "STAGE_3_PHYSICAL_CONTACT": {
-        "surviving": 21,
-        "recall_ceiling": 0.525
+        "surviving": 22,
+        "recall_ceiling": 0.55
       },
       "STAGE_4_SEMANTIC_TYPE": {
-        "surviving": 4,
-        "recall_ceiling": 0.1
+        "surviving": 5,
+        "recall_ceiling": 0.125
       },
       "STAGE_5_PLAYER_ATTRIBUTION": {
-        "surviving": 4,
-        "recall_ceiling": 0.1
+        "surviving": 5,
+        "recall_ceiling": 0.125
       },
       "STAGE_6_AUTHORITATIVE_EVENT": {
-        "surviving": 4,
-        "recall_ceiling": 0.1
+        "surviving": 5,
+        "recall_ceiling": 0.125
       }
     },
     "per_video": {
@@ -50,12 +50,12 @@
         "raw_proposal_count": 10,
         "usable_obs_count": 10,
         "candidate_count": 10,
-        "physical_verified_count": 6,
-        "authoritative_count": 30,
-        "exact_matched_count": 2,
+        "physical_verified_count": 7,
+        "authoritative_count": 34,
+        "exact_matched_count": 3,
         "wrong_type_count": 4,
         "wrong_player_count": 0,
-        "unmatched_count": 4
+        "unmatched_count": 3
       },
       "video_09": {
         "video_id": "video_09",
@@ -64,7 +64,7 @@
         "usable_obs_count": 12,
         "candidate_count": 11,
         "physical_verified_count": 11,
-        "authoritative_count": 44,
+        "authoritative_count": 49,
         "exact_matched_count": 0,
         "wrong_type_count": 11,
         "wrong_player_count": 0,
@@ -75,9 +75,9 @@
         "gt_count": 18,
         "raw_proposal_count": 18,
         "usable_obs_count": 10,
-        "candidate_count": 8,
+        "candidate_count": 9,
         "physical_verified_count": 4,
-        "authoritative_count": 89,
+        "authoritative_count": 100,
         "exact_matched_count": 2,
         "wrong_type_count": 2,
         "wrong_player_count": 0,
@@ -213,16 +213,16 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 128,
-      "candidate_time_error_ms": 0.0,
-      "physical_contact_verified": false,
-      "contact_family": "NONE",
-      "semantic_type": null,
+      "candidate_frame": 127,
+      "candidate_time_error_ms": 33.333333333333336,
+      "physical_contact_verified": true,
+      "contact_family": "COURT_CONTACT",
+      "semantic_type": "BOUNCE",
       "predicted_player": null,
-      "authoritative_event_emitted": false,
-      "final_match_status": "UNMATCHED",
-      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
-      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
+      "authoritative_event_emitted": true,
+      "final_match_status": "MATCHED_EXACT",
+      "first_failure_stage": "FULLY_CORRECT",
+      "first_failure_reason": "Fully correct event detection, exact type, and player attribution."
     },
     {
       "video_id": "video_08",
@@ -259,7 +259,7 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 163,
+      "candidate_frame": 162,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "COURT_CONTACT",
@@ -328,7 +328,7 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 35,
+      "candidate_frame": 33,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
@@ -420,16 +420,16 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 106,
-      "candidate_time_error_ms": 66.66666666666667,
+      "candidate_frame": 105,
+      "candidate_time_error_ms": 33.333333333333336,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
-      "semantic_type": "SERVE_CONTACT",
+      "semantic_type": "PLAYER_1_HIT",
       "predicted_player": 1,
       "authoritative_event_emitted": true,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as PLAYER_1_HIT."
     },
     {
       "video_id": "video_09",
@@ -489,8 +489,8 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 156,
-      "candidate_time_error_ms": 133.33333333333334,
+      "candidate_frame": 166,
+      "candidate_time_error_ms": 66.66666666666667,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "SERVE_CONTACT",
@@ -558,7 +558,7 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 214,
+      "candidate_frame": 212,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
@@ -604,7 +604,7 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 53,
+      "candidate_frame": 56,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "COURT_CONTACT",
@@ -627,7 +627,7 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 75,
+      "candidate_frame": 74,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "COURT_CONTACT",
@@ -949,8 +949,8 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 324,
-      "candidate_time_error_ms": 200.0,
+      "candidate_frame": 325,
+      "candidate_time_error_ms": 166.66666666666666,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
@@ -971,17 +971,17 @@
       "gt_timestamp_s": 11.5,
       "raw_proposal_present": true,
       "usable_ball_observation": true,
-      "candidate_generated": false,
-      "candidate_frame": null,
-      "candidate_time_error_ms": null,
+      "candidate_generated": true,
+      "candidate_frame": 339,
+      "candidate_time_error_ms": 133.33333333333334,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
       "predicted_player": null,
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
-      "first_failure_stage": "NO_EVENT_CANDIDATE",
-      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold."
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
     },
     {
       "video_id": "video_10",
