@@ -15,6 +15,12 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 
+from src.events.activity_state import (
+    ActivityStateSettings,
+    VisualActivityState,
+    VisualActivityStateClassifier,
+)
+from src.events.provenance_auditor import ProvenanceAuditor
 from src.tracking.temporal_ball_tracker import BallState, TemporalBallPoint
 from src.utils.bbox_utils import BBox
 
@@ -115,6 +121,31 @@ class EventDetectorSettings:
     final_event_min_interval_seconds: float = 0.100
     rolling_max_normalized_speed_per_s: float = 0.030
     dead_ball_min_kinematic_support: float = 0.20
+
+    # Activity-state gating — enable / configure vision-side live-play filter
+    enable_activity_state_gating: bool = False   # OFF by default until validated
+    activity_gating_suppress_dead_ball: bool = True
+    activity_gating_penalise_possible_end: bool = False   # Disabled by default
+    activity_state_window_s: float = 0.60
+    activity_dead_ball_window_s: float = 2.00
+    activity_active_min_speed: float = 0.008     # very low — confidence-based detection preferred
+    activity_active_min_grounded: float = 0.15
+    activity_static_cluster_score: float = 0.85
+
+    # Provenance-based rejection (conservative — only extreme artefacts)
+    enable_provenance_gating: bool = True
+    provenance_window_s: float = 0.33
+    provenance_min_trust_score: float = 0.15     # very lenient — only catch extreme artefacts
+    provenance_max_predicted_gap: int = 10       # very long synthetic gap → artefact
+    provenance_kalman_runaway_speed: float = 5.0  # extreme velocity (>5× diagonal/s)
+    provenance_static_spread_px: float = 25.0    # spread < this → static-object lock
+    provenance_max_high_spread_px: float = 100.0  # spread > this (informational only)
+
+    # Spatial duplicate clustering (replaces fixed debounce)
+    enable_spatial_duplicate_clustering: bool = False  # OFF by default (preserve original debounce)
+    spatial_cluster_time_s: float = 0.25
+    spatial_cluster_distance_px: float = 80.0
+
 
     state_weights: Dict[str, float] = field(default_factory=lambda: {
         BallState.DETECTED.value: 1.00,
@@ -1016,6 +1047,39 @@ class TennisEventDetector:
                 camera_offsets_px=camera_offsets_px,
             )
         diagonal = math.hypot(width, height)
+
+        # ---------------------------------------------------------------
+        # Activity-state classification (vision-side live-play gating)
+        # ---------------------------------------------------------------
+        activity_states: List[VisualActivityState] = []
+        if self.settings.enable_activity_state_gating:
+            act_settings = ActivityStateSettings(
+                active_window_s=self.settings.activity_state_window_s,
+                dead_ball_window_s=self.settings.activity_dead_ball_window_s,
+                active_min_normalised_speed=self.settings.activity_active_min_speed,
+                active_min_grounded_ratio=self.settings.activity_active_min_grounded,
+                static_lock_max_spread_px=self.settings.provenance_static_spread_px,
+            )
+            act_cls = VisualActivityStateClassifier(
+                fps=fps, frame_size=(width, height), settings=act_settings,
+            )
+            activity_states = act_cls.classify_trajectory(ball_trajectory)
+
+        # ---------------------------------------------------------------
+        # Provenance auditor
+        # ---------------------------------------------------------------
+        prov_auditor: Optional[ProvenanceAuditor] = None
+        if self.settings.enable_provenance_gating:
+            prov_auditor = ProvenanceAuditor(
+                fps=fps,
+                frame_size=(width, height),
+                window_s=self.settings.provenance_window_s,
+                max_pred_gap_for_rejection=self.settings.provenance_max_predicted_gap,
+                kalman_speed_threshold=self.settings.provenance_kalman_runaway_speed,
+                static_spread_px=self.settings.provenance_static_spread_px,
+                max_high_spread_px=self.settings.provenance_max_high_spread_px,
+            )
+
         provisional: List[Tuple[TennisEvent, Dict[str, Any]]] = []
         traces: List[Dict[str, Any]] = []
         for candidate_id, candidate in enumerate(candidates, 1):
@@ -1027,17 +1091,84 @@ class TennisEventDetector:
                 pose_support, camera_state, height, diagonal,
             )
             traces.append(trace)
-            if event is not None:
-                provisional.append((event, trace))
+            if event is None:
+                continue
 
+            # -----------------------------------------------------------
+            # Activity-state gating (post-verify)
+            # -----------------------------------------------------------
+            if self.settings.enable_activity_state_gating and activity_states:
+                safe_frame = max(0, min(len(activity_states) - 1, event.frame_index))
+                act_state = activity_states[safe_frame]
+                trace["activity_state"] = act_state.value
+                if (
+                    self.settings.activity_gating_suppress_dead_ball
+                    and act_state == VisualActivityState.DEAD_BALL_VISUAL
+                ):
+                    trace.update({
+                        "verification_pass": False,
+                        "rejection_stage": "VISION_ACTIVITY_FILTER",
+                        "rejection_reason": "POST_RALLY_NON_LIVE_PLAY",
+                        "suppressed": True,
+                        "suppression_reason": "POST_RALLY_NON_LIVE_PLAY",
+                    })
+                    continue
+                if (
+                    self.settings.activity_gating_penalise_possible_end
+                    and act_state == VisualActivityState.POSSIBLE_POINT_END
+                ):
+                    # Soft penalty — reduce confidence by 0.30 but don't reject
+                    event = replace(event, confidence=event.confidence * 0.70)  # type: ignore[call-arg]
+
+            # -----------------------------------------------------------
+            # Provenance gating (post-verify)
+            # -----------------------------------------------------------
+            if prov_auditor is not None:
+                prov = prov_auditor.audit(event.frame_index, ball_trajectory)
+                trace["provenance_audit"] = prov.to_dict()
+                if prov.provenance_trust_score < self.settings.provenance_min_trust_score:
+                    trace.update({
+                        "verification_pass": False,
+                        "rejection_stage": "PROVENANCE_FILTER",
+                        "rejection_reason": prov.low_trust_reason or "LOW_PROVENANCE_TRUST",
+                        "suppressed": True,
+                        "suppression_reason": prov.low_trust_reason or "LOW_PROVENANCE_TRUST",
+                    })
+                    continue
+
+            provisional.append((event, trace))
+
+        # ---------------------------------------------------------------
+        # Spatial duplicate clustering + temporal de-duplication
+        # ---------------------------------------------------------------
         selected: List[Tuple[TennisEvent, Dict[str, Any]]] = []
         for event, trace in sorted(
             provisional, key=lambda row: (-row[0].confidence, row[0].timestamp_s, row[1]["candidate_id"])
         ):
-            if all(
-                abs(event.timestamp_s - kept.timestamp_s) > self.settings.final_event_min_interval_seconds
-                for kept, _ in selected
-            ):
+            keep = True
+            for kept, _ in selected:
+                dt = abs(event.timestamp_s - kept.timestamp_s)
+                if dt > self.settings.final_event_min_interval_seconds:
+                    continue
+                # Within time window — check spatial distance for clustering
+                if self.settings.enable_spatial_duplicate_clustering:
+                    dx = event.ball_position_px[0] - kept.ball_position_px[0]
+                    dy = event.ball_position_px[1] - kept.ball_position_px[1]
+                    dist_px = math.hypot(dx, dy)
+                    # Merge only if close in space AND close in time
+                    if (
+                        dt <= self.settings.spatial_cluster_time_s
+                        and dist_px <= self.settings.spatial_cluster_distance_px
+                    ):
+                        keep = False
+                        break
+                    elif dt <= self.settings.final_event_min_interval_seconds:
+                        keep = False
+                        break
+                else:
+                    keep = False
+                    break
+            if keep:
                 selected.append((event, trace))
             else:
                 trace.update({
@@ -1045,6 +1176,7 @@ class TennisEventDetector:
                     "rejection_stage": "TEMPORAL_SUPPRESSION",
                     "rejection_reason": "DUPLICATE_VERIFIED_EVENT",
                 })
+
         selected.sort(key=lambda row: row[0].timestamp_s)
         events: List[TennisEvent] = []
         for event_id, (event, trace) in enumerate(selected, 1):
