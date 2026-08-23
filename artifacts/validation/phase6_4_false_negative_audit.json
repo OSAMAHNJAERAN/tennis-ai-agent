@@ -3,8 +3,8 @@
   "phase": "6.4",
   "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
   "qualification_evidence": false,
-  "phase6_4_evaluator_version": "2.0",
-  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_RALLY_INTERVALS",
+  "phase6_4_evaluator_version": "2.1",
+  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_1_TOLERANCE_SAFE_RALLY_INTERVALS",
   "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE; 0.2 second tolerance",
   "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
   "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
@@ -21,18 +21,18 @@
     },
     "annotation_coverage": {
       "path": "data/benchmarks/cross_match_final_holdout/annotation_coverage.json",
-      "sha256": "4659682bdcd1ecf350598ada05513de0ffe5679a2ac796704520bc14d4f05a91",
-      "size_bytes": 4403
+      "sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+      "size_bytes": 5664
     },
     "canonical_event_evaluator": {
       "path": "src/events/event_evaluator.py",
-      "sha256": "4309a6fa08230807bea8f9cef5764f852cb6f5897cca50494a3f00fe52b9ca57",
-      "size_bytes": 27900
+      "sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+      "size_bytes": 39551
     },
     "active_event_config": {
       "path": "configs/phase6_analytics/pipeline.yaml",
-      "sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
-      "size_bytes": 3455
+      "sha256": "e8258b6ed49ecd28d12d520d520423beee816764226ce93e488a81d0d33011c5",
+      "size_bytes": 3549
     },
     "event_detector_implementation": {
       "path": "src/events/event_detector.py",
@@ -1488,12 +1488,11 @@
       }
     ]
   },
-  "post_recovery_false_negative_count": 20,
+  "post_recovery_false_negative_count": 19,
   "post_recovery_taxonomy": {
     "CANDIDATE_OUTSIDE_MATCH_WINDOW": 3,
     "PLAYER_CONTACT_MULTI_CUE_REJECTION": 4,
-    "TRACKING_GAP": 12,
-    "UNKNOWN_ROOT_CAUSE": 1
+    "TRACKING_GAP": 12
   },
   "post_recovery_false_positive_taxonomy": {
     "LOW_PROVENANCE_MOTION": 1,
@@ -1660,46 +1659,6 @@
       "verification_pass": false,
       "rejection_stage": "PHYSICS_VERIFICATION",
       "rejection_reason": "PLAYER_CONTACT_MULTI_CUE_REJECTION",
-      "final_event_emitted": false
-    },
-    {
-      "video_id": "video_08",
-      "gt_event_id": 10,
-      "gt_event_type": "BOUNCE",
-      "gt_frame_best": 198,
-      "gt_timestamp": 6.6,
-      "gt_timestamp_provenance": "DERIVED_FRAME_BEST_DIVIDED_BY_FPS",
-      "nearest_candidate_frame": 201,
-      "nearest_candidate_time": 6.7,
-      "candidate_time_offset_ms": 100.0,
-      "candidate_generated": true,
-      "candidate_score": 1.0,
-      "ball_state": "PREDICTED",
-      "ball_confidence": 0.36,
-      "pre_velocity": [
-        3560.778443113737,
-        255.38922155688638
-      ],
-      "post_velocity": [
-        210.21021021021232,
-        94.8948948948949
-      ],
-      "normalized_speed": 1.2939363456813424,
-      "direction_change": 20.19338391552577,
-      "acceleration": 68.48813783425915,
-      "curvature": 0.00917431041831997,
-      "player1_distance_normalized": 1.0664385788538167,
-      "player2_distance_normalized": 3.415670734143495,
-      "selected_player": 1,
-      "player_scale": 249.68479919433594,
-      "pose_support": null,
-      "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
-      "candidate_event_type": "BOUNCE",
-      "physical_event_type": "BALL_CONTACT_WITH_COURT",
-      "verification_score": 0.8079954502854678,
-      "verification_pass": true,
-      "rejection_stage": "FINAL_AUTHORITATIVE_EVENT",
-      "rejection_reason": "UNKNOWN_ROOT_CAUSE",
       "final_event_emitted": false
     },
     {

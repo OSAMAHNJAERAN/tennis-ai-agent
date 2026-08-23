@@ -16,7 +16,8 @@ from src.court.homography import compute_homography, validate_homography, transf
 from src.detection.player_detector import PlayerDetector
 from src.tracking.player_tracker import PlayerTracker
 from src.detection.yolo11_ball_detector import YOLO11BallDetector
-from src.tracking.temporal_ball_tracker import TemporalBallTracker, BallState
+from src.tracking.temporal_ball_tracker import BallState
+from src.tracking.tracker_factory import build_temporal_ball_tracker
 from src.events.event_detector import TennisEventDetector, EventType, TennisEvent
 from src.line_calling.line_call_engine import (
     TennisLineCallEngine,
@@ -89,13 +90,7 @@ class Phase6Pipeline:
             high_conf=self.config['ball_detection'].get('high_conf', 0.25),
             low_conf=self.config['ball_detection'].get('low_conf', 0.05)
         )
-        self.temporal_tracker = TemporalBallTracker(
-            high_conf_thresh=self.config['ball_detection'].get('high_conf', 0.25),
-            low_conf_thresh=self.config['ball_detection'].get('low_conf', 0.05),
-            max_prediction_gap=self.config['temporal_tracking'].get('max_prediction_gap', 3),
-            max_interpolation_gap=self.config['temporal_tracking'].get('max_interpolation_gap', 3),
-            max_valid_speed_px_per_frame=self.config['temporal_tracking'].get('max_valid_speed_px_per_frame', 60.0)
-        )
+        self.temporal_tracker = build_temporal_ball_tracker(self.config)
         self.event_detector = TennisEventDetector(
             config=self.config.get('event_detection', {})
         )

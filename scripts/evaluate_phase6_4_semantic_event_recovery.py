@@ -37,6 +37,7 @@ from src.tracking.temporal_ball_tracker import (
     TemporalBallPoint,
     TemporalBallTracker,
 )
+from src.tracking.tracker_factory import build_temporal_ball_tracker
 from src.utils.bbox_utils import BBox
 
 
@@ -124,19 +125,7 @@ def load_recovered_trajectories_and_detections(
     Dict[str, List[Optional[BBox]]],
     Dict[str, Dict[str, Any]],
 ]:
-    tracker = TemporalBallTracker(
-        high_conf_thresh=0.08,
-        low_conf_thresh=0.01,
-        max_prediction_gap=4,
-        max_interpolation_gap=3,
-        base_gating_radius_px=45.0,
-        max_valid_speed_px_per_frame=80.0,
-        enable_multi_candidate_association=True,
-        enable_adaptive_gate=True,
-        enable_short_gap_reacquisition=True,
-        enable_camera_motion_compensation=False,
-        enable_scale_normalization=True,
-    )
+    tracker = build_temporal_ball_tracker(CONFIG_PATH)
     points_by_video: Dict[str, List[TemporalBallPoint]] = {}
     p1_by_video: Dict[str, List[Optional[BBox]]] = {}
     p2_by_video: Dict[str, List[Optional[BBox]]] = {}

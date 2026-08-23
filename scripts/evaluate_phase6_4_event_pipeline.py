@@ -34,6 +34,7 @@ from src.events.event_evaluator import (
     evaluate_event_lineage,
 )
 from src.tracking.temporal_ball_tracker import BallObservation, TemporalBallPoint, TemporalBallTracker
+from src.tracking.tracker_factory import build_temporal_ball_tracker
 from src.utils.bbox_utils import BBox
 
 
@@ -41,6 +42,7 @@ VALIDATION_DIR = REPO_ROOT / "artifacts" / "validation"
 CANDIDATES_DIR = VALIDATION_DIR / "raw_candidates"
 GT_PATH = REPO_ROOT / "data" / "benchmarks" / "cross_match_final_holdout" / "ground_truth_events.json"
 OUTPUTS_DIR = REPO_ROOT / "outputs" / "phase6_4_qualification" / "cross_match_diagnostic_final"
+CONFIG_PATH = REPO_ROOT / "configs" / "phase6_analytics" / "pipeline.yaml"
 
 
 def load_ground_truth() -> Dict[str, List[Dict[str, Any]]]:
@@ -49,19 +51,7 @@ def load_ground_truth() -> Dict[str, List[Dict[str, Any]]]:
 
 
 def build_tracker() -> TemporalBallTracker:
-    return TemporalBallTracker(
-        high_conf_thresh=0.08,
-        low_conf_thresh=0.01,
-        max_prediction_gap=4,
-        max_interpolation_gap=3,
-        base_gating_radius_px=45.0,
-        max_valid_speed_px_per_frame=80.0,
-        enable_multi_candidate_association=True,
-        enable_adaptive_gate=True,
-        enable_short_gap_reacquisition=True,
-        enable_camera_motion_compensation=False,
-        enable_scale_normalization=True,
-    )
+    return build_temporal_ball_tracker(CONFIG_PATH)
 
 
 def load_video_inputs(video_id: str, tracker: TemporalBallTracker) -> Tuple[List[TemporalBallPoint], List[Optional[BBox]], List[Optional[BBox]], float, Tuple[int, int], List[List[Dict[str, Any]]]]:

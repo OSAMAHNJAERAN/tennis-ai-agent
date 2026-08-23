@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import random
 from types import SimpleNamespace
 from pathlib import Path
 
@@ -82,6 +83,120 @@ def test_equal_cost_tie_is_deterministic():
     for _ in range(10):
         assert canonical_one_to_one_matches(predictions, ground_truth) == first
     assert len(first) == 2
+
+
+def _brute_force_matching_objective(predictions, ground_truth, require_event_type, require_player):
+    def canonical_type(record):
+        value = record.get("event_type", "")
+        return "PLAYER_HIT" if value in {"PLAYER_1_HIT", "PLAYER_2_HIT"} else value
+
+    edges = {}
+    for prediction_index, prediction in enumerate(predictions):
+        valid = []
+        for gt_index, gt in enumerate(ground_truth):
+            if prediction["video_id"] != gt["video_id"]:
+                continue
+            prediction_type = canonical_type(prediction)
+            gt_type = canonical_type(gt)
+            if require_event_type and prediction_type != gt_type:
+                continue
+            if (
+                require_player
+                and gt_type != "BOUNCE"
+                and gt.get("player_id") is not None
+                and prediction.get("player_id") != gt.get("player_id")
+            ):
+                continue
+            timestamp = prediction["timestamp_s"]
+            start, end = gt["timestamp_min_s"], gt["timestamp_max_s"]
+            distance = start - timestamp if timestamp < start else (
+                timestamp - end if timestamp > end else 0.0
+            )
+            if distance <= 0.2 + 1e-12:
+                valid.append((gt_index, distance))
+        edges[prediction_index] = valid
+
+    best_cardinality = -1
+    best_cost = float("inf")
+
+    def search(prediction_index, used_gt, cardinality, cost):
+        nonlocal best_cardinality, best_cost
+        if prediction_index == len(predictions):
+            if cardinality > best_cardinality or (
+                cardinality == best_cardinality and cost < best_cost
+            ):
+                best_cardinality = cardinality
+                best_cost = cost
+            return
+        search(prediction_index + 1, used_gt, cardinality, cost)
+        for gt_index, distance in edges[prediction_index]:
+            if gt_index not in used_gt:
+                search(
+                    prediction_index + 1,
+                    used_gt | {gt_index},
+                    cardinality + 1,
+                    cost + distance,
+                )
+
+    search(0, set(), 0, 0.0)
+    return best_cardinality, best_cost
+
+
+def test_optimal_matcher_agrees_with_exhaustive_small_graph_oracle():
+    rng = random.Random(64021)
+    gt_types = ("SERVE_CONTACT", "PLAYER_HIT", "BOUNCE")
+    for _ in range(100):
+        prediction_count = rng.randint(0, 5)
+        gt_count = rng.randint(0, 5)
+        predictions = []
+        for _prediction_index in range(prediction_count):
+            event_type = rng.choice(gt_types)
+            if event_type == "PLAYER_HIT":
+                event_type = rng.choice(("PLAYER_HIT", "PLAYER_1_HIT", "PLAYER_2_HIT"))
+            predictions.append(
+                {
+                    "video_id": rng.choice(("video_A", "video_B")),
+                    "timestamp_s": rng.randint(0, 30) * 0.05,
+                    "frame": 0,
+                    "event_type": event_type,
+                    "player_id": rng.choice((1, 2, None)),
+                }
+            )
+        ground_truth = []
+        for _gt_index in range(gt_count):
+            center = rng.randint(0, 30) * 0.05
+            half_width = rng.choice((0.0, 0.05))
+            ground_truth.append(
+                {
+                    "video_id": rng.choice(("video_A", "video_B")),
+                    "timestamp_min_s": max(0.0, center - half_width),
+                    "timestamp_max_s": center + half_width,
+                    "frame_best": 0,
+                    "event_type": rng.choice(gt_types),
+                    "player_id": rng.choice((1, 2, None)),
+                }
+            )
+        require_event_type = rng.choice((False, True))
+        require_player = rng.choice((False, True))
+        oracle_cardinality, oracle_cost = _brute_force_matching_objective(
+            predictions, ground_truth, require_event_type, require_player
+        )
+        matches = canonical_one_to_one_matches(
+            predictions,
+            ground_truth,
+            require_event_type=require_event_type,
+            require_player=require_player,
+        )
+        assert len(matches) == oracle_cardinality
+        assert sum(error for _, _, error in matches) == pytest.approx(
+            oracle_cost, abs=1e-12
+        )
+        assert canonical_one_to_one_matches(
+            predictions,
+            ground_truth,
+            require_event_type=require_event_type,
+            require_player=require_player,
+        ) == matches
 
 
 def test_duplicate_prediction_remains_false_positive():

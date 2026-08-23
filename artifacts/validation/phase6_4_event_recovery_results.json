@@ -3,8 +3,8 @@
   "phase": "6.4",
   "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
   "qualification_evidence": false,
-  "phase6_4_evaluator_version": "2.0",
-  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_RALLY_INTERVALS",
+  "phase6_4_evaluator_version": "2.1",
+  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_1_TOLERANCE_SAFE_RALLY_INTERVALS",
   "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE; 0.2 second tolerance",
   "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
   "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
@@ -21,18 +21,18 @@
     },
     "annotation_coverage": {
       "path": "data/benchmarks/cross_match_final_holdout/annotation_coverage.json",
-      "sha256": "4659682bdcd1ecf350598ada05513de0ffe5679a2ac796704520bc14d4f05a91",
-      "size_bytes": 4403
+      "sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+      "size_bytes": 5664
     },
     "canonical_event_evaluator": {
       "path": "src/events/event_evaluator.py",
-      "sha256": "4309a6fa08230807bea8f9cef5764f852cb6f5897cca50494a3f00fe52b9ca57",
-      "size_bytes": 27900
+      "sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+      "size_bytes": 39551
     },
     "active_event_config": {
       "path": "configs/phase6_analytics/pipeline.yaml",
-      "sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
-      "size_bytes": 3455
+      "sha256": "e8258b6ed49ecd28d12d520d520423beee816764226ce93e488a81d0d33011c5",
+      "size_bytes": 3549
     },
     "event_detector_implementation": {
       "path": "src/events/event_detector.py",
@@ -94,14 +94,14 @@
   },
   "legacy_baseline_fixed_evaluator_rescore": {
     "event_detection": {
-      "true_positives": 22,
+      "true_positives": 23,
       "false_positives": 16,
-      "false_negatives": 18,
-      "precision": 0.5789473684210527,
-      "recall": 0.55,
-      "f1": 0.5641025641025641,
+      "false_negatives": 17,
+      "precision": 0.5897435897435898,
+      "recall": 0.575,
+      "f1": 0.5822784810126582,
       "mean_timing_error_frames": null,
-      "mean_timing_error_ms": 80.30303030303031,
+      "mean_timing_error_ms": 81.15942028985509,
       "matching_tolerance_ms": 200.0,
       "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
       "scope": "ALL_PHYSICAL_EVENTS"
@@ -124,12 +124,12 @@
         "f1": 0.3636363636363636
       },
       "BOUNCE": {
-        "true_positives": 3,
+        "true_positives": 4,
         "false_positives": 5,
-        "false_negatives": 17,
-        "precision": 0.375,
-        "recall": 0.15,
-        "f1": 0.21428571428571425
+        "false_negatives": 16,
+        "precision": 0.4444444444444444,
+        "recall": 0.2,
+        "f1": 0.2758620689655173
       }
     },
     "conditional_shot_classification": {
@@ -268,11 +268,11 @@
       "candidate_recall": {
         "SERVE_CONTACT": 1.0,
         "PLAYER_HIT": 0.47058823529411764,
-        "BOUNCE": 0.5,
-        "OVERALL": 0.525
+        "BOUNCE": 0.6,
+        "OVERALL": 0.575
       },
       "candidate_timing_mae_frames": null,
-      "candidate_timing_mae_ms": 69.84126984126985,
+      "candidate_timing_mae_ms": 79.71014492753623,
       "serve": {
         "true_positives": 0,
         "false_positives": 0,
@@ -362,8 +362,8 @@
         "scope": "ALL_PHYSICAL_EVENTS"
       },
       "event_count": 21,
-      "offline_event_analysis_seconds": 0.8838123000004998,
-      "offline_event_analysis_fps": 3023.2663654924118
+      "offline_event_analysis_seconds": 0.8853437000034319,
+      "offline_event_analysis_fps": 3018.0369499321478
     },
     {
       "variant": "C_TEMPORAL_PLAYER_PROXIMITY",
@@ -413,8 +413,8 @@
         "scope": "ALL_PHYSICAL_EVENTS"
       },
       "event_count": 29,
-      "offline_event_analysis_seconds": 0.8820202000006248,
-      "offline_event_analysis_fps": 3029.409077023528
+      "offline_event_analysis_seconds": 0.8791855999988911,
+      "offline_event_analysis_fps": 3039.176255847878
     },
     {
       "variant": "D_EVENT_TIME_REFINEMENT",
@@ -464,8 +464,8 @@
         "scope": "ALL_PHYSICAL_EVENTS"
       },
       "event_count": 29,
-      "offline_event_analysis_seconds": 0.9461597999998048,
-      "offline_event_analysis_fps": 2824.0472698169497
+      "offline_event_analysis_seconds": 0.9301598999991256,
+      "offline_event_analysis_fps": 2872.6243735109542
     },
     {
       "variant": "E_EVENT_SPECIFIC_VERIFICATION",
@@ -494,29 +494,29 @@
         "f1": 0.23076923076923078
       },
       "bounce": {
-        "true_positives": 6,
+        "true_positives": 7,
         "false_positives": 11,
-        "false_negatives": 14,
-        "precision": 0.35294117647058826,
-        "recall": 0.3,
-        "f1": 0.3243243243243243
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
       },
       "overall": {
-        "true_positives": 20,
+        "true_positives": 21,
         "false_positives": 25,
-        "false_negatives": 20,
-        "precision": 0.4444444444444444,
-        "recall": 0.5,
-        "f1": 0.47058823529411764,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
         "mean_timing_error_frames": null,
-        "mean_timing_error_ms": 56.666666666666664,
+        "mean_timing_error_ms": 58.73015873015873,
         "matching_tolerance_ms": 200.0,
         "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
         "scope": "ALL_PHYSICAL_EVENTS"
       },
-      "event_count": 45,
-      "offline_event_analysis_seconds": 0.9623478000003161,
-      "offline_event_analysis_fps": 2776.5429504791537
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.9569525000006252,
+      "offline_event_analysis_fps": 2792.1971048701525
     },
     {
       "variant": "F_VISION_DEAD_BALL_GATING",
@@ -545,29 +545,29 @@
         "f1": 0.23076923076923078
       },
       "bounce": {
-        "true_positives": 6,
+        "true_positives": 7,
         "false_positives": 11,
-        "false_negatives": 14,
-        "precision": 0.35294117647058826,
-        "recall": 0.3,
-        "f1": 0.3243243243243243
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
       },
       "overall": {
-        "true_positives": 20,
+        "true_positives": 21,
         "false_positives": 25,
-        "false_negatives": 20,
-        "precision": 0.4444444444444444,
-        "recall": 0.5,
-        "f1": 0.47058823529411764,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
         "mean_timing_error_frames": null,
-        "mean_timing_error_ms": 56.666666666666664,
+        "mean_timing_error_ms": 58.73015873015873,
         "matching_tolerance_ms": 200.0,
         "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
         "scope": "ALL_PHYSICAL_EVENTS"
       },
-      "event_count": 45,
-      "offline_event_analysis_seconds": 0.9727734000007331,
-      "offline_event_analysis_fps": 2746.785633733392
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.9631961000013689,
+      "offline_event_analysis_fps": 2774.097611064042
     },
     {
       "variant": "G_CAMERA_MOTION_COMPENSATION",
@@ -596,29 +596,29 @@
         "f1": 0.23076923076923078
       },
       "bounce": {
-        "true_positives": 6,
+        "true_positives": 7,
         "false_positives": 11,
-        "false_negatives": 14,
-        "precision": 0.35294117647058826,
-        "recall": 0.3,
-        "f1": 0.3243243243243243
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
       },
       "overall": {
-        "true_positives": 20,
+        "true_positives": 21,
         "false_positives": 25,
-        "false_negatives": 20,
-        "precision": 0.4444444444444444,
-        "recall": 0.5,
-        "f1": 0.47058823529411764,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
         "mean_timing_error_frames": null,
-        "mean_timing_error_ms": 56.666666666666664,
+        "mean_timing_error_ms": 58.73015873015873,
         "matching_tolerance_ms": 200.0,
         "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
         "scope": "ALL_PHYSICAL_EVENTS"
       },
-      "event_count": 45,
-      "offline_event_analysis_seconds": 0.9740699000003588,
-      "offline_event_analysis_fps": 2743.1296255012253
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.9504397000018798,
+      "offline_event_analysis_fps": 2811.330376871584
     },
     {
       "variant": "H_FINAL_INTEGRATED",
@@ -647,41 +647,41 @@
         "f1": 0.23076923076923078
       },
       "bounce": {
-        "true_positives": 6,
+        "true_positives": 7,
         "false_positives": 11,
-        "false_negatives": 14,
-        "precision": 0.35294117647058826,
-        "recall": 0.3,
-        "f1": 0.3243243243243243
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
       },
       "overall": {
-        "true_positives": 20,
+        "true_positives": 21,
         "false_positives": 25,
-        "false_negatives": 20,
-        "precision": 0.4444444444444444,
-        "recall": 0.5,
-        "f1": 0.47058823529411764,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
         "mean_timing_error_frames": null,
-        "mean_timing_error_ms": 48.333333333333336,
+        "mean_timing_error_ms": 50.7936507936508,
         "matching_tolerance_ms": 200.0,
         "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
         "scope": "ALL_PHYSICAL_EVENTS"
       },
-      "event_count": 45,
-      "offline_event_analysis_seconds": 0.9838090000002921,
-      "offline_event_analysis_fps": 2715.974340547003
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.952085699998861,
+      "offline_event_analysis_fps": 2806.47004781523
     }
   ],
   "final_metrics": {
     "event_detection": {
-      "true_positives": 20,
+      "true_positives": 21,
       "false_positives": 25,
-      "false_negatives": 20,
-      "precision": 0.4444444444444444,
-      "recall": 0.5,
-      "f1": 0.47058823529411764,
+      "false_negatives": 19,
+      "precision": 0.45652173913043476,
+      "recall": 0.525,
+      "f1": 0.48837209302325585,
       "mean_timing_error_frames": null,
-      "mean_timing_error_ms": 48.333333333333336,
+      "mean_timing_error_ms": 50.7936507936508,
       "matching_tolerance_ms": 200.0,
       "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
       "scope": "ALL_PHYSICAL_EVENTS"
@@ -704,12 +704,12 @@
         "f1": 0.23076923076923078
       },
       "BOUNCE": {
-        "true_positives": 6,
+        "true_positives": 7,
         "false_positives": 11,
-        "false_negatives": 14,
-        "precision": 0.35294117647058826,
-        "recall": 0.3,
-        "f1": 0.3243243243243243
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
       }
     },
     "conditional_shot_classification": {
@@ -815,7 +815,7 @@
       "video_09_720p": 28.010673242269625,
       "video_10_1080p": 8.956220195256629
     },
-    "final_offline_event_analysis_fps": 2715.974340547003,
+    "final_offline_event_analysis_fps": 2806.47004781523,
     "detector_runs_candidate_generation_once_per_pipeline_run": true
   },
   "readiness_gate": {
@@ -828,12 +828,12 @@
       "bounce_not_nearly_broken": true
     },
     "observed": {
-      "overall_precision": 0.4444444444444444,
-      "overall_recall": 0.5,
-      "overall_f1": 0.47058823529411764,
+      "overall_precision": 0.45652173913043476,
+      "overall_recall": 0.525,
+      "overall_f1": 0.48837209302325585,
       "player_hit_recall": 0.17647058823529413,
       "serve_recall": 0.3333333333333333,
-      "bounce_recall": 0.3
+      "bounce_recall": 0.35
     },
     "passed": false,
     "ready_for_production_evaluator_freeze": false,
@@ -1550,6 +1550,75 @@
           "cue_strengths": {
             "speed": 1.0,
             "direction_change": 0.22946533307154726,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 203,
+        "timestamp_s": 6.7667,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.4443974976570073,
+        "trajectory_state": "PREDICTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            3560.778443113737,
+            255.38922155688638
+          ],
+          "post_velocity_px_s": [
+            210.21021021021232,
+            94.8948948948949
+          ],
+          "pre_speed_px_s": 3569.9253179066536,
+          "post_speed_px_s": 230.6368868020352,
+          "normalized_speed_per_s": 1.2939363456813424,
+          "normalized_velocity_change_per_s": 2.284079396772542,
+          "normalized_acceleration_per_s2": 68.48813783425915,
+          "direction_change_degrees": 20.19338391552577,
+          "normalized_curvature": 0.00917431041831997,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.343,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 28,
+          "discovery_frame": 201,
+          "discovery_timestamp_s": 6.7,
+          "refined_frame": 203,
+          "refined_timestamp_s": 6.7667,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.8079954502854678,
+          "player_contact_score": 0.6038081894861578,
+          "court_contact_score": 0.8079954502854678,
+          "player1_distance_normalized": 1.0664385788538167,
+          "player2_distance_normalized": 3.415670734143495,
+          "selected_player": 1,
+          "player_scale_px": 249.68479919433594,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "PREDICTED",
+          "state_confidence_weight": 0.55,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.721192282697349,
             "velocity_discontinuity": 1.0,
             "acceleration": 1.0,
             "vertical_inversion": 1.0,
@@ -4154,7 +4223,7 @@
     ]
   },
   "final_event_counts_by_video": {
-    "video_08": 10,
+    "video_08": 11,
     "video_09": 25,
     "video_10": 10
   },
@@ -4167,8 +4236,7 @@
   "false_negative_taxonomy": {
     "CANDIDATE_OUTSIDE_MATCH_WINDOW": 3,
     "PLAYER_CONTACT_MULTI_CUE_REJECTION": 4,
-    "TRACKING_GAP": 12,
-    "UNKNOWN_ROOT_CAUSE": 1
+    "TRACKING_GAP": 12
   },
   "false_positive_taxonomy": {
     "LOW_PROVENANCE_MOTION": 1,

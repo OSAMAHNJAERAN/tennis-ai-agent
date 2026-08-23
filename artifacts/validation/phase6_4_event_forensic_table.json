@@ -3,8 +3,8 @@
   "phase": "6.4",
   "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
   "qualification_evidence": false,
-  "phase6_4_evaluator_version": "2.0",
-  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_RALLY_INTERVALS",
+  "phase6_4_evaluator_version": "2.1",
+  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_1_TOLERANCE_SAFE_RALLY_INTERVALS",
   "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE; 0.2 second tolerance",
   "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
   "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
@@ -21,18 +21,18 @@
     },
     "annotation_coverage": {
       "path": "data/benchmarks/cross_match_final_holdout/annotation_coverage.json",
-      "sha256": "4659682bdcd1ecf350598ada05513de0ffe5679a2ac796704520bc14d4f05a91",
-      "size_bytes": 4403
+      "sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+      "size_bytes": 5664
     },
     "canonical_event_evaluator": {
       "path": "src/events/event_evaluator.py",
-      "sha256": "4309a6fa08230807bea8f9cef5764f852cb6f5897cca50494a3f00fe52b9ca57",
-      "size_bytes": 27900
+      "sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+      "size_bytes": 39551
     },
     "active_event_config": {
       "path": "configs/phase6_analytics/pipeline.yaml",
-      "sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
-      "size_bytes": 3455
+      "sha256": "e8258b6ed49ecd28d12d520d520423beee816764226ce93e488a81d0d33011c5",
+      "size_bytes": 3549
     },
     "event_detector_implementation": {
       "path": "src/events/event_detector.py",
@@ -482,9 +482,9 @@
       "physical_event_type": "BALL_CONTACT_WITH_COURT",
       "verification_score": 0.8079954502854678,
       "verification_pass": true,
-      "rejection_stage": "FINAL_AUTHORITATIVE_EVENT",
-      "rejection_reason": "UNKNOWN_ROOT_CAUSE",
-      "final_event_emitted": false
+      "rejection_stage": null,
+      "rejection_reason": null,
+      "final_event_emitted": true
     },
     {
       "video_id": "video_09",
