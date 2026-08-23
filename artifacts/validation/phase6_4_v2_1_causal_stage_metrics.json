@@ -1,0 +1,133 @@
+{
+  "schema_version": "2.1",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "coverage_review_status": "MODEL_ASSISTED_PROVISIONAL",
+  "metric_authority": "DIAGNOSTIC_ONLY",
+  "human_approved": false,
+  "metric_name": "CAUSAL_STAGE_SURVIVAL",
+  "per_video": {
+    "video_08": {
+      "stage_0": 10,
+      "stage_1": 10,
+      "stage_2": 10,
+      "stage_3": 5,
+      "stage_4": 4,
+      "stage_5": 4,
+      "stage_6": 2
+    },
+    "video_09": {
+      "stage_0": 12,
+      "stage_1": 12,
+      "stage_2": 11,
+      "stage_3": 11,
+      "stage_4": 4,
+      "stage_5": 2,
+      "stage_6": 2
+    },
+    "video_10": {
+      "stage_0": 18,
+      "stage_1": 5,
+      "stage_2": 4,
+      "stage_3": 3,
+      "stage_4": 0,
+      "stage_5": 0,
+      "stage_6": 0
+    }
+  },
+  "aggregate": {
+    "stage_0": 40,
+    "stage_1": 27,
+    "stage_2": 25,
+    "stage_3": 19,
+    "stage_4": 8,
+    "stage_5": 6,
+    "stage_6": 4
+  },
+  "first_failure_distribution": {
+    "NO_RAW_PROPOSAL": {
+      "video_08": 0,
+      "video_09": 0,
+      "video_10": 0,
+      "total": 0
+    },
+    "TRACK_NOT_USABLE": {
+      "video_08": 0,
+      "video_09": 0,
+      "video_10": 13,
+      "total": 13
+    },
+    "NO_EVENT_CANDIDATE": {
+      "video_08": 0,
+      "video_09": 1,
+      "video_10": 1,
+      "total": 2
+    },
+    "PHYSICAL_CONTACT_REJECTED": {
+      "video_08": 5,
+      "video_09": 0,
+      "video_10": 1,
+      "total": 6
+    },
+    "SEMANTIC_TYPE_WRONG": {
+      "video_08": 1,
+      "video_09": 7,
+      "video_10": 3,
+      "total": 11
+    },
+    "PLAYER_ATTRIBUTION_WRONG": {
+      "video_08": 0,
+      "video_09": 2,
+      "video_10": 0,
+      "total": 2
+    },
+    "FINAL_SUPPRESSION": {
+      "video_08": 2,
+      "video_09": 0,
+      "video_10": 0,
+      "total": 2
+    },
+    "FULLY_CORRECT": {
+      "video_08": 2,
+      "video_09": 2,
+      "video_10": 0,
+      "total": 4
+    }
+  },
+  "stage6_suppression": {
+    "valid_stage5_survivors_suppressed_before_export": 2,
+    "reasons": {
+      "DUPLICATE_VERIFIED_EVENT": 2
+    },
+    "records": [
+      {
+        "video_id": "video_08",
+        "gt_event_id": 5,
+        "candidate_id": 14,
+        "reason": "DUPLICATE_VERIFIED_EVENT"
+      },
+      {
+        "video_id": "video_08",
+        "gt_event_id": 9,
+        "candidate_id": 24,
+        "reason": "DUPLICATE_VERIFIED_EVENT"
+      }
+    ]
+  },
+  "per_record_monotonicity": "PASS",
+  "aggregate_monotonicity": "PASS",
+  "impossible_transition_count": 0,
+  "evaluator_provenance": {
+    "evaluator_version": "2.1",
+    "evaluator_sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+    "gt_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+    "coverage_sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+    "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+    "config_sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
+    "matching_algorithm": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_MAX_CARDINALITY_MIN_COST_ONE_TO_ONE",
+    "coverage_policy": "TOLERANCE_NEIGHBORHOOD_MUST_BE_FULLY_OBSERVABLE_OR_SYMMETRICALLY_CENSORED",
+    "causal_lineage_schema_version": "1.0",
+    "matching_tolerance_s": 0.2
+  }
+}

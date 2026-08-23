@@ -1,0 +1,108 @@
+{
+  "schema_version": "2.1",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "coverage_review_status": "MODEL_ASSISTED_PROVISIONAL",
+  "metric_authority": "DIAGNOSTIC_ONLY",
+  "human_approved": false,
+  "metric_name": "TRUE_STAGE3_PHYSICAL_VERIFICATION",
+  "stage_definition": "CANDIDATE_PHYSICS_VERIFICATION_PASS_BEFORE_SEMANTIC_CORRECTNESS_OR_FINAL_SUPPRESSION",
+  "per_video": {
+    "video_08": {
+      "true_positives": 7,
+      "false_positives": 10,
+      "false_negatives": 3,
+      "precision": 0.4117647058823529,
+      "recall": 0.7,
+      "f1": 0.5185185185185185,
+      "video_id": "video_08",
+      "native_fps": 30.0,
+      "covered_prediction_count": 17,
+      "inside_coverage_prediction_count": 17,
+      "boundary_censored_prediction_count": 0,
+      "outside_scope_prediction_count": 24,
+      "covered_gt_count": 10,
+      "inside_coverage_gt_count": 10,
+      "boundary_censored_gt_count": 0
+    },
+    "video_09": {
+      "true_positives": 11,
+      "false_positives": 25,
+      "false_negatives": 1,
+      "precision": 0.3055555555555556,
+      "recall": 0.9166666666666666,
+      "f1": 0.4583333333333333,
+      "video_id": "video_09",
+      "native_fps": 30.0,
+      "covered_prediction_count": 36,
+      "inside_coverage_prediction_count": 36,
+      "boundary_censored_prediction_count": 0,
+      "outside_scope_prediction_count": 20,
+      "covered_gt_count": 12,
+      "inside_coverage_gt_count": 12,
+      "boundary_censored_gt_count": 0
+    },
+    "video_10": {
+      "true_positives": 4,
+      "false_positives": 12,
+      "false_negatives": 14,
+      "precision": 0.25,
+      "recall": 0.2222222222222222,
+      "f1": 0.23529411764705882,
+      "video_id": "video_10",
+      "native_fps": 30.0,
+      "covered_prediction_count": 16,
+      "inside_coverage_prediction_count": 16,
+      "boundary_censored_prediction_count": 0,
+      "outside_scope_prediction_count": 80,
+      "covered_gt_count": 18,
+      "inside_coverage_gt_count": 18,
+      "boundary_censored_gt_count": 0
+    }
+  },
+  "aggregate": {
+    "true_positives": 22,
+    "false_positives": 47,
+    "false_negatives": 18,
+    "precision": 0.3188405797101449,
+    "recall": 0.55,
+    "f1": 0.40366972477064217,
+    "outside_scope_prediction_count": 124,
+    "covered_prediction_count": 69,
+    "inside_coverage_prediction_count": 69,
+    "covered_gt_count": 40,
+    "boundary_censored_gt_count": 0,
+    "boundary_censored_prediction_count": 0
+  },
+  "match_count": 22,
+  "recall_by_gt_class": {
+    "SERVE_CONTACT": {
+      "gt_count": 3,
+      "physical_contact_matches": 3,
+      "recall": 1.0
+    },
+    "PLAYER_HIT": {
+      "gt_count": 17,
+      "physical_contact_matches": 9,
+      "recall": 0.5294117647058824
+    },
+    "BOUNCE": {
+      "gt_count": 20,
+      "physical_contact_matches": 10,
+      "recall": 0.5
+    }
+  },
+  "evaluator_provenance": {
+    "evaluator_version": "2.1",
+    "evaluator_sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+    "gt_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+    "coverage_sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+    "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+    "config_sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
+    "matching_algorithm": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_MAX_CARDINALITY_MIN_COST_ONE_TO_ONE",
+    "coverage_policy": "TOLERANCE_NEIGHBORHOOD_MUST_BE_FULLY_OBSERVABLE_OR_SYMMETRICALLY_CENSORED",
+    "causal_lineage_schema_version": "1.0",
+    "matching_tolerance_s": 0.2
+  }
+}

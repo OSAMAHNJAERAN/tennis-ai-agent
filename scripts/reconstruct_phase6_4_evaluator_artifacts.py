@@ -1,4 +1,9 @@
-"""Reconstruct Phase 6.4 diagnostic metrics with evaluator v2 integrity rules."""
+"""Compatibility entry point for Phase 6.4 evaluator artifact reconstruction.
+
+The v2.0 implementation is retained below for forensic readability only. The
+public ``main`` delegates to the v2.1 causal reconstruction so this historical
+path cannot silently regenerate independently-rematched stage-survival data.
+"""
 
 from __future__ import annotations
 
@@ -26,6 +31,7 @@ from scripts.evaluate_phase6_4_event_recovery import (
 )
 from src.events.event_detector import TennisEventDetector
 from src.events.event_evaluator import (
+    MATCHING_ALGORITHM,
     PHASE6_4_EVALUATOR_VERSION,
     canonical_event_type,
     canonical_one_to_one_matches,
@@ -81,7 +87,7 @@ def _provenance() -> Dict[str, Any]:
         "config_sha256": _sha256(CONFIG_PATH),
         "evaluation_scope_id": EVALUATION_SCOPE_ID,
         "matching_tolerance_s": 0.2,
-        "matching_semantics": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_GREEDY_ONE_TO_ONE",
+        "matching_semantics": MATCHING_ALGORITHM,
     }
 
 
@@ -336,7 +342,7 @@ def _invalidate_legacy_fp_artifacts() -> None:
         _dump(path, payload)
 
 
-def main() -> None:
+def _legacy_v2_main_do_not_use() -> None:
     videos_document = _load(VIDEOS_PATH)
     videos = videos_document["videos"]
     gt = _load(GT_PATH)["events"]
@@ -617,6 +623,13 @@ def main() -> None:
     _dump(VALIDATION / "phase6_4_fp_human_review_manifest_v2.json", human_manifest)
     _invalidate_legacy_fp_artifacts()
     print(json.dumps({"stage_3": aggregate_metric, "semantic": semantic["aggregate"]}, indent=2))
+
+
+def main() -> None:
+    """Run the authoritative v2.1 reconstruction."""
+    from scripts.reconstruct_phase6_4_evaluator_v2_1_artifacts import main as v2_1_main
+
+    v2_1_main()
 
 
 if __name__ == "__main__":

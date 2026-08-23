@@ -1,0 +1,123 @@
+{
+  "schema_version": "2.1",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "coverage_review_status": "MODEL_ASSISTED_PROVISIONAL",
+  "metric_authority": "DIAGNOSTIC_ONLY",
+  "human_approved": false,
+  "metric_name": "FINAL_OUTPUT_PHYSICAL_MATCH",
+  "comparison_v2_0": {
+    "true_positives": 20,
+    "false_positives": 25,
+    "false_negatives": 20
+  },
+  "optimal_matching_changed_counts": false,
+  "change_attribution": {
+    "v2_0_greedy_old_coverage": {
+      "true_positives": 20,
+      "false_positives": 25,
+      "false_negatives": 20
+    },
+    "v2_1_greedy_counterfactual_new_coverage": {
+      "true_positives": 21,
+      "false_positives": 25,
+      "false_negatives": 19
+    },
+    "v2_1_optimal_new_coverage": {
+      "true_positives": 21,
+      "false_positives": 25,
+      "false_negatives": 19
+    },
+    "coverage_boundary_delta": {
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": -1
+    },
+    "optimal_assignment_delta": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0
+    }
+  },
+  "per_video": {
+    "video_08": {
+      "true_positives": 6,
+      "false_positives": 5,
+      "false_negatives": 4,
+      "precision": 0.5454545454545454,
+      "recall": 0.6,
+      "f1": 0.5714285714285713,
+      "video_id": "video_08",
+      "native_fps": 30.0,
+      "covered_prediction_count": 11,
+      "inside_coverage_prediction_count": 11,
+      "boundary_censored_prediction_count": 0,
+      "outside_scope_prediction_count": 18,
+      "covered_gt_count": 10,
+      "inside_coverage_gt_count": 10,
+      "boundary_censored_gt_count": 0
+    },
+    "video_09": {
+      "true_positives": 11,
+      "false_positives": 14,
+      "false_negatives": 1,
+      "precision": 0.44,
+      "recall": 0.9166666666666666,
+      "f1": 0.5945945945945945,
+      "video_id": "video_09",
+      "native_fps": 30.0,
+      "covered_prediction_count": 25,
+      "inside_coverage_prediction_count": 25,
+      "boundary_censored_prediction_count": 0,
+      "outside_scope_prediction_count": 14,
+      "covered_gt_count": 12,
+      "inside_coverage_gt_count": 12,
+      "boundary_censored_gt_count": 0
+    },
+    "video_10": {
+      "true_positives": 4,
+      "false_positives": 6,
+      "false_negatives": 14,
+      "precision": 0.4,
+      "recall": 0.2222222222222222,
+      "f1": 0.2857142857142857,
+      "video_id": "video_10",
+      "native_fps": 30.0,
+      "covered_prediction_count": 10,
+      "inside_coverage_prediction_count": 10,
+      "boundary_censored_prediction_count": 0,
+      "outside_scope_prediction_count": 50,
+      "covered_gt_count": 18,
+      "inside_coverage_gt_count": 18,
+      "boundary_censored_gt_count": 0
+    }
+  },
+  "aggregate": {
+    "true_positives": 21,
+    "false_positives": 25,
+    "false_negatives": 19,
+    "precision": 0.45652173913043476,
+    "recall": 0.525,
+    "f1": 0.48837209302325585,
+    "outside_scope_prediction_count": 82,
+    "covered_prediction_count": 46,
+    "inside_coverage_prediction_count": 46,
+    "covered_gt_count": 40,
+    "boundary_censored_gt_count": 0,
+    "boundary_censored_prediction_count": 0
+  },
+  "match_count": 21,
+  "evaluator_provenance": {
+    "evaluator_version": "2.1",
+    "evaluator_sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+    "gt_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+    "coverage_sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+    "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+    "config_sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
+    "matching_algorithm": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_MAX_CARDINALITY_MIN_COST_ONE_TO_ONE",
+    "coverage_policy": "TOLERANCE_NEIGHBORHOOD_MUST_BE_FULLY_OBSERVABLE_OR_SYMMETRICALLY_CENSORED",
+    "causal_lineage_schema_version": "1.0",
+    "matching_tolerance_s": 0.2
+  }
+}

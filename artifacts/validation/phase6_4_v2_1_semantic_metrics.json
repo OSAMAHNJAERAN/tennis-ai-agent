@@ -1,0 +1,570 @@
+{
+  "schema_version": "2.1",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "coverage_review_status": "MODEL_ASSISTED_PROVISIONAL",
+  "metric_authority": "DIAGNOSTIC_ONLY",
+  "human_approved": false,
+  "end_to_end_exact_semantic": {
+    "per_video": {
+      "video_08": {
+        "true_positives": 5,
+        "false_positives": 6,
+        "false_negatives": 5,
+        "precision": 0.45454545454545453,
+        "recall": 0.5,
+        "f1": 0.47619047619047616,
+        "video_id": "video_08",
+        "native_fps": 30.0,
+        "covered_prediction_count": 11,
+        "inside_coverage_prediction_count": 11,
+        "boundary_censored_prediction_count": 0,
+        "outside_scope_prediction_count": 18,
+        "covered_gt_count": 10,
+        "inside_coverage_gt_count": 10,
+        "boundary_censored_gt_count": 0
+      },
+      "video_09": {
+        "true_positives": 4,
+        "false_positives": 21,
+        "false_negatives": 8,
+        "precision": 0.16,
+        "recall": 0.3333333333333333,
+        "f1": 0.21621621621621623,
+        "video_id": "video_09",
+        "native_fps": 30.0,
+        "covered_prediction_count": 25,
+        "inside_coverage_prediction_count": 25,
+        "boundary_censored_prediction_count": 0,
+        "outside_scope_prediction_count": 14,
+        "covered_gt_count": 12,
+        "inside_coverage_gt_count": 12,
+        "boundary_censored_gt_count": 0
+      },
+      "video_10": {
+        "true_positives": 2,
+        "false_positives": 8,
+        "false_negatives": 16,
+        "precision": 0.2,
+        "recall": 0.1111111111111111,
+        "f1": 0.14285714285714285,
+        "video_id": "video_10",
+        "native_fps": 30.0,
+        "covered_prediction_count": 10,
+        "inside_coverage_prediction_count": 10,
+        "boundary_censored_prediction_count": 0,
+        "outside_scope_prediction_count": 50,
+        "covered_gt_count": 18,
+        "inside_coverage_gt_count": 18,
+        "boundary_censored_gt_count": 0
+      }
+    },
+    "aggregate": {
+      "true_positives": 11,
+      "false_positives": 35,
+      "false_negatives": 29,
+      "precision": 0.2391304347826087,
+      "recall": 0.275,
+      "f1": 0.2558139534883721,
+      "outside_scope_prediction_count": 82,
+      "covered_prediction_count": 46,
+      "inside_coverage_prediction_count": 46,
+      "covered_gt_count": 40,
+      "boundary_censored_gt_count": 0,
+      "boundary_censored_prediction_count": 0
+    },
+    "match_count": 11
+  },
+  "end_to_end_player_aware": {
+    "per_video": {
+      "video_08": {
+        "true_positives": 5,
+        "false_positives": 6,
+        "false_negatives": 5,
+        "precision": 0.45454545454545453,
+        "recall": 0.5,
+        "f1": 0.47619047619047616,
+        "video_id": "video_08",
+        "native_fps": 30.0,
+        "covered_prediction_count": 11,
+        "inside_coverage_prediction_count": 11,
+        "boundary_censored_prediction_count": 0,
+        "outside_scope_prediction_count": 18,
+        "covered_gt_count": 10,
+        "inside_coverage_gt_count": 10,
+        "boundary_censored_gt_count": 0
+      },
+      "video_09": {
+        "true_positives": 2,
+        "false_positives": 23,
+        "false_negatives": 10,
+        "precision": 0.08,
+        "recall": 0.16666666666666666,
+        "f1": 0.10810810810810811,
+        "video_id": "video_09",
+        "native_fps": 30.0,
+        "covered_prediction_count": 25,
+        "inside_coverage_prediction_count": 25,
+        "boundary_censored_prediction_count": 0,
+        "outside_scope_prediction_count": 14,
+        "covered_gt_count": 12,
+        "inside_coverage_gt_count": 12,
+        "boundary_censored_gt_count": 0
+      },
+      "video_10": {
+        "true_positives": 2,
+        "false_positives": 8,
+        "false_negatives": 16,
+        "precision": 0.2,
+        "recall": 0.1111111111111111,
+        "f1": 0.14285714285714285,
+        "video_id": "video_10",
+        "native_fps": 30.0,
+        "covered_prediction_count": 10,
+        "inside_coverage_prediction_count": 10,
+        "boundary_censored_prediction_count": 0,
+        "outside_scope_prediction_count": 50,
+        "covered_gt_count": 18,
+        "inside_coverage_gt_count": 18,
+        "boundary_censored_gt_count": 0
+      }
+    },
+    "aggregate": {
+      "true_positives": 9,
+      "false_positives": 37,
+      "false_negatives": 31,
+      "precision": 0.1956521739130435,
+      "recall": 0.225,
+      "f1": 0.20930232558139536,
+      "outside_scope_prediction_count": 82,
+      "covered_prediction_count": 46,
+      "inside_coverage_prediction_count": 46,
+      "covered_gt_count": 40,
+      "boundary_censored_gt_count": 0,
+      "boundary_censored_prediction_count": 0
+    },
+    "match_count": 9
+  },
+  "conditional_semantic_after_stage3_match": {
+    "definition": "SEMANTIC_CLASSIFICATION_CONDITIONAL_ON_TRUE_STAGE3_GT_MATCH",
+    "per_video": {
+      "video_08": {
+        "conditional_support": 7,
+        "correct": 6,
+        "accuracy": 0.8571428571428571,
+        "unknown_abstention_count": 0,
+        "unknown_abstention_rate": 0.0,
+        "macro_f1": 0.6296296296296297,
+        "per_class": {
+          "SERVE_CONTACT": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "PLAYER_HIT": {
+            "true_positives": 2,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "BOUNCE": {
+            "true_positives": 4,
+            "false_positives": 1,
+            "false_negatives": 0,
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1": 0.888888888888889
+          }
+        }
+      },
+      "video_09": {
+        "conditional_support": 11,
+        "correct": 4,
+        "accuracy": 0.36363636363636365,
+        "unknown_abstention_count": 2,
+        "unknown_abstention_rate": 0.18181818181818182,
+        "macro_f1": 0.29292929292929293,
+        "per_class": {
+          "SERVE_CONTACT": {
+            "true_positives": 0,
+            "false_positives": 2,
+            "false_negatives": 1,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "PLAYER_HIT": {
+            "true_positives": 3,
+            "false_positives": 3,
+            "false_negatives": 2,
+            "precision": 0.5,
+            "recall": 0.6,
+            "f1": 0.5454545454545454
+          },
+          "BOUNCE": {
+            "true_positives": 1,
+            "false_positives": 0,
+            "false_negatives": 4,
+            "precision": 1.0,
+            "recall": 0.2,
+            "f1": 0.33333333333333337
+          }
+        }
+      },
+      "video_10": {
+        "conditional_support": 4,
+        "correct": 1,
+        "accuracy": 0.25,
+        "unknown_abstention_count": 0,
+        "unknown_abstention_rate": 0.0,
+        "macro_f1": 0.13333333333333333,
+        "per_class": {
+          "SERVE_CONTACT": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "PLAYER_HIT": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "BOUNCE": {
+            "true_positives": 1,
+            "false_positives": 3,
+            "false_negatives": 0,
+            "precision": 0.25,
+            "recall": 1.0,
+            "f1": 0.4
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "conditional_support": 22,
+      "correct": 11,
+      "accuracy": 0.5,
+      "unknown_abstention_count": 2,
+      "unknown_abstention_rate": 0.09090909090909091,
+      "macro_f1": 0.396078431372549,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "true_positives": 0,
+          "false_positives": 2,
+          "false_negatives": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "true_positives": 5,
+          "false_positives": 3,
+          "false_negatives": 4,
+          "precision": 0.625,
+          "recall": 0.5555555555555556,
+          "f1": 0.5882352941176471
+        },
+        "BOUNCE": {
+          "true_positives": 6,
+          "false_positives": 4,
+          "false_negatives": 4,
+          "precision": 0.6,
+          "recall": 0.6,
+          "f1": 0.6
+        }
+      }
+    },
+    "records": [
+      {
+        "video_id": "video_08",
+        "candidate_id": 6,
+        "gt_event_id": 1,
+        "gt_event_type": "SERVE_CONTACT",
+        "predicted_event_type": "BOUNCE",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_08",
+        "candidate_id": 13,
+        "gt_event_id": 4,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "BOUNCE",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_08",
+        "candidate_id": 14,
+        "gt_event_id": 5,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_08",
+        "candidate_id": 17,
+        "gt_event_id": 6,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "BOUNCE",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_08",
+        "candidate_id": 22,
+        "gt_event_id": 8,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "BOUNCE",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_08",
+        "candidate_id": 23,
+        "gt_event_id": 9,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_08",
+        "candidate_id": 28,
+        "gt_event_id": 10,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "BOUNCE",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 7,
+        "gt_event_id": 1,
+        "gt_event_type": "SERVE_CONTACT",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 9,
+        "gt_event_id": 3,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "SERVE_CONTACT",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 12,
+        "gt_event_id": 4,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "UNKNOWN_EVENT",
+        "correct": false,
+        "unknown_abstention": true
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 14,
+        "gt_event_id": 5,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 17,
+        "gt_event_id": 6,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 19,
+        "gt_event_id": 7,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 24,
+        "gt_event_id": 8,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 26,
+        "gt_event_id": 9,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "PLAYER_HIT",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 29,
+        "gt_event_id": 10,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "BOUNCE",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 31,
+        "gt_event_id": 11,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "SERVE_CONTACT",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 36,
+        "gt_event_id": 12,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "UNKNOWN_EVENT",
+        "correct": false,
+        "unknown_abstention": true
+      },
+      {
+        "video_id": "video_10",
+        "candidate_id": 10,
+        "gt_event_id": 1,
+        "gt_event_type": "SERVE_CONTACT",
+        "predicted_event_type": "BOUNCE",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_10",
+        "candidate_id": 13,
+        "gt_event_id": 2,
+        "gt_event_type": "BOUNCE",
+        "predicted_event_type": "BOUNCE",
+        "correct": true,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_10",
+        "candidate_id": 15,
+        "gt_event_id": 3,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "BOUNCE",
+        "correct": false,
+        "unknown_abstention": false
+      },
+      {
+        "video_id": "video_10",
+        "candidate_id": 19,
+        "gt_event_id": 9,
+        "gt_event_type": "PLAYER_HIT",
+        "predicted_event_type": "BOUNCE",
+        "correct": false,
+        "unknown_abstention": false
+      }
+    ]
+  },
+  "conditional_player_attribution": {
+    "definition": "PLAYER_ATTRIBUTION_CONDITIONAL_ON_STAGE3_MATCH_AND_CORRECT_ELIGIBLE_SEMANTIC_TYPE",
+    "bounce_excluded_from_denominator": true,
+    "per_video": {
+      "video_08": {
+        "conditional_support": 2,
+        "correct": 2,
+        "accuracy": 1.0
+      },
+      "video_09": {
+        "conditional_support": 3,
+        "correct": 1,
+        "accuracy": 0.3333333333333333
+      },
+      "video_10": {
+        "conditional_support": 0,
+        "correct": 0,
+        "accuracy": 0.0
+      }
+    },
+    "aggregate": {
+      "conditional_support": 5,
+      "correct": 3,
+      "accuracy": 0.6
+    },
+    "records": [
+      {
+        "video_id": "video_08",
+        "candidate_id": 14,
+        "gt_event_id": 5,
+        "gt_player_id": 1,
+        "predicted_player_id": 1,
+        "correct": true
+      },
+      {
+        "video_id": "video_08",
+        "candidate_id": 23,
+        "gt_event_id": 9,
+        "gt_player_id": 1,
+        "predicted_player_id": 1,
+        "correct": true
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 14,
+        "gt_event_id": 5,
+        "gt_player_id": 2,
+        "predicted_player_id": 1,
+        "correct": false
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 19,
+        "gt_event_id": 7,
+        "gt_player_id": 1,
+        "predicted_player_id": 1,
+        "correct": true
+      },
+      {
+        "video_id": "video_09",
+        "candidate_id": 26,
+        "gt_event_id": 9,
+        "gt_player_id": 2,
+        "predicted_player_id": 1,
+        "correct": false
+      }
+    ]
+  },
+  "evaluator_provenance": {
+    "evaluator_version": "2.1",
+    "evaluator_sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+    "gt_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+    "coverage_sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+    "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+    "config_sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
+    "matching_algorithm": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_MAX_CARDINALITY_MIN_COST_ONE_TO_ONE",
+    "coverage_policy": "TOLERANCE_NEIGHBORHOOD_MUST_BE_FULLY_OBSERVABLE_OR_SYMMETRICALLY_CENSORED",
+    "causal_lineage_schema_version": "1.0",
+    "matching_tolerance_s": 0.2
+  }
+}
