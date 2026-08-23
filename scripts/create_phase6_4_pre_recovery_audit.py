@@ -111,6 +111,7 @@ def _matches_by_gt(
     tolerance_frames: int,
     *,
     require_event_type: bool,
+    fps: float,
 ) -> Dict[int, Tuple[int, int]]:
     return {
         gt_index: (pred_index, difference)
@@ -119,6 +120,7 @@ def _matches_by_gt(
             ground_truth,
             tolerance_frames,
             require_event_type=require_event_type,
+            fps=fps,
         )
     }
 
@@ -214,8 +216,12 @@ def create_audit(output_root: str, gt_path: str, videos_path: str) -> Dict[str, 
         candidates = _load(os.path.join(video_root, "event_candidates.json")).get("candidates", [])
         finals = _load(os.path.join(video_root, "match_events.json")).get("events", [])
         frames = _load(os.path.join(video_root, "detections.json")).get("frames", [])
-        candidate_matches = _matches_by_gt(candidates, gt_events, tolerance, require_event_type=False)
-        final_matches = _matches_by_gt(finals, gt_events, tolerance, require_event_type=True)
+        candidate_matches = _matches_by_gt(
+            candidates, gt_events, tolerance, require_event_type=False, fps=fps
+        )
+        final_matches = _matches_by_gt(
+            finals, gt_events, tolerance, require_event_type=True, fps=fps
+        )
 
         for gt_index, gt in enumerate(gt_events):
             gt_type = _event_type(gt)

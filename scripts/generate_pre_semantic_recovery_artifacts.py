@@ -419,11 +419,13 @@ def generate_ablation_variants() -> Dict[str, Any]:
         )
         detector = TennisEventDetector(config=vdef["config"])
 
-        all_cands: List[Dict[str, Any]] = []
-        all_events: List[Dict[str, Any]] = []
-        all_gts: List[Dict[str, Any]] = []
+        candidate_count = 0
+        emitted_event_count = 0
         stage1_surviving = 0
         per_video_stats: Dict[str, Any] = {}
+        candidate_match_count = 0
+        physical_match_count = 0
+        physical_timing_errors_s: List[float] = []
 
         for vid in ("video_08", "video_09", "video_10"):
             traj, p1, p2, fps, frame_size, raw_frames = load_video_inputs(vid, tracker)
@@ -460,12 +462,14 @@ def generate_ablation_variants() -> Dict[str, Any]:
                 for g in gt_events
             ]
 
-            all_cands.extend(vid_cands)
-            all_events.extend(vid_events)
-            all_gts.extend(vid_gts)
+            candidate_count += len(vid_cands)
+            emitted_event_count += len(vid_events)
 
             vid_cand_m = canonical_one_to_one_matches(vid_cands, vid_gts, tolerance_s=0.200, fps=fps, require_event_type=False)
             vid_phys_m = canonical_one_to_one_matches(vid_events, vid_gts, tolerance_s=0.200, fps=fps, require_event_type=False)
+            candidate_match_count += len(vid_cand_m)
+            physical_match_count += len(vid_phys_m)
+            physical_timing_errors_s.extend(diff for _, _, diff in vid_phys_m)
             per_video_stats[vid] = {
                 "gt_count": len(vid_gts),
                 "cand_recall": len(vid_cand_m) / max(len(vid_gts), 1),
@@ -473,34 +477,35 @@ def generate_ablation_variants() -> Dict[str, Any]:
                 "emitted_events": len(vid_events),
             }
 
-        cand_matches = canonical_one_to_one_matches(all_cands, all_gts, tolerance_s=0.200, fps=30.0, require_event_type=False)
-        phys_matches = canonical_one_to_one_matches(all_events, all_gts, tolerance_s=0.200, fps=30.0, require_event_type=False)
-
-        tp = len(phys_matches)
-        fp = len(all_events) - tp
+        tp = physical_match_count
+        fp = emitted_event_count - tp
         fn = total_gt - tp
         prec = tp / max(tp + fp, 1)
         rec = tp / max(tp + fn, 1)
         f1 = (2 * prec * rec) / max(prec + rec, 1e-9)
 
-        diffs = [diff for _, _, diff in phys_matches]
-        timing_mae = sum(diffs) / len(diffs) if diffs else 0.0
+        timing_mae_s = (
+            sum(physical_timing_errors_s) / len(physical_timing_errors_s)
+            if physical_timing_errors_s
+            else None
+        )
 
         ablation_results.append({
             "variant": vname,
             "stage1_recall": stage1_surviving / total_gt,
-            "stage2_candidate_recall": len(cand_matches) / total_gt,
+            "stage2_candidate_recall": candidate_match_count / total_gt,
             "stage3_physical_tp": tp,
             "stage3_physical_fp": fp,
             "stage3_physical_fn": fn,
             "stage3_physical_precision": prec,
             "stage3_physical_recall": rec,
             "stage3_physical_f1": f1,
-            "candidate_count": len(all_cands),
-            "candidate_rate_per_min": len(all_cands) / 3.0,  # 3 minutes total
-            "emitted_event_count": len(all_events),
-            "timing_mae_frames": timing_mae,
-            "timing_mae_ms": timing_mae / 30.0 * 1000.0,
+            "candidate_count": candidate_count,
+            "candidate_rate_per_min": candidate_count / 3.0,
+            "emitted_event_count": emitted_event_count,
+            "timing_mae_frames": None,
+            "timing_mae_s": timing_mae_s,
+            "timing_mae_ms": timing_mae_s * 1000.0 if timing_mae_s is not None else None,
             "per_video": per_video_stats,
         })
 

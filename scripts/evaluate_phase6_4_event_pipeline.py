@@ -280,8 +280,9 @@ def evaluate_ablation_variants() -> Dict[str, Any]:
     for vname, cfg in variants_defs.items():
         detector = TennisEventDetector(config=cfg)
         all_recs: List[EventLineageRecord] = []
-        all_events: List[Dict[str, Any]] = []
-        all_gts: List[Dict[str, Any]] = []
+        events_by_video: Dict[str, List[Dict[str, Any]]] = {}
+        gt_by_video: Dict[str, List[Dict[str, Any]]] = {}
+        fps_by_video: Dict[str, float] = {}
 
         for vid in ("video_08", "video_09", "video_10"):
             traj, p1, p2, fps, frame_size, raw_frames = load_video_inputs(vid, tracker)
@@ -292,15 +293,19 @@ def evaluate_ablation_variants() -> Dict[str, Any]:
             all_recs.extend(recs)
 
             analysis = detector.analyze(traj, p1, p2, fps=fps, frame_size=frame_size)
+            fps_by_video[vid] = fps
+            events_by_video[vid] = []
             for e in analysis.events:
-                all_events.append({
+                events_by_video[vid].append({
                     "video_id": vid,
                     "frame": e.frame_index,
+                    "timestamp_s": e.timestamp_s,
                     "event_type": e.event_type.value,
                     "player_id": e.player_id,
                 })
+            gt_by_video[vid] = []
             for g in gt_events:
-                all_gts.append({
+                gt_by_video[vid].append({
                     "video_id": vid,
                     "frame_best": g.get("frame_best", g.get("frame")),
                     "frame_min": g.get("frame_min", g.get("frame_best", g.get("frame"))),
@@ -309,11 +314,20 @@ def evaluate_ablation_variants() -> Dict[str, Any]:
                     "player_id": g.get("player_id"),
                 })
 
-        # Measure 1-to-1 matches with exact type
-        exact_m = canonical_one_to_one_matches(all_events, all_gts, tolerance_s=0.200, fps=30.0, require_event_type=True)
-        tp = len(exact_m)
-        fp = len(all_events) - tp
-        fn = len(all_gts) - tp
+        # Match each independent media timeline, then aggregate only counts.
+        tp = fp = fn = 0
+        for vid in events_by_video:
+            video_matches = canonical_one_to_one_matches(
+                events_by_video[vid],
+                gt_by_video[vid],
+                tolerance_s=0.200,
+                fps=fps_by_video[vid],
+                require_event_type=True,
+                single_video_id=vid,
+            )
+            tp += len(video_matches)
+            fp += len(events_by_video[vid]) - len(video_matches)
+            fn += len(gt_by_video[vid]) - len(video_matches)
         prec = tp / max(tp + fp, 1)
         rec = tp / max(tp + fn, 1)
         f1 = (2 * prec * rec) / max(prec + rec, 1e-9)
@@ -321,12 +335,27 @@ def evaluate_ablation_variants() -> Dict[str, Any]:
         # Per-class metrics
         per_class: Dict[str, Any] = {}
         for ctype in ("SERVE_CONTACT", "PLAYER_HIT", "BOUNCE"):
-            c_preds = [e for e in all_events if e["event_type"].upper().startswith(ctype.split("_")[0])]
-            c_gts = [g for g in all_gts if g["event_type"].upper() == ctype]
-            cm = canonical_one_to_one_matches(c_preds, c_gts, tolerance_s=0.200, fps=30.0, require_event_type=True)
-            c_tp = len(cm)
-            c_fp = len(c_preds) - c_tp
-            c_fn = len(c_gts) - c_tp
+            c_tp = c_fp = c_fn = 0
+            for vid in events_by_video:
+                c_preds = [
+                    e
+                    for e in events_by_video[vid]
+                    if e["event_type"].upper().startswith(ctype.split("_")[0])
+                ]
+                c_gts = [
+                    g for g in gt_by_video[vid] if g["event_type"].upper() == ctype
+                ]
+                class_matches = canonical_one_to_one_matches(
+                    c_preds,
+                    c_gts,
+                    tolerance_s=0.200,
+                    fps=fps_by_video[vid],
+                    require_event_type=True,
+                    single_video_id=vid,
+                )
+                c_tp += len(class_matches)
+                c_fp += len(c_preds) - len(class_matches)
+                c_fn += len(c_gts) - len(class_matches)
             c_p = c_tp / max(c_tp + c_fp, 1)
             c_r = c_tp / max(c_tp + c_fn, 1)
             c_f1 = (2 * c_p * c_r) / max(c_p + c_r, 1e-9)

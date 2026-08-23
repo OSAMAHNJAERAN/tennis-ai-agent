@@ -13,6 +13,8 @@ try:
 except ModuleNotFoundError:  # Direct ``python scripts/...`` execution.
     from evaluate_phase6_4_cross_match import _event_type, _frame, one_to_one_matches
 
+from src.events.event_evaluator import frame_inside_annotation_coverage
+
 
 def _load(path):
     with open(path, encoding="utf-8") as stream:
@@ -68,16 +70,29 @@ def main():
     args = parser.parse_args()
 
     events_gt = _load("data/benchmarks/cross_match_final_holdout/ground_truth_events.json")["events"]
-    rallies_gt = _load("data/benchmarks/cross_match_final_holdout/ground_truth_rallies.json")["rallies"]
     videos = _load("data/benchmarks/cross_match_final_holdout/videos.json")["videos"]
+    coverage = _load(
+        "data/benchmarks/cross_match_final_holdout/annotation_coverage.json"
+    )
     rows = []
+    outside_scope_count = 0
     for video_id in ("video_08", "video_09", "video_10"):
         output_dir = os.path.join(args.output_root, video_id)
         predictions = _load(os.path.join(output_dir, "match_events.json")).get("events", [])
         gt = events_gt[video_id]
         fps = float(videos[video_id]["fps"])
         tolerance = max(1, round(0.2 * fps))
-        matches = one_to_one_matches(predictions, gt, tolerance, require_event_type=True)
+        covered_predictions = [
+            prediction
+            for prediction in predictions
+            if frame_inside_annotation_coverage(
+                video_id, _frame(prediction), coverage
+            )
+        ]
+        outside_scope_count += len(predictions) - len(covered_predictions)
+        matches = one_to_one_matches(
+            covered_predictions, gt, tolerance, require_event_type=True, fps=fps
+        )
         matched_predictions = {pred_index for pred_index, _, _ in matches}
         scoring_path = os.path.join(output_dir, "scoring_events.json")
         scoring = _load(scoring_path).get("scoring_events", []) if os.path.exists(scoring_path) else []
@@ -85,8 +100,11 @@ def main():
             item["event_id"] for item in scoring
             if item.get("outcome_type") == "DEAD_BALL_IGNORED"
         }
-        rally_end = max(rally["end_frame"] for rally in rallies_gt[video_id])
-        for pred_index, prediction in enumerate(predictions):
+        rally_end = max(
+            int(interval["end_frame"])
+            for interval in coverage["videos"][video_id]["fully_reviewed_intervals"]
+        )
+        for pred_index, prediction in enumerate(covered_predictions):
             if pred_index in matched_predictions:
                 continue
             frame = _frame(prediction)
@@ -112,9 +130,10 @@ def main():
         "schema_version": "1.0",
         "scientific_split": "CROSS_MATCH_DIAGNOSTIC",
         "qualification_evidence": False,
-        "matching": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
+        "matching": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
         "tolerance_seconds": 0.2,
         "false_positive_count": len(rows),
+        "outside_scope_prediction_count": outside_scope_count,
         "taxonomy_counts": dict(sorted(taxonomy.items())),
         "false_positives": rows,
     }

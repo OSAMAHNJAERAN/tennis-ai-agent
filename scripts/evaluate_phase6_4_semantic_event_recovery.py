@@ -21,6 +21,7 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
 from scripts.evaluate_phase6_4_cross_match import evaluate_split_metrics, one_to_one_matches
+from src.events.event_evaluator import precision_recall_f1
 from src.events.event_detector import (
     EventCandidate,
     EventDetectionAnalysis,
@@ -46,6 +47,9 @@ GT_PATH = os.path.join(
 )
 VIDEOS_PATH = os.path.join(
     REPO_ROOT, "data", "benchmarks", "cross_match_final_holdout", "videos.json"
+)
+COVERAGE_PATH = os.path.join(
+    REPO_ROOT, "data", "benchmarks", "cross_match_final_holdout", "annotation_coverage.json"
 )
 CANDIDATES_DIR = os.path.join(VALIDATION_ROOT, "raw_candidates")
 CONFIG_PATH = os.path.join(REPO_ROOT, "configs", "phase6_analytics", "pipeline.yaml")
@@ -75,9 +79,19 @@ def _canonical_type(record: Dict[str, Any]) -> str:
     return "PLAYER_HIT" if raw in ("PLAYER_1_HIT", "PLAYER_2_HIT") else raw
 
 
+def _inside_annotation_coverage(
+    coverage: Mapping[str, Any], video_id: str, frame: int
+) -> bool:
+    return any(
+        int(interval["start_frame"]) <= frame <= int(interval["end_frame"])
+        and bool(interval["physical_event_annotation_complete"])
+        for interval in coverage["videos"][video_id]["fully_reviewed_intervals"]
+    )
+
+
 def _event_record(event: TennisEvent, video_id: str) -> Dict[str, Any]:
     return {
-        "_video_id": video_id,
+        "video_id": video_id,
         "event_id": event.event_id,
         "frame_index": event.frame_index,
         "frame": event.frame_index,
@@ -92,7 +106,7 @@ def _event_record(event: TennisEvent, video_id: str) -> Dict[str, Any]:
 
 def _candidate_record(candidate: Any, video_id: str) -> Dict[str, Any]:
     return {
-        "_video_id": video_id,
+        "video_id": video_id,
         "frame": int(candidate.frame_index),
         "frame_index": int(candidate.frame_index),
         "timestamp_s": float(candidate.timestamp_s),
@@ -174,6 +188,8 @@ def run_ablation_variants(
     gt_by_video: Dict[str, List[Dict[str, Any]]],
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Dict[str, EventDetectionAnalysis]]]:
     """Execute ablation Variants A through I."""
+
+    coverage = _load(COVERAGE_PATH)
 
     variants_config = {
         "A_BASELINE_fa70671": {
@@ -274,7 +290,7 @@ def run_ablation_variants(
     all_gt_flat = []
     for vid, evs in gt_by_video.items():
         for e in evs:
-            all_gt_flat.append({**e, "_video_id": vid})
+            all_gt_flat.append({**e, "video_id": vid})
 
     for variant_name, cfg in variants_config.items():
         detector = TennisEventDetector(config=cfg)
@@ -291,19 +307,23 @@ def run_ablation_variants(
             fps = meta["fps"]
             w, h = meta["width"], meta["height"]
 
-            # Active rally window for video_10 (point ends at 400 frames)
-            clip_len = min(len(traj), 400 if vid == "video_10" else len(traj))
             analysis = detector.analyze(
-                traj[:clip_len], p1[:clip_len], p2[:clip_len], fps=fps, frame_size=(w, h)
+                traj, p1, p2, fps=fps, frame_size=(w, h)
             )
             analyses_by_vid[vid] = analysis
             for event in analysis.events:
-                all_preds_flat.append(_event_record(event, vid))
+                record = _event_record(event, vid)
+                if _inside_annotation_coverage(coverage, vid, record["frame"]):
+                    all_preds_flat.append(record)
             for cand in analysis.candidates:
-                all_cands_flat.append(_candidate_record(cand, vid))
+                record = _candidate_record(cand, vid)
+                if _inside_annotation_coverage(coverage, vid, record["frame"]):
+                    all_cands_flat.append(record)
 
         duration_s = time.perf_counter() - t0
-        total_frames = sum(min(len(points_by_video[v]), 400 if v == "video_10" else len(points_by_video[v])) for v in ("video_08", "video_09", "video_10"))
+        total_frames = sum(
+            len(points_by_video[video_id]) for video_id in points_by_video
+        )
         fps_speed = total_frames / max(duration_s, 1e-6)
 
         all_analyses[variant_name] = analyses_by_vid
@@ -318,23 +338,54 @@ def run_ablation_variants(
                     g for g in gt_by_video[vid]
                     if (cls == "OVERALL" or _canonical_type(g) == cls)
                 ]
-                c_list = [c for c in all_cands_flat if c["_video_id"] == vid]
-                matches = one_to_one_matches(c_list, gt_list, 6, require_event_type=False)
+                c_list = [c for c in all_cands_flat if c["video_id"] == vid]
+                native_fps = float(video_meta[vid]["fps"])
+                tolerance_frames = max(1, round(0.20 * native_fps))
+                matches = one_to_one_matches(
+                    c_list,
+                    gt_list,
+                    tolerance_frames,
+                    require_event_type=False,
+                    fps=native_fps,
+                )
                 tot += len(gt_list)
                 mat += len(matches)
             cand_recall_by_class[cls] = mat / tot if tot else 0.0
 
-        # Event metrics
-        metrics = evaluate_split_metrics(
-            predictions=[],
-            ground_truth_shots=[],
-            ground_truth_events=all_gt_flat,
-            event_predictions=all_preds_flat,
-            fps=30.0,
-            tolerance_seconds=0.20,
+        # Evaluate isolated media timelines and aggregate counts, never records.
+        video_metrics = {}
+        for vid in ("video_08", "video_09", "video_10"):
+            video_metrics[vid] = evaluate_split_metrics(
+                predictions=[],
+                ground_truth_shots=[],
+                ground_truth_events=gt_by_video[vid],
+                event_predictions=[p for p in all_preds_flat if p["video_id"] == vid],
+                fps=float(video_meta[vid]["fps"]),
+                tolerance_seconds=0.20,
+            )
+        overall = precision_recall_f1(
+            sum(m["event_detection"]["true_positives"] for m in video_metrics.values()),
+            sum(m["event_detection"]["false_positives"] for m in video_metrics.values()),
+            sum(m["event_detection"]["false_negatives"] for m in video_metrics.values()),
         )
-        overall = metrics["event_detection"]
-        per_class = metrics["event_detection_per_class"]
+        timing_ms = [
+            m["event_detection"]["mean_timing_error_ms"]
+            for m in video_metrics.values()
+            if m["event_detection"]["mean_timing_error_ms"] is not None
+        ]
+        overall["mean_timing_error_frames"] = None
+        overall["mean_timing_error_ms"] = statistics.fmean(timing_ms) if timing_ms else None
+        per_class = {}
+        for event_class in EVENT_CLASSES:
+            class_rows = [
+                m["event_detection_per_class"][event_class]
+                for m in video_metrics.values()
+            ]
+            per_class[event_class] = precision_recall_f1(
+                sum(row["true_positives"] for row in class_rows),
+                sum(row["false_positives"] for row in class_rows),
+                sum(row["false_negatives"] for row in class_rows),
+            )
 
         # Disambiguation confusion metrics
         wrong_event_type_count = 0
@@ -342,9 +393,16 @@ def run_ablation_variants(
         unknown_abstention_count = sum(1 for p in all_preds_flat if p["event_type"] == "UNKNOWN_EVENT")
 
         for vid in ("video_08", "video_09", "video_10"):
-            vid_preds = [p for p in all_preds_flat if p["_video_id"] == vid]
+            vid_preds = [p for p in all_preds_flat if p["video_id"] == vid]
             vid_gt = gt_by_video[vid]
-            phys_matches = one_to_one_matches(vid_preds, vid_gt, 6, require_event_type=False)
+            native_fps = float(video_meta[vid]["fps"])
+            phys_matches = one_to_one_matches(
+                vid_preds,
+                vid_gt,
+                max(1, round(0.20 * native_fps)),
+                require_event_type=False,
+                fps=native_fps,
+            )
             for p_idx, g_idx, _ in phys_matches:
                 p_item = vid_preds[p_idx]
                 g_item = vid_gt[g_idx]
@@ -398,9 +456,15 @@ def build_semantic_forensic_records(
         pred_records = [_event_record(e, vid) for e in analysis.events]
         cand_records = [_candidate_record(c, vid) for c in analysis.candidates]
 
-        matches_typed = one_to_one_matches(pred_records, gt_list, tol, require_event_type=True)
-        matches_any = one_to_one_matches(pred_records, gt_list, tol, require_event_type=False)
-        cand_matches = one_to_one_matches(cand_records, gt_list, tol, require_event_type=False)
+        matches_typed = one_to_one_matches(
+            pred_records, gt_list, tol, require_event_type=True, fps=fps
+        )
+        matches_any = one_to_one_matches(
+            pred_records, gt_list, tol, require_event_type=False, fps=fps
+        )
+        cand_matches = one_to_one_matches(
+            cand_records, gt_list, tol, require_event_type=False, fps=fps
+        )
 
         typed_map = {g_idx: p_idx for p_idx, g_idx, _ in matches_typed}
         any_map = {g_idx: p_idx for p_idx, g_idx, _ in matches_any}
@@ -494,24 +558,32 @@ def build_stage_metrics(
 
             if stage == "raw_candidate_generator":
                 preds = [_candidate_record(c, vid) for c in analysis.candidates]
-                matches = one_to_one_matches(preds, gt_list, tol, require_event_type=False)
+                matches = one_to_one_matches(
+                    preds, gt_list, tol, require_event_type=False, fps=fps
+                )
             elif stage in ("physics_verification", "contact_family_classification"):
                 preds = [
-                    {"frame": t["refined_frame"], "_video_id": vid}
+                    {"frame": t["refined_frame"], "video_id": vid}
                     for t in analysis.verification_traces
                     if t["stage_pass"].get("physics_verification")
                 ]
-                matches = one_to_one_matches(preds, gt_list, tol, require_event_type=False)
+                matches = one_to_one_matches(
+                    preds, gt_list, tol, require_event_type=False, fps=fps
+                )
             elif stage in ("tennis_semantic_classification", "temporal_suppression"):
                 preds = [
-                    {"frame": t["refined_frame"], "event_type": t["candidate_event_type"], "_video_id": vid}
+                    {"frame": t["refined_frame"], "event_type": t["candidate_event_type"], "video_id": vid}
                     for t in analysis.verification_traces
                     if t["stage_pass"].get("event_type_classification")
                 ]
-                matches = one_to_one_matches(preds, gt_list, tol, require_event_type=True)
+                matches = one_to_one_matches(
+                    preds, gt_list, tol, require_event_type=True, fps=fps
+                )
             else:  # final_authoritative_events
                 preds = [_event_record(e, vid) for e in analysis.events]
-                matches = one_to_one_matches(preds, gt_list, tol, require_event_type=True)
+                matches = one_to_one_matches(
+                    preds, gt_list, tol, require_event_type=True, fps=fps
+                )
 
             timing_errors.extend(diff for _, _, diff in matches)
             for _, g_idx, _ in matches:

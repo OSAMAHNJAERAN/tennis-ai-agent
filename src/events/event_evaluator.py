@@ -12,7 +12,7 @@ import math
 from dataclasses import asdict, dataclass
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Set, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Set, Tuple, Union
 
 from src.events.event_detector import (
     EventCandidate,
@@ -72,48 +72,143 @@ class EventLineageRecord:
     final_match_status: str  # MATCHED_EXACT, MATCHED_WRONG_TYPE, MATCHED_WRONG_PLAYER, UNMATCHED
     first_failure_stage: str
     first_failure_reason: str
+    evaluation_scope_id: str = "UNSPECIFIED"
+    inside_annotation_coverage: bool = True
+    prediction_id: Optional[str] = None
+    matched_gt_event_id: Optional[int] = None
+    same_video_match: bool = False
+    timing_error_s: Optional[float] = None
+
+
+PHASE6_4_EVALUATOR_VERSION = "2.0"
+PHYSICAL_EVENT_ANNOTATION_SCOPE = "PHYSICAL_EVENTS_EXHAUSTIVE"
+FPSValue = Union[float, Mapping[str, float]]
+
+
+def canonical_event_type(record: Mapping[str, Any]) -> str:
+    """Return the benchmark event family used by exact semantic evaluation."""
+    value = str(record.get("event_type", "")).upper()
+    if value in ("PLAYER_1_HIT", "PLAYER_2_HIT"):
+        return "PLAYER_HIT"
+    return value
+
+
+def normalize_video_id(
+    record: Mapping[str, Any], *, single_video_id: Optional[str] = None
+) -> str:
+    """Normalize legacy ``_video_id`` once and fail on ambiguous identity."""
+    canonical = record.get("video_id")
+    legacy = record.get("_video_id")
+    if canonical is not None and legacy is not None and str(canonical) != str(legacy):
+        raise ValueError(
+            f"Conflicting media identity: video_id={canonical!r}, _video_id={legacy!r}"
+        )
+    value = canonical if canonical is not None else legacy
+    if value is None:
+        value = single_video_id
+    if value is None or not str(value).strip():
+        raise ValueError(
+            "Missing video_id. Multi-video evaluation must provide explicit media identity; "
+            "single-video callers must pass single_video_id."
+        )
+    return str(value)
+
+
+def _record_frame(record: Mapping[str, Any]) -> int:
+    for key in ("frame_index", "frame", "frame_best", "frame_hit"):
+        if key in record:
+            return int(record[key])
+    raise KeyError(f"No frame field in evaluation record: {record}")
+
+
+def _native_fps(fps: FPSValue, video_id: str) -> float:
+    value = fps[video_id] if isinstance(fps, Mapping) else fps
+    value = float(value)
+    if not math.isfinite(value) or value <= 0:
+        raise ValueError(f"Invalid native FPS for {video_id}: {value!r}")
+    return value
+
+
+def _prediction_timestamp(record: Mapping[str, Any], fps: float) -> float:
+    timestamp = record.get("timestamp_s")
+    if timestamp is not None:
+        timestamp = float(timestamp)
+        if math.isfinite(timestamp) and timestamp >= 0:
+            return timestamp
+    return _record_frame(record) / fps
+
+
+def _gt_timestamp_interval(record: Mapping[str, Any], fps: float) -> Tuple[float, float]:
+    if record.get("timestamp_min_s") is not None and record.get("timestamp_max_s") is not None:
+        start = float(record["timestamp_min_s"])
+        end = float(record["timestamp_max_s"])
+    else:
+        best = _record_frame(record)
+        start = int(record.get("frame_min", best)) / fps
+        end = int(record.get("frame_max", best)) / fps
+    if not math.isfinite(start) or not math.isfinite(end) or start < 0 or end < start:
+        raise ValueError(f"Invalid GT timestamp interval: {record}")
+    return start, end
 
 
 def canonical_one_to_one_matches(
     predictions: Sequence[Dict[str, Any]],
     ground_truth: Sequence[Dict[str, Any]],
     tolerance_s: float = 0.200,
-    fps: float = 30.0,
+    fps: FPSValue = 30.0,
     require_event_type: bool = False,
     require_player: bool = False,
+    *,
+    single_video_id: Optional[str] = None,
 ) -> List[Tuple[int, int, float]]:
-    """Greedy 1-to-1 bipartite matching within temporal tolerance.
-    
-    Returns list of (pred_idx, gt_idx, distance_frames).
+    """Canonical same-video, timestamp-based, greedy one-to-one matcher.
+
+    The GT event is an uncertainty interval and distance is measured from the
+    prediction timestamp to that interval.  The returned distance is seconds.
+    Explicit media identity is mandatory unless a single-video caller supplies
+    ``single_video_id``.  Legacy ``_video_id`` is accepted only at this boundary.
     """
-    tol_frames = max(1, round(tolerance_s * fps))
+    if not math.isfinite(tolerance_s) or tolerance_s < 0:
+        raise ValueError("tolerance_s must be finite and non-negative")
+    explicit_video_ids = {
+        str(record.get("video_id", record.get("_video_id")))
+        for record in (*predictions, *ground_truth)
+        if record.get("video_id", record.get("_video_id")) is not None
+    }
+    if single_video_id is None and not explicit_video_ids:
+        # Backwards-compatible single-video mode.  As soon as any item carries
+        # media identity, every item must carry it and normalization fails closed.
+        single_video_id = "__single_video__"
     pairs: List[Tuple[float, int, int]] = []
 
     for p_idx, pred in enumerate(predictions):
-        p_frame = int(pred.get("frame", pred.get("frame_index", 0)))
-        p_type = pred.get("event_type")
+        p_video_id = normalize_video_id(pred, single_video_id=single_video_id)
+        p_fps = _native_fps(fps, p_video_id)
+        p_time = _prediction_timestamp(pred, p_fps)
+        p_type = canonical_event_type(pred)
         p_player = pred.get("player_id")
 
         for g_idx, gt in enumerate(ground_truth):
-            g_frame = int(gt.get("frame_best", gt.get("frame", 0)))
-            g_min = int(gt.get("frame_min", g_frame))
-            g_max = int(gt.get("frame_max", g_frame))
-            g_type = gt.get("event_type")
+            g_video_id = normalize_video_id(gt, single_video_id=single_video_id)
+            if p_video_id != g_video_id:
+                continue
+            g_fps = _native_fps(fps, g_video_id)
+            g_min, g_max = _gt_timestamp_interval(gt, g_fps)
+            g_type = canonical_event_type(gt)
             g_player = gt.get("player_id")
 
-            if p_frame < g_min:
-                dist = g_min - p_frame
-            elif p_frame > g_max:
-                dist = p_frame - g_max
+            if p_time < g_min:
+                dist = g_min - p_time
+            elif p_time > g_max:
+                dist = p_time - g_max
             else:
                 dist = 0.0
 
-            if dist > tol_frames:
+            if dist > tolerance_s + 1e-12:
                 continue
 
-            if require_event_type:
-                if str(p_type).upper() != str(g_type).upper():
-                    continue
+            if require_event_type and p_type != g_type:
+                continue
 
             if require_player and g_type != "BOUNCE" and g_player is not None:
                 if p_player != g_player:
@@ -136,6 +231,212 @@ def canonical_one_to_one_matches(
     return matches
 
 
+def precision_recall_f1(tp: int, fp: int, fn: int) -> Dict[str, Any]:
+    precision = tp / (tp + fp) if tp + fp else 0.0
+    recall = tp / (tp + fn) if tp + fn else 0.0
+    f1 = 2.0 * precision * recall / (precision + recall) if precision + recall else 0.0
+    return {
+        "true_positives": int(tp),
+        "false_positives": int(fp),
+        "false_negatives": int(fn),
+        "precision": float(precision),
+        "recall": float(recall),
+        "f1": float(f1),
+    }
+
+
+def validate_annotation_coverage(
+    document: Mapping[str, Any], video_manifest: Mapping[str, Any]
+) -> None:
+    """Validate exhaustive raw-video coverage metadata against media metadata."""
+    coverage_videos = document.get("videos")
+    if not isinstance(coverage_videos, Mapping):
+        raise ValueError("annotation coverage must contain a videos mapping")
+    if str(document.get("annotation_scope")) != PHYSICAL_EVENT_ANNOTATION_SCOPE:
+        raise ValueError("annotation coverage must declare PHYSICAL_EVENTS_EXHAUSTIVE")
+    if str(document.get("coverage_basis")) != "RAW_VIDEO":
+        raise ValueError("annotation coverage must be defined from RAW_VIDEO, not predictions")
+
+    manifest_videos = video_manifest.get("videos", video_manifest)
+    for video_id, metadata in manifest_videos.items():
+        if video_id not in coverage_videos:
+            raise ValueError(f"Missing annotation coverage for {video_id}")
+        coverage = coverage_videos[video_id]
+        if str(coverage.get("video_id")) != str(video_id):
+            raise ValueError(f"Coverage video_id mismatch for {video_id}")
+        fps = float(metadata["fps"])
+        frame_count = int(metadata["frame_count"])
+        if float(coverage.get("fps", 0)) != fps:
+            raise ValueError(f"Coverage FPS disagrees with video manifest for {video_id}")
+        if int(coverage.get("frame_count", -1)) != frame_count:
+            raise ValueError(f"Coverage frame_count disagrees with video manifest for {video_id}")
+        intervals = coverage.get("fully_reviewed_intervals")
+        if not isinstance(intervals, list):
+            raise ValueError(f"Coverage intervals must be a list for {video_id}")
+        previous_end = -1
+        for interval in intervals:
+            start = int(interval["start_frame"])
+            end = int(interval["end_frame"])
+            if start < 0 or end < start or end >= frame_count:
+                raise ValueError(f"Coverage interval outside media bounds for {video_id}: {interval}")
+            if start <= previous_end:
+                raise ValueError(f"Coverage intervals overlap or are unsorted for {video_id}")
+            previous_end = end
+            if not bool(interval.get("physical_event_annotation_complete")):
+                raise ValueError(f"Non-exhaustive interval listed as reviewed for {video_id}")
+            expected_start = start / fps
+            expected_end = end / fps
+            max_error = 0.5 / fps + 1e-9
+            if abs(float(interval["start_timestamp_s"]) - expected_start) > max_error:
+                raise ValueError(f"Coverage start timestamp disagrees with FPS for {video_id}")
+            if abs(float(interval["end_timestamp_s"]) - expected_end) > max_error:
+                raise ValueError(f"Coverage end timestamp disagrees with FPS for {video_id}")
+
+
+def frame_inside_annotation_coverage(
+    video_id: str, frame: int, coverage_document: Mapping[str, Any]
+) -> bool:
+    coverage = coverage_document["videos"][video_id]
+    return any(
+        int(interval["start_frame"]) <= frame <= int(interval["end_frame"])
+        and bool(interval.get("physical_event_annotation_complete"))
+        for interval in coverage["fully_reviewed_intervals"]
+    )
+
+
+def evaluate_covered_events(
+    predictions_by_video: Mapping[str, Sequence[Mapping[str, Any]]],
+    ground_truth_by_video: Mapping[str, Sequence[Mapping[str, Any]]],
+    video_manifest: Mapping[str, Any],
+    coverage_document: Mapping[str, Any],
+    *,
+    tolerance_s: float = 0.200,
+    require_event_type: bool = False,
+    require_player: bool = False,
+) -> Dict[str, Any]:
+    """Evaluate each video independently, then aggregate counts.
+
+    Predictions outside exhaustive coverage are labelled ``OUTSIDE_SCOPE`` and
+    never contribute to precision, recall, or F1.
+    """
+    validate_annotation_coverage(coverage_document, video_manifest)
+    videos = video_manifest.get("videos", video_manifest)
+    per_video: Dict[str, Any] = {}
+    prediction_statuses: List[Dict[str, Any]] = []
+    match_records: List[Dict[str, Any]] = []
+
+    for video_id, metadata in videos.items():
+        fps = float(metadata["fps"])
+        normalized_predictions = []
+        for index, record in enumerate(predictions_by_video.get(video_id, [])):
+            normalized_id = normalize_video_id(record, single_video_id=video_id)
+            if normalized_id != video_id:
+                raise ValueError(f"Prediction placed under wrong video bucket: {normalized_id}")
+            normalized = {**record, "video_id": video_id}
+            normalized_predictions.append(normalized)
+        normalized_gt = []
+        for record in ground_truth_by_video.get(video_id, []):
+            normalized_id = normalize_video_id(record, single_video_id=video_id)
+            if normalized_id != video_id:
+                raise ValueError(f"GT placed under wrong video bucket: {normalized_id}")
+            normalized_gt.append({**record, "video_id": video_id})
+
+        covered_predictions = [
+            record
+            for record in normalized_predictions
+            if frame_inside_annotation_coverage(video_id, _record_frame(record), coverage_document)
+        ]
+        covered_gt = [
+            record
+            for record in normalized_gt
+            if frame_inside_annotation_coverage(video_id, _record_frame(record), coverage_document)
+        ]
+        matches = canonical_one_to_one_matches(
+            covered_predictions,
+            covered_gt,
+            tolerance_s=tolerance_s,
+            fps=fps,
+            require_event_type=require_event_type,
+            require_player=require_player,
+            single_video_id=video_id,
+        )
+        matched_predictions = {pred_index for pred_index, _, _ in matches}
+        matched_gt = {gt_index for _, gt_index, _ in matches}
+
+        metric = precision_recall_f1(
+            len(matches), len(covered_predictions) - len(matches), len(covered_gt) - len(matches)
+        )
+        metric.update(
+            {
+                "video_id": video_id,
+                "native_fps": fps,
+                "covered_prediction_count": len(covered_predictions),
+                "outside_scope_prediction_count": len(normalized_predictions) - len(covered_predictions),
+                "covered_gt_count": len(covered_gt),
+            }
+        )
+        per_video[video_id] = metric
+
+        covered_index_by_identity = {id(record): index for index, record in enumerate(covered_predictions)}
+        match_by_prediction = {pred_index: (gt_index, error) for pred_index, gt_index, error in matches}
+        for source_index, record in enumerate(normalized_predictions):
+            inside = frame_inside_annotation_coverage(
+                video_id, _record_frame(record), coverage_document
+            )
+            covered_index = covered_index_by_identity.get(id(record)) if inside else None
+            match = match_by_prediction.get(covered_index) if covered_index is not None else None
+            gt_record = covered_gt[match[0]] if match else None
+            status = "OUTSIDE_SCOPE" if not inside else ("TP" if match else "FP")
+            prediction_statuses.append(
+                {
+                    "video_id": video_id,
+                    "prediction_index": source_index,
+                    "prediction_id": record.get("prediction_id", f"{video_id}:prediction:{source_index + 1}"),
+                    "frame": _record_frame(record),
+                    "timestamp_s": _prediction_timestamp(record, fps),
+                    "inside_evaluation_coverage": inside,
+                    "matched_gt_event_id": gt_record.get("event_id") if gt_record else None,
+                    "evaluation_status": status,
+                }
+            )
+        for pred_index, gt_index, error_s in matches:
+            match_records.append(
+                {
+                    "video_id": video_id,
+                    "prediction_index": pred_index,
+                    "gt_index": gt_index,
+                    "gt_event_id": covered_gt[gt_index].get("event_id"),
+                    "same_video_match": True,
+                    "timing_error_s": error_s,
+                    "timing_error_ms": error_s * 1000.0,
+                }
+            )
+
+    aggregate = precision_recall_f1(
+        sum(metric["true_positives"] for metric in per_video.values()),
+        sum(metric["false_positives"] for metric in per_video.values()),
+        sum(metric["false_negatives"] for metric in per_video.values()),
+    )
+    aggregate["outside_scope_prediction_count"] = sum(
+        metric["outside_scope_prediction_count"] for metric in per_video.values()
+    )
+    aggregate["covered_gt_count"] = sum(metric["covered_gt_count"] for metric in per_video.values())
+    assert aggregate["true_positives"] == sum(m["true_positives"] for m in per_video.values())
+    assert aggregate["false_positives"] == sum(
+        m["false_positives"] for m in per_video.values()
+    )
+    assert aggregate["false_negatives"] == sum(m["false_negatives"] for m in per_video.values())
+    assert aggregate["true_positives"] + aggregate["false_negatives"] == aggregate["covered_gt_count"]
+    return {
+        "evaluator_version": PHASE6_4_EVALUATOR_VERSION,
+        "evaluation_scope_id": coverage_document.get("evaluation_scope_id"),
+        "per_video": per_video,
+        "aggregate": aggregate,
+        "prediction_statuses": prediction_statuses,
+        "matches": match_records,
+    }
+
+
 def evaluate_event_lineage(
     video_id: str,
     raw_proposals: Sequence[Sequence[Dict[str, Any]]],
@@ -155,12 +456,18 @@ def evaluate_event_lineage(
 
     candidates = detector.detect_candidates(trajectory, fps=fps, frame_size=frame_size)
     cand_records = [
-        {"frame": c.frame_index, "timestamp_s": c.timestamp_s, "score": c.score}
+        {
+            "video_id": video_id,
+            "frame": c.frame_index,
+            "timestamp_s": c.timestamp_s,
+            "score": c.score,
+        }
         for c in candidates
     ]
 
     event_records = [
         {
+            "video_id": video_id,
             "frame": e.frame_index,
             "timestamp_s": e.timestamp_s,
             "event_type": e.event_type.value,
@@ -172,19 +479,34 @@ def evaluate_event_lineage(
 
     # Map candidate matches
     cand_matches = canonical_one_to_one_matches(
-        cand_records, gt_events, tolerance_s=0.200, fps=fps, require_event_type=False
+        cand_records,
+        gt_events,
+        tolerance_s=0.200,
+        fps=fps,
+        require_event_type=False,
+        single_video_id=video_id,
     )
     cand_by_gt = {g_idx: (p_idx, dist) for p_idx, g_idx, dist in cand_matches}
 
     # Map authoritative event matches (ignoring type)
     phys_matches = canonical_one_to_one_matches(
-        event_records, gt_events, tolerance_s=0.200, fps=fps, require_event_type=False
+        event_records,
+        gt_events,
+        tolerance_s=0.200,
+        fps=fps,
+        require_event_type=False,
+        single_video_id=video_id,
     )
     phys_by_gt = {g_idx: (p_idx, dist) for p_idx, g_idx, dist in phys_matches}
 
     # Map authoritative event matches (requiring exact type)
     exact_matches = canonical_one_to_one_matches(
-        event_records, gt_events, tolerance_s=0.200, fps=fps, require_event_type=True
+        event_records,
+        gt_events,
+        tolerance_s=0.200,
+        fps=fps,
+        require_event_type=True,
+        single_video_id=video_id,
     )
     exact_by_gt = {g_idx: (p_idx, dist) for p_idx, g_idx, dist in exact_matches}
 
@@ -219,7 +541,7 @@ def evaluate_event_lineage(
         cand_info = cand_by_gt.get(g_idx)
         cand_gen = cand_info is not None
         cand_frame = candidates[cand_info[0]].frame_index if cand_gen else None
-        cand_err_ms = (cand_info[1] / fps * 1000.0) if cand_gen else None
+        cand_err_ms = (cand_info[1] * 1000.0) if cand_gen else None
 
         # Stage 3, 4, 5: Physical contact, Semantic type, Player attribution
         phys_info = phys_by_gt.get(g_idx)
@@ -306,6 +628,14 @@ def evaluate_event_lineage(
             final_match_status=final_status,
             first_failure_stage=first_fail_stage,
             first_failure_reason=first_fail_reason,
+            evaluation_scope_id="CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+            inside_annotation_coverage=True,
+            prediction_id=(
+                f"{video_id}:event:{phys_info[0] + 1}" if phys_info is not None else None
+            ),
+            matched_gt_event_id=g_id if phys_info is not None else None,
+            same_video_match=phys_info is not None,
+            timing_error_s=phys_info[1] if phys_info is not None else None,
         )
         lineage_records.append(rec)
 

@@ -3,7 +3,9 @@
   "phase": "6.4",
   "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
   "qualification_evidence": false,
-  "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE; GT interval expanded by 0.2 seconds",
+  "phase6_4_evaluator_version": "2.0",
+  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_RALLY_INTERVALS",
+  "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE; 0.2 second tolerance",
   "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
   "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
   "input_provenance": {
@@ -17,6 +19,16 @@
       "sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
       "size_bytes": 2755
     },
+    "annotation_coverage": {
+      "path": "data/benchmarks/cross_match_final_holdout/annotation_coverage.json",
+      "sha256": "4659682bdcd1ecf350598ada05513de0ffe5679a2ac796704520bc14d4f05a91",
+      "size_bytes": 4403
+    },
+    "canonical_event_evaluator": {
+      "path": "src/events/event_evaluator.py",
+      "sha256": "4309a6fa08230807bea8f9cef5764f852cb6f5897cca50494a3f00fe52b9ca57",
+      "size_bytes": 27900
+    },
     "active_event_config": {
       "path": "configs/phase6_analytics/pipeline.yaml",
       "sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
@@ -24,13 +36,13 @@
     },
     "event_detector_implementation": {
       "path": "src/events/event_detector.py",
-      "sha256": "27eec63f774b4b66968fa43ea2f41f1aba8580d69b9c00b76a9b8549d92237bf",
-      "size_bytes": 52133
+      "sha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
+      "size_bytes": 59283
     },
     "recovery_evaluator": {
       "path": "scripts/evaluate_phase6_4_event_recovery.py",
-      "sha256": "38acd273011f5d1b1a18b4ecdb35209f1da74019cc6d06f44d46135bcdaf4eec",
-      "size_bytes": 38838
+      "sha256": "60e0a512e0efd23f2667eda752dd47f231c19dcab2bc042ccfbae5a4ab6a4274",
+      "size_bytes": 42079
     },
     "preserved_video_inputs": {
       "video_08": {
@@ -75,8 +87,8 @@
   "pre_recovery_observable_stage_metrics": {
     "candidate_output_already_thresholded_and_nms": {
       "matched": {
-        "BOUNCE": 11,
-        "OVERALL": 22,
+        "BOUNCE": 10,
+        "OVERALL": 21,
         "PLAYER_HIT": 8,
         "SERVE_CONTACT": 3
       },
@@ -89,11 +101,11 @@
       "recall": {
         "SERVE_CONTACT": 1.0,
         "PLAYER_HIT": 0.47058823529411764,
-        "BOUNCE": 0.55,
-        "OVERALL": 0.55
+        "BOUNCE": 0.5,
+        "OVERALL": 0.525
       },
-      "timing_mae_frames": 4.090909090909091,
-      "timing_mae_ms": 136.36363636363637
+      "timing_mae_frames": null,
+      "timing_mae_ms": 69.84126984126985
     },
     "any_integrated_verifier_emission_type_agnostic": {
       "matched": {
@@ -114,8 +126,8 @@
         "BOUNCE": 0.3,
         "OVERALL": 0.35
       },
-      "timing_mae_frames": 3.9285714285714284,
-      "timing_mae_ms": 130.95238095238093
+      "timing_mae_frames": null,
+      "timing_mae_ms": 83.33333333333334
     },
     "correctly_typed_integrated_verifier_emission": {
       "matched": {
@@ -135,14 +147,13 @@
         "BOUNCE": 0.05,
         "OVERALL": 0.175
       },
-      "timing_mae_frames": 3.7142857142857144,
-      "timing_mae_ms": 123.80952380952381
+      "timing_mae_frames": null,
+      "timing_mae_ms": 80.95238095238095
     },
     "scoring_filtered_final_authoritative": {
       "matched": {
-        "BOUNCE": 1,
-        "OVERALL": 4,
-        "PLAYER_HIT": 3
+        "PLAYER_HIT": 2,
+        "OVERALL": 2
       },
       "support": {
         "SERVE_CONTACT": 3,
@@ -152,12 +163,12 @@
       },
       "recall": {
         "SERVE_CONTACT": 0.0,
-        "PLAYER_HIT": 0.17647058823529413,
-        "BOUNCE": 0.05,
-        "OVERALL": 0.1
+        "PLAYER_HIT": 0.11764705882352941,
+        "BOUNCE": 0.0,
+        "OVERALL": 0.05
       },
-      "timing_mae_frames": 4.75,
-      "timing_mae_ms": 158.33333333333334
+      "timing_mae_frames": null,
+      "timing_mae_ms": 100.0
     },
     "limitation": "Physics-only, player-attribution-only, and pre-NMS stages were not persisted; scoring rows are the only artifact-observable verifier proxy."
   },
@@ -165,10 +176,10 @@
     {
       "stage": "raw_candidate_generator",
       "matched": {
-        "BOUNCE": 11,
+        "SERVE_CONTACT": 3,
         "OVERALL": 25,
-        "PLAYER_HIT": 11,
-        "SERVE_CONTACT": 3
+        "BOUNCE": 11,
+        "PLAYER_HIT": 11
       },
       "support": {
         "SERVE_CONTACT": 3,
@@ -182,17 +193,17 @@
         "BOUNCE": 0.55,
         "OVERALL": 0.625
       },
-      "timing_mae_frames": 2.32,
-      "timing_mae_ms": 77.33333333333333,
+      "timing_mae_frames": null,
+      "timing_mae_ms": 33.333333333333336,
       "type_matching_required": false
     },
     {
       "stage": "physics_verification",
       "matched": {
-        "PLAYER_HIT": 9,
-        "OVERALL": 22,
         "SERVE_CONTACT": 3,
-        "BOUNCE": 10
+        "OVERALL": 21,
+        "BOUNCE": 9,
+        "PLAYER_HIT": 9
       },
       "support": {
         "SERVE_CONTACT": 3,
@@ -203,20 +214,20 @@
       "recall": {
         "SERVE_CONTACT": 1.0,
         "PLAYER_HIT": 0.5294117647058824,
-        "BOUNCE": 0.5,
-        "OVERALL": 0.55
+        "BOUNCE": 0.45,
+        "OVERALL": 0.525
       },
-      "timing_mae_frames": 2.6818181818181817,
-      "timing_mae_ms": 89.39393939393939,
+      "timing_mae_frames": null,
+      "timing_mae_ms": 36.50793650793651,
       "type_matching_required": false
     },
     {
       "stage": "player_attribution",
       "matched": {
-        "PLAYER_HIT": 9,
-        "OVERALL": 20,
         "SERVE_CONTACT": 3,
-        "BOUNCE": 8
+        "OVERALL": 19,
+        "BOUNCE": 7,
+        "PLAYER_HIT": 9
       },
       "support": {
         "SERVE_CONTACT": 3,
@@ -227,20 +238,20 @@
       "recall": {
         "SERVE_CONTACT": 1.0,
         "PLAYER_HIT": 0.5294117647058824,
-        "BOUNCE": 0.4,
-        "OVERALL": 0.5
+        "BOUNCE": 0.35,
+        "OVERALL": 0.475
       },
-      "timing_mae_frames": 2.8,
-      "timing_mae_ms": 93.33333333333333,
+      "timing_mae_frames": null,
+      "timing_mae_ms": 38.59649122807018,
       "type_matching_required": false
     },
     {
       "stage": "event_type_classification",
       "matched": {
-        "PLAYER_HIT": 9,
-        "OVERALL": 20,
         "SERVE_CONTACT": 3,
-        "BOUNCE": 8
+        "OVERALL": 19,
+        "BOUNCE": 7,
+        "PLAYER_HIT": 9
       },
       "support": {
         "SERVE_CONTACT": 3,
@@ -251,18 +262,18 @@
       "recall": {
         "SERVE_CONTACT": 1.0,
         "PLAYER_HIT": 0.5294117647058824,
-        "BOUNCE": 0.4,
-        "OVERALL": 0.5
+        "BOUNCE": 0.35,
+        "OVERALL": 0.475
       },
-      "timing_mae_frames": 2.8,
-      "timing_mae_ms": 93.33333333333333,
+      "timing_mae_frames": null,
+      "timing_mae_ms": 38.59649122807018,
       "type_matching_required": false
     },
     {
       "stage": "temporal_suppression",
       "matched": {
-        "BOUNCE": 7,
-        "OVERALL": 19,
+        "BOUNCE": 6,
+        "OVERALL": 18,
         "PLAYER_HIT": 9,
         "SERVE_CONTACT": 3
       },
@@ -275,18 +286,18 @@
       "recall": {
         "SERVE_CONTACT": 1.0,
         "PLAYER_HIT": 0.5294117647058824,
-        "BOUNCE": 0.35,
-        "OVERALL": 0.475
+        "BOUNCE": 0.3,
+        "OVERALL": 0.45
       },
-      "timing_mae_frames": 3.4210526315789473,
-      "timing_mae_ms": 114.03508771929825,
+      "timing_mae_frames": null,
+      "timing_mae_ms": 51.851851851851855,
       "type_matching_required": false
     },
     {
       "stage": "final_authoritative_events",
       "matched": {
-        "BOUNCE": 7,
-        "OVERALL": 19,
+        "BOUNCE": 6,
+        "OVERALL": 18,
         "PLAYER_HIT": 9,
         "SERVE_CONTACT": 3
       },
@@ -299,28 +310,28 @@
       "recall": {
         "SERVE_CONTACT": 1.0,
         "PLAYER_HIT": 0.5294117647058824,
-        "BOUNCE": 0.35,
-        "OVERALL": 0.475
+        "BOUNCE": 0.3,
+        "OVERALL": 0.45
       },
-      "timing_mae_frames": 3.4210526315789473,
-      "timing_mae_ms": 114.03508771929825,
+      "timing_mae_frames": null,
+      "timing_mae_ms": 51.851851851851855,
       "type_matching_required": false
     }
   ],
   "ball_state_distribution_around_outcomes": {
     "true_positive": {
       "DETECTED": 8,
-      "PREDICTED": 2,
+      "PREDICTED": 1,
       "TRACKED": 1
     },
     "false_positive": {
-      "DETECTED": 72,
-      "INTERPOLATED": 13,
-      "PREDICTED": 20,
-      "TRACKED": 12
+      "DETECTED": 20,
+      "INTERPOLATED": 4,
+      "PREDICTED": 4,
+      "TRACKED": 7
     },
     "false_negative": {
-      "DETECTED": 8,
+      "DETECTED": 9,
       "INTERPOLATED": 5,
       "MISSING": 14,
       "PREDICTED": 1,
@@ -378,50 +389,42 @@
   "resolution_metrics": {
     "720p": {
       "event_detection": {
-        "true_positives": 17,
-        "false_positives": 51,
-        "false_negatives": 5,
-        "precision": 0.25,
-        "recall": 0.7727272727272727,
-        "f1": 0.37777777777777777,
-        "mean_timing_error_frames": 3.176470588235294,
-        "mean_timing_error_ms": 105.88235294117648,
-        "matching_tolerance_frames": 6,
+        "true_positives": 16,
+        "false_positives": 19,
+        "false_negatives": 6,
+        "precision": 0.45714285714285713,
+        "recall": 0.7272727272727273,
+        "f1": 0.5614035087719298,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 43.75,
         "matching_tolerance_ms": 200.0,
-        "effective_frame_tolerance_ms": 200.0,
-        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
-        "scope": "HITS_ONLY_COMPATIBILITY"
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
       },
       "event_detection_per_class": {
         "SERVE_CONTACT": {
           "true_positives": 1,
-          "false_positives": 23,
+          "false_positives": 13,
           "false_negatives": 1,
-          "precision": 0.041666666666666664,
+          "precision": 0.07142857142857142,
           "recall": 0.5,
-          "f1": 0.07692307692307693,
-          "timing_mae_frames": 7.0,
-          "timing_mae_ms": 233.33333333333334
+          "f1": 0.125
         },
         "PLAYER_HIT": {
           "true_positives": 3,
-          "false_positives": 8,
+          "false_positives": 6,
           "false_negatives": 6,
-          "precision": 0.2727272727272727,
+          "precision": 0.3333333333333333,
           "recall": 0.3333333333333333,
-          "f1": 0.3,
-          "timing_mae_frames": 3.3333333333333335,
-          "timing_mae_ms": 111.11111111111111
+          "f1": 0.3333333333333333
         },
         "BOUNCE": {
-          "true_positives": 5,
-          "false_positives": 16,
-          "false_negatives": 6,
-          "precision": 0.23809523809523808,
-          "recall": 0.45454545454545453,
-          "f1": 0.31249999999999994,
-          "timing_mae_frames": 4.2,
-          "timing_mae_ms": 140.0
+          "true_positives": 4,
+          "false_positives": 3,
+          "false_negatives": 7,
+          "precision": 0.5714285714285714,
+          "recall": 0.36363636363636365,
+          "f1": 0.4444444444444444
         }
       },
       "conditional_shot_classification": {
@@ -472,49 +475,41 @@
     "1080p": {
       "event_detection": {
         "true_positives": 4,
-        "false_positives": 56,
+        "false_positives": 6,
         "false_negatives": 14,
-        "precision": 0.06666666666666667,
+        "precision": 0.4,
         "recall": 0.2222222222222222,
-        "f1": 0.10256410256410256,
-        "mean_timing_error_frames": 3.5,
-        "mean_timing_error_ms": 116.66666666666667,
-        "matching_tolerance_frames": 6,
+        "f1": 0.2857142857142857,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 66.66666666666667,
         "matching_tolerance_ms": 200.0,
-        "effective_frame_tolerance_ms": 200.0,
-        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
-        "scope": "HITS_ONLY_COMPATIBILITY"
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
       },
       "event_detection_per_class": {
         "SERVE_CONTACT": {
           "true_positives": 0,
-          "false_positives": 4,
+          "false_positives": 0,
           "false_negatives": 1,
           "precision": 0.0,
           "recall": 0.0,
-          "f1": 0.0,
-          "timing_mae_frames": null,
-          "timing_mae_ms": null
+          "f1": 0.0
         },
         "PLAYER_HIT": {
           "true_positives": 0,
-          "false_positives": 8,
+          "false_positives": 0,
           "false_negatives": 8,
           "precision": 0.0,
           "recall": 0.0,
-          "f1": 0.0,
-          "timing_mae_frames": null,
-          "timing_mae_ms": null
+          "f1": 0.0
         },
         "BOUNCE": {
           "true_positives": 2,
-          "false_positives": 46,
+          "false_positives": 8,
           "false_negatives": 7,
-          "precision": 0.041666666666666664,
+          "precision": 0.2,
           "recall": 0.2222222222222222,
-          "f1": 0.07017543859649122,
-          "timing_mae_frames": 6.0,
-          "timing_mae_ms": 200.0
+          "f1": 0.2105263157894737
         }
       },
       "conditional_shot_classification": {
@@ -574,19 +569,17 @@
       "resolution": "1280x720",
       "threshold_refit_on_development_groups": false,
       "validation_metrics": {
-        "true_positives": 6,
-        "false_positives": 23,
-        "false_negatives": 4,
-        "precision": 0.20689655172413793,
-        "recall": 0.6,
-        "f1": 0.3076923076923077,
-        "mean_timing_error_frames": 4.5,
-        "mean_timing_error_ms": 150.0,
-        "matching_tolerance_frames": 6,
+        "true_positives": 5,
+        "false_positives": 5,
+        "false_negatives": 5,
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 80.0,
         "matching_tolerance_ms": 200.0,
-        "effective_frame_tolerance_ms": 200.0,
-        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
-        "scope": "HITS_ONLY_COMPATIBILITY"
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
       }
     },
     {
@@ -600,18 +593,16 @@
       "threshold_refit_on_development_groups": false,
       "validation_metrics": {
         "true_positives": 11,
-        "false_positives": 28,
+        "false_positives": 14,
         "false_negatives": 1,
-        "precision": 0.28205128205128205,
+        "precision": 0.44,
         "recall": 0.9166666666666666,
-        "f1": 0.4313725490196078,
-        "mean_timing_error_frames": 2.4545454545454546,
-        "mean_timing_error_ms": 81.81818181818181,
-        "matching_tolerance_frames": 6,
+        "f1": 0.5945945945945945,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 27.272727272727273,
         "matching_tolerance_ms": 200.0,
-        "effective_frame_tolerance_ms": 200.0,
-        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
-        "scope": "HITS_ONLY_COMPATIBILITY"
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
       }
     },
     {
@@ -625,18 +616,16 @@
       "threshold_refit_on_development_groups": false,
       "validation_metrics": {
         "true_positives": 4,
-        "false_positives": 56,
+        "false_positives": 6,
         "false_negatives": 14,
-        "precision": 0.06666666666666667,
+        "precision": 0.4,
         "recall": 0.2222222222222222,
-        "f1": 0.10256410256410256,
-        "mean_timing_error_frames": 3.5,
-        "mean_timing_error_ms": 116.66666666666667,
-        "matching_tolerance_frames": 6,
+        "f1": 0.2857142857142857,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 66.66666666666667,
         "matching_tolerance_ms": 200.0,
-        "effective_frame_tolerance_ms": 200.0,
-        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE_SAME_EVENT_TYPE",
-        "scope": "HITS_ONLY_COMPATIBILITY"
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
       }
     }
   ]

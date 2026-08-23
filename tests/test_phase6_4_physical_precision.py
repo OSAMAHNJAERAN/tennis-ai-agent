@@ -464,12 +464,9 @@ class TestEvaluatorCrossVideoIsolation:
         # GT: frame 55 from video_B (different video)
         gts = [{"frame_best": 55, "frame_min": 53, "frame_max": 57, "video_id": "video_B"}]
 
-        # When called with per-video lists (no cross-video), these should not match
-        # because they come from different videos and canonical matching is on frame number only
+        # Same timestamps/frames never override explicit media identity.
         matches = canonical_one_to_one_matches(preds, gts, tolerance_s=0.200, fps=30.0, require_event_type=False)
-        # Frame 55 from both lists WILL match (the function ignores video_id)
-        # This demonstrates the known cross-video contamination issue in the baseline evaluator
-        assert len(matches) == 1  # documents the limitation
+        assert len(matches) == 0
 
     def test_canonical_matching_respects_frame_window(self):
         """A prediction must be within frame_min–frame_max to match GT."""

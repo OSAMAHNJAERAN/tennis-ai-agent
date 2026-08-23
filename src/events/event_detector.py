@@ -133,7 +133,9 @@ class EventDetectorSettings:
     activity_static_cluster_score: float = 0.85
 
     # Provenance-based rejection (conservative — only extreme artefacts)
-    enable_provenance_gating: bool = True
+    # Hard rejection is opt-in until it is independently validated.  Provenance
+    # confidence weighting remains active without changing candidate possibility.
+    enable_provenance_gating: bool = False
     provenance_window_s: float = 0.33
     provenance_min_trust_score: float = 0.15     # very lenient — only catch extreme artefacts
     provenance_max_predicted_gap: int = 10       # very long synthetic gap → artefact

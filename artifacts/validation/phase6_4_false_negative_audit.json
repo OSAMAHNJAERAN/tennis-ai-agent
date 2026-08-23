@@ -3,7 +3,9 @@
   "phase": "6.4",
   "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
   "qualification_evidence": false,
-  "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE; GT interval expanded by 0.2 seconds",
+  "phase6_4_evaluator_version": "2.0",
+  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_RALLY_INTERVALS",
+  "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE; 0.2 second tolerance",
   "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
   "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
   "input_provenance": {
@@ -17,6 +19,16 @@
       "sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
       "size_bytes": 2755
     },
+    "annotation_coverage": {
+      "path": "data/benchmarks/cross_match_final_holdout/annotation_coverage.json",
+      "sha256": "4659682bdcd1ecf350598ada05513de0ffe5679a2ac796704520bc14d4f05a91",
+      "size_bytes": 4403
+    },
+    "canonical_event_evaluator": {
+      "path": "src/events/event_evaluator.py",
+      "sha256": "4309a6fa08230807bea8f9cef5764f852cb6f5897cca50494a3f00fe52b9ca57",
+      "size_bytes": 27900
+    },
     "active_event_config": {
       "path": "configs/phase6_analytics/pipeline.yaml",
       "sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
@@ -24,13 +36,13 @@
     },
     "event_detector_implementation": {
       "path": "src/events/event_detector.py",
-      "sha256": "27eec63f774b4b66968fa43ea2f41f1aba8580d69b9c00b76a9b8549d92237bf",
-      "size_bytes": 52133
+      "sha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
+      "size_bytes": 59283
     },
     "recovery_evaluator": {
       "path": "scripts/evaluate_phase6_4_event_recovery.py",
-      "sha256": "38acd273011f5d1b1a18b4ecdb35209f1da74019cc6d06f44d46135bcdaf4eec",
-      "size_bytes": 38838
+      "sha256": "60e0a512e0efd23f2667eda752dd47f231c19dcab2bc042ccfbae5a4ab6a4274",
+      "size_bytes": 42079
     },
     "preserved_video_inputs": {
       "video_08": {
@@ -1476,15 +1488,15 @@
       }
     ]
   },
-  "post_recovery_false_negative_count": 19,
+  "post_recovery_false_negative_count": 20,
   "post_recovery_taxonomy": {
     "CANDIDATE_OUTSIDE_MATCH_WINDOW": 3,
     "PLAYER_CONTACT_MULTI_CUE_REJECTION": 4,
-    "TRACKING_GAP": 12
+    "TRACKING_GAP": 12,
+    "UNKNOWN_ROOT_CAUSE": 1
   },
   "post_recovery_false_positive_taxonomy": {
     "LOW_PROVENANCE_MOTION": 1,
-    "POST_RALLY_BALL_MOTION": 82,
     "TIMING_DRIFT_OR_DUPLICATE": 16,
     "UNMATCHED_KINEMATIC_MOTION": 8,
     "WRONG_EVENT_TYPE": 10
@@ -1648,6 +1660,46 @@
       "verification_pass": false,
       "rejection_stage": "PHYSICS_VERIFICATION",
       "rejection_reason": "PLAYER_CONTACT_MULTI_CUE_REJECTION",
+      "final_event_emitted": false
+    },
+    {
+      "video_id": "video_08",
+      "gt_event_id": 10,
+      "gt_event_type": "BOUNCE",
+      "gt_frame_best": 198,
+      "gt_timestamp": 6.6,
+      "gt_timestamp_provenance": "DERIVED_FRAME_BEST_DIVIDED_BY_FPS",
+      "nearest_candidate_frame": 201,
+      "nearest_candidate_time": 6.7,
+      "candidate_time_offset_ms": 100.0,
+      "candidate_generated": true,
+      "candidate_score": 1.0,
+      "ball_state": "PREDICTED",
+      "ball_confidence": 0.36,
+      "pre_velocity": [
+        3560.778443113737,
+        255.38922155688638
+      ],
+      "post_velocity": [
+        210.21021021021232,
+        94.8948948948949
+      ],
+      "normalized_speed": 1.2939363456813424,
+      "direction_change": 20.19338391552577,
+      "acceleration": 68.48813783425915,
+      "curvature": 0.00917431041831997,
+      "player1_distance_normalized": 1.0664385788538167,
+      "player2_distance_normalized": 3.415670734143495,
+      "selected_player": 1,
+      "player_scale": 249.68479919433594,
+      "pose_support": null,
+      "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+      "candidate_event_type": "BOUNCE",
+      "physical_event_type": "BALL_CONTACT_WITH_COURT",
+      "verification_score": 0.8079954502854678,
+      "verification_pass": true,
+      "rejection_stage": "FINAL_AUTHORITATIVE_EVENT",
+      "rejection_reason": "UNKNOWN_ROOT_CAUSE",
       "final_event_emitted": false
     },
     {
@@ -2097,35 +2149,35 @@
       "gt_frame_best": 308,
       "gt_timestamp": 10.266666666666667,
       "gt_timestamp_provenance": "DERIVED_FRAME_BEST_DIVIDED_BY_FPS",
-      "nearest_candidate_frame": 400,
-      "nearest_candidate_time": 13.3333,
-      "candidate_time_offset_ms": 3066.6666666666665,
+      "nearest_candidate_frame": 189,
+      "nearest_candidate_time": 6.3,
+      "candidate_time_offset_ms": -3966.6666666666665,
       "candidate_generated": false,
       "candidate_score": 1.0,
-      "ball_state": "DETECTED",
-      "ball_confidence": 0.531,
+      "ball_state": "TRACKED",
+      "ball_confidence": 0.415,
       "pre_velocity": [
-        -30.030030030031135,
-        -230.63063063063933
+        -55.172413793103566,
+        155.32233883058495
       ],
       "post_velocity": [
-        -17.66467065868342,
-        -157.78443113772335
+        60.869565217391354,
+        -197.30134932533733
       ],
-      "normalized_speed": 0.0888252737430874,
-      "direction_change": 1.0307317283966118,
-      "acceleration": 1.0057342559207116,
-      "curvature": 0.11631328605430692,
-      "player1_distance_normalized": 6.035743902779303,
-      "player2_distance_normalized": 0.4186217214015354,
+      "normalized_speed": 0.08427674973750848,
+      "direction_change": 177.58988399840513,
+      "acceleration": 2.526487101592105,
+      "curvature": 0.7040150767262037,
+      "player1_distance_normalized": 5.934356400775196,
+      "player2_distance_normalized": 0.37730715941175647,
       "selected_player": 2,
-      "player_scale": 103.52354431152344,
+      "player_scale": 99.42644500732422,
       "pose_support": null,
       "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
-      "candidate_event_type": "UNKNOWN_EVENT",
-      "physical_event_type": "UNKNOWN_PHYSICAL_EVENT",
-      "verification_score": 0.7841837704797954,
-      "verification_pass": false,
+      "candidate_event_type": "BOUNCE",
+      "physical_event_type": "BALL_CONTACT_WITH_COURT",
+      "verification_score": 0.9139486784749449,
+      "verification_pass": true,
       "rejection_stage": "RAW_BALL_TRAJECTORY",
       "rejection_reason": "TRACKING_GAP",
       "final_event_emitted": false
@@ -2137,35 +2189,35 @@
       "gt_frame_best": 332,
       "gt_timestamp": 11.066666666666666,
       "gt_timestamp_provenance": "DERIVED_FRAME_BEST_DIVIDED_BY_FPS",
-      "nearest_candidate_frame": 400,
-      "nearest_candidate_time": 13.3333,
-      "candidate_time_offset_ms": 2266.6666666666665,
+      "nearest_candidate_frame": 189,
+      "nearest_candidate_time": 6.3,
+      "candidate_time_offset_ms": -4766.666666666667,
       "candidate_generated": false,
       "candidate_score": 1.0,
-      "ball_state": "DETECTED",
-      "ball_confidence": 0.531,
+      "ball_state": "TRACKED",
+      "ball_confidence": 0.415,
       "pre_velocity": [
-        -30.030030030031135,
-        -230.63063063063933
+        -55.172413793103566,
+        155.32233883058495
       ],
       "post_velocity": [
-        -17.66467065868342,
-        -157.78443113772335
+        60.869565217391354,
+        -197.30134932533733
       ],
-      "normalized_speed": 0.0888252737430874,
-      "direction_change": 1.0307317283966118,
-      "acceleration": 1.0057342559207116,
-      "curvature": 0.11631328605430692,
-      "player1_distance_normalized": 6.035743902779303,
-      "player2_distance_normalized": 0.4186217214015354,
+      "normalized_speed": 0.08427674973750848,
+      "direction_change": 177.58988399840513,
+      "acceleration": 2.526487101592105,
+      "curvature": 0.7040150767262037,
+      "player1_distance_normalized": 5.934356400775196,
+      "player2_distance_normalized": 0.37730715941175647,
       "selected_player": 2,
-      "player_scale": 103.52354431152344,
+      "player_scale": 99.42644500732422,
       "pose_support": null,
       "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
-      "candidate_event_type": "UNKNOWN_EVENT",
-      "physical_event_type": "UNKNOWN_PHYSICAL_EVENT",
-      "verification_score": 0.7841837704797954,
-      "verification_pass": false,
+      "candidate_event_type": "BOUNCE",
+      "physical_event_type": "BALL_CONTACT_WITH_COURT",
+      "verification_score": 0.9139486784749449,
+      "verification_pass": true,
       "rejection_stage": "RAW_BALL_TRAJECTORY",
       "rejection_reason": "TRACKING_GAP",
       "final_event_emitted": false
@@ -2177,35 +2229,35 @@
       "gt_frame_best": 345,
       "gt_timestamp": 11.5,
       "gt_timestamp_provenance": "DERIVED_FRAME_BEST_DIVIDED_BY_FPS",
-      "nearest_candidate_frame": 400,
-      "nearest_candidate_time": 13.3333,
-      "candidate_time_offset_ms": 1833.3333333333333,
+      "nearest_candidate_frame": 189,
+      "nearest_candidate_time": 6.3,
+      "candidate_time_offset_ms": -5200.0,
       "candidate_generated": false,
       "candidate_score": 1.0,
-      "ball_state": "DETECTED",
-      "ball_confidence": 0.531,
+      "ball_state": "TRACKED",
+      "ball_confidence": 0.415,
       "pre_velocity": [
-        -30.030030030031135,
-        -230.63063063063933
+        -55.172413793103566,
+        155.32233883058495
       ],
       "post_velocity": [
-        -17.66467065868342,
-        -157.78443113772335
+        60.869565217391354,
+        -197.30134932533733
       ],
-      "normalized_speed": 0.0888252737430874,
-      "direction_change": 1.0307317283966118,
-      "acceleration": 1.0057342559207116,
-      "curvature": 0.11631328605430692,
-      "player1_distance_normalized": 6.035743902779303,
-      "player2_distance_normalized": 0.4186217214015354,
+      "normalized_speed": 0.08427674973750848,
+      "direction_change": 177.58988399840513,
+      "acceleration": 2.526487101592105,
+      "curvature": 0.7040150767262037,
+      "player1_distance_normalized": 5.934356400775196,
+      "player2_distance_normalized": 0.37730715941175647,
       "selected_player": 2,
-      "player_scale": 103.52354431152344,
+      "player_scale": 99.42644500732422,
       "pose_support": null,
       "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
-      "candidate_event_type": "UNKNOWN_EVENT",
-      "physical_event_type": "UNKNOWN_PHYSICAL_EVENT",
-      "verification_score": 0.7841837704797954,
-      "verification_pass": false,
+      "candidate_event_type": "BOUNCE",
+      "physical_event_type": "BALL_CONTACT_WITH_COURT",
+      "verification_score": 0.9139486784749449,
+      "verification_pass": true,
       "rejection_stage": "RAW_BALL_TRAJECTORY",
       "rejection_reason": "TRACKING_GAP",
       "final_event_emitted": false
@@ -2217,35 +2269,35 @@
       "gt_frame_best": 370,
       "gt_timestamp": 12.333333333333334,
       "gt_timestamp_provenance": "DERIVED_FRAME_BEST_DIVIDED_BY_FPS",
-      "nearest_candidate_frame": 400,
-      "nearest_candidate_time": 13.3333,
-      "candidate_time_offset_ms": 1000.0,
+      "nearest_candidate_frame": 189,
+      "nearest_candidate_time": 6.3,
+      "candidate_time_offset_ms": -6033.333333333333,
       "candidate_generated": false,
       "candidate_score": 1.0,
-      "ball_state": "DETECTED",
-      "ball_confidence": 0.531,
+      "ball_state": "TRACKED",
+      "ball_confidence": 0.415,
       "pre_velocity": [
-        -30.030030030031135,
-        -230.63063063063933
+        -55.172413793103566,
+        155.32233883058495
       ],
       "post_velocity": [
-        -17.66467065868342,
-        -157.78443113772335
+        60.869565217391354,
+        -197.30134932533733
       ],
-      "normalized_speed": 0.0888252737430874,
-      "direction_change": 1.0307317283966118,
-      "acceleration": 1.0057342559207116,
-      "curvature": 0.11631328605430692,
-      "player1_distance_normalized": 6.035743902779303,
-      "player2_distance_normalized": 0.4186217214015354,
+      "normalized_speed": 0.08427674973750848,
+      "direction_change": 177.58988399840513,
+      "acceleration": 2.526487101592105,
+      "curvature": 0.7040150767262037,
+      "player1_distance_normalized": 5.934356400775196,
+      "player2_distance_normalized": 0.37730715941175647,
       "selected_player": 2,
-      "player_scale": 103.52354431152344,
+      "player_scale": 99.42644500732422,
       "pose_support": null,
       "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
-      "candidate_event_type": "UNKNOWN_EVENT",
-      "physical_event_type": "UNKNOWN_PHYSICAL_EVENT",
-      "verification_score": 0.7841837704797954,
-      "verification_pass": false,
+      "candidate_event_type": "BOUNCE",
+      "physical_event_type": "BALL_CONTACT_WITH_COURT",
+      "verification_score": 0.9139486784749449,
+      "verification_pass": true,
       "rejection_stage": "RAW_BALL_TRAJECTORY",
       "rejection_reason": "TRACKING_GAP",
       "final_event_emitted": false

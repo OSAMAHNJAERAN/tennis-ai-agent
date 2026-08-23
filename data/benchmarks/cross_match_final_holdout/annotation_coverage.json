@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "coverage_version": "1.0",
+  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_RALLY_INTERVALS",
+  "annotation_scope": "PHYSICAL_EVENTS_EXHAUSTIVE",
+  "coverage_basis": "RAW_VIDEO",
+  "coverage_policy": "Only predictions whose frame lies inside an inclusive fully reviewed interval may be TP or FP. All other predictions are OUTSIDE_SCOPE.",
+  "review_date": "2026-08-23",
+  "review_method": "RAW_VIDEO_PLAYBACK_PLUS_DENSE_RAW_FRAME_CONTACT_SHEETS",
+  "review_provenance": {
+    "original_annotation_protocol": "data/benchmarks/cross_match_final_holdout/annotation_protocol.md",
+    "raw_review_manifest": "artifacts/validation/phase6_4_coverage_raw_review_dense/manifest.json",
+    "prediction_inputs_used": false,
+    "automated_tracks_used": false,
+    "existing_fp_labels_used": false,
+    "human_approval_claimed_by_this_correction": false,
+    "reviewer_type": "CODEX_MODEL_ASSISTED_RAW_VIDEO_REVIEW"
+  },
+  "videos": {
+    "video_08": {
+      "video_id": "video_08",
+      "fps": 30.0,
+      "frame_count": 469,
+      "coverage_version": "1.0",
+      "review_method": "RAW_VIDEO_DENSE_FRAME_REVIEW_AT_5_FRAME_INTERVALS_WITH_ORIGINAL_FRAME_LEVEL_GT_PROTOCOL",
+      "review_provenance": "Raw MP4 SHA256 e3f6f7af23d4bf9921dcf0e3a7c5f1dff9cad4f02ee0155420bf8939f72f2944; dense review pages 01-03 through frame 202.",
+      "review_date": "2026-08-23",
+      "review_status": "REVIEWED_RAW_VIDEO_NOT_HUMAN_APPROVED_BY_THIS_CORRECTION",
+      "fully_reviewed_intervals": [
+        {
+          "interval_id": "video_08_primary_rally",
+          "start_frame": 0,
+          "end_frame": 202,
+          "start_timestamp_s": 0.0,
+          "end_timestamp_s": 6.733333333333333,
+          "annotation_scope": "PHYSICAL_EVENTS_EXHAUSTIVE",
+          "physical_event_annotation_complete": true,
+          "notes": "Pre-serve lead-in plus the originally annotated primary rally. Later raw frames show additional tennis action and remain unannotated/outside scope."
+        }
+      ],
+      "notes": "Frames 203-468 are UNANNOTATED, not negative GT."
+    },
+    "video_09": {
+      "video_id": "video_09",
+      "fps": 30.0,
+      "frame_count": 408,
+      "coverage_version": "1.0",
+      "review_method": "RAW_VIDEO_DENSE_FRAME_REVIEW_AT_5_FRAME_INTERVALS_WITH_ORIGINAL_FRAME_LEVEL_GT_PROTOCOL",
+      "review_provenance": "Raw MP4 SHA256 87dd51040fbb6db581c1fc4448905c2ce22b8144b75ea5d66d2e04a1ceb38c26; dense review pages 01-03 through frame 240.",
+      "review_date": "2026-08-23",
+      "review_status": "REVIEWED_RAW_VIDEO_NOT_HUMAN_APPROVED_BY_THIS_CORRECTION",
+      "fully_reviewed_intervals": [
+        {
+          "interval_id": "video_09_primary_rally",
+          "start_frame": 0,
+          "end_frame": 240,
+          "start_timestamp_s": 0.0,
+          "end_timestamp_s": 8.0,
+          "annotation_scope": "PHYSICAL_EVENTS_EXHAUSTIVE",
+          "physical_event_annotation_complete": true,
+          "notes": "Pre-serve lead-in plus the originally annotated primary rally. Post-rally footage is excluded from negative evaluation."
+        }
+      ],
+      "notes": "Frames 241-407 are UNANNOTATED, not negative GT."
+    },
+    "video_10": {
+      "video_id": "video_10",
+      "fps": 30.0,
+      "frame_count": 1795,
+      "coverage_version": "1.0",
+      "review_method": "RAW_VIDEO_DENSE_FRAME_REVIEW_AT_5_FRAME_INTERVALS_WITH_ORIGINAL_FRAME_LEVEL_GT_PROTOCOL",
+      "review_provenance": "Raw MP4 SHA256 5b605c4a4663de096457cd2e27a34c3580ca16a66643511fa7756a9c7b05864d; dense review pages 01-04 through frame 399.",
+      "review_date": "2026-08-23",
+      "review_status": "REVIEWED_RAW_VIDEO_NOT_HUMAN_APPROVED_BY_THIS_CORRECTION",
+      "fully_reviewed_intervals": [
+        {
+          "interval_id": "video_10_primary_rally",
+          "start_frame": 0,
+          "end_frame": 399,
+          "start_timestamp_s": 0.0,
+          "end_timestamp_s": 13.3,
+          "annotation_scope": "PHYSICAL_EVENTS_EXHAUSTIVE",
+          "physical_event_annotation_complete": true,
+          "notes": "Pre-serve lead-in plus the originally annotated primary rally. The prior executable 400-frame truncation is replaced by this explicit inclusive coverage interval."
+        }
+      ],
+      "notes": "Frames 400-1794 include additional play, between-point activity, and broadcast/crowd views; they are UNANNOTATED and must be OUTSIDE_SCOPE."
+    }
+  }
+}

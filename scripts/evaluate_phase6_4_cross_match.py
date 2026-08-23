@@ -20,6 +20,12 @@ REPOSITORY_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPOSITORY_ROOT not in sys.path:
     sys.path.insert(0, REPOSITORY_ROOT)
 
+from src.events.event_evaluator import (  # noqa: E402
+    canonical_event_type,
+    canonical_one_to_one_matches,
+    frame_inside_annotation_coverage,
+)
+
 
 EVENT_CLASSES = ("SERVE_CONTACT", "PLAYER_HIT", "BOUNCE")
 SHOT_CLASSES = ("FOREHAND", "BACKHAND", "SERVE")
@@ -52,8 +58,7 @@ def _prf(tp: int, fp: int, fn: int) -> Dict[str, Any]:
 
 
 def _event_type(record: Dict[str, Any]) -> str:
-    value = record.get("event_type", "")
-    return "PLAYER_HIT" if value in ("PLAYER_1_HIT", "PLAYER_2_HIT") else value
+    return canonical_event_type(record)
 
 
 def _frame(record: Dict[str, Any]) -> int:
@@ -69,43 +74,51 @@ def one_to_one_matches(
     tolerance_frames: int,
     *,
     require_event_type: bool = False,
+    fps: float = 30.0,
 ) -> List[Tuple[int, int, int]]:
-    """Globally nearest one-to-one matches; duplicate predictions remain FPs."""
-    pairs: List[Tuple[int, int, int]] = []
-    for pred_index, prediction in enumerate(predictions):
-        for gt_index, gt in enumerate(ground_truth):
-            if (
-                prediction.get("_video_id") is not None
-                and gt.get("_video_id") is not None
-                and prediction["_video_id"] != gt["_video_id"]
-            ):
-                continue
-            if require_event_type and _event_type(prediction) != _event_type(gt):
-                continue
-            prediction_frame = _frame(prediction)
-            difference = abs(prediction_frame - _frame(gt))
-            frame_min = int(gt.get("frame_min", _frame(gt)))
-            frame_max = int(gt.get("frame_max", _frame(gt)))
-            if prediction_frame < frame_min:
-                tolerance_distance = frame_min - prediction_frame
-            elif prediction_frame > frame_max:
-                tolerance_distance = prediction_frame - frame_max
-            else:
-                tolerance_distance = 0
-            if tolerance_distance <= tolerance_frames:
-                pairs.append((difference, pred_index, gt_index))
-    pairs.sort(key=lambda item: (item[0], item[1], item[2]))
-
-    used_predictions = set()
-    used_ground_truth = set()
-    matches: List[Tuple[int, int, int]] = []
-    for difference, pred_index, gt_index in pairs:
-        if pred_index in used_predictions or gt_index in used_ground_truth:
-            continue
-        used_predictions.add(pred_index)
-        used_ground_truth.add(gt_index)
-        matches.append((pred_index, gt_index, difference))
-    return matches
+    """Compatibility adapter to the one canonical timestamp matcher."""
+    if fps <= 0:
+        raise ValueError("fps must be positive")
+    normalized_predictions = [
+        {
+            **record,
+            **(
+                {"video_id": record["_video_id"]}
+                if "video_id" not in record and "_video_id" in record
+                else {}
+            ),
+        }
+        for record in predictions
+    ]
+    normalized_gt = [
+        {
+            **record,
+            **(
+                {"video_id": record["_video_id"]}
+                if "video_id" not in record and "_video_id" in record
+                else {}
+            ),
+        }
+        for record in ground_truth
+    ]
+    explicit_ids = {
+        str(record["video_id"])
+        for record in (*normalized_predictions, *normalized_gt)
+        if record.get("video_id") is not None
+    }
+    single_video_id = next(iter(explicit_ids)) if len(explicit_ids) == 1 else None
+    matches = canonical_one_to_one_matches(
+        normalized_predictions,
+        normalized_gt,
+        tolerance_s=tolerance_frames / fps,
+        fps=fps,
+        require_event_type=require_event_type,
+        single_video_id=single_video_id,
+    )
+    return [
+        (pred_index, gt_index, int(round(distance_s * fps)))
+        for pred_index, gt_index, distance_s in matches
+    ]
 
 
 def evaluate_split_metrics(
@@ -132,6 +145,7 @@ def evaluate_split_metrics(
         evaluated_event_gt,
         tolerance_frames,
         require_event_type=bool(ground_truth_events and event_predictions is not None),
+        fps=fps,
     )
     timing_frames = [difference for _, _, difference in event_matches]
     event_overall = _prf(
@@ -155,7 +169,11 @@ def evaluate_split_metrics(
             class_predictions = [p for p in event_predictions if _event_type(p) == event_class]
             class_gt = [g for g in ground_truth_events if _event_type(g) == event_class]
             class_matches = one_to_one_matches(
-                class_predictions, class_gt, tolerance_frames, require_event_type=True
+                class_predictions,
+                class_gt,
+                tolerance_frames,
+                require_event_type=True,
+                fps=fps,
             )
             metric = _prf(
                 len(class_matches),
@@ -167,7 +185,9 @@ def evaluate_split_metrics(
             metric["timing_mae_ms"] = 1000.0 * _mean(errors) / fps if errors else None
             per_event_class[event_class] = metric
 
-    shot_matches = one_to_one_matches(predictions, ground_truth_shots, tolerance_frames)
+    shot_matches = one_to_one_matches(
+        predictions, ground_truth_shots, tolerance_frames, fps=fps
+    )
     matched_pairs = [(predictions[p], ground_truth_shots[g]) for p, g, _ in shot_matches]
     shot_metrics: Dict[str, Dict[str, Any]] = {}
     for shot_class in SHOT_CLASSES:
@@ -220,6 +240,83 @@ def evaluate_split_metrics(
     }
 
 
+def aggregate_split_metrics(per_video: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
+    """Aggregate independent per-video counts without concatenating timelines."""
+    event_rows = [row["event_detection"] for row in per_video.values()]
+    event_overall = _prf(
+        sum(row["true_positives"] for row in event_rows),
+        sum(row["false_positives"] for row in event_rows),
+        sum(row["false_negatives"] for row in event_rows),
+    )
+    timing_weight = sum(row["true_positives"] for row in event_rows)
+    event_overall.update(
+        {
+            "mean_timing_error_frames": None,
+            "mean_timing_error_ms": (
+                sum(
+                    row["mean_timing_error_ms"] * row["true_positives"]
+                    for row in event_rows
+                    if row["mean_timing_error_ms"] is not None
+                )
+                / timing_weight
+                if timing_weight
+                else None
+            ),
+            "matching_tolerance_ms": 200.0,
+            "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+            "scope": "ALL_PHYSICAL_EVENTS",
+        }
+    )
+
+    per_event_class = {}
+    for event_class in EVENT_CLASSES:
+        rows = [
+            row["event_detection_per_class"][event_class]
+            for row in per_video.values()
+            if event_class in row["event_detection_per_class"]
+        ]
+        if not rows:
+            continue
+        per_event_class[event_class] = _prf(
+            sum(row["true_positives"] for row in rows),
+            sum(row["false_positives"] for row in rows),
+            sum(row["false_negatives"] for row in rows),
+        )
+
+    conditional_rows = [row["conditional_shot_classification"] for row in per_video.values()]
+    shot_metrics = {}
+    for shot_class in SHOT_CLASSES:
+        rows = [row["per_class"][shot_class] for row in conditional_rows]
+        metric = _prf(
+            sum(row["true_positives"] for row in rows),
+            sum(row["false_positives"] for row in rows),
+            sum(row["false_negatives"] for row in rows),
+        )
+        metric["support"] = sum(row["support"] for row in rows)
+        shot_metrics[shot_class] = metric
+    matched_hits = sum(row["matched_hit_count"] for row in conditional_rows)
+    unknown = sum(row["unknown_abstentions"] for row in conditional_rows)
+
+    end_rows = [row["end_to_end_shot_recognition"] for row in per_video.values()]
+    return {
+        "event_detection": event_overall,
+        "event_detection_per_class": per_event_class,
+        "conditional_shot_classification": {
+            "per_class": shot_metrics,
+            "macro_f1": float(statistics.fmean(row["f1"] for row in shot_metrics.values())),
+            "matched_hit_count": matched_hits,
+            "unknown_abstentions": unknown,
+            "unknown_rate": unknown / matched_hits if matched_hits else None,
+            "coverage": (matched_hits - unknown) / matched_hits if matched_hits else None,
+        },
+        "end_to_end_shot_recognition": _prf(
+            sum(row["true_positives"] for row in end_rows),
+            sum(row["false_positives"] for row in end_rows),
+            sum(row["false_negatives"] for row in end_rows),
+        ),
+    }
+
+
 def _load_json(path: str) -> Dict[str, Any]:
     with open(path, "r", encoding="utf-8") as stream:
         return json.load(stream)
@@ -231,19 +328,32 @@ def _evaluate_existing_video(
     output_root: str,
     gt_events: Dict[str, List[Dict[str, Any]]],
     gt_shots: Dict[str, List[Dict[str, Any]]],
+    coverage: Dict[str, Any],
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]], List[Dict[str, Any]]]:
     output_dir = os.path.join(output_root, video_id)
     shots = _load_json(os.path.join(output_dir, "shot_events.json")).get("shot_events", [])
     events = _load_json(os.path.join(output_dir, "match_events.json")).get("events", [])
     detections = _load_json(os.path.join(output_dir, "detections.json"))
     frames = detections.get("frames", [])
+    covered_shots = [
+        record
+        for record in shots
+        if frame_inside_annotation_coverage(video_id, _frame(record), coverage)
+    ]
+    covered_events = [
+        record
+        for record in events
+        if frame_inside_annotation_coverage(video_id, _frame(record), coverage)
+    ]
     metrics = evaluate_split_metrics(
-        shots,
+        covered_shots,
         gt_shots.get(video_id, []),
         gt_events.get(video_id, []),
         fps=float(metadata["fps"]),
-        event_predictions=events,
+        event_predictions=covered_events,
     )
+    metrics["outside_scope_event_predictions"] = len(events) - len(covered_events)
+    metrics["outside_scope_shot_predictions"] = len(shots) - len(covered_shots)
     metrics["player_1_coverage"] = (
         sum(frame.get("player_1") is not None for frame in frames) / len(frames) if frames else None
     )
@@ -271,6 +381,9 @@ def main() -> None:
     args = parser.parse_args()
 
     videos = _load_json("data/benchmarks/cross_match_final_holdout/videos.json")["videos"]
+    coverage = _load_json(
+        "data/benchmarks/cross_match_final_holdout/annotation_coverage.json"
+    )
     gt_events = _load_json("data/benchmarks/cross_match_final_holdout/ground_truth_events.json")["events"]
     gt_shots = _load_json("data/benchmarks/cross_match_final_holdout/ground_truth_shots.json")["shots"]
 
@@ -291,27 +404,12 @@ def main() -> None:
             print(f"{video_id}: inference completed in {time.time() - started:.2f}s")
 
     per_video: Dict[str, Any] = {}
-    all_shots: List[Dict[str, Any]] = []
-    all_events: List[Dict[str, Any]] = []
-    all_gt_shots: List[Dict[str, Any]] = []
-    all_gt_events: List[Dict[str, Any]] = []
     for video_id, metadata in videos.items():
         metrics, shots, events = _evaluate_existing_video(
-            video_id, metadata, args.output_root, gt_events, gt_shots
+            video_id, metadata, args.output_root, gt_events, gt_shots, coverage
         )
         per_video[video_id] = metrics
-        all_shots.extend({**record, "_video_id": video_id} for record in shots)
-        all_events.extend({**record, "_video_id": video_id} for record in events)
-        all_gt_shots.extend({**record, "_video_id": video_id} for record in gt_shots.get(video_id, []))
-        all_gt_events.extend({**record, "_video_id": video_id} for record in gt_events.get(video_id, []))
-
-    aggregate = evaluate_split_metrics(
-        all_shots,
-        all_gt_shots,
-        all_gt_events,
-        fps=30.0,
-        event_predictions=all_events,
-    )
+    aggregate = aggregate_split_metrics(per_video)
     report = {
         "schema_version": "1.0",
         "scientific_split": "CROSS_MATCH_DIAGNOSTIC",

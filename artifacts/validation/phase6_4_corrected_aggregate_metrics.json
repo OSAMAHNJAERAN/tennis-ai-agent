@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "metric_scope": "STAGE_3_TYPE_AGNOSTIC_PHYSICAL_CONTACT",
+  "aggregate": {
+    "true_positives": 20,
+    "false_positives": 25,
+    "false_negatives": 20,
+    "precision": 0.4444444444444444,
+    "recall": 0.5,
+    "f1": 0.47058823529411764,
+    "outside_scope_prediction_count": 83,
+    "covered_gt_count": 40,
+    "timing_mae_s": 0.04832833333333335,
+    "timing_mae_ms": 48.328333333333354,
+    "timing_mae_frames": null
+  },
+  "count_invariants": {
+    "true_positives": true,
+    "false_positives": true,
+    "false_negatives": true
+  },
+  "evaluator_provenance": {
+    "phase6_4_evaluator_version": "2.0",
+    "evaluator_path": "src/events/event_evaluator.py",
+    "evaluator_sha256": "4309a6fa08230807bea8f9cef5764f852cb6f5897cca50494a3f00fe52b9ca57",
+    "gt_path": "data/benchmarks/cross_match_final_holdout/ground_truth_events.json",
+    "gt_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+    "annotation_coverage_path": "data/benchmarks/cross_match_final_holdout/annotation_coverage.json",
+    "annotation_coverage_sha256": "4659682bdcd1ecf350598ada05513de0ffe5679a2ac796704520bc14d4f05a91",
+    "video_manifest_path": "data/benchmarks/cross_match_final_holdout/videos.json",
+    "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+    "config_path": "configs/phase6_analytics/pipeline.yaml",
+    "config_sha256": "19653074723994b9591ad4fdd7d3e954130e1ef8b2ebb8c46fb1a7f45179f852",
+    "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_RALLY_INTERVALS",
+    "matching_tolerance_s": 0.2,
+    "matching_semantics": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_GREEDY_ONE_TO_ONE"
+  }
+}

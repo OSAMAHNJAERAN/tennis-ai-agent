@@ -25,8 +25,16 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
-from scripts.evaluate_phase6_4_cross_match import evaluate_split_metrics, one_to_one_matches
+from scripts.evaluate_phase6_4_cross_match import (
+    aggregate_split_metrics,
+    evaluate_split_metrics,
+    one_to_one_matches,
+)
 from src.events.event_detector import EventDetectionAnalysis, TennisEvent, TennisEventDetector
+from src.events.event_evaluator import (
+    PHASE6_4_EVALUATOR_VERSION,
+    frame_inside_annotation_coverage,
+)
 from src.tracking.temporal_ball_tracker import BallState, TemporalBallPoint
 from src.utils.bbox_utils import BBox
 
@@ -44,6 +52,9 @@ GT_PATH = os.path.join(
 )
 VIDEOS_PATH = os.path.join(
     REPO_ROOT, "data", "benchmarks", "cross_match_final_holdout", "videos.json"
+)
+COVERAGE_PATH = os.path.join(
+    REPO_ROOT, "data", "benchmarks", "cross_match_final_holdout", "annotation_coverage.json"
 )
 CONFIG_PATH = os.path.join(REPO_ROOT, "configs", "phase6_analytics", "pipeline.yaml")
 PRESERVED_PRODUCTION_REPORT = os.path.join(
@@ -93,9 +104,19 @@ def _frame(record: Mapping[str, Any]) -> int:
     raise KeyError(record)
 
 
+def _covered_records(
+    records: Sequence[Dict[str, Any]], video_id: str, coverage: Mapping[str, Any]
+) -> List[Dict[str, Any]]:
+    return [
+        record
+        for record in records
+        if frame_inside_annotation_coverage(video_id, _frame(record), coverage)
+    ]
+
+
 def _event_record(event: TennisEvent, video_id: str) -> Dict[str, Any]:
     return {
-        "_video_id": video_id,
+        "video_id": video_id,
         "frame": event.frame_index,
         "timestamp_s": event.timestamp_s,
         "event_type": event.event_type.value,
@@ -108,7 +129,7 @@ def _event_record(event: TennisEvent, video_id: str) -> Dict[str, Any]:
 
 def _candidate_record(candidate: Any, video_id: str) -> Dict[str, Any]:
     return {
-        "_video_id": video_id,
+        "video_id": video_id,
         "frame": int(candidate.frame_index),
         "timestamp_s": float(candidate.timestamp_s),
         "score": float(candidate.score),
@@ -219,11 +240,12 @@ def _matching_by_gt(
     gt: Sequence[Dict[str, Any]],
     tolerance: int,
     require_type: bool,
+    fps: float,
 ) -> Dict[int, Tuple[int, int]]:
     return {
         gt_index: (prediction_index, difference)
         for prediction_index, gt_index, difference in one_to_one_matches(
-            predictions, gt, tolerance, require_event_type=require_type
+            predictions, gt, tolerance, require_event_type=require_type, fps=fps
         )
     }
 
@@ -237,12 +259,19 @@ def _recall_summary(
 ) -> Dict[str, Any]:
     matched: Counter[str] = Counter()
     support: Counter[str] = Counter()
-    timing: List[int] = []
+    timing_ms: List[float] = []
     for video_id, gt in gt_by_video.items():
         predictions = list(per_video_predictions.get(video_id, []))
         tolerance = max(1, round(0.2 * float(videos[video_id]["fps"])))
-        matches = one_to_one_matches(predictions, gt, tolerance, require_event_type=require_type)
-        timing.extend(difference for _, _, difference in matches)
+        native_fps = float(videos[video_id]["fps"])
+        matches = one_to_one_matches(
+            predictions,
+            gt,
+            tolerance,
+            require_event_type=require_type,
+            fps=native_fps,
+        )
+        timing_ms.extend(1000.0 * difference / native_fps for _, _, difference in matches)
         for _, gt_index, _ in matches:
             matched[_canonical_type(gt[gt_index])] += 1
             matched["OVERALL"] += 1
@@ -257,26 +286,30 @@ def _recall_summary(
         "matched": dict(matched),
         "support": dict(support),
         "recall": recall,
-        "timing_mae_frames": statistics.fmean(timing) if timing else None,
-        "timing_mae_ms": 1000.0 * statistics.fmean(timing) / 30.0 if timing else None,
+        "timing_mae_frames": None,
+        "timing_mae_ms": statistics.fmean(timing_ms) if timing_ms else None,
     }
 
 
 def _aggregate_event_metrics(
     per_video_events: Mapping[str, Sequence[Dict[str, Any]]],
     gt_by_video: Mapping[str, Sequence[Dict[str, Any]]],
+    videos: Mapping[str, Dict[str, Any]],
 ) -> Dict[str, Any]:
-    predictions = [
-        {**row, "_video_id": video_id}
-        for video_id, rows in per_video_events.items() for row in rows
-    ]
-    gt = [
-        {**row, "_video_id": video_id}
-        for video_id, rows in gt_by_video.items() for row in rows
-    ]
-    res = evaluate_split_metrics([], [], gt, fps=30.0, event_predictions=predictions)
-    phys = evaluate_split_metrics(predictions, [], gt, fps=30.0, event_predictions=None)
-    res["event_detection"] = phys["event_detection"]
+    semantic_by_video = {}
+    physical_by_video = {}
+    for video_id, rows in per_video_events.items():
+        native_fps = float(videos[video_id]["fps"])
+        predictions = [{**row, "video_id": video_id} for row in rows]
+        gt = [{**row, "video_id": video_id} for row in gt_by_video[video_id]]
+        semantic_by_video[video_id] = evaluate_split_metrics(
+            [], [], gt, fps=native_fps, event_predictions=predictions
+        )
+        physical_by_video[video_id] = evaluate_split_metrics(
+            predictions, [], gt, fps=native_fps, event_predictions=None
+        )
+    res = aggregate_split_metrics(semantic_by_video)
+    res["event_detection"] = aggregate_split_metrics(physical_by_video)["event_detection"]
     return res
 
 
@@ -319,7 +352,7 @@ def _stage_predictions(
             for trace in analysis.verification_traces:
                 if not all(trace["stage_pass"].get(s) for s in ordered[:idx + 1]):
                     continue
-                row = {"frame": trace["refined_frame"], "_video_id": video_id}
+                row = {"frame": trace["refined_frame"], "video_id": video_id}
                 if stage_name in {"event_type_classification", "temporal_suppression"}:
                     row["event_type"] = trace["candidate_event_type"]
                 rows.append(row)
@@ -333,6 +366,7 @@ def _forensic_rows(
     gt_by_video: Mapping[str, Sequence[Dict[str, Any]]],
     videos: Mapping[str, Dict[str, Any]],
     points_by_video: Mapping[str, Sequence[TemporalBallPoint]],
+    coverage: Mapping[str, Any],
 ) -> Tuple[List[Dict[str, Any]], Dict[str, int], Dict[str, int]]:
     rows: List[Dict[str, Any]] = []
     fn_taxonomy: Counter[str] = Counter()
@@ -341,11 +375,19 @@ def _forensic_rows(
         fps = float(videos[video_id]["fps"])
         tolerance = max(1, round(0.2 * fps))
         gt = list(gt_by_video[video_id])
-        candidates = [_candidate_record(candidate, video_id) for candidate in analysis.candidates]
-        finals = [_event_record(event, video_id) for event in analysis.events]
-        candidate_matches = _matching_by_gt(candidates, gt, tolerance, False)
-        final_matches = _matching_by_gt(finals, gt, tolerance, False)
-        any_final_matches = _matching_by_gt(finals, gt, tolerance, False)
+        candidates = _covered_records(
+            [_candidate_record(candidate, video_id) for candidate in analysis.candidates],
+            video_id,
+            coverage,
+        )
+        finals = _covered_records(
+            [_event_record(event, video_id) for event in analysis.events],
+            video_id,
+            coverage,
+        )
+        candidate_matches = _matching_by_gt(candidates, gt, tolerance, False, fps)
+        final_matches = _matching_by_gt(finals, gt, tolerance, False, fps)
+        any_final_matches = _matching_by_gt(finals, gt, tolerance, False, fps)
         trace_by_id = {trace["candidate_id"]: trace for trace in analysis.verification_traces}
 
         for gt_index, ground_truth in enumerate(gt):
@@ -421,11 +463,15 @@ def _forensic_rows(
 
         matched_prediction_indexes = {
             prediction_index
-            for prediction_index, _, _ in one_to_one_matches(finals, gt, tolerance, require_event_type=True)
+            for prediction_index, _, _ in one_to_one_matches(
+                finals, gt, tolerance, require_event_type=True, fps=fps
+            )
         }
         any_matches = {
             prediction_index
-            for prediction_index, _, _ in one_to_one_matches(finals, gt, tolerance, require_event_type=False)
+            for prediction_index, _, _ in one_to_one_matches(
+                finals, gt, tolerance, require_event_type=False, fps=fps
+            )
         }
         last_gt = max(_frame(row) for row in gt)
         for index, prediction in enumerate(finals):
@@ -450,13 +496,24 @@ def _state_distributions(
     gt_by_video: Mapping[str, Sequence[Dict[str, Any]]],
     videos: Mapping[str, Dict[str, Any]],
     points_by_video: Mapping[str, Sequence[TemporalBallPoint]],
+    coverage: Mapping[str, Any],
 ) -> Dict[str, Dict[str, int]]:
     result = {"true_positive": Counter(), "false_positive": Counter(), "false_negative": Counter()}
     for video_id, analysis in analyses.items():
         gt = list(gt_by_video[video_id])
-        predictions = [_event_record(event, video_id) for event in analysis.events]
+        predictions = _covered_records(
+            [_event_record(event, video_id) for event in analysis.events],
+            video_id,
+            coverage,
+        )
         tolerance = max(1, round(0.2 * float(videos[video_id]["fps"])))
-        matches = one_to_one_matches(predictions, gt, tolerance, require_event_type=True)
+        matches = one_to_one_matches(
+            predictions,
+            gt,
+            tolerance,
+            require_event_type=True,
+            fps=float(videos[video_id]["fps"]),
+        )
         matched_predictions = {prediction for prediction, _, _ in matches}
         matched_gt = {ground_truth for _, ground_truth, _ in matches}
         for index, prediction in enumerate(predictions):
@@ -515,43 +572,67 @@ def _reach_distributions(
 def _resolution_metrics(
     events: Mapping[str, Sequence[Dict[str, Any]]],
     gt: Mapping[str, Sequence[Dict[str, Any]]],
+    videos: Mapping[str, Dict[str, Any]],
 ) -> Dict[str, Any]:
     groups = {"720p": ("video_08", "video_09"), "1080p": ("video_10",)}
     return {
         name: _aggregate_event_metrics(
             {video_id: events[video_id] for video_id in ids},
             {video_id: gt[video_id] for video_id in ids},
+            {video_id: videos[video_id] for video_id in ids},
         )
         for name, ids in groups.items()
     }
 
 
-def _legacy_metrics(root: str, gt: Mapping[str, Sequence[Dict[str, Any]]]) -> Dict[str, Any]:
+def _legacy_metrics(
+    root: str,
+    gt: Mapping[str, Sequence[Dict[str, Any]]],
+    videos: Mapping[str, Dict[str, Any]],
+    coverage: Mapping[str, Any],
+) -> Dict[str, Any]:
     events = {
-        video_id: _load(os.path.join(root, video_id, "match_events.json")).get("events", [])
+        video_id: _covered_records(
+            _load(os.path.join(root, video_id, "match_events.json")).get("events", []),
+            video_id,
+            coverage,
+        )
         for video_id in gt
     }
-    return _aggregate_event_metrics(events, gt)
+    return _aggregate_event_metrics(events, gt, videos)
 
 
 def _pre_recovery_stages(
     input_root: str,
     gt: Mapping[str, Sequence[Dict[str, Any]]],
     videos: Mapping[str, Dict[str, Any]],
+    coverage: Mapping[str, Any],
 ) -> Dict[str, Any]:
     candidates: Dict[str, List[Dict[str, Any]]] = {}
     verifier: Dict[str, List[Dict[str, Any]]] = {}
     finals: Dict[str, List[Dict[str, Any]]] = {}
     for video_id in gt:
-        candidates[video_id] = _load(
-            os.path.join(input_root, video_id, "event_candidates.json")
-        ).get("candidates", [])
-        verifier[video_id] = _load(
-            os.path.join(input_root, video_id, "scoring_events.json")
-        ).get("scoring_events", [])
-        finals[video_id] = _load(
-            os.path.join(input_root, video_id, "match_events.json")
-        ).get("events", [])
+        candidates[video_id] = _covered_records(
+            _load(os.path.join(input_root, video_id, "event_candidates.json")).get(
+                "candidates", []
+            ),
+            video_id,
+            coverage,
+        )
+        verifier[video_id] = _covered_records(
+            _load(os.path.join(input_root, video_id, "scoring_events.json")).get(
+                "scoring_events", []
+            ),
+            video_id,
+            coverage,
+        )
+        finals[video_id] = _covered_records(
+            _load(os.path.join(input_root, video_id, "match_events.json")).get(
+                "events", []
+            ),
+            video_id,
+            coverage,
+        )
     return {
         "candidate_output_already_thresholded_and_nms": _recall_summary(
             candidates, gt, videos, require_type=False
@@ -580,6 +661,7 @@ def main() -> None:
 
     gt_by_video = _load(GT_PATH)["events"]
     videos = _load(VIDEOS_PATH)["videos"]
+    coverage = _load(COVERAGE_PATH)
     with open(CONFIG_PATH, "r", encoding="utf-8") as stream:
         base_config = yaml.safe_load(stream)["event_detection"]
     variant_configs = _variant_configs(base_config)
@@ -609,10 +691,18 @@ def main() -> None:
                 camera_offsets_px=None,
             )
             analyses[video_id] = analysis
-            candidate_predictions[video_id] = [_candidate_record(row, video_id) for row in analysis.candidates]
-            event_predictions[video_id] = [_event_record(row, video_id) for row in analysis.events]
+            candidate_predictions[video_id] = _covered_records(
+                [_candidate_record(row, video_id) for row in analysis.candidates],
+                video_id,
+                coverage,
+            )
+            event_predictions[video_id] = _covered_records(
+                [_event_record(row, video_id) for row in analysis.events],
+                video_id,
+                coverage,
+            )
         candidate_metrics = _recall_summary(candidate_predictions, gt_by_video, videos, require_type=False)
-        metrics = _aggregate_event_metrics(event_predictions, gt_by_video)
+        metrics = _aggregate_event_metrics(event_predictions, gt_by_video, videos)
         ablations.append(_metric_row(
             variant_name, candidate_metrics, metrics,
             sum(len(rows) for rows in event_predictions.values()),
@@ -631,10 +721,21 @@ def main() -> None:
 
     final_analyses = all_variant_analyses["H_FINAL_INTEGRATED"]
     final_events = {
-        video_id: [_event_record(event, video_id) for event in analysis.events]
+        video_id: _covered_records(
+            [_event_record(event, video_id) for event in analysis.events],
+            video_id,
+            coverage,
+        )
         for video_id, analysis in final_analyses.items()
     }
     stage_predictions = _stage_predictions(final_analyses)
+    stage_predictions = {
+        stage_name: {
+            video_id: _covered_records(records, video_id, coverage)
+            for video_id, records in per_video.items()
+        }
+        for stage_name, per_video in stage_predictions.items()
+    }
     stage_rows = []
     for stage_name, predictions in stage_predictions.items():
         stage_rows.append({
@@ -643,10 +744,12 @@ def main() -> None:
             "type_matching_required": False,
         })
     forensic_rows, fn_taxonomy, fp_taxonomy = _forensic_rows(
-        final_analyses, gt_by_video, videos, points_by_video
+        final_analyses, gt_by_video, videos, points_by_video, coverage
     )
-    final_metrics = _aggregate_event_metrics(final_events, gt_by_video)
-    state_distribution = _state_distributions(final_analyses, gt_by_video, videos, points_by_video)
+    final_metrics = _aggregate_event_metrics(final_events, gt_by_video, videos)
+    state_distribution = _state_distributions(
+        final_analyses, gt_by_video, videos, points_by_video, coverage
+    )
 
     grouped = []
     video_ids = list(gt_by_video)
@@ -655,6 +758,7 @@ def main() -> None:
         validation_metrics = _aggregate_event_metrics(
             {validation_video: final_events[validation_video]},
             {validation_video: gt_by_video[validation_video]},
+            {validation_video: videos[validation_video]},
         )["event_detection"]
         grouped.append({
             "development_groups": development,
@@ -669,8 +773,12 @@ def main() -> None:
         VALIDATION_ROOT, "phase6_4_false_negative_audit_pre_recovery.json"
     )
     pre_audit = _load(pre_audit_path) if os.path.exists(pre_audit_path) else None
-    pre_stages = _pre_recovery_stages(args.input_root, gt_by_video, videos)
-    integrated_pre_metrics = _legacy_metrics(args.input_root, gt_by_video)
+    pre_stages = _pre_recovery_stages(
+        args.input_root, gt_by_video, videos, coverage
+    )
+    integrated_pre_metrics = _legacy_metrics(
+        args.input_root, gt_by_video, videos, coverage
+    )
     integrated_pre_events = integrated_pre_metrics["event_detection"]
     ablations.insert(0, {
         "variant": "A_INTEGRATED_PRE_RECOVERY",
@@ -696,12 +804,18 @@ def main() -> None:
         "phase": "6.4",
         "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
         "qualification_evidence": False,
-        "matching_semantics": "GLOBAL_NEAREST_ONE_TO_ONE; GT interval expanded by 0.2 seconds",
+        "phase6_4_evaluator_version": PHASE6_4_EVALUATOR_VERSION,
+        "evaluation_scope_id": coverage["evaluation_scope_id"],
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE; 0.2 second tolerance",
         "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
         "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
         "input_provenance": {
             "ground_truth_events": _provenance(GT_PATH),
             "video_manifest": _provenance(VIDEOS_PATH),
+            "annotation_coverage": _provenance(COVERAGE_PATH),
+            "canonical_event_evaluator": _provenance(
+                os.path.join(REPO_ROOT, "src", "events", "event_evaluator.py")
+            ),
             "active_event_config": _provenance(CONFIG_PATH),
             "event_detector_implementation": _provenance(
                 os.path.join(REPO_ROOT, "src", "events", "event_detector.py")
@@ -727,7 +841,7 @@ def main() -> None:
         "final_stage_metrics": stage_rows,
         "ball_state_distribution_around_outcomes": state_distribution,
         "normalized_player_reach_distributions": _reach_distributions(final_analyses, videos),
-        "resolution_metrics": _resolution_metrics(final_events, gt_by_video),
+        "resolution_metrics": _resolution_metrics(final_events, gt_by_video, videos),
         "grouped_leave_one_video_out": grouped,
     }
     forensic_artifact = {
@@ -752,7 +866,9 @@ def main() -> None:
             "f1": 0.13414634146341464,
             "warning": "Published artifact predates the current interval-aware evaluator fields; retained as the requested historical before-state.",
         },
-        "legacy_baseline_fixed_evaluator_rescore": _legacy_metrics(LEGACY_BASELINE_ROOT, gt_by_video),
+        "legacy_baseline_fixed_evaluator_rescore": _legacy_metrics(
+            LEGACY_BASELINE_ROOT, gt_by_video, videos, coverage
+        ),
         "integrated_pre_recovery_fixed_evaluator": integrated_pre_metrics,
         "ablations": ablations,
         "final_metrics": final_metrics,
