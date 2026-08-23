@@ -4,11 +4,11 @@
     "coverage_review_status": "MODEL_ASSISTED_PROVISIONAL",
     "evaluator_sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
     "evaluator_version": "2.1",
-    "event_config_sha256": "e8258b6ed49ecd28d12d520d520423beee816764226ce93e488a81d0d33011c5",
+    "event_config_sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed",
     "event_detector_sha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
-    "generated_at_utc": "2026-08-23T06:34:01.128700+00:00",
+    "generated_at_utc": "2026-08-23T06:43:49.169530+00:00",
     "generation_command": "python scripts/replay_phase6_4_tracker_variants.py",
-    "git_sha": "5ddd7db15dfcb31ea3d19fb8d085229657ab2722",
+    "git_sha": "eb492ae4c597afe58dd47a1b588f763eaf0204c1",
     "ground_truth_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
     "human_approved": false,
     "matching_algorithm": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_MAX_CARDINALITY_MIN_COST_ONE_TO_ONE",
@@ -30,7 +30,7 @@
       "video_09": "87dd51040fbb6db581c1fc4448905c2ce22b8144b75ea5d66d2e04a1ceb38c26",
       "video_10": "5b605c4a4663de096457cd2e27a34c3580ca16a66643511fa7756a9c7b05864d"
     },
-    "tracker_source_sha256": "c3771197cc660ee373fb53b1fd0b9bc8d7db401a57d03578443882953af90540",
+    "tracker_source_sha256": "93e8a662477c17a5e2e3ebb245bf3f61e68bbda977bffd5ff4b0600d5383546a",
     "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
     "videos": [
       "video_08",
@@ -44,6 +44,7 @@
     "B_CURRENT_PRODUCTION_CONFIG": 40,
     "C_CURRENT_CLASS_DEFAULTS": 40,
     "E_RECONCILED_CONFIG": 40,
+    "F_TARGETED_TRACKER_FIX": 40,
     "H_PRESEMANTIC_INTEGRATED": 40
   },
   "records": [
@@ -114,7 +115,7 @@
       "gt_event_type": "BOUNCE",
       "historical_recovery_nearest_state": null,
       "historical_recovery_stage1": null,
-      "physics_verified": false,
+      "physics_verified": true,
       "preserved_nearest_state": {
         "distance_from_gt_best_frames": 0,
         "frame": 62,
@@ -298,7 +299,7 @@
       "gt_event_type": "BOUNCE",
       "historical_recovery_nearest_state": null,
       "historical_recovery_stage1": null,
-      "physics_verified": true,
+      "physics_verified": false,
       "preserved_nearest_state": {
         "distance_from_gt_best_frames": 0,
         "frame": 130,
@@ -324,7 +325,7 @@
       "video_id": "video_08"
     },
     {
-      "candidate_generated": true,
+      "candidate_generated": false,
       "class_default_nearest_state": {
         "distance_from_gt_best_frames": 0,
         "frame": 142,
@@ -1014,7 +1015,7 @@
       "video_id": "video_09"
     },
     {
-      "candidate_generated": false,
+      "candidate_generated": true,
       "class_default_nearest_state": {
         "distance_from_gt_best_frames": 0,
         "frame": 236,
@@ -1034,7 +1035,7 @@
       "gt_event_type": "BOUNCE",
       "historical_recovery_nearest_state": null,
       "historical_recovery_stage1": null,
-      "physics_verified": false,
+      "physics_verified": true,
       "preserved_nearest_state": {
         "distance_from_gt_best_frames": 0,
         "frame": 236,
@@ -1311,7 +1312,7 @@
       "video_id": "video_10"
     },
     {
-      "candidate_generated": true,
+      "candidate_generated": false,
       "class_default_nearest_state": {
         "distance_from_gt_best_frames": 0,
         "frame": 158,
@@ -1418,7 +1419,7 @@
       "gt_event_type": "PLAYER_HIT",
       "historical_recovery_nearest_state": null,
       "historical_recovery_stage1": null,
-      "physics_verified": true,
+      "physics_verified": false,
       "preserved_nearest_state": {
         "distance_from_gt_best_frames": 2,
         "frame": 193,
@@ -8476,9 +8477,9 @@
         "video_id": "video_10"
       }
     ],
-    "H_PRESEMANTIC_INTEGRATED": [
+    "F_TARGETED_TRACKER_FIX": [
       {
-        "candidate_id": 5,
+        "candidate_id": 4,
         "candidate_refined_frame": 44,
         "causal_stage_survival": {
           "stage_0": true,
@@ -8510,11 +8511,11 @@
         "stage1_window_source_counts": {
           "gated_candidate": 1,
           "high_conf_detector": 15,
-          "kinematic_kalman": 1
+          "linear_interpolation": 1
         },
         "stage1_window_state_counts": {
           "DETECTED": 15,
-          "PREDICTED": 1,
+          "INTERPOLATED": 1,
           "TRACKED": 1
         },
         "video_id": "video_08"
@@ -8526,12 +8527,12 @@
           "stage_0": true,
           "stage_1": true,
           "stage_2": true,
-          "stage_3": false,
-          "stage_4": false,
-          "stage_5": false,
-          "stage_6": false
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
         },
-        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "first_failure_stage": "FULLY_CORRECT",
         "gt_event_id": 2,
         "gt_event_type": "BOUNCE",
         "gt_frame_best": 62,
@@ -8542,22 +8543,24 @@
           "stage_0": true,
           "stage_1": true,
           "stage_2": true,
-          "stage_3": false,
-          "stage_4": false,
-          "stage_5": false,
-          "stage_6": false
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
         },
         "stage1_window_frame_max": 70,
         "stage1_window_frame_min": 54,
         "stage1_window_source_counts": {
           "high_conf_detector": 7,
-          "kinematic_kalman": 5,
-          "linear_interpolation": 5
+          "kinematic_kalman": 1,
+          "linear_interpolation": 5,
+          "rejected_out_of_frame": 4
         },
         "stage1_window_state_counts": {
           "DETECTED": 7,
           "INTERPOLATED": 5,
-          "PREDICTED": 5
+          "MISSING": 4,
+          "PREDICTED": 1
         },
         "video_id": "video_08"
       },
@@ -8592,16 +8595,15 @@
         "stage1_window_frame_max": 82,
         "stage1_window_frame_min": 66,
         "stage1_window_source_counts": {
-          "gated_candidate": 9,
+          "gated_candidate": 11,
           "high_conf_detector": 1,
-          "kinematic_kalman": 3,
-          "linear_interpolation": 4
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 4
         },
         "stage1_window_state_counts": {
-          "DETECTED": 6,
-          "INTERPOLATED": 4,
-          "PREDICTED": 3,
-          "TRACKED": 4
+          "DETECTED": 7,
+          "MISSING": 4,
+          "TRACKED": 6
         },
         "video_id": "video_08"
       },
@@ -8686,49 +8688,6 @@
       },
       {
         "candidate_id": 16,
-        "candidate_refined_frame": 127,
-        "causal_stage_survival": {
-          "stage_0": true,
-          "stage_1": true,
-          "stage_2": true,
-          "stage_3": true,
-          "stage_4": true,
-          "stage_5": true,
-          "stage_6": true
-        },
-        "first_failure_stage": "FULLY_CORRECT",
-        "gt_event_id": 6,
-        "gt_event_type": "BOUNCE",
-        "gt_frame_best": 130,
-        "gt_frame_max": 132,
-        "gt_frame_min": 128,
-        "gt_player_id": 2,
-        "independent_stage_match_capability": {
-          "stage_0": true,
-          "stage_1": true,
-          "stage_2": true,
-          "stage_3": true,
-          "stage_4": true,
-          "stage_5": true,
-          "stage_6": true
-        },
-        "stage1_window_frame_max": 138,
-        "stage1_window_frame_min": 122,
-        "stage1_window_source_counts": {
-          "gated_candidate": 4,
-          "high_conf_detector": 4,
-          "kinematic_kalman": 4,
-          "linear_interpolation": 5
-        },
-        "stage1_window_state_counts": {
-          "DETECTED": 8,
-          "INTERPOLATED": 5,
-          "PREDICTED": 4
-        },
-        "video_id": "video_08"
-      },
-      {
-        "candidate_id": 17,
         "candidate_refined_frame": 136,
         "causal_stage_survival": {
           "stage_0": true,
@@ -8740,6 +8699,49 @@
           "stage_6": false
         },
         "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 6,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 130,
+        "gt_frame_max": 132,
+        "gt_frame_min": 128,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 138,
+        "stage1_window_frame_min": 122,
+        "stage1_window_source_counts": {
+          "gated_candidate": 4,
+          "high_conf_detector": 4,
+          "none": 1,
+          "rejected_out_of_frame": 7,
+          "rejected_outlier": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 8,
+          "MISSING": 9
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
         "gt_event_id": 7,
         "gt_event_type": "PLAYER_HIT",
         "gt_frame_best": 142,
@@ -8749,7 +8751,7 @@
         "independent_stage_match_capability": {
           "stage_0": true,
           "stage_1": true,
-          "stage_2": true,
+          "stage_2": false,
           "stage_3": false,
           "stage_4": false,
           "stage_5": false,
@@ -8768,7 +8770,7 @@
         "video_id": "video_08"
       },
       {
-        "candidate_id": 19,
+        "candidate_id": 18,
         "candidate_refined_frame": 159,
         "causal_stage_survival": {
           "stage_0": true,
@@ -8812,7 +8814,7 @@
         "video_id": "video_08"
       },
       {
-        "candidate_id": 21,
+        "candidate_id": 20,
         "candidate_refined_frame": 175,
         "causal_stage_survival": {
           "stage_0": true,
@@ -8854,7 +8856,7 @@
         "video_id": "video_08"
       },
       {
-        "candidate_id": 23,
+        "candidate_id": 22,
         "candidate_refined_frame": 196,
         "causal_stage_survival": {
           "stage_0": true,
@@ -8898,8 +8900,8 @@
         "video_id": "video_08"
       },
       {
-        "candidate_id": 6,
-        "candidate_refined_frame": 39,
+        "candidate_id": 8,
+        "candidate_refined_frame": 35,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
@@ -8930,20 +8932,20 @@
         "stage1_window_source_counts": {
           "gated_candidate": 4,
           "high_conf_detector": 9,
-          "kinematic_kalman": 3,
-          "linear_interpolation": 1
+          "kinematic_kalman": 2,
+          "linear_interpolation": 2
         },
         "stage1_window_state_counts": {
           "DETECTED": 9,
-          "INTERPOLATED": 1,
-          "PREDICTED": 3,
+          "INTERPOLATED": 2,
+          "PREDICTED": 2,
           "TRACKED": 4
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 8,
-        "candidate_refined_frame": 48,
+        "candidate_id": 10,
+        "candidate_refined_frame": 47,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
@@ -8972,21 +8974,24 @@
         "stage1_window_frame_max": 63,
         "stage1_window_frame_min": 47,
         "stage1_window_source_counts": {
-          "gated_candidate": 3,
+          "gated_candidate": 2,
           "high_conf_detector": 4,
-          "kinematic_kalman": 5,
-          "linear_interpolation": 5
+          "kinematic_kalman": 3,
+          "linear_interpolation": 2,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 5
         },
         "stage1_window_state_counts": {
-          "DETECTED": 5,
-          "INTERPOLATED": 5,
-          "PREDICTED": 5,
-          "TRACKED": 2
+          "DETECTED": 4,
+          "INTERPOLATED": 2,
+          "MISSING": 5,
+          "PREDICTED": 3,
+          "TRACKED": 3
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 9,
+        "candidate_id": 11,
         "candidate_refined_frame": 71,
         "causal_stage_survival": {
           "stage_0": true,
@@ -9016,21 +9021,23 @@
         "stage1_window_frame_max": 76,
         "stage1_window_frame_min": 60,
         "stage1_window_source_counts": {
-          "gated_candidate": 6,
+          "gated_candidate": 4,
           "high_conf_detector": 4,
-          "kinematic_kalman": 2,
-          "linear_interpolation": 5
+          "linear_interpolation": 1,
+          "none": 1,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 6
         },
         "stage1_window_state_counts": {
-          "DETECTED": 5,
-          "INTERPOLATED": 5,
-          "PREDICTED": 2,
+          "DETECTED": 4,
+          "INTERPOLATED": 1,
+          "MISSING": 7,
           "TRACKED": 5
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 10,
+        "candidate_id": 13,
         "candidate_refined_frame": 88,
         "causal_stage_survival": {
           "stage_0": true,
@@ -9060,22 +9067,21 @@
         "stage1_window_frame_max": 98,
         "stage1_window_frame_min": 82,
         "stage1_window_source_counts": {
-          "gated_candidate": 4,
+          "gated_candidate": 3,
           "high_conf_detector": 9,
-          "kinematic_kalman": 1,
-          "linear_interpolation": 2,
-          "reacquired_candidate": 1
+          "kinematic_kalman": 4,
+          "linear_interpolation": 1
         },
         "stage1_window_state_counts": {
-          "DETECTED": 10,
-          "INTERPOLATED": 2,
-          "PREDICTED": 1,
-          "TRACKED": 4
+          "DETECTED": 9,
+          "INTERPOLATED": 1,
+          "PREDICTED": 4,
+          "TRACKED": 3
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 13,
+        "candidate_id": 16,
         "candidate_refined_frame": 105,
         "causal_stage_survival": {
           "stage_0": true,
@@ -9107,18 +9113,18 @@
         "stage1_window_source_counts": {
           "gated_candidate": 1,
           "high_conf_detector": 10,
-          "kinematic_kalman": 4,
-          "linear_interpolation": 2
+          "kinematic_kalman": 5,
+          "linear_interpolation": 1
         },
         "stage1_window_state_counts": {
           "DETECTED": 11,
-          "INTERPOLATED": 2,
-          "PREDICTED": 4
+          "INTERPOLATED": 1,
+          "PREDICTED": 5
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 17,
+        "candidate_id": 20,
         "candidate_refined_frame": 127,
         "causal_stage_survival": {
           "stage_0": true,
@@ -9141,27 +9147,27 @@
           "stage_1": true,
           "stage_2": true,
           "stage_3": true,
-          "stage_4": true,
-          "stage_5": true,
-          "stage_6": true
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
         },
         "stage1_window_frame_max": 133,
         "stage1_window_frame_min": 117,
         "stage1_window_source_counts": {
-          "gated_candidate": 6,
+          "gated_candidate": 8,
           "high_conf_detector": 3,
-          "kinematic_kalman": 8
+          "kinematic_kalman": 6
         },
         "stage1_window_state_counts": {
-          "DETECTED": 3,
-          "PREDICTED": 8,
+          "DETECTED": 5,
+          "PREDICTED": 6,
           "TRACKED": 6
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 19,
-        "candidate_refined_frame": 140,
+        "candidate_id": 23,
+        "candidate_refined_frame": 142,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
@@ -9204,8 +9210,8 @@
         "video_id": "video_09"
       },
       {
-        "candidate_id": 21,
-        "candidate_refined_frame": 156,
+        "candidate_id": 27,
+        "candidate_refined_frame": 166,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
@@ -9234,31 +9240,36 @@
         "stage1_window_frame_max": 170,
         "stage1_window_frame_min": 154,
         "stage1_window_source_counts": {
-          "gated_candidate": 2,
+          "gated_candidate": 3,
           "high_conf_detector": 4,
-          "kinematic_kalman": 5,
-          "linear_interpolation": 6
+          "kinematic_kalman": 1,
+          "linear_interpolation": 4,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 3,
+          "rejected_outlier": 1
         },
         "stage1_window_state_counts": {
-          "DETECTED": 6,
-          "INTERPOLATED": 6,
-          "PREDICTED": 5
+          "DETECTED": 4,
+          "INTERPOLATED": 4,
+          "MISSING": 4,
+          "PREDICTED": 1,
+          "TRACKED": 4
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 23,
-        "candidate_refined_frame": 175,
+        "candidate_id": 29,
+        "candidate_refined_frame": 176,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
           "stage_2": true,
           "stage_3": true,
-          "stage_4": false,
+          "stage_4": true,
           "stage_5": false,
           "stage_6": false
         },
-        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "first_failure_stage": "PLAYER_ATTRIBUTION_WRONG",
         "gt_event_id": 9,
         "gt_event_type": "PLAYER_HIT",
         "gt_frame_best": 175,
@@ -9277,22 +9288,23 @@
         "stage1_window_frame_max": 183,
         "stage1_window_frame_min": 167,
         "stage1_window_source_counts": {
-          "gated_candidate": 3,
+          "gated_candidate": 2,
           "high_conf_detector": 5,
-          "kinematic_kalman": 4,
-          "linear_interpolation": 5
+          "kinematic_kalman": 3,
+          "linear_interpolation": 6,
+          "reacquired_candidate": 1
         },
         "stage1_window_state_counts": {
-          "DETECTED": 7,
-          "INTERPOLATED": 5,
-          "PREDICTED": 4,
-          "TRACKED": 1
+          "DETECTED": 5,
+          "INTERPOLATED": 6,
+          "PREDICTED": 3,
+          "TRACKED": 3
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 27,
-        "candidate_refined_frame": 197,
+        "candidate_id": 33,
+        "candidate_refined_frame": 198,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
@@ -9323,30 +9335,30 @@
         "stage1_window_source_counts": {
           "gated_candidate": 3,
           "high_conf_detector": 2,
-          "kinematic_kalman": 10,
-          "linear_interpolation": 2
+          "kinematic_kalman": 9,
+          "linear_interpolation": 3
         },
         "stage1_window_state_counts": {
           "DETECTED": 2,
-          "INTERPOLATED": 2,
-          "PREDICTED": 10,
+          "INTERPOLATED": 3,
+          "PREDICTED": 9,
           "TRACKED": 3
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 30,
-        "candidate_refined_frame": 214,
+        "candidate_id": 36,
+        "candidate_refined_frame": 209,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
           "stage_2": true,
           "stage_3": true,
-          "stage_4": false,
-          "stage_5": false,
+          "stage_4": true,
+          "stage_5": true,
           "stage_6": false
         },
-        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "first_failure_stage": "FINAL_SUPPRESSION",
         "gt_event_id": 11,
         "gt_event_type": "PLAYER_HIT",
         "gt_frame_best": 212,
@@ -9360,37 +9372,37 @@
           "stage_3": true,
           "stage_4": true,
           "stage_5": true,
-          "stage_6": false
+          "stage_6": true
         },
         "stage1_window_frame_max": 220,
         "stage1_window_frame_min": 204,
         "stage1_window_source_counts": {
-          "gated_candidate": 6,
+          "gated_candidate": 8,
           "high_conf_detector": 2,
-          "kinematic_kalman": 5,
-          "linear_interpolation": 4
+          "kinematic_kalman": 4,
+          "linear_interpolation": 3
         },
         "stage1_window_state_counts": {
           "DETECTED": 3,
-          "INTERPOLATED": 4,
-          "PREDICTED": 5,
-          "TRACKED": 5
+          "INTERPOLATED": 3,
+          "PREDICTED": 4,
+          "TRACKED": 7
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": null,
-        "candidate_refined_frame": null,
+        "candidate_id": 40,
+        "candidate_refined_frame": 231,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
-          "stage_2": false,
-          "stage_3": false,
+          "stage_2": true,
+          "stage_3": true,
           "stage_4": false,
           "stage_5": false,
           "stage_6": false
         },
-        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
         "gt_event_id": 12,
         "gt_event_type": "BOUNCE",
         "gt_frame_best": 236,
@@ -9400,8 +9412,8 @@
         "independent_stage_match_capability": {
           "stage_0": true,
           "stage_1": true,
-          "stage_2": false,
-          "stage_3": false,
+          "stage_2": true,
+          "stage_3": true,
           "stage_4": false,
           "stage_5": false,
           "stage_6": false
@@ -9411,19 +9423,19 @@
         "stage1_window_source_counts": {
           "gated_candidate": 1,
           "high_conf_detector": 8,
-          "kinematic_kalman": 3,
-          "linear_interpolation": 5
+          "kinematic_kalman": 1,
+          "linear_interpolation": 7
         },
         "stage1_window_state_counts": {
           "DETECTED": 8,
-          "INTERPOLATED": 5,
-          "PREDICTED": 3,
+          "INTERPOLATED": 7,
+          "PREDICTED": 1,
           "TRACKED": 1
         },
         "video_id": "video_09"
       },
       {
-        "candidate_id": 8,
+        "candidate_id": 9,
         "candidate_refined_frame": 52,
         "causal_stage_survival": {
           "stage_0": true,
@@ -9464,7 +9476,7 @@
         "video_id": "video_10"
       },
       {
-        "candidate_id": 11,
+        "candidate_id": 12,
         "candidate_refined_frame": 71,
         "causal_stage_survival": {
           "stage_0": true,
@@ -9502,7 +9514,7 @@
         "video_id": "video_10"
       },
       {
-        "candidate_id": 12,
+        "candidate_id": 13,
         "candidate_refined_frame": 92,
         "causal_stage_survival": {
           "stage_0": true,
@@ -9574,12 +9586,12 @@
         "stage1_window_frame_max": 118,
         "stage1_window_frame_min": 102,
         "stage1_window_source_counts": {
-          "kinematic_kalman": 6,
-          "none": 11
+          "kinematic_kalman": 4,
+          "none": 13
         },
         "stage1_window_state_counts": {
-          "MISSING": 11,
-          "PREDICTED": 6
+          "MISSING": 13,
+          "PREDICTED": 4
         },
         "video_id": "video_10"
       },
@@ -9652,32 +9664,33 @@
         "stage1_window_frame_max": 153,
         "stage1_window_frame_min": 137,
         "stage1_window_source_counts": {
-          "gated_candidate": 3,
-          "kinematic_kalman": 5,
-          "none": 8,
+          "backward_gated_candidate": 1,
+          "gated_candidate": 2,
+          "kinematic_kalman": 4,
+          "none": 9,
           "reacquired_candidate": 1
         },
         "stage1_window_state_counts": {
           "DETECTED": 2,
-          "MISSING": 8,
-          "PREDICTED": 5,
+          "MISSING": 9,
+          "PREDICTED": 4,
           "TRACKED": 2
         },
         "video_id": "video_10"
       },
       {
-        "candidate_id": 14,
-        "candidate_refined_frame": 163,
+        "candidate_id": null,
+        "candidate_refined_frame": null,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
-          "stage_2": true,
+          "stage_2": false,
           "stage_3": false,
           "stage_4": false,
           "stage_5": false,
           "stage_6": false
         },
-        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
         "gt_event_id": 7,
         "gt_event_type": "PLAYER_HIT",
         "gt_frame_best": 158,
@@ -9687,7 +9700,7 @@
         "independent_stage_match_capability": {
           "stage_0": true,
           "stage_1": true,
-          "stage_2": true,
+          "stage_2": false,
           "stage_3": false,
           "stage_4": false,
           "stage_5": false,
@@ -9696,21 +9709,20 @@
         "stage1_window_frame_max": 166,
         "stage1_window_frame_min": 150,
         "stage1_window_source_counts": {
-          "gated_candidate": 4,
-          "kinematic_kalman": 9,
-          "linear_interpolation": 4
+          "kinematic_kalman": 6,
+          "none": 10,
+          "reacquired_candidate": 1
         },
         "stage1_window_state_counts": {
-          "DETECTED": 1,
-          "INTERPOLATED": 4,
-          "PREDICTED": 9,
-          "TRACKED": 3
+          "MISSING": 10,
+          "PREDICTED": 6,
+          "TRACKED": 1
         },
         "video_id": "video_10"
       },
       {
         "candidate_id": 17,
-        "candidate_refined_frame": 176,
+        "candidate_refined_frame": 179,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
@@ -9741,20 +9753,21 @@
         "stage1_window_source_counts": {
           "gated_candidate": 10,
           "high_conf_detector": 2,
-          "kinematic_kalman": 4,
-          "linear_interpolation": 1
+          "kinematic_kalman": 3,
+          "linear_interpolation": 1,
+          "reacquired_candidate": 1
         },
         "stage1_window_state_counts": {
           "DETECTED": 5,
           "INTERPOLATED": 1,
-          "PREDICTED": 4,
-          "TRACKED": 7
+          "PREDICTED": 3,
+          "TRACKED": 8
         },
         "video_id": "video_10"
       },
       {
-        "candidate_id": 19,
-        "candidate_refined_frame": 192,
+        "candidate_id": 18,
+        "candidate_refined_frame": 188,
         "causal_stage_survival": {
           "stage_0": true,
           "stage_1": true,
@@ -9775,7 +9788,7 @@
           "stage_0": true,
           "stage_1": true,
           "stage_2": true,
-          "stage_3": true,
+          "stage_3": false,
           "stage_4": false,
           "stage_5": false,
           "stage_6": false
@@ -9783,14 +9796,14 @@
         "stage1_window_frame_max": 203,
         "stage1_window_frame_min": 187,
         "stage1_window_source_counts": {
-          "gated_candidate": 3,
-          "kinematic_kalman": 10,
-          "linear_interpolation": 4
+          "gated_candidate": 2,
+          "kinematic_kalman": 4,
+          "none": 11
         },
         "stage1_window_state_counts": {
-          "INTERPOLATED": 4,
-          "PREDICTED": 10,
-          "TRACKED": 3
+          "MISSING": 11,
+          "PREDICTED": 4,
+          "TRACKED": 2
         },
         "video_id": "video_10"
       },
@@ -9825,12 +9838,10 @@
         "stage1_window_frame_max": 226,
         "stage1_window_frame_min": 210,
         "stage1_window_source_counts": {
-          "kinematic_kalman": 2,
-          "none": 15
+          "none": 17
         },
         "stage1_window_state_counts": {
-          "MISSING": 15,
-          "PREDICTED": 2
+          "MISSING": 17
         },
         "video_id": "video_10"
       },
@@ -9920,14 +9931,14 @@
         "candidate_refined_frame": null,
         "causal_stage_survival": {
           "stage_0": true,
-          "stage_1": true,
+          "stage_1": false,
           "stage_2": false,
           "stage_3": false,
           "stage_4": false,
           "stage_5": false,
           "stage_6": false
         },
-        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "first_failure_stage": "TRACK_NOT_USABLE",
         "gt_event_id": 13,
         "gt_event_type": "PLAYER_HIT",
         "gt_frame_best": 270,
@@ -9936,7 +9947,7 @@
         "gt_player_id": 1,
         "independent_stage_match_capability": {
           "stage_0": true,
-          "stage_1": true,
+          "stage_1": false,
           "stage_2": false,
           "stage_3": false,
           "stage_4": false,
@@ -9946,14 +9957,12 @@
         "stage1_window_frame_max": 278,
         "stage1_window_frame_min": 262,
         "stage1_window_source_counts": {
-          "gated_candidate": 1,
-          "kinematic_kalman": 9,
-          "none": 7
+          "kinematic_kalman": 3,
+          "none": 14
         },
         "stage1_window_state_counts": {
-          "MISSING": 7,
-          "PREDICTED": 9,
-          "TRACKED": 1
+          "MISSING": 14,
+          "PREDICTED": 3
         },
         "video_id": "video_10"
       },
@@ -10032,14 +10041,15 @@
         "stage1_window_source_counts": {
           "gated_candidate": 6,
           "high_conf_detector": 1,
-          "kinematic_kalman": 6,
-          "linear_interpolation": 3,
-          "reacquired_candidate": 1
+          "kinematic_kalman": 4,
+          "none": 1,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 4
         },
         "stage1_window_state_counts": {
           "DETECTED": 1,
-          "INTERPOLATED": 3,
-          "PREDICTED": 6,
+          "MISSING": 5,
+          "PREDICTED": 4,
           "TRACKED": 7
         },
         "video_id": "video_10"
@@ -10076,14 +10086,14 @@
         "stage1_window_frame_min": 324,
         "stage1_window_source_counts": {
           "gated_candidate": 2,
-          "kinematic_kalman": 6,
-          "none": 8,
+          "kinematic_kalman": 4,
+          "none": 10,
           "reacquired_candidate": 1
         },
         "stage1_window_state_counts": {
           "DETECTED": 1,
-          "MISSING": 8,
-          "PREDICTED": 6,
+          "MISSING": 10,
+          "PREDICTED": 4,
           "TRACKED": 2
         },
         "video_id": "video_10"
@@ -10163,17 +10173,1720 @@
         "stage1_window_frame_max": 378,
         "stage1_window_frame_min": 362,
         "stage1_window_source_counts": {
-          "backward_gated_candidate": 1,
+          "gated_candidate": 13,
+          "kinematic_kalman": 4
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 1,
+          "PREDICTED": 4,
+          "TRACKED": 12
+        },
+        "video_id": "video_10"
+      }
+    ],
+    "H_PRESEMANTIC_INTEGRATED": [
+      {
+        "candidate_id": 4,
+        "candidate_refined_frame": 44,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 1,
+        "gt_event_type": "SERVE_CONTACT",
+        "gt_frame_best": 42,
+        "gt_frame_max": 44,
+        "gt_frame_min": 40,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 50,
+        "stage1_window_frame_min": 34,
+        "stage1_window_source_counts": {
+          "gated_candidate": 1,
+          "high_conf_detector": 15,
+          "linear_interpolation": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 15,
+          "INTERPOLATED": 1,
+          "TRACKED": 1
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 8,
+        "candidate_refined_frame": 61,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "first_failure_stage": "FULLY_CORRECT",
+        "gt_event_id": 2,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 62,
+        "gt_frame_max": 64,
+        "gt_frame_min": 60,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "stage1_window_frame_max": 70,
+        "stage1_window_frame_min": 54,
+        "stage1_window_source_counts": {
+          "high_conf_detector": 7,
+          "kinematic_kalman": 1,
+          "linear_interpolation": 5,
+          "rejected_out_of_frame": 4
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 7,
+          "INTERPOLATED": 5,
+          "MISSING": 4,
+          "PREDICTED": 1
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 9,
+        "candidate_refined_frame": 83,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 3,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 74,
+        "gt_frame_max": 76,
+        "gt_frame_min": 72,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 82,
+        "stage1_window_frame_min": 66,
+        "stage1_window_source_counts": {
+          "gated_candidate": 11,
+          "high_conf_detector": 1,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 4
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 7,
+          "MISSING": 4,
+          "TRACKED": 6
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 11,
+        "candidate_refined_frame": 96,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 4,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 96,
+        "gt_frame_max": 98,
+        "gt_frame_min": 94,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "stage1_window_frame_max": 104,
+        "stage1_window_frame_min": 88,
+        "stage1_window_source_counts": {
+          "gated_candidate": 1,
+          "high_conf_detector": 15,
+          "kinematic_kalman": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 16,
+          "PREDICTED": 1
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 13,
+        "candidate_refined_frame": 108,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": false
+        },
+        "first_failure_stage": "FINAL_SUPPRESSION",
+        "gt_event_id": 5,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 108,
+        "gt_frame_max": 110,
+        "gt_frame_min": 106,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 116,
+        "stage1_window_frame_min": 100,
+        "stage1_window_source_counts": {
+          "high_conf_detector": 17
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 17
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 16,
+        "candidate_refined_frame": 136,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 6,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 130,
+        "gt_frame_max": 132,
+        "gt_frame_min": 128,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 138,
+        "stage1_window_frame_min": 122,
+        "stage1_window_source_counts": {
+          "gated_candidate": 4,
+          "high_conf_detector": 4,
+          "none": 1,
+          "rejected_out_of_frame": 7,
+          "rejected_outlier": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 8,
+          "MISSING": 9
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 7,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 142,
+        "gt_frame_max": 144,
+        "gt_frame_min": 140,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 150,
+        "stage1_window_frame_min": 134,
+        "stage1_window_source_counts": {
+          "gated_candidate": 16,
+          "high_conf_detector": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 15,
+          "TRACKED": 2
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 18,
+        "candidate_refined_frame": 159,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 8,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 164,
+        "gt_frame_max": 166,
+        "gt_frame_min": 162,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "stage1_window_frame_max": 172,
+        "stage1_window_frame_min": 156,
+        "stage1_window_source_counts": {
+          "gated_candidate": 1,
+          "high_conf_detector": 14,
+          "kinematic_kalman": 1,
+          "linear_interpolation": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 14,
+          "INTERPOLATED": 1,
+          "PREDICTED": 1,
+          "TRACKED": 1
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 20,
+        "candidate_refined_frame": 175,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": false
+        },
+        "first_failure_stage": "FINAL_SUPPRESSION",
+        "gt_event_id": 9,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 176,
+        "gt_frame_max": 178,
+        "gt_frame_min": 174,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 184,
+        "stage1_window_frame_min": 168,
+        "stage1_window_source_counts": {
+          "gated_candidate": 1,
+          "high_conf_detector": 15,
+          "kinematic_kalman": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 15,
+          "PREDICTED": 1,
+          "TRACKED": 1
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 22,
+        "candidate_refined_frame": 196,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 10,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 198,
+        "gt_frame_max": 200,
+        "gt_frame_min": 196,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 206,
+        "stage1_window_frame_min": 190,
+        "stage1_window_source_counts": {
           "gated_candidate": 6,
+          "high_conf_detector": 7,
+          "kinematic_kalman": 1,
+          "linear_interpolation": 3
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 11,
+          "INTERPOLATED": 3,
+          "PREDICTED": 1,
+          "TRACKED": 2
+        },
+        "video_id": "video_08"
+      },
+      {
+        "candidate_id": 8,
+        "candidate_refined_frame": 35,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 1,
+        "gt_event_type": "SERVE_CONTACT",
+        "gt_frame_best": 35,
+        "gt_frame_max": 37,
+        "gt_frame_min": 33,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 43,
+        "stage1_window_frame_min": 27,
+        "stage1_window_source_counts": {
+          "gated_candidate": 4,
+          "high_conf_detector": 9,
+          "kinematic_kalman": 2,
+          "linear_interpolation": 2
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 9,
+          "INTERPOLATED": 2,
+          "PREDICTED": 2,
+          "TRACKED": 4
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 10,
+        "candidate_refined_frame": 47,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 2,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 55,
+        "gt_frame_max": 57,
+        "gt_frame_min": 53,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 63,
+        "stage1_window_frame_min": 47,
+        "stage1_window_source_counts": {
+          "gated_candidate": 2,
+          "high_conf_detector": 4,
+          "kinematic_kalman": 3,
+          "linear_interpolation": 2,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 5
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 4,
+          "INTERPOLATED": 2,
+          "MISSING": 5,
+          "PREDICTED": 3,
+          "TRACKED": 3
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 11,
+        "candidate_refined_frame": 71,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 3,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 68,
+        "gt_frame_max": 70,
+        "gt_frame_min": 66,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 76,
+        "stage1_window_frame_min": 60,
+        "stage1_window_source_counts": {
+          "gated_candidate": 4,
+          "high_conf_detector": 4,
+          "linear_interpolation": 1,
+          "none": 1,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 6
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 4,
+          "INTERPOLATED": 1,
+          "MISSING": 7,
+          "TRACKED": 5
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 13,
+        "candidate_refined_frame": 88,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 4,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 90,
+        "gt_frame_max": 92,
+        "gt_frame_min": 88,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 98,
+        "stage1_window_frame_min": 82,
+        "stage1_window_source_counts": {
+          "gated_candidate": 3,
+          "high_conf_detector": 9,
+          "kinematic_kalman": 4,
+          "linear_interpolation": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 9,
+          "INTERPOLATED": 1,
+          "PREDICTED": 4,
+          "TRACKED": 3
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 16,
+        "candidate_refined_frame": 105,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PLAYER_ATTRIBUTION_WRONG",
+        "gt_event_id": 5,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 102,
+        "gt_frame_max": 104,
+        "gt_frame_min": 100,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 110,
+        "stage1_window_frame_min": 94,
+        "stage1_window_source_counts": {
+          "gated_candidate": 1,
+          "high_conf_detector": 10,
+          "kinematic_kalman": 5,
+          "linear_interpolation": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 11,
+          "INTERPOLATED": 1,
+          "PREDICTED": 5
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 20,
+        "candidate_refined_frame": 127,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 6,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 125,
+        "gt_frame_max": 127,
+        "gt_frame_min": 123,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 133,
+        "stage1_window_frame_min": 117,
+        "stage1_window_source_counts": {
+          "gated_candidate": 8,
+          "high_conf_detector": 3,
+          "kinematic_kalman": 6
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 5,
+          "PREDICTED": 6,
+          "TRACKED": 6
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 23,
+        "candidate_refined_frame": 142,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 7,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 138,
+        "gt_frame_max": 140,
+        "gt_frame_min": 136,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 146,
+        "stage1_window_frame_min": 130,
+        "stage1_window_source_counts": {
+          "gated_candidate": 3,
+          "high_conf_detector": 7,
           "kinematic_kalman": 6,
-          "linear_interpolation": 3,
+          "linear_interpolation": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 7,
+          "INTERPOLATED": 1,
+          "PREDICTED": 6,
+          "TRACKED": 3
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 27,
+        "candidate_refined_frame": 166,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 8,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 162,
+        "gt_frame_max": 164,
+        "gt_frame_min": 160,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 170,
+        "stage1_window_frame_min": 154,
+        "stage1_window_source_counts": {
+          "gated_candidate": 3,
+          "high_conf_detector": 4,
+          "kinematic_kalman": 1,
+          "linear_interpolation": 4,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 3,
+          "rejected_outlier": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 4,
+          "INTERPOLATED": 4,
+          "MISSING": 4,
+          "PREDICTED": 1,
+          "TRACKED": 4
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 29,
+        "candidate_refined_frame": 176,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PLAYER_ATTRIBUTION_WRONG",
+        "gt_event_id": 9,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 175,
+        "gt_frame_max": 177,
+        "gt_frame_min": 173,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 183,
+        "stage1_window_frame_min": 167,
+        "stage1_window_source_counts": {
+          "gated_candidate": 2,
+          "high_conf_detector": 5,
+          "kinematic_kalman": 3,
+          "linear_interpolation": 6,
+          "reacquired_candidate": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 5,
+          "INTERPOLATED": 6,
+          "PREDICTED": 3,
+          "TRACKED": 3
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 33,
+        "candidate_refined_frame": 198,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 10,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 198,
+        "gt_frame_max": 200,
+        "gt_frame_min": 196,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 206,
+        "stage1_window_frame_min": 190,
+        "stage1_window_source_counts": {
+          "gated_candidate": 3,
+          "high_conf_detector": 2,
+          "kinematic_kalman": 9,
+          "linear_interpolation": 3
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 2,
+          "INTERPOLATED": 3,
+          "PREDICTED": 9,
+          "TRACKED": 3
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 36,
+        "candidate_refined_frame": 209,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": false
+        },
+        "first_failure_stage": "FINAL_SUPPRESSION",
+        "gt_event_id": 11,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 212,
+        "gt_frame_max": 214,
+        "gt_frame_min": 210,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "stage1_window_frame_max": 220,
+        "stage1_window_frame_min": 204,
+        "stage1_window_source_counts": {
+          "gated_candidate": 8,
+          "high_conf_detector": 2,
+          "kinematic_kalman": 4,
+          "linear_interpolation": 3
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 3,
+          "INTERPOLATED": 3,
+          "PREDICTED": 4,
+          "TRACKED": 7
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 40,
+        "candidate_refined_frame": 231,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 12,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 236,
+        "gt_frame_max": 238,
+        "gt_frame_min": 234,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 244,
+        "stage1_window_frame_min": 228,
+        "stage1_window_source_counts": {
+          "gated_candidate": 1,
+          "high_conf_detector": 8,
+          "kinematic_kalman": 1,
+          "linear_interpolation": 7
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 8,
+          "INTERPOLATED": 7,
+          "PREDICTED": 1,
+          "TRACKED": 1
+        },
+        "video_id": "video_09"
+      },
+      {
+        "candidate_id": 9,
+        "candidate_refined_frame": 52,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 1,
+        "gt_event_type": "SERVE_CONTACT",
+        "gt_frame_best": 55,
+        "gt_frame_max": 57,
+        "gt_frame_min": 53,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 63,
+        "stage1_window_frame_min": 47,
+        "stage1_window_source_counts": {
+          "gated_candidate": 14,
+          "kinematic_kalman": 3
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 12,
+          "PREDICTED": 3,
+          "TRACKED": 2
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": 12,
+        "candidate_refined_frame": 71,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "first_failure_stage": "FULLY_CORRECT",
+        "gt_event_id": 2,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 76,
+        "gt_frame_max": 78,
+        "gt_frame_min": 74,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "stage1_window_frame_max": 84,
+        "stage1_window_frame_min": 68,
+        "stage1_window_source_counts": {
+          "gated_candidate": 17
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 17
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": 13,
+        "candidate_refined_frame": 92,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "SEMANTIC_TYPE_WRONG",
+        "gt_event_id": 3,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 88,
+        "gt_frame_max": 90,
+        "gt_frame_min": 86,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 96,
+        "stage1_window_frame_min": 80,
+        "stage1_window_source_counts": {
+          "gated_candidate": 12,
+          "high_conf_detector": 2,
+          "kinematic_kalman": 3
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 12,
+          "PREDICTED": 3,
+          "TRACKED": 2
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "TRACK_NOT_USABLE",
+        "gt_event_id": 4,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 110,
+        "gt_frame_max": 112,
+        "gt_frame_min": 108,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 118,
+        "stage1_window_frame_min": 102,
+        "stage1_window_source_counts": {
+          "kinematic_kalman": 4,
+          "none": 13
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 13,
+          "PREDICTED": 4
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "TRACK_NOT_USABLE",
+        "gt_event_id": 5,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 122,
+        "gt_frame_max": 124,
+        "gt_frame_min": 120,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 130,
+        "stage1_window_frame_min": 114,
+        "stage1_window_source_counts": {
+          "none": 17
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 17
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 6,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 145,
+        "gt_frame_max": 147,
+        "gt_frame_min": 143,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 153,
+        "stage1_window_frame_min": 137,
+        "stage1_window_source_counts": {
+          "backward_gated_candidate": 1,
+          "gated_candidate": 2,
+          "kinematic_kalman": 4,
+          "none": 9,
+          "reacquired_candidate": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 2,
+          "MISSING": 9,
+          "PREDICTED": 4,
+          "TRACKED": 2
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 7,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 158,
+        "gt_frame_max": 160,
+        "gt_frame_min": 156,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 166,
+        "stage1_window_frame_min": 150,
+        "stage1_window_source_counts": {
+          "kinematic_kalman": 6,
+          "none": 10,
+          "reacquired_candidate": 1
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 10,
+          "PREDICTED": 6,
+          "TRACKED": 1
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": 17,
+        "candidate_refined_frame": 179,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "first_failure_stage": "FULLY_CORRECT",
+        "gt_event_id": 8,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 182,
+        "gt_frame_max": 184,
+        "gt_frame_min": 180,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": true,
+          "stage_4": true,
+          "stage_5": true,
+          "stage_6": true
+        },
+        "stage1_window_frame_max": 190,
+        "stage1_window_frame_min": 174,
+        "stage1_window_source_counts": {
+          "gated_candidate": 10,
+          "high_conf_detector": 2,
+          "kinematic_kalman": 3,
+          "linear_interpolation": 1,
+          "reacquired_candidate": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 5,
+          "INTERPOLATED": 1,
+          "PREDICTED": 3,
+          "TRACKED": 8
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": 18,
+        "candidate_refined_frame": 188,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+        "gt_event_id": 9,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 195,
+        "gt_frame_max": 197,
+        "gt_frame_min": 193,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": true,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 203,
+        "stage1_window_frame_min": 187,
+        "stage1_window_source_counts": {
+          "gated_candidate": 2,
+          "kinematic_kalman": 4,
+          "none": 11
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 11,
+          "PREDICTED": 4,
+          "TRACKED": 2
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "TRACK_NOT_USABLE",
+        "gt_event_id": 10,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 218,
+        "gt_frame_max": 220,
+        "gt_frame_min": 216,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 226,
+        "stage1_window_frame_min": 210,
+        "stage1_window_source_counts": {
+          "none": 17
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 17
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "TRACK_NOT_USABLE",
+        "gt_event_id": 11,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 232,
+        "gt_frame_max": 234,
+        "gt_frame_min": 230,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 240,
+        "stage1_window_frame_min": 224,
+        "stage1_window_source_counts": {
+          "none": 17
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 17
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 12,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 256,
+        "gt_frame_max": 258,
+        "gt_frame_min": 254,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 264,
+        "stage1_window_frame_min": 248,
+        "stage1_window_source_counts": {
+          "gated_candidate": 8,
+          "kinematic_kalman": 4,
+          "none": 4,
+          "reacquired_candidate": 1
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 4,
+          "PREDICTED": 4,
+          "TRACKED": 9
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "TRACK_NOT_USABLE",
+        "gt_event_id": 13,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 270,
+        "gt_frame_max": 272,
+        "gt_frame_min": 268,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": false,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 278,
+        "stage1_window_frame_min": 262,
+        "stage1_window_source_counts": {
+          "kinematic_kalman": 3,
+          "none": 14
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 14,
+          "PREDICTED": 3
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 14,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 294,
+        "gt_frame_max": 296,
+        "gt_frame_min": 292,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 302,
+        "stage1_window_frame_min": 286,
+        "stage1_window_source_counts": {
+          "kinematic_kalman": 2,
+          "none": 14,
+          "reacquired_candidate": 1
+        },
+        "stage1_window_state_counts": {
+          "MISSING": 14,
+          "PREDICTED": 2,
+          "TRACKED": 1
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 15,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 308,
+        "gt_frame_max": 310,
+        "gt_frame_min": 306,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 316,
+        "stage1_window_frame_min": 300,
+        "stage1_window_source_counts": {
+          "gated_candidate": 6,
+          "high_conf_detector": 1,
+          "kinematic_kalman": 4,
+          "none": 1,
+          "reacquired_candidate": 1,
+          "rejected_out_of_frame": 4
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 1,
+          "MISSING": 5,
+          "PREDICTED": 4,
+          "TRACKED": 7
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 16,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 332,
+        "gt_frame_max": 334,
+        "gt_frame_min": 330,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 340,
+        "stage1_window_frame_min": 324,
+        "stage1_window_source_counts": {
+          "gated_candidate": 2,
+          "kinematic_kalman": 4,
+          "none": 10,
           "reacquired_candidate": 1
         },
         "stage1_window_state_counts": {
           "DETECTED": 1,
-          "INTERPOLATED": 3,
-          "PREDICTED": 6,
-          "TRACKED": 7
+          "MISSING": 10,
+          "PREDICTED": 4,
+          "TRACKED": 2
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 17,
+        "gt_event_type": "PLAYER_HIT",
+        "gt_frame_best": 345,
+        "gt_frame_max": 347,
+        "gt_frame_min": 343,
+        "gt_player_id": 1,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 353,
+        "stage1_window_frame_min": 337,
+        "stage1_window_source_counts": {
+          "gated_candidate": 11,
+          "kinematic_kalman": 4,
+          "none": 1,
+          "reacquired_candidate": 1
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 1,
+          "MISSING": 1,
+          "PREDICTED": 4,
+          "TRACKED": 11
+        },
+        "video_id": "video_10"
+      },
+      {
+        "candidate_id": null,
+        "candidate_refined_frame": null,
+        "causal_stage_survival": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "first_failure_stage": "NO_EVENT_CANDIDATE",
+        "gt_event_id": 18,
+        "gt_event_type": "BOUNCE",
+        "gt_frame_best": 370,
+        "gt_frame_max": 372,
+        "gt_frame_min": 368,
+        "gt_player_id": 2,
+        "independent_stage_match_capability": {
+          "stage_0": true,
+          "stage_1": true,
+          "stage_2": false,
+          "stage_3": false,
+          "stage_4": false,
+          "stage_5": false,
+          "stage_6": false
+        },
+        "stage1_window_frame_max": 378,
+        "stage1_window_frame_min": 362,
+        "stage1_window_source_counts": {
+          "gated_candidate": 13,
+          "kinematic_kalman": 4
+        },
+        "stage1_window_state_counts": {
+          "DETECTED": 1,
+          "PREDICTED": 4,
+          "TRACKED": 12
         },
         "video_id": "video_10"
       }

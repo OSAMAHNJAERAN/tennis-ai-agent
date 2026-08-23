@@ -139,6 +139,7 @@ class TemporalBallTracker:
         enable_short_gap_reacquisition: bool = True,
         enable_camera_motion_compensation: bool = False,
         enable_scale_normalization: bool = True,
+        enable_frame_bounds_filter: bool = True,
     ):
         self.high_conf_thresh = high_conf_thresh
         self.low_conf_thresh = low_conf_thresh
@@ -152,6 +153,7 @@ class TemporalBallTracker:
         self.enable_reacquisition = enable_short_gap_reacquisition
         self.enable_camera_comp = enable_camera_motion_compensation
         self.enable_scale_norm = enable_scale_normalization
+        self.enable_frame_bounds_filter = enable_frame_bounds_filter
 
     def track_video_candidates(
         self,
@@ -172,6 +174,16 @@ class TemporalBallTracker:
         
         max_speed = self.max_valid_speed * scale
         base_radius = self.base_gating_radius * scale
+
+        if self.enable_frame_bounds_filter:
+            frame_candidates = [
+                [
+                    candidate
+                    for candidate in candidates
+                    if 0.0 <= candidate.x_px < w and 0.0 <= candidate.y_px < h
+                ]
+                for candidates in frame_candidates
+            ]
         
         trajectory: List[TemporalBallPoint] = [
             TemporalBallPoint(
@@ -368,7 +380,21 @@ class TemporalBallTracker:
                     trajectory[i].source = "backward_gated_candidate"
                     kf_back.update(best_cand.x_px, best_cand.y_px, measurement_var=4.0)
 
-        # Pass 4: Physics Consistency Verification & Impossible Jump Rejection
+        # Pass 4: Frame Bounds & Physics Consistency Verification
+        if self.enable_frame_bounds_filter:
+            for point in trajectory:
+                if (
+                    point.x_px is not None
+                    and point.y_px is not None
+                    and not (0.0 <= point.x_px < w and 0.0 <= point.y_px < h)
+                ):
+                    point.x_px = None
+                    point.y_px = None
+                    point.confidence = None
+                    point.state = BallState.MISSING
+                    point.source = "rejected_out_of_frame"
+
+        # Impossible Jump Rejection
         for i in range(1, num_frames):
             curr = trajectory[i]
             prev = trajectory[i - 1]

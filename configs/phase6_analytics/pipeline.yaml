@@ -20,16 +20,16 @@ ball_detection:
   low_conf: 0.01
 
 temporal_tracking:
-  # Selected by grouped diagnostic config-only replay (08/09/10); not qualification evidence.
-  max_prediction_gap: 6
-  max_interpolation_gap: 6
-  max_valid_speed_px_per_frame: 90.0
+  max_prediction_gap: 4
+  max_interpolation_gap: 3
+  max_valid_speed_px_per_frame: 80.0
   base_gating_radius_px: 45.0
   enable_multi_candidate_association: true
   enable_adaptive_gate: true
   enable_short_gap_reacquisition: true
   enable_camera_motion_compensation: false
   enable_scale_normalization: true
+  enable_frame_bounds_filter: true
 
 court_detection:
   model_path: "models/keypoints_model.pth"

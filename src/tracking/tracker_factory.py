@@ -24,6 +24,7 @@ class TemporalTrackerSettings:
     enable_short_gap_reacquisition: bool
     enable_camera_motion_compensation: bool
     enable_scale_normalization: bool
+    enable_frame_bounds_filter: bool
 
     def __post_init__(self) -> None:
         if not 0.0 <= self.low_conf_thresh <= self.high_conf_thresh <= 1.0:
@@ -62,6 +63,7 @@ def resolve_temporal_tracker_settings(source: ConfigSource) -> TemporalTrackerSe
             enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
             enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
             enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+            enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
         )
     except (KeyError, TypeError) as exc:
         raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc

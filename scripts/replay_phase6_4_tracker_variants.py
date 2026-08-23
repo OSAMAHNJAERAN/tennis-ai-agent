@@ -85,6 +85,7 @@ PRODUCTION_KEYS = {
     "enable_short_gap_reacquisition": ("temporal_tracking", "enable_short_gap_reacquisition"),
     "enable_camera_motion_compensation": ("temporal_tracking", "enable_camera_motion_compensation"),
     "enable_scale_normalization": ("temporal_tracking", "enable_scale_normalization"),
+    "enable_frame_bounds_filter": ("temporal_tracking", "enable_frame_bounds_filter"),
 }
 
 
@@ -155,10 +156,15 @@ def artifact_provenance(generated_at: str) -> dict[str, Any]:
     }
 
 
-def production_settings(config: Mapping[str, Any]) -> dict[str, Any]:
+def production_settings(
+    config: Mapping[str, Any], *, legacy_frame_bounds_filter: Optional[bool] = None
+) -> dict[str, Any]:
     result: dict[str, Any] = {}
     for argument, (section, key) in PRODUCTION_KEYS.items():
         if section not in config or key not in config[section]:
+            if argument == "enable_frame_bounds_filter" and legacy_frame_bounds_filter is not None:
+                result[argument] = legacy_frame_bounds_filter
+                continue
             raise KeyError(f"Production tracker config is missing {section}.{key}")
         result[argument] = config[section][key]
     return result
@@ -189,6 +195,7 @@ def tracker_snapshot(tracker: TemporalBallTracker) -> dict[str, Any]:
         "enable_short_gap_reacquisition": tracker.enable_reacquisition,
         "enable_camera_motion_compensation": tracker.enable_camera_comp,
         "enable_scale_normalization": tracker.enable_scale_norm,
+        "enable_frame_bounds_filter": tracker.enable_frame_bounds_filter,
     }
 
 
@@ -519,9 +526,13 @@ def main() -> None:
     provenance = artifact_provenance(generated_at)
     config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
     starting_config = config_at_starting_sha()
-    starting_prod_settings = production_settings(starting_config)
+    starting_prod_settings = production_settings(
+        starting_config, legacy_frame_bounds_filter=False
+    )
     selected_settings = production_settings(config)
     default_settings = class_default_settings()
+    default_settings["enable_frame_bounds_filter"] = False
+    reconciled_settings = dict(default_settings)
     event_config = _variant_configs(config["event_detection"])["H_FINAL_INTEGRATED"]
     videos_document = load_json(VIDEOS_PATH)
     coverage = load_json(COVERAGE_PATH)
@@ -548,7 +559,7 @@ def main() -> None:
         "C_CURRENT_CLASS_DEFAULTS": {
             "status": "REPLAYED_FROM_RAW_CANDIDATES",
             "settings": default_settings,
-            "config_source": "TemporalBallTracker.__init__ defaults",
+            "config_source": "starting-code TemporalBallTracker defaults; post-remediation frame-bounds filter disabled",
         },
         "D_HISTORICAL_92_5_RECOVERY_CONFIG": {
             "status": "NOT_REPRODUCIBLE",
@@ -557,12 +568,17 @@ def main() -> None:
             "reason": "No exact source-linked tracker configuration for the historical 92.5% recovery claim is present; approximation is forbidden.",
         },
         "E_RECONCILED_CONFIG": {
+            "status": "REPLAYED_REJECTED_OUT_OF_FRAME_HALLUCINATION",
+            "settings": reconciled_settings,
+            "config_source": "class-default 6/6/90 config-only candidate; frame-bounds fix disabled",
+        },
+        "F_TARGETED_TRACKER_FIX": {
             "status": "REPLAYED_FROM_RAW_CANDIDATES",
             "settings": selected_settings,
             "config_source": str(CONFIG_PATH.relative_to(ROOT)).replace("\\", "/"),
         },
         "H_PRESEMANTIC_INTEGRATED": {
-            "status": "SELECTED_ALIAS_OF_E_RECONCILED_CONFIG",
+            "status": "SELECTED_ALIAS_OF_F_TARGETED_TRACKER_FIX",
             "settings": selected_settings,
             "config_source": str(CONFIG_PATH.relative_to(ROOT)).replace("\\", "/"),
         },
@@ -589,7 +605,8 @@ def main() -> None:
         for name, settings in (
             ("B_CURRENT_PRODUCTION_CONFIG", starting_prod_settings),
             ("C_CURRENT_CLASS_DEFAULTS", default_settings),
-            ("E_RECONCILED_CONFIG", selected_settings),
+            ("E_RECONCILED_CONFIG", reconciled_settings),
+            ("F_TARGETED_TRACKER_FIX", selected_settings),
             ("H_PRESEMANTIC_INTEGRATED", selected_settings),
         ):
             started = time.perf_counter()
@@ -742,6 +759,10 @@ def main() -> None:
             metric["longest_predicted_run_frames"]
             for metric in authoritative["trajectory_diagnostics"].values()
         ) <= int(selected_settings["max_prediction_gap"]),
+        "no_out_of_frame_trajectory_points": sum(
+            metric["out_of_frame_position_count"]
+            for metric in authoritative["trajectory_diagnostics"].values()
+        ) == 0,
         "no_major_wrong_association_regression": sum(
             metric["impossible_grounded_step_count"]
             for metric in authoritative["trajectory_diagnostics"].values()
@@ -756,7 +777,12 @@ def main() -> None:
         "all_tests_pass": None,
     }
     gate["status_without_test_result"] = "PASS" if all(value is True for key, value in gate.items() if key not in {"all_tests_pass", "status_without_test_result"}) else "FAIL"
-    gate["earliest_dominant_blocker"] = "STAGE_2_PHYSICAL_CANDIDATE_RECALL" if not gate["stage_2_recall_at_least_0_85"] else None
+    if not gate["stage_1_grounded_recall_at_least_0_90"]:
+        gate["earliest_dominant_blocker"] = "STAGE_1_GROUNDED_USABLE_OBSERVATION_RECALL"
+    elif not gate["stage_2_recall_at_least_0_85"]:
+        gate["earliest_dominant_blocker"] = "STAGE_2_PHYSICAL_CANDIDATE_RECALL"
+    else:
+        gate["earliest_dominant_blocker"] = None
 
     config_resolution = {
         "schema_version": "1.0",
@@ -765,6 +791,7 @@ def main() -> None:
         "starting_sha": STARTING_SHA,
         "starting_production_settings": starting_prod_settings,
         "starting_production_instance_snapshot": tracker_snapshot(TemporalBallTracker(**starting_prod_settings)),
+        "reconciled_config_candidate_settings": reconciled_settings,
         "selected_production_settings": selected_settings,
         "selected_production_instance_snapshot": tracker_snapshot(TemporalBallTracker(**selected_settings)),
         "class_defaults": default_settings,
@@ -913,11 +940,10 @@ def main() -> None:
         "schema_version": "1.0",
         "variants_executed": [
             "A_PRESERVED_V21", "B_CURRENT_PRODUCTION_CONFIG", "C_CURRENT_CLASS_DEFAULTS",
-            "E_RECONCILED_CONFIG", "H_PRESEMANTIC_INTEGRATED",
+            "E_RECONCILED_CONFIG", "F_TARGETED_TRACKER_FIX", "H_PRESEMANTIC_INTEGRATED",
         ],
         "variants_not_executed": {
             "D_HISTORICAL_92_5_RECOVERY_CONFIG": "NOT_REPRODUCIBLE",
-            "F_TARGETED_TRACKER_FIX": "NOT_JUSTIFIED: selected config passes Stage 1 and residual windows lack independently localized proposal identity",
             "G_PHYSICAL_FP_SOURCE_FIX": "GATED: pre-semantic gate failed before FP-source remediation",
         },
         "root_cause_classification": root_cause,

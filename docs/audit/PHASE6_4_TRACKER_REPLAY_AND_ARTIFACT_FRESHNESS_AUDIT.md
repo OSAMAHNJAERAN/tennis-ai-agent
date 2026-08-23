@@ -42,14 +42,14 @@ The fixed `4/3/80` and `6/6/90` configurations were compared on every held-out v
 | 08+10 | 09 | 1.0000 | 1.0000 | .9167 | .9167 | .5116 | .5238 |
 | 09+10 | 08 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | .6087 | .5217 |
 
-`6/6/90` is Stage-1/2 non-inferior on all three held-out groups and materially improves the collapsing `video_10` group. It does not cause candidate explosion (75 covered candidates versus 79), and prediction runs remain bounded to six frames. It was therefore selected only as a configuration reconciliation. The event-layer tradeoff on video_08 is retained explicitly and prevents any claim of general qualification.
+`6/6/90` is Stage-1/2 non-inferior on all three held-out groups and materially improves the collapsing `video_10` group. However, the required quality audit found 252 out-of-frame trajectory points versus 197 under starting production. It therefore did not win honestly under the no-hallucination rule and was rejected, despite its better temporal-match metric.
 
 ## Corrective action
 
-`src/tracking/tracker_factory.py` now resolves all tracker settings through one strict typed path. Missing keys fail instead of silently invoking class defaults. `Phase6Pipeline` and active Phase 6.4 evaluators use the factory. `pipeline.yaml` now records the grouped-diagnostic selection `6/6/90`. Tracker algorithm behavior was not changed.
+`src/tracking/tracker_factory.py` now resolves all tracker settings through one strict typed path. Missing keys fail instead of silently invoking class defaults. `Phase6Pipeline` and active Phase 6.4 evaluators use the factory. The active config retains `4/3/80` and explicitly enables one targeted safety repair: candidates and synthesized points outside the declared frame are rejected. This reduces selected out-of-frame points to zero. Pre-fix behavior remains independently replayable with the toggle disabled.
 
 Fresh, versioned replay trajectories and their hashes are recorded under `artifacts/validation/phase6_4_tracker_replay/`. Preserved trajectories remain intact as historical diagnostic evidence.
 
 ## Remaining blocker
 
-The reconciled authoritative diagnostic replay reaches Stage 1 but not Stage 2: independent Stage-2 recall is `27/40 = .675`, below `.85`. True Stage-3 remains `22 TP / 32 FP / 18 FN`, `P=.4074 / R=.55 / F1=.4681`. Downstream FP-source remediation, semantic tuning, and shot-classifier work remain closed.
+The safety-correct selected replay does not reach Stage 1: independent grounded recall is `35/40 = .875`, below `.90`, with `video_10` at `13/18`. Stage 2 is `26/40 = .65`; true Stage-3 is `22 TP / 43 FP / 18 FN`, `P=.3385 / R=.55 / F1=.4190`. Downstream FP-source remediation, semantic tuning, and shot-classifier work remain closed.

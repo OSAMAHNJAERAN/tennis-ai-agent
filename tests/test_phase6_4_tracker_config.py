@@ -14,9 +14,9 @@ CONFIG = ROOT / "configs" / "phase6_analytics" / "pipeline.yaml"
 
 def test_canonical_config_resolves_every_tracker_setting() -> None:
     settings = resolve_temporal_tracker_settings(CONFIG)
-    assert settings.max_prediction_gap == 6
-    assert settings.max_interpolation_gap == 6
-    assert settings.max_valid_speed_px_per_frame == 90.0
+    assert settings.max_prediction_gap == 4
+    assert settings.max_interpolation_gap == 3
+    assert settings.max_valid_speed_px_per_frame == 80.0
     assert settings.base_gating_radius_px == 45.0
     assert settings.high_conf_thresh == 0.08
     assert settings.low_conf_thresh == 0.01
@@ -25,6 +25,7 @@ def test_canonical_config_resolves_every_tracker_setting() -> None:
     assert settings.enable_short_gap_reacquisition is True
     assert settings.enable_camera_motion_compensation is False
     assert settings.enable_scale_normalization is True
+    assert settings.enable_frame_bounds_filter is True
 
 
 def test_factory_instance_exactly_matches_resolved_config() -> None:
@@ -41,6 +42,7 @@ def test_factory_instance_exactly_matches_resolved_config() -> None:
     assert tracker.enable_reacquisition == settings.enable_short_gap_reacquisition
     assert tracker.enable_camera_comp == settings.enable_camera_motion_compensation
     assert tracker.enable_scale_norm == settings.enable_scale_normalization
+    assert tracker.enable_frame_bounds_filter == settings.enable_frame_bounds_filter
 
 
 def test_factory_rejects_incomplete_config_instead_of_falling_back() -> None:
@@ -59,3 +61,23 @@ def test_factory_rejects_inverted_confidence_thresholds() -> None:
     config["ball_detection"]["low_conf"] = 0.2
     with pytest.raises(ValueError, match="low <= high"):
         resolve_temporal_tracker_settings(config)
+
+
+def test_frame_bounds_filter_rejects_out_of_frame_candidates() -> None:
+    from src.tracking.temporal_ball_tracker import BallObservation, BallState, TemporalBallTracker
+
+    candidates = [
+        [BallObservation(-2.0, 50.0, 0.9)],
+        [BallObservation(102.0, 50.0, 0.9)],
+        [BallObservation(50.0, 50.0, 0.9)],
+    ]
+    filtered = TemporalBallTracker(enable_frame_bounds_filter=True).track_video_candidates(
+        candidates, fps=30.0, frame_size=(100, 100)
+    )
+    unfiltered = TemporalBallTracker(enable_frame_bounds_filter=False).track_video_candidates(
+        candidates, fps=30.0, frame_size=(100, 100)
+    )
+    assert filtered[0].state == BallState.MISSING
+    assert filtered[1].state == BallState.MISSING
+    assert filtered[2].state in {BallState.DETECTED, BallState.TRACKED}
+    assert unfiltered[0].state == BallState.DETECTED

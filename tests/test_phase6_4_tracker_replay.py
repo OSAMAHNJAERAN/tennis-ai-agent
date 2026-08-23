@@ -96,7 +96,7 @@ def test_predicted_only_points_are_excluded_from_stage1() -> None:
 
 def test_interpolation_provenance_is_explicit_in_replays() -> None:
     found = False
-    for path in (VALIDATION / "phase6_4_tracker_replay" / "e_reconciled_config").glob("*_trajectory.json"):
+    for path in (VALIDATION / "phase6_4_tracker_replay" / "f_targeted_tracker_fix").glob("*_trajectory.json"):
         points = json.loads(path.read_text(encoding="utf-8"))["points"]
         for point in points:
             if point["state"] == "INTERPOLATED":
