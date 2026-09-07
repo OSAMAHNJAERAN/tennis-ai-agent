@@ -421,15 +421,17 @@ class TemporalBallTracker:
                 
                 x_start, y_start = p_start.x_px, p_start.y_px
                 x_end, y_end = p_end.x_px, p_end.y_px
+                gap_speed = math.hypot(x_end - x_start, y_end - y_start) / (gap + 1)
                 
-                for step, mid_idx in enumerate(range(idx_start + 1, idx_end), 1):
-                    if trajectory[mid_idx].state == BallState.MISSING:
-                        alpha = step / (gap + 1)
-                        trajectory[mid_idx].x_px = float(x_start + alpha * (x_end - x_start))
-                        trajectory[mid_idx].y_px = float(y_start + alpha * (y_end - y_start))
-                        trajectory[mid_idx].confidence = None  # Explicitly null per specification
-                        trajectory[mid_idx].state = BallState.INTERPOLATED
-                        trajectory[mid_idx].source = "linear_interpolation"
+                if gap_speed <= max_speed:
+                    for step, mid_idx in enumerate(range(idx_start + 1, idx_end), 1):
+                        if trajectory[mid_idx].state == BallState.MISSING:
+                            alpha = step / (gap + 1)
+                            trajectory[mid_idx].x_px = float(x_start + alpha * (x_end - x_start))
+                            trajectory[mid_idx].y_px = float(y_start + alpha * (y_end - y_start))
+                            trajectory[mid_idx].confidence = None  # Explicitly null per specification
+                            trajectory[mid_idx].state = BallState.INTERPOLATED
+                            trajectory[mid_idx].source = "linear_interpolation"
 
         # Pass 6: Compute Velocity & Smooth Speeds
         for i in range(num_frames):

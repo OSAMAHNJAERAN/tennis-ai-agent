@@ -1,0 +1,316 @@
+[
+  {
+    "video_id": "video_08",
+    "event_id": 2,
+    "event_type": "BOUNCE",
+    "frame_best": 62,
+    "timestamp_seconds": 2.066666666666667,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 25,
+    "max_candidate_confidence": 0.8113887906074524,
+    "trajectory_state_in_window": {
+      "MISSING": 7,
+      "DETECTED": 6
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_08",
+    "event_id": 3,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 74,
+    "timestamp_seconds": 2.466666666666667,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 27,
+    "max_candidate_confidence": 0.5544198155403137,
+    "trajectory_state_in_window": {
+      "MISSING": 3,
+      "TRACKED": 4,
+      "DETECTED": 6
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_08",
+    "event_id": 6,
+    "event_type": "BOUNCE",
+    "frame_best": 130,
+    "timestamp_seconds": 4.333333333333333,
+    "category": "D: Event detector failure",
+    "failure_reason": "Candidate detected at frame 136 with score 0.64, but rejected by physical verification checks.",
+    "available_detections_count": 17,
+    "max_candidate_confidence": 0.5423129796981812,
+    "trajectory_state_in_window": {
+      "MISSING": 7,
+      "DETECTED": 6
+    },
+    "recovery_possibility": "Calibrate physical contact velocity discontinuity and direction change thresholds."
+  },
+  {
+    "video_id": "video_08",
+    "event_id": 7,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 142,
+    "timestamp_seconds": 4.733333333333333,
+    "category": "D: Event detector failure",
+    "failure_reason": "Candidate detected at frame 136 with score 0.64, but rejected by physical verification checks.",
+    "available_detections_count": 26,
+    "max_candidate_confidence": 0.5423129796981812,
+    "trajectory_state_in_window": {
+      "DETECTED": 11,
+      "TRACKED": 2
+    },
+    "recovery_possibility": "Calibrate physical contact velocity discontinuity and direction change thresholds."
+  },
+  {
+    "video_id": "video_08",
+    "event_id": 10,
+    "event_type": "BOUNCE",
+    "frame_best": 198,
+    "timestamp_seconds": 6.6,
+    "category": "D: Event detector failure",
+    "failure_reason": "Candidate detected at frame 203 with score 0.79, but rejected by physical verification checks.",
+    "available_detections_count": 102,
+    "max_candidate_confidence": 0.7210437655448914,
+    "trajectory_state_in_window": {
+      "DETECTED": 8,
+      "MISSING": 1,
+      "PREDICTED": 1,
+      "INTERPOLATED": 1,
+      "TRACKED": 2
+    },
+    "recovery_possibility": "Calibrate physical contact velocity discontinuity and direction change thresholds."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 4,
+    "event_type": "BOUNCE",
+    "frame_best": 110,
+    "timestamp_seconds": 3.6666666666666665,
+    "category": "C: Prediction failure",
+    "failure_reason": "Tracker was in pure Kalman prediction without visual grounding across the event window.",
+    "available_detections_count": 24,
+    "max_candidate_confidence": 0.0385737419128418,
+    "trajectory_state_in_window": {
+      "PREDICTED": 2,
+      "MISSING": 11
+    },
+    "recovery_possibility": "Reacquisition with bidirectional Kalman smoothing."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 5,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 122,
+    "timestamp_seconds": 4.066666666666666,
+    "category": "B: Association failure",
+    "failure_reason": "Raw candidates existed (17 cands), but tracker could not associate due to gating radius or confidence.",
+    "available_detections_count": 17,
+    "max_candidate_confidence": 0.041896652430295944,
+    "trajectory_state_in_window": {
+      "MISSING": 13
+    },
+    "recovery_possibility": "Adaptive velocity gating and ByteTrack low-confidence matching."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 6,
+    "event_type": "BOUNCE",
+    "frame_best": 145,
+    "timestamp_seconds": 4.833333333333333,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 15,
+    "max_candidate_confidence": 0.09746013581752777,
+    "trajectory_state_in_window": {
+      "MISSING": 5,
+      "TRACKED": 2,
+      "DETECTED": 2,
+      "PREDICTED": 4
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 7,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 158,
+    "timestamp_seconds": 5.266666666666667,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 18,
+    "max_candidate_confidence": 0.1097504049539566,
+    "trajectory_state_in_window": {
+      "MISSING": 8,
+      "TRACKED": 1,
+      "PREDICTED": 4
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 9,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 195,
+    "timestamp_seconds": 6.5,
+    "category": "C: Prediction failure",
+    "failure_reason": "Tracker was in pure Kalman prediction without visual grounding across the event window.",
+    "available_detections_count": 8,
+    "max_candidate_confidence": 0.048383668065071106,
+    "trajectory_state_in_window": {
+      "PREDICTED": 4,
+      "MISSING": 9
+    },
+    "recovery_possibility": "Reacquisition with bidirectional Kalman smoothing."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 10,
+    "event_type": "BOUNCE",
+    "frame_best": 218,
+    "timestamp_seconds": 7.266666666666667,
+    "category": "B: Association failure",
+    "failure_reason": "Raw candidates existed (10 cands), but tracker could not associate due to gating radius or confidence.",
+    "available_detections_count": 10,
+    "max_candidate_confidence": 0.02826075628399849,
+    "trajectory_state_in_window": {
+      "MISSING": 13
+    },
+    "recovery_possibility": "Adaptive velocity gating and ByteTrack low-confidence matching."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 11,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 232,
+    "timestamp_seconds": 7.733333333333333,
+    "category": "B: Association failure",
+    "failure_reason": "Raw candidates existed (7 cands), but tracker could not associate due to gating radius or confidence.",
+    "available_detections_count": 7,
+    "max_candidate_confidence": 0.024007579311728477,
+    "trajectory_state_in_window": {
+      "MISSING": 13
+    },
+    "recovery_possibility": "Adaptive velocity gating and ByteTrack low-confidence matching."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 12,
+    "event_type": "BOUNCE",
+    "frame_best": 256,
+    "timestamp_seconds": 8.533333333333333,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 24,
+    "max_candidate_confidence": 0.058267269283533096,
+    "trajectory_state_in_window": {
+      "MISSING": 2,
+      "TRACKED": 9,
+      "PREDICTED": 2
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 13,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 270,
+    "timestamp_seconds": 9.0,
+    "category": "C: Prediction failure",
+    "failure_reason": "Tracker was in pure Kalman prediction without visual grounding across the event window.",
+    "available_detections_count": 15,
+    "max_candidate_confidence": 0.01541656069457531,
+    "trajectory_state_in_window": {
+      "PREDICTED": 1,
+      "MISSING": 12
+    },
+    "recovery_possibility": "Reacquisition with bidirectional Kalman smoothing."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 14,
+    "event_type": "BOUNCE",
+    "frame_best": 294,
+    "timestamp_seconds": 9.8,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 7,
+    "max_candidate_confidence": 0.05381462350487709,
+    "trajectory_state_in_window": {
+      "MISSING": 12,
+      "TRACKED": 1
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 15,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 308,
+    "timestamp_seconds": 10.266666666666667,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 32,
+    "max_candidate_confidence": 0.10309058427810669,
+    "trajectory_state_in_window": {
+      "PREDICTED": 3,
+      "TRACKED": 6,
+      "DETECTED": 1,
+      "MISSING": 3
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 16,
+    "event_type": "BOUNCE",
+    "frame_best": 332,
+    "timestamp_seconds": 11.066666666666666,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 5,
+    "max_candidate_confidence": 0.06584396958351135,
+    "trajectory_state_in_window": {
+      "PREDICTED": 2,
+      "MISSING": 10,
+      "TRACKED": 1
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 17,
+    "event_type": "PLAYER_HIT",
+    "frame_best": 345,
+    "timestamp_seconds": 11.5,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 14,
+    "max_candidate_confidence": 0.0879063680768013,
+    "trajectory_state_in_window": {
+      "DETECTED": 1,
+      "TRACKED": 10,
+      "PREDICTED": 2
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  },
+  {
+    "video_id": "video_10",
+    "event_id": 18,
+    "event_type": "BOUNCE",
+    "frame_best": 370,
+    "timestamp_seconds": 12.333333333333334,
+    "category": "D: Event detector failure",
+    "failure_reason": "Ball trajectory was tracked, but kinematic curvature/speed delta did not trigger event candidate.",
+    "available_detections_count": 19,
+    "max_candidate_confidence": 0.08416464924812317,
+    "trajectory_state_in_window": {
+      "PREDICTED": 2,
+      "TRACKED": 10,
+      "DETECTED": 1
+    },
+    "recovery_possibility": "Tune candidate_min_direction_change_deg and candidate_min_normalized_velocity_change_per_s."
+  }
+]
