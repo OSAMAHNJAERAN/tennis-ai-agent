@@ -288,3 +288,102 @@ def test_oversized_and_margin_rejection():
     )
     assert len(filtered[0]) == 1
     assert filtered[0][0] == valid_ball
+
+
+def test_real_ball_preserved():
+    """Verify that genuine moving tennis ball proposals are 100% preserved through proposal filtering and tracking."""
+    filt = BallProposalFilter()
+    tracker = TemporalBallTracker()
+
+    # 10 frames of a clean baseline rally ball
+    ball_seq = [
+        [BallObservation(500.0 + f * 22.0, 300.0 + f * 8.0, 0.75, bbox=BBox(495.0 + f * 22.0, 295.0 + f * 8.0, 505.0 + f * 22.0, 305.0 + f * 8.0))]
+        for f in range(10)
+    ]
+    filtered = filt.filter_video_candidates(ball_seq, frame_size=(1280, 720))
+    for f in range(10):
+        assert len(filtered[f]) == 1, f"Real ball proposal dropped at frame {f}!"
+
+    traj = tracker.track_video_candidates(filtered, fps=30.0, frame_size=(1280, 720))
+    for f in range(10):
+        assert traj[f].state in (BallState.DETECTED, BallState.TRACKED)
+        assert abs(traj[f].x_px - (500.0 + f * 22.0)) < 1.0
+
+
+def test_slow_lob_trajectory():
+    """Verify that slow, high-arching lob shots with gentle curvature are tracked without dropouts."""
+    tracker = TemporalBallTracker()
+    # Lob shot: x moves gently at +6 px/frame, y ascends then descends
+    lob_detections = []
+    for f in range(12):
+        x = 600.0 + f * 6.0
+        y = 400.0 - 4.0 * f + 0.35 * (f ** 2)  # parabolic arc
+        lob_detections.append([BallObservation(x, y, 0.65)])
+
+    traj = tracker.track_video_candidates(lob_detections, fps=30.0)
+    for f in range(12):
+        assert traj[f].state in (BallState.DETECTED, BallState.TRACKED)
+        assert traj[f].x_px is not None
+
+
+def test_camera_motion_adaptation():
+    """Verify tracker remains robust when camera pan adds a constant velocity bias."""
+    tracker = TemporalBallTracker()
+    # Ball moves at 15 px/frame, camera pans at +10 px/frame
+    detections = [
+        [BallObservation(200.0 + f * 25.0, 350.0, 0.70)]
+        for f in range(10)
+    ]
+    traj = tracker.track_video_candidates(detections, fps=30.0)
+    for f in range(10):
+        assert traj[f].state in (BallState.DETECTED, BallState.TRACKED)
+        assert abs(traj[f].x_px - (200.0 + f * 25.0)) < 1.5
+
+
+def test_occlusion_and_player_clearance_recovery():
+    """Verify tracker coasts through 3-frame player occlusion and reacquires cleanly on clearance."""
+    tracker = TemporalBallTracker(max_prediction_gap=4, enable_short_gap_reacquisition=True)
+    detections = []
+    for f in range(14):
+        if 5 <= f <= 7:
+            # Occluded behind player
+            detections.append([])
+        else:
+            detections.append([BallObservation(300.0 + f * 18.0, 450.0, 0.68)])
+
+    traj = tracker.track_video_candidates(detections, fps=30.0)
+    # Gaps 5, 6, 7 must be PREDICTED
+    assert traj[5].state == BallState.PREDICTED
+    assert traj[6].state == BallState.PREDICTED
+    assert traj[7].state == BallState.PREDICTED
+    # Reacquired at frame 8
+    assert traj[8].state in (BallState.DETECTED, BallState.TRACKED)
+    assert abs(traj[8].x_px - (300.0 + 8 * 18.0)) < 2.0
+
+
+def test_no_ground_truth_leakage_in_tracking():
+    """Verify tracker modules contain zero references to ground truth events or annotations."""
+    import inspect
+    from src.tracking import temporal_ball_tracker, ball_proposal_filter
+
+    src_tracker = inspect.getsource(temporal_ball_tracker)
+    src_filter = inspect.getsource(ball_proposal_filter)
+
+    banned_terms = ["ground_truth", "gt_events", "gt_window", "annotation_coverage", "gt_lineage"]
+    for term in banned_terms:
+        assert term not in src_tracker, f"Ground truth leakage '{term}' found in temporal_ball_tracker.py!"
+        assert term not in src_filter, f"Ground truth leakage '{term}' found in ball_proposal_filter.py!"
+
+
+def test_no_video_specific_rules_in_tracking():
+    """Verify tracker modules contain zero hardcoded video IDs or match-specific branching."""
+    import inspect
+    from src.tracking import temporal_ball_tracker, ball_proposal_filter
+
+    src_tracker = inspect.getsource(temporal_ball_tracker)
+    src_filter = inspect.getsource(ball_proposal_filter)
+
+    video_terms = [f"video_{i:02d}" for i in range(1, 20)]
+    for term in video_terms:
+        assert term not in src_tracker, f"Video-specific rule '{term}' found in temporal_ball_tracker.py!"
+        assert term not in src_filter, f"Video-specific rule '{term}' found in ball_proposal_filter.py!"

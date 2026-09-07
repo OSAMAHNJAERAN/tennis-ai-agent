@@ -48,58 +48,41 @@ class BallProposalFilter:
         scale: float = 1.0,
     ) -> List[Tuple[float, float, float]]:
         """
-        Scans all frames to find spatial locations that repeatedly yield detections
-        across widely separated times, indicating static court/stadium landmarks.
+        Scans frames to find true static background landmarks (logos, net hardware,
+        scoreboards) that remain motionless across consecutive frame runs (run_len >= 8).
         Returns list of (center_x, center_y, radius).
         """
-        radius = self.settings.static_distractor_radius_px * scale
-        grid_size = max(10.0, radius)
+        num_frames = len(frame_candidates)
+        min_run = max(5, int(self.settings.static_distractor_min_occurrences))
+        step_tol = 3.5 * scale
+        cluster_rad = 6.0 * scale
 
-        # Map grid cell -> list of (x, y, frame_idx)
-        grid: defaultdict[Tuple[int, int], List[Tuple[float, float, int]]] = defaultdict(list)
-
-        for frame_idx, candidates in enumerate(frame_candidates):
-            for c in candidates:
-                gx = int(c.x_px // grid_size)
-                gy = int(c.y_px // grid_size)
-                # Add to cell and 8 neighboring cells for seamless radius lookup
-                for dx in (-1, 0, 1):
-                    for dy in (-1, 0, 1):
-                        grid[(gx + dx, gy + dy)].append((c.x_px, c.y_px, frame_idx))
-
-        # Cluster points in cells that have high count
         distractor_clusters: List[Tuple[float, float, float]] = []
-        visited_points: Set[Tuple[int, int]] = set()
 
-        for frame_idx, candidates in enumerate(frame_candidates):
-            for c in candidates:
-                pt_key = (int(round(c.x_px)), int(round(c.y_px)))
-                if pt_key in visited_points:
-                    continue
+        # Find consecutive runs of stationary candidates
+        for fi in range(max(0, num_frames - min_run)):
+            for c0 in frame_candidates[fi]:
+                run = [c0]
+                for offset in range(1, min_run + 4):
+                    nxt_idx = fi + offset
+                    if nxt_idx >= num_frames:
+                        break
+                    match = None
+                    for c_next in frame_candidates[nxt_idx]:
+                        if math.hypot(c_next.x_px - c0.x_px, c_next.y_px - c0.y_px) <= step_tol:
+                            match = c_next
+                            break
+                    if match is not None:
+                        run.append(match)
+                    else:
+                        break
 
-                gx = int(c.x_px // grid_size)
-                gy = int(c.y_px // grid_size)
-                neighbors = grid.get((gx, gy), [])
-
-                close_points = [
-                    (x, y, f) for x, y, f in neighbors
-                    if math.hypot(x - c.x_px, y - c.y_px) <= radius
-                ]
-
-                # Check occurrences and time span
-                if len(close_points) >= self.settings.static_distractor_min_occurrences:
-                    frames_seen = [f for _, _, f in close_points]
-                    span = max(frames_seen) - min(frames_seen)
-                    unique_frames = len(set(frames_seen))
-                    if (
-                        unique_frames >= self.settings.static_distractor_min_occurrences
-                        and span >= self.settings.static_distractor_min_span_frames
-                    ):
-                        avg_x = sum(x for x, _, _ in close_points) / len(close_points)
-                        avg_y = sum(y for _, y, _ in close_points) / len(close_points)
-                        distractor_clusters.append((avg_x, avg_y, radius))
-                        for x, y, _ in close_points:
-                            visited_points.add((int(round(x)), int(round(y))))
+                if len(run) >= min_run:
+                    avg_x = sum(c.x_px for c in run) / len(run)
+                    avg_y = sum(c.y_px for c in run) / len(run)
+                    # Check if already clustered
+                    if not any(math.hypot(avg_x - dx, avg_y - dy) <= cluster_rad * 1.5 for dx, dy, _ in distractor_clusters):
+                        distractor_clusters.append((avg_x, avg_y, cluster_rad))
 
         return distractor_clusters
 

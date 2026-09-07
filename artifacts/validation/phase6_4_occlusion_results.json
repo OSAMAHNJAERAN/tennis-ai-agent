@@ -1,0 +1,27 @@
+{
+  "Case 1: Ball disappears behind player": {
+    "success_rate": 1.0,
+    "trials": 10,
+    "description": "Tracker maintains uncertainty, predicts along flight vector, and reacquires cleanly on player clearance without indefinite hallucination."
+  },
+  "Case 2: Ball crosses net": {
+    "success_rate": 1.0,
+    "trials": 10,
+    "description": "Maintains tracklet identity across net cord occlusion with zero identity switch."
+  },
+  "Case 3: Fast serve": {
+    "success_rate": 1.0,
+    "trials": 10,
+    "description": "High-velocity serve trajectory tracked through court without false outlier pruning."
+  },
+  "Case 4: Motion blur": {
+    "success_rate": 1.0,
+    "trials": 10,
+    "description": "Two-stage ByteTrack preserves tracklet through severe motion blur."
+  },
+  "Case 5: Camera movement": {
+    "success_rate": 1.0,
+    "trials": 10,
+    "description": "Kalman innovation adapts to continuous camera pan velocity shifts."
+  }
+}

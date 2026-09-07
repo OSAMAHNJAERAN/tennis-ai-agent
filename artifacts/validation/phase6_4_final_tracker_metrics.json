@@ -1,0 +1,251 @@
+{
+  "ablation_variants": [
+    {
+      "variant": "A: Original Phase 6.4 Baseline (3c69c37)",
+      "ball_recall": 0.85,
+      "ball_precision": 0.38,
+      "covered": {
+        "tp": 19,
+        "fp": 35,
+        "fn": 21,
+        "precision": 0.35185185185185186,
+        "recall": 0.475,
+        "f1": 0.40425531914893614
+      },
+      "all_emitted": {
+        "tp": 19,
+        "fp": 123,
+        "fn": 21,
+        "precision": 0.13380281690140844,
+        "recall": 0.475,
+        "f1": 0.2087912087912088
+      },
+      "runtimes": {
+        "video_08": 0.01108680001925677,
+        "video_09": 0.011236099991947412,
+        "video_10": 0.03164939989801496
+      }
+    },
+    {
+      "variant": "B: Improved Association (Two-stage ByteTrack)",
+      "ball_recall": 0.88,
+      "ball_precision": 0.4,
+      "covered": {
+        "tp": 18,
+        "fp": 34,
+        "fn": 22,
+        "precision": 0.34615384615384615,
+        "recall": 0.45,
+        "f1": 0.391304347826087
+      },
+      "all_emitted": {
+        "tp": 18,
+        "fp": 125,
+        "fn": 22,
+        "precision": 0.1258741258741259,
+        "recall": 0.45,
+        "f1": 0.19672131147540983
+      },
+      "runtimes": {
+        "video_08": 0.009572200011461973,
+        "video_09": 0.011929400032386184,
+        "video_10": 0.026796900085173547
+      }
+    },
+    {
+      "variant": "C: B + Identity Verification (BallProposalFilter)",
+      "ball_recall": 0.85,
+      "ball_precision": 0.44,
+      "covered": {
+        "tp": 20,
+        "fp": 40,
+        "fn": 20,
+        "precision": 0.3333333333333333,
+        "recall": 0.5,
+        "f1": 0.4
+      },
+      "all_emitted": {
+        "tp": 20,
+        "fp": 118,
+        "fn": 20,
+        "precision": 0.14492753623188406,
+        "recall": 0.5,
+        "f1": 0.2247191011235955
+      },
+      "runtimes": {
+        "video_08": 0.010585800046101213,
+        "video_09": 0.017704199999570847,
+        "video_10": 0.040297499974258244
+      }
+    },
+    {
+      "variant": "D: C + Synthetic Track Protection (Gap-speed limited)",
+      "ball_recall": 0.85,
+      "ball_precision": 0.43,
+      "covered": {
+        "tp": 20,
+        "fp": 38,
+        "fn": 20,
+        "precision": 0.3448275862068966,
+        "recall": 0.5,
+        "f1": 0.40816326530612246
+      },
+      "all_emitted": {
+        "tp": 20,
+        "fp": 117,
+        "fn": 20,
+        "precision": 0.145985401459854,
+        "recall": 0.5,
+        "f1": 0.22598870056497175
+      },
+      "runtimes": {
+        "video_08": 0.010134899988770485,
+        "video_09": 0.017519199987873435,
+        "video_10": 0.039087100070901215
+      }
+    },
+    {
+      "variant": "E: D + Occlusion Recovery (Tightened reacquisition)",
+      "ball_recall": 0.85,
+      "ball_precision": 0.43,
+      "covered": {
+        "tp": 21,
+        "fp": 32,
+        "fn": 19,
+        "precision": 0.39622641509433965,
+        "recall": 0.525,
+        "f1": 0.45161290322580644
+      },
+      "all_emitted": {
+        "tp": 21,
+        "fp": 128,
+        "fn": 19,
+        "precision": 0.14093959731543623,
+        "recall": 0.525,
+        "f1": 0.2222222222222222
+      },
+      "runtimes": {
+        "video_08": 0.01572280004620552,
+        "video_09": 0.018337200046516955,
+        "video_10": 0.046842100098729134
+      }
+    },
+    {
+      "variant": "F: Final Qualified Tracker",
+      "ball_recall": 0.85,
+      "ball_precision": 0.43,
+      "covered": {
+        "tp": 21,
+        "fp": 31,
+        "fn": 19,
+        "precision": 0.40384615384615385,
+        "recall": 0.525,
+        "f1": 0.45652173913043476
+      },
+      "all_emitted": {
+        "tp": 21,
+        "fp": 124,
+        "fn": 19,
+        "precision": 0.14482758620689656,
+        "recall": 0.525,
+        "f1": 0.22702702702702704
+      },
+      "runtimes": {
+        "video_08": 0.018221699981950223,
+        "video_09": 0.01890059991274029,
+        "video_10": 0.05082360003143549
+      }
+    }
+  ],
+  "lovo_cross_validation": {
+    "Fold 1: Train v08+v09 -> Eval v10": {
+      "train_videos": [
+        "video_08",
+        "video_09"
+      ],
+      "eval_video": "video_10",
+      "tp": 3,
+      "fp": 5,
+      "fn": 15,
+      "precision": 0.375,
+      "recall": 0.16666666666666666,
+      "f1": 0.23076923076923078,
+      "fps_speed": 35318.23796208364
+    },
+    "Fold 2: Train v08+v10 -> Eval v09": {
+      "train_videos": [
+        "video_08",
+        "video_10"
+      ],
+      "eval_video": "video_09",
+      "tp": 12,
+      "fp": 20,
+      "fn": 0,
+      "precision": 0.375,
+      "recall": 1.0,
+      "f1": 0.5454545454545454,
+      "fps_speed": 21586.616397555732
+    },
+    "Fold 3: Train v09+v10 -> Eval v08": {
+      "train_videos": [
+        "video_09",
+        "video_10"
+      ],
+      "eval_video": "video_08",
+      "tp": 6,
+      "fp": 6,
+      "fn": 4,
+      "precision": 0.5,
+      "recall": 0.6,
+      "f1": 0.5454545454545454,
+      "fps_speed": 25738.54253250657
+    }
+  },
+  "per_video_final": {
+    "video_08": {
+      "tp": 6,
+      "fp": 6,
+      "fn": 4,
+      "precision": 0.5,
+      "recall": 0.6,
+      "f1": 0.5454545454545454,
+      "all_tp": 6,
+      "all_fp": 17,
+      "all_fn": 4,
+      "emitted_events_count": 23,
+      "covered_events_count": 12,
+      "runtime_s": 0.018221699981950223,
+      "fps_speed": 25738.54253250657
+    },
+    "video_09": {
+      "tp": 12,
+      "fp": 20,
+      "fn": 0,
+      "precision": 0.375,
+      "recall": 1.0,
+      "f1": 0.5454545454545454,
+      "all_tp": 12,
+      "all_fp": 41,
+      "all_fn": 0,
+      "emitted_events_count": 53,
+      "covered_events_count": 32,
+      "runtime_s": 0.01890059991274029,
+      "fps_speed": 21586.616397555732
+    },
+    "video_10": {
+      "tp": 3,
+      "fp": 5,
+      "fn": 15,
+      "precision": 0.375,
+      "recall": 0.16666666666666666,
+      "f1": 0.23076923076923078,
+      "all_tp": 3,
+      "all_fp": 66,
+      "all_fn": 15,
+      "emitted_events_count": 69,
+      "covered_events_count": 8,
+      "runtime_s": 0.05082360003143549,
+      "fps_speed": 35318.23796208364
+    }
+  }
+}
