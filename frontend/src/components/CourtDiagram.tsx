@@ -20,6 +20,7 @@ function pathFromPoints(points: Array<[number, number] | null>, stride = 1) {
 export const CourtDiagram = memo(function CourtDiagram({
   run,
   selectedEventId = null,
+  currentFrame = null,
   compact = false,
   showPlayers = true,
   showBall = true,
@@ -28,6 +29,7 @@ export const CourtDiagram = memo(function CourtDiagram({
 }: {
   run: AnalysisRun;
   selectedEventId?: number | null;
+  currentFrame?: number | null;
   compact?: boolean;
   showPlayers?: boolean;
   showBall?: boolean;
@@ -37,16 +39,23 @@ export const CourtDiagram = memo(function CourtDiagram({
   const titleId = useId();
   const clipId = useId();
   const trajectories = run.trajectories;
+  const frameLimit = currentFrame == null ? Number.POSITIVE_INFINITY : currentFrame;
+  const ballPositions = trajectories?.ballTrajectory.filter((point) => point.frame_index <= frameLimit) ?? [];
+  const player1Positions = trajectories?.player1CourtPositions.slice(0, currentFrame == null ? undefined : currentFrame + 1) ?? [];
+  const player2Positions = trajectories?.player2CourtPositions.slice(0, currentFrame == null ? undefined : currentFrame + 1) ?? [];
+  const currentBall = [...ballPositions].reverse().find((point) => point.court_x_m != null && point.court_y_m != null) ?? null;
+  const currentPlayer1 = currentFrame == null ? null : player1Positions[currentFrame] ?? null;
+  const currentPlayer2 = currentFrame == null ? null : player2Positions[currentFrame] ?? null;
   const ballPath = trajectories
     ? pathFromPoints(
-        trajectories.ballTrajectory.map((point) =>
+        ballPositions.slice(currentFrame == null ? 0 : -28).map((point) =>
           point.court_x_m == null || point.court_y_m == null ? null : [point.court_x_m, point.court_y_m],
         ),
         compact ? 3 : 1,
       )
     : "";
-  const player1Path = trajectories ? pathFromPoints(trajectories.player1CourtPositions, compact ? 5 : 2) : "";
-  const player2Path = trajectories ? pathFromPoints(trajectories.player2CourtPositions, compact ? 5 : 2) : "";
+  const player1Path = trajectories ? pathFromPoints(player1Positions.slice(currentFrame == null ? 0 : -36), compact ? 5 : 2) : "";
+  const player2Path = trajectories ? pathFromPoints(player2Positions.slice(currentFrame == null ? 0 : -36), compact ? 5 : 2) : "";
   const innerLeft = mapCourtPoint([1.37, 0], WIDTH, HEIGHT, PAD).x;
   const innerRight = mapCourtPoint([9.6, 0], WIDTH, HEIGHT, PAD).x;
   const serviceNear = mapCourtPoint([0, 5.485], WIDTH, HEIGHT, PAD).y;
@@ -79,6 +88,12 @@ export const CourtDiagram = memo(function CourtDiagram({
         {showPlayers && player2Path ? <path className="player-trail player-trail-two" d={player2Path} /> : null}
         {showBall && ballPath ? <path className="ball-trail" d={ballPath} /> : null}
       </g>
+      {showPlayers && currentPlayer1 ? <CurrentPlayer point={currentPlayer1} label="P1" className="current-player current-player-one" /> : null}
+      {showPlayers && currentPlayer2 ? <CurrentPlayer point={currentPlayer2} label="P2" className="current-player current-player-two" /> : null}
+      {showBall && currentBall?.court_x_m != null && currentBall.court_y_m != null ? (() => {
+        const point = mapCourtPoint([currentBall.court_x_m, currentBall.court_y_m], WIDTH, HEIGHT, PAD);
+        return <circle className="current-court-ball" cx={point.x} cy={point.y} r="6" />;
+      })() : null}
       {showEvents ? run.events.map((event) => {
         if (!event.court_position_m) return null;
         const point = mapCourtPoint(event.court_position_m, WIDTH, HEIGHT, PAD);
@@ -102,4 +117,19 @@ export const CourtDiagram = memo(function CourtDiagram({
     </svg>
   );
 });
+
+function CurrentPlayer({ point, label, className }: { point: [number, number]; label: string; className: string }) {
+  const mapped = mapCourtPoint(
+    [Math.max(0, Math.min(10.97, point[0])), Math.max(0, Math.min(23.77, point[1]))],
+    WIDTH,
+    HEIGHT,
+    PAD,
+  );
+  return (
+    <g className={className} transform={`translate(${mapped.x},${mapped.y})`}>
+      <circle r="9" />
+      <text y="-15" textAnchor="middle">{label}</text>
+    </g>
+  );
+}
 

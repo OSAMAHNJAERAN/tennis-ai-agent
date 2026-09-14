@@ -1,0 +1,319 @@
+/* ==========================================================================
+   7-Slide Intelligence Reference Carousel Styles
+   ========================================================================== */
+
+.intelligence-carousel-card {
+  background: var(--surface-off-white-card);
+  border: 1px solid var(--color-ash);
+  border-radius: var(--radius-3xl);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  outline: none;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.carousel-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-off-black-ink);
+  background: var(--color-electric-lime);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+}
+
+.carousel-heading {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.carousel-subheading {
+  font-size: 13px;
+  color: var(--color-graphite);
+  max-width: 600px;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carousel-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 13px;
+  font-family: var(--font-geist-mono);
+  padding: 0 4px;
+}
+
+.carousel-stage-container {
+  background: var(--surface-page-canvas);
+  border: 1px solid var(--color-ash);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+.carousel-slide-content {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  min-height: 380px;
+}
+
+.carousel-meta-pane {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  border-right: 1px solid var(--color-ash);
+}
+
+.carousel-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.carousel-category-badge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  background: var(--color-off-black-ink);
+  color: #ffffff;
+}
+
+.carousel-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.carousel-chip {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--surface-off-white-card);
+  border: 1px solid var(--color-ash);
+  color: var(--color-graphite);
+}
+
+.carousel-meta-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.carousel-slide-num {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-geist-mono);
+  color: var(--color-graphite);
+}
+
+.carousel-slide-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-off-black-ink);
+}
+
+.carousel-slide-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-graphite);
+}
+
+.carousel-slide-desc {
+  font-size: 13px;
+  color: var(--color-graphite);
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+.carousel-meta-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carousel-image-frame {
+  position: relative;
+  background: var(--surface-off-white-card);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 250ms ease;
+}
+
+.carousel-image-frame:hover .carousel-preview-img {
+  transform: scale(1.02);
+}
+
+.carousel-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 15, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.carousel-image-frame:hover .carousel-image-overlay {
+  opacity: 1;
+}
+
+.carousel-expand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  color: var(--color-off-black-ink);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-indicators-bar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.carousel-dot-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 12px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-ash);
+  background: var(--surface-page-canvas);
+  cursor: pointer;
+  transition: all 120ms ease;
+  text-align: left;
+}
+
+.carousel-dot-item:hover {
+  background: var(--surface-off-white-card);
+}
+
+.carousel-dot-active {
+  border-color: var(--color-off-black-ink);
+  background: var(--color-electric-lime);
+}
+
+.carousel-dot-num {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-geist-mono);
+}
+
+.carousel-dot-label {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.carousel-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 15, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.carousel-modal-content {
+  background: var(--surface-page-canvas);
+  border-radius: var(--radius-3xl);
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.carousel-modal-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-ash);
+}
+
+.carousel-modal-title strong {
+  font-size: 16px;
+  display: block;
+}
+
+.carousel-modal-title span {
+  font-size: 12px;
+  color: var(--color-graphite);
+}
+
+.carousel-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carousel-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-modal-img {
+  max-height: 75vh;
+  width: auto;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-ash);
+}

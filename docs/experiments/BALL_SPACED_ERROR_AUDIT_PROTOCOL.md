@@ -1,0 +1,13 @@
+# Current spaced-ball error attribution
+
+Audit all 900 unchanged labels from the completed eighteen-clip spacing experiment. Reconstruct final predictions from the saved continuous stream, patch residuals and detour decisions and verify source hashes. Independently recompute the four-reference-pixel metric before interpreting results. Wrong visible locations count FP and FN; explicit absence remains distinct from a missing annotation.
+
+For every scored frame, record raw, stationary, pixel-motion and final outcomes. Classify each final visible miss as a lost raw-correct selection, a raw wrong selection, or raw abstention. Where the existing stride-two sparse report contains candidate provenance, independently check whether a correct raw candidate exists and its confidence rank. Preserve stride-one candidate coverage as unknown: its saved stream contains only selected points. Do not infer missing candidate evidence from labels or regenerate selected cases using different settings.
+
+Summarize absence false detections separately, including unchanged final predictions immediately before and after each labeled frame. Nearby observations are diagnostic context, not additional labels or proof that the object is the ball. Do not tune rejection thresholds, interpolate points, relabel absence frames, or treat oracle candidate coverage as deployed recall.
+
+Select up to two source-context examples per final-error attribution category, in clip/frame order, before inspecting images. Render the source frame and unmarked preceding/current/following native crops around the target (visible case) or prediction (absent case). Report exactly which samples were visually inspected. All evidence remains reused development data; no model changes or new accuracy claim follow from this audit alone.
+
+## Follow-up candidate acquisition, declared after the saved-evidence audit
+
+The saved-evidence audit leaves candidate coverage unknown on 250 labeled frames from five stride-one clips, including five final visible misses. Close this gap by inferring all 250 labeled frames at identical settings with the existing SHA-256-verified WASB model, threshold .20, full view plus four .60 crops, four-reference-pixel merge radius, and every real target-aligned adjacent triplet. Preserve the initial audit and its original protocol hash; this appended acquisition specification is separately hashed in its own report. Require reconstructed top-one raw coordinates and missing states to match the original continuous stream within 0.0001 native pixels on every label. Save all view candidates and source windows. No threshold selection, temporal filter change, relabeling or alternative-model loading occurs. Stop interpretation if raw replay disagrees.

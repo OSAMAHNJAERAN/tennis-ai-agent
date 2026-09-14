@@ -19,8 +19,9 @@ def get_video_metadata(path: str) -> VideoMetadata:
         raise ValueError(f"Could not open video file: {path}")
     
     fps = float(cap.get(cv2.CAP_PROP_FPS))
-    if fps <= 0:
-        fps = 30.0  # Fallback just in case
+    if not np.isfinite(fps) or fps <= 0:
+        cap.release()
+        raise ValueError(f"Video has no positive finite frame rate: {path}")
     
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))

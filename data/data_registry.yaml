@@ -123,6 +123,33 @@ datasets:
     legacy_path: "data/benchmarks/cross_match_final_holdout"
     qualification_evidence: false
 
+  - id: "racketvision_ball_training60"
+    name: "RacketVision tennis ball training expansion: first sixty publisher entries"
+    version: "85157ca21faa2abca96d837dd2b963738029bcc8"
+    url: "https://huggingface.co/datasets/linfeng302/RacketVision"
+    source: "Publisher raw tennis videos and sparse active-ball CSVs"
+    license: "MIT as declared in the pinned publisher dataset card; source broadcast independence unverified"
+    task: "sparse_temporal_tennis_ball_training"
+    latest_acquisition_date: "2026-09-14"
+    paths:
+      - "data/external/racketvision_training20"
+      - "data/external/racketvision_training_additional20"
+      - "data/external/racketvision_training_third20"
+    video_count: 60
+    label_count: 2999
+    training_clips: 48
+    training_labels: 2399
+    selection_clips: 12
+    selection_labels: 600
+    third20_manifest_sha256: "8394fc2d5d97ddd139035377f12b022e7159fe44f5fe5c8113520baae12a6d6a"
+    status: "TRAINING_ONLY_AUDITED_SAMPLE_REVIEWED"
+    intended_use: "Ball-model research with explicit sparse supervision and preserved match-ID split; includes doubles for ball-only training"
+    limitations: "Source match independence and all-label accuracy unverified; not player-tracking or production qualification evidence"
+    audit: "outputs/vision_upgrade_audit/ball_training_expansion60/report.json"
+    visual_review: "outputs/vision_upgrade_audit/ball_training_expansion60/review.json"
+    final_test_downloaded: false
+    qualification_evidence: false
+
 models:
   - id: "yolo11s_tennis_ball_best"
     architecture: "Ultralytics YOLO11s"

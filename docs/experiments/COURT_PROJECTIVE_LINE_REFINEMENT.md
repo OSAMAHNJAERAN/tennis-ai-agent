@@ -1,0 +1,13 @@
+# Projective court-line refinement pilot
+
+Protocol fixed before real-image evaluation. This is a local correction experiment, not a replacement for camera-general court detection. The visibly displaced match143 court and the earlier failed court probes motivate the pilot.
+
+Keep the existing bright-ridge line proposals: width960, length at least30, supported fraction at least0.5. Match each canonical court line to a locally compatible finite image segment: angle difference at most6 degrees, both endpoint perpendicular distances at most20 reference pixels, overlap at least30 pixels and half the shorter segment. Rank by mean endpoint distance plus0.5 times angle in degrees. One image segment may support only one canonical line. Require at least six matches, with at least two transverse and two longitudinal court lines.
+
+Optimize a single eight-parameter image homography against eleven samples per assigned line, using soft-L1 residuals with scale2 and a weak0.05 displacement prior over fourteen original landmarks. Run three reassignment/optimization rounds, each parameterized against the original geometry. Reject unsuccessful fits, a near/crossed projective horizon or maximum landmark displacement above20 reference pixels. Accept only if the unchanged image-support diagnostic passes, at least six court lines have support at least0.5, and mean support improves by at least0.02. Retain the original geometry on rejection.
+
+Evaluate the six first/middle/last projected calibrations from the completed match143/match148 pipeline runs, then all eighteen prior control cases: baseline and geoaug ResNet predictions on three UVY and three CalTennis videos, plus six broadcast heatmap predictions. For the latter, first require the existing native-pixel calibration gate; do not refine a geometrically invalid initialization. Preserve missing/outlier handling and source hashes. No parameter tuning after seeing these outcomes.
+
+Before real-image inference, eight tests pass: three known synthetic translations recover to below0.1 reference pixel with common projective geometry; empty, distant and single-family evidence cannot move the court; an already aligned court stays unchanged; nonfinite inputs fail. These tests establish algorithm behavior only.
+
+Real-image support is an optimization diagnostic, not independent accuracy: the same image segments supply fitting and scoring. Visually inspect every accepted change and controls. No runtime calibration decision, ground-speed authority, event authority or production default changes in this pilot. An independent labeled court benchmark remains required.

@@ -66,9 +66,15 @@ outputs/
 
 # Frontend
 node_modules/
-frontend/dist/
-frontend/node_modules/
-frontend/coverage/
+frontend/*
+!frontend/src/
+!frontend/scripts/
+frontend/scripts/*
+!frontend/scripts/*.mjs
+!frontend/public/
+frontend/public/*
+!frontend/public/astra.svg
+.pnpm-store/
 
 # Model weights
 *.pt
@@ -78,3 +84,21 @@ frontend/coverage/
 
 # Ultralytics cache
 .ultralytics/
+
+# External source snapshots used for vision research
+artifacts/research/
+
+# Downloaded validation media; reproducible acquisition script is tracked
+data/external/
+*.pth.tar
+artifacts/training/vision_upgrade/
+
+# Reproducible vision evaluation tensors; retain JSON manifests and metrics
+artifacts/validation/vision_upgrade/*_cache/*.npz
+artifacts/validation/vision_upgrade/*_heatmaps/*.npz
+
+# Isolated pinned COCO evaluation dependency
+artifacts/tools/vision_eval_runtime/
+
+# Downloaded research court checkpoints; retain cards and provenance
+artifacts/models/court/**/*.pth

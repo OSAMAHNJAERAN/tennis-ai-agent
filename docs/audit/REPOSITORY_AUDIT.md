@@ -1,5 +1,7 @@
 # Repository Audit — T88J709 Tennis Vision System
 
+> **6 September 2026 update:** This document records the original greenfield audit. The repository now contains the Python inference pipeline and a React application. Read the [Astra upgrade audit and architecture](../plans/ASTRA_3D_UPGRADE.md) and [implemented modules and verification](../ASTRA_TENNIS.md) for the current visualization work. The historical inventory below is retained for provenance.
+
 > **Date:** 2026-08-22
 > **Auditor:** AI/ML Engineering Agent
 > **Repository:** `c:\Semester 9\FYP2\tennis_ai_agent_bundle`

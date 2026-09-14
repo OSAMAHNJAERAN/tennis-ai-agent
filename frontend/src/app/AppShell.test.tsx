@@ -12,6 +12,7 @@ function renderShell() {
       <Routes>
         <Route element={<AnalysisProvider><AppShell /></AnalysisProvider>}>
           <Route index element={<div>Overview route content</div>} />
+          <Route path="match-center" element={<div>Analysis route content</div>} />
           <Route path="analysis" element={<div>Analysis route content</div>} />
         </Route>
       </Routes>
@@ -24,7 +25,7 @@ describe("application shell", () => {
     const user = userEvent.setup();
     renderShell();
     expect(await screen.findByText("Overview route content")).toBeInTheDocument();
-    await user.click(screen.getAllByRole("link", { name: "Match analysis" })[0]!);
+    await user.click(screen.getAllByRole("link", { name: /Match Center|Match analysis/i })[0]!);
     expect(screen.getByText("Analysis route content")).toBeInTheDocument();
   });
 
@@ -35,4 +36,3 @@ describe("application shell", () => {
     expect(results.violations).toEqual([]);
   });
 });
-

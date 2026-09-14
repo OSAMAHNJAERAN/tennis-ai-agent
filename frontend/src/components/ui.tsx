@@ -119,3 +119,100 @@ export function DataError({ message, onRetry }: { message: string; onRetry: () =
   );
 }
 
+export function MetricCard({
+  icon: Icon,
+  label,
+  value,
+  subvalue,
+  subValue,
+  trend,
+  trendPositive = true,
+  className,
+  highlight = false,
+  variant,
+  progress,
+  progressColor = "lime",
+}: {
+  icon?: (props: { size?: number; weight?: "regular" | "fill" | "duotone" | "bold"; className?: string }) => ReactNode;
+  label: string;
+  value: ReactNode;
+  subvalue?: ReactNode;
+  subValue?: ReactNode;
+  trend?: string;
+  trendPositive?: boolean;
+  className?: string;
+  highlight?: boolean;
+  variant?: "highlight" | "default";
+  progress?: number;
+  progressColor?: "lime" | "ink" | "charcoal" | "ash";
+}) {
+  const displaySub = subvalue ?? subValue;
+  const isHighlighted = highlight || variant === "highlight";
+
+  return (
+    <div className={cn("metric-card", isHighlighted && "metric-card-highlight", className)}>
+      <div className="metric-card-head">
+        <div className="metric-card-icon-title">
+          {Icon ? <Icon size={16} weight="duotone" className="metric-card-icon" /> : null}
+          <span className="metric-card-label">{label}</span>
+        </div>
+        {trend ? (
+          <span className={cn("trend-badge", trendPositive ? "trend-positive" : "trend-negative")}>
+            {trend}
+          </span>
+        ) : null}
+      </div>
+      <div className="metric-card-body">
+        <strong className="metric-card-val">{value}</strong>
+        {displaySub ? <span className="metric-card-sub">{displaySub}</span> : null}
+      </div>
+      {typeof progress === "number" && (
+        <ProgressTrack value={progress} color={progressColor} className="mt-1" />
+      )}
+    </div>
+  );
+}
+
+export function StatRow({
+  label,
+  value,
+  meta,
+  highlight = false,
+}: {
+  label: ReactNode;
+  value: ReactNode;
+  meta?: ReactNode;
+  highlight?: boolean;
+}) {
+  return (
+    <div className={cn("stat-row", highlight && "stat-row-highlight")}>
+      <span className="stat-row-label">{label}</span>
+      <div className="stat-row-val-group">
+        <strong className="stat-row-value">{value}</strong>
+        {meta ? <small className="stat-row-meta">{meta}</small> : null}
+      </div>
+    </div>
+  );
+}
+
+export function ProgressTrack({
+  value,
+  max = 100,
+  className,
+  color = "lime",
+}: {
+  value: number;
+  max?: number;
+  className?: string;
+  color?: "lime" | "ink" | "charcoal" | "ash";
+}) {
+  const percentage = Math.min(100, Math.max(0, (value / max) * 100));
+  return (
+    <div className={cn("progress-track", className)}>
+      <div
+        className={cn("progress-bar", `progress-${color}`)}
+        style={{ width: `${percentage}%` }}
+      />
+    </div>
+  );
+}

@@ -12,11 +12,11 @@
 
 | Unmatched Cause Category | Count | Percentage (%) | Mechanism Description |
 | :--- | :---: | :---: | :--- |
-| **`POST_RALLY_BALL_MOTION`** | 168 | 79.2% | Ball rolling, bouncing slowly, or retrieved by player after point completion. |
-| **`DUPLICATE_CONTACT`** | 16 | 7.5% | Multiple candidate peaks triggered around the same true physical contact. |
-| **`TIMING_DUPLICATE`** | 15 | 7.1% | Kinematic ripple in adjacent frames outside primary 200 ms matching window. |
-| **`PRE_SERVE_RITUAL`** | 13 | 6.1% | Pre-serve ground ball bounces prior to live ball toss. |
-| **Total Unmatched Physical Contacts (FP)** | **212** | **100.0%** | All false physical contacts across diagnostic holdout clips. |
+| **`POST_RALLY_BALL_MOTION`** | 173 | 75.9% | Ball rolling, bouncing slowly, or retrieved by player after point completion. |
+| **`DUPLICATE_CONTACT`** | 18 | 7.9% | Multiple candidate peaks triggered around the same true physical contact. |
+| **`TIMING_DUPLICATE`** | 21 | 9.2% | Kinematic ripple in adjacent frames outside primary 200 ms matching window. |
+| **`PRE_SERVE_RITUAL`** | 16 | 7.0% | Pre-serve ground ball bounces prior to live ball toss. |
+| **Total Unmatched Physical Contacts (FP)** | **228** | **100.0%** | All false physical contacts across diagnostic holdout clips. |
 
 ---
 

@@ -1,0 +1,16 @@
+# Reserved-training proposal response diagnosis
+
+Frozen 2026-09-14 before heatmap collection. No training, thresholds, models or runtime behavior change. Use the original-model fixed-.20 comparator in the completed FPS-aligned head pilot05 manifest. This diagnosis addresses why there is no raw proposal within the existing four-pixel tolerance, rather than repeating top-one error accounting.
+
+Select all visible reserved-training labels with no correct raw proposal. Add the first correctly selected visible label and first explicitly absent label per reserved clip as deterministic controls, where available. Preserve every original label, frame, window, view and candidate. Selection occurs before new inference and is recorded separately with the source manifest hash. These are reused internal model-selection examples, not a held-out qualification set; selected controls are not prevalence estimates. No external validation images enter this work.
+
+Use the untouched original checkpoint and all five existing spatial views, actual target-aligned native-FPS temporal windows, and unchanged preprocessing/decoding. Save every selected target-slot heatmap and source/code/checkpoint hashes. Require exact window identity, decoded candidate identity/order/coordinates/confidence and top-one reproduction within 1e-5 native pixels before interpreting any new diagnostic. Stop on mismatch rather than continuing with incompatible evidence.
+
+Ranked hypotheses and falsifiable probes:
+1. Weak response: no averaged or individual target-slot heatmap pixel within the label tolerance exceeds .20. Further changes to the existing .20 component decoder alone cannot recover such labels.
+2. Component displacement: an averaged heatmap pixel within tolerance exceeds .20 but the decoded component centroid is outside tolerance. Inspect its component, spatial support and the source image before proposing localization changes.
+3. Temporal attenuation: all averaged responses within tolerance are at most .20, while at least one individual aligned output exceeds .20 there. Check whether that individual output actually decodes a correct candidate; a hot pixel alone is not a detection.
+
+Compute distances by mapping heatmap pixels through the existing inverse affine transform into native coordinates and scaling x/y by 512/width and 288/height. Exclude padded/out-of-crop heatmap pixels. Classify each proposal miss once, in order: component displacement if any averaged response exceeds threshold; otherwise temporal attenuation if any individual response exceeds it; otherwise weak response. Record individual-slot correct candidates separately. These categories identify available signal, not verified causal explanations or deployable recall.
+
+Recompute diagnostic quantities from the saved heatmaps independently, without more GPU inference. Before inspecting images, select the first two miss cases per resulting category sorted by clip/frame, plus the first correct and absent controls overall. Render source context and averaged heatmap overlays; keep label annotations visibly distinct from predictions. No re-labeling or alternate-detector scoring from this purposive sample. Use the result to choose a subsequent bounded experiment, not tune a decoder on these misses.

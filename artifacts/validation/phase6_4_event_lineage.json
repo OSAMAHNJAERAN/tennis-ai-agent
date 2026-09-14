@@ -6,12 +6,14 @@
   "summary": {
     "total_gt_events": 40,
     "first_failure_counts": {
-      "CONTACT_FAMILY_WRONG": 10,
-      "PHYSICAL_CONTACT_REJECTED": 6,
-      "FULLY_CORRECT": 5,
-      "SEMANTIC_TYPE_WRONG": 7,
-      "NO_EVENT_CANDIDATE": 4,
-      "TRACK_NOT_USABLE": 8
+      "CONTACT_FAMILY_WRONG": 7,
+      "FULLY_CORRECT": 2,
+      "PHYSICAL_CONTACT_REJECTED": 13,
+      "FINAL_SUPPRESSION": 2,
+      "SEMANTIC_TYPE_WRONG": 3,
+      "PLAYER_ATTRIBUTION_WRONG": 2,
+      "TRACK_NOT_USABLE": 8,
+      "NO_EVENT_CANDIDATE": 3
     },
     "stage_survival": {
       "STAGE_0_RAW_PROPOSAL": {
@@ -23,24 +25,24 @@
         "recall_ceiling": 0.8
       },
       "STAGE_2_PHYSICAL_CANDIDATE": {
-        "surviving": 30,
-        "recall_ceiling": 0.75
+        "surviving": 29,
+        "recall_ceiling": 0.725
       },
       "STAGE_3_PHYSICAL_CONTACT": {
-        "surviving": 22,
-        "recall_ceiling": 0.55
+        "surviving": 16,
+        "recall_ceiling": 0.4
       },
       "STAGE_4_SEMANTIC_TYPE": {
-        "surviving": 5,
-        "recall_ceiling": 0.125
+        "surviving": 4,
+        "recall_ceiling": 0.1
       },
       "STAGE_5_PLAYER_ATTRIBUTION": {
-        "surviving": 5,
-        "recall_ceiling": 0.125
+        "surviving": 2,
+        "recall_ceiling": 0.05
       },
       "STAGE_6_AUTHORITATIVE_EVENT": {
-        "surviving": 5,
-        "recall_ceiling": 0.125
+        "surviving": 2,
+        "recall_ceiling": 0.05
       }
     },
     "per_video": {
@@ -50,38 +52,38 @@
         "raw_proposal_count": 10,
         "usable_obs_count": 10,
         "candidate_count": 10,
-        "physical_verified_count": 7,
-        "authoritative_count": 34,
-        "exact_matched_count": 3,
-        "wrong_type_count": 4,
+        "physical_verified_count": 4,
+        "authoritative_count": 33,
+        "exact_matched_count": 2,
+        "wrong_type_count": 2,
         "wrong_player_count": 0,
-        "unmatched_count": 3
+        "unmatched_count": 6
       },
       "video_09": {
         "video_id": "video_09",
         "gt_count": 12,
         "raw_proposal_count": 12,
         "usable_obs_count": 12,
-        "candidate_count": 11,
-        "physical_verified_count": 11,
-        "authoritative_count": 49,
+        "candidate_count": 12,
+        "physical_verified_count": 12,
+        "authoritative_count": 51,
         "exact_matched_count": 0,
-        "wrong_type_count": 11,
-        "wrong_player_count": 0,
-        "unmatched_count": 1
+        "wrong_type_count": 10,
+        "wrong_player_count": 2,
+        "unmatched_count": 0
       },
       "video_10": {
         "video_id": "video_10",
         "gt_count": 18,
         "raw_proposal_count": 18,
         "usable_obs_count": 10,
-        "candidate_count": 9,
-        "physical_verified_count": 4,
-        "authoritative_count": 100,
-        "exact_matched_count": 2,
-        "wrong_type_count": 2,
+        "candidate_count": 7,
+        "physical_verified_count": 0,
+        "authoritative_count": 99,
+        "exact_matched_count": 0,
+        "wrong_type_count": 0,
         "wrong_player_count": 0,
-        "unmatched_count": 14
+        "unmatched_count": 18
       }
     }
   },
@@ -104,10 +106,16 @@
       "contact_family": "COURT_CONTACT",
       "semantic_type": "BOUNCE",
       "predicted_player": null,
-      "authoritative_event_emitted": true,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is SERVE_CONTACT but predicted as BOUNCE."
+      "first_failure_reason": "Contact family mismatch: GT is SERVE_CONTACT but predicted as BOUNCE.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:4",
+      "matched_gt_event_id": 1,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -124,13 +132,19 @@
       "candidate_frame": 61,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
-      "contact_family": "PLAYER_CONTACT",
-      "semantic_type": "SERVE_CONTACT",
-      "predicted_player": null,
+      "contact_family": "COURT_CONTACT",
+      "semantic_type": "BOUNCE",
+      "predicted_player": 1,
       "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT."
+      "final_match_status": "MATCHED_EXACT",
+      "first_failure_stage": "FULLY_CORRECT",
+      "first_failure_reason": "Fully correct event detection, exact type, and player attribution.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:8",
+      "matched_gt_event_id": 2,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -144,7 +158,7 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 74,
+      "candidate_frame": 72,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": false,
       "contact_family": "NONE",
@@ -153,7 +167,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
-      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:9",
+      "matched_gt_event_id": 3,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -169,14 +189,20 @@
       "candidate_generated": true,
       "candidate_frame": 97,
       "candidate_time_error_ms": 0.0,
-      "physical_contact_verified": true,
-      "contact_family": "COURT_CONTACT",
-      "semantic_type": "BOUNCE",
+      "physical_contact_verified": false,
+      "contact_family": "NONE",
+      "semantic_type": null,
       "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_EXACT",
-      "first_failure_stage": "FULLY_CORRECT",
-      "first_failure_reason": "Fully correct event detection, exact type, and player attribution."
+      "authoritative_event_emitted": false,
+      "final_match_status": "UNMATCHED",
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:14",
+      "matched_gt_event_id": 4,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -196,10 +222,16 @@
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "PLAYER_1_HIT",
       "predicted_player": 1,
-      "authoritative_event_emitted": true,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as PLAYER_1_HIT."
+      "first_failure_stage": "FINAL_SUPPRESSION",
+      "first_failure_reason": "DUPLICATE_VERIFIED_EVENT",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:17",
+      "matched_gt_event_id": 5,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -213,16 +245,22 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 127,
-      "candidate_time_error_ms": 33.333333333333336,
-      "physical_contact_verified": true,
-      "contact_family": "COURT_CONTACT",
-      "semantic_type": "BOUNCE",
+      "candidate_frame": 136,
+      "candidate_time_error_ms": 133.33333333333286,
+      "physical_contact_verified": false,
+      "contact_family": "NONE",
+      "semantic_type": null,
       "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_EXACT",
-      "first_failure_stage": "FULLY_CORRECT",
-      "first_failure_reason": "Fully correct event detection, exact type, and player attribution."
+      "authoritative_event_emitted": false,
+      "final_match_status": "UNMATCHED",
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:20",
+      "matched_gt_event_id": 6,
+      "same_video_match": true,
+      "timing_error_s": 0.13333333333333286
     },
     {
       "video_id": "video_08",
@@ -245,7 +283,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
-      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:21",
+      "matched_gt_event_id": 7,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -261,14 +305,20 @@
       "candidate_generated": true,
       "candidate_frame": 162,
       "candidate_time_error_ms": 0.0,
-      "physical_contact_verified": true,
-      "contact_family": "COURT_CONTACT",
-      "semantic_type": "BOUNCE",
+      "physical_contact_verified": false,
+      "contact_family": "NONE",
+      "semantic_type": null,
       "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_EXACT",
-      "first_failure_stage": "FULLY_CORRECT",
-      "first_failure_reason": "Fully correct event detection, exact type, and player attribution."
+      "authoritative_event_emitted": false,
+      "final_match_status": "UNMATCHED",
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:25",
+      "matched_gt_event_id": 8,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -289,9 +339,15 @@
       "semantic_type": "PLAYER_1_HIT",
       "predicted_player": 1,
       "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as PLAYER_1_HIT."
+      "final_match_status": "MATCHED_EXACT",
+      "first_failure_stage": "FULLY_CORRECT",
+      "first_failure_reason": "Fully correct event detection, exact type, and player attribution.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:28",
+      "matched_gt_event_id": 9,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_08",
@@ -306,7 +362,7 @@
       "usable_ball_observation": true,
       "candidate_generated": true,
       "candidate_frame": 193,
-      "candidate_time_error_ms": 100.0,
+      "candidate_time_error_ms": 99.99999999999964,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
@@ -314,7 +370,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
-      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_08:candidate:31",
+      "matched_gt_event_id": 10,
+      "same_video_match": true,
+      "timing_error_s": 0.09999999999999964
     },
     {
       "video_id": "video_09",
@@ -328,16 +390,22 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 33,
+      "candidate_frame": 35,
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "PLAYER_2_HIT",
-      "predicted_player": 2,
-      "authoritative_event_emitted": true,
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is SERVE_CONTACT but predicted as PLAYER_2_HIT."
+      "first_failure_reason": "Semantic subtype mismatch: GT is SERVE_CONTACT but predicted as PLAYER_2_HIT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:8",
+      "matched_gt_event_id": 1,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_09",
@@ -352,15 +420,21 @@
       "usable_ball_observation": true,
       "candidate_generated": true,
       "candidate_frame": 50,
-      "candidate_time_error_ms": 100.0,
+      "candidate_time_error_ms": 99.99999999999987,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 1,
-      "authoritative_event_emitted": true,
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:12",
+      "matched_gt_event_id": 2,
+      "same_video_match": true,
+      "timing_error_s": 0.09999999999999987
     },
     {
       "video_id": "video_09",
@@ -375,15 +449,21 @@
       "usable_ball_observation": true,
       "candidate_generated": true,
       "candidate_frame": 71,
-      "candidate_time_error_ms": 33.333333333333336,
+      "candidate_time_error_ms": 33.333333333333215,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 2,
-      "authoritative_event_emitted": true,
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as SERVE_CONTACT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:13",
+      "matched_gt_event_id": 3,
+      "same_video_match": true,
+      "timing_error_s": 0.033333333333333215
     },
     {
       "video_id": "video_09",
@@ -402,11 +482,17 @@
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 1,
-      "authoritative_event_emitted": true,
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:16",
+      "matched_gt_event_id": 4,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_09",
@@ -421,15 +507,21 @@
       "usable_ball_observation": true,
       "candidate_generated": true,
       "candidate_frame": 105,
-      "candidate_time_error_ms": 33.333333333333336,
+      "candidate_time_error_ms": 33.333333333333215,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "PLAYER_1_HIT",
       "predicted_player": 1,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as PLAYER_1_HIT."
+      "authoritative_event_emitted": false,
+      "final_match_status": "MATCHED_WRONG_PLAYER",
+      "first_failure_stage": "PLAYER_ATTRIBUTION_WRONG",
+      "first_failure_reason": "Player attribution error: GT player 2 vs predicted 1.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:19",
+      "matched_gt_event_id": 5,
+      "same_video_match": true,
+      "timing_error_s": 0.033333333333333215
     },
     {
       "video_id": "video_09",
@@ -447,12 +539,18 @@
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
-      "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 1,
-      "authoritative_event_emitted": true,
+      "semantic_type": "PLAYER_1_HIT",
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as PLAYER_1_HIT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:24",
+      "matched_gt_event_id": 6,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_09",
@@ -471,11 +569,17 @@
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 2,
-      "authoritative_event_emitted": true,
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as SERVE_CONTACT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:27",
+      "matched_gt_event_id": 7,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_09",
@@ -490,15 +594,21 @@
       "usable_ball_observation": true,
       "candidate_generated": true,
       "candidate_frame": 166,
-      "candidate_time_error_ms": 66.66666666666667,
+      "candidate_time_error_ms": 66.66666666666643,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
-      "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 1,
-      "authoritative_event_emitted": true,
+      "semantic_type": "PLAYER_1_HIT",
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as PLAYER_1_HIT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:32",
+      "matched_gt_event_id": 8,
+      "same_video_match": true,
+      "timing_error_s": 0.06666666666666643
     },
     {
       "video_id": "video_09",
@@ -512,16 +622,22 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 183,
-      "candidate_time_error_ms": 200.0,
+      "candidate_frame": 176,
+      "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
-      "contact_family": "UNKNOWN_CONTACT",
-      "semantic_type": "UNKNOWN_EVENT",
-      "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is PLAYER_HIT but predicted as UNKNOWN_EVENT."
+      "contact_family": "PLAYER_CONTACT",
+      "semantic_type": "PLAYER_1_HIT",
+      "predicted_player": 1,
+      "authoritative_event_emitted": false,
+      "final_match_status": "MATCHED_WRONG_PLAYER",
+      "first_failure_stage": "PLAYER_ATTRIBUTION_WRONG",
+      "first_failure_reason": "Player attribution error: GT player 2 vs predicted 1.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:34",
+      "matched_gt_event_id": 9,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_09",
@@ -540,11 +656,17 @@
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
       "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 1,
-      "authoritative_event_emitted": true,
+      "predicted_player": null,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
       "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT."
+      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as SERVE_CONTACT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:39",
+      "matched_gt_event_id": 10,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_09",
@@ -562,12 +684,18 @@
       "candidate_time_error_ms": 0.0,
       "physical_contact_verified": true,
       "contact_family": "PLAYER_CONTACT",
-      "semantic_type": "SERVE_CONTACT",
-      "predicted_player": 2,
-      "authoritative_event_emitted": true,
+      "semantic_type": "PLAYER_1_HIT",
+      "predicted_player": 1,
+      "authoritative_event_emitted": false,
       "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "SEMANTIC_TYPE_WRONG",
-      "first_failure_reason": "Semantic subtype mismatch: GT is PLAYER_HIT but predicted as SERVE_CONTACT."
+      "first_failure_stage": "FINAL_SUPPRESSION",
+      "first_failure_reason": "DUPLICATE_VERIFIED_EVENT",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:42",
+      "matched_gt_event_id": 11,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_09",
@@ -580,17 +708,23 @@
       "gt_timestamp_s": 7.866666666666666,
       "raw_proposal_present": true,
       "usable_ball_observation": true,
-      "candidate_generated": false,
-      "candidate_frame": null,
-      "candidate_time_error_ms": null,
-      "physical_contact_verified": false,
-      "contact_family": "NONE",
-      "semantic_type": null,
+      "candidate_generated": true,
+      "candidate_frame": 231,
+      "candidate_time_error_ms": 99.99999999999964,
+      "physical_contact_verified": true,
+      "contact_family": "PLAYER_CONTACT",
+      "semantic_type": "PLAYER_1_HIT",
       "predicted_player": null,
       "authoritative_event_emitted": false,
-      "final_match_status": "UNMATCHED",
-      "first_failure_stage": "NO_EVENT_CANDIDATE",
-      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold."
+      "final_match_status": "MATCHED_WRONG_TYPE",
+      "first_failure_stage": "CONTACT_FAMILY_WRONG",
+      "first_failure_reason": "Contact family mismatch: GT is BOUNCE but predicted as PLAYER_1_HIT.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_09:candidate:46",
+      "matched_gt_event_id": 12,
+      "same_video_match": true,
+      "timing_error_s": 0.09999999999999964
     },
     {
       "video_id": "video_10",
@@ -606,14 +740,20 @@
       "candidate_generated": true,
       "candidate_frame": 56,
       "candidate_time_error_ms": 0.0,
-      "physical_contact_verified": true,
-      "contact_family": "COURT_CONTACT",
-      "semantic_type": "BOUNCE",
+      "physical_contact_verified": false,
+      "contact_family": "NONE",
+      "semantic_type": null,
       "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is SERVE_CONTACT but predicted as BOUNCE."
+      "authoritative_event_emitted": false,
+      "final_match_status": "UNMATCHED",
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_10:candidate:13",
+      "matched_gt_event_id": 1,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_10",
@@ -629,14 +769,20 @@
       "candidate_generated": true,
       "candidate_frame": 74,
       "candidate_time_error_ms": 0.0,
-      "physical_contact_verified": true,
-      "contact_family": "COURT_CONTACT",
-      "semantic_type": "BOUNCE",
+      "physical_contact_verified": false,
+      "contact_family": "NONE",
+      "semantic_type": null,
       "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_EXACT",
-      "first_failure_stage": "FULLY_CORRECT",
-      "first_failure_reason": "Fully correct event detection, exact type, and player attribution."
+      "authoritative_event_emitted": false,
+      "final_match_status": "UNMATCHED",
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_10:candidate:18",
+      "matched_gt_event_id": 2,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_10",
@@ -652,14 +798,20 @@
       "candidate_generated": true,
       "candidate_frame": 87,
       "candidate_time_error_ms": 0.0,
-      "physical_contact_verified": true,
-      "contact_family": "COURT_CONTACT",
-      "semantic_type": "BOUNCE",
+      "physical_contact_verified": false,
+      "contact_family": "NONE",
+      "semantic_type": null,
       "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_WRONG_TYPE",
-      "first_failure_stage": "CONTACT_FAMILY_WRONG",
-      "first_failure_reason": "Contact family mismatch: GT is PLAYER_HIT but predicted as BOUNCE."
+      "authoritative_event_emitted": false,
+      "final_match_status": "UNMATCHED",
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_10:candidate:21",
+      "matched_gt_event_id": 3,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_10",
@@ -672,9 +824,9 @@
       "gt_timestamp_s": 3.6666666666666665,
       "raw_proposal_present": true,
       "usable_ball_observation": false,
-      "candidate_generated": true,
-      "candidate_frame": 102,
-      "candidate_time_error_ms": 200.0,
+      "candidate_generated": false,
+      "candidate_frame": null,
+      "candidate_time_error_ms": null,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
@@ -682,7 +834,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -705,7 +863,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -728,7 +892,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "NO_EVENT_CANDIDATE",
-      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold."
+      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -751,7 +921,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 1 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 1 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -767,14 +943,20 @@
       "candidate_generated": true,
       "candidate_frame": 183,
       "candidate_time_error_ms": 0.0,
-      "physical_contact_verified": true,
-      "contact_family": "COURT_CONTACT",
-      "semantic_type": "BOUNCE",
+      "physical_contact_verified": false,
+      "contact_family": "NONE",
+      "semantic_type": null,
       "predicted_player": null,
-      "authoritative_event_emitted": true,
-      "final_match_status": "MATCHED_EXACT",
-      "first_failure_stage": "FULLY_CORRECT",
-      "first_failure_reason": "Fully correct event detection, exact type, and player attribution."
+      "authoritative_event_emitted": false,
+      "final_match_status": "UNMATCHED",
+      "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_10:candidate:29",
+      "matched_gt_event_id": 8,
+      "same_video_match": true,
+      "timing_error_s": 0.0
     },
     {
       "video_id": "video_10",
@@ -787,9 +969,9 @@
       "gt_timestamp_s": 6.5,
       "raw_proposal_present": true,
       "usable_ball_observation": false,
-      "candidate_generated": true,
-      "candidate_frame": 190,
-      "candidate_time_error_ms": 100.0,
+      "candidate_generated": false,
+      "candidate_frame": null,
+      "candidate_time_error_ms": null,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
@@ -797,7 +979,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 2 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 2 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -820,7 +1008,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -843,7 +1037,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -866,7 +1066,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "NO_EVENT_CANDIDATE",
-      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold."
+      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -889,7 +1095,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 0 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -912,7 +1124,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "TRACK_NOT_USABLE",
-      "first_failure_reason": "Tracking gap: only 1 usable points in temporal window."
+      "first_failure_reason": "Tracking gap: only 1 usable points in temporal window.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -935,7 +1153,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "NO_EVENT_CANDIDATE",
-      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold."
+      "first_failure_reason": "Ball tracked but kinematic score / speed below candidate threshold.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": null,
+      "matched_gt_event_id": null,
+      "same_video_match": false,
+      "timing_error_s": null
     },
     {
       "video_id": "video_10",
@@ -949,8 +1173,8 @@
       "raw_proposal_present": true,
       "usable_ball_observation": true,
       "candidate_generated": true,
-      "candidate_frame": 325,
-      "candidate_time_error_ms": 166.66666666666666,
+      "candidate_frame": 326,
+      "candidate_time_error_ms": 133.33333333333286,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
@@ -958,7 +1182,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
-      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_10:candidate:33",
+      "matched_gt_event_id": 16,
+      "same_video_match": true,
+      "timing_error_s": 0.13333333333333286
     },
     {
       "video_id": "video_10",
@@ -973,7 +1203,7 @@
       "usable_ball_observation": true,
       "candidate_generated": true,
       "candidate_frame": 339,
-      "candidate_time_error_ms": 133.33333333333334,
+      "candidate_time_error_ms": 133.33333333333286,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
@@ -981,7 +1211,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
-      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_10:candidate:34",
+      "matched_gt_event_id": 17,
+      "same_video_match": true,
+      "timing_error_s": 0.13333333333333286
     },
     {
       "video_id": "video_10",
@@ -996,7 +1232,7 @@
       "usable_ball_observation": true,
       "candidate_generated": true,
       "candidate_frame": 364,
-      "candidate_time_error_ms": 133.33333333333334,
+      "candidate_time_error_ms": 133.33333333333462,
       "physical_contact_verified": false,
       "contact_family": "NONE",
       "semantic_type": null,
@@ -1004,7 +1240,13 @@
       "authoritative_event_emitted": false,
       "final_match_status": "UNMATCHED",
       "first_failure_stage": "PHYSICAL_CONTACT_REJECTED",
-      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce."
+      "first_failure_reason": "Candidate generated but failed physical multi-cue verification or debounce.",
+      "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2",
+      "inside_annotation_coverage": true,
+      "prediction_id": "video_10:candidate:35",
+      "matched_gt_event_id": 18,
+      "same_video_match": true,
+      "timing_error_s": 0.13333333333333464
     }
   ]
 }

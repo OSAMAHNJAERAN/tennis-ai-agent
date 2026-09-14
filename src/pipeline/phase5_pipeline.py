@@ -161,7 +161,7 @@ class Phase5Pipeline:
         # 5. Temporal Ball Tracking (Kalman + Provenance)
         print("\n[Step 5/9] Running Temporal Kalman Ball Tracking...")
         t0 = time.time()
-        ball_points = self.temporal_tracker.track_video_candidates(raw_candidates_per_frame, fps=fps)
+        ball_points = self.temporal_tracker.track_video_candidates(raw_candidates_per_frame, fps=fps, frame_size=(w, h))
 
         # Transform ball points to metric court space
         for p in ball_points:

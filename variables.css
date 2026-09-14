@@ -1,46 +1,55 @@
 :root {
   /* Colors */
-  --color-ember-orange: #dbfe00;
-  --color-signal-lime: #dbfe00;
-  --color-ember-glow-light: #dbfe00;
-  --color-ember-wash-deep: #dbfe00;
-  --color-gridline: #e5e7eb;
-  --color-ink: #262626;
-  --color-vellum: #f9f9f9;
-  --color-slate: #727272;
-  --color-graphite: #616161;
-  --color-ash: #949494;
-  --color-stone: #c7c7c7;
-  --color-mist: #b5b5b5;
-  --color-pebble: #838383;
+  --color-electric-lime: #beff50;
+  --color-off-black-ink: #14140f;
+  --color-off-white-canvas: #f5f5eb;
+  --color-pure-white: #ffffff;
+  --color-ash: #d2d2c8;
+  --color-graphite: #6e6e64;
+  --color-deep-charcoal: #30302a;
+  --color-stone: #919183;
+  --color-smoke: #b9b9b7;
+
+  /* Aliases for semantic and backward compatibility */
+  --color-signal: #beff50;
+  --color-ember-orange: #beff50;
+  --color-ember-glow-light: #beff50;
+  --color-ember-wash-deep: #beff50;
+  --color-gridline: #d2d2c8;
+  --color-ink: #14140f;
+  --color-vellum: #f5f5eb;
+  --color-slate: #6e6e64;
 
   /* Typography — Font Families */
-  --font-suisse: 'Suisse', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-otsono: 'OTSono', 'Suisse', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse: 'OTSono', 'Suisse', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Typography — Scale */
-  --text-caption: 10px;
-  --leading-caption: 1.5;
-  --tracking-caption: 0.2px;
-  --text-body: 14px;
+  --text-eyebrow: 10px;
+  --leading-eyebrow: 1.4;
+  --tracking-eyebrow: 1px;
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --tracking-caption: 1.2px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.29;
+  --text-body: 16px;
   --leading-body: 1.5;
-  --text-heading-sm: 20px;
-  --leading-heading-sm: 1.33;
-  --text-heading: 24px;
-  --leading-heading: 1.2;
-  --text-heading-lg: 40px;
-  --leading-heading-lg: 1.1;
-  --tracking-heading-lg: -0.2px;
-  --text-display: 52px;
-  --leading-display: 1.07;
-  --tracking-display: -0.26px;
-  --text-display-xl: 60px;
-  --leading-display-xl: 1;
-  --tracking-display-xl: -0.6px;
+  --text-subheading: 22px;
+  --leading-subheading: 1.18;
+  --text-heading: 28px;
+  --leading-heading: 1.14;
+  --tracking-heading: -0.56px;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -1.8px;
+  --text-display: 90px;
+  --leading-display: 0.89;
+  --tracking-display: -2.7px;
 
   /* Typography — Weights */
   --font-weight-regular: 400;
-  --font-weight-w450: 450;
   --font-weight-medium: 500;
 
   /* Spacing */
@@ -59,46 +68,43 @@
   --spacing-60: 60px;
   --spacing-64: 64px;
   --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
   --spacing-164: 164px;
   --spacing-188: 188px;
+  --spacing-220: 220px;
+  --spacing-224: 224px;
 
   /* Layout */
-  --page-max-width: 1200px;
-  --section-gap: 96px;
+  --page-max-width: 1440px;
+  --section-gap: 32px;
   --card-padding: 24px;
-  --element-gap: 12px;
+  --element-gap: 16px;
 
   /* Border Radius */
+  --radius-md: 4px;
   --radius-lg: 8px;
   --radius-xl: 12px;
-  --radius-2xl: 16px;
-  --radius-2xl-2: 20px;
-  --radius-full: 999px;
+  --radius-2xl: 18px;
+  --radius-3xl: 28px;
+  --radius-full: 9999px;
 
   /* Named Radii */
-  --radius-tags: 999px;
-  --radius-cards: 16px;
-  --radius-icons: 999px;
+  --radius-tags: 9999px;
+  --radius-cards: 28px;
+  --radius-inner: 18px;
+  --radius-icons: 9999px;
   --radius-inputs: 8px;
-  --radius-buttons: 999px;
+  --radius-buttons: 28px;
+  --radius-pills: 9999px;
   --radius-code-windows: 8px;
 
-  /* Shadows */
-  --shadow-subtle: rgb(249, 249, 249) 0px 0px 0px 6px;
-  --shadow-xl: rgba(0, 0, 0, 0.02) 0px 40px 48px -20px, rgba(0, 0, 0, 0.03) 0px 32px 32px -20px, rgba(0, 0, 0, 0.03) 0px 16px 24px -12px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px;
-  --shadow-xl-2: rgba(0, 0, 0, 0.03) 0px 24px 32px -12px, rgba(0, 0, 0, 0.03) 0px 16px 24px -8px, rgba(0, 0, 0, 0.03) 0px 8px 16px -4px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px;
-  --shadow-subtle-2: color(display-p3 0.984314 0.984314 0.984314) 0px 0px 0px 8px;
-  --shadow-subtle-3: rgb(253, 253, 253) 0px 0px 0px 8px;
-  --shadow-xl-3: rgba(0, 0, 0, 0.02) 0px 0px 44px 0px, rgba(0, 0, 0, 0.03) 0px 88px 56px -20px, rgba(0, 0, 0, 0.02) 0px 56px 56px -20px, rgba(0, 0, 0, 0.03) 0px 32px 32px -20px, rgba(0, 0, 0, 0.03) 0px 16px 24px -12px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(249, 249, 249) 0px 0px 0px 10px;
-
   /* Surfaces */
+  --surface-page-canvas: #ffffff;
   --surface-canvas: #ffffff;
-  --surface-vellum: #f9f9f9;
-  --surface-gridline: #e5e7eb;
-  --surface-shadow-tint: #dbfe00;
-
-  /* Transitions */
-  --transition-fast: 120ms ease;
-  --transition-normal: 180ms ease;
-  --transition-slow: 280ms ease;
+  --surface-off-white-card: #f5f5eb;
+  --surface-vellum: #f5f5eb;
+  --surface-lime-accent-surface: #beff50;
+  --surface-gridline: #d2d2c8;
+  --surface-dark-island: #30302a;
 }

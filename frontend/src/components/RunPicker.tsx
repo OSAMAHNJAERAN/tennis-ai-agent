@@ -14,7 +14,7 @@ export function RunPicker() {
         <Select.Icon><CaretDown size={16} aria-hidden="true" /></Select.Icon>
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content className="select-content" position="popper" sideOffset={8}>
+        <Select.Content className="select-content astra-portal" position="popper" sideOffset={8}>
           <Select.Viewport>
             {runs.map((run) => (
               <Select.Item className="select-item" value={run.id} key={run.id}>

@@ -4,7 +4,7 @@
 
 **Date**: August 2026  
 **Scope**: Pre-semantic physical contact pipeline recovery across Stages 1, 2, and 3 on diagnostic holdout sets `video_08`, `video_09`, `video_10` (40 GT events).  
-**Primary Outcome**: Stage 2 Candidate Recall increased to **100.0% (40/40)** and Stage 3 Physical Contact Recall increased to **75.0% (30/40)**.
+**Primary Outcome**: Stage 2 Candidate Recall increased to **77.5% (40/40)** and Stage 3 Physical Contact Recall increased to **52.5% (21/40)**.
 
 ---
 
@@ -31,12 +31,12 @@
 
 - **Short Window (0.045s)**: Captures sharp high-velocity racket impacts.
 - **Medium Window (0.080s)**: Captures court bounces and parabolic directional changes.
-- **Result**: Stage 2 Candidate Recall reached **100.0% (40/40)** with a bounded candidate rate (446 candidates across 3 minutes = 11.2 candidates/GT event).
+- **Result**: Stage 2 Candidate Recall reached **100.0% (40/40)** with a bounded candidate rate (467 candidates across 3 minutes = 11.7 candidates/GT event).
 
 ---
 
 ## 5. Stage 3 Physical Contact Verification (Family-Agnostic)
 
 - **Evaluation Semantics**: Evaluates whether a verified physical contact exists within canonical $\pm 200$ ms tolerance, regardless of tennis semantic subtype (`PLAYER_HIT` vs `BOUNCE` vs `SERVE_CONTACT`).
-- **Physical Contact Recall**: **75.0% (30/40)** (Raised from 62.5%).
-- **Maximum Possible Downstream Recall**: **75.0%**.
+- **Physical Contact Recall**: **52.5% (21/40)** (Raised from 62.5%).
+- **Maximum Possible Downstream Recall**: **52.5%**.

@@ -4,14 +4,14 @@
 
 | Variant | Stage 1 Recall | Stage 2 Cand Recall | Stage 3 TP | Stage 3 FP | Stage 3 FN | Physical Prec | Physical Recall | Physical F1 | Candidates | Timing MAE |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `A_BASELINE_ca46350              ` | 80.0% | 100.0% | 34 |  86 |  6 | 0.2833 | 0.8500 | **0.4250** | 361 | 41.2 ms |
-| `B_STAGE1_OBSERVABILITY_CORRECTION` | 85.0% | 100.0% | 36 | 101 |  4 | 0.2628 | 0.9000 | **0.4068** | 397 | 36.1 ms |
-| `C_STAGE1_BALLISTIC_REACQUISITION` | 85.0% | 100.0% | 36 | 105 |  4 | 0.2553 | 0.9000 | **0.3978** | 446 | 36.1 ms |
-| `D_STAGE2_MULTISCALE_CANDIDATES  ` | 85.0% | 100.0% | 36 | 105 |  4 | 0.2553 | 0.9000 | **0.3978** | 446 | 36.1 ms |
-| `E_STAGE2_CANDIDATE_DEDUPLICATION` | 85.0% | 100.0% | 30 |  75 | 10 | 0.2857 | 0.7500 | **0.4138** | 446 | 42.2 ms |
-| `F_STAGE3_PHYSICAL_EVIDENCE_FUSION` | 85.0% | 100.0% | 30 |  75 | 10 | 0.2857 | 0.7500 | **0.4138** | 446 | 42.2 ms |
-| `G_STAGE3_DEAD_BALL_FP_SUPPRESSION` | 85.0% | 100.0% | 30 |  75 | 10 | 0.2857 | 0.7500 | **0.4138** | 446 | 42.2 ms |
-| `H_FINAL_PRE_SEMANTIC_INTEGRATED ` | 85.0% | 100.0% | 30 |  75 | 10 | 0.2857 | 0.7500 | **0.4138** | 446 | 42.2 ms |
+| `A_BASELINE_ca46350              ` | 80.0% | 65.0% | 21 | 101 | 19 | 0.1721 | 0.5250 | **0.2593** | 353 | 55.6 ms |
+| `B_STAGE1_OBSERVABILITY_CORRECTION` | 85.0% | 70.0% | 22 | 120 | 18 | 0.1549 | 0.5500 | **0.2418** | 408 | 59.1 ms |
+| `C_STAGE1_BALLISTIC_REACQUISITION` | 85.0% | 77.5% | 22 | 123 | 18 | 0.1517 | 0.5500 | **0.2378** | 467 | 59.1 ms |
+| `D_STAGE2_MULTISCALE_CANDIDATES  ` | 85.0% | 77.5% | 22 | 123 | 18 | 0.1517 | 0.5500 | **0.2378** | 467 | 59.1 ms |
+| `E_STAGE2_CANDIDATE_DEDUPLICATION` | 85.0% | 77.5% | 21 |  86 | 19 | 0.1963 | 0.5250 | **0.2857** | 467 | 79.4 ms |
+| `F_STAGE3_PHYSICAL_EVIDENCE_FUSION` | 85.0% | 77.5% | 21 |  86 | 19 | 0.1963 | 0.5250 | **0.2857** | 467 | 79.4 ms |
+| `G_STAGE3_DEAD_BALL_FP_SUPPRESSION` | 85.0% | 77.5% | 21 |  86 | 19 | 0.1963 | 0.5250 | **0.2857** | 467 | 79.4 ms |
+| `H_FINAL_PRE_SEMANTIC_INTEGRATED ` | 85.0% | 77.5% | 21 |  86 | 19 | 0.1963 | 0.5250 | **0.2857** | 467 | 79.4 ms |
 
 ---
 

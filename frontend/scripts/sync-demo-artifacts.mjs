@@ -170,6 +170,9 @@ async function inspectRun(runEntry) {
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
     .sort();
+  if (files.length === 0) {
+    return null;
+  }
   const fileStats = await Promise.all(files.map((name) => stat(path.join(runDir, name))));
   const analyzedAt = new Date(
     Math.max(...fileStats.map((entry) => entry.mtimeMs)),
@@ -247,10 +250,10 @@ async function main() {
   await mkdir(publicDemoDir, { recursive: true });
 
   const runEntries = (await readdir(outputsDir, { withFileTypes: true }))
-    .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
+    .filter((entry) => entry.isDirectory() && entry.name in runLabels)
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  const normalizedRuns = await Promise.all(runEntries.map(inspectRun));
+  const normalizedRuns = (await Promise.all(runEntries.map(inspectRun))).filter(Boolean);
   if (!normalizedRuns.some((run) => run.summary.id === defaultRunId)) {
     throw new Error(`Required demo run '${defaultRunId}' was not found in ${outputsDir}.`);
   }
