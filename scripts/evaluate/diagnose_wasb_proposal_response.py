@@ -100,7 +100,6 @@ def main():
         dataset = Path(group[0]['dataset'])
         video = dataset/'tennis/videos'/f'{clip}.mp4'
         assert digest(video) == group[0]['video_sha256']
-        label = dataset/'tennis/ball'/f'{clip}.csv'
         # Locate the exact publisher label path through its verified dataset inventory.
         manifest = json.loads((dataset/'manifest.json').read_text())
         labels = [dataset/f['path'] for f in manifest['files'] if f['sha256'] == group[0]['label_sha256']]
