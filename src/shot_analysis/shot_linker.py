@@ -57,9 +57,9 @@ class TennisShotLinker:
             hit_id = hit_ev.event_id
             hit_frame = hit_ev.frame_index
             hit_time = hit_ev.timestamp_s
+            # Preserve the verified event semantic. Absolute clip position is not
+            # valid evidence that a stroke is a serve.
             ev_type_str = hit_ev.event_type.value
-            if idx == 0 and hit_frame <= 75:
-                ev_type_str = "SERVE_CONTACT"
             p_id = hit_ev.player_id
             is_dead = hit_id in dead_event_ids
 

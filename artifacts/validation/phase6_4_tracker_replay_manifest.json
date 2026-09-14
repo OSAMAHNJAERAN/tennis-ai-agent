@@ -1,0 +1,356 @@
+{
+  "gt_loaded_after_all_trajectories": true,
+  "provenance": {
+    "annotation_coverage_sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+    "coverage_review_status": "MODEL_ASSISTED_PROVISIONAL",
+    "evaluator_sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+    "evaluator_version": "2.1",
+    "event_config_sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed",
+    "event_detector_sha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
+    "generated_at_utc": "2026-09-07T07:45:34.831137+00:00",
+    "generation_command": "python scripts/replay_phase6_4_tracker_variants.py",
+    "git_sha": "aded604c50ff8f36b8dd90d4de9bd534ddf6ec5c",
+    "ground_truth_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+    "human_approved": false,
+    "matching_algorithm": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_MAX_CARDINALITY_MIN_COST_ONE_TO_ONE",
+    "preserved_trajectory_sha256": {
+      "video_08": "bf5cfb53ce49390f09f101880fd85fa709d38052d7f4dd1e0c5e4c0b33bd5188",
+      "video_09": "7ffbaf034c862399303115c5087e42bd01523b296e1df76f8c29946e049f7f3f",
+      "video_10": "2fb55ed2e0917e4cb83000baec59e28ec5c94b175adf857411511f024b2c12d9"
+    },
+    "pristine_video_11_plus_used": false,
+    "qualification_evidence": false,
+    "raw_candidate_sha256": {
+      "video_08": "da356b4b1b043e48cff75b79b174f727058b03c2abaa9ad45f2bfd43dc7c4fd2",
+      "video_09": "747d1b0046f042c694dd7f96abd2901b07f4da3e0343cdb719aaddb6cf399059",
+      "video_10": "ec69ceb80d43abaa6b47710e267caa411fdbb9e5c2a37c78545626c3fcc2d5cd"
+    },
+    "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+    "source_video_sha256": {
+      "video_08": "e3f6f7af23d4bf9921dcf0e3a7c5f1dff9cad4f02ee0155420bf8939f72f2944",
+      "video_09": "87dd51040fbb6db581c1fc4448905c2ce22b8144b75ea5d66d2e04a1ceb38c26",
+      "video_10": "5b605c4a4663de096457cd2e27a34c3580ca16a66643511fa7756a9c7b05864d"
+    },
+    "tracker_source_sha256": "b79d7df5b459886bab595301fc3335430271b0f0f08faa5b9bc1af3bbd51fe99",
+    "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+    "videos": [
+      "video_08",
+      "video_09",
+      "video_10"
+    ]
+  },
+  "schema_version": "1.0",
+  "tracker_performance": {
+    "A_PRESERVED_V21": {
+      "video_08": {
+        "frames": 469,
+        "tracker_elapsed_seconds": null,
+        "tracker_fps": null
+      },
+      "video_09": {
+        "frames": 408,
+        "tracker_elapsed_seconds": null,
+        "tracker_fps": null
+      },
+      "video_10": {
+        "frames": 1795,
+        "tracker_elapsed_seconds": null,
+        "tracker_fps": null
+      }
+    },
+    "B_CURRENT_PRODUCTION_CONFIG": {
+      "video_08": {
+        "frames": 469,
+        "tracker_elapsed_seconds": 0.012638599961064756,
+        "tracker_fps": 37108.54061722264
+      },
+      "video_09": {
+        "frames": 408,
+        "tracker_elapsed_seconds": 0.012328799930401146,
+        "tracker_fps": 33093.2452714986
+      },
+      "video_10": {
+        "frames": 1795,
+        "tracker_elapsed_seconds": 0.03384539997205138,
+        "tracker_fps": 53035.27219303842
+      }
+    },
+    "C_CURRENT_CLASS_DEFAULTS": {
+      "video_08": {
+        "frames": 469,
+        "tracker_elapsed_seconds": 0.010493900044821203,
+        "tracker_fps": 44692.63076614248
+      },
+      "video_09": {
+        "frames": 408,
+        "tracker_elapsed_seconds": 0.012525300029665232,
+        "tracker_fps": 32574.070005004483
+      },
+      "video_10": {
+        "frames": 1795,
+        "tracker_elapsed_seconds": 0.034031799994409084,
+        "tracker_fps": 52744.785767866866
+      }
+    },
+    "E_RECONCILED_CONFIG": {
+      "video_08": {
+        "frames": 469,
+        "tracker_elapsed_seconds": 0.01015039999037981,
+        "tracker_fps": 46205.07570583441
+      },
+      "video_09": {
+        "frames": 408,
+        "tracker_elapsed_seconds": 0.012277800007723272,
+        "tracker_fps": 33230.70906378587
+      },
+      "video_10": {
+        "frames": 1795,
+        "tracker_elapsed_seconds": 0.03260959999170154,
+        "tracker_fps": 55045.140095456234
+      }
+    },
+    "F_TARGETED_TRACKER_FIX": {
+      "video_08": {
+        "frames": 469,
+        "tracker_elapsed_seconds": 0.010367500013671815,
+        "tracker_fps": 45237.5210399345
+      },
+      "video_09": {
+        "frames": 408,
+        "tracker_elapsed_seconds": 0.012572000036016107,
+        "tracker_fps": 32453.070222014536
+      },
+      "video_10": {
+        "frames": 1795,
+        "tracker_elapsed_seconds": 0.03709429991431534,
+        "tracker_fps": 48390.18404839278
+      }
+    },
+    "H_PRESEMANTIC_INTEGRATED": {
+      "video_08": {
+        "frames": 469,
+        "tracker_elapsed_seconds": 0.01029270002618432,
+        "tracker_fps": 45566.27501111254
+      },
+      "video_09": {
+        "frames": 408,
+        "tracker_elapsed_seconds": 0.012492500012740493,
+        "tracker_fps": 32659.59572414654
+      },
+      "video_10": {
+        "frames": 1795,
+        "tracker_elapsed_seconds": 0.033948799944482744,
+        "tracker_fps": 52873.73936443718
+      }
+    }
+  },
+  "tracker_received_ground_truth": false,
+  "trajectory_hashes": {
+    "A_PRESERVED_V21": {
+      "video_08": {
+        "first_sha256": "cdc078fdbd927062388be505cf6ddefdc59eeaa40d9c8fa0ac1bcb82b714e46a",
+        "identical": true,
+        "second_sha256": "cdc078fdbd927062388be505cf6ddefdc59eeaa40d9c8fa0ac1bcb82b714e46a"
+      },
+      "video_09": {
+        "first_sha256": "80e45a83fe3e1ea7d9e7aac8f0bf2265eed52cf121504599f18eb7c500349e39",
+        "identical": true,
+        "second_sha256": "80e45a83fe3e1ea7d9e7aac8f0bf2265eed52cf121504599f18eb7c500349e39"
+      },
+      "video_10": {
+        "first_sha256": "77bfce252f3ca79009c7154d768ecafb90ae63ea564a495eb7cfcad70c8738cc",
+        "identical": true,
+        "second_sha256": "77bfce252f3ca79009c7154d768ecafb90ae63ea564a495eb7cfcad70c8738cc"
+      }
+    },
+    "B_CURRENT_PRODUCTION_CONFIG": {
+      "video_08": {
+        "first_sha256": "0c4b29f1465150406df6c88f9443b3534135fbcf45c43defbe95ef9c36296752",
+        "identical": true,
+        "second_sha256": "0c4b29f1465150406df6c88f9443b3534135fbcf45c43defbe95ef9c36296752"
+      },
+      "video_09": {
+        "first_sha256": "03a7f526a2abb7e0ba434ca4be5dd299e36a93118032bc75fe37ba03a16ff4e8",
+        "identical": true,
+        "second_sha256": "03a7f526a2abb7e0ba434ca4be5dd299e36a93118032bc75fe37ba03a16ff4e8"
+      },
+      "video_10": {
+        "first_sha256": "285060074ac247ce53a46d9c36a1f5b4158b5227f6998d6a14cd465db3c9ebc2",
+        "identical": true,
+        "second_sha256": "285060074ac247ce53a46d9c36a1f5b4158b5227f6998d6a14cd465db3c9ebc2"
+      }
+    },
+    "C_CURRENT_CLASS_DEFAULTS": {
+      "video_08": {
+        "first_sha256": "975ed164f1e413e65297a221c400abd3e1075d05e4f69a97760816fe38376e7e",
+        "identical": true,
+        "second_sha256": "975ed164f1e413e65297a221c400abd3e1075d05e4f69a97760816fe38376e7e"
+      },
+      "video_09": {
+        "first_sha256": "e33502096bf9a3e1345e395fcdd6f59752a62773a53d7ebc4227e4ede7ced053",
+        "identical": true,
+        "second_sha256": "e33502096bf9a3e1345e395fcdd6f59752a62773a53d7ebc4227e4ede7ced053"
+      },
+      "video_10": {
+        "first_sha256": "522931f64cd3f786158be1c4cfc83ec63fb453f1a6e39935283a652da30d04e0",
+        "identical": true,
+        "second_sha256": "522931f64cd3f786158be1c4cfc83ec63fb453f1a6e39935283a652da30d04e0"
+      }
+    },
+    "E_RECONCILED_CONFIG": {
+      "video_08": {
+        "first_sha256": "975ed164f1e413e65297a221c400abd3e1075d05e4f69a97760816fe38376e7e",
+        "identical": true,
+        "second_sha256": "975ed164f1e413e65297a221c400abd3e1075d05e4f69a97760816fe38376e7e"
+      },
+      "video_09": {
+        "first_sha256": "e33502096bf9a3e1345e395fcdd6f59752a62773a53d7ebc4227e4ede7ced053",
+        "identical": true,
+        "second_sha256": "e33502096bf9a3e1345e395fcdd6f59752a62773a53d7ebc4227e4ede7ced053"
+      },
+      "video_10": {
+        "first_sha256": "522931f64cd3f786158be1c4cfc83ec63fb453f1a6e39935283a652da30d04e0",
+        "identical": true,
+        "second_sha256": "522931f64cd3f786158be1c4cfc83ec63fb453f1a6e39935283a652da30d04e0"
+      }
+    },
+    "F_TARGETED_TRACKER_FIX": {
+      "video_08": {
+        "first_sha256": "5db61f846deba59468ed5ff28eabaf51c4e60d44bf0b664632138a9157afd8b4",
+        "identical": true,
+        "second_sha256": "5db61f846deba59468ed5ff28eabaf51c4e60d44bf0b664632138a9157afd8b4"
+      },
+      "video_09": {
+        "first_sha256": "1427920f06bdd811dc7397d5b25406972f73caf54cbd3322dd2f4569fcc89a3b",
+        "identical": true,
+        "second_sha256": "1427920f06bdd811dc7397d5b25406972f73caf54cbd3322dd2f4569fcc89a3b"
+      },
+      "video_10": {
+        "first_sha256": "3078c559e697857f9f14c4fac6c9c159ef9fb5a8c47fe2eb2cfce2113b9e5585",
+        "identical": true,
+        "second_sha256": "3078c559e697857f9f14c4fac6c9c159ef9fb5a8c47fe2eb2cfce2113b9e5585"
+      }
+    },
+    "H_PRESEMANTIC_INTEGRATED": {
+      "video_08": {
+        "first_sha256": "5db61f846deba59468ed5ff28eabaf51c4e60d44bf0b664632138a9157afd8b4",
+        "identical": true,
+        "second_sha256": "5db61f846deba59468ed5ff28eabaf51c4e60d44bf0b664632138a9157afd8b4"
+      },
+      "video_09": {
+        "first_sha256": "1427920f06bdd811dc7397d5b25406972f73caf54cbd3322dd2f4569fcc89a3b",
+        "identical": true,
+        "second_sha256": "1427920f06bdd811dc7397d5b25406972f73caf54cbd3322dd2f4569fcc89a3b"
+      },
+      "video_10": {
+        "first_sha256": "3078c559e697857f9f14c4fac6c9c159ef9fb5a8c47fe2eb2cfce2113b9e5585",
+        "identical": true,
+        "second_sha256": "3078c559e697857f9f14c4fac6c9c159ef9fb5a8c47fe2eb2cfce2113b9e5585"
+      }
+    }
+  },
+  "variants": {
+    "A_PRESERVED_V21": {
+      "config_source": "co-located run_config.yaml; source/toggles not fully recorded",
+      "settings": null,
+      "status": "REPLAYED_FROM_PRESERVED_TRAJECTORY"
+    },
+    "B_CURRENT_PRODUCTION_CONFIG": {
+      "config_source": "git:918f876479ec0d59aa166116658977f3d3837e76:configs/phase6_analytics/pipeline.yaml",
+      "settings": {
+        "base_gating_radius_px": 45.0,
+        "enable_adaptive_gate": true,
+        "enable_camera_motion_compensation": false,
+        "enable_frame_bounds_filter": false,
+        "enable_multi_candidate_association": true,
+        "enable_scale_normalization": true,
+        "enable_short_gap_reacquisition": true,
+        "high_conf_thresh": 0.08,
+        "low_conf_thresh": 0.01,
+        "max_interpolation_gap": 3,
+        "max_prediction_gap": 4,
+        "max_valid_speed_px_per_frame": 80.0
+      },
+      "status": "REPLAYED_FROM_RAW_CANDIDATES"
+    },
+    "C_CURRENT_CLASS_DEFAULTS": {
+      "config_source": "starting-code TemporalBallTracker defaults; post-remediation frame-bounds filter disabled",
+      "settings": {
+        "base_gating_radius_px": 45.0,
+        "enable_adaptive_gate": true,
+        "enable_camera_motion_compensation": false,
+        "enable_frame_bounds_filter": false,
+        "enable_multi_candidate_association": true,
+        "enable_scale_normalization": true,
+        "enable_short_gap_reacquisition": true,
+        "high_conf_thresh": 0.08,
+        "low_conf_thresh": 0.01,
+        "max_interpolation_gap": 6,
+        "max_prediction_gap": 6,
+        "max_valid_speed_px_per_frame": 90.0
+      },
+      "status": "REPLAYED_FROM_RAW_CANDIDATES"
+    },
+    "D_HISTORICAL_92_5_RECOVERY_CONFIG": {
+      "config_source": null,
+      "reason": "No exact source-linked tracker configuration for the historical 92.5% recovery claim is present; approximation is forbidden.",
+      "settings": null,
+      "status": "NOT_REPRODUCIBLE"
+    },
+    "E_RECONCILED_CONFIG": {
+      "config_source": "class-default 6/6/90 config-only candidate; frame-bounds fix disabled",
+      "settings": {
+        "base_gating_radius_px": 45.0,
+        "enable_adaptive_gate": true,
+        "enable_camera_motion_compensation": false,
+        "enable_frame_bounds_filter": false,
+        "enable_multi_candidate_association": true,
+        "enable_scale_normalization": true,
+        "enable_short_gap_reacquisition": true,
+        "high_conf_thresh": 0.08,
+        "low_conf_thresh": 0.01,
+        "max_interpolation_gap": 6,
+        "max_prediction_gap": 6,
+        "max_valid_speed_px_per_frame": 90.0
+      },
+      "status": "REPLAYED_REJECTED_OUT_OF_FRAME_HALLUCINATION"
+    },
+    "F_TARGETED_TRACKER_FIX": {
+      "config_source": "configs/phase6_analytics/pipeline.yaml",
+      "settings": {
+        "base_gating_radius_px": 45.0,
+        "enable_adaptive_gate": true,
+        "enable_camera_motion_compensation": false,
+        "enable_frame_bounds_filter": true,
+        "enable_multi_candidate_association": true,
+        "enable_scale_normalization": true,
+        "enable_short_gap_reacquisition": true,
+        "high_conf_thresh": 0.08,
+        "low_conf_thresh": 0.01,
+        "max_interpolation_gap": 3,
+        "max_prediction_gap": 4,
+        "max_valid_speed_px_per_frame": 80.0
+      },
+      "status": "REPLAYED_FROM_RAW_CANDIDATES"
+    },
+    "H_PRESEMANTIC_INTEGRATED": {
+      "config_source": "configs/phase6_analytics/pipeline.yaml",
+      "settings": {
+        "base_gating_radius_px": 45.0,
+        "enable_adaptive_gate": true,
+        "enable_camera_motion_compensation": false,
+        "enable_frame_bounds_filter": true,
+        "enable_multi_candidate_association": true,
+        "enable_scale_normalization": true,
+        "enable_short_gap_reacquisition": true,
+        "high_conf_thresh": 0.08,
+        "low_conf_thresh": 0.01,
+        "max_interpolation_gap": 3,
+        "max_prediction_gap": 4,
+        "max_valid_speed_px_per_frame": 80.0
+      },
+      "status": "SELECTED_ALIAS_OF_F_TARGETED_TRACKER_FIX"
+    }
+  },
+  "video_specific_branches": false
+}

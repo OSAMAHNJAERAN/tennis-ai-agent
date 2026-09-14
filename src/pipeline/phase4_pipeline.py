@@ -134,7 +134,7 @@ class Phase4Pipeline:
             cands = self.ball_detector.extract_candidates(f, imgsz=imgsz)
             all_candidates.append(cands)
             
-        ball_points = self.temporal_tracker.track_video_candidates(all_candidates, fps=fps)
+        ball_points = self.temporal_tracker.track_video_candidates(all_candidates, fps=fps, frame_size=(w, h))
         print(f"  -> Ball Tracking Complete in {time.time()-t0:.2f}s")
 
         # 5. Metric Court Projection

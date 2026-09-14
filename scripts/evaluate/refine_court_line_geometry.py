@@ -1,0 +1,119 @@
+"""Research-only projective refinement against locally compatible bright lines."""
+import numpy as np
+from scipy.optimize import least_squares
+
+from scripts.evaluate.audit_caltennis_projection import LINES
+from scripts.evaluate.audit_court_line_support import support
+
+
+def project(points, matrix):
+    homogeneous = np.column_stack((points, np.ones(len(points)))) @ matrix.T
+    if np.any(homogeneous[:, 2] <= .1):
+        raise ValueError('Refinement approaches or crosses the projective horizon')
+    return homogeneous[:, :2] / homogeneous[:, 2:]
+
+
+def match_lines(points, segments):
+    """Assign finite candidate segments locally, preserving canonical line IDs."""
+    matches = []
+    for identity, (a, b) in enumerate(LINES):
+        start, end = points[a], points[b]
+        vector = end-start
+        length = np.linalg.norm(vector)
+        if length < 30:
+            continue
+        direction = vector/length
+        choices = []
+        for index, segment in enumerate(segments):
+            first, last = segment
+            delta = last-first
+            size = np.linalg.norm(delta)
+            if size < 30:
+                continue
+            tangent = delta/size
+            angle = np.degrees(np.arccos(np.clip(abs(tangent @ direction), 0, 1)))
+            if angle > 6:
+                continue
+            along = sorted([(first-start) @ direction, (last-start) @ direction])
+            overlap = max(0., min(length, along[1])-max(0., along[0]))
+            if overlap < min(length, size)*.5 or overlap < 30:
+                continue
+            normal = np.array([-tangent[1], tangent[0]])
+            offsets = np.abs((np.stack((start, end))-first) @ normal)
+            if offsets.max() > 20:
+                continue
+            cost = float(offsets.mean() + angle*.5)
+            choices.append((cost, index, normal, float(-normal @ first)))
+        if choices:
+            cost, index, normal, offset = min(choices, key=lambda item: (item[0], item[1]))
+            matches.append({'line': identity, 'segment': index, 'cost': cost,
+                            'normal': normal.tolist(), 'offset': offset})
+    # One image segment cannot support two different semantic court lines.
+    matches.sort(key=lambda item: item['cost'])
+    used, unique = set(), []
+    for match in matches:
+        if match['segment'] not in used:
+            used.add(match['segment'])
+            unique.append(match)
+    return sorted(unique, key=lambda item: item['line'])
+
+
+def refine(points, segments, width=960, height=540):
+    """Fit a single image homography; return unchanged points on rejection.
+
+    Inputs are already projected canonical landmarks at reference width960.
+    A small residual measures image-line agreement, not independent accuracy.
+    """
+    original = np.asarray(points, dtype=float)
+    segments = np.asarray(segments, dtype=float).reshape(-1, 2, 2)
+    if original.shape != (14, 2) or not np.isfinite(original).all() or not np.isfinite(segments).all():
+        raise ValueError('Require fourteen finite projected points and finite segments')
+    before = support(original, segments, width, height)
+    current = original.copy()
+    history = []
+    result = {'accepted': False, 'reason': 'INSUFFICIENT_COMPATIBLE_LINES',
+              'before': before, 'iterations': history}
+    for _ in range(3):
+        matches = match_lines(current, segments)
+        ids = {m['line'] for m in matches}
+        if len(matches) < 6 or len(ids & {0,1,6,7}) < 2 or len(ids & {2,3,4,5,8}) < 2:
+            return original.copy(), result
+        normalized = original/960.
+        def matrix(parameters):
+            return np.append(parameters, 1.).reshape(3,3)
+        def residual(parameters):
+            try:
+                moved = project(normalized, matrix(parameters))*960.
+            except ValueError:
+                return np.full(len(matches)*11+28, 1e6)
+            values = []
+            for match in matches:
+                a,b = LINES[match['line']]
+                samples = moved[a] + np.linspace(.05,.95,11)[:,None]*(moved[b]-moved[a])
+                values.extend(samples @ np.asarray(match['normal']) + match['offset'])
+            # A weak image-space prior discourages drift when lines are ambiguous.
+            values.extend(((moved-original)*.05).ravel())
+            return np.asarray(values)
+        fit = least_squares(residual, np.eye(3).ravel()[:8], loss='soft_l1', f_scale=2.,
+                            max_nfev=150, xtol=1e-9, ftol=1e-9, gtol=1e-9)
+        try:
+            current = project(normalized, matrix(fit.x))*960.
+        except ValueError:
+            result['reason'] = 'INVALID_PROJECTIVE_TRANSFORM'
+            return original.copy(), result
+        displacement = float(np.linalg.norm(current-original, axis=1).max())
+        history.append({'matches': matches, 'solver_success': bool(fit.success),
+                        'maximum_displacement_reference_px': displacement,
+                        'normalized_image_transform': matrix(fit.x).tolist()})
+        if not fit.success or displacement > 20:
+            result['reason'] = 'UNSTABLE_OR_EXCESSIVE_REFINEMENT'
+            return original.copy(), result
+    after = support(current, segments, width, height)
+    result['proposed_after'] = after
+    if (not after['diagnostic_gate_pass'] or
+            sum(row['supported_fraction'] >= .5 for row in after['lines']) < 6 or
+            after['mean_visible_line_support'] < before['mean_visible_line_support']+.02):
+        result['reason'] = 'INSUFFICIENT_IMAGE_SUPPORT_IMPROVEMENT'
+        return original.copy(), result
+    result.update(accepted=True, reason='PROJECTIVE_IMAGE_SUPPORT_IMPROVED')
+    return current, result

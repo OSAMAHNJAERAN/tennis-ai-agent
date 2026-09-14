@@ -116,7 +116,7 @@ class Phase3Pipeline:
             cands = self.ball_detector.extract_candidates(f, imgsz=imgsz)
             all_candidates.append(cands)
             
-        ball_trajectory = self.temporal_tracker.track_video_candidates(all_candidates, fps=fps)
+        ball_trajectory = self.temporal_tracker.track_video_candidates(all_candidates, fps=fps, frame_size=(meta.width, meta.height))
         print(f"  -> Ball Tracking Complete in {time.time()-t0:.2f}s")
         
         # [Step 5] Project Coordinates to Metric Court Plane

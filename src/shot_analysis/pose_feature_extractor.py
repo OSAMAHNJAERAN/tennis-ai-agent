@@ -32,7 +32,8 @@ class PoseFeatureExtractor:
         player_boxes: List[Optional[BBox]],
         hit_frame: int,
         player_id: int,
-        handedness: PlayerHandedness = PlayerHandedness.RIGHT_HANDED,
+        handedness: PlayerHandedness = PlayerHandedness.UNKNOWN_HANDEDNESS,
+        court_orientation_sign: Optional[float] = None,
         window_half_size: int = 3,
         crop_margin: float = 0.65
     ) -> Dict[str, Any]:
@@ -41,13 +42,16 @@ class PoseFeatureExtractor:
         """
         if self.model is None or not frames:
             return {"valid": False, "reason": "Pose model unavailable or no frames."}
+        if handedness == PlayerHandedness.UNKNOWN_HANDEDNESS:
+            return {"valid": False, "reason": "Player handedness is unknown."}
+        if court_orientation_sign not in (-1.0, 1.0):
+            return {"valid": False, "reason": "Player body/court orientation is unknown."}
 
         total_frames = len(frames)
         start_f = max(0, hit_frame - window_half_size)
         end_f = min(total_frames - 1, hit_frame + window_half_size)
 
-        # Court-side factor: Near court player (+1), Far court player (-1)
-        court_side_sign = 1.0 if player_id == 1 else -1.0
+        court_side_sign = court_orientation_sign
         handedness_sign = 1.0 if handedness == PlayerHandedness.RIGHT_HANDED else (-1.0 if handedness == PlayerHandedness.LEFT_HANDED else 1.0)
 
         wrist_displacements = []

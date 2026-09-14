@@ -1,8 +1,11 @@
 {
   "split_version": "1.0",
-  "policy": "STRICT_MATCH_DISJOINT_HOLD_OUT",
+  "policy": "DIAGNOSTIC_AFTER_POST_FREEZE_INSPECTION",
   "development": ["video_01"],
   "validation": ["video_02", "video_03"],
-  "diagnostic": ["video_04", "video_05", "video_06", "video_07"],
-  "final_cross_match_holdout": ["video_08", "video_09", "video_10"]
+  "diagnostic": ["video_04", "video_05", "video_06", "video_07", "video_08", "video_09", "video_10"],
+  "cross_match_diagnostic": ["video_08", "video_09", "video_10"],
+  "pristine_final_holdout": [],
+  "legacy_directory_name": "cross_match_final_holdout",
+  "qualification_evidence": false
 }

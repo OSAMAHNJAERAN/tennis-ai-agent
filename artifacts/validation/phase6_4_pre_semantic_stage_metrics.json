@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "phase": "6.4",
+  "stage_metrics": [
+    {
+      "stage": "STAGE_0_RAW_PROPOSAL",
+      "surviving": 40,
+      "total_gt": 40,
+      "recall_ceiling": 1.0
+    },
+    {
+      "stage": "STAGE_1_USABLE_OBSERVATION",
+      "surviving": 34,
+      "total_gt": 40,
+      "recall_ceiling": 0.85
+    },
+    {
+      "stage": "STAGE_2_PHYSICAL_CANDIDATE",
+      "surviving": 31,
+      "total_gt": 40,
+      "recall_ceiling": 0.775
+    },
+    {
+      "stage": "STAGE_3_PHYSICAL_CONTACT",
+      "surviving": 21,
+      "total_gt": 40,
+      "recall_ceiling": 0.525
+    }
+  ],
+  "maximum_possible_downstream_recall": 0.525
+}

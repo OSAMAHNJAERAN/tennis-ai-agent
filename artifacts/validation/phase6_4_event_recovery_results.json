@@ -1,0 +1,4249 @@
+{
+  "schema_version": "1.0",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "phase6_4_evaluator_version": "2.1",
+  "evaluation_scope_id": "CROSS_MATCH_FINAL_HOLDOUT_DIAGNOSTIC_V2_1_TOLERANCE_SAFE_RALLY_INTERVALS",
+  "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE; 0.2 second tolerance",
+  "fps_semantics": "Per-video native timestamps; all available diagnostic clips happen to be 30 FPS",
+  "camera_motion_input": "UNAVAILABLE; G records the enabled-but-unavailable no-op honestly",
+  "input_provenance": {
+    "ground_truth_events": {
+      "path": "data/benchmarks/cross_match_final_holdout/ground_truth_events.json",
+      "sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+      "size_bytes": 5772
+    },
+    "video_manifest": {
+      "path": "data/benchmarks/cross_match_final_holdout/videos.json",
+      "sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+      "size_bytes": 2755
+    },
+    "annotation_coverage": {
+      "path": "data/benchmarks/cross_match_final_holdout/annotation_coverage.json",
+      "sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+      "size_bytes": 5664
+    },
+    "canonical_event_evaluator": {
+      "path": "src/events/event_evaluator.py",
+      "sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+      "size_bytes": 39551
+    },
+    "active_event_config": {
+      "path": "configs/phase6_analytics/pipeline.yaml",
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed",
+      "size_bytes": 3490
+    },
+    "event_detector_implementation": {
+      "path": "src/events/event_detector.py",
+      "sha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
+      "size_bytes": 59283
+    },
+    "recovery_evaluator": {
+      "path": "scripts/evaluate_phase6_4_event_recovery.py",
+      "sha256": "60e0a512e0efd23f2667eda752dd47f231c19dcab2bc042ccfbae5a4ab6a4274",
+      "size_bytes": 42079
+    },
+    "preserved_video_inputs": {
+      "video_08": {
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_08/trajectories.json",
+          "sha256": "bf5cfb53ce49390f09f101880fd85fa709d38052d7f4dd1e0c5e4c0b33bd5188",
+          "size_bytes": 120263
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_08/detections.json",
+          "sha256": "42ba06d742648ec455e05a09e845edea5053532cb41856004244bbb3c3d94cb7",
+          "size_bytes": 273316
+        }
+      },
+      "video_09": {
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_09/trajectories.json",
+          "sha256": "7ffbaf034c862399303115c5087e42bd01523b296e1df76f8c29946e049f7f3f",
+          "size_bytes": 105086
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_09/detections.json",
+          "sha256": "99225dede27b815241ca9295d5fd09f5de12c57618ba9a39d242a0af73a31210",
+          "size_bytes": 239779
+        }
+      },
+      "video_10": {
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_10/trajectories.json",
+          "sha256": "2fb55ed2e0917e4cb83000baec59e28ec5c94b175adf857411511f024b2c12d9",
+          "size_bytes": 458634
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_10/detections.json",
+          "sha256": "1f083b84ab40c41c9d76c16a8a0d5e6abd56f35d916ae0b2acd96e607c712100",
+          "size_bytes": 914024
+        }
+      }
+    }
+  },
+  "reported_corrected_baseline_from_previous_run": {
+    "true_positives": 11,
+    "false_positives": 113,
+    "false_negatives": 29,
+    "precision": 0.08870967741935484,
+    "recall": 0.275,
+    "f1": 0.13414634146341464,
+    "warning": "Published artifact predates the current interval-aware evaluator fields; retained as the requested historical before-state."
+  },
+  "legacy_baseline_fixed_evaluator_rescore": {
+    "event_detection": {
+      "true_positives": 23,
+      "false_positives": 16,
+      "false_negatives": 17,
+      "precision": 0.5897435897435898,
+      "recall": 0.575,
+      "f1": 0.5822784810126582,
+      "mean_timing_error_frames": null,
+      "mean_timing_error_ms": 81.15942028985509,
+      "matching_tolerance_ms": 200.0,
+      "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+      "scope": "ALL_PHYSICAL_EVENTS"
+    },
+    "event_detection_per_class": {
+      "SERVE_CONTACT": {
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "PLAYER_HIT": {
+        "true_positives": 8,
+        "false_positives": 19,
+        "false_negatives": 9,
+        "precision": 0.2962962962962963,
+        "recall": 0.47058823529411764,
+        "f1": 0.3636363636363636
+      },
+      "BOUNCE": {
+        "true_positives": 4,
+        "false_positives": 5,
+        "false_negatives": 16,
+        "precision": 0.4444444444444444,
+        "recall": 0.2,
+        "f1": 0.2758620689655173
+      }
+    },
+    "conditional_shot_classification": {
+      "per_class": {
+        "FOREHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "BACKHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "SERVE": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "macro_f1": 0.0,
+      "matched_hit_count": 0,
+      "unknown_abstentions": 0,
+      "unknown_rate": null,
+      "coverage": null
+    },
+    "end_to_end_shot_recognition": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "integrated_pre_recovery_fixed_evaluator": {
+    "event_detection": {
+      "true_positives": 7,
+      "false_positives": 6,
+      "false_negatives": 33,
+      "precision": 0.5384615384615384,
+      "recall": 0.175,
+      "f1": 0.2641509433962264,
+      "mean_timing_error_frames": null,
+      "mean_timing_error_ms": 99.99999999999999,
+      "matching_tolerance_ms": 200.0,
+      "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+      "scope": "ALL_PHYSICAL_EVENTS"
+    },
+    "event_detection_per_class": {
+      "SERVE_CONTACT": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "PLAYER_HIT": {
+        "true_positives": 2,
+        "false_positives": 10,
+        "false_negatives": 15,
+        "precision": 0.16666666666666666,
+        "recall": 0.11764705882352941,
+        "f1": 0.13793103448275862
+      },
+      "BOUNCE": {
+        "true_positives": 0,
+        "false_positives": 1,
+        "false_negatives": 20,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "conditional_shot_classification": {
+      "per_class": {
+        "FOREHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "BACKHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "SERVE": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "macro_f1": 0.0,
+      "matched_hit_count": 0,
+      "unknown_abstentions": 0,
+      "unknown_rate": null,
+      "coverage": null
+    },
+    "end_to_end_shot_recognition": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "ablations": [
+    {
+      "variant": "A_INTEGRATED_PRE_RECOVERY",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.47058823529411764,
+        "BOUNCE": 0.6,
+        "OVERALL": 0.575
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 79.71014492753623,
+      "serve": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "player_hit": {
+        "true_positives": 2,
+        "false_positives": 10,
+        "false_negatives": 15,
+        "precision": 0.16666666666666666,
+        "recall": 0.11764705882352941,
+        "f1": 0.13793103448275862
+      },
+      "bounce": {
+        "true_positives": 0,
+        "false_positives": 1,
+        "false_negatives": 20,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "overall": {
+        "true_positives": 7,
+        "false_positives": 6,
+        "false_negatives": 33,
+        "precision": 0.5384615384615384,
+        "recall": 0.175,
+        "f1": 0.2641509433962264,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 99.99999999999999,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 13,
+      "offline_event_analysis_seconds": null,
+      "offline_event_analysis_fps": null
+    },
+    {
+      "variant": "B_HIGH_RECALL_CANDIDATES",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 33.333333333333336,
+      "serve": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "player_hit": {
+        "true_positives": 6,
+        "false_positives": 12,
+        "false_negatives": 11,
+        "precision": 0.3333333333333333,
+        "recall": 0.35294117647058826,
+        "f1": 0.34285714285714286
+      },
+      "bounce": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 20,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "overall": {
+        "true_positives": 12,
+        "false_positives": 9,
+        "false_negatives": 28,
+        "precision": 0.5714285714285714,
+        "recall": 0.3,
+        "f1": 0.3934426229508196,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 52.77777777777778,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 21,
+      "offline_event_analysis_seconds": 0.8943059999728575,
+      "offline_event_analysis_fps": 2987.791650823204
+    },
+    {
+      "variant": "C_TEMPORAL_PLAYER_PROXIMITY",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 33.333333333333336,
+      "serve": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "player_hit": {
+        "true_positives": 6,
+        "false_positives": 14,
+        "false_negatives": 11,
+        "precision": 0.3,
+        "recall": 0.35294117647058826,
+        "f1": 0.3243243243243243
+      },
+      "bounce": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 20,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "overall": {
+        "true_positives": 14,
+        "false_positives": 15,
+        "false_negatives": 26,
+        "precision": 0.4827586206896552,
+        "recall": 0.35,
+        "f1": 0.4057971014492754,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 28.571428571428573,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 29,
+      "offline_event_analysis_seconds": 0.8876899000024423,
+      "offline_event_analysis_fps": 3010.0601572606024
+    },
+    {
+      "variant": "D_EVENT_TIME_REFINEMENT",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 33.333333333333336,
+      "serve": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "player_hit": {
+        "true_positives": 7,
+        "false_positives": 15,
+        "false_negatives": 10,
+        "precision": 0.3181818181818182,
+        "recall": 0.4117647058823529,
+        "f1": 0.358974358974359
+      },
+      "bounce": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 20,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "overall": {
+        "true_positives": 14,
+        "false_positives": 15,
+        "false_negatives": 26,
+        "precision": 0.4827586206896552,
+        "recall": 0.35,
+        "f1": 0.4057971014492754,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 50.0,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 29,
+      "offline_event_analysis_seconds": 0.9475152000086382,
+      "offline_event_analysis_fps": 2820.0075312518893
+    },
+    {
+      "variant": "E_EVENT_SPECIFIC_VERIFICATION",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 33.333333333333336,
+      "serve": {
+        "true_positives": 1,
+        "false_positives": 13,
+        "false_negatives": 2,
+        "precision": 0.07142857142857142,
+        "recall": 0.3333333333333333,
+        "f1": 0.11764705882352941
+      },
+      "player_hit": {
+        "true_positives": 3,
+        "false_positives": 6,
+        "false_negatives": 14,
+        "precision": 0.3333333333333333,
+        "recall": 0.17647058823529413,
+        "f1": 0.23076923076923078
+      },
+      "bounce": {
+        "true_positives": 7,
+        "false_positives": 11,
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
+      },
+      "overall": {
+        "true_positives": 21,
+        "false_positives": 25,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 58.73015873015873,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.9388077000621706,
+      "offline_event_analysis_fps": 2846.1632769128887
+    },
+    {
+      "variant": "F_VISION_DEAD_BALL_GATING",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 33.333333333333336,
+      "serve": {
+        "true_positives": 1,
+        "false_positives": 13,
+        "false_negatives": 2,
+        "precision": 0.07142857142857142,
+        "recall": 0.3333333333333333,
+        "f1": 0.11764705882352941
+      },
+      "player_hit": {
+        "true_positives": 3,
+        "false_positives": 6,
+        "false_negatives": 14,
+        "precision": 0.3333333333333333,
+        "recall": 0.17647058823529413,
+        "f1": 0.23076923076923078
+      },
+      "bounce": {
+        "true_positives": 7,
+        "false_positives": 11,
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
+      },
+      "overall": {
+        "true_positives": 21,
+        "false_positives": 25,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 58.73015873015873,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.9560863999649882,
+      "offline_event_analysis_fps": 2794.7265018076278
+    },
+    {
+      "variant": "G_CAMERA_MOTION_COMPENSATION",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 33.333333333333336,
+      "serve": {
+        "true_positives": 1,
+        "false_positives": 13,
+        "false_negatives": 2,
+        "precision": 0.07142857142857142,
+        "recall": 0.3333333333333333,
+        "f1": 0.11764705882352941
+      },
+      "player_hit": {
+        "true_positives": 3,
+        "false_positives": 6,
+        "false_negatives": 14,
+        "precision": 0.3333333333333333,
+        "recall": 0.17647058823529413,
+        "f1": 0.23076923076923078
+      },
+      "bounce": {
+        "true_positives": 7,
+        "false_positives": 11,
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
+      },
+      "overall": {
+        "true_positives": 21,
+        "false_positives": 25,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 58.73015873015873,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.9744043999817222,
+      "offline_event_analysis_fps": 2742.1879458365756
+    },
+    {
+      "variant": "H_FINAL_INTEGRATED",
+      "candidate_recall": {
+        "SERVE_CONTACT": 1.0,
+        "PLAYER_HIT": 0.6470588235294118,
+        "BOUNCE": 0.55,
+        "OVERALL": 0.625
+      },
+      "candidate_timing_mae_frames": null,
+      "candidate_timing_mae_ms": 33.333333333333336,
+      "serve": {
+        "true_positives": 1,
+        "false_positives": 13,
+        "false_negatives": 2,
+        "precision": 0.07142857142857142,
+        "recall": 0.3333333333333333,
+        "f1": 0.11764705882352941
+      },
+      "player_hit": {
+        "true_positives": 3,
+        "false_positives": 6,
+        "false_negatives": 14,
+        "precision": 0.3333333333333333,
+        "recall": 0.17647058823529413,
+        "f1": 0.23076923076923078
+      },
+      "bounce": {
+        "true_positives": 7,
+        "false_positives": 11,
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
+      },
+      "overall": {
+        "true_positives": 21,
+        "false_positives": 25,
+        "false_negatives": 19,
+        "precision": 0.45652173913043476,
+        "recall": 0.525,
+        "f1": 0.48837209302325585,
+        "mean_timing_error_frames": null,
+        "mean_timing_error_ms": 50.7936507936508,
+        "matching_tolerance_ms": 200.0,
+        "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+        "scope": "ALL_PHYSICAL_EVENTS"
+      },
+      "event_count": 46,
+      "offline_event_analysis_seconds": 0.9549021000275388,
+      "offline_event_analysis_fps": 2798.1926104497425
+    }
+  ],
+  "final_metrics": {
+    "event_detection": {
+      "true_positives": 21,
+      "false_positives": 25,
+      "false_negatives": 19,
+      "precision": 0.45652173913043476,
+      "recall": 0.525,
+      "f1": 0.48837209302325585,
+      "mean_timing_error_frames": null,
+      "mean_timing_error_ms": 50.7936507936508,
+      "matching_tolerance_ms": 200.0,
+      "matching_semantics": "PER_VIDEO_CANONICAL_TIMESTAMP_INTERVAL_ONE_TO_ONE",
+      "scope": "ALL_PHYSICAL_EVENTS"
+    },
+    "event_detection_per_class": {
+      "SERVE_CONTACT": {
+        "true_positives": 1,
+        "false_positives": 13,
+        "false_negatives": 2,
+        "precision": 0.07142857142857142,
+        "recall": 0.3333333333333333,
+        "f1": 0.11764705882352941
+      },
+      "PLAYER_HIT": {
+        "true_positives": 3,
+        "false_positives": 6,
+        "false_negatives": 14,
+        "precision": 0.3333333333333333,
+        "recall": 0.17647058823529413,
+        "f1": 0.23076923076923078
+      },
+      "BOUNCE": {
+        "true_positives": 7,
+        "false_positives": 11,
+        "false_negatives": 13,
+        "precision": 0.3888888888888889,
+        "recall": 0.35,
+        "f1": 0.36842105263157887
+      }
+    },
+    "conditional_shot_classification": {
+      "per_class": {
+        "FOREHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "BACKHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "SERVE": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "macro_f1": 0.0,
+      "matched_hit_count": 0,
+      "unknown_abstentions": 0,
+      "unknown_rate": null,
+      "coverage": null
+    },
+    "end_to_end_shot_recognition": {
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "production_conditional_shot_metrics": {
+    "source": "outputs/phase6_4_qualification/aggregate_cross_match_diagnostic_final.json",
+    "scope": "PRESERVED_PRE_RECOVERY_PRODUCTION_PATH; NOT RECOMPUTED BY OFFLINE EVENT ABLATION",
+    "metrics": {
+      "per_class": {
+        "FOREHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "BACKHAND": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "SERVE": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "macro_f1": 0.0,
+      "matched_hit_count": 7,
+      "unknown_abstentions": 7,
+      "unknown_rate": 1.0,
+      "coverage": 0.0
+    }
+  },
+  "oracle_shot_diagnostic": {
+    "source": "artifacts/validation/phase6_4_oracle_shot_diagnostic.json",
+    "scope": "GT_ASSISTED_DIAGNOSTIC_ONLY; NOT_PRODUCTION; NOT_END_TO_END"
+  },
+  "analytics_contract_regression": {
+    "contract_version": "1.0",
+    "existing_event_schema_changed": false,
+    "event_verification_trace_is_additive_diagnostic_output": true,
+    "scoring_remains_downstream_and_no_longer_deletes_physical_match_events": true
+  },
+  "performance_context": {
+    "full_pipeline_inference_rerun": false,
+    "reason": "Preserved trajectories are sufficient for the single event-verifier blocker; GPU proposal inference was not repeated.",
+    "previous_pipeline_fps": {
+      "video_08_720p": 26.662918324959257,
+      "video_09_720p": 28.010673242269625,
+      "video_10_1080p": 8.956220195256629
+    },
+    "final_offline_event_analysis_fps": 2798.1926104497425,
+    "detector_runs_candidate_generation_once_per_pipeline_run": true
+  },
+  "readiness_gate": {
+    "targets": {
+      "overall_precision": 0.7,
+      "overall_recall": 0.75,
+      "overall_f1": 0.7,
+      "player_hit_recall": 0.8,
+      "serve_not_completely_broken": true,
+      "bounce_not_nearly_broken": true
+    },
+    "observed": {
+      "overall_precision": 0.45652173913043476,
+      "overall_recall": 0.525,
+      "overall_f1": 0.48837209302325585,
+      "player_hit_recall": 0.17647058823529413,
+      "serve_recall": 0.3333333333333333,
+      "bounce_recall": 0.35
+    },
+    "passed": false,
+    "ready_for_production_evaluator_freeze": false,
+    "primary_remaining_blocker": "Discontinuous and missing ball association, especially the 1080p video_10 rally, prevents source-independent physical-event verification."
+  },
+  "final_events_by_video": {
+    "video_08": [
+      {
+        "video_id": "video_08",
+        "frame": 7,
+        "timestamp_s": 0.2333,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9442235388209801,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -98.94894894894854,
+            124.32432432432388
+          ],
+          "post_velocity_px_s": [
+            55.77211394302849,
+            -70.31484257870977
+          ],
+          "pre_speed_px_s": 158.8944055553917,
+          "post_speed_px_s": 89.74801268297192,
+          "normalized_speed_per_s": 0.08465259735470648,
+          "normalized_velocity_change_per_s": 0.16930514055154458,
+          "normalized_acceleration_per_s2": 2.540212161313497,
+          "direction_change_degrees": 179.90457947922476,
+          "normalized_curvature": 0.008694237792071792,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.107,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 1,
+          "discovery_frame": 7,
+          "discovery_timestamp_s": 0.2333,
+          "refined_frame": 7,
+          "refined_timestamp_s": 0.2333,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9442235388209801,
+          "player_contact_score": 0.7873293835370598,
+          "court_contact_score": 0.9442235388209801,
+          "player1_distance_normalized": 0.597017774083231,
+          "player2_distance_normalized": 3.4217890433651283,
+          "selected_player": 1,
+          "player_scale_px": 255.98684692382812,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 18,
+        "timestamp_s": 0.6,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 1,
+        "confidence": 0.5128750000000001,
+        "trajectory_state": "PREDICTED",
+        "evidence": {
+          "candidate_source": [
+            "WEAK_COMBINED_KINEMATICS"
+          ],
+          "pre_velocity_px_s": [
+            265.1651651651664,
+            -182.58258258258212
+          ],
+          "post_velocity_px_s": [
+            265.7657657657665,
+            -182.58258258258212
+          ],
+          "pre_speed_px_s": 321.94559211083384,
+          "post_speed_px_s": 322.4404467736479,
+          "normalized_speed_per_s": 0.21938715154543081,
+          "normalized_velocity_change_per_s": 0.0004089599930198138,
+          "normalized_acceleration_per_s2": 0.01228108087146588,
+          "direction_change_degrees": 0.06052514289564778,
+          "normalized_curvature": 0.004826169772819117,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.24,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 3,
+          "discovery_frame": 18,
+          "discovery_timestamp_s": 0.6,
+          "refined_frame": 18,
+          "refined_timestamp_s": 0.6,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.6562048995213275,
+          "player_contact_score": 0.6562048995213275,
+          "court_contact_score": 0.2603772972396531,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.32500062225434034,
+          "selected_player": 1,
+          "player_scale_px": 257.48529052734375,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.9325,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.21955562936517328,
+            "departure_speed_gain": 1.0015370754405102
+          },
+          "ball_state": "PREDICTED",
+          "state_confidence_weight": 0.55,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.002161612246273135,
+            "velocity_discontinuity": 0.004543999922442376,
+            "acceleration": 0.01535135108933235,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 0.01535135108933235
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 25,
+        "timestamp_s": 0.8333,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.9303013073882868,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            9.90990990990986,
+            -23.72372372372434
+          ],
+          "post_velocity_px_s": [
+            79.91004497751145,
+            -4.647676161918223
+          ],
+          "pre_speed_px_s": 25.710336087693033,
+          "post_speed_px_s": 80.04508843154566,
+          "normalized_speed_per_s": 0.03600540661296492,
+          "normalized_velocity_change_per_s": 0.04940256245335741,
+          "normalized_acceleration_per_s2": 0.7412237427360453,
+          "direction_change_degrees": 64.00000638629913,
+          "normalized_curvature": 159.8395797766546,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.48,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 4,
+          "discovery_frame": 28,
+          "discovery_timestamp_s": 0.9333,
+          "refined_frame": 25,
+          "refined_timestamp_s": 0.8333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9303013073882868,
+          "player_contact_score": 0.9303013073882868,
+          "court_contact_score": 0.7919999999999999,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.32500062225434034,
+          "selected_player": 1,
+          "player_scale_px": 257.48529052734375,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.5,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": false,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.05450417261242692,
+            "departure_speed_gain": 3.113342748944518
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 0.7201081322592984,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 0.5489173605928601,
+            "acceleration": 0.9265296784200566,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 34,
+        "timestamp_s": 1.1333,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9427710302500439,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -1403.0030030030023,
+            319.0690690690687
+          ],
+          "post_velocity_px_s": [
+            -2097.1514242878566,
+            1044.3778110944534
+          ],
+          "pre_speed_px_s": 1438.8267780633096,
+          "post_speed_px_s": 2342.8122222446736,
+          "normalized_speed_per_s": 1.2874937667595991,
+          "normalized_velocity_change_per_s": 0.6836077445577099,
+          "normalized_acceleration_per_s2": 10.256680338450263,
+          "direction_change_degrees": 13.661009132300848,
+          "normalized_curvature": 0.39252097990563695,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.36,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 5,
+          "discovery_frame": 37,
+          "discovery_timestamp_s": 1.2333,
+          "refined_frame": 34,
+          "refined_timestamp_s": 1.1333,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9427710302500439,
+          "player_contact_score": 0.7916869092498683,
+          "court_contact_score": 0.9427710302500439,
+          "player1_distance_normalized": 0.5774089083755928,
+          "player2_distance_normalized": 3.585398171608669,
+          "selected_player": 1,
+          "player_scale_px": 226.88137817382812,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.48789318329645887,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 49,
+        "timestamp_s": 1.6333,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 1,
+        "confidence": 1.0,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            -1397.297297297303,
+            -220.1201201201204
+          ],
+          "post_velocity_px_s": [
+            -1401.7964071856245,
+            -115.86826347305369
+          ],
+          "pre_speed_px_s": 1414.5291104519708,
+          "post_speed_px_s": 1406.5769163749226,
+          "normalized_speed_per_s": 0.9604714846159972,
+          "normalized_velocity_change_per_s": 0.07105308048726824,
+          "normalized_acceleration_per_s2": 2.1305271510425268,
+          "direction_change_degrees": 4.2272361899441036,
+          "normalized_curvature": 0.0760999638003527,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.773,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 8,
+          "discovery_frame": 49,
+          "discovery_timestamp_s": 1.6333,
+          "refined_frame": 49,
+          "refined_timestamp_s": 1.6333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 1.0,
+          "player_contact_score": 1.0,
+          "court_contact_score": 0.54,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.19920134792111616,
+          "selected_player": 1,
+          "player_scale_px": 219.81153869628906,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 1.0,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.9577640870284886,
+            "departure_speed_gain": 0.9943782040127068
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.15097272106943227,
+            "velocity_discontinuity": 0.7894786720807583,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 87,
+        "timestamp_s": 2.9,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.48816867037188544,
+        "trajectory_state": "PREDICTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -362.9685157421287,
+            341.5292353823102
+          ],
+          "post_velocity_px_s": [
+            21.739130434782446,
+            -411.3943028485767
+          ],
+          "pre_speed_px_s": 498.3857562580109,
+          "post_speed_px_s": 411.9682781578297,
+          "normalized_speed_per_s": 0.3099384009841744,
+          "normalized_velocity_change_per_s": 0.5757259912748776,
+          "normalized_acceleration_per_s2": 8.631574082082125,
+          "direction_change_degrees": 136.2817550311384,
+          "normalized_curvature": 1.68339594703157,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.48,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 11,
+          "discovery_frame": 87,
+          "discovery_timestamp_s": 2.9,
+          "refined_frame": 87,
+          "refined_timestamp_s": 2.9,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.8875794006761553,
+          "player_contact_score": 0.714261797971534,
+          "court_contact_score": 0.8875794006761553,
+          "player1_distance_normalized": 0.6828219091280967,
+          "player2_distance_normalized": 3.370910047828891,
+          "selected_player": 1,
+          "player_scale_px": 246.43161010742188,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "PREDICTED",
+          "state_confidence_weight": 0.55,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 98,
+        "timestamp_s": 3.2667,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9515046628992736,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -1600.7496251874065,
+            690.2548725637182
+          ],
+          "post_velocity_px_s": [
+            -1644.5945945945998,
+            840.0900900900928
+          ],
+          "pre_speed_px_s": 1743.230091420974,
+          "post_speed_px_s": 1846.7384059572043,
+          "normalized_speed_per_s": 1.2222377817822645,
+          "normalized_velocity_change_per_s": 0.10630393061707143,
+          "normalized_acceleration_per_s2": 1.5949576986807446,
+          "direction_change_degrees": 3.7327498380608506,
+          "normalized_curvature": 0.05810317740485386,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.691,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 13,
+          "discovery_frame": 100,
+          "discovery_timestamp_s": 3.3333,
+          "refined_frame": 98,
+          "refined_timestamp_s": 3.2667,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9515046628992736,
+          "player_contact_score": 0.7654860113021792,
+          "court_contact_score": 0.9515046628992736,
+          "player1_distance_normalized": 0.6953129491401936,
+          "player2_distance_normalized": 3.3809983006682933,
+          "selected_player": 1,
+          "player_scale_px": 240.0423583984375,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.13331249421645894,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 112,
+        "timestamp_s": 3.7333,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 1,
+        "confidence": 1.0,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -1206.456456456461,
+            180.63063063063169
+          ],
+          "post_velocity_px_s": [
+            898.2008995502255,
+            -201.64917541229374
+          ],
+          "pre_speed_px_s": 1219.903523253991,
+          "post_speed_px_s": 920.5581165234992,
+          "normalized_speed_per_s": 0.7287398450717028,
+          "normalized_velocity_change_per_s": 1.456548008615168,
+          "normalized_acceleration_per_s2": 21.85368355011509,
+          "direction_change_degrees": 175.86177402580356,
+          "normalized_curvature": 0.06555700367550289,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.687,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 15,
+          "discovery_frame": 112,
+          "discovery_timestamp_s": 3.7333,
+          "refined_frame": 112,
+          "refined_timestamp_s": 3.7333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9373301658685306,
+          "player_contact_score": 0.9373301658685306,
+          "court_contact_score": 0.9043207351322214,
+          "player1_distance_normalized": 0.0583299242849893,
+          "player2_distance_normalized": 3.3822337105323466,
+          "selected_player": 1,
+          "player_scale_px": 232.8771209716797,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 1.0,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.6268249491119783,
+            "departure_speed_gain": 0.7546155076821052
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 126,
+        "timestamp_s": 4.2,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9600475342248259,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -1151.5742128935535,
+            850.0749625187399
+          ],
+          "post_velocity_px_s": [
+            481.5592203898053,
+            -389.3553223388294
+          ],
+          "pre_speed_px_s": 1431.3457338122905,
+          "post_speed_px_s": 619.2712247279143,
+          "normalized_speed_per_s": 0.6981513972954643,
+          "normalized_velocity_change_per_s": 1.396017584894265,
+          "normalized_acceleration_per_s2": 20.929798873976996,
+          "direction_change_degrees": 177.47759577987753,
+          "normalized_curvature": 0.01953657810490295,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.48,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 17,
+          "discovery_frame": 128,
+          "discovery_timestamp_s": 4.2667,
+          "refined_frame": 126,
+          "refined_timestamp_s": 4.2,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9600475342248259,
+          "player_contact_score": 0.701377218154934,
+          "court_contact_score": 0.9600475342248259,
+          "player1_distance_normalized": 0.8106417120351501,
+          "player2_distance_normalized": 3.3693069004605065,
+          "selected_player": 1,
+          "player_scale_px": 237.0001220703125,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 171,
+        "timestamp_s": 5.7,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9564095446064739,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -1169.8650674662686,
+            -569.1154422788612
+          ],
+          "post_velocity_px_s": [
+            -1261.3193403298353,
+            -447.07646176911544
+          ],
+          "pre_speed_px_s": 1300.9522138488103,
+          "post_speed_px_s": 1338.2091917776092,
+          "normalized_speed_per_s": 0.8985267654950106,
+          "normalized_velocity_change_per_s": 0.10384261442444256,
+          "normalized_acceleration_per_s2": 1.556860785973652,
+          "direction_change_degrees": 6.425029326003323,
+          "normalized_curvature": 0.12994158340949538,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.604,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 22,
+          "discovery_frame": 168,
+          "discovery_timestamp_s": 5.6,
+          "refined_frame": 171,
+          "refined_timestamp_s": 5.7,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9564095446064739,
+          "player_contact_score": 0.698836162561245,
+          "court_contact_score": 0.9564095446064739,
+          "player1_distance_normalized": 1.0000053846154382,
+          "player2_distance_normalized": 0.7615288521873966,
+          "selected_player": 2,
+          "player_scale_px": 102.20524597167969,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.22946533307154726,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_08",
+        "frame": 203,
+        "timestamp_s": 6.7667,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.4443974976570073,
+        "trajectory_state": "PREDICTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            3560.778443113737,
+            255.38922155688638
+          ],
+          "post_velocity_px_s": [
+            210.21021021021232,
+            94.8948948948949
+          ],
+          "pre_speed_px_s": 3569.9253179066536,
+          "post_speed_px_s": 230.6368868020352,
+          "normalized_speed_per_s": 1.2939363456813424,
+          "normalized_velocity_change_per_s": 2.284079396772542,
+          "normalized_acceleration_per_s2": 68.48813783425915,
+          "direction_change_degrees": 20.19338391552577,
+          "normalized_curvature": 0.00917431041831997,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.343,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 28,
+          "discovery_frame": 201,
+          "discovery_timestamp_s": 6.7,
+          "refined_frame": 203,
+          "refined_timestamp_s": 6.7667,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.8079954502854678,
+          "player_contact_score": 0.6038081894861578,
+          "court_contact_score": 0.8079954502854678,
+          "player1_distance_normalized": 1.0664385788538167,
+          "player2_distance_normalized": 3.415670734143495,
+          "selected_player": 1,
+          "player_scale_px": 249.68479919433594,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "PREDICTED",
+          "state_confidence_weight": 0.55,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.721192282697349,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      }
+    ],
+    "video_09": [
+      {
+        "video_id": "video_09",
+        "frame": 10,
+        "timestamp_s": 0.3333,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 1,
+        "confidence": 1.0,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            3450.600600600601,
+            2072.9729729729734
+          ],
+          "post_velocity_px_s": [
+            359.07046476761667,
+            1988.4557721139417
+          ],
+          "pre_speed_px_s": 4025.402023592381,
+          "post_speed_px_s": 2020.6157369281484,
+          "normalized_speed_per_s": 2.0584223348008766,
+          "normalized_velocity_change_per_s": 2.1058662212331054,
+          "normalized_acceleration_per_s2": 31.595892291569466,
+          "direction_change_degrees": 48.768333107910415,
+          "normalized_curvature": 0.13772643032431336,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": null,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 1,
+          "discovery_frame": 8,
+          "discovery_timestamp_s": 0.2667,
+          "refined_frame": 10,
+          "refined_timestamp_s": 0.3333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.88,
+          "player_contact_score": 0.88,
+          "court_contact_score": 0.7919999999999999,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 2.613024311192696,
+          "selected_player": 1,
+          "player_scale_px": 304.8030090332031,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 1.0,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.3758744111214591,
+            "departure_speed_gain": 0.5019661949503604
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 17,
+        "timestamp_s": 0.5667,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.9321524700004545,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            2840.179910044979,
+            -1426.9865067466267
+          ],
+          "post_velocity_px_s": [
+            2263.3633633633635,
+            971.4714714714714
+          ],
+          "pre_speed_px_s": 3178.507890797197,
+          "post_speed_px_s": 2463.0409120634727,
+          "normalized_speed_per_s": 1.9207171594014243,
+          "normalized_velocity_change_per_s": 1.6797192588852867,
+          "normalized_acceleration_per_s2": 25.202089405630712,
+          "direction_change_degrees": 49.90602133890147,
+          "normalized_curvature": 0.273895701289985,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.147,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 3,
+          "discovery_frame": 17,
+          "discovery_timestamp_s": 0.5667,
+          "refined_frame": 17,
+          "refined_timestamp_s": 0.5667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9321524700004545,
+          "player_contact_score": 0.9321524700004545,
+          "court_contact_score": 0.7919999999999999,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.1954585953376065,
+          "selected_player": 1,
+          "player_scale_px": 311.45582580566406,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.75,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.6771298483527037,
+            "departure_speed_gain": 0.7749047655960737
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 26,
+        "timestamp_s": 0.8667,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 2,
+        "confidence": 1.0,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            3352.173913043478,
+            651.2743628185908
+          ],
+          "post_velocity_px_s": [
+            -759.4594594594585,
+            -128.37837837837813
+          ],
+          "pre_speed_px_s": 3414.854058221813,
+          "post_speed_px_s": 770.2335221200872,
+          "normalized_speed_per_s": 1.4248515452147545,
+          "normalized_velocity_change_per_s": 2.849575312820251,
+          "normalized_acceleration_per_s2": 42.754318271871746,
+          "direction_change_degrees": 178.59983760409884,
+          "normalized_curvature": 0.0023702579301814377,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.171,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 5,
+          "discovery_frame": 26,
+          "discovery_timestamp_s": 0.8667,
+          "refined_frame": 26,
+          "refined_timestamp_s": 0.8667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.914426355052593,
+          "player_contact_score": 0.9079399215982847,
+          "court_contact_score": 0.914426355052593,
+          "player1_distance_normalized": 0.7438400560635035,
+          "player2_distance_normalized": 0.1947557932100052,
+          "selected_player": 2,
+          "player_scale_px": 177.7531280517578,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 1.0,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.5244661685571471,
+            "departure_speed_gain": 0.22555386232850141
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 36,
+        "timestamp_s": 1.2,
+        "event_type": "PLAYER_2_HIT",
+        "player_id": 2,
+        "confidence": 0.4596061417572209,
+        "trajectory_state": "PREDICTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -3213.0434782608695,
+            869.1154422788608
+          ],
+          "post_velocity_px_s": [
+            1186.0569715142417,
+            -689.2053973013495
+          ],
+          "pre_speed_px_s": 3328.5146905492675,
+          "post_speed_px_s": 1371.7635435259408,
+          "normalized_speed_per_s": 1.6002529400386436,
+          "normalized_velocity_change_per_s": 3.1778139915328394,
+          "normalized_acceleration_per_s2": 47.643388178903145,
+          "direction_change_degrees": 164.97563345056494,
+          "normalized_curvature": 0.04713767686626656,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.36,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 7,
+          "discovery_frame": 36,
+          "discovery_timestamp_s": 1.2,
+          "refined_frame": 36,
+          "refined_timestamp_s": 1.2,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8385765303380056,
+          "player_contact_score": 0.8356475304676744,
+          "court_contact_score": 0.8385765303380056,
+          "player1_distance_normalized": 0.42491748920788364,
+          "player2_distance_normalized": 0.02128315956307558,
+          "selected_player": 2,
+          "player_scale_px": 178.10821533203125,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.6825,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.9340590212941382,
+            "departure_speed_gain": 0.4121248277560025
+          },
+          "ball_state": "PREDICTED",
+          "state_confidence_weight": 0.55,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 44,
+        "timestamp_s": 1.4667,
+        "event_type": "UNKNOWN_EVENT",
+        "player_id": null,
+        "confidence": 0.66886906247206,
+        "trajectory_state": "INTERPOLATED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            2385.3073463268374,
+            1297.001499250375
+          ],
+          "post_velocity_px_s": [
+            -1293.093093093089,
+            -658.1081081081057
+          ],
+          "pre_speed_px_s": 2715.125047856636,
+          "post_speed_px_s": 1450.9293674616565,
+          "normalized_speed_per_s": 1.4183715291879457,
+          "normalized_velocity_change_per_s": 2.836503927307686,
+          "normalized_acceleration_per_s2": 42.558198459230034,
+          "direction_change_degrees": 178.43844672681703,
+          "normalized_curvature": 0.007876838516249469,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": null,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 8,
+          "discovery_frame": 44,
+          "discovery_timestamp_s": 1.4667,
+          "refined_frame": 44,
+          "refined_timestamp_s": 1.4667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.955527232102943,
+          "player_contact_score": 0.955527232102943,
+          "court_contact_score": 0.8608242559656857,
+          "player1_distance_normalized": 0.03812745553675638,
+          "player2_distance_normalized": 0.16174261666902656,
+          "selected_player": 1,
+          "player_scale_px": 274.5437927246094,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.705,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.9879644865431061,
+            "departure_speed_gain": 0.5343876771373915
+          },
+          "ball_state": "INTERPOLATED",
+          "state_confidence_weight": 0.7,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 70,
+        "timestamp_s": 2.3333,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 2,
+        "confidence": 1.0,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            1874.1741741741814,
+            -1029.8798798798834
+          ],
+          "post_velocity_px_s": [
+            147.07646176911467,
+            -30.434782608695677
+          ],
+          "pre_speed_px_s": 2138.4998017589055,
+          "post_speed_px_s": 150.1924152511052,
+          "normalized_speed_per_s": 0.7792063079504982,
+          "normalized_velocity_change_per_s": 1.3587277310869523,
+          "normalized_acceleration_per_s2": 20.38601246942168,
+          "direction_change_degrees": 17.09799120593572,
+          "normalized_curvature": 0.014180511852570667,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.249,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 10,
+          "discovery_frame": 70,
+          "discovery_timestamp_s": 2.3333,
+          "refined_frame": 70,
+          "refined_timestamp_s": 2.3333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9567565291620208,
+          "player_contact_score": 0.9567565291620208,
+          "court_contact_score": 0.5544144902793264,
+          "player1_distance_normalized": 0.6927724818678934,
+          "player2_distance_normalized": 0.1945956187709062,
+          "selected_player": 2,
+          "player_scale_px": 176.8260498046875,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 1.0,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.10226877733946511,
+            "departure_speed_gain": 0.07023260658129249
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.6106425430691329,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 77,
+        "timestamp_s": 2.5667,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 2,
+        "confidence": 0.5128750000000001,
+        "trajectory_state": "PREDICTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            2397.6011994002997,
+            538.5307346326838
+          ],
+          "post_velocity_px_s": [
+            -1854.6546546546483,
+            -510.36036036035864
+          ],
+          "pre_speed_px_s": 2457.3373524019394,
+          "post_speed_px_s": 1923.5934044021121,
+          "normalized_speed_per_s": 1.4915281552605268,
+          "normalized_velocity_change_per_s": 2.9822245067827873,
+          "normalized_acceleration_per_s2": 44.74455374017679,
+          "direction_change_degrees": 177.27350065825436,
+          "normalized_curvature": 0.022253969958365632,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.24,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 11,
+          "discovery_frame": 77,
+          "discovery_timestamp_s": 2.5667,
+          "refined_frame": 77,
+          "refined_timestamp_s": 2.5667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9006172046422066,
+          "player_contact_score": 0.9006172046422066,
+          "court_contact_score": 0.8521275984525978,
+          "player1_distance_normalized": 0.6457948210239812,
+          "player2_distance_normalized": 0.20422257911006994,
+          "selected_player": 2,
+          "player_scale_px": 176.119140625,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.9325,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.3098101208211024,
+            "departure_speed_gain": 0.7827958186212748
+          },
+          "ball_state": "PREDICTED",
+          "state_confidence_weight": 0.55,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 86,
+        "timestamp_s": 2.8667,
+        "event_type": "UNKNOWN_EVENT",
+        "player_id": null,
+        "confidence": 0.9886477124909356,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            764.0179910044985,
+            297.00149925037493
+          ],
+          "post_velocity_px_s": [
+            14.714714714714088,
+            0.750750750750759
+          ],
+          "pre_speed_px_s": 819.7154269229782,
+          "post_speed_px_s": 14.733854072345638,
+          "normalized_speed_per_s": 0.28409592979948955,
+          "normalized_velocity_change_per_s": 0.5486444322342982,
+          "normalized_acceleration_per_s2": 8.231724414618116,
+          "direction_change_degrees": 18.32218759512474,
+          "normalized_curvature": 0.010123309035143262,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.48,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 12,
+          "discovery_frame": 84,
+          "discovery_timestamp_s": 2.8,
+          "refined_frame": 86,
+          "refined_timestamp_s": 2.8667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9886477124909356,
+          "player_contact_score": 0.9886477124909356,
+          "court_contact_score": 0.7957840958363547,
+          "player1_distance_normalized": 0.051085293790789306,
+          "player2_distance_normalized": 0.19736868308005562,
+          "selected_player": 1,
+          "player_scale_px": 356.44049072265625,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.5,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": false,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.010032552169546387,
+            "departure_speed_gain": 0.017974352547753203
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.6543638426830264,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 97,
+        "timestamp_s": 3.2333,
+        "event_type": "UNKNOWN_EVENT",
+        "player_id": null,
+        "confidence": 0.9744078740521354,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            -2899.699699699731,
+            -235.7357357357388
+          ],
+          "post_velocity_px_s": [
+            -2868.8622754490725,
+            -70.9580838323348
+          ],
+          "pre_speed_px_s": 2909.2661764681447,
+          "post_speed_px_s": 2869.7396755029868,
+          "normalized_speed_per_s": 1.9675156755772079,
+          "normalized_velocity_change_per_s": 0.11414804508523005,
+          "normalized_acceleration_per_s2": 3.422729987563121,
+          "direction_change_degrees": 3.2308732418795483,
+          "normalized_curvature": 0.028063874383985655,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.461,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 13,
+          "discovery_frame": 97,
+          "discovery_timestamp_s": 3.2333,
+          "refined_frame": 97,
+          "refined_timestamp_s": 3.2333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9744078740521354,
+          "player_contact_score": 0.9744078740521354,
+          "court_contact_score": 0.5459906717808356,
+          "player1_distance_normalized": 0.0808740690412804,
+          "player2_distance_normalized": 0.19802433400046765,
+          "selected_player": 1,
+          "player_scale_px": 364.6332092285156,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.75,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.9540585149094885,
+            "departure_speed_gain": 0.9864135838498136
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.11538833006712672,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 106,
+        "timestamp_s": 3.5333,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.968037735106137,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -2400.6006006005928,
+            -1013.0630630630598
+          ],
+          "post_velocity_px_s": [
+            3043.028485757123,
+            182.60869565217408
+          ],
+          "pre_speed_px_s": 2605.6054984104244,
+          "post_speed_px_s": 3048.5026325816216,
+          "normalized_speed_per_s": 1.9249930981365915,
+          "normalized_velocity_change_per_s": 3.795026943179327,
+          "normalized_acceleration_per_s2": 56.93963905745419,
+          "direction_change_degrees": 160.55419716922344,
+          "normalized_curvature": 0.2195369433454187,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.155,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 14,
+          "discovery_frame": 106,
+          "discovery_timestamp_s": 3.5333,
+          "refined_frame": 106,
+          "refined_timestamp_s": 3.5333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.968037735106137,
+          "player_contact_score": 0.968037735106137,
+          "court_contact_score": 0.8026540882979543,
+          "player1_distance_normalized": 0.14383019202238326,
+          "player2_distance_normalized": 0.4462698154005057,
+          "selected_player": 1,
+          "player_scale_px": 383.5660095214844,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.75,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 2.0757814995452573,
+            "departure_speed_gain": 1.1699785844178603
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 113,
+        "timestamp_s": 3.7667,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 1,
+        "confidence": 1.0,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -1836.88155922039,
+            2705.997001499251
+          ],
+          "post_velocity_px_s": [
+            1099.8498498498536,
+            -2708.4084084084175
+          ],
+          "pre_speed_px_s": 3270.5586120304997,
+          "post_speed_px_s": 2923.208134730088,
+          "normalized_speed_per_s": 2.1087248355984496,
+          "normalized_velocity_change_per_s": 4.194157553256211,
+          "normalized_acceleration_per_s2": 62.928095322673954,
+          "direction_change_degrees": 167.9320419999606,
+          "normalized_curvature": 0.08391045714232273,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.244,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 15,
+          "discovery_frame": 113,
+          "discovery_timestamp_s": 3.7667,
+          "refined_frame": 113,
+          "refined_timestamp_s": 3.7667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9191480984018439,
+          "player_contact_score": 0.8741517253150547,
+          "court_contact_score": 0.9191480984018439,
+          "player1_distance_normalized": 0.2584993284248919,
+          "player2_distance_normalized": 0.4462698154005057,
+          "selected_player": 1,
+          "player_scale_px": 373.0544128417969,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 1.0,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.9904661719954908,
+            "departure_speed_gain": 0.8937947554210741
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 123,
+        "timestamp_s": 4.1,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.8763804473563482,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            -3394.7526236881567,
+            -2172.2638680659675
+          ],
+          "post_velocity_px_s": [
+            57.72113943028521,
+            -4.947526236881641
+          ],
+          "pre_speed_px_s": 4030.2699275039313,
+          "post_speed_px_s": 57.932788237707484,
+          "normalized_speed_per_s": 1.3918662022838124,
+          "normalized_velocity_change_per_s": 2.7756788683094973,
+          "normalized_acceleration_per_s2": 41.61437583672411,
+          "direction_change_degrees": 142.48618839860094,
+          "normalized_curvature": 0.0031896617404084024,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.153,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 17,
+          "discovery_frame": 123,
+          "discovery_timestamp_s": 4.1,
+          "refined_frame": 123,
+          "refined_timestamp_s": 4.1,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8763804473563482,
+          "player_contact_score": 0.8763804473563482,
+          "court_contact_score": 0.5548084228529063,
+          "player1_distance_normalized": 0.19991370851423523,
+          "player2_distance_normalized": 0.45258273886642814,
+          "selected_player": 1,
+          "player_scale_px": 401.329833984375,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.5,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": false,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.03944750080109583,
+            "departure_speed_gain": 0.014374418904886358
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 135,
+        "timestamp_s": 4.5,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.5121132400311798,
+        "trajectory_state": "PREDICTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -2063.0630630630853,
+            -1742.6426426426613
+          ],
+          "post_velocity_px_s": [
+            -446.5465465465512,
+            346.54654654655064
+          ],
+          "pre_speed_px_s": 2700.561530891647,
+          "post_speed_px_s": 565.2418306848776,
+          "normalized_speed_per_s": 1.1118727808629758,
+          "normalized_velocity_change_per_s": 1.7986865051279832,
+          "normalized_acceleration_per_s2": 54.014609763603644,
+          "direction_change_degrees": 78.00092608868007,
+          "normalized_curvature": 0.1113363460096114,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.36,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 19,
+          "discovery_frame": 135,
+          "discovery_timestamp_s": 4.5,
+          "refined_frame": 135,
+          "refined_timestamp_s": 4.5,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9311149818748722,
+          "player_contact_score": 0.9311149818748722,
+          "court_contact_score": 0.7289999999999999,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.19908928888152974,
+          "selected_player": 1,
+          "player_scale_px": 422.10205078125,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.6825,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.38488355639409044,
+            "departure_speed_gain": 0.20930529603532164
+          },
+          "ball_state": "PREDICTED",
+          "state_confidence_weight": 0.55,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 142,
+        "timestamp_s": 4.7333,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 2,
+        "confidence": 0.7619468465733841,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            136.03603603603818,
+            -12.912912912912649
+          ],
+          "post_velocity_px_s": [
+            650.9745127436261,
+            -115.44227886057
+          ],
+          "pre_speed_px_s": 136.64752621359358,
+          "post_speed_px_s": 661.1314059930318,
+          "normalized_speed_per_s": 0.2716111724002495,
+          "normalized_velocity_change_per_s": 0.3575138675146745,
+          "normalized_acceleration_per_s2": 5.364049024976354,
+          "direction_change_degrees": 4.633725038430567,
+          "normalized_curvature": 4.200715601544865,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.372,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 20,
+          "discovery_frame": 141,
+          "discovery_timestamp_s": 4.7,
+          "refined_frame": 142,
+          "refined_timestamp_s": 4.7333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8466076073037601,
+          "player_contact_score": 0.8466076073037601,
+          "court_contact_score": 0.5378846626090221,
+          "player1_distance_normalized": 0.7183907495435213,
+          "player2_distance_normalized": 0.16044294522179908,
+          "selected_player": 2,
+          "player_scale_px": 177.0015869140625,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.735,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.45017653147522274,
+            "departure_speed_gain": 4.83822447659695
+          },
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.16549017994394882,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 153,
+        "timestamp_s": 5.1,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 1,
+        "confidence": 0.8865,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            935.6821589205413,
+            -6.296851574212708
+          ],
+          "post_velocity_px_s": [
+            -124.88755622188971,
+            -704.4977511244381
+          ],
+          "pre_speed_px_s": 935.7033466125644,
+          "post_speed_px_s": 715.4816440961056,
+          "normalized_speed_per_s": 0.5621611113941026,
+          "normalized_velocity_change_per_s": 0.8646035117737038,
+          "normalized_acceleration_per_s2": 12.962571390910105,
+          "direction_change_degrees": 99.66691403517385,
+          "normalized_curvature": 1.1830855405365295,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.128,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 22,
+          "discovery_frame": 151,
+          "discovery_timestamp_s": 5.0333,
+          "refined_frame": 153,
+          "refined_timestamp_s": 5.1,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8641306592150021,
+          "player_contact_score": 0.8641306592150021,
+          "court_contact_score": 0.5281496337694432,
+          "player1_distance_normalized": 0.029020055887483787,
+          "player2_distance_normalized": 1.780030663463277,
+          "selected_player": 1,
+          "player_scale_px": 337.3520812988281,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.985,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.4871846080123584,
+            "departure_speed_gain": 0.7646458107543316
+          },
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 161,
+        "timestamp_s": 5.3667,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.9675011933752535,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            -90.4191616766477,
+            -41.61676646706665
+          ],
+          "post_velocity_px_s": [
+            1.2012012012017959,
+            -85.28528528528386
+          ],
+          "pre_speed_px_s": 99.53682760406883,
+          "post_speed_px_s": 85.29374402919609,
+          "normalized_speed_per_s": 0.06292726747980483,
+          "normalized_velocity_change_per_s": 0.06910979641362587,
+          "normalized_acceleration_per_s2": 2.072257763527013,
+          "direction_change_degrees": 66.09197350648083,
+          "normalized_curvature": 11.558311861689317,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.284,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 24,
+          "discovery_frame": 161,
+          "discovery_timestamp_s": 5.3667,
+          "refined_frame": 161,
+          "refined_timestamp_s": 5.3667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9675011933752535,
+          "player_contact_score": 0.9675011933752535,
+          "court_contact_score": 0.5421496337694433,
+          "player1_distance_normalized": 0.029020055887483787,
+          "player2_distance_normalized": 0.20652871409917098,
+          "selected_player": 1,
+          "player_scale_px": 337.3520812988281,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.75,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": false,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.05807807872313312,
+            "departure_speed_gain": 0.8569063941687195
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 0.7678866268180653,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 172,
+        "timestamp_s": 5.7333,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.88,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -3397.1471471471364,
+            -745.9459459459437
+          ],
+          "post_velocity_px_s": [
+            -1185.1574212893568,
+            -26.53673163418307
+          ],
+          "pre_speed_px_s": 3478.0805185681247,
+          "post_speed_px_s": 1185.454474605863,
+          "normalized_speed_per_s": 1.5877433658495115,
+          "normalized_velocity_change_per_s": 1.5838413711404122,
+          "normalized_acceleration_per_s2": 23.76356145747052,
+          "direction_change_degrees": 11.101779986022263,
+          "normalized_curvature": 0.027711472738118345,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.169,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 25,
+          "discovery_frame": 170,
+          "discovery_timestamp_s": 5.6667,
+          "refined_frame": 172,
+          "refined_timestamp_s": 5.7333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9,
+          "player_contact_score": 0.88,
+          "court_contact_score": 0.9,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.19437275305189233,
+          "selected_player": 1,
+          "player_scale_px": 363.2311096191406,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.75,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.8071977503447698,
+            "departure_speed_gain": 0.3408358340979114
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 0.396492142357938,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 180,
+        "timestamp_s": 6.0,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 1,
+        "confidence": 0.7995222499086143,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            24.437781109445215,
+            -187.70614692653652
+          ],
+          "post_velocity_px_s": [
+            316.19190404797484,
+            122.18890554722608
+          ],
+          "pre_speed_px_s": 189.29026055124885,
+          "post_speed_px_s": 338.9800124259728,
+          "normalized_speed_per_s": 0.1798544714519743,
+          "normalized_velocity_change_per_s": 0.28981490610924343,
+          "normalized_acceleration_per_s2": 4.3450510661056,
+          "direction_change_degrees": 103.71076718529703,
+          "normalized_curvature": 13.497935544448623,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.102,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 27,
+          "discovery_frame": 183,
+          "discovery_timestamp_s": 6.1,
+          "refined_frame": 180,
+          "refined_timestamp_s": 6.0,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8883580554540159,
+          "player_contact_score": 0.8883580554540159,
+          "court_contact_score": 0.7779999999999999,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 1.3551755822545921,
+          "selected_player": 1,
+          "player_scale_px": 363.2311096191406,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.735,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.23081772375363563,
+            "departure_speed_gain": 1.7907947901746197
+          },
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 188,
+        "timestamp_s": 6.2667,
+        "event_type": "SERVE_CONTACT",
+        "player_id": null,
+        "confidence": 1.0,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            143.3283358320866,
+            -5.997001499250036
+          ],
+          "post_velocity_px_s": [
+            -3529.8798798798707,
+            -532.5825825825808
+          ],
+          "pre_speed_px_s": 143.45374125263308,
+          "post_speed_px_s": 3569.831392888334,
+          "normalized_speed_per_s": 1.2642220645646551,
+          "normalized_velocity_change_per_s": 2.526725745769333,
+          "normalized_acceleration_per_s2": 37.91036377748431,
+          "direction_change_degrees": 169.02410488477136,
+          "normalized_curvature": 48.50502138758236,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.302,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 28,
+          "discovery_frame": 188,
+          "discovery_timestamp_s": 6.2667,
+          "refined_frame": 188,
+          "refined_timestamp_s": 6.2667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8567136769648742,
+          "player_contact_score": 0.8567136769648742,
+          "court_contact_score": 0.5529368461306254,
+          "player1_distance_normalized": 0.17464742276344256,
+          "player2_distance_normalized": 0.19558640343190814,
+          "selected_player": 1,
+          "player_scale_px": 389.8362274169922,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 1.0,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 2.4307638388286934,
+            "departure_speed_gain": 24.884895728174744
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 195,
+        "timestamp_s": 6.5,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9129368461306254,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            2859.670164917542,
+            63.418290854572575
+          ],
+          "post_velocity_px_s": [
+            4.947526236882174,
+            -27.736131934032905
+          ],
+          "pre_speed_px_s": 2860.373285383297,
+          "post_speed_px_s": 28.17394240298502,
+          "normalized_speed_per_s": 0.9834324615497878,
+          "normalized_velocity_change_per_s": 1.9448238471048018,
+          "normalized_acceleration_per_s2": 29.157778817163454,
+          "direction_change_degrees": 81.15647580428613,
+          "normalized_curvature": 0.0049970449381420345,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.201,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 29,
+          "discovery_frame": 195,
+          "discovery_timestamp_s": 6.5,
+          "refined_frame": 195,
+          "refined_timestamp_s": 6.5,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9129368461306254,
+          "player_contact_score": 0.8608565915277228,
+          "court_contact_score": 0.9129368461306254,
+          "player1_distance_normalized": 0.17464742276344256,
+          "player2_distance_normalized": 0.797323001695737,
+          "selected_player": 1,
+          "player_scale_px": 389.8362274169922,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 201,
+        "timestamp_s": 6.7,
+        "event_type": "PLAYER_1_HIT",
+        "player_id": 1,
+        "confidence": 0.9415815783949832,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            546.176911544229,
+            3204.197901049476
+          ],
+          "post_velocity_px_s": [
+            -72.56371814093004,
+            -1520.3898050974517
+          ],
+          "pre_speed_px_s": 3250.4143440173684,
+          "post_speed_px_s": 1522.1204461653826,
+          "normalized_speed_per_s": 1.6248533489059098,
+          "normalized_velocity_change_per_s": 3.2445292462275996,
+          "normalized_acceleration_per_s2": 48.64361688497152,
+          "direction_change_degrees": 173.05901111344895,
+          "normalized_curvature": 0.02556892343984222,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.105,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 30,
+          "discovery_frame": 201,
+          "discovery_timestamp_s": 6.7,
+          "refined_frame": 201,
+          "refined_timestamp_s": 6.7,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.9415815783949832,
+          "player_contact_score": 0.9415815783949832,
+          "court_contact_score": 0.9,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.20167554486602554,
+          "selected_player": 1,
+          "player_scale_px": 397.5120544433594,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.75,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.036439801120978,
+            "departure_speed_gain": 0.46828505078651267
+          },
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 208,
+        "timestamp_s": 6.9333,
+        "event_type": "SERVE_CONTACT",
+        "player_id": null,
+        "confidence": 0.6685,
+        "trajectory_state": "INTERPOLATED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            -1387.6876876876843,
+            -22.972972972972915
+          ],
+          "post_velocity_px_s": [
+            2392.053973013495,
+            327.1364317841079
+          ],
+          "pre_speed_px_s": 1387.8778318163343,
+          "post_speed_px_s": 2414.319874169553,
+          "normalized_speed_per_s": 1.294493167128273,
+          "normalized_velocity_change_per_s": 2.584713071533599,
+          "normalized_acceleration_per_s2": 38.78039117079663,
+          "direction_change_degrees": 173.1609971024879,
+          "normalized_curvature": 0.21919753285265112,
+          "vertical_inversion": false,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": null,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 31,
+          "discovery_frame": 208,
+          "discovery_timestamp_s": 6.9333,
+          "refined_frame": 208,
+          "refined_timestamp_s": 6.9333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8183745313876818,
+          "player_contact_score": 0.8183745313876818,
+          "court_contact_score": 0.5124234965125386,
+          "player1_distance_normalized": 0.2648891543869425,
+          "player2_distance_normalized": 0.19471720291927064,
+          "selected_player": 2,
+          "player_scale_px": 176.41610717773438,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.955,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.6439547977498454,
+            "departure_speed_gain": 1.7395766535228105
+          },
+          "ball_state": "INTERPOLATED",
+          "state_confidence_weight": 0.7,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 0.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 217,
+        "timestamp_s": 7.2333,
+        "event_type": "SERVE_CONTACT",
+        "player_id": 2,
+        "confidence": 0.8865,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            780.0300300300282,
+            -264.8648648648638
+          ],
+          "post_velocity_px_s": [
+            587.7061469265359,
+            144.677661169415
+          ],
+          "pre_speed_px_s": 823.7719613998338,
+          "post_speed_px_s": 605.2521299232966,
+          "normalized_speed_per_s": 0.4865243906089369,
+          "normalized_velocity_change_per_s": 0.30808344675490784,
+          "normalized_acceleration_per_s2": 4.622407303149398,
+          "direction_change_degrees": 32.585003000843756,
+          "normalized_curvature": 0.7054292928814136,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.199,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 32,
+          "discovery_frame": 214,
+          "discovery_timestamp_s": 7.1333,
+          "refined_frame": 217,
+          "refined_timestamp_s": 7.2333,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.8424381482175897,
+          "player_contact_score": 0.8424381482175897,
+          "court_contact_score": 0.7922010287680057,
+          "player1_distance_normalized": 0.3752331799119489,
+          "player2_distance_normalized": 0.19171388836807726,
+          "selected_player": 2,
+          "player_scale_px": 178.46197509765625,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.985,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": true,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 0.41212730487005833,
+            "departure_speed_gain": 0.7347326181080417
+          },
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 227,
+        "timestamp_s": 7.5667,
+        "event_type": "UNKNOWN_EVENT",
+        "player_id": null,
+        "confidence": 0.5908,
+        "trajectory_state": "INTERPOLATED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -2685.007496251877,
+            -500.00000000000006
+          ],
+          "post_velocity_px_s": [
+            1762.6126126126085,
+            52.10210210210192
+          ],
+          "pre_speed_px_s": 2731.165548795747,
+          "post_speed_px_s": 1763.382502800939,
+          "normalized_speed_per_s": 1.5302102078915927,
+          "normalized_velocity_change_per_s": 3.051710416019587,
+          "normalized_acceleration_per_s2": 45.787103016047745,
+          "direction_change_degrees": 171.14439879166414,
+          "normalized_curvature": 0.053446631387954475,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.24,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 34,
+          "discovery_frame": 225,
+          "discovery_timestamp_s": 7.5,
+          "refined_frame": 227,
+          "refined_timestamp_s": 7.5667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.858,
+          "player_contact_score": 0.844,
+          "court_contact_score": 0.858,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.12125244434891187,
+          "selected_player": 1,
+          "player_scale_px": 390.9433135986328,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.705,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.2007195719021564,
+            "departure_speed_gain": 0.6456520014242517
+          },
+          "ball_state": "INTERPOLATED",
+          "state_confidence_weight": 0.7,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_09",
+        "frame": 236,
+        "timestamp_s": 7.8667,
+        "event_type": "UNKNOWN_EVENT",
+        "player_id": null,
+        "confidence": 0.6748,
+        "trajectory_state": "INTERPOLATED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -3698.6506746626706,
+            -1303.2983508245882
+          ],
+          "post_velocity_px_s": [
+            1362.4624624624582,
+            673.4234234234216
+          ],
+          "pre_speed_px_s": 3921.5562477726517,
+          "post_speed_px_s": 1519.8036283792017,
+          "normalized_speed_per_s": 1.8525609987285243,
+          "normalized_velocity_change_per_s": 3.6997307700116018,
+          "normalized_acceleration_per_s2": 55.50983900992643,
+          "direction_change_degrees": 173.10921949577966,
+          "normalized_curvature": 0.017413009987743113,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": null,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 1468.6047800548656,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 36,
+          "discovery_frame": 236,
+          "discovery_timestamp_s": 7.8667,
+          "refined_frame": 236,
+          "refined_timestamp_s": 7.8667,
+          "physical_event_type": "BALL_CONTACT_WITH_PLAYER",
+          "verification_score": 0.964,
+          "player_contact_score": 0.964,
+          "court_contact_score": 0.7499999999999999,
+          "player1_distance_normalized": 0.0,
+          "player2_distance_normalized": 0.0,
+          "selected_player": 1,
+          "player_scale_px": 367.7149353027344,
+          "pose_support": null,
+          "serve_evidence": {
+            "score": 0.705,
+            "overhead_contact": true,
+            "post_contact_rapid_departure": true,
+            "toss_like_motion": false,
+            "trajectory_continuity": true,
+            "normalized_post_speed_per_s": 1.0348622372878449,
+            "departure_speed_gain": 0.3875511486651283
+          },
+          "ball_state": "INTERPOLATED",
+          "state_confidence_weight": 0.7,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      }
+    ],
+    "video_10": [
+      {
+        "video_id": "video_10",
+        "frame": 2,
+        "timestamp_s": 0.0667,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9951376221602317,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            10.794602698650232,
+            56.37181409295339
+          ],
+          "post_velocity_px_s": [
+            -15.31531531531504,
+            -124.17417417417388
+          ],
+          "pre_speed_px_s": 57.396035329560924,
+          "post_speed_px_s": 125.11508468224604,
+          "normalized_speed_per_s": 0.04142505923320149,
+          "normalized_velocity_change_per_s": 0.08281065274152889,
+          "normalized_acceleration_per_s2": 1.2424704087251146,
+          "direction_change_degrees": 176.19089532276485,
+          "normalized_curvature": 5.558049316522746,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.368,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 1,
+          "discovery_frame": 5,
+          "discovery_timestamp_s": 0.1667,
+          "refined_frame": 2,
+          "refined_timestamp_s": 0.0667,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9951376221602317,
+          "player_contact_score": 0.6287522801115829,
+          "court_contact_score": 0.9951376221602317,
+          "player1_distance_normalized": 5.97576700852318,
+          "player2_distance_normalized": 1.284357899163128,
+          "selected_player": 2,
+          "player_scale_px": 101.36988830566406,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 0.8285011846640298,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 0.9201183637947655,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 12,
+        "timestamp_s": 0.4,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.8709517321455571,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -12.593703148425405,
+            -99.70014992503793
+          ],
+          "post_velocity_px_s": [
+            22.48875562218891,
+            286.8065967016492
+          ],
+          "pre_speed_px_s": 100.49239401101808,
+          "post_speed_px_s": 287.68692712915714,
+          "normalized_speed_per_s": 0.08810614591754977,
+          "normalized_velocity_change_per_s": 0.17617431586126392,
+          "normalized_acceleration_per_s2": 2.6412940908735214,
+          "direction_change_degrees": 177.284205011184,
+          "normalized_curvature": 2.9734569429848117,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.703,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 2,
+          "discovery_frame": 12,
+          "discovery_timestamp_s": 0.4,
+          "refined_frame": 12,
+          "refined_timestamp_s": 0.4,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.8709517321455571,
+          "player_contact_score": 0.6740912748581983,
+          "court_contact_score": 0.8709517321455571,
+          "player1_distance_normalized": 5.8774238769801,
+          "player2_distance_normalized": 1.065848383965022,
+          "selected_player": 2,
+          "player_scale_px": 101.11978530883789,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 24,
+        "timestamp_s": 0.8,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.8806013377816995,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            3.748125937031479,
+            116.34182908545698
+          ],
+          "post_velocity_px_s": [
+            -4.647676161919076,
+            -106.74662668665677
+          ],
+          "pre_speed_px_s": 116.40218916751321,
+          "post_speed_px_s": 106.84775712520377,
+          "normalized_speed_per_s": 0.050671664545078536,
+          "normalized_velocity_change_per_s": 0.10134171263606785,
+          "normalized_acceleration_per_s2": 1.5193660065377481,
+          "direction_change_degrees": 179.35218589543362,
+          "normalized_curvature": 0.19640738992186438,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.381,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 4,
+          "discovery_frame": 24,
+          "discovery_timestamp_s": 0.8,
+          "refined_frame": 24,
+          "refined_timestamp_s": 0.8,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9784459308685549,
+          "player_contact_score": 0.6250684094547246,
+          "court_contact_score": 0.9784459308685549,
+          "player1_distance_normalized": 5.8430685782794445,
+          "player2_distance_normalized": 1.2480200667254908,
+          "selected_player": 2,
+          "player_scale_px": 101.43163681030273,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 34,
+        "timestamp_s": 1.1333,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.8684470228447099,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -9.309309309309379,
+            -116.51651651651639
+          ],
+          "post_velocity_px_s": [
+            19.040479760119673,
+            208.69565217391334
+          ],
+          "pre_speed_px_s": 116.88781741892537,
+          "post_speed_px_s": 209.56243724911806,
+          "normalized_speed_per_s": 0.0740953270981109,
+          "normalized_velocity_change_per_s": 0.1481884963462132,
+          "normalized_acceleration_per_s2": 2.223383291015953,
+          "direction_change_degrees": 179.35506755181413,
+          "normalized_curvature": 0.38032385195070806,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.677,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 6,
+          "discovery_frame": 34,
+          "discovery_timestamp_s": 1.1333,
+          "refined_frame": 34,
+          "refined_timestamp_s": 1.1333,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.8684470228447099,
+          "player_contact_score": 0.6740479505599919,
+          "court_contact_score": 0.8684470228447099,
+          "player1_distance_normalized": 5.9427311130147755,
+          "player2_distance_normalized": 1.0320348084035837,
+          "selected_player": 2,
+          "player_scale_px": 102.13024520874023,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 47,
+        "timestamp_s": 1.5667,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.9953216392554975,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "WEAK_COMBINED_KINEMATICS"
+          ],
+          "pre_velocity_px_s": [
+            -4.047976011993732,
+            69.26536731634192
+          ],
+          "post_velocity_px_s": [
+            -11.56156156156129,
+            -132.88288288288325
+          ],
+          "pre_speed_px_s": 69.38355150366291,
+          "post_speed_px_s": 133.38489520559605,
+          "normalized_speed_per_s": 0.046022921315763785,
+          "normalized_velocity_change_per_s": 0.09182767200414747,
+          "normalized_acceleration_per_s2": 1.377759519942198,
+          "direction_change_degrees": 171.68281526405042,
+          "normalized_curvature": 8.829115349465983,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.169,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 9,
+          "discovery_frame": 50,
+          "discovery_timestamp_s": 1.6667,
+          "refined_frame": 47,
+          "refined_timestamp_s": 1.5667,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9953216392554975,
+          "player_contact_score": 0.6284210493401046,
+          "court_contact_score": 0.9953216392554975,
+          "player1_distance_normalized": 5.904490969405416,
+          "player2_distance_normalized": 1.2868421299492159,
+          "selected_player": 2,
+          "player_scale_px": 101.0214729309082,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 0.9204584263152756,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 58,
+        "timestamp_s": 1.9333,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.7693303454686651,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "acceleration"
+          ],
+          "pre_velocity_px_s": [
+            -23.8738738738735,
+            -81.98198198198169
+          ],
+          "post_velocity_px_s": [
+            -3301.4992503748135,
+            5243.328335832086
+          ],
+          "pre_speed_px_s": 85.38739499153016,
+          "post_speed_px_s": 6196.15924081726,
+          "normalized_speed_per_s": 1.42574020392655,
+          "normalized_velocity_change_per_s": 2.8385852764941877,
+          "normalized_acceleration_per_s2": 42.58942650403883,
+          "direction_change_degrees": 131.56711216384738,
+          "normalized_curvature": 1400.6731013423416,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.566,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 10,
+          "discovery_frame": 56,
+          "discovery_timestamp_s": 1.8667,
+          "refined_frame": 58,
+          "refined_timestamp_s": 1.9333,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.8548114949651834,
+          "player_contact_score": 0.6775655151044495,
+          "court_contact_score": 0.8548114949651834,
+          "player1_distance_normalized": 5.92378558916311,
+          "player2_distance_normalized": 1.0369551820299772,
+          "selected_player": 2,
+          "player_scale_px": 102.94918823242188,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 71,
+        "timestamp_s": 2.3667,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.997129328335648,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            0.5997001499244923,
+            156.52173913043478
+          ],
+          "post_velocity_px_s": [
+            1.351351351351825,
+            -88.43843843843794
+          ],
+          "pre_speed_px_s": 156.52288797708053,
+          "post_speed_px_s": 88.44876225196245,
+          "normalized_speed_per_s": 0.0556019004241316,
+          "normalized_velocity_change_per_s": 0.1111991163766995,
+          "normalized_acceleration_per_s2": 1.6684038466121431,
+          "direction_change_degrees": 178.90505784912938,
+          "normalized_curvature": 0.15197577228640521,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.21,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 13,
+          "discovery_frame": 71,
+          "discovery_timestamp_s": 2.3667,
+          "refined_frame": 71,
+          "refined_timestamp_s": 2.3667,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.997129328335648,
+          "player_contact_score": 0.628612014993056,
+          "court_contact_score": 0.997129328335648,
+          "player1_distance_normalized": 5.884644635578031,
+          "player2_distance_normalized": 1.3112459325312482,
+          "selected_player": 2,
+          "player_scale_px": 100.35613250732422,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 88,
+        "timestamp_s": 2.9333,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.8743289195721701,
+        "trajectory_state": "DETECTED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -11.261261261261225,
+            -70.27027027027015
+          ],
+          "post_velocity_px_s": [
+            51.72413793103433,
+            233.58320839580193
+          ],
+          "pre_speed_px_s": 71.1668946143584,
+          "post_speed_px_s": 239.24151330650227,
+          "normalized_speed_per_s": 0.07045426428687508,
+          "normalized_velocity_change_per_s": 0.1408651739804365,
+          "normalized_acceleration_per_s2": 2.113505986203095,
+          "direction_change_degrees": 176.61863257014414,
+          "normalized_curvature": 6.1375396327737155,
+          "vertical_inversion": true,
+          "court_rebound": false,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.724,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 15,
+          "discovery_frame": 88,
+          "discovery_timestamp_s": 2.9333,
+          "refined_frame": 88,
+          "refined_timestamp_s": 2.9333,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.8743289195721701,
+          "player_contact_score": 0.660432675088641,
+          "court_contact_score": 0.8743289195721701,
+          "player1_distance_normalized": 5.9126657044540165,
+          "player2_distance_normalized": 1.1114404142242964,
+          "selected_player": 2,
+          "player_scale_px": 97.60440063476562,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "DETECTED",
+          "state_confidence_weight": 1.0,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 101,
+        "timestamp_s": 3.3667,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.8801827328164233,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            125.78710644677645,
+            195.95202398800595
+          ],
+          "post_velocity_px_s": [
+            9.009009009009322,
+            -94.44444444444359
+          ],
+          "pre_speed_px_s": 232.8510078424586,
+          "post_speed_px_s": 94.8731538937333,
+          "normalized_speed_per_s": 0.07438446934737347,
+          "normalized_velocity_change_per_s": 0.14208368896581122,
+          "normalized_acceleration_per_s2": 2.1317882815575544,
+          "direction_change_degrees": 141.853525997949,
+          "normalized_curvature": 2.3809078851180154,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.423,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 18,
+          "discovery_frame": 101,
+          "discovery_timestamp_s": 3.3667,
+          "refined_frame": 101,
+          "refined_timestamp_s": 3.3667,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9779808142404703,
+          "player_contact_score": 0.6278547371382903,
+          "court_contact_score": 0.9779808142404703,
+          "player1_distance_normalized": 5.674298112530651,
+          "player2_distance_normalized": 1.2417409922463496,
+          "selected_player": 2,
+          "player_scale_px": 100.60189819335938,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      },
+      {
+        "video_id": "video_10",
+        "frame": 189,
+        "timestamp_s": 6.3,
+        "event_type": "BOUNCE",
+        "player_id": null,
+        "confidence": 0.8225538106274504,
+        "trajectory_state": "TRACKED",
+        "evidence": {
+          "candidate_source": [
+            "direction_change",
+            "velocity_discontinuity",
+            "acceleration",
+            "vertical_inversion"
+          ],
+          "pre_velocity_px_s": [
+            -55.172413793103566,
+            155.32233883058495
+          ],
+          "post_velocity_px_s": [
+            60.869565217391354,
+            -197.30134932533733
+          ],
+          "pre_speed_px_s": 164.83028903560316,
+          "post_speed_px_s": 206.4774235003746,
+          "normalized_speed_per_s": 0.08427674973750848,
+          "normalized_velocity_change_per_s": 0.16851668967619335,
+          "normalized_acceleration_per_s2": 2.526487101592105,
+          "direction_change_degrees": 177.58988399840513,
+          "normalized_curvature": 0.7040150767262037,
+          "vertical_inversion": true,
+          "court_rebound": true,
+          "trajectory_continuity_ratio": 1.0,
+          "edge_continuity": true,
+          "trajectory_continuity": true,
+          "ball_confidence": 0.415,
+          "actual_fps": 30.0,
+          "frame_diagonal_px": 2202.9071700822983,
+          "camera_motion_state": "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM",
+          "feature_coordinate_system": "RAW_IMAGE_PLANE",
+          "scientific_limit": "Camera compensation does not make airborne ball coordinates metric court-plane positions.",
+          "candidate_id": 19,
+          "discovery_frame": 189,
+          "discovery_timestamp_s": 6.3,
+          "refined_frame": 189,
+          "refined_timestamp_s": 6.3,
+          "physical_event_type": "BALL_CONTACT_WITH_COURT",
+          "verification_score": 0.9139486784749449,
+          "player_contact_score": 0.7376923787450991,
+          "court_contact_score": 0.9139486784749449,
+          "player1_distance_normalized": 5.934356400775196,
+          "player2_distance_normalized": 0.37730715941175647,
+          "selected_player": 2,
+          "player_scale_px": 99.42644500732422,
+          "pose_support": null,
+          "serve_evidence": null,
+          "ball_state": "TRACKED",
+          "state_confidence_weight": 0.9,
+          "cue_strengths": {
+            "speed": 1.0,
+            "direction_change": 1.0,
+            "velocity_discontinuity": 1.0,
+            "acceleration": 1.0,
+            "vertical_inversion": 1.0,
+            "continuity": 1.0,
+            "kinematic": 1.0
+          }
+        }
+      }
+    ]
+  },
+  "final_event_counts_by_video": {
+    "video_08": 11,
+    "video_09": 25,
+    "video_10": 10
+  },
+  "candidate_recall": {
+    "SERVE_CONTACT": 1.0,
+    "PLAYER_HIT": 0.6470588235294118,
+    "BOUNCE": 0.55,
+    "OVERALL": 0.625
+  },
+  "false_negative_taxonomy": {
+    "CANDIDATE_OUTSIDE_MATCH_WINDOW": 3,
+    "PLAYER_CONTACT_MULTI_CUE_REJECTION": 4,
+    "TRACKING_GAP": 12
+  },
+  "false_positive_taxonomy": {
+    "LOW_PROVENANCE_MOTION": 1,
+    "TIMING_DRIFT_OR_DUPLICATE": 16,
+    "UNMATCHED_KINEMATIC_MOTION": 8,
+    "WRONG_EVENT_TYPE": 10
+  },
+  "stage_artifact": "artifacts/validation/phase6_4_event_stage_metrics.json",
+  "forensic_artifact": "artifacts/validation/phase6_4_event_forensic_table.json"
+}

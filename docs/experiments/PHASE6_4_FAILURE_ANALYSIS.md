@@ -2,7 +2,9 @@
 
 ## 1. Overview & Objective
 
-This document analyzes all failure modes, edge cases, and domain shifts identified during the Phase 6.4 Cross-Match Final Holdout Evaluation across `video_08`, `video_09`, and `video_10` (US Open, Arthur Ashe Stadium).
+This document analyzes failure modes on the Phase 6.4
+`CROSS_MATCH_DIAGNOSTIC` set (`video_08`–`video_10`). It preserves historical
+findings but is not independent final-holdout evidence.
 
 ---
 
@@ -29,8 +31,10 @@ This document analyzes all failure modes, edge cases, and domain shifts identifi
 
 ---
 
-## 3. Dashboard Integration Recommendations & Readiness Summary
+## 3. Historical Dashboard Consumer Notes (Not a Readiness Decision)
 
 1. **Nullable Analytics Schema Enforcement**: All frontend UI components must strictly consume `schema_version: "1.0"` and handle `null` values for unavailable metrics without crashing or assuming `0.0`.
 2. **Confidence-Gated Display**: Frontend HUD should display shot badges only when `shot_confidence >= 0.50` and highlight `is_dead_ball` events as suppressed.
-3. **Phase 7 Recommendation**: The backend analytics pipeline is fully qualified, stable, and ready for Frontend & Dashboard integration in Phase 7.
+3. **Current decision**: These diagnostic results do not qualify the backend.
+   Phase 7 remains blocked pending a new pristine holdout that passes the
+   corrected qualification gate.

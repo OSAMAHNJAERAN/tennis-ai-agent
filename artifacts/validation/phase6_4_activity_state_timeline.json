@@ -1,0 +1,56 @@
+{
+  "description": "Phase 6.4 Activity State Timeline \u2014 video_10 representative frames",
+  "video_10_sample": [
+    {
+      "frame": 55,
+      "ts_s": 1.83,
+      "gt_event": "SERVE_CONTACT",
+      "activity_state": "ACTIVE_PLAY",
+      "max_det_conf": 0.09,
+      "grounded_ratio": 0.84
+    },
+    {
+      "frame": 122,
+      "ts_s": 4.07,
+      "gt_event": "PLAYER_HIT",
+      "activity_state": "POSSIBLE_POINT_END",
+      "max_det_conf": 0.0,
+      "grounded_ratio": 0.0
+    },
+    {
+      "frame": 232,
+      "ts_s": 7.73,
+      "gt_event": "PLAYER_HIT",
+      "activity_state": "DEAD_BALL_VISUAL",
+      "max_det_conf": 0.0,
+      "grounded_ratio": 0.0
+    },
+    {
+      "frame": 308,
+      "ts_s": 10.27,
+      "gt_event": "PLAYER_HIT",
+      "activity_state": "ACTIVE_PLAY",
+      "max_det_conf": 0.0,
+      "grounded_ratio": 0.42
+    },
+    {
+      "frame": 421,
+      "ts_s": 14.03,
+      "gt_event": null,
+      "activity_state": "ACTIVE_PLAY",
+      "max_det_conf": 0.08,
+      "grounded_ratio": 0.33,
+      "note": "FP \u2014 post-rally background detection"
+    },
+    {
+      "frame": 1754,
+      "ts_s": 58.47,
+      "gt_event": null,
+      "activity_state": "ACTIVE_PLAY",
+      "max_det_conf": 0.53,
+      "grounded_ratio": 1.0,
+      "note": "FP \u2014 high-conf background detection passes all gates"
+    }
+  ],
+  "design_finding": "Activity state classifier v3 correctly identifies ACTIVE_PLAY for 12/18 GT events. 4 GT events in frames 232-294 are DEAD_BALL_VISUAL due to tracker loss (not fixable at Stage 3). 2 GT events are POSSIBLE_POINT_END (soft). Post-rally FPs remain ACTIVE_PLAY because YOLO continues detecting objects at comparable confidence to real ball."
+}

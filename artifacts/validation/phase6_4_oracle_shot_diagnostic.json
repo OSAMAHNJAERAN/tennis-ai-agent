@@ -1,0 +1,1716 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "ORACLE_EVENT_CONDITIONAL_SHOT_DIAGNOSTIC",
+  "diagnostic_labels": [
+    "NOT PRODUCTION",
+    "NOT END-TO-END",
+    "GT-ASSISTED DIAGNOSTIC ONLY"
+  ],
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC",
+  "qualification_evidence": false,
+  "production_inference": false,
+  "end_to_end_evidence": false,
+  "purpose": "Measure current stroke classification when upstream physical-hit frame, player, and event type are supplied from diagnostic GT.",
+  "oracle_boundary": {
+    "gt_assisted_fields": [
+      "frame_index",
+      "player_id",
+      "event_type"
+    ],
+    "evaluation_only_gt_fields": [
+      "shot_type",
+      "direction",
+      "court_side",
+      "annotation_confidence"
+    ],
+    "predicted_feature_policy": "EXACT_FRAME_ONLY_NO_NEAREST_FILL",
+    "production_pipeline_modified": false,
+    "production_conditional_metrics_included": false,
+    "warning": "Oracle metrics cannot be used as production, end-to-end, holdout, qualification, or generalization evidence."
+  },
+  "input_provenance": {
+    "diagnostic_output_root": "outputs/phase6_4_qualification/cross_match_diagnostic_final",
+    "video_manifest": {
+      "path": "data/benchmarks/cross_match_final_holdout/videos.json",
+      "sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+      "size_bytes": 2755
+    },
+    "ground_truth_events": {
+      "path": "data/benchmarks/cross_match_final_holdout/ground_truth_events.json",
+      "sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+      "size_bytes": 5772
+    },
+    "ground_truth_shots": {
+      "path": "data/benchmarks/cross_match_final_holdout/ground_truth_shots.json",
+      "sha256": "ecda5b37bcc998c0282c5e1ee160b96f93f9d988292799436ce2deed865f4893",
+      "size_bytes": 3366
+    },
+    "active_pipeline_config": {
+      "path": "configs/phase6_analytics/pipeline.yaml",
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed",
+      "size_bytes": 3490
+    },
+    "classifier_implementation": {
+      "path": "src/shot_analysis/shot_classifier.py",
+      "sha256": "1a965cc72dc349c6a5d3b5e427710f40b35f00177861a1462b8da3fdd013f8d3",
+      "size_bytes": 8560
+    },
+    "evaluator_implementation": {
+      "path": "scripts/evaluate_phase6_4_oracle_shots.py",
+      "sha256": "41723226b2a6393cc2d8cca5b12afe6176fc19f0d59f28338489f619f51378c3",
+      "size_bytes": 24100
+    },
+    "per_video": {
+      "video_08": {
+        "media": {
+          "path": "data/holdout_videos/video_08_us_open_djokovic.mp4",
+          "sha256": "e3f6f7af23d4bf9921dcf0e3a7c5f1dff9cad4f02ee0155420bf8939f72f2944",
+          "manifest_hash_verified": true,
+          "fps": 30.0,
+          "resolution": "1280x720"
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_08/detections.json",
+          "sha256": "42ba06d742648ec455e05a09e845edea5053532cb41856004244bbb3c3d94cb7",
+          "size_bytes": 273316
+        },
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_08/trajectories.json",
+          "sha256": "bf5cfb53ce49390f09f101880fd85fa709d38052d7f4dd1e0c5e4c0b33bd5188",
+          "size_bytes": 120263
+        }
+      },
+      "video_09": {
+        "media": {
+          "path": "data/holdout_videos/video_09_us_open_schiavone.mp4",
+          "sha256": "87dd51040fbb6db581c1fc4448905c2ce22b8144b75ea5d66d2e04a1ceb38c26",
+          "manifest_hash_verified": true,
+          "fps": 30.0,
+          "resolution": "1280x720"
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_09/detections.json",
+          "sha256": "99225dede27b815241ca9295d5fd09f5de12c57618ba9a39d242a0af73a31210",
+          "size_bytes": 239779
+        },
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_09/trajectories.json",
+          "sha256": "7ffbaf034c862399303115c5087e42bd01523b296e1df76f8c29946e049f7f3f",
+          "size_bytes": 105086
+        }
+      },
+      "video_10": {
+        "media": {
+          "path": "data/holdout_videos/video_10_us_open_dimitrov_tiafoe.mp4",
+          "sha256": "5b605c4a4663de096457cd2e27a34c3580ca16a66643511fa7756a9c7b05864d",
+          "manifest_hash_verified": true,
+          "fps": 30.0,
+          "resolution": "1920x1080"
+        },
+        "detections": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_10/detections.json",
+          "sha256": "1f083b84ab40c41c9d76c16a8a0d5e6abd56f35d916ae0b2acd96e607c712100",
+          "size_bytes": 914024
+        },
+        "trajectories": {
+          "path": "outputs/phase6_4_qualification/cross_match_diagnostic_final/video_10/trajectories.json",
+          "sha256": "2fb55ed2e0917e4cb83000baec59e28ec5c94b175adf857411511f024b2c12d9",
+          "size_bytes": 458634
+        }
+      }
+    }
+  },
+  "classifier_runtime": {
+    "handedness_map": {},
+    "court_orientation_map": {},
+    "pose_extractor_instantiated": false,
+    "pose_extractor_behavior_equivalence": "With both required metadata maps empty, production classify_shot gates pose before invocation; omitting model initialization does not change predictions."
+  },
+  "dataset_integrity": {
+    "gt_shot_count": 20,
+    "oracle_record_count": 20,
+    "one_to_one_gt_hit_join": true,
+    "class_support": {
+      "FOREHAND": 10,
+      "BACKHAND": 7,
+      "SERVE": 3
+    }
+  },
+  "aggregate_metrics": {
+    "evaluation_semantics": "EXACT_GT_HIT_ROW_CONDITIONAL_CLASSIFICATION",
+    "per_class": {
+      "FOREHAND": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 10,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 10
+      },
+      "BACKHAND": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 7,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 7
+      },
+      "SERVE": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 3
+      }
+    },
+    "macro_f1": 0.3333333333333333,
+    "record_count": 20,
+    "correct_count": 3,
+    "accuracy": 0.15,
+    "unknown_abstentions": 17,
+    "unknown_rate": 0.85,
+    "coverage": 0.15,
+    "confusion_matrix": {
+      "FOREHAND": {
+        "FOREHAND": 0,
+        "BACKHAND": 0,
+        "SERVE": 0,
+        "UNKNOWN": 10
+      },
+      "BACKHAND": {
+        "FOREHAND": 0,
+        "BACKHAND": 0,
+        "SERVE": 0,
+        "UNKNOWN": 7
+      },
+      "SERVE": {
+        "FOREHAND": 0,
+        "BACKHAND": 0,
+        "SERVE": 3,
+        "UNKNOWN": 0
+      }
+    }
+  },
+  "aggregate_feature_availability": {
+    "player_box_available": 20,
+    "ball_position_available": 13,
+    "record_count": 20,
+    "ball_state_counts": {
+      "DETECTED": 8,
+      "TRACKED": 1,
+      "PREDICTED": 1,
+      "INTERPOLATED": 3,
+      "OCCLUDED": 0,
+      "MISSING": 7
+    }
+  },
+  "per_video": {
+    "video_08": {
+      "metrics": {
+        "evaluation_semantics": "EXACT_GT_HIT_ROW_CONDITIONAL_CLASSIFICATION",
+        "per_class": {
+          "FOREHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 3
+          },
+          "BACKHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 1
+          },
+          "SERVE": {
+            "true_positives": 1,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          }
+        },
+        "macro_f1": 0.3333333333333333,
+        "record_count": 5,
+        "correct_count": 1,
+        "accuracy": 0.2,
+        "unknown_abstentions": 4,
+        "unknown_rate": 0.8,
+        "coverage": 0.2,
+        "confusion_matrix": {
+          "FOREHAND": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 0,
+            "UNKNOWN": 3
+          },
+          "BACKHAND": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 0,
+            "UNKNOWN": 1
+          },
+          "SERVE": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 1,
+            "UNKNOWN": 0
+          }
+        }
+      },
+      "feature_availability": {
+        "player_box_available": 5,
+        "ball_position_available": 5,
+        "record_count": 5,
+        "ball_state_counts": {
+          "DETECTED": 3,
+          "TRACKED": 1,
+          "PREDICTED": 0,
+          "INTERPOLATED": 1,
+          "OCCLUDED": 0,
+          "MISSING": 0
+        }
+      }
+    },
+    "video_09": {
+      "metrics": {
+        "evaluation_semantics": "EXACT_GT_HIT_ROW_CONDITIONAL_CLASSIFICATION",
+        "per_class": {
+          "FOREHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 2
+          },
+          "BACKHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 3
+          },
+          "SERVE": {
+            "true_positives": 1,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          }
+        },
+        "macro_f1": 0.3333333333333333,
+        "record_count": 6,
+        "correct_count": 1,
+        "accuracy": 0.16666666666666666,
+        "unknown_abstentions": 5,
+        "unknown_rate": 0.8333333333333334,
+        "coverage": 0.16666666666666666,
+        "confusion_matrix": {
+          "FOREHAND": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 0,
+            "UNKNOWN": 2
+          },
+          "BACKHAND": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 0,
+            "UNKNOWN": 3
+          },
+          "SERVE": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 1,
+            "UNKNOWN": 0
+          }
+        }
+      },
+      "feature_availability": {
+        "player_box_available": 6,
+        "ball_position_available": 6,
+        "record_count": 6,
+        "ball_state_counts": {
+          "DETECTED": 3,
+          "TRACKED": 0,
+          "PREDICTED": 1,
+          "INTERPOLATED": 2,
+          "OCCLUDED": 0,
+          "MISSING": 0
+        }
+      }
+    },
+    "video_10": {
+      "metrics": {
+        "evaluation_semantics": "EXACT_GT_HIT_ROW_CONDITIONAL_CLASSIFICATION",
+        "per_class": {
+          "FOREHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          },
+          "BACKHAND": {
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 3
+          },
+          "SERVE": {
+            "true_positives": 1,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          }
+        },
+        "macro_f1": 0.3333333333333333,
+        "record_count": 9,
+        "correct_count": 1,
+        "accuracy": 0.1111111111111111,
+        "unknown_abstentions": 8,
+        "unknown_rate": 0.8888888888888888,
+        "coverage": 0.1111111111111111,
+        "confusion_matrix": {
+          "FOREHAND": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 0,
+            "UNKNOWN": 5
+          },
+          "BACKHAND": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 0,
+            "UNKNOWN": 3
+          },
+          "SERVE": {
+            "FOREHAND": 0,
+            "BACKHAND": 0,
+            "SERVE": 1,
+            "UNKNOWN": 0
+          }
+        }
+      },
+      "feature_availability": {
+        "player_box_available": 9,
+        "ball_position_available": 2,
+        "record_count": 9,
+        "ball_state_counts": {
+          "DETECTED": 2,
+          "TRACKED": 0,
+          "PREDICTED": 0,
+          "INTERPOLATED": 0,
+          "OCCLUDED": 0,
+          "MISSING": 7
+        }
+      }
+    }
+  },
+  "records": [
+    {
+      "video_id": "video_08",
+      "gt_shot_id": 1,
+      "gt_event_id": 1,
+      "oracle_input": {
+        "frame_index": 42,
+        "timestamp_s": 1.4,
+        "player_id": 1,
+        "event_type": "SERVE_CONTACT",
+        "classifier_event_type": "SERVE_CONTACT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            201.58328247070312,
+            281.3987731933594,
+            300.3739929199219,
+            497.5572509765625
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 42,
+          "timestamp_s": 1.4,
+          "position_px": [
+            657.51,
+            388.11
+          ],
+          "court_position_m": [
+            5.98,
+            27.78
+          ],
+          "speed_kmh": 89.5,
+          "confidence": 0.789,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "SERVE",
+        "confidence": 0.95,
+        "classification_source": "EVENT_PASSTHROUGH",
+        "confidence_components": {
+          "event": 0.95,
+          "pose": 0.9,
+          "ball": 0.9
+        },
+        "reason": "Authoritative serve contact verified from kinematics and match state."
+      },
+      "evaluation_only": {
+        "shot_type": "SERVE",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_shot_id": 2,
+      "gt_event_id": 3,
+      "oracle_input": {
+        "frame_index": 74,
+        "timestamp_s": 2.466666666666667,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            344.50244140625,
+            199.92816162109375,
+            401.5909729003906,
+            302.357177734375
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 74,
+          "timestamp_s": 2.4667,
+          "position_px": [
+            429.28,
+            650.85
+          ],
+          "court_position_m": [
+            3.55,
+            31.18
+          ],
+          "speed_kmh": null,
+          "confidence": 0.517,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_shot_id": 3,
+      "gt_event_id": 5,
+      "oracle_input": {
+        "frame_index": 108,
+        "timestamp_s": 3.6,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            180.42282104492188,
+            250.97242736816406,
+            306.2239990234375,
+            480.635986328125
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 108,
+          "timestamp_s": 3.6,
+          "position_px": [
+            507.79,
+            282.49
+          ],
+          "court_position_m": [
+            3.96,
+            23.45
+          ],
+          "speed_kmh": 84.6,
+          "confidence": 0.786,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "DOWN_THE_LINE",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_shot_id": 4,
+      "gt_event_id": 7,
+      "oracle_input": {
+        "frame_index": 142,
+        "timestamp_s": 4.733333333333333,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            539.8163452148438,
+            72.74916076660156,
+            590.779052734375,
+            111.68976593017578
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 142,
+          "timestamp_s": 4.7333,
+          "position_px": [
+            1029.17,
+            715.25
+          ],
+          "court_position_m": [
+            7.18,
+            31.52
+          ],
+          "speed_kmh": 1.2,
+          "confidence": 0.369,
+          "state": "TRACKED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "BACKHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_08",
+      "gt_shot_id": 5,
+      "gt_event_id": 9,
+      "oracle_input": {
+        "frame_index": 176,
+        "timestamp_s": 5.866666666666666,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            108.83177947998047,
+            188.1336212158203,
+            247.45626831054688,
+            409.55224609375
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 176,
+          "timestamp_s": 5.8667,
+          "position_px": [
+            504.23,
+            439.35
+          ],
+          "court_position_m": [
+            4.0,
+            28.88
+          ],
+          "speed_kmh": 78.6,
+          "confidence": null,
+          "state": "INTERPOLATED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_shot_id": 1,
+      "gt_event_id": 1,
+      "oracle_input": {
+        "frame_index": 35,
+        "timestamp_s": 1.1666666666666667,
+        "player_id": 2,
+        "event_type": "SERVE_CONTACT",
+        "classifier_event_type": "SERVE_CONTACT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1133.28369140625,
+            211.16070556640625,
+            1241.733642578125,
+            389.2689208984375
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 35,
+          "timestamp_s": 1.1667,
+          "position_px": [
+            1135.1,
+            207.37
+          ],
+          "court_position_m": [
+            51.88,
+            14.19
+          ],
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "INTERPOLATED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "SERVE",
+        "confidence": 0.95,
+        "classification_source": "EVENT_PASSTHROUGH",
+        "confidence_components": {
+          "event": 0.95,
+          "pose": 0.9,
+          "ball": 0.9
+        },
+        "reason": "Authoritative serve contact verified from kinematics and match state."
+      },
+      "evaluation_only": {
+        "shot_type": "SERVE",
+        "direction": "CROSS_COURT",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_shot_id": 2,
+      "gt_event_id": 3,
+      "oracle_input": {
+        "frame_index": 68,
+        "timestamp_s": 2.2666666666666666,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            463.7255554199219,
+            246.58984375,
+            606.708984375,
+            607.34033203125
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 68,
+          "timestamp_s": 2.2667,
+          "position_px": [
+            952.32,
+            294.32
+          ],
+          "court_position_m": [
+            8.38,
+            27.13
+          ],
+          "speed_kmh": 89.7,
+          "confidence": 0.24,
+          "state": "PREDICTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "BACKHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_shot_id": 3,
+      "gt_event_id": 5,
+      "oracle_input": {
+        "frame_index": 102,
+        "timestamp_s": 3.4,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1082.9476318359375,
+            251.67080688476562,
+            1193.168212890625,
+            427.81414794921875
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 102,
+          "timestamp_s": 3.4,
+          "position_px": [
+            1196.18,
+            56.38
+          ],
+          "court_position_m": [
+            -2.39,
+            31.65
+          ],
+          "speed_kmh": 62.0,
+          "confidence": 0.12,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_shot_id": 4,
+      "gt_event_id": 7,
+      "oracle_input": {
+        "frame_index": 138,
+        "timestamp_s": 4.6,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            470.0198974609375,
+            293.50848388671875,
+            622.8924560546875,
+            716.3245849609375
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 138,
+          "timestamp_s": 4.6,
+          "position_px": [
+            745.69,
+            15.69
+          ],
+          "court_position_m": [
+            1.88,
+            32.9
+          ],
+          "speed_kmh": 11.0,
+          "confidence": 0.329,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "DOWN_THE_LINE",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_shot_id": 5,
+      "gt_event_id": 9,
+      "oracle_input": {
+        "frame_index": 175,
+        "timestamp_s": 5.833333333333333,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1112.2181396484375,
+            226.62899780273438,
+            1219.5595703125,
+            403.8749694824219
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 175,
+          "timestamp_s": 5.8333,
+          "position_px": [
+            514.73,
+            292.78
+          ],
+          "court_position_m": [
+            3.58,
+            26.42
+          ],
+          "speed_kmh": null,
+          "confidence": 0.453,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "BACKHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_09",
+      "gt_shot_id": 6,
+      "gt_event_id": 11,
+      "oracle_input": {
+        "frame_index": 212,
+        "timestamp_s": 7.066666666666666,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            747.8677368164062,
+            269.787109375,
+            901.7887573242188,
+            645.16748046875
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 212,
+          "timestamp_s": 7.0667,
+          "position_px": [
+            1141.34,
+            191.23
+          ],
+          "court_position_m": [
+            -1646.63,
+            561.03
+          ],
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "INTERPOLATED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "BACKHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 1,
+      "gt_event_id": 1,
+      "oracle_input": {
+        "frame_index": 55,
+        "timestamp_s": 1.8333333333333333,
+        "player_id": 1,
+        "event_type": "SERVE_CONTACT",
+        "classifier_event_type": "SERVE_CONTACT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1322.532958984375,
+            812.5192260742188,
+            1404.8497314453125,
+            990.79248046875
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 55,
+          "timestamp_s": 1.8333,
+          "position_px": [
+            411.9,
+            270.78
+          ],
+          "court_position_m": [
+            -5.42,
+            -3.73
+          ],
+          "speed_kmh": 36.6,
+          "confidence": 0.524,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "SERVE",
+        "confidence": 0.95,
+        "classification_source": "EVENT_PASSTHROUGH",
+        "confidence_components": {
+          "event": 0.95,
+          "pose": 0.9,
+          "ball": 0.9
+        },
+        "reason": "Authoritative serve contact verified from kinematics and match state."
+      },
+      "evaluation_only": {
+        "shot_type": "SERVE",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 2,
+      "gt_event_id": 3,
+      "oracle_input": {
+        "frame_index": 88,
+        "timestamp_s": 2.933333333333333,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            449.7563171386719,
+            67.1449203491211,
+            481.34979248046875,
+            165.0011749267578
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": true,
+          "frame_index": 88,
+          "timestamp_s": 2.9333,
+          "position_px": [
+            401.25,
+            263.24
+          ],
+          "court_position_m": [
+            -5.77,
+            -4.49
+          ],
+          "speed_kmh": 57.4,
+          "confidence": 0.724,
+          "state": "DETECTED",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "BACKHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 3,
+      "gt_event_id": 5,
+      "oracle_input": {
+        "frame_index": 122,
+        "timestamp_s": 4.066666666666666,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1344.7366943359375,
+            828.4707641601562,
+            1409.4267578125,
+            1008.8815307617188
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": false,
+          "frame_index": 122,
+          "timestamp_s": 4.0667,
+          "position_px": null,
+          "court_position_m": null,
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "MISSING",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 4,
+      "gt_event_id": 7,
+      "oracle_input": {
+        "frame_index": 158,
+        "timestamp_s": 5.266666666666667,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            453.068359375,
+            75.73150634765625,
+            483.14471435546875,
+            174.67367553710938
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": false,
+          "frame_index": 158,
+          "timestamp_s": 5.2667,
+          "position_px": null,
+          "court_position_m": null,
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "MISSING",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "DOWN_THE_LINE",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 5,
+      "gt_event_id": 9,
+      "oracle_input": {
+        "frame_index": 195,
+        "timestamp_s": 6.5,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1317.57421875,
+            831.2205810546875,
+            1395.2510986328125,
+            1009.5908203125
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": false,
+          "frame_index": 195,
+          "timestamp_s": 6.5,
+          "position_px": null,
+          "court_position_m": null,
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "MISSING",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "BACKHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 6,
+      "gt_event_id": 11,
+      "oracle_input": {
+        "frame_index": 232,
+        "timestamp_s": 7.733333333333333,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            451.38909912109375,
+            77.32185363769531,
+            482.2399597167969,
+            176.40499877929688
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": false,
+          "frame_index": 232,
+          "timestamp_s": 7.7333,
+          "position_px": null,
+          "court_position_m": null,
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "MISSING",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 7,
+      "gt_event_id": 13,
+      "oracle_input": {
+        "frame_index": 270,
+        "timestamp_s": 9.0,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1297.2974853515625,
+            832.1112670898438,
+            1389.3857421875,
+            1008.17919921875
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": false,
+          "frame_index": 270,
+          "timestamp_s": 9.0,
+          "position_px": null,
+          "court_position_m": null,
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "MISSING",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 8,
+      "gt_event_id": 15,
+      "oracle_input": {
+        "frame_index": 308,
+        "timestamp_s": 10.266666666666667,
+        "player_id": 2,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_2_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            452.24322509765625,
+            70.02204132080078,
+            482.0273742675781,
+            170.47210693359375
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": false,
+          "frame_index": 308,
+          "timestamp_s": 10.2667,
+          "position_px": null,
+          "court_position_m": null,
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "MISSING",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "BACKHAND",
+        "direction": "DOWN_THE_LINE",
+        "court_side": "far",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    },
+    {
+      "video_id": "video_10",
+      "gt_shot_id": 9,
+      "gt_event_id": 17,
+      "oracle_input": {
+        "frame_index": 345,
+        "timestamp_s": 11.5,
+        "player_id": 1,
+        "event_type": "PLAYER_HIT",
+        "classifier_event_type": "PLAYER_1_HIT"
+      },
+      "predicted_feature_inputs": {
+        "player_box": {
+          "available": true,
+          "bbox_px": [
+            1295.6883544921875,
+            826.0053100585938,
+            1392.1370849609375,
+            1001.6156616210938
+          ],
+          "confidence": null,
+          "source": "detections.json exact frame"
+        },
+        "ball_point": {
+          "available": false,
+          "frame_index": 345,
+          "timestamp_s": 11.5,
+          "position_px": null,
+          "court_position_m": null,
+          "speed_kmh": null,
+          "confidence": null,
+          "state": "MISSING",
+          "source": "trajectories.json exact frame"
+        },
+        "pose_feature_extraction": {
+          "invoked": false,
+          "available": false,
+          "reason": "Required handedness/orientation metadata are absent in active production config."
+        },
+        "raw_frames_supplied": false
+      },
+      "classifier_output": {
+        "shot_type": "UNKNOWN",
+        "confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      },
+      "evaluation_only": {
+        "shot_type": "FOREHAND",
+        "direction": "CROSS_COURT",
+        "court_side": "near",
+        "annotation_confidence": 1.0,
+        "passed_to_classifier": false
+      }
+    }
+  ],
+  "interpretation_constraint": "SERVE is an event-type passthrough because the permitted GT event type already identifies SERVE_CONTACT; it is not an independent serve-mechanics result."
+}

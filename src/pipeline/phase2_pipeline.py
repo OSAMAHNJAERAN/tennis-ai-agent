@@ -133,7 +133,7 @@ class Phase2Pipeline:
             max_prediction_gap=self.max_pred_gap,
             max_interpolation_gap=self.max_interp_gap
         )
-        trajectory = temporal_tracker.track_video_candidates(frame_candidates, fps=fps)
+        trajectory = temporal_tracker.track_video_candidates(frame_candidates, fps=fps, frame_size=(meta.width, meta.height))
         
         # Aggregate state statistics
         det_count = sum(1 for p in trajectory if p.state == BallState.DETECTED)

@@ -2,7 +2,11 @@
 
 ## 1. Executive Summary & Objective
 
-Phase 6.4 provides **cross-match production qualification** for the T88J709 tennis vision and analytics pipeline before declaring backend stability for Dashboard Integration (Phase 7).
+Phase 6.4 is undergoing a **final qualification correction**. The historical
+plan below did not produce valid production qualification because the intended
+holdout was inspected and influenced subsequent engineering. Dashboard
+integration remains blocked until a new pristine, manually annotated,
+production/evaluator-frozen different-match holdout passes every gate.
 
 While Phase 6.3 resolved cross-clip generalization on the Uruguay vs. Mexico match series, Phase 6.4 qualifies the system on **truly independent tennis matches** featuring different players, court surfaces, cameras, lighting, and broadcast environments (US Open hard courts).
 
@@ -35,9 +39,14 @@ While Phase 6.3 resolved cross-clip generalization on the Uruguay vs. Mexico mat
 | `video_02`, `video_03` | 2018 Davis Cup (Americas) | Hard Court | Validation Set | Validation |
 | `video_04`, `video_05` | 2018 Davis Cup (Americas) | Hard Court | Diagnostic Set | Diagnostic |
 | `video_06`, `video_07` | 2018 Davis Cup (Americas) | Hard Court | Diagnostic Set (Reclassified) | Diagnostic |
-| `video_08` | 2012 US Open (Djokovic) | Blue Hard (Arthur Ashe) | True Cross-Match Holdout | Final Holdout |
-| `video_09` | 2012 US Open (Schiavone) | Blue Hard (Arthur Ashe) | True Cross-Match Holdout | Final Holdout |
-| `video_10` | 2024 US Open (Dimitrov vs Tiafoe) | Blue Hard (Arthur Ashe) | True Cross-Match Holdout | Final Holdout |
+| `video_08` | 2012 US Open (Djokovic) | Blue Hard (Arthur Ashe) | Cross-match diagnostic | Development/diagnostic |
+| `video_09` | 2012 US Open (Schiavone) | Blue Hard (Arthur Ashe) | Cross-match diagnostic | Development/diagnostic |
+| `video_10` | 2024 US Open (Dimitrov vs Tiafoe) | Blue Hard (Arthur Ashe) | Cross-match diagnostic | Development/diagnostic |
+
+The three clips were originally intended as a holdout. After post-freeze
+inspection, tuning, and evaluator investigation, their scientific role changed
+to `CROSS_MATCH_DIAGNOSTIC`. A legacy path name is retained to avoid breaking
+dependencies.
 
 ---
 
@@ -51,7 +60,7 @@ graph TD
     D --> E["5. Acquire & Hash Cross-Match Media (video_08..10)"]
     E --> F["6. Manual Raw Ground Truth Annotation"]
     F --> G["7. Freeze Production Configuration (final.yaml) & Git Commit"]
-    G --> H["8. One-Shot Final Holdout Execution"]
+    G --> H["8. Historical intended holdout execution — now diagnostic"]
     H --> I["9. Metric Calculation & Dashboard Gate Evaluation"]
     I --> J["10. Regression Suite & Documentation"]
 ```
@@ -62,7 +71,7 @@ graph TD
 
 | Gate Dimension | Metric Target | Evaluation Strategy |
 | :--- | :--- | :--- |
-| **Physical Cross-Match Holdout** | PASS (3 independent US Open clips) | Verified SHA256 & zero source overlap |
+| **Pristine Different-Match Holdout** | PASS (new video_11+) | Acquired only after production/evaluator freeze; manual GT committed before inference |
 | **Player Tracking Coverage** | $\ge 90\%$ (prefer $\ge 95\%$) | Frame-level presence on visible players |
 | **Event Detection** | Recall $\ge 80\%$, F1 $\ge 75\%$ | Tolerance $\pm 0.33\text{s}$ against raw ground truth |
 | **Conditional Shot Classification**| Macro F1 $\ge 80\%$ | Evaluated on correctly matched hits |

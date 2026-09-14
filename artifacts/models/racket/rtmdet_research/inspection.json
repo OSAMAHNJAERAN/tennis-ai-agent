@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "url": "https://huggingface.co/linfeng302/RacketVision-Models/resolve/a3760773233a0988c9605259743fbdd87c59d3a3/checkpoints/epoch_300.pth",
+  "repository_revision": "a3760773233a0988c9605259743fbdd87c59d3a3",
+  "checkpoint_sha256": "e6ad74371259d844b11529a64b09052edaec4277ce9ebeeca64d77b9131a19cd",
+  "bytes": 411293859,
+  "script_sha256": "3c83b5890655709419f741d91934c79878bbaa000779a621334c81b51494747e",
+  "weights_only_forced": true,
+  "scope": "Static inspection and default restricted-load probe; no inference or arbitrary class allowlisting",
+  "zip_members": 2424,
+  "zip_crc_verified": true,
+  "declared_nondefault_globals": [
+    "builtins.getattr",
+    "mmengine.logging.history_buffer.HistoryBuffer",
+    "numpy.core.multiarray._reconstruct",
+    "numpy.core.multiarray.scalar",
+    "numpy.dtype",
+    "numpy.ndarray"
+  ],
+  "default_weights_only_load": "REJECTED",
+  "exception_type": "UnpicklingError",
+  "exception": "Weights only load failed. This file can still be loaded, to do so you have two options, \u001b[1mdo those steps only if you trust the source of the checkpoint\u001b[0m. \n\t(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.\n\t(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.\n\tWeightsUnpickler error: Unsupported global: GLOBAL mmengine.logging.history_buffer.HistoryBuffer was not an allowed global by default. Please use `torch.serialization.add_safe_globals([mmengine.logging.history_buffer.HistoryBuffer])` or the `torch.serialization.safe_globals([mmengine.logging.history_buffer.HistoryBuffer])` context manager to allowlist this global if you trust this class/function.\n\nCheck the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+}

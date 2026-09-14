@@ -1,4 +1,8 @@
-# Cross-Match Final Holdout: Annotation Protocol & Quality Rules
+# Cross-Match Diagnostic: Annotation Protocol & Quality Rules
+
+The directory name is legacy. `video_08`–`video_10` are
+`CROSS_MATCH_DIAGNOSTIC`, not pristine qualification footage. The manual/raw
+annotation provenance rules below remain authoritative for diagnostic GT.
 
 ## 1. Ground Truth Integrity Rules
 

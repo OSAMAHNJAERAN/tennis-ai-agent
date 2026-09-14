@@ -1,0 +1,139 @@
+# Experimental measured spatial/pose candidate; event authority withheld.
+match_configuration:
+  match_id: match_phase6_001
+  format: BEST_OF_3
+  set_format: TIE_BREAK_SET
+  player_1_id: 1
+  player_2_id: 2
+  initial_server_id: 2
+player_detection:
+  model: yolo11m.pt
+  confidence: 0.4
+  tracker: bytetrack.yaml
+ball_detection:
+  model: artifacts/models/ball/wasb_tennis_best.pth.tar
+  imgsz: 1024
+  high_conf: 0.08
+  low_conf: 0.01
+  backend: wasb
+  source_directory: artifacts/research/WASB-SBDT
+  heatmap_threshold: 0.2
+  temporal_step: 1
+  pixel_motion:
+    enabled: true
+    minimum_score: 12.0
+    lag_seconds: 0.1
+    patch_radius: 3
+    reference_size:
+    - 960
+    - 540
+  stationary_candidates:
+    enabled: true
+    minimum_seconds: 0.25
+    radius_reference_px: 1.5
+    window_seconds: 2.0
+    minimum_presence: 0.35
+  spatial_crops:
+    enabled: true
+    fraction: 0.6
+  patch_persistence:
+    enabled: true
+    minimum_similarity: 0.98
+    maximum_local_residual: 12.0
+    lag_seconds: 0.1
+    reference_size:
+    - 960
+    - 540
+    patch_radius: 5
+    translation_radius: 2
+    center_radius: 3
+temporal_tracking:
+  max_prediction_gap: 4
+  max_interpolation_gap: 3
+  max_valid_speed_px_per_frame: 80.0
+  base_gating_radius_px: 45.0
+  enable_multi_candidate_association: true
+  enable_adaptive_gate: true
+  enable_short_gap_reacquisition: true
+  enable_camera_motion_compensation: false
+  enable_scale_normalization: true
+  enable_frame_bounds_filter: true
+  strategy: model_top1
+court_detection:
+  model_path: models/keypoints_model.pth
+  camera_registration:
+    enabled: true
+  input_size:
+  - 224
+  - 224
+event_detection:
+  enable_camera_motion_compensation: true
+  enable_player_temporal_proximity: true
+  enable_velocity_discontinuity: true
+  enable_direction_change: true
+  enable_pose_support: false
+  enable_bounce_contact_check: true
+  enable_dead_ball_gating: true
+  enable_serve_semantics: true
+  enable_event_time_refinement: true
+  enable_provenance_weighting: true
+  feature_half_window_seconds: 0.067
+  candidate_min_interval_seconds: 0.12
+  candidate_score_threshold: 0.33
+  candidate_min_normalized_speed_per_s: 0.05
+  candidate_min_direction_change_deg: 14.0
+  candidate_min_normalized_velocity_change_per_s: 0.045
+  candidate_min_normalized_acceleration_per_s2: 0.4
+  candidate_min_normalized_vertical_speed_per_s: 0.018
+  candidate_min_continuity_ratio: 0.6
+  max_normalized_edge_speed_per_s: 3.0
+  temporal_proximity_window_seconds: 0.14
+  event_time_refinement_window_seconds: 0.12
+  player_reach_normalized: 1.35
+  player_attribution_margin_normalized: 0.15
+  racket_region_top_normalized: -0.35
+  racket_region_bottom_normalized: 0.85
+  player_contact_min_score: 0.47
+  player_contact_min_independent_cues: 3
+  court_contact_min_score: 0.44
+  court_contact_min_independent_cues: 3
+  physical_type_margin: 0.05
+  departure_window_seconds: 0.12
+  serve_evidence_window_seconds: 0.4
+  serve_min_score: 0.58
+  serve_overhead_y_normalized: 0.48
+  serve_min_post_speed_normalized_per_s: 0.075
+  serve_min_departure_speed_gain: 1.05
+  final_event_min_interval_seconds: 0.18
+  rolling_max_normalized_speed_per_s: 0.03
+  dead_ball_min_kinematic_support: 0.2
+  authoritative_enabled: false
+line_calling:
+  contact_patch_model: EMPIRICAL_PATCH
+  contact_patch_radius_cm: 1.25
+  uncertainty_safety_factor: 1.5
+  line_width_uncertainty_cm: 1.25
+  contact_refinement_window: 3
+pose_estimation:
+  enabled: true
+  model_path: yolo11s-pose.pt
+  min_pose_confidence: 0.35
+  window_half_size: 3
+  crop_margin: 0.25
+player_motion:
+  enabled: true
+racket_tracking:
+  enabled: true
+  confidence: 0.25
+  imgsz: 640
+shot_classification:
+  ambiguity_threshold: 0.15
+  players_handedness: {}
+  court_orientation_sign: {}
+visualization:
+  draw_trajectories: true
+  draw_court_lines: true
+  draw_player_boxes: true
+  draw_shot_badges: true
+  mini_court_width: 250
+  mini_court_height: 500

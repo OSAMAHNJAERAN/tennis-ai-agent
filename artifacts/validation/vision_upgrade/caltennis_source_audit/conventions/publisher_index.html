@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="CalTennis: Large Multi-View Tennis Video Dataset and Benchmark of Monocular-to-3D Pose Estimation">
+    <meta name="keywords" content="CalTennis, tennis, dataset, benchmark, human pose estimation, monocular 3D, multi-view, SMPL-X">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CalTennis: Large Multi-View Tennis Video Dataset and Benchmark</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">CalTennis</h1>
+                        <h1 class="title is-2 publication-title">Large Multi-View Tennis Video Dataset and Benchmark of Monocular-to-3D Pose Estimation</h1>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://ilonademler.com/" target="_blank" rel="noopener noreferrer">Ilona Demler</a>,</span>
+                            <span class="author-block">
+                                <a href="https://www.linkedin.com/in/xinran-selina-xie-207997340/" target="_blank" rel="noopener noreferrer">Xinran Xie</a>,</span>
+                            <span class="author-block">
+                                <a href="https://x.com/bwerner43" target="_blank" rel="noopener noreferrer">Blake Werner</a>,</span>
+                            <span class="author-block">
+                                <a href="https://www.linkedin.com/in/anna-szczuka-531a44258/" target="_blank" rel="noopener noreferrer">Anna Szczuka</a>,</span>
+                            <span class="author-block">
+                                <a href="https://www.vision.caltech.edu/" target="_blank" rel="noopener noreferrer">Pietro Perona</a></span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Caltech</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2606.20542"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <!-- arXiv Link -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2606.20542"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link -->
+                                <span class="link-block">
+                                    <a href="#"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code (coming soon)</span>
+                                    </a>
+                                </span>
+                                <!-- Dataset Link -->
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/demalenk/caltennis"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-database"></i>
+                                        </span>
+                                        <span>Dataset</span>
+                                    </a>
+                                </span>
+                                <!-- Dataset Preview Link -->
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/spaces/demalenk/caltennis-preview-viewer"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-play-circle"></i>
+                                        </span>
+                                        <span>Dataset Preview</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TL;DR ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="content has-text-centered">
+                    <p>
+                        <b>tl;dr</b> A large-scale, multi-view tennis video dataset with 11M+ frames and
+                        novel human pose estimation evaluation framework.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TEASER IMAGE ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <img src="static/images/teaser-1.png"
+                 alt="CalTennis overview: court capture setup, multi-view consistency, and dataset configurations"
+                 style="width:100%; border-radius:12px; display:block;"
+                 loading="lazy">
+        </div>
+    </section>
+
+    <!-- ===================== ABSTRACT ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            The Caltech Tennis Dataset (CalTennis) is a large-scale video benchmark for evaluating
+                            monocular-to-3D pose estimation in the wild. CalTennis comprises over 11 million frames
+                            (51 hours) of tennis practice and match play from 40 players, captured with 2&ndash;6
+                            synchronized cameras at 60 Hz. It is 10&times; larger than existing in-the-wild human
+                            motion video datasets and 3&times; larger than existing MOCAP-ground-truthed datasets,
+                            and it is the first large-scale benchmark to provide synchronized multi-view recordings
+                            of expert athletic motion. The multi-view setup enables inexpensive, label-free
+                            evaluation of monocular-to-3D pose estimation algorithms. We describe a simple,
+                            standardized protocol that enables data collection without specialized equipment or
+                            expertise, along with fully automated video calibration and synchronization.
+                            Benchmarking state-of-the-art monocular-to-3D pose methods on CalTennis, we find that
+                            while 3D joint angle recovery is now quite accurate, all models struggle to estimate
+                            depth and foot contact consistently. We further propose two novel performance metrics
+                            &mdash; footwork and stability &mdash; as well as qualitatively study body shape
+                            inconsistency. These metrics expose previously underexplored failure modes and point
+                            to concrete opportunities for improvement in pose estimation and action analysis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== DATASET ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">The CalTennis Dataset</h2>
+                    <!-- Dataset comparison figure -->
+                    <!-- TODO: replace with Figure 2 from paper (dataset complexity comparison) -->
+                    <img src="static/images/comparison_to_existing.png"
+                         alt="CalTennis complexity compared to other real-world benchmarks"
+                         style="max-width:100%; height:auto; border-radius:12px;"
+                         loading="lazy">
+
+                    <div class="content has-text-justified">
+                        <p>
+                            The Caltech Tennis Dataset (CalTennis) is the first benchmark to use multi-view, 
+                            real-world recordings of skilled human motion, capturing data underrepresented in 
+                            existing pose datasets and more representative of downstream motion-reconstruction applications. 
+                            It has significantly more depth variability and pose space coverage. 
+                            Despite containing 10x more frames than other real-world benchmarks, it is also  
+                            signifcantly cheaper than current MOCAP and real-world benchmark, requiring only every-day phones mounted on tripods.
+                        </p>
+                        <!-- <p>
+                            CalTennis is captured using a lightweight, accessible protocol: standard iPhones (model
+                            14 or newer) on fully extended 1.65 m MagSafe tripods (costing ~$40 each), placed at
+                            standard locations around the court with no specialized equipment or expertise required.
+                            We deploy 2&ndash;6 cameras concurrently per session, typically ~12 m apart at 1.65 m
+                            height, covering both half-court and full-court configurations. Video is recorded at
+                            60 Hz in HD (1080&times;1920 pixels) using the main camera (1x, 24 mm f/1.78).
+                        </p>
+                        <p>
+                            Across sessions by the Caltech men's and women's tennis teams and recreational players,
+                            we collected over 11 million frames (51 hours) from 40 players spanning collegiate to
+                            recreational levels. CalTennis scores 85% on pose space coverage &mdash; higher than
+                            any other real-world benchmark &mdash; with substantial depth variability: 90% of poses
+                            lie 13.4&ndash;16.7 m from the camera, versus 4.5&ndash;5.8 m in Human3.6M. All
+                            sessions were conducted under IRB approval with voluntary, informed consent, and we
+                            blur all faces to protect player privacy.
+                        </p> -->
+                    </div>
+
+                    <!-- Dataset comparison table -->
+                    <div class="table-container mt-6">
+                        <table class="table is-fullwidth is-striped is-hoverable is-bordered" style="font-size:0.9rem;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="has-text-centered">Multi-View?</th>
+                                    <th class="has-text-centered">Real-World?</th>
+                                    <th class="has-text-centered">Num Frames (M)</th>
+                                    <th class="has-text-centered">Avg. Seq Len (s)</th>
+                                    <th class="has-text-centered">Depth Range (m)</th>
+                                    <th class="has-text-centered">Pose Space Coverage</th>
+                                    <th class="has-text-centered">Hardware Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3DPW</td>
+                                    <td class="has-text-centered"><span style="color:#dc2626;">&#10005;</span></td>
+                                    <td class="has-text-centered"><span style="color:#16a34a;">&#10003;</span></td>
+                                    <td class="has-text-centered">0.05</td>
+                                    <td class="has-text-centered">45</td>
+                                    <td class="has-text-centered">3.1&ndash;7.4</td>
+                                    <td class="has-text-centered">58%</td>
+                                    <td class="has-text-centered">$21k</td>
+                                </tr>
+                                <tr>
+                                    <td>EMDB</td>
+                                    <td class="has-text-centered"><span style="color:#dc2626;">&#10005;</span></td>
+                                    <td class="has-text-centered"><span style="color:#16a34a;">&#10003;</span></td>
+                                    <td class="has-text-centered">0.11</td>
+                                    <td class="has-text-centered">42</td>
+                                    <td class="has-text-centered">1.9&ndash;2.7</td>
+                                    <td class="has-text-centered">60%</td>
+                                    <td class="has-text-centered">$31k</td>
+                                </tr>
+                                <tr>
+                                    <td>RICH</td>
+                                    <td class="has-text-centered"><span style="color:#16a34a;">&#10003;</span></td>
+                                    <td class="has-text-centered"><span style="color:#16a34a;">&#10003;</span></td>
+                                    <td class="has-text-centered">0.54</td>
+                                    <td class="has-text-centered">127</td>
+                                    <td class="has-text-centered">4.2&ndash;4.7</td>
+                                    <td class="has-text-centered">62%</td>
+                                    <td class="has-text-centered">$100k</td>
+                                </tr>
+                                <tr>
+                                    <td>Human3.6M</td>
+                                    <td class="has-text-centered"><span style="color:#16a34a;">&#10003;</span></td>
+                                    <td class="has-text-centered"><span style="color:#dc2626;">&#10005;</span></td>
+                                    <td class="has-text-centered">1.47</td>
+                                    <td class="has-text-centered">340</td>
+                                    <td class="has-text-centered">4.5&ndash;5.8</td>
+                                    <td class="has-text-centered">89%</td>
+                                    <td class="has-text-centered">$150k</td>
+                                </tr>
+                                <tr class="caltennis-row">
+                                    <td><strong>CalTennis (Ours)</strong></td>
+                                    <td class="has-text-centered"><span style="color:#16a34a;">&#10003;</span></td>
+                                    <td class="has-text-centered"><span style="color:#16a34a;">&#10003;</span></td>
+                                    <td class="has-text-centered"><strong>11.03</strong></td>
+                                    <td class="has-text-centered"><strong>3365</strong></td>
+                                    <td class="has-text-centered"><strong>13.4&ndash;16.7</strong></td>
+                                    <td class="has-text-centered"><strong>85%</strong></td>
+                                    <td class="has-text-centered"><strong>$2k</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .table tbody tr.caltennis-row { background-color: #c7d2fe; }
+        .table.is-striped tbody tr.caltennis-row:nth-child(odd),
+        .table.is-striped tbody tr.caltennis-row:nth-child(even) { background-color: #c7d2fe; }
+        .table.is-hoverable tbody tr.caltennis-row:hover { background-color: #a5b4fc; }
+    </style>
+
+    <!-- ===================== CALIBRATION & SYNCHRONIZATION ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Calibration &amp; Synchronization</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            To evaluate monocular pose estimators without ground-truth labels, we lift pose
+                            predictions from each camera into a shared global space-time reference frame:
+                        </p>
+                        <!-- <p>
+                            <b>Spatial calibration.</b> We exploit the standardized geometry of the tennis court:
+                            for each camera, we identify court line intersections in a video frame and minimize
+                            reprojection error via PnP to recover extrinsics. Camera intrinsics are read directly
+                            from iPhone metadata. Per-camera SMPL-X pose estimates are then lifted into the shared
+                            court coordinate system using the recovered camera-to-world transform.
+                        </p>
+                        <p>
+                            <b>Temporal synchronization.</b> Athletic motion requires millisecond precision. iPhone
+                            cameras receive global timestamps only to the nearest second, leaving up to 1000 ms of
+                            inter-camera offset. We resolve this by linearly interpolating reconstructed poses and
+                            performing a grid search over &Delta;t &isin; [&minus;1000, 1000] ms that minimizes
+                            cross-view pose disagreement.
+                        </p>
+                        <p>
+                            <b>Consensus pose.</b> We fuse per-camera pose estimates into a maximum-likelihood
+                            estimate, with covariance elongated along each camera's depth axis &mdash; the dominant
+                            error mode in monocular reconstruction &mdash; to appropriately down-weight uncertain
+                            depth estimates during fusion.
+                        </p> -->
+                    </div>
+                    <!-- TODO: replace with Figure 3 / Figure 8 from paper (spatiotemporal calibration diagram) -->
+                    <img src="static/images/spatiotemporal_calibration.png"
+                         alt="Spatiotemporal calibration and synchronization diagram"
+                         style="max-width:100%; height:auto; border-radius:12px;"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== EVALUATION METRICS ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Label-Free Evaluation Metrics</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            CalTennis uses multi-view consistency as a label-free proxy for reconstruction error:
+                            a correct prediction must agree across views, and inter-view disagreement
+                            <em>lower-bounds</em> each model's true error. In addition to standard metrics
+                            (MPJPE, PA-MPJPE, PVE), we introduce four metrics that expose failure modes
+                            invisible to existing benchmarks.
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Translation error.</b> L2 distance between per-view translation estimates for
+                                the same person. Exposes depth instability &mdash; the dominant failure mode we find
+                                across all models.
+                            </li>
+                            <li>
+                                <b>Pose error.</b> Mean per-joint position error relative to the pelvis, measuring
+                                orientation and pose consistency independently of translation.
+                            </li>
+                            <li>
+                                <b>Footwork.</b> Cross-view agreement of foot joint velocities and foot heights,
+                                exposing foot-skating and floating artifacts that are physically implausible.
+                            </li>
+                            <li>
+                                <b>Stability.</b> Cross-view disagreement of the distance from projected center of
+                                mass to the convex hull of grounded foot joints &mdash; models that disagree on
+                                whether a pose is balanced are unreliable for sport analysis.
+                            </li>
+                        </ul>
+                        <img src="static/images/multi_view_consistency.png"
+                         alt="Multi-view consistency"
+                         style="max-width:100%; height:auto; border-radius:12px;"
+                         loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== BENCHMARK RESULTS ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Benchmark Results</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We benchmark five state-of-the-art monocular 3D pose estimators on CalTennis:
+                            PromptHMR, WHAM, GVHMR, TRAM, and GENMO. No single model dominates across all
+                            dimensions. PromptHMR achieves the most consistent translation and joint-position
+                            estimates; WHAM excels at foot velocity consistency thanks to its ground-contact
+                            refinement step; GENMO is most consistent on foot height and stability. Across all
+                            models, performance on CalTennis is substantially worse than on existing benchmarks,
+                            reflecting the challenges of large depth range, fast athletic motion, and unscripted
+                            behavior.
+
+                        </p>
+                        <p>
+
+                            We find that all models struggle with making consistent translation estimates, with average 
+                            error ranging from 0.9m - 3.6m, with 75% of translation errors within a 1m window. As the poses 
+                            contained in CalTennis span greater distances, pixel-level errors in pose estimates can result 
+                            in more severe mistakes in translation estimates, an effect that is not obvious from current benchmarks. 
+                            Qualitatively, we find that this results in a "pose drifting" effect, or oscillations in translation 
+                            estimates along each camera's depth axis. Models are much more consistent when it comes to pose estimates, 
+                            with about 11cm error between multi-view poses across all models. This suggests that these models are 
+                            more ready for downstream applications involving pose estimates alone, rather than those dependent on 
+                            accurate 3D identification of people in the scene.
+                        </p>
+                    </div>
+
+                    <div class="table-container mt-6">
+                        <table class="table is-fullwidth is-striped is-hoverable is-bordered" style="font-size:0.9rem;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="has-text-centered">Translation (mm)&darr;</th>
+                                    <th class="has-text-centered">Pose (mm)&darr;</th>
+                                    <th class="has-text-centered">MPJPE (mm)&darr;</th>
+                                    <th class="has-text-centered">PA-MPJPE (mm)&darr;</th>
+                                    <th class="has-text-centered">Foot-Vel (m/s)&darr;</th>
+                                    <th class="has-text-centered">Foot-Height (mm)&darr;</th>
+                                    <th class="has-text-centered">Stability (mm)&darr;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PromptHMR</td>
+                                    <td class="has-text-centered has-text-weight-bold">942</td>
+                                    <td class="has-text-centered has-text-weight-bold">105</td>
+                                    <td class="has-text-centered">1,785</td>
+                                    <td class="has-text-centered has-text-weight-bold">84</td>
+                                    <td class="has-text-centered">3.23</td>
+                                    <td class="has-text-centered">70</td>
+                                    <td class="has-text-centered">25</td>
+                                </tr>
+                                <tr>
+                                    <td>WHAM</td>
+                                    <td class="has-text-centered">2,664</td>
+                                    <td class="has-text-centered">106</td>
+                                    <td class="has-text-centered">2,675</td>
+                                    <td class="has-text-centered">119</td>
+                                    <td class="has-text-centered has-text-weight-bold">0.72</td>
+                                    <td class="has-text-centered">150</td>
+                                    <td class="has-text-centered">44</td>
+                                </tr>
+                                <tr>
+                                    <td>GVHMR</td>
+                                    <td class="has-text-centered">3,587</td>
+                                    <td class="has-text-centered">109</td>
+                                    <td class="has-text-centered">1,066</td>
+                                    <td class="has-text-centered">88</td>
+                                    <td class="has-text-centered">2.49</td>
+                                    <td class="has-text-centered has-text-weight-bold">60</td>
+                                    <td class="has-text-centered">21</td>
+                                </tr>
+                                <tr>
+                                    <td>TRAM</td>
+                                    <td class="has-text-centered">2,340</td>
+                                    <td class="has-text-centered">115</td>
+                                    <td class="has-text-centered">958</td>
+                                    <td class="has-text-centered">91</td>
+                                    <td class="has-text-centered">6.65</td>
+                                    <td class="has-text-centered">80</td>
+                                    <td class="has-text-centered">33</td>
+                                </tr>
+                                <tr>
+                                    <td>GENMO</td>
+                                    <td class="has-text-centered">2,560</td>
+                                    <td class="has-text-centered">110</td>
+                                    <td class="has-text-centered">1,020</td>
+                                    <td class="has-text-centered">91</td>
+                                    <td class="has-text-centered">4.40</td>
+                                    <td class="has-text-centered has-text-weight-bold">60</td>
+                                    <td class="has-text-centered has-text-weight-bold">16</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <p class="has-text-grey is-size-7 mt-2">
+                        Multi-view consistency metrics on CalTennis. Translation, Pose, MPJPE, PA-MPJPE, Foot-Height, and Stability are in mm; Foot-Vel is in m/s. Bold = best per column.
+                    </p>
+                    <div>  <p> </p>   </div> -->
+                   
+                    <!-- <div class="content has-text-justified">
+                        <p>
+                            Model failure modes become more clear when we project pose estimates from one camera view onto the other to visualize
+                            cross-view inconsistency. Low-disagreement frames correspond to stationary,
+                            &ldquo;neutral&rdquo; poses equally visible from both cameras. High-disagreement
+                            frames occur on distant or dynamic poses with partial occlusion &mdash; particularly
+                            at feet and hands during strokes and footwork.
+                        </p>
+                    </div>
+                    TODO: replace with Figure 6 from paper (cross-view projection histogram + example frames) -->
+                    <!-- <img src="static/images/qualitative_fig.png"
+                         alt="Cross-view pose projections and PA-MPJPE histogram"
+                         style="max-width:100%; height:auto; border-radius:12px;"
+                         loading="lazy"> -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== BENCHMARK RESULTS ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Different Models Excel at Different Metrics</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We find that the most performant model depends on the metric and hardware limitations of the appplication.
+                            PromptHMR has the lowest translation inconsistency but also also the heaviest, while
+                            WHAM, which is second lowest, is also second lightest. These results highlight the trade-offs between 
+                            static pose accuracy and temporal/physical consistency
+                        </p>
+                    </div>
+
+                    <!-- Results scatter plots -->
+                    <!-- TODO: replace with Figure 4 from paper -->
+                    <img src="static/images/model_perf_fig.png"
+                         alt="Multi-view consistency analysis: translation vs. pose error, and translation error vs. model size"
+                         style="max-width:100%; height:auto; border-radius:12px;"
+                         loading="lazy">
+
+                    <p>
+                        We also compare the consistency of different models along foot skating, stability, and shape estimates. 
+                        In addition to there being no best model across the board, the relative ordering of model performance 
+                        for each metric changes as well.
+
+                    </p>
+
+                    <!-- Consistency metrics figure -->
+                    <!-- TODO: replace with Figure 5 from paper (foot height, stability, shape bar charts) -->
+                    <img src="static/images/metrics_bar_plots.png"
+                         alt="Consistency across foot height, stability, and shape metrics"
+                         style="max-width:100%; height:auto; border-radius:18px;"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SHAPE CONSISTENCY ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Body Shape Inconsistency</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            An often-overlooked failure mode is shape inconsistency: the same person's estimated
+                            height, weight, and body proportions (SMPL-X &beta; parameters) vary significantly
+                            across camera views and across models. All five evaluated models produce inconsistent
+                            shape predictions, with up to 20 cm of height disagreement across views.
+                            PromptHMR achieves the most consistent multi-view shape reconstruction, likely
+                            because it conditions on 2D bounding boxes and keypoints. Models that produce
+                            consistent trajectories typically predict shape parameters once per video from the
+                            first frame, which is insufficient for accurate biomechanical analysis. Our findings
+                            motivate a more nuanced, video-level approach to shape prediction.
+                        </p>
+                    </div>
+                    <!-- TODO: replace with Figure 7 from paper (shape consistency body mesh figure) -->
+                    <img src="static/images/smplx_shape_reconstruction.png"
+                         alt="Shape consistency: SMPL-X body meshes across views for each model"
+                         style="max-width:100%; height:auto; border-radius:12px;"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== MEDIA ROW STYLE ===================== -->
+    <style>
+        .media-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            align-items: start;
+        }
+        .media-row.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media (max-width: 800px) {
+            .media-row, .media-row.three-col { grid-template-columns: 1fr; }
+        }
+        .tile { display: flex; flex-direction: column; gap: .5rem; margin: 0; }
+        .tile img, .tile video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+            border-radius: 12px;
+            display: block;
+        }
+        .tile .cap {
+            text-align: center;
+            font-size: .95rem;
+            color: #6b7280;
+        }
+    </style>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Qualitative Examples</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Model failure modes become more clear when we project pose estimates from one camera view onto the other to visualize
+                            cross-view inconsistency. Low-disagreement frames correspond to stationary,
+                            &ldquo;neutral&rdquo; poses equally visible from both cameras. High-disagreement
+                            frames occur on distant or dynamic poses with partial occlusion &mdash; particularly
+                            at feet and hands during strokes and footwork.
+                        </p>
+                    </div>
+                    <!-- TODO: replace with Figure 6 from paper (cross-view projection histogram + example frames) -->
+                    <img src="static/images/qualitative_fig.png"
+                         alt="Cross-view pose projections and PA-MPJPE histogram"
+                         style="max-width:100%; height:auto; border-radius:12px;"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== KEY FINDINGS ===================== -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Key Findings</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b>No single model is best.</b> Different models excel at different aspects: PromptHMR
+                            leads on translation and joint-position metrics but has the largest per-video variance;
+                            WHAM excels at foot skating and pose drift at the cost of translation accuracy; GENMO
+                            is the most internally consistent across views. The relative model ordering changes with
+                            each metric.
+                        </p>
+                        <p>
+                            <b>Three quantities remain unreliable across every model we tested:</b> absolute distance and depth, 
+                            ground-contact detection, and body shape (limb lengths, height, proportions). These are exactly 
+                            the quantities that clinical biomechanical analysis, force and balance estimation, 
+                            fine-grained sports analytics, pedestrian intent prediction, and forensic stride-length measurement 
+                            most directly depend on.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== RELATED LINKS ===================== -->
+    <section class="section" id="references">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">Related Links</h2>
+            <ol class="references-list">
+                <li><a href="https://yufu-wang.github.io/phmr-page/" target="_blank" rel="noopener noreferrer">PromptHMR &mdash; Promptable human mesh recovery</a></li>
+                <li><a href="https://wham.is.tue.mpg.de/" target="_blank" rel="noopener noreferrer">WHAM &mdash; Reconstructing world-grounded humans with accurate 3D motion</a></li>
+                <li><a href="https://zju3dv.github.io/gvhmr/" target="_blank" rel="noopener noreferrer">GVHMR &mdash; World-grounded human motion recovery via gravity-view coordinates</a></li>
+                <li><a href="https://yufu-wang.github.io/tram4d/" target="_blank" rel="noopener noreferrer">TRAM &mdash; Global trajectory and motion of 3D humans from in-the-wild videos</a></li>
+                <li><a href="https://research.nvidia.com/labs/dair/gem/" target="_blank" rel="noopener noreferrer">GENMO &mdash; A generalist model for human motion</a></li>
+                <li><a href="https://eth-ait.github.io/WorldPoseDataset/" target="_blank" rel="noopener noreferrer">WorldPose &mdash; A world cup dataset for global 3D human pose estimation</a></li>
+                <li><a href="https://github.com/calvinyeungck/AthletePose3D" target="_blank" rel="noopener noreferrer">AthletePose3D &mdash; A benchmark dataset for 3D human pose estimation in athletic movements</a></li>
+            </ol>
+        </div>
+    </section>
+
+    <style>
+        .references-list { padding-left: 1.25rem; }
+        .references-list li { margin-bottom: .4rem; }
+    </style>
+
+    <!-- ===================== BIBTEX ===================== -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@article{caltennis2026,
+    author    = {Demler, Ilona and Xie, Xinran and Werner, Blake and Szczuka, Anna and Perona, Pietro},
+    title     = {CalTennis: Large Multi-View Tennis Video Dataset and Benchmark of Monocular-to-3D Pose Estimation},
+    journal   = {Under Review},
+    year      = {2026},
+}</code></pre>
+        </div>
+    </section>
+
+</body>
+
+</html>

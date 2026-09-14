@@ -161,7 +161,7 @@ class Phase5Pipeline:
         # 5. Temporal Ball Tracking (Kalman + Provenance)
         print("\n[Step 5/9] Running Temporal Kalman Ball Tracking...")
         t0 = time.time()
-        ball_points = self.temporal_tracker.track_video_candidates(raw_candidates_per_frame, fps=fps)
+        ball_points = self.temporal_tracker.track_video_candidates(raw_candidates_per_frame, fps=fps, frame_size=(w, h))
 
         # Transform ball points to metric court space
         for p in ball_points:
@@ -216,7 +216,7 @@ class Phase5Pipeline:
                 server_end = ServerCourtEnd.FAR_COURT if curr_st.server_id == 2 else ServerCourtEnd.NEAR_COURT
                 expected_box = curr_st.get_expected_service_box(server_end)
 
-                if curr_st.ball_state == BallPlayState.SERVE_STARTED or ev_frame < 100:
+                if curr_st.ball_state == BallPlayState.SERVE_STARTED:
                     call_ctx = LineCallContext.SERVE
                     tgt_box = expected_box
                 else:
@@ -347,8 +347,12 @@ class Phase5Pipeline:
                     cv2.rectangle(ann_frame, (40, 110), (1200, 155), (255, 255, 255), 2)
                     cv2.putText(ann_frame, call_text, (55, 142), cv2.FONT_HERSHEY_SIMPLEX, 0.70, (255, 255, 255), 2, cv2.LINE_AA)
 
-            # 6. Dead-Ball Annotation (e.g. Frame 84 dead-ball return)
-            if 81 <= i <= 95:
+            # 6. Dead-Ball Annotation from deterministic scoring state evidence.
+            dead_event_frames = {
+                outcome["frame"] for outcome in scoring_outcomes
+                if outcome["outcome_type"] == PointOutcomeType.DEAD_BALL_IGNORED.value
+            }
+            if any(0 <= i - dead_frame <= max(1, round(0.5 * fps)) for dead_frame in dead_event_frames):
                 cv2.rectangle(ann_frame, (40, 165), (550, 205), (50, 50, 50), -1)
                 cv2.rectangle(ann_frame, (40, 165), (550, 205), (0, 165, 255), 2)
                 cv2.putText(ann_frame, "IGNORED — BALL NOT IN PLAY (DEAD BALL)", (50, 192),
@@ -358,7 +362,7 @@ class Phase5Pipeline:
             final_st = self.scoring_engine.get_current_state()
             p1_disp = final_st.get_points_display_p1()
             p2_disp = final_st.get_points_display_p2()
-            serve_att_str = "1st Serve" if (i < 81) else "2nd Serve"
+            serve_att_str = f"Serve {final_st.serve_attempt}"
             server_str = f"Server: P{final_st.server_id} ({final_st.service_side.value})"
 
             # Top Scoreboard Banner

@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "qualification_evidence": false,
+  "split": "VALIDATION_ONLY",
+  "source_manifest": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\vision_upgrade\\verifier_expansion12_cache\\manifest.json",
+  "source_manifest_sha256": "32788d51dc44f8ddc8e4a77951390c15b28d708c9a5cac357da12ccc58db2040",
+  "encoder_sha256": "11ad3fa62ca79e40addfd354a8ec4b7c75143b3038b8d2a807fbc68deab379ca",
+  "candidate_count": 4459,
+  "appearance_dimension": 6144,
+  "configuration": {
+    "reference_size": [
+      960,
+      540
+    ],
+    "context_side": 64,
+    "transform": "IMAGENET1K_V2_OFFICIAL",
+    "features": "CURRENT_PAST_ABSOLUTE_DIFFERENCE",
+    "storage_dtype": "float16",
+    "encoder_frozen": true
+  },
+  "code_hashes": {
+    "scripts/data/prepare_ball_context_features.py": "3d29bb49a0786993a5401b1c5ebffbb449d4082e38fae2bc441db37f956d7437",
+    "src/detection/feature_ball_verifier.py": "0ff0fff278e3ad6ff59fb3235a0985e0b9528d2c5a4fd4f67c6df09eb462a63e",
+    "src/detection/ball_candidate_verifier.py": "a9b8325065eb91f53e958b3e5c00b14be3b7513710db78715a57a44260ee0510",
+    "src/utils/video_frame_sequence.py": "cbf282e2422ef759bd44220609b5115ec26ca97fa40b585497fddb2bf46ba9ff"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "torch": "2.13.0+cu126",
+    "torchvision": "0.28.0+cu126",
+    "numpy": "2.3.1",
+    "device": "cuda",
+    "deterministic_algorithms": true
+  },
+  "completed_clips": [
+    "match143_000",
+    "match144_000",
+    "match145_000",
+    "match146_000",
+    "match147_000",
+    "match148_000",
+    "match149_000",
+    "match150_000",
+    "match151_000",
+    "match152_000",
+    "match153_000",
+    "match15_000"
+  ],
+  "feature_sha256": "145606793a4701de58d058a9e111e8cd853b6d15dbcd21b9a54a8f075b6069b8",
+  "seconds_excluding_encoder_load": 257.78509450001
+}

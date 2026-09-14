@@ -40,3 +40,24 @@ def test_save_and_read_video(tmp_path):
     frames_out, meta = read_video(out_path)
     assert len(frames_out) == 15
     assert meta.frame_count == 15
+
+
+@pytest.mark.parametrize('reported_fps', [0., float('nan'), float('inf')])
+def test_unknown_frame_rate_is_not_replaced_with_assumed_timing(monkeypatch, reported_fps):
+    class Capture:
+        released = False
+
+        def isOpened(self):
+            return True
+
+        def get(self, field):
+            return reported_fps if field == cv2.CAP_PROP_FPS else 10
+
+        def release(self):
+            self.released = True
+
+    capture = Capture()
+    monkeypatch.setattr(cv2, 'VideoCapture', lambda _: capture)
+    with pytest.raises(ValueError, match='frame rate'):
+        get_video_metadata('unknown.mp4')
+    assert capture.released

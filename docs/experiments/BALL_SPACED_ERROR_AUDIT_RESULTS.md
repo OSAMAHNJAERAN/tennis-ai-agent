@@ -1,0 +1,31 @@
+# Complete error attribution for the current spaced ball detector
+
+All 900 labels now have raw candidate evidence. The measured 26 visible misses comprise nineteen frames without a correct proposal, five with a surviving correct candidate that loses selection, one correct candidate suppressed during cross-view merging, and one raw correct selection lost during filtering. This identifies proposal coverage and absence discrimination as the larger remaining problems. No detector or threshold is changed by this audit.
+
+The unchanged final result is 803 TP / 43 FP / 26 FN / 42 TN: precision 94.9173%, recall 96.8637%. There are 55 distinct erroneous frames: fourteen wrong visible locations, twelve visible abstentions and twenty-nine false detections on explicitly absent labels. Wrong visible locations count both FP and FN, so adding FP and FN would double-count those fourteen frames. All evidence is reused development data, with existing annotation limitations and no independent test qualification.
+
+| Visible-miss attribution | Frames |
+| --- | ---: |
+| No correct raw proposal | 19 |
+| Correct merged candidate survives but loses selection | 5 |
+| Correct raw candidate removed by duplicate suppression | 1 |
+| Raw correct selection lost during filtering | 1 |
+| Total | 26 |
+
+The first saved-evidence audit covered candidates on 650 labels from thirteen 60 FPS clips. It explicitly left the remaining 250 labels unknown. A separately declared follow-up ran the existing SHA-256-verified WASB model on every label in the five 25 FPS clips, preserving all views, windows and candidates. All 250 raw selected coordinates and missing states match the saved continuous stream exactly, with maximum difference 0.0 native pixels. Per-clip acquisition times sum to 145.69 seconds, excluding setup; this sparse diagnostic run is not an end-to-end throughput benchmark.
+
+The initial audit, initial protocol snapshot, acquisition report and completed review are preserved separately. Dataset manifests, every input file, source reports, model hash, unchanged labels and applicable code hashes are verified. The final stream is reconstructed from saved continuous predictions, patch residuals and detour decisions. Independent distance scoring reproduces the final counts. Greedy cross-view duplicate suppression is independently replayed on all 900 candidate sets, reproducing every raw top-one selection within the predeclared tolerance.
+
+Of 829 visible labeled frames, 810 contain a correct candidate before duplicate suppression and 809 after it. These are oracle coverage counts that use the target label to recognize the right proposal. They are not deployed recall. The final detector selects 803 correct balls. The five surviving-selection failures are `match143_000:126`, `match149_000:18`, `match155_000:234`, `match155_000:246` and `match157_000:56`.
+
+Across all 900 labels, stationary filtering corrects two absence errors. Pixel-motion filtering corrects seven more absence errors but removes one correct ball (`match144_000:459`). The remaining patch/detour stages correct three absence errors and convert one wrong visible localization to abstention. These stages retain all other raw true selections. Their effects do not justify disabling the filters: the measured benefit and recall loss must be compared together.
+
+Nine examples were selected before visual inspection: up to two per initial attribution category, ordered by clip/frame. All nine were inspected on three source-context boards. `match143:174/202` visibly select static PERTH floor lettering. `match143:126/155` show visible yellow balls against seats and near the far player's legs/racket; complete candidate acquisition subsequently establishes that frame 126 has a surviving correct proposal while frame 155 has no proposal. `match144:459` shows a faint moving object crossing a court line where pixel filtering removes the raw correct selection. `match155:234/246` contain visible moving balls despite wrong raw selection. `match144:447/530` involve shoe/leg or hand/racket context and are harder to resolve visually; original labels and scores remain unchanged. The sample is diagnostic and is not representative of all 55 errors.
+
+A tenth, specifically targeted review examines the sole suppression case, `match156_000:32`. The source shows an elongated motion streak. Full-frame rank one has confidence 0.8162 and error 5.2562 reference pixels. The suppressed crop candidate has confidence 0.6668, error 3.99777 and distance 1.25870 from rank one, within the unchanged four-pixel suppression radius. A second near-identical crop candidate has error 4.00569. Thus the counted correct proposal lies only 0.00223 reference pixels inside the evaluation boundary. This does not justify adjusting the merge radius to pass this example, and retaining it alone would still leave the wrong rank-one selection first.
+
+Next work should address proposal failures and the twenty-nine absence false detections with broader training/proposal evidence. A selection-only improvement can recover only the five surviving candidates in this measured set; changing filters alone can recover only one lost raw-correct selection. Fresh training and model selection must use training data rather than tune against these 900 repeatedly examined labels. No speed, bounce or event authority follows from this audit.
+
+The alternative BallTrack checkpoint was checked against the [publisher's pinned model listing](https://huggingface.co/linfeng302/RacketVision-Models/tree/a3760773233a0988c9605259743fbdd87c59d3a3/checkpoints). Its scan lists HistoryBuffer and NumPy reconstruction metadata, also implicated in the separately blocked RTMDet loading operation. BallTrack was not downloaded or loaded in this work. Its existing source review remains `outputs/vision_upgrade_audit/balltrack_runtime_source_review.json`.
+
+Artifacts are under `outputs/vision_upgrade_audit/ball_spaced_error_audit01`: `report.json`, `original_protocol.md`, `stride_one_candidates.json`, `completed_candidate_review.json`, three sample boards, `visual_review.json` and the separate merge diagnosis. Initial audit SHA-256: `cb750bcb6c4e3ee1578a701c0c1028c2d85243b0be56ae588150ae23152bccd4`. Candidate acquisition SHA-256: `294dc22998a31f09e207e922cb4eff64a34a1b4e05db13988ab09fd6963fcc57`.

@@ -50,8 +50,12 @@ def test_real_label_provenance_and_support():
 
 def test_handedness_metadata_inversion():
     """Verify Left-Handed vs Right-Handed stroke logic is cleanly inverted."""
-    clf_right = TennisShotClassifier(handedness_map={1: PlayerHandedness.RIGHT_HANDED})
-    clf_left = TennisShotClassifier(handedness_map={1: PlayerHandedness.LEFT_HANDED})
+    clf_right = TennisShotClassifier(
+        handedness_map={1: PlayerHandedness.RIGHT_HANDED}, court_orientation_map={1: 1.0}
+    )
+    clf_left = TennisShotClassifier(
+        handedness_map={1: PlayerHandedness.LEFT_HANDED}, court_orientation_map={1: 1.0}
+    )
 
     p_box = BBox(100.0, 100.0, 200.0, 300.0, confidence=0.9, class_id=1)
     # Ball to the right of player (+35 px)
@@ -66,10 +70,10 @@ def test_handedness_metadata_inversion():
 
 def test_near_far_court_normalization():
     """Verify Near (Player 1) and Far (Player 2) court sides are properly normalized."""
-    clf = TennisShotClassifier(handedness_map={
-        1: PlayerHandedness.RIGHT_HANDED,
-        2: PlayerHandedness.RIGHT_HANDED
-    })
+    clf = TennisShotClassifier(
+        handedness_map={1: PlayerHandedness.RIGHT_HANDED, 2: PlayerHandedness.RIGHT_HANDED},
+        court_orientation_map={1: 1.0, 2: -1.0},
+    )
 
     # Near Player 1: cx=150. Ball on right side (x=185) -> FOREHAND
     p1_box = BBox(100.0, 100.0, 200.0, 300.0, confidence=0.9, class_id=1)
@@ -86,7 +90,11 @@ def test_near_far_court_normalization():
 
 def test_pose_unavailable_safe_fallback():
     """Verify classifier falls back safely when pose model is not available."""
-    clf = TennisShotClassifier(pose_extractor=None) # No pose model
+    clf = TennisShotClassifier(
+        pose_extractor=None,
+        handedness_map={1: PlayerHandedness.RIGHT_HANDED},
+        court_orientation_map={1: 1.0},
+    )
     p_box = BBox(100.0, 100.0, 200.0, 300.0, confidence=0.9, class_id=1)
     b_pt = TemporalBallPoint(50, 1.5, 185.0, 200.0, BallState.DETECTED)
 

@@ -1,0 +1,169 @@
+{
+  "observation_quality": {
+    "MISSING": 810,
+    "DETECTED": 892,
+    "PREDICTED": 531,
+    "TRACKED": 368,
+    "INTERPOLATED": 71
+  },
+  "track_lifetime": {
+    "average_track_length_frames": 11.935897435897436,
+    "max_track_length_frames": 156,
+    "average_prediction_duration_frames": 2.25,
+    "max_prediction_duration_frames": 4,
+    "reacquisition_success_rate": 0.6229508196721312,
+    "reacquisition_attempts": 122,
+    "reacquisition_successes": 76
+  },
+  "motion_validity": {
+    "velocity_spikes": 207,
+    "acceleration_spikes": 248,
+    "impossible_jumps": 207,
+    "out_of_frame_extrapolations": 0
+  },
+  "identity_stability": {
+    "identity_switches": 348,
+    "switches_to_spectator": 0,
+    "switches_to_logo": 0,
+    "switches_to_ad": 0,
+    "switches_to_clothing": 0
+  },
+  "ball_identity_layer": {
+    "proposal_categories": {
+      "UNKNOWN": 6309,
+      "NON_BALL_OBJECT": 1076,
+      "REAL_BALL_PLAY": 655,
+      "REAL_BALL_NON_PLAY": 1732
+    },
+    "total_proposals": 9772,
+    "proposals_accepted": 7436,
+    "proposals_rejected": 2336,
+    "ball_proposal_precision": 0.3210059171597633,
+    "ball_proposal_recall": 1.0,
+    "false_acceptance_rate": 0.14570074475287745,
+    "false_rejection_rate": 0.19999999999999996,
+    "gt_event_window_ball_recall": 0.8
+  },
+  "hard_negative_test_set": [
+    {
+      "video_id": "video_01",
+      "frame": 45,
+      "bbox": [
+        184.0,
+        118.0,
+        210.0,
+        138.0
+      ],
+      "manual_label": "scoreboard",
+      "source": "Broadcast overlay digit"
+    },
+    {
+      "video_id": "video_02",
+      "frame": 12,
+      "bbox": [
+        580.0,
+        290.0,
+        610.0,
+        320.0
+      ],
+      "manual_label": "logo",
+      "source": "Court sponsor logo on backstop"
+    },
+    {
+      "video_id": "video_03",
+      "frame": 88,
+      "bbox": [
+        1160.0,
+        440.0,
+        1175.0,
+        458.0
+      ],
+      "manual_label": "chair",
+      "source": "Umpire chair metal joint hardware"
+    },
+    {
+      "video_id": "video_04",
+      "frame": 105,
+      "bbox": [
+        820.0,
+        310.0,
+        845.0,
+        335.0
+      ],
+      "manual_label": "advertisement",
+      "source": "Side banner typography artifact"
+    },
+    {
+      "video_id": "video_05",
+      "frame": 60,
+      "bbox": [
+        650.0,
+        780.0,
+        680.0,
+        810.0
+      ],
+      "manual_label": "shoe",
+      "source": "Player near baseline white shoe tip"
+    },
+    {
+      "video_id": "video_06",
+      "frame": 140,
+      "bbox": [
+        920.0,
+        210.0,
+        950.0,
+        240.0
+      ],
+      "manual_label": "hat",
+      "source": "Spectator white baseball cap"
+    },
+    {
+      "video_id": "video_07",
+      "frame": 220,
+      "bbox": [
+        430.0,
+        180.0,
+        470.0,
+        220.0
+      ],
+      "manual_label": "spectator object",
+      "source": "Spectator hand waving in stands"
+    },
+    {
+      "video_id": "video_08",
+      "frame": 25,
+      "bbox": [
+        286.0,
+        426.0,
+        310.0,
+        450.0
+      ],
+      "manual_label": "clothing",
+      "source": "Far player white shirt emblem"
+    },
+    {
+      "video_id": "video_09",
+      "frame": 75,
+      "bbox": [
+        411.0,
+        270.0,
+        430.0,
+        290.0
+      ],
+      "manual_label": "logo",
+      "source": "Net post tension winch reflection"
+    },
+    {
+      "video_id": "video_10",
+      "frame": 310,
+      "bbox": [
+        1166.0,
+        444.0,
+        1184.0,
+        460.0
+      ],
+      "manual_label": "chair",
+      "source": "Umpire chair support leg"
+    }
+  ]
+}

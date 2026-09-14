@@ -1,148 +1,334 @@
 {
-  "video_08": [
-    {
-      "event_id": 1,
-      "event_type": "SERVE_CONTACT",
-      "frame_best": 42,
-      "image": "video_08_hit_f42_SERVE_CONTACT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 3,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 74,
-      "image": "video_08_hit_f74_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 5,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 108,
-      "image": "video_08_hit_f108_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 7,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 142,
-      "image": "video_08_hit_f142_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 9,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 176,
-      "image": "video_08_hit_f176_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    }
-  ],
-  "video_09": [
-    {
-      "event_id": 1,
-      "event_type": "SERVE_CONTACT",
-      "frame_best": 35,
-      "image": "video_09_hit_f35_SERVE_CONTACT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 3,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 68,
-      "image": "video_09_hit_f68_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 5,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 102,
-      "image": "video_09_hit_f102_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 7,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 138,
-      "image": "video_09_hit_f138_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 9,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 175,
-      "image": "video_09_hit_f175_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 11,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 212,
-      "image": "video_09_hit_f212_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    }
-  ],
-  "video_10": [
-    {
-      "event_id": 1,
-      "event_type": "SERVE_CONTACT",
-      "frame_best": 55,
-      "image": "video_10_hit_f55_SERVE_CONTACT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 3,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 88,
-      "image": "video_10_hit_f88_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 5,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 122,
-      "image": "video_10_hit_f122_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 7,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 158,
-      "image": "video_10_hit_f158_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 9,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 195,
-      "image": "video_10_hit_f195_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 11,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 232,
-      "image": "video_10_hit_f232_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 13,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 270,
-      "image": "video_10_hit_f270_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 15,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 308,
-      "image": "video_10_hit_f308_PLAYER_HIT_P2.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    },
-    {
-      "event_id": 17,
-      "event_type": "PLAYER_HIT",
-      "frame_best": 345,
-      "image": "video_10_hit_f345_PLAYER_HIT_P1.jpg",
-      "status": "MANUAL_FROM_RAW_VIDEO"
-    }
-  ]
+  "schema_version": "1.0",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC",
+  "annotation_source": "MANUAL_FROM_RAW_VIDEO",
+  "prediction_overlay": false,
+  "videos": {
+    "video_08": [
+      {
+        "event_id": 1,
+        "event_type": "SERVE_CONTACT",
+        "frame_best": 42,
+        "reviewed_frames": [
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "review_asset": "video_08_event_01_f42_SERVE_CONTACT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 3,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 74,
+        "reviewed_frames": [
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "review_asset": "video_08_event_03_f74_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 5,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 108,
+        "reviewed_frames": [
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111
+        ],
+        "review_asset": "video_08_event_05_f108_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 7,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 142,
+        "reviewed_frames": [
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145
+        ],
+        "review_asset": "video_08_event_07_f142_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 9,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 176,
+        "reviewed_frames": [
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179
+        ],
+        "review_asset": "video_08_event_09_f176_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      }
+    ],
+    "video_09": [
+      {
+        "event_id": 1,
+        "event_type": "SERVE_CONTACT",
+        "frame_best": 35,
+        "reviewed_frames": [
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38
+        ],
+        "review_asset": "video_09_event_01_f35_SERVE_CONTACT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 3,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 68,
+        "reviewed_frames": [
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "review_asset": "video_09_event_03_f68_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 5,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 102,
+        "reviewed_frames": [
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105
+        ],
+        "review_asset": "video_09_event_05_f102_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 7,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 138,
+        "reviewed_frames": [
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141
+        ],
+        "review_asset": "video_09_event_07_f138_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 9,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 175,
+        "reviewed_frames": [
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178
+        ],
+        "review_asset": "video_09_event_09_f175_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 11,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 212,
+        "reviewed_frames": [
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215
+        ],
+        "review_asset": "video_09_event_11_f212_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      }
+    ],
+    "video_10": [
+      {
+        "event_id": 1,
+        "event_type": "SERVE_CONTACT",
+        "frame_best": 55,
+        "reviewed_frames": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58
+        ],
+        "review_asset": "video_10_event_01_f55_SERVE_CONTACT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 3,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 88,
+        "reviewed_frames": [
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91
+        ],
+        "review_asset": "video_10_event_03_f88_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 5,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 122,
+        "reviewed_frames": [
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125
+        ],
+        "review_asset": "video_10_event_05_f122_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 7,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 158,
+        "reviewed_frames": [
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161
+        ],
+        "review_asset": "video_10_event_07_f158_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 9,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 195,
+        "reviewed_frames": [
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198
+        ],
+        "review_asset": "video_10_event_09_f195_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 11,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 232,
+        "reviewed_frames": [
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235
+        ],
+        "review_asset": "video_10_event_11_f232_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 13,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 270,
+        "reviewed_frames": [
+          267,
+          268,
+          269,
+          270,
+          271,
+          272,
+          273
+        ],
+        "review_asset": "video_10_event_13_f270_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 15,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 308,
+        "reviewed_frames": [
+          305,
+          306,
+          307,
+          308,
+          309,
+          310,
+          311
+        ],
+        "review_asset": "video_10_event_15_f308_PLAYER_HIT_P2_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      },
+      {
+        "event_id": 17,
+        "event_type": "PLAYER_HIT",
+        "frame_best": 345,
+        "reviewed_frames": [
+          342,
+          343,
+          344,
+          345,
+          346,
+          347,
+          348
+        ],
+        "review_asset": "video_10_event_17_f345_PLAYER_HIT_P1_contact_sheet.jpg",
+        "status": "MANUAL_FROM_RAW_VIDEO"
+      }
+    ]
+  }
 }

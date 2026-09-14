@@ -1,0 +1,309 @@
+{
+  "schema_version": "1.0",
+  "variants": [
+    {
+      "variant": "A_BASELINE_fa70671",
+      "precision": 0.07777777777777778,
+      "recall": 0.35,
+      "f1": 0.12727272727272726,
+      "true_positives": 14,
+      "false_positives": 166,
+      "false_negatives": 26,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 7,
+          "fp": 53,
+          "fn": 10,
+          "precision": 0.11666666666666667,
+          "recall": 0.4117647058823529,
+          "f1": 0.1818181818181818
+        },
+        "BOUNCE": {
+          "tp": 7,
+          "fp": 92,
+          "fn": 13,
+          "precision": 0.0707070707070707,
+          "recall": 0.35,
+          "f1": 0.1176470588235294
+        }
+      },
+      "wrong_type_count": 1,
+      "wrong_player_count": 5,
+      "wrong_family_count": 8
+    },
+    {
+      "variant": "B_MULTI_SCALE_CANDIDATES",
+      "precision": 0.07608695652173914,
+      "recall": 0.35,
+      "f1": 0.125,
+      "true_positives": 14,
+      "false_positives": 170,
+      "false_negatives": 26,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 7,
+          "fp": 56,
+          "fn": 10,
+          "precision": 0.1111111111111111,
+          "recall": 0.4117647058823529,
+          "f1": 0.17500000000000002
+        },
+        "BOUNCE": {
+          "tp": 7,
+          "fp": 93,
+          "fn": 13,
+          "precision": 0.07,
+          "recall": 0.35,
+          "f1": 0.11666666666666668
+        }
+      },
+      "wrong_type_count": 1,
+      "wrong_player_count": 5,
+      "wrong_family_count": 7
+    },
+    {
+      "variant": "C_CONTACT_FAMILY_STAGE",
+      "precision": 0.06557377049180328,
+      "recall": 0.3,
+      "f1": 0.10762331838565023,
+      "true_positives": 12,
+      "false_positives": 171,
+      "false_negatives": 28,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 7,
+          "fp": 59,
+          "fn": 10,
+          "precision": 0.10606060606060606,
+          "recall": 0.4117647058823529,
+          "f1": 0.1686746987951807
+        },
+        "BOUNCE": {
+          "tp": 5,
+          "fp": 78,
+          "fn": 15,
+          "precision": 0.060240963855421686,
+          "recall": 0.25,
+          "f1": 0.09708737864077671
+        }
+      },
+      "wrong_type_count": 1,
+      "wrong_player_count": 3,
+      "wrong_family_count": 8
+    },
+    {
+      "variant": "D_PLAYER_ATTRIBUTION_FUSION",
+      "precision": 0.06557377049180328,
+      "recall": 0.3,
+      "f1": 0.10762331838565023,
+      "true_positives": 12,
+      "false_positives": 171,
+      "false_negatives": 28,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 7,
+          "fp": 59,
+          "fn": 10,
+          "precision": 0.10606060606060606,
+          "recall": 0.4117647058823529,
+          "f1": 0.1686746987951807
+        },
+        "BOUNCE": {
+          "tp": 5,
+          "fp": 78,
+          "fn": 15,
+          "precision": 0.060240963855421686,
+          "recall": 0.25,
+          "f1": 0.09708737864077671
+        }
+      },
+      "wrong_type_count": 1,
+      "wrong_player_count": 3,
+      "wrong_family_count": 8
+    },
+    {
+      "variant": "E_BOUNCE_VERIFICATION",
+      "precision": 0.06557377049180328,
+      "recall": 0.3,
+      "f1": 0.10762331838565023,
+      "true_positives": 12,
+      "false_positives": 171,
+      "false_negatives": 28,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 7,
+          "fp": 59,
+          "fn": 10,
+          "precision": 0.10606060606060606,
+          "recall": 0.4117647058823529,
+          "f1": 0.1686746987951807
+        },
+        "BOUNCE": {
+          "tp": 5,
+          "fp": 78,
+          "fn": 15,
+          "precision": 0.060240963855421686,
+          "recall": 0.25,
+          "f1": 0.09708737864077671
+        }
+      },
+      "wrong_type_count": 1,
+      "wrong_player_count": 3,
+      "wrong_family_count": 8
+    },
+    {
+      "variant": "F_SERVE_CONTEXT_CLASSIFIER",
+      "precision": 0.0546448087431694,
+      "recall": 0.25,
+      "f1": 0.08968609865470852,
+      "true_positives": 10,
+      "false_positives": 173,
+      "false_negatives": 30,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 51,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 5,
+          "fp": 30,
+          "fn": 12,
+          "precision": 0.14285714285714285,
+          "recall": 0.29411764705882354,
+          "f1": 0.1923076923076923
+        },
+        "BOUNCE": {
+          "tp": 5,
+          "fp": 78,
+          "fn": 15,
+          "precision": 0.060240963855421686,
+          "recall": 0.25,
+          "f1": 0.09708737864077671
+        }
+      },
+      "wrong_type_count": 3,
+      "wrong_player_count": 2,
+      "wrong_family_count": 7
+    },
+    {
+      "variant": "G_UNKNOWN_ABSTENTION",
+      "precision": 0.0546448087431694,
+      "recall": 0.25,
+      "f1": 0.08968609865470852,
+      "true_positives": 10,
+      "false_positives": 173,
+      "false_negatives": 30,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 51,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 5,
+          "fp": 30,
+          "fn": 12,
+          "precision": 0.14285714285714285,
+          "recall": 0.29411764705882354,
+          "f1": 0.1923076923076923
+        },
+        "BOUNCE": {
+          "tp": 5,
+          "fp": 78,
+          "fn": 15,
+          "precision": 0.060240963855421686,
+          "recall": 0.25,
+          "f1": 0.09708737864077671
+        }
+      },
+      "wrong_type_count": 3,
+      "wrong_player_count": 2,
+      "wrong_family_count": 7
+    },
+    {
+      "variant": "H_INTEGRATED_PIPELINE",
+      "precision": 0.0546448087431694,
+      "recall": 0.25,
+      "f1": 0.08968609865470852,
+      "true_positives": 10,
+      "false_positives": 173,
+      "false_negatives": 30,
+      "per_class": {
+        "SERVE_CONTACT": {
+          "tp": 0,
+          "fp": 51,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "PLAYER_HIT": {
+          "tp": 5,
+          "fp": 30,
+          "fn": 12,
+          "precision": 0.14285714285714285,
+          "recall": 0.29411764705882354,
+          "f1": 0.1923076923076923
+        },
+        "BOUNCE": {
+          "tp": 5,
+          "fp": 78,
+          "fn": 15,
+          "precision": 0.060240963855421686,
+          "recall": 0.25,
+          "f1": 0.09708737864077671
+        }
+      },
+      "wrong_type_count": 3,
+      "wrong_player_count": 2,
+      "wrong_family_count": 7
+    }
+  ]
+}

@@ -44,7 +44,8 @@ class RallyAnalyzer:
         serve_attempt: int = 1,
         winner_id: Optional[int] = None,
         ending_reason: str = "",
-        point_id: int = 1
+        point_id: int = 1,
+        fps: Optional[float] = None,
     ) -> List[RallySegment]:
         """
         Segments shot sequences into formal rally records.
@@ -57,23 +58,32 @@ class RallyAnalyzer:
 
         start_s = live_shots[0]
         end_s = live_shots[-1]
+        end_frame = end_s.bounce_frame if end_s.bounce_frame is not None else end_s.frame_index
         
         total_strokes = len(live_shots)
         rally_hits = len([s for s in live_shots if s.shot_type != ShotType.SERVE])
         shots_p1 = len([s for s in live_shots if s.player_id == 1])
         shots_p2 = len([s for s in live_shots if s.player_id == 2])
 
-        dur = max(0.0, end_s.timestamp_s - start_s.timestamp_s)
-        if dur == 0.0 and len(live_shots) > 1:
-            dur = (end_s.frame_index - start_s.frame_index) / 30.0
+        if fps is not None:
+            if fps <= 0:
+                raise ValueError("fps must be positive")
+            # Frame indices are the authoritative video time base and include a
+            # terminal bounce when one is linked to the final stroke.
+            start_time_s = start_s.frame_index / fps
+            end_time_s = end_frame / fps
+        else:
+            start_time_s = start_s.timestamp_s
+            end_time_s = end_s.timestamp_s
+        dur = max(0.0, end_time_s - start_time_s)
 
         rally = RallySegment(
             rally_id=1,
             point_id=point_id,
             start_frame=start_s.frame_index,
-            end_frame=end_s.bounce_frame or (end_s.frame_index + 30),
-            start_time_s=start_s.timestamp_s,
-            end_time_s=end_s.timestamp_s + (dur if dur > 0 else 1.0),
+            end_frame=end_frame,
+            start_time_s=start_time_s,
+            end_time_s=end_time_s,
             duration_s=round(dur, 2),
             server_id=server_id,
             receiver_id=receiver_id,

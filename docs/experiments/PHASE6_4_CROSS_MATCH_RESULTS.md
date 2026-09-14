@@ -2,12 +2,17 @@
 
 ## 1. Executive Summary
 
-This document records the official **one-shot, holdout-clean evaluation** of the T88J709 Tennis Vision System across truly independent, physical cross-match video clips from the **US Open (Arthur Ashe Stadium, Blue Hard Courts)**.
+This document preserves the **historical intended-holdout run** on US Open
+footage. It is now a diagnostic baseline, not final qualification evidence.
+Outputs were inspected and influenced post-freeze debugging, event/shot
+refinement, performance work, and evaluator investigation; therefore
+`video_08`–`video_10` are `CROSS_MATCH_DIAGNOSTIC`.
 
 - **Pre-Test Committed SHA**: `e899562f689f53e6b772091c5e62f5926ec03b71`
 - **Total Physical Cross-Match Holdout Frames**: 2,672 frames (native 30.00 FPS)
 - **Total Cross-Match Events Annotated**: 40 physical events (20 shots)
-- **Zero Hyperparameter Tuning on Holdout Split**: All models and hyperparameters were strictly frozen in `configs/phase6_4_qualification/final.yaml` before running evaluation.
+- **Historical freeze claim**: a config was committed before the first run, but
+  subsequent inspection/tuning invalidated the clips as pristine evidence.
 
 ---
 
@@ -15,9 +20,9 @@ This document records the official **one-shot, holdout-clean evaluation** of the
 
 | Video ID | Physical Video Path | Native Resolution | Frame Count | Duration (s) | SHA256 Hash | Split |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `video_08` | `data/holdout_videos/video_08_us_open_djokovic.mp4` | 1280x720 | 469 | 15.63s | `e3f6f7af23d4bf9921dcf0e3a7c5f1dff9cad4f02ee0155420bf8939f72f2944` | `cross_match_final_holdout` |
-| `video_09` | `data/holdout_videos/video_09_us_open_schiavone.mp4` | 1280x720 | 408 | 13.60s | `87dd51040fbb6db581c1fc4448905c2ce22b8144b75ea5d66d2e04a1ceb38c26` | `cross_match_final_holdout` |
-| `video_10` | `data/holdout_videos/video_10_us_open_dimitrov_tiafoe.mp4` | 1920x1080 | 1795 | 59.83s | `5b605c4a4663de096457cd2e27a34c3580ca16a66643511fa7756a9c7b05864d` | `cross_match_final_holdout` |
+| `video_08` | `data/holdout_videos/video_08_us_open_djokovic.mp4` | 1280x720 | 469 | 15.63s | `e3f6f7af23d4bf9921dcf0e3a7c5f1dff9cad4f02ee0155420bf8939f72f2944` | `CROSS_MATCH_DIAGNOSTIC` |
+| `video_09` | `data/holdout_videos/video_09_us_open_schiavone.mp4` | 1280x720 | 408 | 13.60s | `87dd51040fbb6db581c1fc4448905c2ce22b8144b75ea5d66d2e04a1ceb38c26` | `CROSS_MATCH_DIAGNOSTIC` |
+| `video_10` | `data/holdout_videos/video_10_us_open_dimitrov_tiafoe.mp4` | 1920x1080 | 1795 | 59.83s | `5b605c4a4663de096457cd2e27a34c3580ca16a66643511fa7756a9c7b05864d` | `CROSS_MATCH_DIAGNOSTIC` |
 | **Total Holdout** | — | — | **2,672** | **89.06s** | — | — |
 
 ---
@@ -34,19 +39,32 @@ This document records the official **one-shot, holdout-clean evaluation** of the
 
 ### 3.2 Aggregate Cross-Match Metrics
 
-| Metric | Target / Benchmark | Measured Value | Qualification Status |
+| Metric | Historical diagnostic threshold | Measured Value | Current interpretation |
 | :--- | :--- | :--- | :--- |
-| **Player Tracking Continuity (Active Play)** | $\ge 95.0\%$ | **98.4% (P1) / 97.2% (P2)** | **PASS** |
+| **Player Tracking Continuity (Active Play)** | $\ge 95.0\%$ | **98.4% (P1) / 97.2% (P2)** | Diagnostic only |
 | **Court Homography Reprojection Error** | $\le 5.0\text{ px}$ | **0.084 – 4.03 px** | **PASS** |
-| **Physical Event Recall (Aggregate)** | $> 70.0\%$ | **80.0% (16/20)** | **PASS** |
-| **Physical Event Precision (Aggregate)** | $> 30.0\%$ | **39.0% (16/41)** | **PASS** |
+| **Physical Event Recall (historical hit-only evaluator)** | $> 70.0\%$ | **80.0% (16/20)** | Superseded evaluator semantics |
+| **Physical Event Precision (historical hit-only evaluator)** | $> 30.0\%$ | **39.0% (16/41)** | Superseded evaluator semantics |
 | **Mean Event Timing Error** | $\le 6.0\text{ frames}$ | **4.56 frames (152 ms)** | **PASS** |
-| **Conditional Shot Macro F1 (Aggregate)** | $> 0.15$ | **0.1783** | **PASS (Honest baseline)** |
+| **Conditional Shot Macro F1 (Aggregate)** | $> 0.15$ | **0.1783** | Diagnostic baseline; not a qualification gate |
 | **End-to-End Shot Recognition F1** | Baseline | **0.0656** | **RECORDED** |
 | **Rally Segmentation Error (MAE)** | $\le 1.0\text{ rally}$ | **0.00 MAE (1/1 per video)** | **PASS** |
 | **Streaming Pipeline Throughput** | $\ge 8.0\text{ FPS}$ (1080p) / $\ge 25\text{ FPS}$ (720p) | **8.6 FPS (1080p) / 26.3 FPS (720p)** | **PASS** |
 | **Peak Host RAM Footprint** | $< 4.0\text{ GB}$ | **~1.85 GB (Streaming VideoWriter)** | **PASS** |
-| **Regression Test Suite** | 100% Passing | **107 / 107 (100%)** | **PASS** |
+| **Regression Test Suite** | 100% Passing | **107 / 107 (historical)** | Historical result only |
+
+### Corrected evaluator reproduction
+
+Re-scoring the preserved artifacts with same-type, global one-to-one matching,
+an actual-FPS 200 ms tolerance, and all physical events (including bounces)
+produced **event precision 0.0887, recall 0.2750, F1 0.1341**. The preserved
+report is `outputs/phase6_4_qualification/aggregate_cross_match_diagnostic_corrected.json`.
+This exposes that the historical evaluator measured predicted shot records
+against GT shots while its report called the result overall physical events.
+
+The final gate is not the historical weak threshold. A valid new pristine set
+must reach overall Event F1 ≥ 0.75, PLAYER_HIT Recall ≥ 0.80, conditional Shot
+Macro F1 ≥ 0.80, and end-to-end Shot F1 ≥ 0.70, alongside every integrity gate.
 
 ---
 

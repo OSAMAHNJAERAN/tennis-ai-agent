@@ -1,0 +1,45 @@
+{
+  "description": "Phase 6.4 Physical Contact FP Analysis \u2014 Before and After Provenance Gating",
+  "baseline_A": {
+    "total_emitted": 105,
+    "TP": 30,
+    "FP": 75,
+    "FN": 10,
+    "Precision": 0.2857,
+    "Recall": 0.75,
+    "F1": 0.4138
+  },
+  "variant_B_provenance": {
+    "total_emitted": 104,
+    "TP": 30,
+    "FP": 74,
+    "FN": 10,
+    "Precision": 0.288,
+    "Recall": 0.75,
+    "F1": 0.4171
+  },
+  "fp_categories_baseline": {
+    "video_10_post_rally": {
+      "count": 62,
+      "pct": "82.7%",
+      "description": "Tracker follows background objects after last rally event (frame 370). Kinematically indistinguishable from real ball contacts."
+    },
+    "video_08_background": {
+      "count": 14,
+      "pct": "18.7%",
+      "description": "False direction changes from interpolation artifacts"
+    },
+    "video_09_background": {
+      "count": 12,
+      "pct": "16.0%",
+      "description": "False direction changes from interpolation artifacts"
+    },
+    "note": "Percentages sum >100 because some cross-video matches inflate per-video FP count vs global"
+  },
+  "fp_blocker_diagnosis": {
+    "primary_blocker": "video_10 post-rally period (frames 421-1795): YOLO detects moving spectators, ball retrieval persons with conf 0.05-0.53. Tracker follows these objects producing kinematically valid trajectories.",
+    "why_activity_state_insufficient": "Post-rally YOLO detections maintain confidence >= 0.08 threshold. Activity state classifier cannot distinguish active rally from post-rally using detection confidence alone.",
+    "why_provenance_insufficient": "Post-rally FPs have grounded (DETECTED) frames with plausible single-step distances (11-95px). Static-lock only catches a subset (frames 1348, 1754).",
+    "fundamental_limit": "Without a scoring engine, time-in-rally context, or learned background segmentation model, ~60 of the 62 video_10 FPs cannot be suppressed at Stage 3."
+  }
+}

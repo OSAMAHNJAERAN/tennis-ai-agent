@@ -1,0 +1,37 @@
+{
+  "schema_version": "2.1",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "qualification_evidence": false,
+  "coverage_review_status": "MODEL_ASSISTED_PROVISIONAL",
+  "metric_authority": "DIAGNOSTIC_ONLY",
+  "human_approved": false,
+  "starting_sha": "29cd39af013e6498599e19dd0ced97d00247c917",
+  "optimal_matching": "PASS",
+  "causal_stage_lineage": "PASS",
+  "coverage_boundary_handling": "PASS",
+  "candidate_identity_persistence": "PASS",
+  "production_regression": {
+    "baseline_artifact": "artifacts/validation/phase6_4_corrected_fp_manifest.json",
+    "production_prediction_count_before": 128,
+    "production_prediction_count_after": 128,
+    "changed_prediction_frames": [],
+    "changed_event_labels_or_players": [],
+    "semantically_equivalent": true
+  },
+  "analytics_contract_schema_version": "1.0",
+  "production_gt_leakage_check": "PASS",
+  "model_tuning_performed": false,
+  "evaluator_provenance": {
+    "evaluator_version": "2.1",
+    "evaluator_sha256": "84342716bc2b217aab10b047b71b9f7c0e99e99ca848c241994c0e47b3de99ef",
+    "gt_sha256": "57559bec15f7d3df7e55c09d421825b4f19947c40fa82c9f0ffcc8da6538b2ee",
+    "coverage_sha256": "ddd04996a4cbfb243b1343b13ed40b613a6bda0ca02b3a9e10e0e42454c461ae",
+    "video_manifest_sha256": "1974c6af6744ecb5140de42dd35fa9eb197b882b87bad54bd58096d06a3db702",
+    "config_sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed",
+    "matching_algorithm": "PER_VIDEO_NATIVE_TIMESTAMP_GT_INTERVAL_MAX_CARDINALITY_MIN_COST_ONE_TO_ONE",
+    "coverage_policy": "TOLERANCE_NEIGHBORHOOD_MUST_BE_FULLY_OBSERVABLE_OR_SYMMETRICALLY_CENSORED",
+    "causal_lineage_schema_version": "1.0",
+    "matching_tolerance_s": 0.2
+  }
+}

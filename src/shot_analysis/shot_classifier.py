@@ -22,15 +22,16 @@ class TennisShotClassifier:
         pose_extractor: Optional[PoseFeatureExtractor] = None,
         min_pose_confidence: float = 0.35,
         ambiguity_threshold: float = 0.15,
-        handedness_map: Optional[Dict[int, PlayerHandedness]] = None
+        handedness_map: Optional[Dict[int, PlayerHandedness]] = None,
+        court_orientation_map: Optional[Dict[int, float]] = None,
     ):
         self.pose_extractor = pose_extractor
         self.min_pose_confidence = min_pose_confidence
         self.ambiguity_threshold = ambiguity_threshold
-        self.handedness_map = handedness_map or {
-            1: PlayerHandedness.RIGHT_HANDED,
-            2: PlayerHandedness.RIGHT_HANDED
-        }
+        self.handedness_map = handedness_map or {}
+        # +1/-1 describes an explicitly established screen-to-body orientation.
+        # Player identity alone is not an orientation measurement.
+        self.court_orientation_map = court_orientation_map or {}
 
     def classify_shot(
         self,
@@ -78,15 +79,25 @@ class TennisShotClassifier:
                 "Unattributed player hit."
             )
 
-        handedness = self.handedness_map.get(player_id, PlayerHandedness.RIGHT_HANDED)
-        court_side_sign = 1.0 if player_id == 1 else -1.0
-        handedness_sign = 1.0 if handedness == PlayerHandedness.RIGHT_HANDED else (-1.0 if handedness == PlayerHandedness.LEFT_HANDED else 1.0)
+        handedness = self.handedness_map.get(player_id, PlayerHandedness.UNKNOWN_HANDEDNESS)
+        court_side_sign = self.court_orientation_map.get(player_id)
+        handedness_sign = (
+            1.0 if handedness == PlayerHandedness.RIGHT_HANDED
+            else -1.0 if handedness == PlayerHandedness.LEFT_HANDED
+            else None
+        )
 
         # 3. Compute Multi-Cue Kinematic and Spatial Features
         # A. Ball-Player Lateral Spatial Geometry
         geo_valid = False
         norm_geo_dx = 0.0
-        if player_box is not None and ball_point is not None and ball_point.x_px is not None:
+        if (
+            court_side_sign is not None
+            and handedness_sign is not None
+            and player_box is not None
+            and ball_point is not None
+            and ball_point.x_px is not None
+        ):
             bw = max(10.0, player_box.x2 - player_box.x1)
             player_cx = (player_box.x1 + player_box.x2) / 2.0
             raw_dx = (ball_point.x_px - player_cx) / bw
@@ -95,13 +106,20 @@ class TennisShotClassifier:
 
         # B. YOLO11-Pose Temporal Feature Extraction
         pose_feat = None
-        if self.pose_extractor is not None and frames is not None and all_player_boxes is not None:
+        if (
+            court_side_sign is not None
+            and handedness_sign is not None
+            and self.pose_extractor is not None
+            and frames is not None
+            and all_player_boxes is not None
+        ):
             pose_feat = self.pose_extractor.extract_hit_window_features(
                 frames=frames,
                 player_boxes=all_player_boxes,
                 hit_frame=hit_frame,
                 player_id=player_id,
-                handedness=handedness
+                handedness=handedness,
+                court_orientation_sign=court_side_sign,
             )
 
         pose_valid = (

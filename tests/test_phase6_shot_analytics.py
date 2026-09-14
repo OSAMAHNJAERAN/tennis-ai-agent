@@ -109,7 +109,9 @@ def test_dead_ball_stroke_suppression():
 def test_geometry_baseline_handedness_inversion():
     """Tests handedness-aware geometry classification for Right vs Left-handed players."""
     # Player 1 (Near court, facing up, Right-handed): Ball on right side (x_ball > x_center) -> FOREHAND
-    clf_right = TennisShotClassifier(handedness_map={1: PlayerHandedness.RIGHT_HANDED})
+    clf_right = TennisShotClassifier(
+        handedness_map={1: PlayerHandedness.RIGHT_HANDED}, court_orientation_map={1: 1.0}
+    )
     p_box = BBox(100, 100, 200, 300, confidence=0.9, class_id=1) # cx = 150, bw = 100
     b_pt_right = TemporalBallPoint(50, 1.5, 185.0, 200.0, BallState.DETECTED) # dx = +35 px -> FOREHAND
     
@@ -118,7 +120,9 @@ def test_geometry_baseline_handedness_inversion():
     assert src_r == ShotClassificationSource.GEOMETRY_BASELINE
 
     # Player 1 (Near court, facing up, Left-handed): Same ball on right side -> BACKHAND
-    clf_left = TennisShotClassifier(handedness_map={1: PlayerHandedness.LEFT_HANDED})
+    clf_left = TennisShotClassifier(
+        handedness_map={1: PlayerHandedness.LEFT_HANDED}, court_orientation_map={1: 1.0}
+    )
     st_l, _, src_l, _, _ = clf_left.classify_shot("PLAYER_1_HIT", 50, 1, p_box, b_pt_right)
     assert st_l == ShotType.BACKHAND
     assert src_l == ShotClassificationSource.GEOMETRY_BASELINE

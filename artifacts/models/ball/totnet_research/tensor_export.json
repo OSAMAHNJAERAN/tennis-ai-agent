@@ -1,0 +1,36 @@
+{
+  "complete": true,
+  "qualification_evidence": false,
+  "checkpoint_sha256": "36caadd2453cf1a37f26afb0024b861fd3285ca6e9a91e9e4a20d35e90a0a24a",
+  "revision": "8a757f63391b262c14d18b4095486336852dbeef",
+  "script_sha256": "fa716e0aae331db15f6c5791ebda768a1bbb4d3dfd17bc304c89781ee32a3ad6",
+  "tensor_export_sha256": "66395b83760d533e8c9a43eb3b5a00e7b24a018d74f6d9232489dae6224dd7a2",
+  "state_tensor_count": 196,
+  "strict_architecture_match": true,
+  "metadata_read_as_builtin_ordered_dict": true,
+  "default_restricted_roundtrip_exact": true,
+  "checkpoint_epoch": 25,
+  "config": {
+    "model_choice": "TOTNet",
+    "dataset_choice": "tennis",
+    "num_channels": 64,
+    "num_frames": 5,
+    "img_size": [
+      288,
+      512
+    ],
+    "bidirect": false,
+    "loss_function": "WBCE",
+    "ball_size": 4,
+    "weighting_list": [
+      1,
+      2,
+      3,
+      3
+    ],
+    "seed": 2024
+  },
+  "torch_version": "2.13.0+cu126",
+  "parameters": 8654467,
+  "limitations": "No accuracy measurement or inference validation yet."
+}

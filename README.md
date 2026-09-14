@@ -2,6 +2,18 @@
 
 University Final Year Project (FYP) focused on AI-powered video analysis of tennis matches from single-camera footage.
 
+## Astra Tennis workspace
+
+The upgraded React workspace adds an interactive 3D court, animated players and ball, synchronized video/tactical replay, spatial density, and a configurable Astra GPT coach.
+
+```powershell
+cd frontend
+pnpm install
+pnpm dev
+```
+
+Open the local Vite URL and select **Phase 5 Scoring** for the bundled spatial example. See [Astra setup and implementation](docs/ASTRA_TENNIS.md) for coach configuration, evidence limitations, and validation. The existing inference commands below remain available.
+
 ---
 
 ## 1. System Overview
@@ -152,4 +164,3 @@ See:
 - `docs/experiments/PHASE2_YOLO11_EXPERIMENTS.md`
 - `docs/experiments/PHASE2_YOLO11_RESULTS.md`
 - `docs/experiments/PHASE2_YOLO11_FAILURE_ANALYSIS.md`
-

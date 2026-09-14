@@ -2,7 +2,11 @@
 
 ## 1. Executive Summary
 
-This forensic audit analyzes all 25 false positive event detections across the cross-match diagnostic dataset (`video_08`, `video_09`, `video_10`).
+This historical forensic audit analyzed 25 false positives under the old
+hit-only evaluator semantics. Correct all-physical-event evaluation finds 113
+false positives across the preserved artifacts. The taxonomy remains useful,
+but the old count and 39% precision must not be presented as overall event
+qualification performance.
 
 - **Diagnostic Dataset**: 2,672 frames (native 30 FPS, US Open Arthur Ashe Stadium)
 - **Ground Truth Physical Events**: 40 events (20 Hits/Serves, 20 Bounces)

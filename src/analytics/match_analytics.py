@@ -8,6 +8,9 @@ from src.analytics.serve_analyzer import ServeAnalyzer
 from src.analytics.shot_statistics import ShotStatisticsAnalyzer
 from src.line_calling.line_call_engine import LineCallEvidence
 
+def _round_known(value: Optional[float], digits: int) -> Optional[float]:
+    return round(value, digits) if value is not None and np.isfinite(value) else None
+
 class MatchAnalyticsAggregator:
     """
     Master Match Analytics Aggregator for T88J709.
@@ -21,8 +24,8 @@ class MatchAnalyticsAggregator:
         shots: List[ShotEventEvidence],
         rallies: List[RallySegment],
         line_calls: List[LineCallEvidence],
-        p1_distance_m: float = 0.0,
-        p2_distance_m: float = 0.0,
+        p1_distance_m: Optional[float] = None,
+        p2_distance_m: Optional[float] = None,
         point_id: int = 1
     ) -> List[Dict[str, Any]]:
         """Constructs detailed per-point records."""
@@ -45,8 +48,8 @@ class MatchAnalyticsAggregator:
             "total_shots_including_serve": rally_obj.total_strokes_including_serve if rally_obj else len([s for s in shots if not s.is_dead_ball]),
             "rally_hits_excluding_serve": rally_obj.rally_hits_excluding_serve if rally_obj else 0,
             "duration_s": rally_obj.duration_s if rally_obj else 0.0,
-            "player_1_movement_m": round(p1_distance_m, 2),
-            "player_2_movement_m": round(p2_distance_m, 2),
+            "player_1_movement_m": _round_known(p1_distance_m, 2),
+            "player_2_movement_m": _round_known(p2_distance_m, 2),
             "shot_ids": [s.shot_id for s in shots],
             "line_call_ids": [lc.event_id for lc in line_calls]
         })
@@ -61,10 +64,10 @@ class MatchAnalyticsAggregator:
         line_calls: List[LineCallEvidence],
         p1_positions: List[Optional[Tuple[float, float]]],
         p2_positions: List[Optional[Tuple[float, float]]],
-        p1_distance_m: float,
-        p2_distance_m: float,
-        p1_speed_kmh: float,
-        p2_speed_kmh: float,
+        p1_distance_m: Optional[float],
+        p2_distance_m: Optional[float],
+        p1_speed_kmh: Optional[float],
+        p2_speed_kmh: Optional[float],
         ball_speed_summary: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         """Constructs the comprehensive match analytics record."""
@@ -84,7 +87,7 @@ class MatchAnalyticsAggregator:
         # Rally summary
         live_rallies = [r for r in rallies if not r.is_dead_ball_point]
         avg_rally_len = float(np.mean([r.total_strokes_including_serve for r in live_rallies])) if live_rallies else (1.0 if shots else 0.0)
-        longest_rally = max([r.total_strokes_including_serve for r in live_rallies], default=1)
+        longest_rally = max([r.total_strokes_including_serve for r in live_rallies], default=0)
 
         return {
             "match_id": match_state.match_id,
@@ -105,8 +108,8 @@ class MatchAnalyticsAggregator:
                 "player_1": {
                     "id": 1,
                     "movement": {
-                        "distance_meters": round(p1_distance_m, 2),
-                        "average_speed_kmh": round(p1_speed_kmh, 1)
+                        "distance_meters": _round_known(p1_distance_m, 2),
+                        "average_speed_kmh": _round_known(p1_speed_kmh, 1)
                     },
                     "shots": p1_shot_stats["shot_type_counts"],
                     "direction": p1_shot_stats["direction_counts"],
@@ -116,8 +119,8 @@ class MatchAnalyticsAggregator:
                 "player_2": {
                     "id": 2,
                     "movement": {
-                        "distance_meters": round(p2_distance_m, 2),
-                        "average_speed_kmh": round(p2_speed_kmh, 1)
+                        "distance_meters": _round_known(p2_distance_m, 2),
+                        "average_speed_kmh": _round_known(p2_speed_kmh, 1)
                     },
                     "shots": p2_shot_stats["shot_type_counts"],
                     "direction": p2_shot_stats["direction_counts"],

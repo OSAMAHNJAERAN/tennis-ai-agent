@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "phase": "6.4",
+  "scientific_split": "CROSS_MATCH_DIAGNOSTIC_ALREADY_CONSUMED",
+  "contact_family_confusion": {
+    "PLAYER_CONTACT": {
+      "PLAYER_CONTACT": 12,
+      "COURT_CONTACT": 1,
+      "UNKNOWN_CONTACT": 0,
+      "MISSED_OR_REJECTED": 7
+    },
+    "COURT_CONTACT": {
+      "PLAYER_CONTACT": 10,
+      "COURT_CONTACT": 2,
+      "UNKNOWN_CONTACT": 0,
+      "MISSED_OR_REJECTED": 8
+    }
+  },
+  "contact_family_metrics": {
+    "PLAYER_CONTACT": {
+      "tp": 12,
+      "fp": 10,
+      "fn": 8,
+      "precision": 0.5454545454545454,
+      "recall": 0.6,
+      "f1": 0.5714285714285713
+    },
+    "COURT_CONTACT": {
+      "tp": 2,
+      "fp": 1,
+      "fn": 18,
+      "precision": 0.6666666666666666,
+      "recall": 0.1,
+      "f1": 0.1739130434782609
+    }
+  },
+  "semantic_confusion": {
+    "SERVE_CONTACT": {
+      "SERVE_CONTACT": 0,
+      "PLAYER_HIT": 2,
+      "BOUNCE": 1,
+      "UNKNOWN_EVENT": 0,
+      "MISSED_OR_REJECTED": 0
+    },
+    "PLAYER_HIT": {
+      "SERVE_CONTACT": 4,
+      "PLAYER_HIT": 6,
+      "BOUNCE": 0,
+      "UNKNOWN_EVENT": 0,
+      "MISSED_OR_REJECTED": 7
+    },
+    "BOUNCE": {
+      "SERVE_CONTACT": 5,
+      "PLAYER_HIT": 5,
+      "BOUNCE": 2,
+      "UNKNOWN_EVENT": 0,
+      "MISSED_OR_REJECTED": 8
+    }
+  }
+}
