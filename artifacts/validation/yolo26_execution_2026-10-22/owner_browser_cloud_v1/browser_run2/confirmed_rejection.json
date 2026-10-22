@@ -1,0 +1,63 @@
+{
+  "replies": [
+    {
+      "key": "a2d67e55-1ec1-47df-b41f-58be5de2eed6",
+      "owner": "account_f153353ea3f9a4246e1ca5079f1bf958",
+      "status": 415,
+      "rejection_header": "a2d67e55-1ec1-47df-b41f-58be5de2eed6",
+      "response": {
+        "detail": "Choose an MP4, MOV or AVI video with a valid filename."
+      }
+    },
+    {
+      "key": "7071955c-80e9-4715-b067-cfcfa17f3100",
+      "owner": "account_f153353ea3f9a4246e1ca5079f1bf958",
+      "status": 201,
+      "rejection_header": null,
+      "response": {
+        "id": "batch_d8313c8c24c44abf961de6d5e48dad25",
+        "mode": "independent",
+        "grouping_status": "unverified",
+        "uploads": [
+          {
+            "id": "upload_ee4c32cdec144cc5892c5049fdd3d08d",
+            "filename": "SYNTHETIC-corrected-filename-931e1ff7.mp4",
+            "size_bytes": 9723,
+            "offset": 0,
+            "status": "UPLOADING",
+            "batch_id": "batch_d8313c8c24c44abf961de6d5e48dad25",
+            "analysis_id": null,
+            "clip_index": 0,
+            "start_offset_seconds": null,
+            "checksum": null,
+            "error": null,
+            "created_at": "2026-10-22T14:21:56.879573+00:00",
+            "updated_at": "2026-10-22T14:21:56.879573+00:00"
+          }
+        ]
+      }
+    }
+  ],
+  "rejected_rows": {
+    "accepted_requests": 0,
+    "rejected_tombstones": 1,
+    "descriptors": [],
+    "batch_session_counts": []
+  },
+  "accepted_rows": {
+    "accepted_requests": 1,
+    "rejected_tombstones": 0,
+    "descriptors": [
+      {
+        "id": "batch_d8313c8c24c44abf961de6d5e48dad25",
+        "mode": "independent",
+        "upload_ids": [
+          "upload_ee4c32cdec144cc5892c5049fdd3d08d"
+        ]
+      }
+    ],
+    "batch_session_counts": [
+      1
+    ]
+  }
+}

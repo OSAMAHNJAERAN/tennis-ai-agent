@@ -1,0 +1,24 @@
+{
+  "scope": "Native file selection cleared on explicit sign-out and refresh-observed 401; actual browser run2 independently exposed this defect",
+  "results": {
+    "red2": {
+      "tests": 26,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    },
+    "green": {
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "product_change": "Two native input resets in Upload.tsx; saved uncertain creation intent is preserved",
+  "source_sha256": {
+    "frontend/src/pages/Upload.tsx": "b6d6427ef6122419e53efbe22abbeaca9c8ab1ed9700aff0a0eaf4b4506ac988",
+    "frontend/src/pages/Upload.test.tsx": "ef2b46ce590825ed3b1a6b68d4e5f34a6a77bcd27d86a5e88d8c42ad3e6bf09d",
+    "frontend/src/pages/BatchUpload.test.tsx": "3c5dc7924963793e79b6e80dbe641ca1f40bbb7743c587cf8623f3caf9aec1e8"
+  },
+  "first_fake_timer_attempt": "Interrupted and retained separately; not a product regression count"
+}

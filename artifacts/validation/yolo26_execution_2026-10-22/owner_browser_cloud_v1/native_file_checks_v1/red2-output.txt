@@ -1,0 +1,108 @@
+
+ RUN  v4.1.11 /workspace/tennis-ai-agent/frontend
+
+ ✓ src/pages/Upload.test.tsx > video upload workflow > discards delayed initial history when the owner changes between the before and after checks 270ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > invalidates a pending cancel acknowledgement after a refresh observes 401 61ms
+ × src/pages/Upload.test.tsx > video upload workflow > clears native file bytes when a history refresh observes an expired owner session 2529ms
+   → expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\alice-private.mp4
+ ✓ src/pages/Upload.test.tsx > video upload workflow > withholds account history if an authenticated server cannot identify its owner 64ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > uses the retry seam once and disables rapid repeat clicks until acknowledged 81ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps retry errors actionable and treats a failed child as its own retry source 97ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > suppresses an earlier account retry response after sign-out 69ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > treats authentication-required as account access while retaining a healthy service 34ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > accepts a selected video and opens persistent processing status 77ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > rejects an unsupported dropped file without uploading 30ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows actual upload progress while keeping cancellation available 65ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > restores completion and a deep result link from job history 48ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows a recoverable connection error rather than losing a job 20ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > excludes public examples from history without removing the active job 37ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows the private archive empty state when only public examples exist 19ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is loading 56ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is unavailable 61ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved analyses accessible and restores public filtering when the catalog recovers 50ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is unavailable 44ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is malformed 40ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > keeps the second upload usable when the first fails 271ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > requires explicit same-match order and keeps grouping unverified 114ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > restores original metadata after an uncertain creation instead of posting edited details as a new batch 223ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > prevents rapid repeated Analyze clicks while atomic creation is pending 114ms
+ × src/pages/BatchUpload.test.tsx > independent file progress > aborts pending creation and discards its late response after sign-out 98ms
+   → expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ × src/pages/BatchUpload.test.tsx > independent file progress > aborts file transfer and ignores late progress and accepted jobs after sign-out 118ms
+   → expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/BatchUpload.test.tsx > independent file progress > aborts pending creation and discards its late response after sign-out
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ ❯ src/pages/BatchUpload.test.tsx:122:21
+    120|     expect(signal?.aborted).toBe(true);
+    121|     const chooser = screen.getByLabelText('Choose tennis video') as HT…
+    122|     expect(chooser).toHaveValue('');
+       |                     ^
+    123|     expect(chooser.files).toHaveLength(0);
+    124|     await act(async () => finish({ id: 'batch_one', mode: 'independent…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/pages/BatchUpload.test.tsx > independent file progress > aborts file transfer and ignores late progress and accepted jobs after sign-out
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ ❯ src/pages/BatchUpload.test.tsx:158:21
+    156|     expect(transferSignal?.aborted).toBe(true);
+    157|     const chooser = screen.getByLabelText('Choose tennis video') as HT…
+    158|     expect(chooser).toHaveValue('');
+       |                     ^
+    159|     expect(chooser.files).toHaveLength(0);
+    160|     await act(async () => { progress(90); finish(job('first.mp4', 'mat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > clears native file bytes when a history refresh observes an expired owner session
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\alice-private.mp4
+ ❯ src/pages/Upload.test.tsx:96:21
+     94|     vi.mocked(listJobs).mockRejectedValue(new ApiError('Sign in to acc…
+     95|     await waitFor(() => expect(screen.getByText('Sign in to upload vid…
+     96|     expect(chooser).toHaveValue('');
+       |                     ^
+     97|     expect(chooser.files).toHaveLength(0);
+     98|     expect(screen.queryByLabelText('Selected videos')).not.toBeInTheDo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed | 23 passed (26)
+   Start at  14:27:13
+   Duration  10.38s (transform 298ms, setup 267ms, import 3.83s, tests 4.70s, environment 1.31s)
+
+JUNIT report written to /workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1/native_file_checks_v1/red2-junit.xml

@@ -78,6 +78,26 @@ describe('video upload workflow', () => {
     } finally { vi.useRealTimers(); }
   });
 
+  it('clears native file bytes when a history refresh observes an expired owner session', async () => {
+    vi.mocked(apiJson).mockImplementation(async path => {
+      if (path === '/api/demos') return { schemaVersion: 1, demos: [] };
+      if (path === '/api/players') return [];
+      if (path === '/api/auth/session') return { required: true, authenticated: true, user: { id: 'alice', username: 'alice' } };
+      return { max_upload_bytes: 1024, max_duration_seconds: 7200, resumable_uploads: true, auth_required: true };
+    });
+    render(<MemoryRouter><Upload /></MemoryRouter>);
+    const chooser = screen.getByLabelText('Choose tennis video') as HTMLInputElement;
+    await userEvent.setup().upload(chooser,
+      new File(['private-video'], 'alice-private.mp4', { type: 'video/mp4' }));
+    expect(chooser.files).toHaveLength(1);
+    expect(chooser.value).toContain('alice-private.mp4');
+    vi.mocked(listJobs).mockRejectedValue(new ApiError('Sign in to access your matches.', 401));
+    await waitFor(() => expect(screen.getByText('Sign in to upload videos and view your private analysis history.')).toBeInTheDocument(), { timeout: 4000 });
+    expect(chooser).toHaveValue('');
+    expect(chooser.files).toHaveLength(0);
+    expect(screen.queryByLabelText('Selected videos')).not.toBeInTheDocument();
+  });
+
   it('withholds account history if an authenticated server cannot identify its owner', async () => {
     vi.mocked(apiJson).mockImplementation(async path => {
       if (path === '/api/demos') return { schemaVersion: 1, demos: [] };

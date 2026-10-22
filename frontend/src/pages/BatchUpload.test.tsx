@@ -118,6 +118,9 @@ describe('independent file progress', () => {
     const signal = vi.mocked(createUploadBatch).mock.calls[0]?.[4]?.signal;
     await user.click(screen.getByRole('button', { name: 'Sign out' }));
     expect(signal?.aborted).toBe(true);
+    const chooser = screen.getByLabelText('Choose tennis video') as HTMLInputElement;
+    expect(chooser).toHaveValue('');
+    expect(chooser.files).toHaveLength(0);
     await act(async () => finish({ id: 'batch_one', mode: 'independent', uploads: [
       { id: 'upload_one', filename: 'first.mp4', size_bytes: 16, offset: 0, status: 'UPLOADING', analysis_id: null },
     ] }));
@@ -151,6 +154,9 @@ describe('independent file progress', () => {
     await waitFor(() => expect(resumeVideoUpload).toHaveBeenCalledOnce());
     await user.click(screen.getByRole('button', { name: 'Sign out' }));
     expect(transferSignal?.aborted).toBe(true);
+    const chooser = screen.getByLabelText('Choose tennis video') as HTMLInputElement;
+    expect(chooser).toHaveValue('');
+    expect(chooser.files).toHaveLength(0);
     await act(async () => { progress(90); finish(job('first.mp4', 'match_alice_late')); });
     expect(resumeVideoUpload).toHaveBeenCalledOnce();
     expect(screen.queryByRole('heading', { name: 'first.mp4' })).not.toBeInTheDocument();

@@ -62,6 +62,7 @@ export default function Upload() {
       uploadController.current?.abort(); activeFileUpload.current?.controller.abort();
       uploadController.current = null; activeFileUpload.current = null; sessions.current = {};
       draftId.current = null; autoOpen.current = false; setProgress(null); setFileStates({}); setFiles([]);
+      if (input.current) input.current.value = '';
       setMetadata(emptyMetadata()); setSavedCreation(null); setResumingSaved(false);
       if (activeId || params.get('batch')) setParams({});
     };
@@ -256,6 +257,7 @@ export default function Upload() {
       uploadController.current?.abort(); activeFileUpload.current?.controller.abort();
       uploadController.current = null; activeFileUpload.current = null; sessions.current = {};
       draftId.current = null; autoOpen.current = false; setProgress(null); setFileStates({}); setFiles([]);
+      if (input.current) input.current.value = '';
       setMetadata(emptyMetadata()); setSavedCreation(null); setResumingSaved(false);
       setActiveBatch(null); setParams({}); setRefreshKey(key => key + 1);
     }} />

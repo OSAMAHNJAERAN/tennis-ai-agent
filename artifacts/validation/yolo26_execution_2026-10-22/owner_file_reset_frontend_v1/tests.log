@@ -1,0 +1,902 @@
+
+ RUN  v4.1.11 /workspace/tennis-ai-agent/frontend
+
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > supports keyboard playback and overlay toggles 232ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > keeps fullscreen available when replay transport owns playback 51ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > holds the presented frame through buffering, pause, timeupdate, resume and overlay changes 138ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > accumulates pending keyboard 'rapid frame steps' and resumes from the decoded acknowledgement 56ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > accumulates pending keyboard 'opposing one-second seeks' and resumes from the decoded acknowledgement 45ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > accumulates pending keyboard 'frame steps before a transport commit' and resumes from the decoded acknowledgement 37ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > accumulates pending keyboard 'upper-bound reversal' and resumes from the decoded acknowledgement 42ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > accumulates standalone frame buttons while the decoder has not presented the seek 87ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalonePendingRecovery reverses from the final source frame after repeated keys 40ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalonePendingRecovery reverses from the final source frame after repeated buttons 52ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalonePendingRecovery ignores a pre-command callback delivered after seeked and keeps the pending target 27ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > observes paused decoded seeks and ignores a callback queued before a seek command 16ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > waits for the final decoded frame when ended arrives before its callback 52ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > uses media events as the fallback clock when video-frame callbacks are unavailable 22ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > ignores a superseded play rejection after the playback rate changes 18ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > handles a current play rejection named 'AbortError' with appropriate feedback 27ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > handles a current play rejection named 'NotAllowedError' with appropriate feedback 30ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > keeps the presented frame and offers a retry for a current 'NotAllowedError' 139ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > keeps the presented frame and offers a retry for a current 'generic error' 88ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > handles a cancelled AbortError without retry feedback or advancing evidence 44ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > ignores an earlier request rejection after a newer successful start 85ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > ignores a request rejection after pause invalidates its playback attempt 54ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > ignores a request rejection after inactive invalidates its playback attempt 49ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > ignores a request rejection after source change invalidates its playback attempt 44ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > ignores a request rejection after unmount invalidates its playback attempt 35ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > offers generic detected people separately from player roles and leaves it off initially 38ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds the generic people overlay when no raw observations were exported 20ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays without exported boxes even when the players capability is false 29ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays without exported boxes even when the players capability is true 32ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays when the entire detection section is unavailable 20ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > keeps sparse image boxes usable without court or player world tracking and preserves preferences 75ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > offers UNKNOWN people without presenting them as exported players 35ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays when only malformed box coordinates 1 were exported 23ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays when only malformed box coordinates 10 were exported 22ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays when only malformed box coordinates 1 were exported 26ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays when only malformed box coordinates 1 were exported 30ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > withholds player overlays when only malformed box coordinates 1 were exported 19ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > skips malformed boxes and draws sparse evidence {"bbox":[1,2,10,20],"expected":[6,12,54,108]} within the media clip 31ms
+ ✓ src/components/VideoEvidencePlayer.test.tsx > video evidence player > skips malformed boxes and draws sparse evidence {"bbox":[-5,-4,10,20],"expected":[-30,-24,90,144]} within the media clip 24ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > discards delayed initial history when the owner changes between the before and after checks 268ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > invalidates a pending cancel acknowledgement after a refresh observes 401 80ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > clears native file bytes when a history refresh observes an expired owner session 2526ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > withholds account history if an authenticated server cannot identify its owner 39ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > uses the retry seam once and disables rapid repeat clicks until acknowledged 75ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps retry errors actionable and treats a failed child as its own retry source 85ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > suppresses an earlier account retry response after sign-out 73ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > treats authentication-required as account access while retaining a healthy service 35ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > accepts a selected video and opens persistent processing status 71ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > rejects an unsupported dropped file without uploading 26ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows actual upload progress while keeping cancellation available 64ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > restores completion and a deep result link from job history 56ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows a recoverable connection error rather than losing a job 23ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > excludes public examples from history without removing the active job 39ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows the private archive empty state when only public examples exist 16ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is loading 53ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is unavailable 74ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved analyses accessible and restores public filtering when the catalog recovers 57ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is unavailable 42ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is malformed 36ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > loads secondary analyses only on viewport entry and pauses off-screen media 101ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > stops automatic playback when reduced motion changes without creating a manual override 129ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > provides a visible play fallback if the browser rejects autoplay 32ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > keeps a newer playing preview when an earlier manual request rejects 23ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > keeps a paused preview after its canceled manual request rejects 34ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > shows a fallback when the current manual start rejects after its play event 38ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > waits for explicit playback when reduced motion is already enabled 29ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > cancels an outstanding play request when a buffering preview leaves the viewport 14ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > pauses a hidden tab and preserves a native-control pause on viewport return 27ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > does not play a result returned for a different analysis ID 8ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > replaces the catalog loading preview with the fetched result generation 27ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > can display a fetched generation after the catalog loading media fails 11ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > removes the catalog fallback after an invalid fetched analysis 20ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > links every credited example to its own curated identity and matching media 116ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > rejects a preview bound to another analysis and repeated catalog identities 3ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > accepts media revisions only on the matching analysis route 1ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > accepts exactly one immutable generation only on the matching analysis route 2ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > renders unsafe credit links as text while keeping license attribution 3ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > keeps public examples out of the private recent-analysis gallery 218ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > keeps a catalog failure distinct from an unavailable example collection 248ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > reuses the same full metadata request and key after lost response and reload 74ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > blocks edited metadata and exposes the original request for explicit restoration 7ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains its key when acknowledgement does not match the submitted files 4ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains its key when acknowledgement does not match the submitted files 4ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains its key when acknowledgement does not match the submitted files 3ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains its key when acknowledgement does not match the submitted files 4ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains its key when acknowledgement does not match the submitted files 3ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains its key when acknowledgement does not match the submitted files 3ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains its key when acknowledgement does not match the submitted files 3ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > rejects distinct files acknowledged with the same saved session identity 3ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > does not acknowledge or remember a response after the current account changes 3ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > sends required idempotency key for single-session creation too 3ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > permits corrected metadata after the server durably rejects that exact creation key 7ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > preserves uncertain intent without an exact trusted 4xx rejection: 413/'absent' 5ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > preserves uncertain intent without an exact trusted 4xx rejection: 422/'different_creation_key' 5ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > preserves uncertain intent without an exact trusted 4xx rejection: 409/'duplicate' 4ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > preserves uncertain intent without an exact trusted 4xx rejection: 500/'matching' 4ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > retains the rejected key when account identity changes before rejection confirmation 4ms
+ ✓ src/data/batchApi.test.ts > atomic batch creation > does not clear rejected intent when the caller has observed an account change or pause 4ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > keeps the second upload usable when the first fails 334ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > requires explicit same-match order and keeps grouping unverified 110ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > restores original metadata after an uncertain creation instead of posting edited details as a new batch 210ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > prevents rapid repeated Analyze clicks while atomic creation is pending 111ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > aborts pending creation and discards its late response after sign-out 108ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > aborts file transfer and ignores late progress and accepted jobs after sign-out 114ms
+stderr | src/components/spatial/TennisCourt3D.test.tsx
+THREE.WARNING: Multiple instances of Three.js being imported.
+
+stderr | src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > owns one renderer for the real Canvas across StrictMode reattachment and disposes on detachment
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+ ✓ src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > offers 2D recovery without camera controls when the WebGL API is absent 146ms
+ ✓ src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > catches actual-Canvas renderer construction before async configure can continue 33ms
+stderr | src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > removes the lost-context listener and lets the caller recover without changing the evidence frame
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+ ✓ src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > owns one renderer for the real Canvas across StrictMode reattachment and disposes on detachment 79ms
+ ✓ src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > removes the lost-context listener and lets the caller recover without changing the evidence frame 50ms
+stderr | src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > recovers when the context was already lost before the monitor subscribed
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+ ✓ src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > preserves invalid-court abstention instead of attempting a WebGL scene 98ms
+ ✓ src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > recovers when the context was already lost before the monitor subscribed 33ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > preserves optional absence and explicit null for older analyses 28ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > retains nullable timing, separate serve executions, and the unqualified status 5ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"status":"QUALIFIED"} 9ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"independentAccuracyValidated":true} 5ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"summary":{"totalPointsPlayed":3,"partialOrReviewPoints":1,"totalRallies":2,"averageRallyLength":3,"longestRallyLength":3,"effectivePlaySeconds":-1,"timedCompletedRallies":1,"completedRalliesDurationDenominator":2,"scoreSummary":null,"matchComplete":null,"winnerId":null}} 6ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"sourceSha256":"unbound"} 4ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > rejects foreign or stale point evidence while preserving other sections 18ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > shows timing and percentage denominators without claiming validated accuracy 151ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > keeps faults and lets separate from legal rally timing and does not invent a seek 37ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > does not turn disabled authority and empty evidence into known zero points 10ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > bounds the rendered timeline and pages every record in source order 128ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > bounds a point execution preview even when many service lets are retained 32ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > keeps guests and nonowners read-only without correction controls 53ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > requires explicit authorization, submits exact cloned evidence and keeps the replay usable 229ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > retries an ambiguous network response using the same retained command after remount 109ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > restores persisted active status, polls completion and reloads the exact generation once 14ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > preserves a historical generation until the reviewer explicitly opens a completed successor 34ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > does not follow an active correction for another base generation (current source: false) 12ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > does not follow an active correction for another base generation (current source: true) 8ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > cancels the owned command and stops polling after unmount 41ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > stops owned-command polling and removes controls when owner access is revoked 9ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > supports explicit local-owner review and withholds stale-generation submission 29ms
+ ✓ src/components/AnalysisCorrection.test.tsx > owner analysis correction workflow > keeps curated examples read-only even if the local owner is authenticated 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves immutable generation metadata and all supplied media and export pins 8ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata null 14ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata  6ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 5ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 6ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves an explicitly supplied nonnegative analysis revision 0 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves an explicitly supplied nonnegative analysis revision 3 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata -1 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata 0.5 5ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata true 10ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata false 7ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata null 3ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata 0 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > keeps legacy and static results available without a generation 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > loads the requested analysis and never substitutes a demo on failure 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > isolates malformed optional sections and preserves the video 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects a valid result that belongs to a different session 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects invalid video metadata rather than inventing a time base 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > keeps replay available when optional frame evidence is malformed 14ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves generic person observations independently of court calibration and active-player roles 18ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > retains one player's valid movement when the other player has no measurements 5ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > accepts ISO timestamps from the Python API including an explicit UTC offset 3ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > loads only lightweight run summaries for the session picker 1ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > keeps a failed library request distinct from an empty library in function ProductHome() {
+	const resource = (0,__vite_ssr_import_3__.useProductResource)("/api/matches", 5e3);
+	const catalog = (0,__vite_ssr_import_5__.usePublicDemos)();
+	const publicAnalysisIds = new Set(catalog.demos.map((demo) => demo.analysisId));
+	const matches = (resource.data ?? []).filter((match) => match.source === "upload" && !publicAnalysisIds.has(match.analysis_id ?? ""));
+	const active = matches.filter((match) => ["PROCESSING", "UPLOADED"].includes(match.status));
+	const completed = matches.filter((match) => match.status === "COMPLETED" && match.analysis_id);
+	const [graphicsPaused, setGraphicsPaused] = (0,__vite_ssr_import_1__.useState)(false);
+	const motionScope = (0,__vite_ssr_import_10__.useSocietyMotion)();
+	return /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+		ref: motionScope,
+		className: `page product-page product-home society-home${graphicsPaused ? " motion-is-paused" : ""}`,
+		children: [
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("header", {
+				className: "society-entry-intro",
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+					className: "society-label",
+					children: "[ AI TENNIS INTELLIGENCE ]"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 12
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("h1", { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+					className: "society-reveal-line",
+					children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: "See the game." }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 119
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 81
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+					className: "society-reveal-line",
+					children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: ["See it ", /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("em", { children: "differently." }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 203
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 190
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 152
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 77
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 7
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+					className: "society-entry-copy",
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", { children: [
+						"Your footage. A new perspective.",
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("br", {}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 78
+						}, this),
+						"Follow the ball, read the movement, and discover the evidence behind your game."
+					] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 182,
+						columnNumber: 43
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						className: "society-cta",
+						to: "/upload",
+						children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: "Analyze your match" }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 210
+						}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowUpRight), {
+							size: 22,
+							"aria-hidden": "true"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 241
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 182,
+						columnNumber: 167
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 182,
+					columnNumber: 7
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 180,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("section", {
+				id: "match-intelligence",
+				className: "society-media-section society-entry-media",
+				"aria-label": "Example analyses",
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+					className: "product-preview-intro society-section-heading",
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("h2", { children: ["Watch the analysis ", /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("em", { children: "in action." }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 208
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 185
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: "/examples",
+						children: ["Explore examples ", /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowRight), {
+							size: 18,
+							"aria-hidden": "true"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 270
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 232
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 122
+				}, this), catalog.loading ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+					className: "product-preview-loading",
+					role: "status",
+					children: "Loading example videos…"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 345
+				}, this) : catalog.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+					className: "product-demo-unavailable",
+					role: "status",
+					children: [
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", { children: "Example videos could not be loaded. You can still upload and open your own analyses." }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 504
+						}, this),
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("button", {
+							className: "button",
+							type: "button",
+							onClick: catalog.refresh,
+							children: "Retry examples"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 595
+						}, this),
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+							className: "button",
+							to: "/upload",
+							children: "Upload video"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 685
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 448
+				}, this) : catalog.demos.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_11__.Fragment), { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(PublicDemoGallery, { demos: catalog.demos }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 776
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", {
+					className: "product-demo-note",
+					children: "Real processed clips shared under their source licenses. These examples demonstrate the workflow; their measurements have not been independently validated."
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 819
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 774
+				}, this) : /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(PreviewEmptyState, {}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 1017
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 184,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyMarquee), {
+				paused: graphicsPaused,
+				onToggle: () => setGraphicsPaused((paused) => !paused)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 185,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(ProductError, {
+				error: resource.error,
+				retry: resource.refresh
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 186,
+				columnNumber: 5
+			}, this),
+			!resource.data && !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", {
+				role: "status",
+				children: "Loading your analyses…"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 187,
+				columnNumber: 42
+			}, this) : completed.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("section", {
+				className: "society-media-section society-local-section",
+				"aria-label": "Your recent analyses",
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+					className: "product-preview-intro society-section-heading",
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+						className: "society-label",
+						children: "[ YOUR LOCAL LIBRARY ]"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 274
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("h2", { children: catalog.loading || catalog.error ? "Recent saved analyses" : "Your recent analyzed videos" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 335
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 269
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: "Saved on this device · Local library" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 442
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 187,
+					columnNumber: 206
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(LocalAnalysisPreviews, {
+					matches,
+					label: catalog.loading || catalog.error ? "Saved analysis" : "Your local analysis"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 187,
+					columnNumber: 497
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 187,
+				columnNumber: 107
+			}, this) : null,
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("section", {
+				className: "society-manifesto",
+				children: [
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+						className: "society-label",
+						children: "[ INTELLIGENCE WITH EVIDENCE ]"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 44
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", { children: "Every movement tells a story. Every estimate needs evidence. Look beyond the score.".split(" ").map((word, index) => /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+						className: "society-manifesto-word",
+						children: [
+							index === 2 ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+								className: "society-inline-court",
+								"aria-hidden": "true",
+								children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.CourtEmblem), { compact: true }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 361
+								}, this)
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 303
+							}, this) : null,
+							word,
+							" "
+						]
+					}, index, true, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 235
+					}, this)) }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 113
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", {
+						className: "society-manifesto-mark",
+						"aria-hidden": "true",
+						children: "↗"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 419
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+						className: "society-hero-art society-entry-art",
+						children: [
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+								className: "society-art-caption",
+								children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: "COURT / COMPUTER VISION" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 576
+								}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: "+" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 612
+								}, this)]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 539
+							}, this),
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.CourtEmblem), {}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 632
+							}, this),
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+								className: "society-art-footer",
+								children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: "A different angle on every rally." }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 683
+								}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("span", { children: "[ ASTRA ]" }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 729
+								}, this)]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 647
+							}, this)
+						]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 487
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 188,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyWorkflow), {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 189,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+				className: "product-home-library",
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("section", { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+					className: "product-section-title",
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("h2", { children: active.length ? "Processing your videos" : "Your analysis library" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 190,
+						columnNumber: 91
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: "/match-center",
+						children: ["My analyses ", /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowRight), {
+							size: 15,
+							"aria-hidden": "true"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 190,
+							columnNumber: 205
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 190,
+						columnNumber: 168
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 52
+				}, this), active.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(MatchList, { matches: active }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 278
+				}, this) : resource.data && !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", {
+					className: "product-empty",
+					children: matches.length ? "Open My analyses to revisit saved results and downloads." : "Your uploaded videos and completed results will appear here."
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 346
+				}, this) : null] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 43
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", {
+					className: "product-home-note",
+					children: "Measurements depend on the camera view and visible evidence. Missing tracks and uncertain estimates stay visible in the analysis."
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 539
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 190,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyAction), {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 191,
+				columnNumber: 5
+			}, this)
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 179,
+		columnNumber: 10
+	}, this);
+} 356ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > keeps a failed library request distinct from an empty library in function MatchCenter() {
+	const resource = (0,__vite_ssr_import_3__.useProductResource)("/api/matches", 5e3);
+	const catalog = (0,__vite_ssr_import_5__.usePublicDemos)();
+	const publicAnalysisIds = new Set(catalog.demos.map((demo) => demo.analysisId));
+	const [params, setParams] = (0,__vite_ssr_import_0__.useSearchParams)();
+	const [query, setQuery] = (0,__vite_ssr_import_1__.useState)("");
+	const filter = params.get("status") ?? "all";
+	const matches = (resource.data ?? []).filter((match) => match.source === "upload" && !publicAnalysisIds.has(match.analysis_id ?? "") && (filter === "all" || (filter === "processing" ? ["UPLOADED", "PROCESSING"].includes(match.status) : match.status.toLowerCase() === filter)) && `${(0,__vite_ssr_import_6__.matchTitle)(match)} ${match.filename ?? ""} ${match.metadata.tournament ?? ""}`.toLowerCase().includes(query.toLowerCase()));
+	return /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+		className: "page product-page",
+		children: [
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_8__.PageHeader), {
+				eyebrow: "YOUR VIDEO LIBRARY",
+				title: "My analyses",
+				description: "Follow processing, revisit a replay, and download your results.",
+				action: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+					className: "button button-primary",
+					to: "/upload",
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.CloudArrowUp), {
+						size: 18,
+						"aria-hidden": "true"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 245
+					}, this), "Upload video"]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 192
+				}, this)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 45
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("div", {
+				className: "product-filters",
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("label", { children: ["Find an analysis", /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("input", {
+					type: "search",
+					placeholder: "Player, tournament or filename",
+					value: query,
+					onChange: (event) => setQuery(event.target.value)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 369
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 346
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("label", { children: ["Status", /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("select", {
+					value: filter,
+					onChange: (event) => setParams(event.target.value === "all" ? {} : { status: event.target.value }),
+					children: [
+						"all",
+						"processing",
+						"completed",
+						"failed"
+					].map((value) => /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("option", {
+						value,
+						children: value[0].toUpperCase() + value.slice(1)
+					}, value, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 701
+					}, this))
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 521
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 508
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 313
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(ProductError, {
+				error: resource.error,
+				retry: resource.refresh
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 811
+			}, this),
+			!resource.data && !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", {
+				role: "status",
+				children: "Loading analyses…"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 912
+			}, this) : matches.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(MatchList, { matches }, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 970
+			}, this) : resource.data && !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)("p", {
+				className: "product-empty",
+				children: [
+					"No analyses match this view. Adjust your search or ",
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: "/upload",
+						children: "upload a video"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 1119
+					}, this),
+					"."
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 1039
+			}, this) : null
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 203,
+		columnNumber: 10
+	}, this);
+} 18ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > focuses home on uploads and keeps manual records out of the video library 204ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > filters match records by names and status 29ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > requires an initial server and sends explicit manual match details 131ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > retries an uncertain point with exactly the same idempotency key 55ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > resolves an explicit legacy ID ahead of a conflicting query and preserves event 9ms
+ ✓ src/pages/ProductFlows.test.tsx > product journeys > keeps explicit run selection independent of query parameters 4ms
+ ✓ src/data/creationIntent.test.ts > uncertain upload creation > persists the full original payload and reuses its key after reload and lost response 15ms
+ ✓ src/data/creationIntent.test.ts > uncertain upload creation > blocks edited metadata, file identity or mode until the original request is restored 3ms
+ ✓ src/data/creationIntent.test.ts > uncertain upload creation > coalesces rapid repeated submission but isolates different owners 2ms
+ ✓ src/data/creationIntent.test.ts > uncertain upload creation > permits a fresh intent only after the matching validated acknowledgement 1ms
+ ✓ src/data/creationIntent.test.ts > uncertain upload creation > keeps the same request in memory if browser storage is disabled 1ms
+ ✓ src/data/creationIntent.test.ts > uncertain upload creation > fails closed for corrupted persisted uncertain creation rather than silently replacing it 1ms
+ ✓ src/data/creationIntent.test.ts > uncertain upload creation > keeps in-flight submission coalesced until settlement after a matching terminal acknowledgement 1ms
+ ✓ src/components/SynchronizedTelemetryView.test.tsx > synchronized telemetry view > preserves the video element and playback state host while switching tabs 273ms
+stderr | src/components/SynchronizedTelemetryView.test.tsx > synchronized telemetry view > supports arrow-key tab navigation
+THREE.WARNING: Multiple instances of Three.js being imported.
+
+ ✓ src/components/SynchronizedTelemetryView.test.tsx > synchronized telemetry view > supports arrow-key tab navigation 260ms
+ ✓ src/components/SynchronizedTelemetryView.test.tsx > synchronized telemetry view > seeks the same source video while stepping frames in an analytical view 151ms
+ ✓ src/components/SynchronizedTelemetryView.test.tsx > synchronized telemetry view > resets the playhead and analysis interval when switching runs 79ms
+ ✓ src/components/SynchronizedTelemetryView.test.tsx > synchronized telemetry view > seeks reviewed signals missing from physical events using the same video clock 110ms
+ ✓ src/lib/ballTrail.test.ts > ball overlay trail index > keeps sparse observations and stable duplicate order without changing the source 3ms
+ ✓ src/lib/ballTrail.test.ts > ball overlay trail index > uses the inclusive 25-frame window at clip boundaries and fractional query times 1ms
+ ✓ src/lib/ballTrail.test.ts > ball overlay trail index > retains zero coordinates, omits null coordinates, and does not replace absent frames 0ms
+ ✓ src/lib/ballTrail.test.ts > ball overlay trail index > skips actual array holes just as the previous filter did 0ms
+ ✓ src/lib/ballTrail.test.ts > ball overlay trail index > bounds sample reads for a two-hour 60 FPS ordered recording 95ms
+ ✓ src/lib/ballTrail.test.ts > ball overlay trail index > bounds sample reads for a two-hour 60 FPS out-of-order with duplicates recording 104ms
+ ✓ src/data/analysisApi.test.ts > persisted job API contract > accepts boolean cancellation flags in actual job history 4ms
+ ✓ src/data/analysisApi.test.ts > persisted job API contract > keeps malformed storage details out of the user error 6ms
+ ✓ src/data/analysisApi.test.ts > retry acknowledgement contract > keeps its Idempotency-Key after a lost response and acknowledges only the requested source 7ms
+ ✓ src/data/analysisApi.test.ts > retry acknowledgement contract > retains the saved intent for an invalid child acknowledgement 'match_child'/'match_other' 2ms
+ ✓ src/data/analysisApi.test.ts > retry acknowledgement contract > retains the saved intent for an invalid child acknowledgement 'match_failed'/'match_failed' 2ms
+ ✓ src/data/analysisApi.test.ts > retry acknowledgement contract > retains the saved intent for an invalid child acknowledgement '../wrong'/'match_failed' 2ms
+ ✓ src/data/analysisApi.test.ts > retry acknowledgement contract > retains the saved intent for an invalid child acknowledgement 'match_child\n'/'match_failed' 2ms
+ ✓ src/data/analysisApi.test.ts > retry acknowledgement contract > refuses a previous account response and keeps its key for later reconciliation 7ms
+ ✓ src/pages/ProductExamples.test.tsx > public example analysis selection > selects the curated analysis even with a conflicting run query 171ms
+ ✓ src/pages/ProductExamples.test.tsx > public example analysis selection > does not substitute a historical phase or a default analysis for an unknown example 33ms
+ ✓ src/pages/ProductExamples.test.tsx > public example analysis selection > preserves source attribution, hashes and excerpt metadata in the export contract 8ms
+ ✓ src/pages/ProductExamples.test.tsx > public example analysis selection > keeps valid analysis evidence usable when optional source attribution is malformed 7ms
+ ✓ src/data/retryIntent.test.ts > saved analysis retry intent > restores the same uncertain intent after a browser reload 3ms
+ ✓ src/data/retryIntent.test.ts > saved analysis retry intent > records acknowledged child identity and starts fresh explicit intent after acknowledgement 0ms
+ ✓ src/data/retryIntent.test.ts > saved analysis retry intent > keeps owners and failed child sources in separate namespaces 1ms
+ ✓ src/data/retryIntent.test.ts > saved analysis retry intent > reuses the same in-flight promise before any request finishes 1ms
+ ✓ src/data/retryIntent.test.ts > saved analysis retry intent > falls back to stable memory when browser storage access is disabled 1ms
+ ✓ src/data/retryIntent.test.ts > saved analysis retry intent > ignores stale acknowledgements and malformed persisted tokens 0ms
+ ✓ src/data/retryIntent.test.ts > saved analysis retry intent > regenerates persisted tokens with a trailing newline instead of repeating a server-invalid key 1ms
+ ✓ src/components/NativeForecast.test.tsx > native causal forecast replay > displays the replay prefix, preserves withheld gaps and seeks the actual event frame 140ms
+ ✓ src/components/NativeForecast.test.tsx > native causal forecast replay > shows confirmed results without a forecast probability 6ms
+ ✓ src/components/NativeForecast.test.tsx > native causal forecast replay > labels posterior samples as completed points and exposes one keyboard history control 15ms
+ ✓ src/components/NativeForecast.test.tsx > native causal forecast replay > rejects foreign sources/revisions, future point frontiers, phase and row clock changes 2ms
+ ✓ src/components/NativeForecast.test.tsx > native causal forecast replay > bounds long histories to 600 columns while retaining gaps and real frame identities 2ms
+ ✓ src/data/correctionDraft.test.ts > reviewed correction drafts > preserves all 37 fields and derives side/receiver for reviewed standard scores 12ms
+ ✓ src/data/correctionDraft.test.ts > reviewed correction drafts > derives tie-break service rotation and rejects completed or invalid point scores 2ms
+ ✓ src/data/correctionDraft.test.ts > reviewed correction drafts > leaves active rallies and completed contexts read-only 1ms
+ ✓ src/data/correctionDraft.test.ts > reviewed correction drafts > clones complete event measurements including exact PTS and rejects cross-contract signals 1ms
+ ✓ src/data/correctionDraft.test.ts > reviewed correction drafts > rejects stale generations and requires explicit review evidence 1ms
+ ✓ src/data/correctionDraft.test.ts > reviewed correction drafts > normalizes textarea line breaks and tabs to the native bounded plain-text contract 2ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > accepts explicit null geometry and legacy measured records without reason codes 4ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > does not draw an invented contact patch or signed margin 110ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > preserves the measured geometry display 8ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > plots only known court coordinates 6ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > shows a neutral empty state without claiming all calls resolved 8ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > explains SERVICE_TARGET_UNAVAILABLE without an uncertainty-band claim 8ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > explains SERVICE_CONTEXT_UNAVAILABLE without an uncertainty-band claim 6ms
+ ✓ src/components/UnavailableLineCall.test.tsx > unavailable line-call evidence > distinguishes missing measurements from measured uncertainty in a mixed review 4ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > centers the regulation court in X/Z and preserves baseline run-off 2ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > interpolates adjacent observations without filling missing detections or large jumps 0ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > indexes sparse ball data by source frame and never displays missing or occluded samples 2ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > gates invalid court mappings and out-of-field points 2ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > breaks trails at gaps and discontinuities 0ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > computes time-based player speed and rejects discontinuous segments 0ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > counts behind-baseline occupancy with explicit sample denominators 0ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > keeps kernel density proportional to sample count and finite for empty input 2ms
+ ✓ src/lib/tennisTelemetry.test.ts > spatial telemetry > ranges coaching evidence and excludes source paths, raw detections, and credentials 1ms
+ ✓ src/components/spatial/TelemetryDashboard.test.tsx > decoded-frame replay integration > holds shared evidence during seeks and commands the decoder on view and source changes 419ms
+ ✓ src/components/spatial/CoachPanel.test.tsx > Astra coach connection > keeps the visible question labeled when replay coaching remains mounted 138ms
+ ✓ src/components/spatial/CoachPanel.test.tsx > Astra coach connection > keeps observations local until the user requests coaching, then sends only the selected evidence 59ms
+ ✓ src/components/spatial/CoachPanel.test.tsx > Astra coach connection > explains an unconfigured service without inventing a model response 43ms
+ ✓ src/components/spatial/CoachPanel.test.tsx > Astra coach connection > aborts a pending provider request when the selected evidence is removed 27ms
+ ✓ src/hooks/useReplay.test.ts > replay clock ownership > holds telemetry without decoded media observations, including playback stalls 14ms
+ ✓ src/hooks/useReplay.test.ts > replay clock ownership > separates seek commands from presented timestamps and steps exactly one frame 3ms
+ ✓ src/hooks/useReplay.test.ts > replay clock ownership > holds media evidence during a pending seek and accumulates steps from the requested target 2ms
+ ✓ src/hooks/useReplay.test.ts > replay clock ownership > retains the video observation when returning from a different simulation position 3ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > uses all five supplied export URLs with the same immutable generation 214ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > keeps the historical download routes for a legacy or static result 72ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > does not create current-generation routes when pinned exports are missing or unavailable 37ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > honors an unavailable legacy export while retaining its other supplied URLs 23ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > shows complete selected cells after contact for the bounded source-time interval 4ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > withholds conflicting revision evidence 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > withholds conflicting airborne evidence 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > withholds conflicting dead evidence 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > withholds conflicting unreviewed evidence 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > withholds conflicting source evidence 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > withholds conflicting position evidence 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > withholds conflicting calibration evidence 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > reprojects the same metric cell and contact during camera motion 1ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > ends an old highlight when calibration is lost and later recovers 0ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > rejects singular matrices and polygons crossing a projective horizon 1ms
+ ✓ src/lib/landingZones.test.ts > reviewed landing zones > keeps usable video when an optional zone artifact is malformed 12ms
+ ✓ src/data/correctionApi.test.ts > owner correction HTTP contracts > pins a bounded review page to the requested saved generation 10ms
+ ✓ src/data/correctionApi.test.ts > owner correction HTTP contracts > submits the native body without client supplied reviewer identities and propagates owner denial 3ms
+ ✓ src/data/correctionApi.test.ts > owner correction HTTP contracts > rejects another analysis status and inconsistent completed generation metadata 2ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > scales a 16:9 source into a matching container 2ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > accounts for vertical letterboxing in a square container 1ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > keeps 4:3 media centered and fully visible 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > keeps 3:2 media centered and fully visible 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > keeps 21:9 media centered and fully visible 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > keeps portrait media centered and fully visible 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > supports cover cropping with negative offsets 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > returns a safe empty rectangle for uninitialized dimensions 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > creates a DPR-safe bitmap at DPR 1 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > creates a DPR-safe bitmap at DPR 1.25 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > creates a DPR-safe bitmap at DPR 1.5 0ms
+ ✓ src/lib/telemetryGeometry.test.ts > telemetry coordinate geometry > creates a DPR-safe bitmap at DPR 2 0ms
+ ✓ src/components/AccountAccess.test.tsx > account access > signs in, rechecks the server session and clears the password 261ms
+ ✓ src/components/AccountAccess.test.tsx > account access > announces a failed sign-in and keeps recovery controls 121ms
+ ✓ src/components/spatial/LandingZones.test.tsx > shared landing presentation > uses the same partition and visibility on the main court and mini court 333ms
+ ✓ src/components/spatial/LandingZones.test.tsx > shared landing presentation > expires the zone fill after the contact interval while retaining event review 125ms
+ ✓ src/components/spatial/LandingZones.test.tsx > shared landing presentation > does not add overlay controls to a run without reviewed zone records 26ms
+ ✓ src/lib/analytics.test.ts > analytics utilities > formats valid and unavailable values 2ms
+ ✓ src/lib/analytics.test.ts > analytics utilities > derives coverage without treating missing points as observed 0ms
+ ✓ src/lib/analytics.test.ts > analytics utilities > counts scientific tracking states 0ms
+ ✓ src/lib/analytics.test.ts > analytics utilities > maps canonical court corners into the padded SVG bounds 1ms
+ ✓ src/lib/analytics.test.ts > analytics utilities > steps semantic events and clamps at timeline boundaries 0ms
+ ✓ src/lib/courtOverlay.test.ts > court image overlay > follows registered camera motion in the presented frame 4ms
+ ✓ src/lib/courtOverlay.test.ts > court image overlay > withholds invalid, missing or mismatched camera intervals 0ms
+ ✓ src/lib/courtOverlay.test.ts > court image overlay > rejects projective horizons and malformed transforms 0ms
+ ✓ src/app/AppShell.test.tsx > application shell > navigates with semantic primary links 168ms
+ ✓ src/app/AppShell.test.tsx > application shell > has no automated accessibility violations 79ms
+ ✓ src/app/AppShell.test.tsx > application shell > closes the menu with Escape and restores focus to its toggle 44ms
+ ✓ src/data/nativeForecastRepository.test.ts > native forecast result admission > withholds a foreign causal history while preserving existing video evidence 20ms
+ ✓ src/data/nativeForecastRepository.test.ts > native forecast result admission > requests only the exact saved generation and rejects substitution 13ms
+ ✓ src/app/AnalysisContext.test.tsx > analysis generation refresh > requests the exact completed generation and clears the stale event selection 51ms
+ ✓ src/components/WinProbability.test.tsx > prediction evidence states > labels the neutral prior without attributing performance data 40ms
+ ✓ src/components/WinProbability.test.tsx > prediction evidence states > shows a completed outcome without a stale probability 3ms
+ ✓ src/components/WinProbability.test.tsx > prediction evidence states > withholds invalid probabilities and an unresolved score 5ms
+ ✓ src/data/repository.test.ts > offline analysis repository > validates the versioned snapshot 5ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes baseline_run_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase2_ball_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase2_yolo11_final to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase3_events_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase4_1_line_calls to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase4_line_calls_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase5_scoring_1 to the current run contract 2ms
+ ✓ src/data/repository.test.ts > offline analysis repository > preserves every required scientific enum 1ms
+ ✓ src/data/repository.test.ts > offline analysis repository > keeps unavailable historical artifacts explicit 1ms
+ ✓ src/data/repository.test.ts > offline analysis repository > rejects invalid run ids 1ms
+ ✓ src/pages/Events.test.tsx > events view > filters a TanStack table and renders mobile records 209ms
+ ✓ src/pages/Events.test.tsx > events view > opens a keyboard-accessible evidence drawer 245ms
+ ✓ src/pages/Events.test.tsx > events view > renders an explicit empty state for older generations 13ms
+ ✓ src/hooks/useReplay.test.tsx > shared replay clock > advances with elapsed time and playback rate, then pauses at the last frame 15ms
+ ✓ src/hooks/useReplay.test.tsx > shared replay clock > clamps seeks and frame steps to the source bounds 3ms
+ ✓ src/hooks/useReplay.test.tsx > shared replay clock > does not play an empty clip 1ms
+ ✓ src/components/spatial/SpatialHeatmapPanel.test.tsx > spatial density > counts only the selected player's frames and updates zone explanations 290ms
+ ✓ src/components/spatial/SpatialHeatmapPanel.test.tsx > spatial density > offers an explicit empty state for invalid court calibration 10ms
+ ✓ src/components/spatial/SpatialHeatmapPanel.test.tsx > spatial density > has accessible density and zone controls 245ms
+ ✓ src/components/ReviewWorkflow.test.tsx > review workflow > shows the current no-review state 32ms
+ ✓ src/components/ReviewWorkflow.test.tsx > review workflow > announces review-required decisions 114ms
+ ✓ src/components/States.test.tsx > shared states > renders loading and empty messages 105ms
+ ✓ src/components/States.test.tsx > shared states > offers a retry action for errors 32ms
+
+ Test Files  41 passed (41)
+      Tests  317 passed (317)
+   Start at  14:28:45
+   Duration  85.12s (transform 1.51s, setup 4.17s, import 36.06s, tests 15.78s, environment 23.89s)
+
+JUNIT report written to /workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_file_reset_frontend_v1/junit.xml

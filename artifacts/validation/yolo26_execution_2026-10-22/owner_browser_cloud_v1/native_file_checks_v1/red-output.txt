@@ -1,0 +1,313 @@
+
+ RUN  v4.1.11 /workspace/tennis-ai-agent/frontend
+
+ ✓ src/pages/Upload.test.tsx > video upload workflow > discards delayed initial history when the owner changes between the before and after checks 280ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > invalidates a pending cancel acknowledgement after a refresh observes 401 75ms
+ × src/pages/Upload.test.tsx > video upload workflow > clears native file bytes when a history refresh observes an expired owner session 5006ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > withholds account history if an authenticated server cannot identify its owner 5003ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > uses the retry seam once and disables rapid repeat clicks until acknowledged 5004ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > keeps retry errors actionable and treats a failed child as its own retry source 5003ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > suppresses an earlier account retry response after sign-out 5008ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > treats authentication-required as account access while retaining a healthy service 5002ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > accepts a selected video and opens persistent processing status 5008ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > rejects an unsupported dropped file without uploading 5003ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > shows actual upload progress while keeping cancellation available 5006ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > restores completion and a deep result link from job history 5003ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > shows a recoverable connection error rather than losing a job 5007ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > excludes public examples from history without removing the active job 5002ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > shows the private archive empty state when only public examples exist 5007ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is loading 5002ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is unavailable 5009ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/pages/Upload.test.tsx > video upload workflow > keeps saved analyses accessible and restores public filtering when the catalog recovers 5002ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is unavailable 62ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is malformed 56ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > keeps the second upload usable when the first fails 322ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > requires explicit same-match order and keeps grouping unverified 162ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > restores original metadata after an uncertain creation instead of posting edited details as a new batch 323ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > prevents rapid repeated Analyze clicks while atomic creation is pending 141ms
+ × src/pages/BatchUpload.test.tsx > independent file progress > aborts pending creation and discards its late response after sign-out 138ms
+   → expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ × src/pages/BatchUpload.test.tsx > independent file progress > aborts file transfer and ignores late progress and accepted jobs after sign-out 128ms
+   → expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 18 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/BatchUpload.test.tsx > independent file progress > aborts pending creation and discards its late response after sign-out
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ ❯ src/pages/BatchUpload.test.tsx:122:21
+    120|     expect(signal?.aborted).toBe(true);
+    121|     const chooser = screen.getByLabelText('Choose tennis video') as HT…
+    122|     expect(chooser).toHaveValue('');
+       |                     ^
+    123|     expect(chooser.files).toHaveLength(0);
+    124|     await act(async () => finish({ id: 'batch_one', mode: 'independent…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/18]⎯
+
+ FAIL  src/pages/BatchUpload.test.tsx > independent file progress > aborts file transfer and ignores late progress and accepted jobs after sign-out
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ ❯ src/pages/BatchUpload.test.tsx:158:21
+    156|     expect(transferSignal?.aborted).toBe(true);
+    157|     const chooser = screen.getByLabelText('Choose tennis video') as HT…
+    158|     expect(chooser).toHaveValue('');
+       |                     ^
+    159|     expect(chooser.files).toHaveLength(0);
+    160|     await act(async () => { progress(90); finish(job('first.mp4', 'mat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > clears native file bytes when a history refresh observes an expired owner session
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:81:3
+     79|   });
+     80|
+     81|   it('clears native file bytes when a history refresh observes an expi…
+       |   ^
+     82|     vi.useFakeTimers();
+     83|     try {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > withholds account history if an authenticated server cannot identify its owner
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:106:3
+    104|   });
+    105|
+    106|   it('withholds account history if an authenticated server cannot iden…
+       |   ^
+    107|     vi.mocked(apiJson).mockImplementation(async path => {
+    108|       if (path === '/api/demos') return { schemaVersion: 1, demos: [] …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > uses the retry seam once and disables rapid repeat clicks until acknowledged
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:118:3
+    116|   });
+    117|
+    118|   it('uses the retry seam once and disables rapid repeat clicks until …
+       |   ^
+    119|     const failed = { ...job, status: 'FAILED' as const, error: 'Interr…
+    120|     const child = { ...job, id: 'match_child', filename: 'retried.mp4'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > keeps retry errors actionable and treats a failed child as its own retry source
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:141:3
+    139|   });
+    140|
+    141|   it('keeps retry errors actionable and treats a failed child as its o…
+       |   ^
+    142|     const failed = { ...job, status: 'FAILED' as const, error: 'Interr…
+    143|     const child = { ...failed, id: 'match_child', filename: 'failed-ch…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > suppresses an earlier account retry response after sign-out
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:166:3
+    164|   });
+    165|
+    166|   it('suppresses an earlier account retry response after sign-out', as…
+       |   ^
+    167|     const failed = { ...job, status: 'FAILED' as const, error: 'Interr…
+    168|     let signedIn = true;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > treats authentication-required as account access while retaining a healthy service
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:190:3
+    188|   });
+    189|
+    190|   it('treats authentication-required as account access while retaining…
+       |   ^
+    191|     vi.mocked(listJobs).mockRejectedValue(new ApiError('Sign in to acc…
+    192|     render(<MemoryRouter><Upload /></MemoryRouter>);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > accepts a selected video and opens persistent processing status
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:199:3
+    197|     expect(screen.getByRole('button', { name: 'Analyze match' })).toBe…
+    198|   });
+    199|   it('accepts a selected video and opens persistent processing status'…
+       |   ^
+    200|     vi.mocked(uploadVideo).mockImplementation(async () => {
+    201|       vi.mocked(listJobs).mockResolvedValue([job]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > rejects an unsupported dropped file without uploading
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:213:3
+    211|   });
+    212|
+    213|   it('rejects an unsupported dropped file without uploading', async ()…
+       |   ^
+    214|     render(<MemoryRouter><Upload /></MemoryRouter>);
+    215|     fireEvent.drop(screen.getByRole('heading', { name: 'Drop your tenn…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > shows actual upload progress while keeping cancellation available
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:221:3
+    219|   });
+    220|
+    221|   it('shows actual upload progress while keeping cancellation availabl…
+       |   ^
+    222|     let finish: (value: AnalysisJob) => void = () => undefined;
+    223|     vi.mocked(uploadVideo).mockImplementation((_file, onProgress) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > restores completion and a deep result link from job history
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:237:3
+    235|   });
+    236|
+    237|   it('restores completion and a deep result link from job history', as…
+       |   ^
+    238|     vi.mocked(listJobs).mockResolvedValue([{ ...job, status: 'COMPLETE…
+    239|     render(<MemoryRouter initialEntries={[`/upload?job=${job.id}`]}><U…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > shows a recoverable connection error rather than losing a job
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:244:3
+    242|   });
+    243|
+    244|   it('shows a recoverable connection error rather than losing a job', …
+       |   ^
+    245|     vi.mocked(listJobs).mockRejectedValue(new Error('Server unavailabl…
+    246|     render(<MemoryRouter><Upload /></MemoryRouter>);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > excludes public examples from history without removing the active job
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:251:3
+    249|   });
+    250|
+    251|   it('excludes public examples from history without removing the activ…
+       |   ^
+    252|     vi.mocked(apiJson).mockImplementation(async path => path === '/api…
+    253|     vi.mocked(listJobs).mockResolvedValue([exampleJob, job]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > shows the private archive empty state when only public examples exist
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:264:3
+    262|   });
+    263|
+    264|   it('shows the private archive empty state when only public examples …
+       |   ^
+    265|     vi.mocked(apiJson).mockImplementation(async path => path === '/api…
+    266|     vi.mocked(listJobs).mockResolvedValue([exampleJob]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is loading
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is unavailable
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:274:47
+    272|   });
+    273|
+    274|   it.each(['loading', 'unavailable'] as const)('keeps saved completion…
+       |                                               ^
+    275|     vi.mocked(apiJson).mockImplementation(async path => {
+    276|       if (path === '/api/demos') {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/18]⎯
+
+ FAIL  src/pages/Upload.test.tsx > video upload workflow > keeps saved analyses accessible and restores public filtering when the catalog recovers
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/pages/Upload.test.tsx:299:3
+    297|   });
+    298|
+    299|   it('keeps saved analyses accessible and restores public filtering wh…
+       |   ^
+    300|     vi.mocked(apiJson).mockImplementation(async path => {
+    301|       if (path === '/api/demos') throw new Error('Catalog unavailable'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/18]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  18 failed | 8 passed (26)
+   Start at  14:24:48
+   Duration  88.17s (transform 309ms, setup 284ms, import 4.33s, tests 81.77s, environment 1.46s)
+
+JUNIT report written to /workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1/native_file_checks_v1/red-junit.xml

@@ -1,0 +1,36 @@
+
+ RUN  v4.1.11 /workspace/tennis-ai-agent/frontend
+
+ ✓ src/pages/Upload.test.tsx > video upload workflow > discards delayed initial history when the owner changes between the before and after checks 253ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > invalidates a pending cancel acknowledgement after a refresh observes 401 65ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > clears native file bytes when a history refresh observes an expired owner session 2526ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > withholds account history if an authenticated server cannot identify its owner 33ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > uses the retry seam once and disables rapid repeat clicks until acknowledged 91ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps retry errors actionable and treats a failed child as its own retry source 91ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > suppresses an earlier account retry response after sign-out 104ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > treats authentication-required as account access while retaining a healthy service 41ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > accepts a selected video and opens persistent processing status 79ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > rejects an unsupported dropped file without uploading 38ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows actual upload progress while keeping cancellation available 64ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > restores completion and a deep result link from job history 58ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows a recoverable connection error rather than losing a job 21ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > excludes public examples from history without removing the active job 36ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > shows the private archive empty state when only public examples exist 21ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is loading 59ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved completion and queued details available while public example filtering is unavailable 73ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > keeps saved analyses accessible and restores public filtering when the catalog recovers 57ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is unavailable 47ms
+ ✓ src/pages/Upload.test.tsx > video upload workflow > retains verified public filtering when a later catalog is malformed 46ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > keeps the second upload usable when the first fails 270ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > requires explicit same-match order and keeps grouping unverified 111ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > restores original metadata after an uncertain creation instead of posting edited details as a new batch 245ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > prevents rapid repeated Analyze clicks while atomic creation is pending 134ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > aborts pending creation and discards its late response after sign-out 100ms
+ ✓ src/pages/BatchUpload.test.tsx > independent file progress > aborts file transfer and ignores late progress and accepted jobs after sign-out 112ms
+
+ Test Files  2 passed (2)
+      Tests  26 passed (26)
+   Start at  14:28:00
+   Duration  10.35s (transform 262ms, setup 248ms, import 3.80s, tests 4.78s, environment 1.25s)
+
+JUNIT report written to /workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1/native_file_checks_v1/green-junit.xml

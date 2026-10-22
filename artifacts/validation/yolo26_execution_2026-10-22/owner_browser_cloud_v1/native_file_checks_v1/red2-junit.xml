@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="26" failures="3" errors="0" time="4.696316295">
+    <testsuite name="src/pages/BatchUpload.test.tsx" timestamp="2026-10-22T14:27:23.521Z" hostname="84e91ed5e37e" tests="6" failures="2" errors="0" skipped="0" time="0.94113635">
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; keeps the second upload usable when the first fails" time="0.271311001">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; requires explicit same-match order and keeps grouping unverified" time="0.113828378">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; restores original metadata after an uncertain creation instead of posting edited details as a new batch" time="0.222606223">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; prevents rapid repeated Analyze clicks while atomic creation is pending" time="0.114005066">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; aborts pending creation and discards its late response after sign-out" time="0.097851886">
+            <failure message="expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4" type="Error">
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ ❯ src/pages/BatchUpload.test.tsx:122:21
+            </failure>
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; aborts file transfer and ignores late progress and accepted jobs after sign-out" time="0.118487554">
+            <failure message="expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4" type="Error">
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\first.mp4
+ ❯ src/pages/BatchUpload.test.tsx:158:21
+            </failure>
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/Upload.test.tsx" timestamp="2026-10-22T14:27:23.531Z" hostname="84e91ed5e37e" tests="20" failures="1" errors="0" skipped="0" time="3.755179945">
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; discards delayed initial history when the owner changes between the before and after checks" time="0.270108165">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; invalidates a pending cancel acknowledgement after a refresh observes 401" time="0.060975026">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; clears native file bytes when a history refresh observes an expired owner session" time="2.528922419">
+            <failure message="expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\alice-private.mp4" type="Error">
+Error: expect(element).toHaveValue()
+
+Expected the element to have value:
+
+Received:
+  C:\fakepath\alice-private.mp4
+ ❯ src/pages/Upload.test.tsx:96:21
+            </failure>
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; withholds account history if an authenticated server cannot identify its owner" time="0.064146041">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; uses the retry seam once and disables rapid repeat clicks until acknowledged" time="0.080740945">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps retry errors actionable and treats a failed child as its own retry source" time="0.096833589">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; suppresses an earlier account retry response after sign-out" time="0.068953159">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; treats authentication-required as account access while retaining a healthy service" time="0.033914049">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; accepts a selected video and opens persistent processing status" time="0.077412927">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; rejects an unsupported dropped file without uploading" time="0.029850206">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows actual upload progress while keeping cancellation available" time="0.064655399">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; restores completion and a deep result link from job history" time="0.047792259">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows a recoverable connection error rather than losing a job" time="0.020255275">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; excludes public examples from history without removing the active job" time="0.036828658">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows the private archive empty state when only public examples exist" time="0.018929569">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is loading" time="0.056179924">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is unavailable" time="0.060914723">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved analyses accessible and restores public filtering when the catalog recovers" time="0.050424701">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is unavailable" time="0.043621467">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is malformed" time="0.039876263">
+        </testcase>
+    </testsuite>
+</testsuites>

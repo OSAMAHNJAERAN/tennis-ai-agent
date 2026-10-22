@@ -1,0 +1,169 @@
+{
+  "status": "FAIL",
+  "started_utc": "2026-10-22T14:17:06.264820+00:00",
+  "scope": "SYNTHETIC SOFTWARE TEST: actual Chromium UI, real cookie accounts, real upload admission/storage and source-bound correction publication; no original video inference, host RAM/GPU probe, tennis accuracy or capacity claim",
+  "runner_sha256": "868ac507f4089f5bf0e773e25923c7b1d27c98539b83b8c08f871e38ba4f1d31",
+  "fixture_manifest_sha256": "57e7662fdeecee1936f07f2d01717fbffb1d8405cd8f922c17f29a340769b372",
+  "fixture_directory": "/workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1",
+  "source_before": {
+    "frontend/src/pages/Upload.tsx": "11173249e9a6182e23a36fe2da90d7ea1b2eb91c4aab819b9678bdcdb235fb20",
+    "frontend/src/components/AccountAccess.tsx": "75981d860a3df012a36d813a29b5898a857ed9a1049e68dfcaf612e5cb56ddda",
+    "frontend/src/data/batchApi.ts": "d3aacf2b2949b704057de8c4c782568572d7c00763d4643098339841f714d2e1",
+    "frontend/src/data/creationIntent.ts": "894339fb619bb3c8e806f8f96810c22b7c29c7fb7592269435f65e322acbc55a",
+    "frontend/src/components/AnalysisCorrection.tsx": "57c872a48f06291efa7da64de8d01235c6078c45130cffb5e6c704c8f6fe7045",
+    "frontend/src/data/correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "frontend/src/pages/ProductWorkspace.tsx": "5397359a1e9a6cf8aa93db38fbf62433cef920ec873a07f2bbbb27270c7767d9",
+    "frontend/src/pages/SpatialAnalysis.tsx": "c0902b512aa2d2fe167b7a47e49eda81c119f0e76c01ba5b3887fc8d314cb149",
+    "frontend/src/app/AnalysisContext.tsx": "1647305dae22bc777330e87172dff278e60af60538e7de9283b24cacf289d11f",
+    "frontend/src/components/VideoEvidencePlayer.tsx": "e80a5324ddf14471573cc8fffc5629df3c6fbdee97b7f101a44461b7b3d44214",
+    "src/api/app.py": "cb857a50c7608137621f054ce4130dd8e8828db9a3a99d826412a6c0e5a082a3",
+    "src/api/uploads.py": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2",
+    "src/api/creation_requests.py": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+    "src/api/corrections.py": "b7f7ae60ad82a4c2dced2caae2ed28d94504401f89575ff2f06e0250114cd411",
+    "src/api/correction_worker.py": "eb5c730ed6450ec1a2ebeb9a5726c33bebf027c86187ec35270cc130f93d462a",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "frontend/dist/index.html": "f5a66fee330466dc0d8339846388f02465715f41979f425cbd243376a9906fc3",
+    "frontend/dist/assets/AccountAccess-Cn3WAwNG.js": "f51928c9df2b604f88f6966001a2db8cf075bdf4ca32e66a9cc7e4af25213aba",
+    "frontend/dist/assets/MatchMetadataForm-FwEFe9gM.js": "0e35311c30044545dca2c65ed767c48e01bc72a792e3950a2bf2c808fb66233e",
+    "frontend/dist/assets/ProductExamples-BQxaqMd2.js": "c12ed25cf762ca35c0688d2ced7f59660eb042728f14f623f4d86cddc38e61c1",
+    "frontend/dist/assets/ProductSettings-BRyokV1Y.js": "4efe9f485e490c80f65a56c0514fcccfd43b14b088a1c017fe87c375b4761758",
+    "frontend/dist/assets/ProductWorkspace-By7ptiyJ.js": "415060634ba31cfd40861f72e27c78aaac09c2fd4572b56fa609c6fe6444de05",
+    "frontend/dist/assets/Reports-Bm2MLwfJ.js": "73083518143199dabd71ee469a9a804a3453e1fd704eacd0d4538d3c039bb710",
+    "frontend/dist/assets/TennisCourt3D-D-dK6G_C.js": "bf49322a3295960c348bd00d3f4c59f0a760010aa7813fb492fb02df7301064d",
+    "frontend/dist/assets/Upload-C-Y17Qmf.js": "aff33751cb7c17baa0e511bb16ea2a34b1578d9c647bfd694bfb91495a557ed2",
+    "frontend/dist/assets/demo-data-B827wEfD.js": "9b1ccf6d0d6d2470c25631de17872524b1a9aa6621a894e0dfbd4f2bc343c95e",
+    "frontend/dist/assets/index-mZVqNum5.js": "b9a7c4a8602fb25dcf91ad204eb20d32d4f0e82eec4becb6f742e0553ea4fae3",
+    "frontend/dist/assets/preferences-DPBweFT_.js": "b5948405617f95deab5d43f417a8589c43e0c0161f0d43ed7a857effc70229ac",
+    "frontend/dist/assets/rolldown-runtime-hePW80VL.js": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+    "frontend/dist/assets/vendor-charts-BMf0NodY.js": "23cd03db34c7183408cbe680e51abd10c241ed88bfe8244a7798ea2133ee19c9",
+    "frontend/dist/assets/vendor-icons-B9H7W2cl.js": "f069495918ab209ab10b55d4b1a07940d698c9a5c455b204ea11fc3360f3be6f",
+    "frontend/dist/assets/vendor-three-daxGgQHs.js": "3e6a0c4bafa89560a615147a15c8416c5abb064cf5ed990cec8e98322acec637",
+    "frontend/dist/assets/Reports-CI8U8mdY.css": "b427b2c83342e52d8007843a1eadefc76bb6102653ec3698fa65f190ac5d9c4e",
+    "frontend/dist/assets/index-qxTXfbgE.css": "f449f013201d56fa641f64a6e2458b0b69f3418136dc01e2e6b6b2b97616ca62",
+    "frontend/dist/assets/upload-DQ6uh8R4.css": "db8bafa332428c8a475ac069a4a6f0f216b2d421ca3386e6ed97dba1d114fde2"
+  },
+  "base_url": "http://127.0.0.1:49161",
+  "analysis_id": "match_7a26c0de7a26c0de7a26c0de7a26c0de",
+  "server_pid": 3636,
+  "scenarios": [
+    {
+      "name": "lost_creation_acknowledgement_reload",
+      "started_utc": "2026-10-22T14:17:08.133123+00:00",
+      "status": "PASS",
+      "observations": {
+        "same_key_batch_and_sessions": true,
+        "reload_recovered": true,
+        "batch_id": "batch_e42fa9716b9f429a9965c5a8e832225b",
+        "analysis_id": "match_ab25d8aff8a44920a75dac83c2e163b6",
+        "durable_rows": {
+          "accepted_requests": 1,
+          "rejected_tombstones": 0,
+          "descriptors": [
+            {
+              "id": "batch_e42fa9716b9f429a9965c5a8e832225b",
+              "mode": "independent",
+              "upload_ids": [
+                "upload_f59ffdcd2a654d3b93ddd90bbfcfae4e"
+              ]
+            }
+          ],
+          "batch_session_counts": [
+            1
+          ]
+        }
+      },
+      "completed_utc": "2026-10-22T14:17:10.314092+00:00"
+    },
+    {
+      "name": "confirmed_rejection_corrected_submission",
+      "started_utc": "2026-10-22T14:17:10.316247+00:00",
+      "status": "FAIL",
+      "error": "AssertionError: Locator expected to be visible\nActual value: None\nError: element(s) not found \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_role(\"alert\").filter(has_text=\"valid filename\")\n\nAria snapshot:\n- link \"Skip to content\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"Astra Tennis home\":\n    - /url: /overview\n    - text: Astra Tennis\u00ae\n  - navigation \"Primary\":\n    - link \"[Home]\":\n      - /url: /overview\n    - link \"[My analyses]\":\n      - /url: /match-center\n    - link \"[Examples]\":\n      - /url: /examples\n  - link \"Settings\":\n    - /url: /settings\n  - link \"Upload video\":\n    - /url: /upload\n- main:\n  - text: YOUR NEXT SESSION\n  - heading \"Bring your match into focus.\" [level=1]:\n    - text: Bring your match\n    - emphasis: into focus.\n  - paragraph: Every match has a story. Upload yours to explore player movement, ball tracking and a new perspective on your court.\n  - region \"Your account\":\n    - heading \"Signed in as synthetic_review_owner_v1\" [level=2]\n    - button \"Sign out\"\n  - region \"Upload tennis video\":\n    - text: VIDEO ANALYSIS START WITH YOUR FOOTAGE\n    - heading \"SYNTHETIC-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp4\" [level=2]\n    - paragraph: 0.0 MB \u00b7 Ready to upload\n    - text: Choose video\n    - button \"Choose tennis video\"\n    - article:\n      - strong: 1. SYNTHETIC-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp4\n      - text: 0.0 MB\n      - paragraph: Ready to upload\n      - button \"Cancel SYNTHETIC-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp4\"\n    - group \"How should these videos be organized?\":\n      - text: How should these videos be organized?\n      - radio \"Independent analyses\" [checked]\n      - text: Independent analyses\n      - radio \"Clips from the same match, in the order shown\"\n      - text: Clips from the same match, in the order shown\n    - group \"Match details \u00b7 optional\":\n      - text: Match details \u00b7 optional Player 1\n      - textbox \"Player 1\":\n        - /placeholder: Name unknown\n      - text: Saved profile\n      - combobox \"Saved profile\":\n        - option \"No linked profile\" [selected]\n      - text: Player 2\n      - textbox \"Player 2\":\n        - /placeholder: Name unknown\n      - text: Saved profile\n      - combobox \"Saved profile\":\n        - option \"No linked profile\" [selected]\n      - text: Tournament\n      - textbox \"Tournament\":\n        - /placeholder: Optional\n      - text: Match date\n      - textbox \"Match date\"\n      - text: Match type\n      - combobox \"Match type\":\n        - option \"Singles\" [selected]\n        - option \"Doubles \u2014 video analysis not supported\" [disabled]\n      - paragraph: Unknown names stay unknown. No identity source is connected; names you enter are user-confirmed. Linking a profile is a separate, explicit choice.\n    - alert:\n      - img\n      - text: Reconnect to confirm your account before creating an upload.\n    - button \"Analyze match\":\n      - text: Analyze match\n      - img\n    - paragraph: For the clearest results, use a mostly static camera with the court and both players visible. Processing continues when you leave this page after upload.\n  - complementary:\n    - text: FROM FOOTAGE TO FEEDBACK\n    - heading \"Your game. A fresh perspective.\" [level=2]:\n      - text: Your game.\n      - emphasis: A fresh perspective.\n    - list:\n      - listitem:\n        - text: \"01\"\n        - heading \"Upload your session\" [level=3]\n        - paragraph: Each upload creates a separate saved analysis.\n      - listitem:\n        - text: \"02\"\n        - heading \"Follow the analysis\" [level=3]\n        - paragraph: See each processing stage as the tennis pipeline tracks your match.\n      - listitem:\n        - text: \"03\"\n        - heading \"Review every movement\" [level=3]\n        - paragraph: Open synchronized video, court replay, movement maps and statistics.\n    - text: LESS GUESSWORK. MORE PERSPECTIVE.\n  - region \"Analysis history\":\n    - text: THE SESSION ARCHIVE\n    - heading \"Your analyses\" [level=2]\n    - text: 2 sessions\n    - article:\n      - heading \"SYNTHETIC-lost-ack.mp4\" [level=3]\n      - paragraph: 10/22/2026, 2:17:09 PM \u00b7 Waiting for the analysis worker\n      - text: Queued\n      - button \"Details\"\n      - button \"Cancel analysis\"\n    - article:\n      - heading \"SYNTHETIC SOFTWARE TEST - correction workflow.mp4\" [level=3]\n      - paragraph: 10/22/2026, 2:11:31 PM \u00b7 Analysis complete\n      - text: completed\n      - link \"Open analysis for SYNTHETIC SOFTWARE TEST - correction workflow.mp4\":\n        - /url: /analysis/match_7a26c0de7a26c0de7a26c0de7a26c0de\n        - text: View\n        - img\n- contentinfo:\n  - text: TENNIS. SEEN DIFFERENTLY.\n  - link \"Service and replay settings\":\n    - /url: /settings\n  - text: Astra Tennis \u00b7 Video analysis [ BUILT AROUND THE EVIDENCE ]\n  - link \"Your next match \u2197\":\n    - /url: /upload",
+      "completed_utc": "2026-10-22T14:17:15.838251+00:00"
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    }
+  ],
+  "page_errors": [],
+  "request_failures": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:49161/api/batches",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49161/api/health",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49161/api/auth/session",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "screenshots": [
+    "screenshots/01-actual-owner-signin.png",
+    "screenshots/02-lost-ack-retained.png",
+    "screenshots/03-lost-ack-recovered-same-batch.png",
+    "screenshots/failure.png"
+  ],
+  "actual_model_inference": false,
+  "actual_host_ram_gpu_probes": 0,
+  "browser_version": "154.0.8037.57",
+  "error": "AssertionError: Locator expected to be visible\nActual value: None\nError: element(s) not found \nCall log:\n  - Expect \"to_be_visible\" with timeout 5000ms\n  - waiting for get_by_role(\"alert\").filter(has_text=\"valid filename\")\n\nAria snapshot:\n- link \"Skip to content\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"Astra Tennis home\":\n    - /url: /overview\n    - text: Astra Tennis\u00ae\n  - navigation \"Primary\":\n    - link \"[Home]\":\n      - /url: /overview\n    - link \"[My analyses]\":\n      - /url: /match-center\n    - link \"[Examples]\":\n      - /url: /examples\n  - link \"Settings\":\n    - /url: /settings\n  - link \"Upload video\":\n    - /url: /upload\n- main:\n  - text: YOUR NEXT SESSION\n  - heading \"Bring your match into focus.\" [level=1]:\n    - text: Bring your match\n    - emphasis: into focus.\n  - paragraph: Every match has a story. Upload yours to explore player movement, ball tracking and a new perspective on your court.\n  - region \"Your account\":\n    - heading \"Signed in as synthetic_review_owner_v1\" [level=2]\n    - button \"Sign out\"\n  - region \"Upload tennis video\":\n    - text: VIDEO ANALYSIS START WITH YOUR FOOTAGE\n    - heading \"SYNTHETIC-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp4\" [level=2]\n    - paragraph: 0.0 MB \u00b7 Ready to upload\n    - text: Choose video\n    - button \"Choose tennis video\"\n    - article:\n      - strong: 1. SYNTHETIC-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp4\n      - text: 0.0 MB\n      - paragraph: Ready to upload\n      - button \"Cancel SYNTHETIC-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp4\"\n    - group \"How should these videos be organized?\":\n      - text: How should these videos be organized?\n      - radio \"Independent analyses\" [checked]\n      - text: Independent analyses\n      - radio \"Clips from the same match, in the order shown\"\n      - text: Clips from the same match, in the order shown\n    - group \"Match details \u00b7 optional\":\n      - text: Match details \u00b7 optional Player 1\n      - textbox \"Player 1\":\n        - /placeholder: Name unknown\n      - text: Saved profile\n      - combobox \"Saved profile\":\n        - option \"No linked profile\" [selected]\n      - text: Player 2\n      - textbox \"Player 2\":\n        - /placeholder: Name unknown\n      - text: Saved profile\n      - combobox \"Saved profile\":\n        - option \"No linked profile\" [selected]\n      - text: Tournament\n      - textbox \"Tournament\":\n        - /placeholder: Optional\n      - text: Match date\n      - textbox \"Match date\"\n      - text: Match type\n      - combobox \"Match type\":\n        - option \"Singles\" [selected]\n        - option \"Doubles \u2014 video analysis not supported\" [disabled]\n      - paragraph: Unknown names stay unknown. No identity source is connected; names you enter are user-confirmed. Linking a profile is a separate, explicit choice.\n    - alert:\n      - img\n      - text: Reconnect to confirm your account before creating an upload.\n    - button \"Analyze match\":\n      - text: Analyze match\n      - img\n    - paragraph: For the clearest results, use a mostly static camera with the court and both players visible. Processing continues when you leave this page after upload.\n  - complementary:\n    - text: FROM FOOTAGE TO FEEDBACK\n    - heading \"Your game. A fresh perspective.\" [level=2]:\n      - text: Your game.\n      - emphasis: A fresh perspective.\n    - list:\n      - listitem:\n        - text: \"01\"\n        - heading \"Upload your session\" [level=3]\n        - paragraph: Each upload creates a separate saved analysis.\n      - listitem:\n        - text: \"02\"\n        - heading \"Follow the analysis\" [level=3]\n        - paragraph: See each processing stage as the tennis pipeline tracks your match.\n      - listitem:\n        - text: \"03\"\n        - heading \"Review every movement\" [level=3]\n        - paragraph: Open synchronized video, court replay, movement maps and statistics.\n    - text: LESS GUESSWORK. MORE PERSPECTIVE.\n  - region \"Analysis history\":\n    - text: THE SESSION ARCHIVE\n    - heading \"Your analyses\" [level=2]\n    - text: 2 sessions\n    - article:\n      - heading \"SYNTHETIC-lost-ack.mp4\" [level=3]\n      - paragraph: 10/22/2026, 2:17:09 PM \u00b7 Waiting for the analysis worker\n      - text: Queued\n      - button \"Details\"\n      - button \"Cancel analysis\"\n    - article:\n      - heading \"SYNTHETIC SOFTWARE TEST - correction workflow.mp4\" [level=3]\n      - paragraph: 10/22/2026, 2:11:31 PM \u00b7 Analysis complete\n      - text: completed\n      - link \"Open analysis for SYNTHETIC SOFTWARE TEST - correction workflow.mp4\":\n        - /url: /analysis/match_7a26c0de7a26c0de7a26c0de7a26c0de\n        - text: View\n        - img\n- contentinfo:\n  - text: TENNIS. SEEN DIFFERENTLY.\n  - link \"Service and replay settings\":\n    - /url: /settings\n  - text: Astra Tennis \u00b7 Video analysis [ BUILT AROUND THE EVIDENCE ]\n  - link \"Your next match \u2197\":\n    - /url: /upload",
+  "source_after": {
+    "frontend/src/pages/Upload.tsx": "11173249e9a6182e23a36fe2da90d7ea1b2eb91c4aab819b9678bdcdb235fb20",
+    "frontend/src/components/AccountAccess.tsx": "75981d860a3df012a36d813a29b5898a857ed9a1049e68dfcaf612e5cb56ddda",
+    "frontend/src/data/batchApi.ts": "d3aacf2b2949b704057de8c4c782568572d7c00763d4643098339841f714d2e1",
+    "frontend/src/data/creationIntent.ts": "894339fb619bb3c8e806f8f96810c22b7c29c7fb7592269435f65e322acbc55a",
+    "frontend/src/components/AnalysisCorrection.tsx": "57c872a48f06291efa7da64de8d01235c6078c45130cffb5e6c704c8f6fe7045",
+    "frontend/src/data/correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "frontend/src/pages/ProductWorkspace.tsx": "5397359a1e9a6cf8aa93db38fbf62433cef920ec873a07f2bbbb27270c7767d9",
+    "frontend/src/pages/SpatialAnalysis.tsx": "c0902b512aa2d2fe167b7a47e49eda81c119f0e76c01ba5b3887fc8d314cb149",
+    "frontend/src/app/AnalysisContext.tsx": "1647305dae22bc777330e87172dff278e60af60538e7de9283b24cacf289d11f",
+    "frontend/src/components/VideoEvidencePlayer.tsx": "e80a5324ddf14471573cc8fffc5629df3c6fbdee97b7f101a44461b7b3d44214",
+    "src/api/app.py": "cb857a50c7608137621f054ce4130dd8e8828db9a3a99d826412a6c0e5a082a3",
+    "src/api/uploads.py": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2",
+    "src/api/creation_requests.py": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+    "src/api/corrections.py": "b7f7ae60ad82a4c2dced2caae2ed28d94504401f89575ff2f06e0250114cd411",
+    "src/api/correction_worker.py": "eb5c730ed6450ec1a2ebeb9a5726c33bebf027c86187ec35270cc130f93d462a",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "frontend/dist/index.html": "f5a66fee330466dc0d8339846388f02465715f41979f425cbd243376a9906fc3",
+    "frontend/dist/assets/AccountAccess-Cn3WAwNG.js": "f51928c9df2b604f88f6966001a2db8cf075bdf4ca32e66a9cc7e4af25213aba",
+    "frontend/dist/assets/MatchMetadataForm-FwEFe9gM.js": "0e35311c30044545dca2c65ed767c48e01bc72a792e3950a2bf2c808fb66233e",
+    "frontend/dist/assets/ProductExamples-BQxaqMd2.js": "c12ed25cf762ca35c0688d2ced7f59660eb042728f14f623f4d86cddc38e61c1",
+    "frontend/dist/assets/ProductSettings-BRyokV1Y.js": "4efe9f485e490c80f65a56c0514fcccfd43b14b088a1c017fe87c375b4761758",
+    "frontend/dist/assets/ProductWorkspace-By7ptiyJ.js": "415060634ba31cfd40861f72e27c78aaac09c2fd4572b56fa609c6fe6444de05",
+    "frontend/dist/assets/Reports-Bm2MLwfJ.js": "73083518143199dabd71ee469a9a804a3453e1fd704eacd0d4538d3c039bb710",
+    "frontend/dist/assets/TennisCourt3D-D-dK6G_C.js": "bf49322a3295960c348bd00d3f4c59f0a760010aa7813fb492fb02df7301064d",
+    "frontend/dist/assets/Upload-C-Y17Qmf.js": "aff33751cb7c17baa0e511bb16ea2a34b1578d9c647bfd694bfb91495a557ed2",
+    "frontend/dist/assets/demo-data-B827wEfD.js": "9b1ccf6d0d6d2470c25631de17872524b1a9aa6621a894e0dfbd4f2bc343c95e",
+    "frontend/dist/assets/index-mZVqNum5.js": "b9a7c4a8602fb25dcf91ad204eb20d32d4f0e82eec4becb6f742e0553ea4fae3",
+    "frontend/dist/assets/preferences-DPBweFT_.js": "b5948405617f95deab5d43f417a8589c43e0c0161f0d43ed7a857effc70229ac",
+    "frontend/dist/assets/rolldown-runtime-hePW80VL.js": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+    "frontend/dist/assets/vendor-charts-BMf0NodY.js": "23cd03db34c7183408cbe680e51abd10c241ed88bfe8244a7798ea2133ee19c9",
+    "frontend/dist/assets/vendor-icons-B9H7W2cl.js": "f069495918ab209ab10b55d4b1a07940d698c9a5c455b204ea11fc3360f3be6f",
+    "frontend/dist/assets/vendor-three-daxGgQHs.js": "3e6a0c4bafa89560a615147a15c8416c5abb064cf5ed990cec8e98322acec637",
+    "frontend/dist/assets/Reports-CI8U8mdY.css": "b427b2c83342e52d8007843a1eadefc76bb6102653ec3698fa65f190ac5d9c4e",
+    "frontend/dist/assets/index-qxTXfbgE.css": "f449f013201d56fa641f64a6e2458b0b69f3418136dc01e2e6b6b2b97616ca62",
+    "frontend/dist/assets/upload-DQ6uh8R4.css": "db8bafa332428c8a475ac069a4a6f0f216b2d421ca3386e6ed97dba1d114fde2"
+  },
+  "source_stable": true,
+  "runner_sha256_after": "868ac507f4089f5bf0e773e25923c7b1d27c98539b83b8c08f871e38ba4f1d31",
+  "runner_stable": true,
+  "elapsed_seconds": 9.81787010999983,
+  "completed_utc": "2026-10-22T14:17:16.087415+00:00"
+}

@@ -1,0 +1,347 @@
+{
+  "status": "FAIL",
+  "started_utc": "2026-10-22T14:21:52.027717+00:00",
+  "scope": "SYNTHETIC SOFTWARE TEST: actual Chromium UI, real cookie accounts, real upload admission/storage and source-bound correction publication; no original video inference, host RAM/GPU probe, tennis accuracy or capacity claim",
+  "runner_sha256": "9c4ff169d46a7f981a8b97286808ccc79959f542c7f19abaf7482ae54b7bcc20",
+  "fixture_manifest_sha256": "57e7662fdeecee1936f07f2d01717fbffb1d8405cd8f922c17f29a340769b372",
+  "fixture_directory": "/workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1",
+  "source_before": {
+    "frontend/src/pages/Upload.tsx": "11173249e9a6182e23a36fe2da90d7ea1b2eb91c4aab819b9678bdcdb235fb20",
+    "frontend/src/components/AccountAccess.tsx": "75981d860a3df012a36d813a29b5898a857ed9a1049e68dfcaf612e5cb56ddda",
+    "frontend/src/data/batchApi.ts": "d3aacf2b2949b704057de8c4c782568572d7c00763d4643098339841f714d2e1",
+    "frontend/src/data/creationIntent.ts": "894339fb619bb3c8e806f8f96810c22b7c29c7fb7592269435f65e322acbc55a",
+    "frontend/src/components/AnalysisCorrection.tsx": "57c872a48f06291efa7da64de8d01235c6078c45130cffb5e6c704c8f6fe7045",
+    "frontend/src/data/correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "frontend/src/pages/ProductWorkspace.tsx": "5397359a1e9a6cf8aa93db38fbf62433cef920ec873a07f2bbbb27270c7767d9",
+    "frontend/src/pages/SpatialAnalysis.tsx": "c0902b512aa2d2fe167b7a47e49eda81c119f0e76c01ba5b3887fc8d314cb149",
+    "frontend/src/app/AnalysisContext.tsx": "1647305dae22bc777330e87172dff278e60af60538e7de9283b24cacf289d11f",
+    "frontend/src/components/VideoEvidencePlayer.tsx": "e80a5324ddf14471573cc8fffc5629df3c6fbdee97b7f101a44461b7b3d44214",
+    "src/api/app.py": "cb857a50c7608137621f054ce4130dd8e8828db9a3a99d826412a6c0e5a082a3",
+    "src/api/uploads.py": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2",
+    "src/api/creation_requests.py": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+    "src/api/corrections.py": "b7f7ae60ad82a4c2dced2caae2ed28d94504401f89575ff2f06e0250114cd411",
+    "src/api/correction_worker.py": "eb5c730ed6450ec1a2ebeb9a5726c33bebf027c86187ec35270cc130f93d462a",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "frontend/dist/index.html": "f5a66fee330466dc0d8339846388f02465715f41979f425cbd243376a9906fc3",
+    "frontend/dist/assets/AccountAccess-Cn3WAwNG.js": "f51928c9df2b604f88f6966001a2db8cf075bdf4ca32e66a9cc7e4af25213aba",
+    "frontend/dist/assets/MatchMetadataForm-FwEFe9gM.js": "0e35311c30044545dca2c65ed767c48e01bc72a792e3950a2bf2c808fb66233e",
+    "frontend/dist/assets/ProductExamples-BQxaqMd2.js": "c12ed25cf762ca35c0688d2ced7f59660eb042728f14f623f4d86cddc38e61c1",
+    "frontend/dist/assets/ProductSettings-BRyokV1Y.js": "4efe9f485e490c80f65a56c0514fcccfd43b14b088a1c017fe87c375b4761758",
+    "frontend/dist/assets/ProductWorkspace-By7ptiyJ.js": "415060634ba31cfd40861f72e27c78aaac09c2fd4572b56fa609c6fe6444de05",
+    "frontend/dist/assets/Reports-Bm2MLwfJ.js": "73083518143199dabd71ee469a9a804a3453e1fd704eacd0d4538d3c039bb710",
+    "frontend/dist/assets/TennisCourt3D-D-dK6G_C.js": "bf49322a3295960c348bd00d3f4c59f0a760010aa7813fb492fb02df7301064d",
+    "frontend/dist/assets/Upload-C-Y17Qmf.js": "aff33751cb7c17baa0e511bb16ea2a34b1578d9c647bfd694bfb91495a557ed2",
+    "frontend/dist/assets/demo-data-B827wEfD.js": "9b1ccf6d0d6d2470c25631de17872524b1a9aa6621a894e0dfbd4f2bc343c95e",
+    "frontend/dist/assets/index-mZVqNum5.js": "b9a7c4a8602fb25dcf91ad204eb20d32d4f0e82eec4becb6f742e0553ea4fae3",
+    "frontend/dist/assets/preferences-DPBweFT_.js": "b5948405617f95deab5d43f417a8589c43e0c0161f0d43ed7a857effc70229ac",
+    "frontend/dist/assets/rolldown-runtime-hePW80VL.js": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+    "frontend/dist/assets/vendor-charts-BMf0NodY.js": "23cd03db34c7183408cbe680e51abd10c241ed88bfe8244a7798ea2133ee19c9",
+    "frontend/dist/assets/vendor-icons-B9H7W2cl.js": "f069495918ab209ab10b55d4b1a07940d698c9a5c455b204ea11fc3360f3be6f",
+    "frontend/dist/assets/vendor-three-daxGgQHs.js": "3e6a0c4bafa89560a615147a15c8416c5abb064cf5ed990cec8e98322acec637",
+    "frontend/dist/assets/Reports-CI8U8mdY.css": "b427b2c83342e52d8007843a1eadefc76bb6102653ec3698fa65f190ac5d9c4e",
+    "frontend/dist/assets/index-qxTXfbgE.css": "f449f013201d56fa641f64a6e2458b0b69f3418136dc01e2e6b6b2b97616ca62",
+    "frontend/dist/assets/upload-DQ6uh8R4.css": "db8bafa332428c8a475ac069a4a6f0f216b2d421ca3386e6ed97dba1d114fde2"
+  },
+  "base_url": "http://127.0.0.1:49161",
+  "analysis_id": "match_7a26c0de7a26c0de7a26c0de7a26c0de",
+  "server_pid": 3636,
+  "scenarios": [
+    {
+      "name": "lost_creation_acknowledgement_reload",
+      "started_utc": "2026-10-22T14:21:54.055599+00:00",
+      "status": "PASS",
+      "observations": {
+        "same_key_batch_and_sessions": true,
+        "reload_recovered": true,
+        "batch_id": "batch_7c7ce127ebf44907ae2e18088eddc7fd",
+        "analysis_id": "match_8af4fb2b4faf412dab313ccbca829c3d",
+        "durable_rows": {
+          "accepted_requests": 1,
+          "rejected_tombstones": 0,
+          "descriptors": [
+            {
+              "id": "batch_7c7ce127ebf44907ae2e18088eddc7fd",
+              "mode": "independent",
+              "upload_ids": [
+                "upload_ba52b455ac52407ca00fd55e6d40ca73"
+              ]
+            }
+          ],
+          "batch_session_counts": [
+            1
+          ]
+        }
+      },
+      "completed_utc": "2026-10-22T14:21:55.820192+00:00"
+    },
+    {
+      "name": "confirmed_rejection_corrected_submission",
+      "started_utc": "2026-10-22T14:21:55.820550+00:00",
+      "status": "PASS",
+      "observations": {
+        "real_415_with_exact_tombstone": true,
+        "intent_retired": true,
+        "new_key_accepted": true,
+        "batch_id": "batch_d8313c8c24c44abf961de6d5e48dad25"
+      },
+      "completed_utc": "2026-10-22T14:21:57.428446+00:00"
+    },
+    {
+      "name": "cross_owner_delayed_acknowledgement",
+      "started_utc": "2026-10-22T14:21:57.430016+00:00",
+      "status": "FAIL",
+      "error": "AssertionError: Locator expected to have Value ''\nActual value: C:\\fakepath\\SYNTHETIC-delayed-owner-reply-931e1ff7.mp4 \nCall log:\n  - Expect \"to_have_value\" with timeout 5000ms\n  - waiting for get_by_label(\"Choose tennis video\", exact=True)\n    14 \u00d7 locator resolved to <input multiple type=\"file\" accept=\".mp4,.mov,.avi\" aria-label=\"Choose tennis video\"/>\n       - unexpected value \"C:\\fakepath\\SYNTHETIC-delayed-owner-reply-931e1ff7.mp4\"\n\nAria snapshot:\n- button \"Choose tennis video\"",
+      "completed_utc": "2026-10-22T14:22:03.564269+00:00"
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 415 (Unsupported Media Type)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    }
+  ],
+  "page_errors": [],
+  "request_failures": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:49161/api/batches",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49161/api/health",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49161/api/auth/session",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49161/api/health",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:49161/api/auth/session",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:49161/api/batches",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "screenshots": [
+    "screenshots/01-actual-owner-signin.png",
+    "screenshots/02-lost-ack-retained.png",
+    "screenshots/03-lost-ack-recovered-same-batch.png",
+    "screenshots/04-confirmed-rejection.png",
+    "screenshots/05-corrected-submission-accepted.png",
+    "screenshots/failure.png"
+  ],
+  "actual_model_inference": false,
+  "actual_host_ram_gpu_probes": 0,
+  "browser_version": "154.0.8037.57",
+  "upload_readiness_brackets": [
+    {
+      "owner": "account_f153353ea3f9a4246e1ca5079f1bf958",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 27,
+        "response_sequence": 28,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 32,
+        "response_sequence": 33,
+        "status": 200,
+        "analysis_ids": [
+          "match_ab25d8aff8a44920a75dac83c2e163b6",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 34,
+        "response_sequence": 35,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      }
+    },
+    {
+      "owner": "account_f153353ea3f9a4246e1ca5079f1bf958",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 56,
+        "response_sequence": 61,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 63,
+        "response_sequence": 64,
+        "status": 200,
+        "analysis_ids": [
+          "match_ab25d8aff8a44920a75dac83c2e163b6",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 65,
+        "response_sequence": 66,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      }
+    },
+    {
+      "owner": "account_f153353ea3f9a4246e1ca5079f1bf958",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 111,
+        "response_sequence": 112,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 114,
+        "response_sequence": 115,
+        "status": 200,
+        "analysis_ids": [
+          "match_8af4fb2b4faf412dab313ccbca829c3d",
+          "match_ab25d8aff8a44920a75dac83c2e163b6",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 116,
+        "response_sequence": 117,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      }
+    },
+    {
+      "owner": "account_f153353ea3f9a4246e1ca5079f1bf958",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 111,
+        "response_sequence": 112,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 114,
+        "response_sequence": 115,
+        "status": 200,
+        "analysis_ids": [
+          "match_8af4fb2b4faf412dab313ccbca829c3d",
+          "match_ab25d8aff8a44920a75dac83c2e163b6",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 116,
+        "response_sequence": 117,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      }
+    },
+    {
+      "owner": "account_f153353ea3f9a4246e1ca5079f1bf958",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 163,
+        "response_sequence": 165,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 167,
+        "response_sequence": 168,
+        "status": 200,
+        "analysis_ids": [
+          "match_30140830170945c49a1d88b772717fcd",
+          "match_8af4fb2b4faf412dab313ccbca829c3d",
+          "match_ab25d8aff8a44920a75dac83c2e163b6",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 169,
+        "response_sequence": 170,
+        "status": 200,
+        "owner": "account_f153353ea3f9a4246e1ca5079f1bf958"
+      }
+    }
+  ],
+  "error": "AssertionError: Locator expected to have Value ''\nActual value: C:\\fakepath\\SYNTHETIC-delayed-owner-reply-931e1ff7.mp4 \nCall log:\n  - Expect \"to_have_value\" with timeout 5000ms\n  - waiting for get_by_label(\"Choose tennis video\", exact=True)\n    14 \u00d7 locator resolved to <input multiple type=\"file\" accept=\".mp4,.mov,.avi\" aria-label=\"Choose tennis video\"/>\n       - unexpected value \"C:\\fakepath\\SYNTHETIC-delayed-owner-reply-931e1ff7.mp4\"\n\nAria snapshot:\n- button \"Choose tennis video\"",
+  "source_after": {
+    "frontend/src/pages/Upload.tsx": "11173249e9a6182e23a36fe2da90d7ea1b2eb91c4aab819b9678bdcdb235fb20",
+    "frontend/src/components/AccountAccess.tsx": "75981d860a3df012a36d813a29b5898a857ed9a1049e68dfcaf612e5cb56ddda",
+    "frontend/src/data/batchApi.ts": "d3aacf2b2949b704057de8c4c782568572d7c00763d4643098339841f714d2e1",
+    "frontend/src/data/creationIntent.ts": "894339fb619bb3c8e806f8f96810c22b7c29c7fb7592269435f65e322acbc55a",
+    "frontend/src/components/AnalysisCorrection.tsx": "57c872a48f06291efa7da64de8d01235c6078c45130cffb5e6c704c8f6fe7045",
+    "frontend/src/data/correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "frontend/src/pages/ProductWorkspace.tsx": "5397359a1e9a6cf8aa93db38fbf62433cef920ec873a07f2bbbb27270c7767d9",
+    "frontend/src/pages/SpatialAnalysis.tsx": "c0902b512aa2d2fe167b7a47e49eda81c119f0e76c01ba5b3887fc8d314cb149",
+    "frontend/src/app/AnalysisContext.tsx": "1647305dae22bc777330e87172dff278e60af60538e7de9283b24cacf289d11f",
+    "frontend/src/components/VideoEvidencePlayer.tsx": "e80a5324ddf14471573cc8fffc5629df3c6fbdee97b7f101a44461b7b3d44214",
+    "src/api/app.py": "cb857a50c7608137621f054ce4130dd8e8828db9a3a99d826412a6c0e5a082a3",
+    "src/api/uploads.py": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2",
+    "src/api/creation_requests.py": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+    "src/api/corrections.py": "b7f7ae60ad82a4c2dced2caae2ed28d94504401f89575ff2f06e0250114cd411",
+    "src/api/correction_worker.py": "eb5c730ed6450ec1a2ebeb9a5726c33bebf027c86187ec35270cc130f93d462a",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "frontend/dist/index.html": "f5a66fee330466dc0d8339846388f02465715f41979f425cbd243376a9906fc3",
+    "frontend/dist/assets/AccountAccess-Cn3WAwNG.js": "f51928c9df2b604f88f6966001a2db8cf075bdf4ca32e66a9cc7e4af25213aba",
+    "frontend/dist/assets/MatchMetadataForm-FwEFe9gM.js": "0e35311c30044545dca2c65ed767c48e01bc72a792e3950a2bf2c808fb66233e",
+    "frontend/dist/assets/ProductExamples-BQxaqMd2.js": "c12ed25cf762ca35c0688d2ced7f59660eb042728f14f623f4d86cddc38e61c1",
+    "frontend/dist/assets/ProductSettings-BRyokV1Y.js": "4efe9f485e490c80f65a56c0514fcccfd43b14b088a1c017fe87c375b4761758",
+    "frontend/dist/assets/ProductWorkspace-By7ptiyJ.js": "415060634ba31cfd40861f72e27c78aaac09c2fd4572b56fa609c6fe6444de05",
+    "frontend/dist/assets/Reports-Bm2MLwfJ.js": "73083518143199dabd71ee469a9a804a3453e1fd704eacd0d4538d3c039bb710",
+    "frontend/dist/assets/TennisCourt3D-D-dK6G_C.js": "bf49322a3295960c348bd00d3f4c59f0a760010aa7813fb492fb02df7301064d",
+    "frontend/dist/assets/Upload-C-Y17Qmf.js": "aff33751cb7c17baa0e511bb16ea2a34b1578d9c647bfd694bfb91495a557ed2",
+    "frontend/dist/assets/demo-data-B827wEfD.js": "9b1ccf6d0d6d2470c25631de17872524b1a9aa6621a894e0dfbd4f2bc343c95e",
+    "frontend/dist/assets/index-mZVqNum5.js": "b9a7c4a8602fb25dcf91ad204eb20d32d4f0e82eec4becb6f742e0553ea4fae3",
+    "frontend/dist/assets/preferences-DPBweFT_.js": "b5948405617f95deab5d43f417a8589c43e0c0161f0d43ed7a857effc70229ac",
+    "frontend/dist/assets/rolldown-runtime-hePW80VL.js": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+    "frontend/dist/assets/vendor-charts-BMf0NodY.js": "23cd03db34c7183408cbe680e51abd10c241ed88bfe8244a7798ea2133ee19c9",
+    "frontend/dist/assets/vendor-icons-B9H7W2cl.js": "f069495918ab209ab10b55d4b1a07940d698c9a5c455b204ea11fc3360f3be6f",
+    "frontend/dist/assets/vendor-three-daxGgQHs.js": "3e6a0c4bafa89560a615147a15c8416c5abb064cf5ed990cec8e98322acec637",
+    "frontend/dist/assets/Reports-CI8U8mdY.css": "b427b2c83342e52d8007843a1eadefc76bb6102653ec3698fa65f190ac5d9c4e",
+    "frontend/dist/assets/index-qxTXfbgE.css": "f449f013201d56fa641f64a6e2458b0b69f3418136dc01e2e6b6b2b97616ca62",
+    "frontend/dist/assets/upload-DQ6uh8R4.css": "db8bafa332428c8a475ac069a4a6f0f216b2d421ca3386e6ed97dba1d114fde2"
+  },
+  "source_stable": true,
+  "runner_sha256_after": "9c4ff169d46a7f981a8b97286808ccc79959f542c7f19abaf7482ae54b7bcc20",
+  "runner_stable": true,
+  "elapsed_seconds": 11.767688660999966,
+  "completed_utc": "2026-10-22T14:22:03.799722+00:00"
+}
