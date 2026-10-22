@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import Upload from './Upload';
-import { ApiError, apiJson, listJobs, uploadVideo, type AnalysisJob } from '../data/analysisApi';
+import { ApiError, apiJson, listJobs, retryAnalysis, uploadVideo, type AnalysisJob } from '../data/analysisApi';
 import { mutate } from '../data/productApi';
 import type { PublicDemo } from '../data/publicDemos';
 
@@ -13,7 +13,7 @@ vi.mock('../data/productApi', async importOriginal => ({
 
 vi.mock('../data/analysisApi', async importOriginal => ({
   ...await importOriginal<typeof import('../data/analysisApi')>(),
-  apiJson: vi.fn(), listJobs: vi.fn(), uploadVideo: vi.fn(),
+  apiJson: vi.fn(), listJobs: vi.fn(), retryAnalysis: vi.fn(), uploadVideo: vi.fn(),
 }));
 const job: AnalysisJob = { id: 'match_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', filename: 'tennis.mp4', status: 'UPLOADED',
   stage: 'Waiting for the analysis worker', step: 0, created_at: '2026-09-19T00:00:00Z',
@@ -33,6 +33,135 @@ beforeEach(() => {
 afterEach(() => vi.clearAllMocks());
 
 describe('video upload workflow', () => {
+  it('discards delayed initial history when the owner changes between the before and after checks', async () => {
+    const alice = { ...job, filename: 'alice-private.mp4', status: 'FAILED' as const };
+    const bob = { ...job, id: 'match_bob', filename: 'bob-private.mp4', status: 'FAILED' as const };
+    let owner = 'alice';
+    vi.mocked(apiJson).mockImplementation(async path => {
+      if (path === '/api/demos') return { schemaVersion: 1, demos: [] };
+      if (path === '/api/auth/session') return { required: true, authenticated: true, user: { id: owner, username: owner } };
+      return { max_upload_bytes: 1024, max_duration_seconds: 7200, resumable_uploads: true, auth_required: true };
+    });
+    let finish: (value: AnalysisJob[]) => void = () => undefined;
+    vi.mocked(listJobs).mockImplementationOnce(() => new Promise(resolve => { finish = resolve; })).mockResolvedValue([bob]);
+    render(<MemoryRouter><Upload /></MemoryRouter>);
+    await waitFor(() => expect(listJobs).toHaveBeenCalledOnce());
+    owner = 'bob';
+    await act(async () => finish([alice]));
+    const row = within((await screen.findByRole('heading', { name: bob.filename })).closest('article')!);
+    expect(screen.queryByRole('heading', { name: alice.filename })).not.toBeInTheDocument();
+    vi.mocked(retryAnalysis).mockResolvedValueOnce({ ...job, id: 'match_bob_child', retry_of: bob.id });
+    await userEvent.setup().click(row.getByRole('button', { name: 'Retry analysis' }));
+    expect(retryAnalysis).toHaveBeenCalledExactlyOnceWith(bob.id, 'bob', expect.any(Function));
+  });
+
+  it('invalidates a pending cancel acknowledgement after a refresh observes 401', async () => {
+    vi.useFakeTimers();
+    try {
+      vi.mocked(apiJson).mockImplementation(async path => {
+        if (path === '/api/demos') return { schemaVersion: 1, demos: [] };
+        if (path === '/api/auth/session') return { required: true, authenticated: true, user: { id: 'alice', username: 'alice' } };
+        return { max_upload_bytes: 1024, max_duration_seconds: 7200, resumable_uploads: true, auth_required: true };
+      });
+      vi.mocked(listJobs).mockResolvedValue([job]);
+      let finish: (value: AnalysisJob) => void = () => undefined;
+      vi.mocked(mutate).mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+      render(<MemoryRouter><Upload /></MemoryRouter>);
+      await act(async () => undefined);
+      fireEvent.click(screen.getByRole('button', { name: 'Cancel analysis' }));
+      vi.mocked(listJobs).mockRejectedValue(new ApiError('Sign in to access your matches.', 401));
+      await act(async () => { await vi.advanceTimersByTimeAsync(2500); });
+      expect(screen.getByText('Sign in to upload videos and view your private analysis history.')).toBeInTheDocument();
+      await act(async () => finish({ ...job, status: 'FAILED', cancel_requested: true }));
+      expect(screen.queryByRole('heading', { name: job.filename })).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: 'Retry analysis' })).not.toBeInTheDocument();
+    } finally { vi.useRealTimers(); }
+  });
+
+  it('withholds account history if an authenticated server cannot identify its owner', async () => {
+    vi.mocked(apiJson).mockImplementation(async path => {
+      if (path === '/api/demos') return { schemaVersion: 1, demos: [] };
+      if (path === '/api/auth/session') return null;
+      return { max_upload_bytes: 1024, max_duration_seconds: 7200, auth_required: true };
+    });
+    vi.mocked(listJobs).mockResolvedValue([job]);
+    render(<MemoryRouter><Upload /></MemoryRouter>);
+    expect(await screen.findByRole('alert')).toHaveTextContent('Your account could not be confirmed');
+    expect(screen.queryByRole('heading', { name: job.filename })).not.toBeInTheDocument();
+  });
+
+  it('uses the retry seam once and disables rapid repeat clicks until acknowledged', async () => {
+    const failed = { ...job, status: 'FAILED' as const, error: 'Interrupted' };
+    const child = { ...job, id: 'match_child', filename: 'retried.mp4', retry_of: failed.id };
+    vi.mocked(apiJson).mockImplementation(async path => {
+      if (path === '/api/demos') return { schemaVersion: 1, demos: [] };
+      if (path === '/api/auth/session') return { required: false, authenticated: false, user: null };
+      return { max_upload_bytes: 1024, max_duration_seconds: 7200, resumable_uploads: true };
+    });
+    vi.mocked(listJobs).mockResolvedValue([failed]);
+    let finish: (value: AnalysisJob) => void = () => undefined;
+    vi.mocked(retryAnalysis).mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+    render(<MemoryRouter><Upload /></MemoryRouter>);
+    const button = await screen.findByRole('button', { name: 'Retry analysis' });
+    await waitFor(() => expect(button).toBeEnabled());
+    fireEvent.click(button); fireEvent.click(button);
+    expect(retryAnalysis).toHaveBeenCalledExactlyOnceWith(failed.id, 'local', expect.any(Function));
+    expect(screen.getByRole('button', { name: 'Retrying analysis…' })).toBeDisabled();
+    vi.mocked(listJobs).mockResolvedValue([child, failed]);
+    await act(async () => finish(child));
+    expect(await screen.findByRole('heading', { name: child.filename })).toBeInTheDocument();
+    expect(mutate).not.toHaveBeenCalled();
+  });
+
+  it('keeps retry errors actionable and treats a failed child as its own retry source', async () => {
+    const failed = { ...job, status: 'FAILED' as const, error: 'Interrupted' };
+    const child = { ...failed, id: 'match_child', filename: 'failed-child.mp4', retry_of: failed.id };
+    vi.mocked(apiJson).mockImplementation(async path => {
+      if (path === '/api/demos') return { schemaVersion: 1, demos: [] };
+      if (path === '/api/auth/session') return { required: false, authenticated: false, user: null };
+      return { max_upload_bytes: 1024, max_duration_seconds: 7200, resumable_uploads: true };
+    });
+    vi.mocked(listJobs).mockResolvedValue([failed]);
+    vi.mocked(retryAnalysis).mockRejectedValueOnce(new Error('Connection lost. Retry the saved request.')).mockImplementationOnce(async () => {
+      vi.mocked(listJobs).mockResolvedValue([child, failed]); return child;
+    }).mockResolvedValueOnce({ ...job, id: 'match_grandchild', retry_of: child.id });
+    render(<MemoryRouter><Upload /></MemoryRouter>);
+    const user = userEvent.setup();
+    const retry = await screen.findByRole('button', { name: 'Retry analysis' });
+    await waitFor(() => expect(retry).toBeEnabled());
+    await user.click(retry);
+    expect(await screen.findByRole('alert')).toHaveTextContent('Retry the saved request');
+    expect(retry).toBeEnabled();
+    await user.click(retry);
+    const childRow = within((await screen.findByRole('heading', { name: child.filename })).closest('article')!);
+    await user.click(childRow.getByRole('button', { name: 'Retry analysis' }));
+    expect(vi.mocked(retryAnalysis).mock.calls.map(([source]) => source)).toEqual([failed.id, failed.id, child.id]);
+  });
+
+  it('suppresses an earlier account retry response after sign-out', async () => {
+    const failed = { ...job, status: 'FAILED' as const, error: 'Interrupted' };
+    let signedIn = true;
+    vi.mocked(apiJson).mockImplementation(async path => {
+      if (path === '/api/demos') return { schemaVersion: 1, demos: [] };
+      if (path === '/api/auth/session') return { required: true, authenticated: signedIn, user: signedIn ? { id: 'alice', username: 'alice' } : null };
+      return { max_upload_bytes: 1024, max_duration_seconds: 7200, resumable_uploads: true };
+    });
+    vi.mocked(listJobs).mockResolvedValue([failed]);
+    let finish: (value: AnalysisJob) => void = () => undefined;
+    vi.mocked(retryAnalysis).mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+    vi.mocked(mutate).mockImplementation(async () => { signedIn = false; vi.mocked(listJobs).mockResolvedValue([]); return {}; });
+    render(<MemoryRouter><Upload /></MemoryRouter>);
+    const user = userEvent.setup();
+    const retry = await screen.findByRole('button', { name: 'Retry analysis' });
+    await waitFor(() => expect(retry).toBeEnabled());
+    await user.click(retry);
+    const isCurrent = vi.mocked(retryAnalysis).mock.calls[0]![2]!;
+    await user.click(screen.getByRole('button', { name: 'Sign out' }));
+    expect(isCurrent()).toBe(false);
+    await act(async () => finish({ ...job, id: 'match_old_account_child', filename: 'private-old-account.mp4', retry_of: failed.id }));
+    expect(screen.queryByRole('heading', { name: 'private-old-account.mp4' })).not.toBeInTheDocument();
+  });
+
   it('treats authentication-required as account access while retaining a healthy service', async () => {
     vi.mocked(listJobs).mockRejectedValue(new ApiError('Sign in to access your matches.', 401));
     render(<MemoryRouter><Upload /></MemoryRouter>);

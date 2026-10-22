@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { retryIntents } from './retryIntent';
 
 export const JobSchema = z.object({
   id: z.string(), filename: z.string(),
@@ -31,6 +32,43 @@ export async function listJobs(signal?: AbortSignal) {
   const result = z.array(JobSchema).safeParse(await apiJson('/api/analyses', signal));
   if (!result.success) throw new Error('The server returned invalid analysis history. Reconnect before retrying.');
   return result.data;
+}
+
+const RetrySessionSchema = z.object({ required: z.boolean(), authenticated: z.boolean(),
+  user: z.object({ id: z.string().min(1) }).nullable() });
+
+export function retryOwnerScope(value: unknown): string | null {
+  const session = RetrySessionSchema.safeParse(value);
+  if (!session.success) return null;
+  if (!session.data.required) return 'local';
+  return session.data.authenticated ? session.data.user?.id ?? null : null;
+}
+
+/** Reuse the saved key after any uncertain response, including refresh. */
+export function retryAnalysis(sourceId: string, ownerId: string, isCurrent: () => boolean = () => true): Promise<AnalysisJob> {
+  return retryIntents.run(ownerId, sourceId, async token => {
+    const requireOwner = async () => {
+      if (!isCurrent() || retryOwnerScope(await apiJson('/api/auth/session')) !== ownerId || !isCurrent())
+        throw new Error('Your account changed. Refresh your analysis history before retrying.');
+    };
+    await requireOwner();
+    const response = await fetch(`/api/analyses/${encodeURIComponent(sourceId)}/retry`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': token }, body: '{}',
+    });
+    const data: unknown = await response.json().catch(() => null);
+    if (!response.ok) {
+      const detail = data && typeof data === 'object' && 'detail' in data ? data.detail : null;
+      throw new ApiError(typeof detail === 'string' ? detail : 'Retry could not be confirmed. Reconnect and retry the saved request.', response.status);
+    }
+    const result = JobSchema.safeParse(data);
+    if (!result.success || result.data.id === sourceId || !result.data.id.startsWith('match_')
+      || result.data.id.length <= 6 || /[^A-Za-z0-9_-]/.test(result.data.id)
+      || result.data.retry_of !== sourceId)
+      throw new Error('The server returned an invalid retry acknowledgement. Reconnect and retry the saved request.');
+    await requireOwner();
+    retryIntents.acknowledge(ownerId, sourceId, token, result.data.id);
+    return result.data;
+  });
 }
 
 export function uploadVideo(file: File, onProgress: (percent: number) => void, signal: AbortSignal, matchId?: string): Promise<AnalysisJob> {

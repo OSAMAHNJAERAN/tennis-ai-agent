@@ -113,6 +113,13 @@ class JobStore:
                 (analysis_id, filename, extension, utc_now(), size, str(config), owner_id, retry_of))
             from src.api.product import attach_analysis
             attach_analysis(conn, analysis_id, match_id, owner_id)
+            if retry_of is not None:
+                source = conn.execute('SELECT metadata,notes FROM matches WHERE analysis_id=? AND owner_id=?',
+                                      (retry_of, owner_id)).fetchone()
+                if source is None:
+                    raise ValueError('The retry source does not belong to this owner')
+                conn.execute('UPDATE matches SET metadata=?,notes=? WHERE analysis_id=? AND owner_id=?',
+                             (source['metadata'], source['notes'], analysis_id, owner_id))
         return self.get(analysis_id)
 
     def get(self, analysis_id):

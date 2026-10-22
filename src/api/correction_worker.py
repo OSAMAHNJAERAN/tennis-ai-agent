@@ -27,7 +27,7 @@ def _require(condition, message):
 
 
 class CorrectionResourceError(RuntimeError):
-    """The unchanged host/device admission floors could not be met."""
+    """Host/device admission or the owner's stored-byte budget refused work."""
 
 
 def _resources(directory, stage, torch=None):

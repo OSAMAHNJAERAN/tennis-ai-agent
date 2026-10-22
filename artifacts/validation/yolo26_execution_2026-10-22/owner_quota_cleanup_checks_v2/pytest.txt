@@ -1,0 +1,17 @@
+.................................................................F...... [ 65%]
+......................................                                   [100%]
+================================== FAILURES ===================================
+_ test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error[True] _
+tests\test_owner_quota_api.py:294: in test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error
+    assert response.status_code == (413 if invalid else 200)
+E   assert 403 == 413
+E    +  where 403 = <Response [403 Forbidden]>.status_code
+============================== warnings summary ===============================
+artifacts\validation\yolo26_execution_2026-10-22\owner_quota_cleanup_checks_v2\run_checks.py:25
+  C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\yolo26_execution_2026-10-22\owner_quota_cleanup_checks_v2\run_checks.py:25: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    return native(name,*args,**kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_owner_quota_api.py::test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error[True]
+1 failed, 109 passed, 1 warning in 15.12s

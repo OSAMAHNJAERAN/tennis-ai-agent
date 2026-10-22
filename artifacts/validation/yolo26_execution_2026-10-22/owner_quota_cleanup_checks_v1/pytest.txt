@@ -1,0 +1,32 @@
+.................................................................F...... [ 65%]
+......................................                                   [100%]
+================================== FAILURES ===================================
+_ test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error[True] _
+tests\test_owner_quota_api.py:283: in test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error
+    assert usage['pending_jobs'] == 1 and usage['stored_bytes'] == (32 if invalid else 64)
+E   assert (1 == 1 and 0 == 32)
+------------------------------ Captured log call ------------------------------
+ERROR    src.api.uploads:uploads.py:208 Upload chunk cleanup left retained bytes: upload_e06647acc79a40118887ad2c4d29dd40
+Traceback (most recent call last):
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\src\api\uploads.py", line 190, in patch
+    raise HTTPException(413, 'Chunk exceeds the upload limits.')
+fastapi.exceptions.HTTPException: 413: Chunk exceeds the upload limits.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\src\api\uploads.py", line 203, in patch
+    temporary.unlink(missing_ok=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\tests\test_owner_quota_api.py", line 271, in fail_chunk_cleanup
+    raise OSError('synthetic chunk cleanup failure')
+OSError: synthetic chunk cleanup failure
+============================== warnings summary ===============================
+artifacts\validation\yolo26_execution_2026-10-22\owner_quota_cleanup_checks_v1\run_checks.py:25
+  C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\yolo26_execution_2026-10-22\owner_quota_cleanup_checks_v1\run_checks.py:25: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    return native(name,*args,**kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_owner_quota_api.py::test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error[True]
+1 failed, 109 passed, 1 warning in 11.69s

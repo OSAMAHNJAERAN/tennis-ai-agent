@@ -1,0 +1,601 @@
+{
+  "schema_version": 1,
+  "review_kind": "SOURCE_BOUND_STATIC_REVIEW",
+  "reviewed_at_utc": "2026-10-22T07:47:07.503120+00:00",
+  "reviewer": "/root/midtile_review",
+  "status": "PASS_STATIC_REVIEW_NO_UNRESOLVED_FINDINGS_IN_STATED_SCOPE",
+  "scope": "Final source-bound static quota integration review, with direct inspection of the async two-message overflow fixture and loopback base URL; retained parent execution artifacts reviewed read-only.",
+  "review_actions": {
+    "source_and_test_reads": true,
+    "stdlib_ast_parse_and_sha256": true,
+    "tests_or_test_collection_executed_by_reviewer": false,
+    "project_or_model_modules_imported_by_reviewer": false,
+    "model_training_or_inference_executed_by_reviewer": false,
+    "host_ram_or_gpu_probes_by_reviewer": false,
+    "source_or_test_edits_in_final_review": false,
+    "only_written_artifact": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_review_v2/static_review.json",
+    "retained_parent_receipt_and_junit_reads": true
+  },
+  "files": [
+    {
+      "path": "src/api/resource_quotas.py",
+      "bytes": 13449,
+      "sha256": "fd552634546805d2b89ed253d48e8f89874b84f83727c16375c6e44b111a91cc",
+      "ast_parse": "PASS",
+      "test_functions": [],
+      "statically_expanded_test_cases": 0,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "src/api/jobs.py",
+      "bytes": 10590,
+      "sha256": "09150866ed3f18a6291da8c381b1b0fa452f9a74032968b437c0c7bbd5c21d06",
+      "ast_parse": "PASS",
+      "test_functions": [],
+      "statically_expanded_test_cases": 0,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "src/api/app.py",
+      "bytes": 23401,
+      "sha256": "bbcf431adcc9bb32bbf2d61ac679a27df362476d57019a8270db318cb6325e02",
+      "ast_parse": "PASS",
+      "test_functions": [],
+      "statically_expanded_test_cases": 0,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "src/api/uploads.py",
+      "bytes": 16785,
+      "sha256": "1d6a68733c8f47b18e5855d8a55821ab6886203581389e2931884b9a54b6527a",
+      "ast_parse": "PASS",
+      "test_functions": [],
+      "statically_expanded_test_cases": 0,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "src/api/corrections.py",
+      "bytes": 33593,
+      "sha256": "b7f7ae60ad82a4c2dced2caae2ed28d94504401f89575ff2f06e0250114cd411",
+      "ast_parse": "PASS",
+      "test_functions": [],
+      "statically_expanded_test_cases": 0,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "src/api/worker.py",
+      "bytes": 24051,
+      "sha256": "88740b91bb4f4e8e97cf1a4a5ff22b622ade2a21e8a5fd55f21c8b2ad8036556",
+      "ast_parse": "PASS",
+      "test_functions": [],
+      "statically_expanded_test_cases": 0,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "src/api/correction_worker.py",
+      "bytes": 18613,
+      "sha256": "eb5c730ed6450ec1a2ebeb9a5726c33bebf027c86187ec35270cc130f93d462a",
+      "ast_parse": "PASS",
+      "test_functions": [],
+      "statically_expanded_test_cases": 0,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "tests/test_resource_quotas.py",
+      "bytes": 17020,
+      "sha256": "4dd23a544d6ea24330ad5e4bded69d8c8be62881f3f9db9d0b6dda25600e939f",
+      "ast_parse": "PASS",
+      "test_functions": [
+        {
+          "name": "test_snapshot_sees_callers_uncommitted_rows_without_opening_connections",
+          "line": 65,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_pending_union_deduplicates_conversion_but_not_correction_ids",
+          "line": 77,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_partial_fulfils_reservation_but_chunk_temporary_remains_charged",
+          "line": 94,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_same_identity_reservations_use_maximum_declared_size_once",
+          "line": 104,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_rename_before_queue_and_lost_ack_after_queue_are_not_double_charged",
+          "line": 116,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_cancel_and_failure_keep_all_retained_paths_attributed",
+          "line": 135,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_hard_link_retry_is_charged_per_path",
+          "line": 155,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_other_owners_files_reservations_and_work_are_excluded",
+          "line": 167,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_rejected_reservation_leaves_no_row_even_if_caller_catches",
+          "line": 184,
+          "statically_expanded_cases": 2
+        },
+        {
+          "name": "test_identical_reservation_is_idempotent_after_limits_are_lowered",
+          "line": 197,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_reservation_identity_cannot_change_owner_size_or_kind",
+          "line": 210,
+          "statically_expanded_cases": 3
+        },
+        {
+          "name": "test_admission_mutations_require_callers_transaction",
+          "line": 227,
+          "statically_expanded_cases": 3
+        },
+        {
+          "name": "test_existing_transaction_gets_write_lock_before_any_snapshot_reads",
+          "line": 236,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_batch_capacity_check_admits_whole_request_or_rejects_without_rows",
+          "line": 246,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_unknown_length_reserves_maximum_while_resumed_partial_is_not_recharged",
+          "line": 258,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_preexisting_crash_files_are_charged_during_new_reservation",
+          "line": 269,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_worker_storage_guard_ignores_lowered_pending_limit_and_detects_growth",
+          "line": 280,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_storage_redirects_fail_closed_without_following_them",
+          "line": 295,
+          "statically_expanded_cases": 2
+        },
+        {
+          "name": "test_invalid_persisted_path_components_fail_closed",
+          "line": 316,
+          "statically_expanded_cases": 6
+        },
+        {
+          "name": "test_unreadable_storage_fails_closed_with_sanitized_message",
+          "line": 326,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_snapshot_supports_store_before_optional_router_tables_exist",
+          "line": 345,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_concurrent_admissions_serialize_against_same_owner_limit",
+          "line": 356,
+          "statically_expanded_cases": 1
+        }
+      ],
+      "statically_expanded_test_cases": 33,
+      "unchanged_from_previous_review": true
+    },
+    {
+      "path": "tests/test_owner_quota_api.py",
+      "bytes": 15226,
+      "sha256": "e6ba7f8d926be2d85e5d72a291f1a47710076c45b4ce5d858aee1176a62e36ca",
+      "ast_parse": "PASS",
+      "test_functions": [
+        {
+          "name": "test_settings_reject_nonpositive_or_noninteger_limits",
+          "line": 35,
+          "statically_expanded_cases": 16
+        },
+        {
+          "name": "test_environment_limits_roundtrip",
+          "line": 40,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_batch_admission_is_all_or_none_and_cancellation_releases_pending_slot",
+          "line": 47,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_storage_reservation_persists_across_server_restart_and_is_owner_private",
+          "line": 64,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_completion_deduplicates_pending_capacity_even_after_durable_commit_lost_ack",
+          "line": 86,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_legacy_lost_queue_ack_retains_accepted_original_and_releases_reservation",
+          "line": 112,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_unknown_length_reserves_maximum_and_stream_cannot_exceed_declared_bytes",
+          "line": 131,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_failure_frees_job_slot_but_retained_outputs_still_consume_storage",
+          "line": 143,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_simultaneous_http_admissions_share_one_durable_slot",
+          "line": 160,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_retry_admission_counts_logical_copy_before_reusing_source",
+          "line": 176,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_worker_storage_refusal_precedes_model_asset_checks_and_preserves_input",
+          "line": 189,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_stage_log_checks_growth_at_pipeline_boundary",
+          "line": 204,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_failed_release_preserves_acceptance_original_error_and_durable_owned_bytes",
+          "line": 215,
+          "statically_expanded_cases": 3
+        },
+        {
+          "name": "test_only_one_live_request_may_receive_a_chunk_for_the_same_upload",
+          "line": 248,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error",
+          "line": 266,
+          "statically_expanded_cases": 2
+        }
+      ],
+      "statically_expanded_test_cases": 33,
+      "unchanged_from_previous_review": false
+    },
+    {
+      "path": "tests/test_owner_quota_corrections.py",
+      "bytes": 4394,
+      "sha256": "da4b2d41ea0743a24edd8f30a3ea41679238ff8bd40c305248bb53c84140168a",
+      "ast_parse": "PASS",
+      "test_functions": [
+        {
+          "name": "test_correction_idempotence_precedes_full_pending_quota_and_new_source_parsing",
+          "line": 17,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_review_source_expansion_is_owned_counted_and_serialized_even_when_pending_full",
+          "line": 34,
+          "statically_expanded_cases": 1
+        },
+        {
+          "name": "test_storage_growth_at_final_correction_commit_keeps_old_generation",
+          "line": 56,
+          "statically_expanded_cases": 1
+        }
+      ],
+      "statically_expanded_test_cases": 3,
+      "unchanged_from_previous_review": true
+    }
+  ],
+  "source_file_count": 7,
+  "test_file_count": 3,
+  "statically_expanded_new_test_cases": 69,
+  "reviewed_invariants": [
+    "Owner-scoped usage and admissions read the supplied SQLite connection. Admission requires a preexisting transaction and obtains its write lock before counting capacity.",
+    "Session and batch insertions follow quota checks within the same BEGIN IMMEDIATE transaction. A rejected batch inserts neither batch nor sessions.",
+    "Legacy and retry reservations precede incoming file creation. Unknown Content-Length reserves the configured upload maximum; streams exceeding declared or configured size are rejected.",
+    "Pending analyses use a distinct UNION of UPLOADED/PROCESSING jobs, unqueued UPLOADING sessions and active unqueued reservations. QUEUED/PROCESSING corrections add a separate work count.",
+    "A committed analysis row consumes outstanding input reservation even when session completion or reservation release acknowledgement is lost. Identical active reservations are idempotent.",
+    "Actual retained files remain owner-attributed regardless of terminal job/session/correction status or inactive reservation status. Counted paths include uploads, analysis generations and scratch, sibling web-credit files, resumable partial/chunk files and correction attempts.",
+    "Input reservation is maximum declared size per analysis minus actual source-input bytes, clamped to zero. Chunk temporary files count as stored bytes but do not satisfy that source-input remainder.",
+    "Logical bytes count every retained path, including separate hard-link retry paths. Stored-file traversal rejects observed symlinks, Windows reparse points, invalid identifiers, unsupported entries and unreadable paths with sanitized 503.",
+    "Correction review and validation parser scratch lives below the owned analysis directory. A hashed owner lock serializes parser expansion; storage checks bracket expansion. New command admission is checked after idempotency and rechecked atomically before insert.",
+    "settle_reservation reconciles durable acceptance before deleting owned input. Unknown database state leaves reservation active. Cleanup and release failures are logged, including sanitized HTTPException, while preserving accepted results or original request errors.",
+    "Chunk receive.lock admits one active receiver per session, including streamed body arrival. Cleanup failure preserves durable offset or the original error, retains charged scratch and releases the receive lock.",
+    "Workers check storage alone at safe stages and before publication so lowering a pending-work limit does not itself reject previously accepted work. Correction publication uses read-only quota scans while its other connection holds the writer guard."
+  ],
+  "resolved_review_findings": [
+    {
+      "issue": "Correction source parsing previously wrote unowned corrections/admission-* scratch before admission.",
+      "resolution": "Owned analysis parser scratch, per-owner parser lock, storage checks around expansion and pre-validation/final transaction admission checks are present."
+    },
+    {
+      "issue": "Reservation release failures could replace accepted HTTP results or the original request error; sanitized quota HTTPException was initially omitted from cleanup catches.",
+      "resolution": "settle_reservation preserves durable acceptance, retains uncertain reservations, logs OSError/sqlite3.Error/HTTPException release failures and is shared by legacy and retry routes."
+    },
+    {
+      "issue": "Chunk temporary unlink failure could replace durable offset acknowledgement or original 413.",
+      "resolution": "PATCH cleanup logs OSError, leaves charged scratch and releases receive.lock through its nested finally."
+    }
+  ],
+  "unresolved_findings": [],
+  "limits_and_unimplemented_policy": [
+    "This is admission accounting plus worker-stage storage checks, not a hard filesystem quota or a per-write allocation limit. Parser expansion, upload transfer and a worker stage can grow files between checks.",
+    "Chunk transfer needs transient headroom beyond its full incoming-input reservation: a temporary chunk is separately charged while the previous partial is retained. receive.lock permits one active receiver per admitted session; it does not limit all owners or erase prior crash chunks.",
+    "Retained crash chunks, original inputs, failed generation scratch, correction attempts and released-reservation residue stay charged while their actual paths remain. Active orphan reservations can continue consuming pending capacity and remaining declared input capacity.",
+    "No automatic reservation expiry, historical orphan attribution migration, retention deletion or owner-data deletion is implemented by this change.",
+    "Filesystem usage is a fresh logical-path observation, not an atomic filesystem snapshot. Shared/global database and worker overhead are outside these owner path allocations. Hostile concurrent local filesystem mutation is not proven prevented by this static review.",
+    "This receipt is not an execution receipt. Static parametrization counts are not pytest collection or passing test results. Parent-reported execution results were not independently executed or verified here.",
+    "No model accuracy, calibrated measurement, long-match capacity, real live ingest or live-video qualification claim follows from this software review."
+  ],
+  "previous_review": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_review_v1/static_review.json",
+    "sha256": "16f6d2991878ec3d97665512d32249593f089c8e91373ebf91edac699b870cbd",
+    "preserved": true
+  },
+  "changed_files_since_previous_review": [
+    "tests/test_owner_quota_api.py"
+  ],
+  "test_fixture_review": {
+    "path": "tests/test_owner_quota_api.py",
+    "test": "test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error",
+    "asgi_body": "AsyncClient ASGITransport receives an async generator yielding VIDEO then overflow, preserving separate request receive messages instead of synchronous TestClient body coalescing.",
+    "base_url": "http://127.0.0.1",
+    "host_reason": "Loopback URL agrees with the actual ASGI loopback client and the application host protection; http://testserver had been rejected by that protection.",
+    "meaningful_assertions": "The first valid receive message is written before overflow is rejected; failed unlink retains that real chunk, offset remains zero for rejection, stored/reserved bytes remain charged, and receive.lock can be reacquired.",
+    "test_only_delta": true,
+    "production_files_changed_since_previous_review": false
+  },
+  "retained_parent_execution_evidence": [
+    {
+      "executed_by": "parent guarded runner; not this reviewer",
+      "receipt": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_checks_v2/receipt.json",
+        "bytes": 94669,
+        "sha256": "2bdbc918f937baeec058616cf8dec1118b6f2df6fdef9d56bf99bafa69989795"
+      },
+      "junit": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_checks_v2/junit.xml",
+        "bytes": 33836,
+        "sha256": "47ccfbdd6d5ce91e29ee057573139159286cd27b95045b27c7bffaa1853dbaaf"
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "reported_counts": {
+        "tests": 227,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+      },
+      "junit_counts": {
+        "tests": 227,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+      },
+      "junit_matches_reported_counts": true,
+      "source_stable_reported": true,
+      "source_pin_pairs": 421,
+      "source_before_equals_after": true,
+      "current_review_file_pins_matching_execution": [
+        "src/api/resource_quotas.py",
+        "src/api/jobs.py",
+        "src/api/corrections.py",
+        "src/api/worker.py",
+        "src/api/correction_worker.py",
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_corrections.py"
+      ],
+      "inference_import_attempts": [],
+      "forbidden_runtimes_loaded": [],
+      "synthetic_resource_calls": 11,
+      "actual_host_ram_gpu_probes": 0,
+      "actual_model_inference": false,
+      "test_paths": [
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_api.py",
+        "tests/test_owner_quota_corrections.py",
+        "tests/test_product_api.py",
+        "tests/test_product_ownership_uploads.py",
+        "tests/test_product_runtime_defaults.py",
+        "tests/test_product_matches.py",
+        "tests/test_public_demos.py",
+        "tests/test_correction_worker.py",
+        "tests/test_worker_result_publication.py",
+        "tests/test_worker_partial_inference.py",
+        "tests/test_checkpoint_process_restart.py",
+        "tests/test_native_pipeline_process_resume.py"
+      ]
+    },
+    {
+      "executed_by": "parent guarded runner; not this reviewer",
+      "receipt": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_cleanup_checks_v1/receipt.json",
+        "bytes": 94281,
+        "sha256": "129c28e735c922e03d1c5b38cf3c3cfc593bae0139f29a2bce4b112d60a8958c"
+      },
+      "junit": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_cleanup_checks_v1/junit.xml",
+        "bytes": 16528,
+        "sha256": "639e60f7132b38c6a92bcc1a1c27fa5e10263b97315fb3faeca69196686c4c8a"
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "reported_counts": {
+        "tests": 110,
+        "errors": 0,
+        "failures": 1,
+        "skipped": 0
+      },
+      "junit_counts": {
+        "tests": 110,
+        "errors": 0,
+        "failures": 1,
+        "skipped": 0
+      },
+      "junit_matches_reported_counts": true,
+      "source_stable_reported": true,
+      "source_pin_pairs": 421,
+      "source_before_equals_after": true,
+      "current_review_file_pins_matching_execution": [
+        "src/api/resource_quotas.py",
+        "src/api/jobs.py",
+        "src/api/app.py",
+        "src/api/uploads.py",
+        "src/api/corrections.py",
+        "src/api/worker.py",
+        "src/api/correction_worker.py",
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_corrections.py"
+      ],
+      "inference_import_attempts": [],
+      "forbidden_runtimes_loaded": [],
+      "synthetic_resource_calls": 0,
+      "actual_host_ram_gpu_probes": 0,
+      "actual_model_inference": false,
+      "test_paths": [
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_api.py",
+        "tests/test_product_api.py",
+        "tests/test_product_ownership_uploads.py"
+      ]
+    },
+    {
+      "executed_by": "parent guarded runner; not this reviewer",
+      "receipt": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_cleanup_checks_v2/receipt.json",
+        "bytes": 94281,
+        "sha256": "c4d8f7fccf7b17bc9133ba713c631d58c6a987e9ead204415de9f5c7425fbd36"
+      },
+      "junit": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_cleanup_checks_v2/junit.xml",
+        "bytes": 16609,
+        "sha256": "700c4ec3810adf417f0843a5e12d9909cadb8819a8a4baaccf1d9fedd944cb87"
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "reported_counts": {
+        "tests": 110,
+        "errors": 0,
+        "failures": 1,
+        "skipped": 0
+      },
+      "junit_counts": {
+        "tests": 110,
+        "errors": 0,
+        "failures": 1,
+        "skipped": 0
+      },
+      "junit_matches_reported_counts": true,
+      "source_stable_reported": true,
+      "source_pin_pairs": 421,
+      "source_before_equals_after": true,
+      "current_review_file_pins_matching_execution": [
+        "src/api/resource_quotas.py",
+        "src/api/jobs.py",
+        "src/api/app.py",
+        "src/api/uploads.py",
+        "src/api/corrections.py",
+        "src/api/worker.py",
+        "src/api/correction_worker.py",
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_corrections.py"
+      ],
+      "inference_import_attempts": [],
+      "forbidden_runtimes_loaded": [],
+      "synthetic_resource_calls": 0,
+      "actual_host_ram_gpu_probes": 0,
+      "actual_model_inference": false,
+      "test_paths": [
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_api.py",
+        "tests/test_product_api.py",
+        "tests/test_product_ownership_uploads.py"
+      ]
+    },
+    {
+      "executed_by": "parent guarded runner; not this reviewer",
+      "receipt": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_cleanup_checks_v3/receipt.json",
+        "bytes": 94281,
+        "sha256": "4c8c28edc287edae99f5e45885784c8e5619698545c86cb19c83029581e303f8"
+      },
+      "junit": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_quota_cleanup_checks_v3/junit.xml",
+        "bytes": 16229,
+        "sha256": "49ba5d0a62506051e3cade55d468a89493f009d058a87b9ab4549debbe4ea958"
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "reported_counts": {
+        "tests": 110,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+      },
+      "junit_counts": {
+        "tests": 110,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+      },
+      "junit_matches_reported_counts": true,
+      "source_stable_reported": true,
+      "source_pin_pairs": 421,
+      "source_before_equals_after": true,
+      "current_review_file_pins_matching_execution": [
+        "src/api/resource_quotas.py",
+        "src/api/jobs.py",
+        "src/api/app.py",
+        "src/api/uploads.py",
+        "src/api/corrections.py",
+        "src/api/worker.py",
+        "src/api/correction_worker.py",
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_api.py",
+        "tests/test_owner_quota_corrections.py"
+      ],
+      "inference_import_attempts": [],
+      "forbidden_runtimes_loaded": [],
+      "synthetic_resource_calls": 0,
+      "actual_host_ram_gpu_probes": 0,
+      "actual_model_inference": false,
+      "test_paths": [
+        "tests/test_resource_quotas.py",
+        "tests/test_owner_quota_api.py",
+        "tests/test_product_api.py",
+        "tests/test_product_ownership_uploads.py"
+      ]
+    }
+  ],
+  "execution_interpretation": [
+    "Final parent cleanup v3 is terminal PASS110 and binds all ten current reviewed file hashes; this reviewer only read and checked retained receipt/JUnit metadata.",
+    "Broad parent v2 is terminal PASS227 for its recorded earlier pins. Its counts are not added to focused v3 because suites overlap and the earlier app/uploads/test pins differ.",
+    "Cleanup v1 and v2 failed fixture cases are preserved, not represented as successful runs. The final fixture uses explicit async message boundaries and a loopback base URL.",
+    "No tests, project imports, inference, training, host RAM or GPU probes were executed by this reviewer. Synthetic parent calls and software/codec execution establish no model accuracy or live operation."
+  ]
+}

@@ -1,4 +1,5 @@
 """Software account/isolation and durable transfer evidence, without CV claims."""
+from uuid import uuid4
 import hashlib
 import json
 from pathlib import Path
@@ -95,7 +96,7 @@ def test_match_profile_draft_commands_and_legacy_isolation(accounts):
     assert bob.post(f'/api/matches/{match["id"]}/score-commands', json={'command_id': 'private-point', 'expected_revision': 0, 'action': 'point', 'winner': 1}).status_code == 404
     assert bob.post('/api/matches', json={'metadata': {'participants': [{'profile_id': profile['id']}, {}]}}).status_code == 422
     assert bob.post('/api/analyses', params={'filename': 'stolen.mp4', 'match_id': draft['id']}, content=VIDEO).status_code == 404
-    assert bob.post('/api/uploads', json={'filename': 'stolen.mp4', 'size_bytes': len(VIDEO), 'match_id': draft['id']}).status_code == 404
+    assert bob.post('/api/uploads', headers={'Idempotency-Key': uuid4().hex}, json={'filename': 'stolen.mp4', 'size_bytes': len(VIDEO), 'match_id': draft['id']}).status_code == 404
     job = alice.post('/api/analyses?filename=private.mp4', content=VIDEO).json()
     assert bob.get(f'/api/matches/by-analysis/{job["id"]}').status_code == 404
     assert bob.post(f'/api/analyses/{job["id"]}/cancel').status_code == 404
@@ -105,7 +106,7 @@ def test_match_profile_draft_commands_and_legacy_isolation(accounts):
 
 def test_resumable_upload_offset_crash_surplus_completion_and_restart(accounts):
     alice, _, _, store, settings, manifest = accounts
-    response = alice.post('/api/uploads', json={'filename': '../../match.mp4', 'size_bytes': len(VIDEO)})
+    response = alice.post('/api/uploads', headers={'Idempotency-Key': uuid4().hex}, json={'filename': '../../match.mp4', 'size_bytes': len(VIDEO)})
     assert response.status_code == 201
     session = response.json()
     assert session['filename'] == 'match.mp4' and session['analysis_id'] is None
@@ -136,7 +137,7 @@ def test_resumable_upload_offset_crash_surplus_completion_and_restart(accounts):
 
 def test_upload_and_batch_access_controls_cancellation_and_declared_limits(accounts):
     alice, bob, guest, store, _, _ = accounts
-    batch = alice.post('/api/batches', json={'files': [{'filename': 'a.mp4', 'size_bytes': len(VIDEO)},
+    batch = alice.post('/api/batches', headers={'Idempotency-Key': uuid4().hex}, json={'files': [{'filename': 'a.mp4', 'size_bytes': len(VIDEO)},
                                                      {'filename': 'b.mp4', 'size_bytes': len(VIDEO)}]}).json()
     upload = batch['uploads'][0]
     url = '/api/uploads/' + upload['id']
@@ -154,12 +155,12 @@ def test_upload_and_batch_access_controls_cancellation_and_declared_limits(accou
     assert alice.patch(url, content=VIDEO[16:], headers={'Upload-Offset': '16'}).status_code == 409
     assert alice.post(url + '/complete').status_code == 409
     assert not (store.root / 'resumable' / upload['id'] / 'upload.part').exists()
-    assert alice.post('/api/uploads', json={'filename': 'huge.mp4', 'size_bytes': 65}).status_code == 413
+    assert alice.post('/api/uploads', headers={'Idempotency-Key': uuid4().hex}, json={'filename': 'huge.mp4', 'size_bytes': 65}).status_code == 413
 
 
 def test_completion_recovers_a_crash_after_queue_commit_without_duplicate(accounts, monkeypatch):
     alice, _, _, store, _, _ = accounts
-    session = alice.post('/api/uploads', json={'filename': 'recover.mp4', 'size_bytes': len(VIDEO)}).json()
+    session = alice.post('/api/uploads', headers={'Idempotency-Key': uuid4().hex}, json={'filename': 'recover.mp4', 'size_bytes': len(VIDEO)}).json()
     url = '/api/uploads/' + session['id']
     alice.patch(url, headers={'Upload-Offset': '0'}, content=VIDEO)
     original_create = store.create
@@ -181,7 +182,7 @@ def test_completion_recovers_a_crash_after_queue_commit_without_duplicate(accoun
 def test_competing_append_and_queue_claims_are_serialized(accounts):
     from concurrent.futures import ThreadPoolExecutor
     alice, _, _, store, _, _ = accounts
-    session = alice.post('/api/uploads', json={'filename': 'parallel.mp4', 'size_bytes': len(VIDEO)}).json()
+    session = alice.post('/api/uploads', headers={'Idempotency-Key': uuid4().hex}, json={'filename': 'parallel.mp4', 'size_bytes': len(VIDEO)}).json()
     url = '/api/uploads/' + session['id']
     with ThreadPoolExecutor(max_workers=2) as pool:
         responses = list(pool.map(lambda _: alice.patch(url, headers={'Upload-Offset': '0'}, content=VIDEO[:16]), range(2)))
@@ -205,8 +206,8 @@ def test_coach_routes_require_authenticated_session_before_provider_work(account
 def test_same_match_order_duplicate_check_and_one_file_failure(accounts):
     alice, _, _, _, _, _ = accounts
     files = [{'filename': 'a.mp4', 'size_bytes': len(VIDEO)}, {'filename': 'b.mp4', 'size_bytes': len(VIDEO)}]
-    assert alice.post('/api/batches', json={'mode': 'same_match', 'files': files}).status_code == 422
-    batch = alice.post('/api/batches', json={'mode': 'same_match', 'files': [
+    assert alice.post('/api/batches', headers={'Idempotency-Key': uuid4().hex}, json={'mode': 'same_match', 'files': files}).status_code == 422
+    batch = alice.post('/api/batches', headers={'Idempotency-Key': uuid4().hex}, json={'mode': 'same_match', 'files': [
         {**files[0], 'clip_index': 0, 'start_offset_seconds': 0},
         {**files[1], 'clip_index': 1, 'start_offset_seconds': 15}]}).json()
     first, second = batch['uploads']
@@ -218,7 +219,7 @@ def test_same_match_order_duplicate_check_and_one_file_failure(accounts):
     assert summary['grouping_status'] == 'duplicates_detected' and summary['unified_report'] is None
     assert [item['clip_index'] for item in summary['uploads']] == [0, 1]
     assert len(alice.get('/api/analyses').json()) == 2
-    independent = alice.post('/api/batches', json={'files': files}).json()
+    independent = alice.post('/api/batches', headers={'Idempotency-Key': uuid4().hex}, json={'files': files}).json()
     good, bad = independent['uploads']
     for item, content in ((good, VIDEO), (bad, b'bad bytes' + b'x' * 23)):
         url = '/api/uploads/' + item['id']
@@ -238,10 +239,10 @@ def test_job_cancel_retry_preserves_source_and_old_evidence(accounts):
     evidence = store.output_dir(job['id']) / 'processing.log'
     evidence.write_text('Original failure evidence')
     base = '/api/analyses/' + job['id']
-    assert alice.post(base + '/retry').status_code == 409
+    assert alice.post(base + '/retry', headers={'Idempotency-Key': 'ownership-retry-intent-0001'}).status_code == 409
     cancelled = alice.post(base + '/cancel').json()
     assert cancelled['status'] == 'FAILED' and cancelled['cancelled']
-    queued = alice.post(base + '/retry')
+    queued = alice.post(base + '/retry', headers={'Idempotency-Key': 'ownership-retry-intent-0001'})
     assert queued.status_code == 202
     new = queued.json()
     assert new['id'] != job['id'] and new['retry_of'] == job['id']

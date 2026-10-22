@@ -3,6 +3,7 @@
 from contextlib import asynccontextmanager
 import asyncio
 import json
+import logging
 import os
 import sqlite3
 from pathlib import Path
@@ -24,16 +25,19 @@ from src.api.auth import AuthStore, current_owner
 from src.api.uploads import upload_router
 from src.api.corrections import correction_router
 from src.api.resource_quotas import ResourceQuotas
+from src.api.retry_intents import RetryIntents
 from src.api.result_document import ResultDocument, ResultStreamingResponse, result_summary
 
 EXTENSIONS = {'.mp4', '.mov', '.avi'}
 MEDIA = {'source': 'source.mp4', 'annotated': 'annotated_web.mp4'}
+LOGGER = logging.getLogger(__name__)
 
 
 def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_root=None):
     settings = settings or Settings.from_env()
     store = JobStore(settings.root)
     quotas = ResourceQuotas(store, settings)
+    retries = RetryIntents(store, quotas)
     worker = None
 
     def ensure_worker():
@@ -157,6 +161,34 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
             conn.execute('BEGIN IMMEDIATE')
             quotas.check_storage(conn, owner_id)
 
+    def settle_reservation(analysis_id, extension, *, accepted=False):
+        """Preserve durable acceptance and the request's original failure."""
+        try:
+            durable = accepted or store.get(analysis_id) is not None
+        except sqlite3.Error:
+            # Unknown queue state cannot authorize deletion or release. The
+            # live reservation keeps these exact paths and capacity attributed.
+            LOGGER.exception('Upload acceptance could not be reconciled: %s', analysis_id)
+            return
+        if not durable:
+            directory = store.upload_dir(analysis_id)
+            try:
+                for name in ('upload.part', 'original' + extension):
+                    (directory / name).unlink(missing_ok=True)
+                if directory.exists():
+                    directory.rmdir()
+            except OSError:
+                # Retain the ownership row even after release, so residue is
+                # still charged and cannot become another owner's data.
+                LOGGER.exception('Upload cleanup left retained bytes: %s', analysis_id)
+        try:
+            release(analysis_id)
+        except (OSError, sqlite3.Error, HTTPException):
+            # Existing analyses deduplicate a live reservation after acceptance.
+            # An unaccepted reservation remains conservatively charged until
+            # recovery, without replacing a 413/415 or losing an accepted job.
+            LOGGER.exception('Upload reservation could not be released: %s', analysis_id)
+
     @app.get('/api/analyses')
     def list_analyses(owner_id: str = Depends(current_owner)):
         return [public_job(job) for job in store.list(owner_id)]
@@ -224,19 +256,7 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
         except OSError as exc:
             raise HTTPException(507, 'Video could not be stored. Check available disk space and try again.') from exc
         finally:
-            # A lost acknowledgement after queue commit must retain its input.
-            durable = accepted or await run_in_threadpool(store.get, analysis_id) is not None
-            if not durable:
-                # Only paths created for this UUID in this request are removed.
-                try:
-                    for name in ('upload.part', 'original' + extension):
-                        (directory / name).unlink(missing_ok=True)
-                    if directory.exists():
-                        directory.rmdir()
-                except OSError:
-                    # The inactive reservation keeps any cleanup residue charged.
-                    pass
-            await run_in_threadpool(release, analysis_id)
+            await run_in_threadpool(settle_reservation, analysis_id, extension, accepted=accepted)
 
     @app.get('/api/analyses/{analysis_id}')
     def status(analysis_id: str, owner_id: str = Depends(current_owner)):
@@ -247,41 +267,49 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
         return public_job(store.cancel(analysis_id, owner_id))
 
     @app.post('/api/analyses/{analysis_id}/retry', status_code=202)
-    def retry(analysis_id: str, owner_id: str = Depends(current_owner)):
+    def retry(analysis_id: str, request: Request, owner_id: str = Depends(current_owner)):
         prior = job_or_404(analysis_id, owner_id)
-        if prior['status'] != 'FAILED':
-            raise HTTPException(409, 'Only a failed or cancelled analysis can be retried.')
-        original = store.upload_dir(analysis_id) / ('original' + prior['extension'])
-        if not original.is_file():
-            raise HTTPException(409, 'The original upload is unavailable. Upload this video again.')
-        new_id = store.new_id()
-        reserve(new_id, owner_id, original.stat().st_size, 'retry')
-        directory = store.upload_dir(new_id)
-        destination = directory / original.name
-        try:
-            directory.mkdir(parents=True)
+        keys = request.headers.getlist('idempotency-key')
+        key = keys[0] if len(keys) == 1 else None
+        with retries.lock(owner_id, key):
+            selected = retries.selected(owner_id, key, analysis_id)
+            existing = retries.accepted(selected, owner_id)
+            if existing is not None:
+                ensure_worker()
+                return public_job(existing)
+            if prior['status'] != 'FAILED':
+                raise HTTPException(409, 'Only a failed or cancelled analysis can be retried.')
+            original = store.upload_dir(analysis_id) / ('original' + prior['extension'])
+            if not original.is_file():
+                raise HTTPException(409, 'The original upload is unavailable. Upload this video again.')
+            size = original.stat().st_size
+            if size != prior['size_bytes']:
+                raise HTTPException(409, 'The retained original changed. Upload this video again.')
+            new_id = retries.admit(owner_id, key, analysis_id, size)
+            directory = store.upload_dir(new_id)
+            destination = directory / original.name
+            temporary = directory / 'upload.part'
             try:
-                os.link(original, destination)
-            except OSError:
-                shutil.copyfile(original, destination)
-            check_storage(owner_id)
-            job = store.create(new_id, prior['filename'], prior['extension'], prior['size_bytes'], prior['config_path'],
-                               owner_id=owner_id, retry_of=analysis_id)
-            with store.connect() as conn:
-                conn.execute('''UPDATE matches SET metadata=(SELECT metadata FROM matches WHERE analysis_id=?),
-                    notes=(SELECT notes FROM matches WHERE analysis_id=?) WHERE analysis_id=?''',
-                             (analysis_id, analysis_id, new_id))
-        except Exception:
-            if store.get(new_id) is None:
+                directory.mkdir(parents=True, exist_ok=True)
+                # This identity has no accepted job under its request lock.
+                # Replace only its own pre-queue crash leftovers, then rename
+                # the complete input before inserting the durable queue row.
+                temporary.unlink(missing_ok=True)
+                destination.unlink(missing_ok=True)
                 try:
-                    destination.unlink(missing_ok=True)
-                    if directory.exists():
-                        directory.rmdir()
+                    os.link(original, temporary)
                 except OSError:
-                    pass
-            raise
-        finally:
-            release(new_id)
+                    shutil.copyfile(original, temporary)
+                if temporary.stat().st_size != size:
+                    raise HTTPException(409, 'The retained original changed while retrying. Upload the video again.')
+                temporary.replace(destination)
+                check_storage(owner_id)
+                job = store.create(new_id, prior['filename'], prior['extension'], size, prior['config_path'],
+                                   owner_id=owner_id, retry_of=analysis_id)
+            except OSError as error:
+                raise HTTPException(507, 'The retry could not be stored. Check available disk space and try again.') from error
+            finally:
+                settle_reservation(new_id, prior['extension'])
         ensure_worker()
         return public_job(job)
 

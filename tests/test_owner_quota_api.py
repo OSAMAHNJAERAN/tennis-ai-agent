@@ -1,15 +1,21 @@
 """Real HTTP/SQLite owner admission; synthetic bytes and no model work."""
+from uuid import uuid4
 from concurrent.futures import ThreadPoolExecutor
+import asyncio
 from dataclasses import replace
 from pathlib import Path
+import sqlite3
+import httpx
 from threading import Barrier
 
 from fastapi.testclient import TestClient
+from fastapi import HTTPException
 import pytest
 
 from src.api.app import create_app
 from src.api.jobs import JobStore, Settings
 from src.api import worker
+from src.api.resource_quotas import ResourceQuotas
 
 VIDEO = b'\0\0\0\x18ftypisom' + b'x' * 20
 
@@ -21,7 +27,7 @@ def service(tmp_path, **limits):
 
 
 def new_upload(client):
-    return client.post('/api/uploads', json={'filename': 'match.mp4', 'size_bytes': len(VIDEO)})
+    return client.post('/api/uploads', headers={'Idempotency-Key': uuid4().hex}, json={'filename': 'match.mp4', 'size_bytes': len(VIDEO)})
 
 
 @pytest.mark.parametrize('name', ['max_upload_bytes', 'max_duration_seconds',
@@ -42,7 +48,7 @@ def test_environment_limits_roundtrip(monkeypatch):
 def test_batch_admission_is_all_or_none_and_cancellation_releases_pending_slot(tmp_path):
     app, _ = service(tmp_path, max_owner_pending_jobs=1)
     with TestClient(app) as client:
-        response = client.post('/api/batches', json={'files': [
+        response = client.post('/api/batches', headers={'Idempotency-Key': uuid4().hex}, json={'files': [
             {'filename': 'a.mp4', 'size_bytes': 32}, {'filename': 'b.mp4', 'size_bytes': 32}]})
         assert response.status_code == 429
         with app.state.store.connect() as conn:
@@ -146,7 +152,7 @@ def test_failure_frees_job_slot_but_retained_outputs_still_consume_storage(tmp_p
         (output/'source.mp4').write_bytes(b'x'*40)
         usage = client.get('/api/usage').json()
         assert usage['pending_jobs'] == 0 and usage['stored_bytes'] == 72
-        assert client.post('/api/analyses/'+accepted['id']+'/retry').status_code == 507
+        assert client.post('/api/analyses/'+accepted['id']+'/retry', headers={'Idempotency-Key': 'quota-retry-intent-0001'}).status_code == 507
         assert new_upload(client).status_code == 507
         assert len(jobs.list()) == 1
         assert list((jobs.root/'uploads').iterdir()) == [jobs.upload_dir(accepted['id'])]
@@ -174,10 +180,10 @@ def test_retry_admission_counts_logical_copy_before_reusing_source(tmp_path):
     with TestClient(app) as client:
         first = client.post('/api/analyses?filename=match.mp4', content=VIDEO).json()
         jobs.finish(first['id'], 'synthetic failure')
-        retry = client.post('/api/analyses/'+first['id']+'/retry')
+        retry = client.post('/api/analyses/'+first['id']+'/retry', headers={'Idempotency-Key': 'quota-retry-intent-0001'})
         assert retry.status_code == 202
         assert client.get('/api/usage').json()['committed_bytes'] == 64
-        assert client.post('/api/analyses/'+first['id']+'/retry').status_code == 429
+        assert client.post('/api/analyses/'+first['id']+'/retry', headers={'Idempotency-Key': 'quota-retry-intent-0002'}).status_code == 429
         assert (jobs.upload_dir(first['id'])/'original.mp4').read_bytes() == VIDEO
 
 
@@ -204,3 +210,94 @@ def test_stage_log_checks_growth_at_pipeline_boundary():
     log = worker.StageLog(StringIO(), store, 'fixture', storage_check=lambda: seen.append('quota'))
     log.write('[Step 3/11] Tracking\n')
     assert seen == [('fixture', 'Tracking', 3), 'quota']
+
+
+@pytest.mark.parametrize('failure', ['os_error', 'sqlite_error', 'sanitized_quota_error'])
+def test_failed_release_preserves_acceptance_original_error_and_durable_owned_bytes(tmp_path, monkeypatch, failure):
+    app, _ = service(tmp_path, max_owner_pending_jobs=1)
+    jobs = app.state.store
+
+    def fail_release(*args):
+        if failure == 'sanitized_quota_error':
+            raise HTTPException(503, 'Storage usage could not be checked. Please try again.')
+        if failure == 'sqlite_error':
+            raise sqlite3.OperationalError('synthetic reservation acknowledgement failure')
+        raise OSError('synthetic reservation acknowledgement failure')
+
+    monkeypatch.setattr(ResourceQuotas, 'release', fail_release)
+    with TestClient(app) as client:
+        bad = client.post('/api/analyses?filename=bad.mp4', content=b'x'*32)
+        assert bad.status_code == 415
+        assert client.get('/api/usage').json()['pending_jobs'] == 1
+        with jobs.connect() as conn:
+            orphan = conn.execute('SELECT analysis_id FROM resource_reservations WHERE active=1').fetchone()[0]
+            # Isolate the still-conservative orphan from the next acceptance.
+            conn.execute('UPDATE resource_reservations SET active=0 WHERE analysis_id=?', (orphan,))
+        accepted = client.post('/api/analyses?filename=match.mp4', content=VIDEO)
+        assert accepted.status_code == 202
+        ident = accepted.json()['id']
+        assert (jobs.upload_dir(ident)/'original.mp4').read_bytes() == VIDEO
+        usage = client.get('/api/usage').json()
+        assert usage['pending_jobs'] == 1 and usage['committed_bytes'] == 32
+        jobs.finish(ident, 'synthetic failure')
+        retried = client.post('/api/analyses/'+ident+'/retry', headers={'Idempotency-Key': 'quota-retry-intent-0001'})
+        assert retried.status_code == 202
+        assert client.get('/api/usage').json()['pending_jobs'] == 1
+        assert (jobs.upload_dir(retried.json()['id'])/'original.mp4').read_bytes() == VIDEO
+
+
+def test_only_one_live_request_may_receive_a_chunk_for_the_same_upload(tmp_path):
+    from filelock import FileLock
+    app, _ = service(tmp_path)
+    with TestClient(app) as client:
+        session = new_upload(client).json()
+        directory = app.state.store.root/'resumable'/session['id']
+        directory.mkdir(parents=True)
+        with FileLock(str(directory/'receive.lock'), timeout=0):
+            blocked = client.patch('/api/uploads/'+session['id'],
+                                   headers={'Upload-Offset': '0'}, content=VIDEO)
+            assert blocked.status_code == 409
+            assert not list(directory.glob('chunk_*.part'))
+        accepted = client.patch('/api/uploads/'+session['id'],
+                                headers={'Upload-Offset': '0'}, content=VIDEO)
+        assert accepted.status_code == 200 and accepted.json()['offset'] == len(VIDEO)
+
+
+@pytest.mark.parametrize('invalid', [False, True])
+def test_chunk_cleanup_failure_keeps_acknowledged_offset_or_original_error(tmp_path, monkeypatch, invalid):
+    from filelock import FileLock
+    app, _ = service(tmp_path)
+    original_unlink = Path.unlink
+
+    def fail_chunk_cleanup(path, *args, **kwargs):
+        if path.name.startswith('chunk_') and path.suffix == '.part':
+            raise OSError('synthetic chunk cleanup failure')
+        return original_unlink(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, 'unlink', fail_chunk_cleanup)
+    with TestClient(app) as client:
+        session = new_upload(client).json()
+        url = '/api/uploads/'+session['id']
+        if invalid:
+            # Synchronous TestClient coalesces generator bodies into one ASGI
+            # message. Preserve two real receive messages so the first write
+            # exists before the second message exceeds the declared file size.
+            async def send_overflow():
+                async def chunks():
+                    yield VIDEO
+                    yield b'overflow'
+                async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                              base_url='http://127.0.0.1') as streaming:
+                    return await streaming.patch(url, headers={'Upload-Offset': '0'}, content=chunks())
+            response = asyncio.run(send_overflow())
+        else:
+            response = client.patch(url, headers={'Upload-Offset': '0'}, content=VIDEO)
+        assert response.status_code == (413 if invalid else 200)
+        assert client.get(url).json()['offset'] == (0 if invalid else 32)
+        usage = client.get('/api/usage').json()
+        assert usage['pending_jobs'] == 1 and usage['stored_bytes'] == (32 if invalid else 64)
+        assert usage['committed_bytes'] == 64
+        directory = app.state.store.root/'resumable'/session['id']
+        assert len(list(directory.glob('chunk_*.part'))) == 1
+        with FileLock(str(directory/'receive.lock'), timeout=0):
+            pass

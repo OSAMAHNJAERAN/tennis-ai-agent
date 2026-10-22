@@ -1,0 +1,16 @@
+{
+  "status": "AGGREGATE_ASSERTION_INCORRECT_NO_PRODUCT_DELTA",
+  "cause": "Builder required active=0 for every accepted replay; after commit process loss leaves active=1 while queue consumption correctly deduplicates it. Both cases have one pending job.",
+  "observations": [
+    {
+      "case": "before",
+      "reservation_active_flag": 0,
+      "deduplicated_pending_jobs": 1
+    },
+    {
+      "case": "after",
+      "reservation_active_flag": 1,
+      "deduplicated_pending_jobs": 1
+    }
+  ]
+}

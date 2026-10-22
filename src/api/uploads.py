@@ -5,6 +5,7 @@ truncated before the next append. Finishing is idempotent across HTTP restarts.
 """
 import hashlib
 import json
+import logging
 import os
 from pathlib import Path
 from typing import Literal
@@ -18,9 +19,12 @@ from starlette.concurrency import run_in_threadpool
 
 from src.api.auth import current_owner
 from src.api.jobs import public_job, utc_now
+from src.api.creation_requests import CreationRequests
+from src.api.product import MatchMetadata, ProductStore
 
 CHUNK_LIMIT = 8 * 1024 * 1024
 EXTENSIONS = {'.mp4', '.mov', '.avi'}
+LOGGER = logging.getLogger(__name__)
 
 
 def checked_filename(value):
@@ -50,6 +54,7 @@ class BatchSpec(BaseModel):
     model_config = ConfigDict(extra='forbid')
     mode: Literal['independent', 'same_match'] = 'independent'
     files: list[UploadSpec] = Field(min_length=1, max_length=16)
+    metadata: MatchMetadata | None = None
 
     @model_validator(mode='after')
     def explicit_order(self):
@@ -59,6 +64,8 @@ class BatchSpec(BaseModel):
                 raise ValueError('Same-match clips require unique clip_index values from 0 to file count minus one.')
         if any(item.batch_id is not None for item in self.files):
             raise ValueError('Batch file entries cannot refer to a different batch.')
+        if self.metadata is not None and any(item.match_id is not None for item in self.files):
+            raise ValueError('Use batch metadata or existing upload drafts, rather than both.')
         return self
 
 
@@ -66,6 +73,7 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
     if quotas is None:
         from src.api.resource_quotas import ResourceQuotas
         quotas = ResourceQuotas(jobs, settings)
+    creations = CreationRequests(jobs)
     with jobs.connect() as conn:
         conn.execute('''CREATE TABLE IF NOT EXISTS upload_batches (
             id TEXT PRIMARY KEY, owner_id TEXT NOT NULL, mode TEXT NOT NULL, created_at TEXT NOT NULL)''')
@@ -100,15 +108,14 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
     def directory(row):
         return jobs.root / 'resumable' / row['id']
 
-    def validate(spec, owner_id):
+    def validate(spec, owner_id, conn):
         checked_filename(spec.filename)
         if spec.size_bytes > settings.max_upload_bytes:
             raise HTTPException(413, 'Video exceeds the upload size limit.')
-        with jobs.connect() as conn:
-            if spec.match_id and not conn.execute("SELECT id FROM matches WHERE id=? AND owner_id=? AND source='upload' AND analysis_id IS NULL", (spec.match_id, owner_id)).fetchone():
-                raise HTTPException(404, 'Upload draft not found.')
-            if spec.batch_id and not conn.execute('SELECT id FROM upload_batches WHERE id=? AND owner_id=?', (spec.batch_id, owner_id)).fetchone():
-                raise HTTPException(404, 'Batch not found.')
+        if spec.match_id and not conn.execute("SELECT id FROM matches WHERE id=? AND owner_id=? AND source='upload' AND analysis_id IS NULL", (spec.match_id, owner_id)).fetchone():
+            raise HTTPException(404, 'Upload draft not found.')
+        if spec.batch_id and not conn.execute('SELECT id FROM upload_batches WHERE id=? AND owner_id=?', (spec.batch_id, owner_id)).fetchone():
+            raise HTTPException(404, 'Batch not found.')
 
     def insert(conn, spec, owner_id, batch_id=None):
         filename, extension = checked_filename(spec.filename)
@@ -122,12 +129,18 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
         return upload_id
 
     @router.post('/uploads', status_code=201)
-    def create(spec: UploadSpec, owner_id: str = Depends(current_owner)):
-        validate(spec, owner_id)
+    def create(spec: UploadSpec, request: Request, owner_id: str = Depends(current_owner)):
+        key, fingerprint = creations.key(request), creations.fingerprint(spec)
         with jobs.connect() as conn:
             conn.execute('BEGIN IMMEDIATE')
-            quotas.check(conn, owner_id, additional_jobs=1, additional_bytes=spec.size_bytes)
-            upload_id = insert(conn, spec, owner_id)
+            saved = creations.find(conn, owner_id, key, 'upload', fingerprint)
+            if saved is None:
+                validate(spec, owner_id, conn)
+                quotas.check(conn, owner_id, additional_jobs=1, additional_bytes=spec.size_bytes)
+                upload_id = insert(conn, spec, owner_id)
+                creations.save(conn, owner_id, key, 'upload', fingerprint, {'id': upload_id})
+            else:
+                upload_id = saved['id']
         return presented(raw(upload_id, owner_id))
 
     @router.get('/uploads/{upload_id}')
@@ -197,7 +210,13 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
             raise HTTPException(507, 'Upload could not be stored. Check available disk space.') from exc
         finally:
             try:
-                temporary.unlink(missing_ok=True)
+                try:
+                    temporary.unlink(missing_ok=True)
+                except OSError:
+                    # The durable offset remains authoritative. Failed cleanup
+                    # stays owner-attributed without replacing its acknowledgement
+                    # or the original request error with a cleanup exception.
+                    LOGGER.exception('Upload chunk cleanup left retained bytes: %s', upload_id)
             finally:
                 if acquired:
                     receive_lock.release()
@@ -265,16 +284,31 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
         return presented(raw(upload_id, owner_id))
 
     @router.post('/batches', status_code=201)
-    def batch(spec: BatchSpec, owner_id: str = Depends(current_owner)):
-        for file in spec.files:
-            validate(file, owner_id)
-        batch_id = 'batch_' + uuid.uuid4().hex
+    def batch(spec: BatchSpec, request: Request, owner_id: str = Depends(current_owner)):
+        key, fingerprint = creations.key(request), creations.fingerprint(spec)
         with jobs.connect() as conn:
             conn.execute('BEGIN IMMEDIATE')
-            quotas.check(conn, owner_id, additional_jobs=len(spec.files),
-                         additional_bytes=sum(file.size_bytes for file in spec.files))
-            conn.execute('INSERT INTO upload_batches VALUES (?,?,?,?)', (batch_id, owner_id, spec.mode, utc_now()))
-            ids = [insert(conn, file, owner_id, batch_id) for file in spec.files]
+            saved = creations.find(conn, owner_id, key, 'batch', fingerprint)
+            if saved is None:
+                for file in spec.files:
+                    validate(file, owner_id, conn)
+                metadata = ProductStore(jobs).validate_metadata(conn, spec.metadata, owner_id) if spec.metadata is not None else None
+                quotas.check(conn, owner_id, additional_jobs=len(spec.files),
+                             additional_bytes=sum(file.size_bytes for file in spec.files))
+                batch_id = 'batch_' + uuid.uuid4().hex
+                conn.execute('INSERT INTO upload_batches VALUES (?,?,?,?)', (batch_id, owner_id, spec.mode, utc_now()))
+                ids = []
+                for file in spec.files:
+                    if metadata is not None:
+                        match_id, now = 'session_' + uuid.uuid4().hex, utc_now()
+                        conn.execute("INSERT INTO matches(id,source,metadata,created_at,updated_at,owner_id) VALUES (?,'upload',?,?,?,?)",
+                                     (match_id, metadata, now, now, owner_id))
+                        file = file.model_copy(update={'match_id': match_id})
+                    ids.append(insert(conn, file, owner_id, batch_id))
+                creations.save(conn, owner_id, key, 'batch', fingerprint,
+                               {'id': batch_id, 'mode': spec.mode, 'upload_ids': ids})
+            else:
+                batch_id, ids = saved['id'], saved['upload_ids']
         return {'id': batch_id, 'mode': spec.mode, 'grouping_status': 'unverified', 'uploads': [presented(raw(id, owner_id)) for id in ids]}
 
     @router.get('/batches/{batch_id}')

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-22",
+  "reviewer": "/root/resume_contract",
+  "status": "PASS_WITH_SCOPE_LIMITATIONS",
+  "kind": "independent_static_review_and_retained_execution_evidence_inspection",
+  "scope": [
+    "Owner/source binding of explicit retry intents",
+    "Pre-queue and post-queue process-crash convergence",
+    "Quota reservation/reactivation and queue metadata transaction",
+    "Request locking and cleanup ownership",
+    "Authorization ordering and accepted-request acknowledgement"
+  ],
+  "reviewed_files": {
+    "src/api/retry_intents.py": "7b60089dcffa10e37f4ee71319d3861346e5f239e308ab8f35459683c0d70d19",
+    "src/api/app.py": "cb857a50c7608137621f054ce4130dd8e8828db9a3a99d826412a6c0e5a082a3",
+    "src/api/jobs.py": "74000bc69d41b5eca32df2a6b718377a3c4306b4859a2c72a9770b79a02d5581",
+    "src/api/resource_quotas.py": "fd552634546805d2b89ed253d48e8f89874b84f83727c16375c6e44b111a91cc",
+    "src/api/product.py": "4c71a9ee8855b7e42f86fa8057ee654461cb8153f8ffcaa9a75eea06f5285db3",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "tests/test_retry_intents.py": "a6db776185a4d90aaddb8df699f112250e57c03a7138c59112ed2d0c3f625cf6",
+    "tests/helpers/retry_intent_crash_child.py": "381b5ec2f3da5bbb0bad446cd84d249a68fe229375a77861f22164f3f9b5500c"
+  },
+  "findings": [],
+  "conclusions": [
+    {
+      "topic": "Explicit intent identity",
+      "conclusion": "The primary key is (owner_id,intent_key), with one persisted unique child analysis_id and source_analysis_id. A reused key with a different source returns 409. The route accepts exactly one bounded ASCII Idempotency-Key and authorizes the source owner before validation or lookup, so another owner cannot use malformed-key behavior to disclose a private source. Different owners can independently use the same literal key."
+    },
+    {
+      "topic": "Accepted replay and fresh intent",
+      "conclusion": "An existing accepted child is verified against owner_id and retry_of and returned before checking source availability, current source status or new-admission quotas. It is not recopied and edited child metadata is not overwritten. Repeating the same source/key acknowledges that child even after the child fails; a new deliberate retry requires a fresh key and receives normal admission. A failed child used as a new source cannot reuse the ancestor's key."
+    },
+    {
+      "topic": "Pre-queue crash",
+      "conclusion": "Intent and quota reservation are inserted in one BEGIN IMMEDIATE transaction before file work. Same-key request locking spans selection, admission, owned crash-file replacement, queue insertion and settlement. A crash leaves either no intent or one retained child identity; replay reuses that identity and replaces only its own unaccepted input paths. An active pending reservation is not counted twice. A previously released reservation is reactivated and checked atomically, with transaction rollback on rejection."
+    },
+    {
+      "topic": "Queue commit and metadata",
+      "conclusion": "JobStore.create inserts the queue row, attaches the owner's product row, and copies source metadata/notes on the same SQLite connection transaction. An error before commit rolls back all three. A committed queue row survives an acknowledgement error; settlement detects durable acceptance and preserves its original input. A later same-key call selects the same accepted child."
+    },
+    {
+      "topic": "Cleanup and process locks",
+      "conclusion": "Per-owner/key lock paths use a SHA-256 basename and the existing checked path helper. Lock files are retained rather than deleted, avoiding an unlink/recreate split-lock race. OS-backed locks are recoverable after process exit. Settlement runs while the intent lock is held; no accepted-job creator outside this lock was identified for the saved child ID. Unknown SQLite acceptance state does not authorize cleanup or quota release, and recognized cleanup/release errors are logged without replacing the original request outcome. Logical storage accounting charges retained hard-link paths separately."
+    },
+    {
+      "topic": "Stale retained source",
+      "conclusion": "Before a new queue insert, missing source or changed length fails closed; replay of an admitted intent also checks its persisted length. These checks are intentionally bypassed for an already accepted acknowledgement. No HTTP operation that rewrites an accepted original upload was identified in the reviewed API. Exact-byte integrity has the separate limitation recorded below."
+    }
+  ],
+  "retained_execution_evidence": {
+    "receipt": {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/retry_intent_checks_v1/receipt.json",
+      "sha256": "0771797280d86b08b5aa71ed1e464975ec9265a2ba6f018e25f374184300e77e"
+    },
+    "junit": {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/retry_intent_checks_v1/junit.xml",
+      "sha256": "8742c01787d7ce59bbe30cf70f9328e1525592a1edaefd32adf2a6ef6217e167"
+    },
+    "observed_status": "PASS",
+    "tests": 171,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "retry_intent_testcases": 15,
+    "elapsed_seconds": 40.45091370004229,
+    "reviewed_current_pins_equal_receipt_before_and_after": true,
+    "actual_child_process_boundary_cases": [
+      "test_actual_process_exit_converges_same_retry_identity_and_one_queue_row[before]",
+      "test_actual_process_exit_converges_same_retry_identity_and_one_queue_row[after]"
+    ],
+    "child_evidence_assertions_in_reviewed_test": [
+      "Distinct child PID and os._exit return codes 85 before queue commit and 86 after actual JobStore.create commit",
+      "Explicit child builtins import guard and meta-path tripwire reject torch, torchvision and ultralytics",
+      "Child record reports no forbidden imports attempted or loaded and correct input SHA-256",
+      "Fresh app/server instance repeats exact key twice and obtains the same saved child with exactly one pending/queue child",
+      "Retained child original bytes equal the synthetic upload"
+    ],
+    "inference_import_attempts": [],
+    "forbidden_runtimes_loaded": [],
+    "actual_host_ram_gpu_probes": 0,
+    "actual_model_inference": false,
+    "execution_performed_by_this_review": false
+  },
+  "limitations": [
+    "Retry admission binds the source analysis identity and expected byte length, not a persisted content digest. Same-length out-of-band replacement or in-place mutation of the retained original is not detected here; successful os.link also retains a shared inode. No API rewrite path was identified, so this is a storage-integrity boundary rather than a demonstrated HTTP idempotency race. Do not describe this layer as a cryptographic binding of the original upload bytes.",
+    "The retained process tests cover exits immediately before and after the queue insertion boundary, not power loss, device/filesystem durability failure, or every possible instruction boundary. File copy/rename and SQLite acceptance are separate operations reconciled by the intent/reservation protocol.",
+    "The concurrent same-intent test uses independent request threads; the retained hard-exit tests exercise OS-backed lock release across processes. This review did not execute another simultaneous multi-process stress test.",
+    "This is retry acceptance/ownership/resource-accounting evidence only. It does not establish tennis model accuracy, training readiness, independent qualification or completion of the master goal."
+  ],
+  "review_activity": {
+    "production_edits": false,
+    "tests_run": false,
+    "project_modules_imported": false,
+    "model_runtime_imports": false,
+    "host_or_gpu_probes": false,
+    "media_downloads_or_test_exposure": false
+  }
+}
