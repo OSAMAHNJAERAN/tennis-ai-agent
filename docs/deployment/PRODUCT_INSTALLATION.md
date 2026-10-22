@@ -57,9 +57,19 @@ The manifest pins byte sizes and SHA-256 hashes for the selected configuration, 
 |---|---|---|
 | `yolo11m.pt` | Person detection, ByteTrack and crop-based racket observations | Retained exact bytes are known; original acquisition revision is not recorded. [Ultralytics lists AGPL-3.0 and Enterprise model licenses](https://docs.ultralytics.com/models/yolo11/). Project deployment permission remains unverified. |
 | `yolo11s-pose.pt` | Continuous player pose observations | Same acquisition and deployment-permission limit as the person model. |
-| `models/keypoints_model.pth` | Full ResNet-50 court state dictionary | Source, author and weight license are unknown. No verified public restoration URL is available; obtain the exact retained asset and its provenance from the owner if absent. |
+| `models/keypoints_model.pth` | Full ResNet-50 court state dictionary | [Download the exact retained checkpoint](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/releases/download/project-snapshot-2026-10-22/keypoints_model.pth) (94,582,426 bytes); restore it to `models/keypoints_model.pth` and verify the manifest SHA-256. Original source, author and weight license remain unknown. |
 | `artifacts/models/ball/wasb_tennis_best.pth.tar` | WASB tennis heatmap inference | The [pinned official model zoo](https://github.com/nttcom/WASB-SBDT/blob/923462cacdeb3353b84ddebdedb3f4b7a8553b0f/MODEL_ZOO.md) identifies the upstream checkpoint. Existing provenance pins its hash and URL. Separate weight and training-footage redistribution terms remain unverified. |
 | `artifacts/research/WASB-SBDT/` | HRNet architecture, affine preprocessing and model YAML | Required runtime source at commit `923462cacdeb3353b84ddebdedb3f4b7a8553b0f`; preserve its MIT notice. |
+
+To restore only the court checkpoint, download it directly using the link above, or run:
+
+```powershell
+gh release download project-snapshot-2026-10-22 --repo OSAMAHNJAERAN/tennis-ai-agent --pattern keypoints_model.pth --dir models
+Get-FileHash models/keypoints_model.pth -Algorithm SHA256
+```
+
+The expected SHA-256 is `16ebb7e46dc88247440c86b388e4f07f0d4abb76ce0a01a22925d3163f7fb7f3`.
+This is also the identical file preserved in snapshot archive `objects-0036.zip`; restoring the full snapshot is unnecessary when only this checkpoint is missing.
 
 For an **absent** WASB source directory, restore the exact revision with:
 
