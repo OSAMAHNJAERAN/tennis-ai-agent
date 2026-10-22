@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-22T15:20:51.357414+00:00",
+  "scope": "Section30 phase9 requirement22 owner-scoped orphan-reservation recovery; synthetic software only",
+  "counts": {
+    "tests": 228,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "elapsed_seconds": 45.102424378999785,
+  "stable_pins": 430,
+  "evidence_sha256": {
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/receipt.json": "783158eea6dcfd6dc487c9d1395c96e5c3ecd1976059f14e8e6b5c047ff8a4c6",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/junit.xml": "090a38f5dd58041abba6b753156a2cc3c09605a71338b4ca378fc108a46d8f31",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/pytest.txt": "52674d9768eb053d5c3fa51ed97d76611e955566f330edb5f7f656eb2e050075",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/run_checks.py": "2094ff44758d0cb222990b8dfba65e62b3dc25c48de79042d55829471de35486",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/independent_review.json": "9889d041217ea6becfefca593d3d1335413ef49aa357f2aa3d9590f8418a9aa5",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/child_processes/legacy_after.json": "5a586f9415a9ece7fa2487c94db8248ae0262d1602418dd052e60a862efeaec1",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/child_processes/legacy_before.json": "912188b35871855b831911a31a7377f7011cc610141bbdb205d4c027c13cc870",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/child_processes/legacy_reserved.json": "1b9d7718b518f2a2b6fff5aaa6b75032634b01b53b3283d6d9d4ab71de3d7f6d",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/child_processes/retry_after.json": "82845d416e78081ff95dceed6f8b3fa112e8be7603208efe30df1ac7cbd295e7",
+    "artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/child_processes/retry_before.json": "3d15f6000a1b809597db3ed462ad9926ded6fa7122ec68c7936782991ec298d2"
+  },
+  "source_files": {
+    "src/api/app.py": "07d99b0c5908fb47397c58cd79f636b279eb34f01c2f9527b11f65fa09f6bece",
+    "src/api/resource_quotas.py": "176416e05c8c06353d9a05ae76b92a16af16eb744f9b30a7c23420f27c99224b",
+    "src/api/retry_intents.py": "1eb7ba84226e066527c02de36698cfd96069468834789a031dd4bdfbb5d4e62c",
+    "tests/test_resource_quota_recovery.py": "00db4e970283696a8ebfeb8d857b5e6757f9b9488ea04658a0d4712adbf6fdb9",
+    "tests/test_legacy_reservation_recovery_crash.py": "7a84ae1c7923f69bc23447c602353cdbd9a24f7b5b01414939a272f9a282ccf1",
+    "tests/helpers/reservation_crash_child.py": "270e382f02d042e4852c000582ca1cd32750ddc707e7357ffd17d68e2b05bf95"
+  },
+  "actual_process_exit_observations": 5,
+  "actual_host_gpu_ram_probes": 0,
+  "inference_import_attempts": [],
+  "actual_model_inference": false,
+  "media_deleted": false,
+  "frontend_modified": false,
+  "dependencies_models_configs_modified": false,
+  "background_work_required_to_survive": false,
+  "next_unfinished_step": "Controlled owner erasure/retention of abandoned unaccepted payloads; accepted-analysis lifecycle guards still needed",
+  "limitations": [
+    "Pre-upgrade legacy reservations without known lifetime protocol remain conservative/operator-recovery only",
+    "No automatic expiry/deletion or physical filesystem cap",
+    "No real tennis accuracy, qualified inference, full-match/live or public capacity qualification",
+    "Training blocked pending previously promised RAM notification"
+  ]
+}

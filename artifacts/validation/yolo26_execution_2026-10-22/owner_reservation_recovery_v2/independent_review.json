@@ -1,0 +1,19 @@
+{
+  "scope": "Independent agent static source review and separate evidence consistency audit; not external human/model-accuracy qualification",
+  "status": "PASS",
+  "material_blockers": [],
+  "findings": [
+    "Direct executor Future is shielded/drained across repeated request and all-task cancellation before lifetime-lock release",
+    "Migration uncertainty, live requests, accepted work, owner boundaries, retry identities, tombstones and retained bytes preserved",
+    "All 430 current and copied source pins match before/after; JUnit 228 tests with zero failures/errors/skips",
+    "Five distinct actual process-exit observations match legacy admission/prequeue/postqueue and retry prequeue/postqueue assertions"
+  ],
+  "source_files": {
+    "src/api/app.py": "07d99b0c5908fb47397c58cd79f636b279eb34f01c2f9527b11f65fa09f6bece",
+    "src/api/resource_quotas.py": "176416e05c8c06353d9a05ae76b92a16af16eb744f9b30a7c23420f27c99224b",
+    "src/api/retry_intents.py": "1eb7ba84226e066527c02de36698cfd96069468834789a031dd4bdfbb5d4e62c",
+    "tests/test_resource_quota_recovery.py": "00db4e970283696a8ebfeb8d857b5e6757f9b9488ea04658a0d4712adbf6fdb9",
+    "tests/test_legacy_reservation_recovery_crash.py": "7a84ae1c7923f69bc23447c602353cdbd9a24f7b5b01414939a272f9a282ccf1",
+    "tests/helpers/reservation_crash_child.py": "270e382f02d042e4852c000582ca1cd32750ddc707e7357ffd17d68e2b05bf95"
+  }
+}

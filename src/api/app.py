@@ -1,6 +1,7 @@
 """Upload, job status and result API for the existing tennis pipeline."""
 
 from contextlib import asynccontextmanager
+from functools import partial
 import asyncio
 import json
 import logging
@@ -12,7 +13,6 @@ import sys
 import shutil
 import re
 
-import aiofiles
 from filelock import FileLock, Timeout
 from fastapi import FastAPI, HTTPException, Request, Depends
 from starlette.responses import FileResponse
@@ -165,7 +165,7 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
             conn.execute('BEGIN IMMEDIATE')
             quotas.check_storage(conn, owner_id)
 
-    async def upload_operation(operation):
+    async def upload_operation(function, *args, **kwargs):
         """Finish in-flight I/O before a cancelled request drops its lease.
 
         Native asyncio cancellation can leave an executor thread running even
@@ -173,7 +173,10 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
         settlement cannot race a still-running queue insertion or file write.
         Request body receives themselves remain cancellable.
         """
-        task = asyncio.ensure_future(operation)
+        # An executor Future is not a separately cancellable asyncio Task.
+        # Even event-loop shutdown cancelling all tasks must drain this actual
+        # operation before request settlement or releasing its lifetime lock.
+        task = asyncio.get_running_loop().run_in_executor(None, partial(function, *args, **kwargs))
         try:
             return await asyncio.shield(task)
         except asyncio.CancelledError:
@@ -268,41 +271,41 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
             accepted = False
             reserved = False
 
-            async def reserve_request():
+            def reserve_request():
                 nonlocal reserved
-                await run_in_threadpool(reserve, analysis_id, owner_id,
-                                        int(declared) if declared is not None else settings.max_upload_bytes, 'legacy')
+                reserve(analysis_id, owner_id,
+                        int(declared) if declared is not None else settings.max_upload_bytes, 'legacy')
                 reserved = True
 
             try:
-                await upload_operation(reserve_request())
+                await upload_operation(reserve_request)
                 directory.mkdir(parents=True)
                 handle = None
 
-                async def open_file():
+                def open_file():
                     nonlocal handle
-                    handle = await aiofiles.open(temporary, 'xb')
+                    handle = temporary.open('xb')
 
                 try:
-                    await upload_operation(open_file())
+                    await upload_operation(open_file)
                     async for chunk in request.stream():
                         size += len(chunk)
                         if size > settings.max_upload_bytes or declared is not None and size > int(declared):
                             raise HTTPException(413, 'Video exceeds the upload size limit.')
                         if len(header) < 32:
                             header = (header + chunk)[:32]
-                        await upload_operation(handle.write(chunk))
+                        await upload_operation(handle.write, chunk)
                 finally:
                     if handle is not None:
-                        await upload_operation(handle.close())
+                        await upload_operation(handle.close)
                 signature_ok = (header[:4] == b'RIFF' and header[8:12] == b'AVI ') if extension == '.avi' else (
                     header[4:8] in {b'ftyp', b'moov', b'mdat', b'wide', b'free', b'skip'})
                 if size < 12 or not signature_ok:
                     raise HTTPException(415, 'The file is not a supported video container. Export an MP4, MOV or AVI and try again.')
                 temporary.replace(directory / ('original' + extension))
-                await upload_operation(run_in_threadpool(check_storage, owner_id))
-                job = await upload_operation(run_in_threadpool(store.create, analysis_id, filename, extension,
-                                                              size, settings.config, match_id, owner_id))
+                await upload_operation(check_storage, owner_id)
+                job = await upload_operation(store.create, analysis_id, filename, extension,
+                                             size, settings.config, match_id, owner_id)
                 accepted = True
                 ensure_worker()
                 return public_job(job)
@@ -310,7 +313,7 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
                 raise HTTPException(507, 'Video could not be stored. Check available disk space and try again.') from exc
             finally:
                 if reserved:
-                    await upload_operation(run_in_threadpool(settle_reservation, analysis_id, extension, accepted=accepted))
+                    await upload_operation(settle_reservation, analysis_id, extension, accepted=accepted)
         finally:
             request_lock.release()
 

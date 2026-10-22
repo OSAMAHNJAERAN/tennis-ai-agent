@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-from threading import Event
+from threading import Barrier, Event
 
 from fastapi.testclient import TestClient
 import httpx
@@ -247,6 +247,12 @@ def test_actual_process_exit_then_recovery_preserves_retry_identity_and_one_job(
     record = json.loads(record_path.read_text(encoding='utf-8'))
     assert record['pid'] != os.getpid()
     assert record['forbidden_import_attempts'] == record['forbidden_loaded'] == []
+    evidence = os.environ.get('TENNIS_RECOVERY_EVIDENCE_DIR')
+    if evidence:
+        directory = Path(evidence)
+        directory.mkdir(parents=True, exist_ok=True)
+        with (directory / ('retry_' + failure + '.json')).open('x', encoding='utf-8') as handle:
+            json.dump(record, handle, indent=2)
     child = record['selected']['analysis_id']
     restarted = create_app(settings, start_worker=False)
     with TestClient(restarted) as client:
@@ -426,7 +432,8 @@ def test_recovery_cannot_release_a_legacy_reservation_during_actual_body_streami
 
 
 @pytest.mark.parametrize('stage', ['reserve', 'create'])
-def test_native_task_cancellation_keeps_lease_until_committing_thread_has_settled(tmp_path, monkeypatch, stage):
+@pytest.mark.parametrize('cancel_scope', ['request', 'all_private'])
+def test_native_task_cancellation_keeps_lease_until_committing_thread_has_settled(tmp_path, monkeypatch, stage, cancel_scope):
     app, _ = service(tmp_path)
     reached, proceed, exited = Event(), Event(), Event()
     jobs, quotas = app.state.store, app.state.quotas
@@ -465,7 +472,18 @@ def test_native_task_cancellation_keeps_lease_until_committing_thread_has_settle
             uploading = asyncio.create_task(client.post('/api/analyses?filename=cancelled.mp4', content=VIDEO))
             try:
                 assert await asyncio.to_thread(reached.wait, 15)
-                uploading.cancel()
+                def cancel_requests():
+                    if cancel_scope == 'request':
+                        uploading.cancel()
+                    else:
+                        # Simulate shutdown cancelling request/operation Tasks,
+                        # while this test's coordinator remains able to check
+                        # the live lease and then release the executor thread.
+                        for task in asyncio.all_tasks():
+                            if task is not asyncio.current_task():
+                                task.cancel()
+
+                cancel_requests()
                 await asyncio.sleep(0)
                 # Cancellation must wait for the thread rather than releasing
                 # the lease while that thread can still commit accepted work.
@@ -474,6 +492,13 @@ def test_native_task_cancellation_keeps_lease_until_committing_thread_has_settle
                 assert recovered.json()['busy_reservations'] == 1
                 assert recovered.json()['reconciled_reservations'] == 0
                 assert recovered.json()['usage']['pending_jobs'] == 1
+                cancel_requests()
+                await asyncio.sleep(0)
+                repeated = await client.post('/api/usage/reconcile')
+                assert repeated.status_code == 200
+                assert repeated.json()['busy_reservations'] == 1
+                assert repeated.json()['reconciled_reservations'] == 0
+                assert repeated.json()['usage']['pending_jobs'] == 1
                 other = await client.post('/api/uploads', headers={'Idempotency-Key': 'native-cancel-other-intent-0001'},
                                           json={'filename': 'other.mp4', 'size_bytes': 32})
                 assert other.status_code == 429
@@ -495,3 +520,68 @@ def test_native_task_cancellation_keeps_lease_until_committing_thread_has_settle
                 assert conn.execute('SELECT COUNT(*) FROM resource_reservations WHERE active=1').fetchone()[0] == 0
 
     asyncio.run(exercise())
+
+
+@pytest.mark.parametrize('corruption', ['owner', 'size', 'source_owner', 'key'])
+def test_unverifiable_retry_mapping_stays_charged_and_is_not_rewritten(tmp_path, corruption):
+    from src.api.retry_intents import RetryIntents
+    app, settings = service(tmp_path)
+    jobs = app.state.store
+    with TestClient(app) as client:
+        source_response = client.post('/api/analyses?filename=source.mp4', content=VIDEO)
+        assert source_response.status_code == 202
+        source = source_response.json()['id']
+        jobs.finish(source, 'synthetic failure')
+        intents = RetryIntents(jobs, app.state.quotas)
+        with intents.lock('local', RETRY_KEY):
+            child = intents.admit('local', RETRY_KEY, source, 32)
+        if corruption == 'source_owner':
+            jobs.create('match_foreign_source', 'foreign.mp4', '.mp4', 32, settings.config, owner_id='foreign-owner')
+            jobs.finish('match_foreign_source', 'synthetic foreign failure')
+        with jobs.connect() as conn:
+            assignments = {'owner': ('owner_id', 'foreign-owner'), 'size': ('size_bytes', 33),
+                           'source_owner': ('source_analysis_id', 'match_foreign_source'),
+                           'key': ('intent_key', '../not-a-valid-key')}
+            column, value = assignments[corruption]
+            conn.execute('UPDATE analysis_retry_intents SET ' + column + '=? WHERE analysis_id=?', (value, child))
+            before = dict(conn.execute('SELECT * FROM analysis_retry_intents').fetchone())
+        response = client.post('/api/usage/reconcile')
+        assert response.status_code == 200
+        assert response.json()['unverified_reservations'] == 1
+        assert response.json()['reconciled_reservations'] == 0
+        assert response.json()['usage']['pending_jobs'] == 1
+        assert response.json()['usage']['committed_bytes'] == 64
+        assert active(app, child) == 1
+        with jobs.connect() as conn:
+            after = dict(conn.execute('SELECT * FROM analysis_retry_intents').fetchone())
+        assert after == before
+        assert jobs.get(child) is None
+        assert (jobs.upload_dir(source) / 'original.mp4').read_bytes() == VIDEO
+
+
+def test_simultaneous_recovery_retires_one_orphan_once_and_preserves_owned_bytes(tmp_path):
+    app, _ = service(tmp_path)
+    ident = 'match_concurrent_recovery'
+    reserve(app, ident)
+    partial = stored(app, f'uploads/{ident}/upload.part', b'partial!')
+    scratch = stored(app, f'analyses/{ident}/leftover.bin', b'retained')
+    barrier = Barrier(2)
+
+    def recover():
+        with TestClient(app) as client:
+            barrier.wait(timeout=15)
+            response = client.post('/api/usage/reconcile')
+            assert response.status_code == 200
+            return response.json()
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        futures = [pool.submit(recover) for _ in range(2)]
+        results = [future.result(timeout=20) for future in futures]
+    assert sum(item['reconciled_reservations'] for item in results) == 1
+    assert sum(item['unverified_reservations'] for item in results) == 0
+    assert active(app, ident) == 0
+    with TestClient(app) as client:
+        usage = client.get('/api/usage').json()
+        assert usage['pending_jobs'] == usage['reserved_input_bytes'] == 0
+        assert usage['stored_bytes'] == usage['committed_bytes'] == 16
+    assert partial.read_bytes() == b'partial!' and scratch.read_bytes() == b'retained'
