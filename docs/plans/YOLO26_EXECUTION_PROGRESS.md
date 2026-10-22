@@ -6,6 +6,12 @@ The single production candidate is `configs/production/yolo26.yaml`: YOLO26m bal
 
 The API environment default now selects that candidate and requires accounts. Historical recovery requires an explicit pipeline override; old job config paths and saved results remain intact. Missing assets/qualification produce a user-facing verification failure before inference, with detailed diagnostics only in the private worker log. Forty-six focused default/API/private-gate tests passed. This makes the requested runtime selection explicit, but does not complete the missing upload-to-qualified-report workflow.
 
+## Active cloud continuation — 22 October 2026
+
+Remote integration was verified at `e76bbec0adf4eeecf82df30baa9c49725ad70d07`. The canonical [multi-account handoff](CODEX_MULTI_ACCOUNT_HANDOFF.md) was absent and is now established; Section 34 from the user-supplied continuation prompt is retained in the English master prompt. Open [PR #1](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/pull/1) has head `f854804f4f0d3766e70218d59f06cd6ebb8aaff1`, already an ancestor of integration; it is preserved without merging or closing it.
+
+**In progress: Section 30 phase 9, requirement 21 — initial upload/batch creation acknowledgement recovery.** Contrary to the historical gap text below, backend admission and frontend intent machinery are already tracked. The backend's retained 196-check receipt is complete; the prior frontend v1 output is incomplete and v2 has no execution receipt. The next change finishes expected-owner request binding and retirement of a saved intent only after the server's matching durable rejection proof, with current-owner validation. Uncertain responses retain their key. This is software delivery work; no model imports, resource admission probes, training or promotion are authorized by this continuation. The historical wait for the user's RAM notification remains in force.
+
 | Required outcome | Current operating evidence | Remaining acceptance |
 | --- | --- | --- |
 | Three YOLO26 roles and specialist training | Exact three-model short private run; older ball/court twenty-epoch checkpoints; ball101 and court175 data/CPU inspection | Fixed repaired-data GPU stages need adequate RAM; independent checkpoints remain unqualified |
