@@ -18,6 +18,8 @@ Implementation checkpoint `b5a3d2c8f4a6a7f49ec328141a6a50db93e8515a` was pushed 
 
 **Next unfinished task: complete the actual owner browser upload/recovery and correction journey** with an isolated fixture and record visible outcomes; software/DOM checks do not establish this journey. Owner orphan-reservation recovery, retention and public capacity remain subsequent product work. Training stays blocked pending the previously promised RAM notification; no resource admission, model inference, training or promotion ran here. Historical scientific limitations below remain in force.
 
+**Browser continuation in progress:** `owner_browser_cloud_v1/` now retains a Linux, worker-disabled isolated fixture and real Chromium sign-in/correction-form preflight. Native preparation passed in 3.48 seconds with 565 stable source pins and zero model imports/host admission probes; frozen frontend install and production build passed. The actual lost/rejected/delayed upload acknowledgement and correction/replay/download journeys remain unfinished at this checkpoint. The first preparation socket-sandbox hang is retained; a minimal TestClient reproduction passes outside that sandbox. No training/data/model change or browser-journey completion is claimed.
+
 | Required outcome | Current operating evidence | Remaining acceptance |
 | --- | --- | --- |
 | Three YOLO26 roles and specialist training | Exact three-model short private run; older ball/court twenty-epoch checkpoints; ball101 and court175 data/CPU inspection | Fixed repaired-data GPU stages need adequate RAM; independent checkpoints remain unqualified |

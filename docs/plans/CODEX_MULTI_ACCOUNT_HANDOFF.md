@@ -1,11 +1,21 @@
 # CURRENT HANDOFF
 
-- Checkpoint time: 2026-10-22 13:45 UTC (Asia/Singapore UTC+08:00).
+- Checkpoint time: 2026-10-22 14:15 UTC (Asia/Singapore UTC+08:00).
 - Repository: https://github.com/OSAMAHNJAERAN/tennis-ai-agent.git
 - Working and integration branch: `codex/yolo26-platform`.
 - **Verified pushed implementation SHA: `b5a3d2c8f4a6a7f49ec328141a6a50db93e8515a`** ([commit](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/commit/b5a3d2c8f4a6a7f49ec328141a6a50db93e8515a)). Ordinary push succeeded and a separate `git ls-remote origin refs/heads/codex/yolo26-platform` exactly matched local HEAD.
 - Initial continuity checkpoint `96fb7ff0e4912c910f7c50c6a7710ea60f00727a` was also pushed and independently verified. This following documentation checkpoint records the implementation SHA and retains its terminal frontend logs (selected explicitly because general `*.log` output is ignored). It cannot contain its own SHA; resolve the newest handoff commit from the live branch. Final remote HEAD is separately verified and reported in chat.
 - Pending PR: https://github.com/OSAMAHNJAERAN/tennis-ai-agent/pull/1 (`Codex/vision system upgrade`), head branch `codex/vision-system-upgrade`, SHA `f854804f4f0d3766e70218d59f06cd6ebb8aaff1`; base `master`, SHA `644808f2130ece14dabd2a502db5ff4bc78eeea6`. Its head is already an ancestor of integration. It was inspected and preserved without merging, closing or overwriting it. No new PR is required for these direct integration checkpoints.
+
+## Browser continuation checkpoint — in progress
+
+The live integration branch was independently read at `3cde6b20b5a02ec7e8f7819e8364fb539d404f25` before this continuation. Local tracked/untracked collision inspection passed and the old workspace branch was preserved. Public GitHub HTML shows exactly one open PR, #1; its Git head remains the recorded ancestor of integration. REST/GraphQL requests remain forbidden. Native push dry-run succeeded; the new implementation is saved only once its ordinary push is separately read back.
+
+**Last newly verified substep:** the cloud fixture and actual Chromium preflight. `owner_browser_cloud_v1/generate.py` passed in 3.48 seconds with 565 stable backend/test/frontend pins and no inference imports. The real UI sign-in and correction form rendered in Chromium 154 without page errors. The frozen frontend install and production build passed. The initial socket-sandbox TestClient hang is retained and diagnosed by a minimal probe; the exact probe passes outside the socket sandbox. No application, training or model configuration changed.
+
+**Active unfinished step:** implement/run the actual upload/recovery and correction browser driver against the new isolated fixture, then inspect generation-bound replay and browser downloads. The driver must let the real API commit before losing/delaying replies; it must not manufacture API data. Preserve failed attempts. The server uses `create_app(..., start_worker=False)` and claims only corrections under explicitly synthetic resource snapshots, with the actual guard unchanged. No real host/GPU probe or model import is permitted. Uploaded originals must remain queued.
+
+Fixture path: `artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1/`. `/workspace/.venv-tennis-api` and pinned pnpm 11.19.0 were recreated from the prior record. The task-owned server is currently PID 3636 with actual ephemeral port in local `runtime.json`; it is an ongoing local process, not a durable artifact. It must be stopped before final handoff and restarted/recreated in a fresh task. No historical 22.7-GiB archive payload was downloaded; its public release page exists but payload availability/hashes are not asserted.
 
 ## Last completed step
 
