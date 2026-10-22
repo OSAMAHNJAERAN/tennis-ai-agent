@@ -1,0 +1,429 @@
+{
+  "status": "FAIL",
+  "started_utc": "2026-10-22T14:34:09.988100+00:00",
+  "scope": "SYNTHETIC SOFTWARE TEST: actual Chromium UI, real cookie accounts, real upload admission/storage and source-bound correction publication; no original video inference, host RAM/GPU probe, tennis accuracy or capacity claim",
+  "runner_sha256": "ef3115850db1b335f9530aa6833a9beafd3cd47c7e534429b0b1a10b0cc91f46",
+  "fixture_manifest_sha256": "1f89005988bf85cae9185375f231d3cba0354e11dc1c6456bb27aa531c0f16ab",
+  "fixture_directory": "/workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v2",
+  "source_before": {
+    "frontend/src/pages/Upload.tsx": "b6d6427ef6122419e53efbe22abbeaca9c8ab1ed9700aff0a0eaf4b4506ac988",
+    "frontend/src/components/AccountAccess.tsx": "75981d860a3df012a36d813a29b5898a857ed9a1049e68dfcaf612e5cb56ddda",
+    "frontend/src/data/batchApi.ts": "d3aacf2b2949b704057de8c4c782568572d7c00763d4643098339841f714d2e1",
+    "frontend/src/data/creationIntent.ts": "894339fb619bb3c8e806f8f96810c22b7c29c7fb7592269435f65e322acbc55a",
+    "frontend/src/components/AnalysisCorrection.tsx": "57c872a48f06291efa7da64de8d01235c6078c45130cffb5e6c704c8f6fe7045",
+    "frontend/src/data/correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "frontend/src/pages/ProductWorkspace.tsx": "5397359a1e9a6cf8aa93db38fbf62433cef920ec873a07f2bbbb27270c7767d9",
+    "frontend/src/pages/SpatialAnalysis.tsx": "c0902b512aa2d2fe167b7a47e49eda81c119f0e76c01ba5b3887fc8d314cb149",
+    "frontend/src/app/AnalysisContext.tsx": "1647305dae22bc777330e87172dff278e60af60538e7de9283b24cacf289d11f",
+    "frontend/src/components/VideoEvidencePlayer.tsx": "e80a5324ddf14471573cc8fffc5629df3c6fbdee97b7f101a44461b7b3d44214",
+    "src/api/app.py": "cb857a50c7608137621f054ce4130dd8e8828db9a3a99d826412a6c0e5a082a3",
+    "src/api/uploads.py": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2",
+    "src/api/creation_requests.py": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+    "src/api/corrections.py": "b7f7ae60ad82a4c2dced2caae2ed28d94504401f89575ff2f06e0250114cd411",
+    "src/api/correction_worker.py": "eb5c730ed6450ec1a2ebeb9a5726c33bebf027c86187ec35270cc130f93d462a",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "frontend/dist/index.html": "65e7c1f8f18d4968bb4828766c17236b0d0df729a70419949d697574d5219e61",
+    "frontend/dist/assets/AccountAccess-CeYsZ2_T.js": "a23689b58c4096514ffef7ebb7f24e99f6ddd39ea5725dd6d423752efc005767",
+    "frontend/dist/assets/MatchMetadataForm-ChO5M0GL.js": "65a8dd5aaf0619828dfd80bf71f822505a7dc478a2af594e5dfda0fdbc5a8c00",
+    "frontend/dist/assets/ProductExamples-DhksnLbW.js": "40d0386f4f9c0a6b6c4a3e346bae298a285216c4e556ffda5bb2457fffcf47ab",
+    "frontend/dist/assets/ProductSettings-CQ6qe9M1.js": "4f9930e51bb2fa05facf8d7a41bd3ab729a2d4384a56da83bab8881f4f5a83f8",
+    "frontend/dist/assets/ProductWorkspace-CE4nu1MT.js": "f3cbb46797c25dabfc016b0b377dbe5f184edd5769d6e43409e9b94c424e862f",
+    "frontend/dist/assets/Reports-CNoD_mw5.js": "6d6f0e563bafd7ea411c87453977067b3330350c58bf6c2b494765becf946f6c",
+    "frontend/dist/assets/TennisCourt3D-DDJ7NwsA.js": "682a305836f9394e7eedc6880ebd00d9dc71653eb1ce93f312441d45efe30b69",
+    "frontend/dist/assets/Upload-x4w8jZ4N.js": "2378b98168248867a1f30be9a2310993f74952c1edc636f26fbf281e7ca638eb",
+    "frontend/dist/assets/demo-data-B827wEfD.js": "9b1ccf6d0d6d2470c25631de17872524b1a9aa6621a894e0dfbd4f2bc343c95e",
+    "frontend/dist/assets/index-BHPkoNye.js": "30bb86a89278e0942045e357de63c21143243759f92a1393dfa0c06d52ebb34e",
+    "frontend/dist/assets/preferences-DPBweFT_.js": "b5948405617f95deab5d43f417a8589c43e0c0161f0d43ed7a857effc70229ac",
+    "frontend/dist/assets/rolldown-runtime-hePW80VL.js": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+    "frontend/dist/assets/vendor-charts-BMf0NodY.js": "23cd03db34c7183408cbe680e51abd10c241ed88bfe8244a7798ea2133ee19c9",
+    "frontend/dist/assets/vendor-icons-B9H7W2cl.js": "f069495918ab209ab10b55d4b1a07940d698c9a5c455b204ea11fc3360f3be6f",
+    "frontend/dist/assets/vendor-three-daxGgQHs.js": "3e6a0c4bafa89560a615147a15c8416c5abb064cf5ed990cec8e98322acec637",
+    "frontend/dist/assets/Reports-CI8U8mdY.css": "b427b2c83342e52d8007843a1eadefc76bb6102653ec3698fa65f190ac5d9c4e",
+    "frontend/dist/assets/index-qxTXfbgE.css": "f449f013201d56fa641f64a6e2458b0b69f3418136dc01e2e6b6b2b97616ca62",
+    "frontend/dist/assets/upload-DQ6uh8R4.css": "db8bafa332428c8a475ac069a4a6f0f216b2d421ca3386e6ed97dba1d114fde2"
+  },
+  "base_url": "http://127.0.0.1:57701",
+  "analysis_id": "match_7a26c0de7a26c0de7a26c0de7a26c0de",
+  "server_pid": 8071,
+  "scenarios": [
+    {
+      "name": "lost_creation_acknowledgement_reload",
+      "started_utc": "2026-10-22T14:34:11.756002+00:00",
+      "status": "PASS",
+      "observations": {
+        "same_key_batch_and_sessions": true,
+        "reload_recovered": true,
+        "batch_id": "batch_4b411414c75d420dbc84bf3b76b00354",
+        "analysis_id": "match_6c54ab1289d040b7b1aac20d14109111",
+        "durable_rows": {
+          "accepted_requests": 1,
+          "rejected_tombstones": 0,
+          "descriptors": [
+            {
+              "id": "batch_4b411414c75d420dbc84bf3b76b00354",
+              "mode": "independent",
+              "upload_ids": [
+                "upload_3ce4e2f1c386474f9f8b6aadff7e7dfe"
+              ]
+            }
+          ],
+          "batch_session_counts": [
+            1
+          ]
+        }
+      },
+      "completed_utc": "2026-10-22T14:34:13.505046+00:00"
+    },
+    {
+      "name": "confirmed_rejection_corrected_submission",
+      "started_utc": "2026-10-22T14:34:13.505342+00:00",
+      "status": "PASS",
+      "observations": {
+        "real_415_with_exact_tombstone": true,
+        "intent_retired": true,
+        "new_key_accepted": true,
+        "batch_id": "batch_aaad349c00664de0a53bbf09b2041797"
+      },
+      "completed_utc": "2026-10-22T14:34:15.175893+00:00"
+    },
+    {
+      "name": "cross_owner_delayed_acknowledgement",
+      "started_utc": "2026-10-22T14:34:15.176216+00:00",
+      "status": "PASS",
+      "observations": {
+        "owner_a": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+        "owner_b": "account_0a73958c2a9bd697a1c85098eafd2f4f",
+        "stale_response_delivery": [
+          "original_response_released"
+        ],
+        "foreign_access_rejected": true,
+        "uncertain_a_intent_preserved": true,
+        "b_independent_creation": true
+      },
+      "completed_utc": "2026-10-22T14:34:17.790146+00:00"
+    },
+    {
+      "name": "source_bound_correction_replay_exports_and_history",
+      "started_utc": "2026-10-22T14:34:17.790628+00:00",
+      "status": "FAIL",
+      "error": "TypeError: 'NoneType' object is not subscriptable",
+      "completed_utc": "2026-10-22T14:34:24.528846+00:00"
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 415 (Unsupported Media Type)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    }
+  ],
+  "page_errors": [],
+  "request_failures": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:57701/api/batches",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/health",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/auth/session",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/health",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/auth/session",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:57701/api/batches",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/health",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/auth/session",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/health",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:57701/api/auth/session",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "screenshots": [
+    "screenshots/01-actual-owner-signin.png",
+    "screenshots/02-lost-ack-retained.png",
+    "screenshots/03-lost-ack-recovered-same-batch.png",
+    "screenshots/04-confirmed-rejection.png",
+    "screenshots/05-corrected-submission-accepted.png",
+    "screenshots/06-owner-switch-no-stale-adoption.png",
+    "screenshots/07-other-owner-independent-upload.png",
+    "screenshots/08-owner-original-replay-and-review.png",
+    "screenshots/09-owner-source-bound-correction-form.png",
+    "screenshots/failure.png"
+  ],
+  "actual_model_inference": false,
+  "actual_host_ram_gpu_probes": 0,
+  "browser_version": "154.0.8037.57",
+  "upload_readiness_brackets": [
+    {
+      "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 27,
+        "response_sequence": 28,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 32,
+        "response_sequence": 33,
+        "status": 200,
+        "analysis_ids": [
+          "match_ca6f9ba08bbd45b4aeb1fdc47eb4380c",
+          "match_c3d917469fe14f34b85fcbc781f58cd4",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 34,
+        "response_sequence": 35,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      }
+    },
+    {
+      "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 56,
+        "response_sequence": 61,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 63,
+        "response_sequence": 64,
+        "status": 200,
+        "analysis_ids": [
+          "match_ca6f9ba08bbd45b4aeb1fdc47eb4380c",
+          "match_c3d917469fe14f34b85fcbc781f58cd4",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 65,
+        "response_sequence": 66,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      }
+    },
+    {
+      "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 111,
+        "response_sequence": 112,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 114,
+        "response_sequence": 115,
+        "status": 200,
+        "analysis_ids": [
+          "match_6c54ab1289d040b7b1aac20d14109111",
+          "match_ca6f9ba08bbd45b4aeb1fdc47eb4380c",
+          "match_c3d917469fe14f34b85fcbc781f58cd4",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 116,
+        "response_sequence": 117,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      }
+    },
+    {
+      "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 111,
+        "response_sequence": 112,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 114,
+        "response_sequence": 115,
+        "status": 200,
+        "analysis_ids": [
+          "match_6c54ab1289d040b7b1aac20d14109111",
+          "match_ca6f9ba08bbd45b4aeb1fdc47eb4380c",
+          "match_c3d917469fe14f34b85fcbc781f58cd4",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 116,
+        "response_sequence": 117,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      }
+    },
+    {
+      "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 163,
+        "response_sequence": 164,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 167,
+        "response_sequence": 168,
+        "status": 200,
+        "analysis_ids": [
+          "match_debd659457954a1e814780cea79e9998",
+          "match_6c54ab1289d040b7b1aac20d14109111",
+          "match_ca6f9ba08bbd45b4aeb1fdc47eb4380c",
+          "match_c3d917469fe14f34b85fcbc781f58cd4",
+          "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+        ]
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 169,
+        "response_sequence": 170,
+        "status": 200,
+        "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0"
+      }
+    },
+    {
+      "owner": "account_0a73958c2a9bd697a1c85098eafd2f4f",
+      "opening": {
+        "path": "/api/auth/session",
+        "request_sequence": 182,
+        "response_sequence": 183,
+        "status": 200,
+        "owner": "account_0a73958c2a9bd697a1c85098eafd2f4f"
+      },
+      "history": {
+        "path": "/api/analyses",
+        "request_sequence": 187,
+        "response_sequence": 188,
+        "status": 200,
+        "analysis_ids": []
+      },
+      "closing": {
+        "path": "/api/auth/session",
+        "request_sequence": 189,
+        "response_sequence": 190,
+        "status": 200,
+        "owner": "account_0a73958c2a9bd697a1c85098eafd2f4f"
+      }
+    }
+  ],
+  "owner_observation_errors": [
+    {
+      "path": "/api/auth/session",
+      "request_sequence": 221,
+      "response_sequence": 225,
+      "status": 200,
+      "body_read_error": "Response.json: Protocol error (Network.getResponseBody): No data found for resource with given identifier\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation."
+    }
+  ],
+  "error": "TypeError: 'NoneType' object is not subscriptable",
+  "source_after": {
+    "frontend/src/pages/Upload.tsx": "b6d6427ef6122419e53efbe22abbeaca9c8ab1ed9700aff0a0eaf4b4506ac988",
+    "frontend/src/components/AccountAccess.tsx": "75981d860a3df012a36d813a29b5898a857ed9a1049e68dfcaf612e5cb56ddda",
+    "frontend/src/data/batchApi.ts": "d3aacf2b2949b704057de8c4c782568572d7c00763d4643098339841f714d2e1",
+    "frontend/src/data/creationIntent.ts": "894339fb619bb3c8e806f8f96810c22b7c29c7fb7592269435f65e322acbc55a",
+    "frontend/src/components/AnalysisCorrection.tsx": "57c872a48f06291efa7da64de8d01235c6078c45130cffb5e6c704c8f6fe7045",
+    "frontend/src/data/correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "frontend/src/pages/ProductWorkspace.tsx": "5397359a1e9a6cf8aa93db38fbf62433cef920ec873a07f2bbbb27270c7767d9",
+    "frontend/src/pages/SpatialAnalysis.tsx": "c0902b512aa2d2fe167b7a47e49eda81c119f0e76c01ba5b3887fc8d314cb149",
+    "frontend/src/app/AnalysisContext.tsx": "1647305dae22bc777330e87172dff278e60af60538e7de9283b24cacf289d11f",
+    "frontend/src/components/VideoEvidencePlayer.tsx": "e80a5324ddf14471573cc8fffc5629df3c6fbdee97b7f101a44461b7b3d44214",
+    "src/api/app.py": "cb857a50c7608137621f054ce4130dd8e8828db9a3a99d826412a6c0e5a082a3",
+    "src/api/uploads.py": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2",
+    "src/api/creation_requests.py": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+    "src/api/corrections.py": "b7f7ae60ad82a4c2dced2caae2ed28d94504401f89575ff2f06e0250114cd411",
+    "src/api/correction_worker.py": "eb5c730ed6450ec1a2ebeb9a5726c33bebf027c86187ec35270cc130f93d462a",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "frontend/dist/index.html": "65e7c1f8f18d4968bb4828766c17236b0d0df729a70419949d697574d5219e61",
+    "frontend/dist/assets/AccountAccess-CeYsZ2_T.js": "a23689b58c4096514ffef7ebb7f24e99f6ddd39ea5725dd6d423752efc005767",
+    "frontend/dist/assets/MatchMetadataForm-ChO5M0GL.js": "65a8dd5aaf0619828dfd80bf71f822505a7dc478a2af594e5dfda0fdbc5a8c00",
+    "frontend/dist/assets/ProductExamples-DhksnLbW.js": "40d0386f4f9c0a6b6c4a3e346bae298a285216c4e556ffda5bb2457fffcf47ab",
+    "frontend/dist/assets/ProductSettings-CQ6qe9M1.js": "4f9930e51bb2fa05facf8d7a41bd3ab729a2d4384a56da83bab8881f4f5a83f8",
+    "frontend/dist/assets/ProductWorkspace-CE4nu1MT.js": "f3cbb46797c25dabfc016b0b377dbe5f184edd5769d6e43409e9b94c424e862f",
+    "frontend/dist/assets/Reports-CNoD_mw5.js": "6d6f0e563bafd7ea411c87453977067b3330350c58bf6c2b494765becf946f6c",
+    "frontend/dist/assets/TennisCourt3D-DDJ7NwsA.js": "682a305836f9394e7eedc6880ebd00d9dc71653eb1ce93f312441d45efe30b69",
+    "frontend/dist/assets/Upload-x4w8jZ4N.js": "2378b98168248867a1f30be9a2310993f74952c1edc636f26fbf281e7ca638eb",
+    "frontend/dist/assets/demo-data-B827wEfD.js": "9b1ccf6d0d6d2470c25631de17872524b1a9aa6621a894e0dfbd4f2bc343c95e",
+    "frontend/dist/assets/index-BHPkoNye.js": "30bb86a89278e0942045e357de63c21143243759f92a1393dfa0c06d52ebb34e",
+    "frontend/dist/assets/preferences-DPBweFT_.js": "b5948405617f95deab5d43f417a8589c43e0c0161f0d43ed7a857effc70229ac",
+    "frontend/dist/assets/rolldown-runtime-hePW80VL.js": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+    "frontend/dist/assets/vendor-charts-BMf0NodY.js": "23cd03db34c7183408cbe680e51abd10c241ed88bfe8244a7798ea2133ee19c9",
+    "frontend/dist/assets/vendor-icons-B9H7W2cl.js": "f069495918ab209ab10b55d4b1a07940d698c9a5c455b204ea11fc3360f3be6f",
+    "frontend/dist/assets/vendor-three-daxGgQHs.js": "3e6a0c4bafa89560a615147a15c8416c5abb064cf5ed990cec8e98322acec637",
+    "frontend/dist/assets/Reports-CI8U8mdY.css": "b427b2c83342e52d8007843a1eadefc76bb6102653ec3698fa65f190ac5d9c4e",
+    "frontend/dist/assets/index-qxTXfbgE.css": "f449f013201d56fa641f64a6e2458b0b69f3418136dc01e2e6b6b2b97616ca62",
+    "frontend/dist/assets/upload-DQ6uh8R4.css": "db8bafa332428c8a475ac069a4a6f0f216b2d421ca3386e6ed97dba1d114fde2"
+  },
+  "source_stable": true,
+  "runner_sha256_after": "ef3115850db1b335f9530aa6833a9beafd3cd47c7e534429b0b1a10b0cc91f46",
+  "runner_stable": true,
+  "elapsed_seconds": 14.925209288000133,
+  "completed_utc": "2026-10-22T14:34:24.919010+00:00"
+}

@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "Actual desktop Chromium owner upload/recovery and source-bound synthetic correction/replay/download journey; no original inference or accuracy qualification",
+  "implementation_commit_verified_pushed": "c7e4dbc5ceaeebe4d65f65b193bb9fed118855ab",
+  "browser_scenarios": 5,
+  "browser_receipt_sha256": "04b6d489901059b30cd8c26570b4c470a2020b77c4a5bcb279efbe9fcdb1cde8",
+  "frontend_receipt_sha256": "ca084e2be41632fd0dd1dc807f2ba080f81470c77314a49ce0057016bdc2fb04",
+  "frontend_tests": 317,
+  "frontend_typecheck_lint_build": "PASS",
+  "browser_page_errors": 0,
+  "fixture_source_pins": 565,
+  "fixture_current_source_hashes_match": true,
+  "server_source_sha256": "d04bb0bcd7648681a21b48822b7cec55f8b023db5ac9582d3f1f08d6d562bca9",
+  "server_stopped": {
+    "stopped_utc": "2026-10-22T14:40:07.650164+00:00",
+    "server_pid": 9052,
+    "correction_claims": [
+      {
+        "id": "correction_6fcb6d39be194b70927b57cabc0b73b0",
+        "analysis_id": "match_7a26c0de7a26c0de7a26c0de7a26c0de"
+      }
+    ],
+    "synthetic_resource_calls": 2,
+    "actual_host_ram_gpu_probes": 0,
+    "actual_model_inference": false,
+    "inference_import_attempts": [],
+    "forbidden_runtimes_loaded": [],
+    "thread_joined": true,
+    "original_job_dispatcher_started": false
+  },
+  "original_upload_jobs_remained_unprocessed": [
+    {
+      "id": "match_344d6c4788534a6e938027957d1cb593",
+      "status": "UPLOADED"
+    },
+    {
+      "id": "match_c9eeee248a494ecc8705647e4f6703b6",
+      "status": "UPLOADED"
+    },
+    {
+      "id": "match_46f1f1ceb11848ddace00dd11d29e829",
+      "status": "UPLOADED"
+    }
+  ],
+  "browser_download_bundle": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v3/browser_downloads.zip",
+    "bytes": 235751,
+    "sha256": "5004ea58404842e4afa078db488de50ab3fcc654de37110ae17348cfbd724820",
+    "files": {
+      "annotated.mp4": {
+        "bytes": 99441,
+        "sha256": "820d81c8da9f86c7247e8ae251e3b2fa07a5eda8a1e44e60bbb98dd29913c520"
+      },
+      "movement.csv": {
+        "bytes": 1775,
+        "sha256": "453fca5472074fff0fcdf32d7580864a3baf01cafe7807f9428e1b7c7dd1cd27"
+      },
+      "original.mp4": {
+        "bytes": 9723,
+        "sha256": "d5bbd7aa591b7c6bfb44aa6de74066937653d8e2cf647b4bb14081f3c93fefbc"
+      },
+      "report.html": {
+        "bytes": 228129,
+        "sha256": "ba349c8bc959504d9a814115744015235d274555cdc4746fd263ba3555689d37"
+      },
+      "report.json": {
+        "bytes": 52362,
+        "sha256": "8aae4f471fdb86f04237da557a7233bfdabb6d87f36767390734cc7765efab7b"
+      }
+    }
+  },
+  "visual_review": [
+    "10-corrected-generation-replay.png",
+    "11-historical-generation-readonly.png"
+  ],
+  "training_or_model_or_production_configuration_changed": false,
+  "limitations": [
+    "All observations/media/accounts are synthetic.",
+    "No original upload-to-qualified-inference, independent accuracy, mobile, full backend suite, long-match or live claim.",
+    "Disposable fixture databases/caches/work trees are local and reproducible; the selected download bundle is intended for this verified Git checkpoint."
+  ]
+}

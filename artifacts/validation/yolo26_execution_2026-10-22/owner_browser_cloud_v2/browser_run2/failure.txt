@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1/run_browser.py", line 646, in run
+    await self.scenario("source_bound_correction_replay_exports_and_history", self.correction)
+  File "/workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1/run_browser.py", line 613, in scenario
+    row["observations"] = await function()
+                          ^^^^^^^^^^^^^^^^
+  File "/workspace/tennis-ai-agent/artifacts/validation/yolo26_execution_2026-10-22/owner_browser_cloud_v1/run_browser.py", line 503, in correction
+    assert result["matchState"]["player_1"]["points_display"] == "0"
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable

@@ -1,0 +1,154 @@
+{
+  "replies": [
+    {
+      "key": "ce948565-33b2-454d-a83f-c7c5ddb9395e",
+      "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+      "status": 201,
+      "rejection_header": null,
+      "response": {
+        "id": "batch_4b411414c75d420dbc84bf3b76b00354",
+        "mode": "independent",
+        "grouping_status": "unverified",
+        "uploads": [
+          {
+            "id": "upload_3ce4e2f1c386474f9f8b6aadff7e7dfe",
+            "filename": "SYNTHETIC-lost-ack-9bf4477d.mp4",
+            "size_bytes": 9723,
+            "offset": 0,
+            "status": "UPLOADING",
+            "batch_id": "batch_4b411414c75d420dbc84bf3b76b00354",
+            "analysis_id": null,
+            "clip_index": 0,
+            "start_offset_seconds": null,
+            "checksum": null,
+            "error": null,
+            "created_at": "2026-10-22T14:34:11.941612+00:00",
+            "updated_at": "2026-10-22T14:34:11.941612+00:00"
+          }
+        ]
+      }
+    },
+    {
+      "key": "ce948565-33b2-454d-a83f-c7c5ddb9395e",
+      "owner": "account_e583c9c5cc9ee19e40a1a33a06c39dc0",
+      "status": 201,
+      "rejection_header": null,
+      "response": {
+        "id": "batch_4b411414c75d420dbc84bf3b76b00354",
+        "mode": "independent",
+        "grouping_status": "unverified",
+        "uploads": [
+          {
+            "id": "upload_3ce4e2f1c386474f9f8b6aadff7e7dfe",
+            "filename": "SYNTHETIC-lost-ack-9bf4477d.mp4",
+            "size_bytes": 9723,
+            "offset": 0,
+            "status": "UPLOADING",
+            "batch_id": "batch_4b411414c75d420dbc84bf3b76b00354",
+            "analysis_id": null,
+            "clip_index": 0,
+            "start_offset_seconds": null,
+            "checksum": null,
+            "error": null,
+            "created_at": "2026-10-22T14:34:11.941612+00:00",
+            "updated_at": "2026-10-22T14:34:11.941612+00:00"
+          }
+        ]
+      }
+    }
+  ],
+  "saved_intent": {
+    "key": "ce948565-33b2-454d-a83f-c7c5ddb9395e",
+    "request": {
+      "kind": "batch",
+      "payload": {
+        "mode": "independent",
+        "files": [
+          {
+            "filename": "SYNTHETIC-lost-ack-9bf4477d.mp4",
+            "size_bytes": 9723,
+            "clip_index": 0
+          }
+        ],
+        "metadata": {
+          "participants": [
+            {
+              "name": null,
+              "profile_id": null
+            },
+            {
+              "name": null,
+              "profile_id": null
+            }
+          ],
+          "tournament": null,
+          "match_date": null,
+          "match_type": "singles",
+          "role_assignment": "unconfirmed",
+          "result": null
+        }
+      },
+      "fileKeys": [
+        "[\"SYNTHETIC-lost-ack-9bf4477d.mp4\",9723,1700000000000,\"a68a0bdee0614e388ec3f4c416c74b82bb77c494d19936d8d59630c8a617ab74\"]"
+      ]
+    }
+  },
+  "durable_rows": {
+    "accepted_requests": 1,
+    "rejected_tombstones": 0,
+    "descriptors": [
+      {
+        "id": "batch_4b411414c75d420dbc84bf3b76b00354",
+        "mode": "independent",
+        "upload_ids": [
+          "upload_3ce4e2f1c386474f9f8b6aadff7e7dfe"
+        ]
+      }
+    ],
+    "batch_session_counts": [
+      1
+    ]
+  },
+  "final_batch": {
+    "id": "batch_4b411414c75d420dbc84bf3b76b00354",
+    "mode": "independent",
+    "created_at": "2026-10-22T14:34:11.938605+00:00",
+    "uploads": [
+      {
+        "id": "upload_3ce4e2f1c386474f9f8b6aadff7e7dfe",
+        "filename": "SYNTHETIC-lost-ack-9bf4477d.mp4",
+        "size_bytes": 9723,
+        "offset": 9723,
+        "status": "COMPLETED",
+        "batch_id": "batch_4b411414c75d420dbc84bf3b76b00354",
+        "analysis_id": "match_6c54ab1289d040b7b1aac20d14109111",
+        "clip_index": 0,
+        "start_offset_seconds": null,
+        "checksum": "d5bbd7aa591b7c6bfb44aa6de74066937653d8e2cf647b4bb14081f3c93fefbc",
+        "error": null,
+        "created_at": "2026-10-22T14:34:11.941612+00:00",
+        "updated_at": "2026-10-22T14:34:13.125852+00:00",
+        "job": {
+          "id": "match_6c54ab1289d040b7b1aac20d14109111",
+          "filename": "SYNTHETIC-lost-ack-9bf4477d.mp4",
+          "status": "UPLOADED",
+          "stage": "Waiting for the analysis worker",
+          "step": 0,
+          "created_at": "2026-10-22T14:34:13.121808+00:00",
+          "started_at": null,
+          "completed_at": null,
+          "error": null,
+          "size_bytes": 9723,
+          "cancel_requested": false,
+          "attempt": 0,
+          "retry_of": null,
+          "heartbeat_at": null,
+          "cancelled": false
+        }
+      }
+    ],
+    "grouping_status": "unverified",
+    "unified_report": null,
+    "reason": "Match continuity and clip overlap require independent verification before merging."
+  }
+}

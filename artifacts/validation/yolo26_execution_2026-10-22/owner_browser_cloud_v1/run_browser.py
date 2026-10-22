@@ -477,9 +477,9 @@ class Journey:
         original_video = await self.video_probe(base_generation)
         await self.shot("08-owner-original-replay-and-review")
         await correction.get_by_label("Review initial score and serve context", exact=True).check()
-        await correction.get_by_label("Player 2 initial points", exact=True).select_option(label="15")
-        await expect(correction.get_by_label("Server", exact=True)).to_have_value("1")
-        await expect(correction.get_by_label("Serve attempt", exact=True)).to_have_value("2")
+        await correction.get_by_role("combobox", name=re.compile(r"^Player 2 initial points\b")).select_option(label="15")
+        await expect(correction.get_by_role("combobox", name=re.compile(r"^Server\b"))).to_have_value("1")
+        await expect(correction.get_by_role("combobox", name=re.compile(r"^Serve attempt\b"))).to_have_value("2")
         await correction.get_by_label("Reason for correction", exact=True).fill("SYNTHETIC SOFTWARE TEST: review fixture initial receiver score")
         await correction.get_by_label("Video evidence reference", exact=True).fill("SYNTHETIC generated source only, frames 0–11; no real tennis accuracy claim")
         await correction.get_by_label("I reviewed the source video and authorize this correction as the signed-in owner.", exact=True).check()
@@ -500,8 +500,10 @@ class Journey:
         assert result["analysisRevision"] == 1 and result["analysisGeneration"] == token
         assert result["pointAnalysis"]["summary"]["totalPointsPlayed"] == 1
         assert result["pointAnalysis"]["serveByPlayer"]["player_1"]["doubleFaults"] == 1
-        assert result["matchState"]["player_1"]["points_display"] == "0"
-        assert result["matchState"]["player_2"]["points_display"] == "30"
+        # This native correction fixture deliberately has no legacy matchState.
+        # Its canonical source-linked point analysis owns the recomputed score.
+        assert result["pointAnalysis"]["summary"]["scoreSummary"] == "Set 1 (0-0) | P1 0 - P2 30 | Server: P1 (DEUCE)"
+        assert result["nativeForecast"]["calibrationStatus"] == "not_calibrated"
         assert result["nativeForecast"]["current"]["sample_count"] == 1
         execution = result["analysisCorrection"]["execution"]
         assert execution["new_vision_inference"] is False and execution["pose_prediction_calls"] == 0
