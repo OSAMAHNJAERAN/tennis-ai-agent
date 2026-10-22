@@ -71,4 +71,23 @@ describe('uncertain upload creation', () => {
     expect(() => store.run('alice', request(), vi.fn())).toThrow('saved upload request cannot be read');
     expect(storage.setItem).not.toHaveBeenCalled();
   });
+
+  it('keeps in-flight submission coalesced until settlement after a matching terminal acknowledgement', async () => {
+    const keys = vi.fn().mockReturnValueOnce(first).mockReturnValueOnce(second);
+    const store = createCreationIntentStore(() => null, keys);
+    let finish: () => void = () => undefined;
+    const send = vi.fn(async (saved: { key: string }) => {
+      store.acknowledge('alice', saved.key);
+      await new Promise<void>(resolve => { finish = resolve; });
+      throw new Error('Confirmed rejection');
+    });
+    const one = store.run('alice', request(), send);
+    await Promise.resolve();
+    const edited = request();
+    if (edited.kind === 'batch') edited.payload.metadata.tournament = 'Corrected cup';
+    const two = store.run('alice', edited, send);
+    expect(one).toBe(two); expect(send).toHaveBeenCalledOnce(); expect(keys).toHaveBeenCalledOnce();
+    finish(); await expect(one).rejects.toThrow('Confirmed rejection');
+    expect(await store.run('alice', edited, async saved => saved.key)).toBe(second);
+  });
 });

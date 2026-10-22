@@ -7,7 +7,8 @@ const session = { id: 'upload_one', filename: 'first.mp4', size_bytes: 16, offse
   status: 'UPLOADING', analysis_id: null, clip_index: 0 };
 const batch = { id: 'batch_one', mode: 'independent', uploads: [session], grouping_status: 'unverified' };
 const options = { fileKeys: ['first-content'] };
-const reply = (data: unknown, status = 201) => ({ ok: status < 400, status, json: async () => data });
+const reply = (data: unknown, status = 201, headers: Record<string, string> = {}) =>
+  ({ ok: status < 400, status, headers: new Headers(headers), json: async () => data });
 const local = { required: false, authenticated: false, user: null };
 
 beforeEach(() => {
@@ -38,6 +39,7 @@ describe('atomic batch creation', () => {
     expect((sent[1]![1]!.headers as Record<string, string>)['Idempotency-Key']).toBe((sent[0]![1]!.headers as Record<string, string>)['Idempotency-Key']);
     expect(JSON.parse(sent[0]![1]!.body as string)).toEqual({ mode: 'independent', metadata,
       files: [{ filename: 'first.mp4', size_bytes: 16, clip_index: 0 }] });
+    expect((sent[0]![1]!.headers as Record<string, string>)['Upload-Creation-Owner']).toBe('local');
     expect(after.rememberedUpload('local', 'first-content')).toBe(session.id);
     expect(after.rememberedUpload('bob', 'first-content')).toBeNull();
     expect(fetcher.mock.calls.some(([path]) => path === '/api/matches')).toBe(false);
@@ -110,5 +112,84 @@ describe('atomic batch creation', () => {
     expect(JSON.parse(sent[1]!.body as string)).toEqual({ filename: 'first.mp4', size_bytes: 16, match_id: 'match_draft' });
     const key = (sent[1]!.headers as Record<string, string>)['Idempotency-Key']!;
     expect(key.length).toBeGreaterThanOrEqual(16); expect(key).not.toMatch(/[^A-Za-z0-9_-]/);
+    expect((sent[1]!.headers as Record<string, string>)['Upload-Creation-Owner']).toBe('local');
+  });
+
+  it('permits corrected metadata after the server durably rejects that exact creation key', async () => {
+    let posts = 0;
+    const fetcher = vi.fn(async (path: string, init?: RequestInit) => {
+      if (path === '/api/auth/session') return reply(local);
+      const key = (init!.headers as Record<string, string>)['Idempotency-Key']!;
+      if (++posts === 1) return reply({ detail: 'Storage limit reached' }, 413, { 'Upload-Creation-Rejected': key });
+      return reply(batch);
+    });
+    vi.stubGlobal('fetch', fetcher);
+    const api = await import('./batchApi');
+    await expect(api.createUploadBatch([file()], 'independent', metadata, 'local', options)).rejects.toThrow('Storage limit reached');
+    expect(api.rememberedUpload('local', 'first-content')).toBeNull();
+    vi.resetModules();
+    const after = await import('./batchApi');
+    await expect(after.createUploadBatch([file()], 'independent', { ...metadata, tournament: 'Corrected cup' }, 'local', options)).resolves.toMatchObject(batch);
+    const sent = fetcher.mock.calls.filter(([path]) => path === '/api/batches');
+    expect((sent[1]![1]!.headers as Record<string, string>)['Idempotency-Key']).not.toBe((sent[0]![1]!.headers as Record<string, string>)['Idempotency-Key']);
+  });
+
+  it.each([
+    { status: 413, marker: 'absent' },
+    { status: 422, marker: 'different_creation_key' },
+    { status: 409, marker: 'duplicate' },
+    { status: 500, marker: 'matching' },
+  ])('preserves uncertain intent without an exact trusted 4xx rejection: $status/$marker', async ({ status, marker }) => {
+    let posts = 0;
+    const fetcher = vi.fn(async (path: string, init?: RequestInit) => {
+      if (path === '/api/auth/session') return reply(local);
+      const key = (init!.headers as Record<string, string>)['Idempotency-Key']!;
+      const headers: Record<string, string> = marker === 'absent' ? {} : { 'Upload-Creation-Rejected': marker === 'matching' ? key
+        : marker === 'duplicate' ? `${key}, ${key}` : marker };
+      return ++posts === 1 ? reply({ detail: 'Unconfirmed' }, status, headers) : reply(batch);
+    });
+    vi.stubGlobal('fetch', fetcher);
+    const api = await import('./batchApi');
+    await expect(api.createUploadBatch([file()], 'independent', metadata, 'local', options)).rejects.toThrow('Unconfirmed');
+    await expect(api.createUploadBatch([file()], 'independent', { ...metadata, tournament: 'Edited' }, 'local', options)).rejects.toMatchObject({ name: 'CreationIntentConflict' });
+    await expect(api.createUploadBatch([file()], 'independent', metadata, 'local', options)).resolves.toMatchObject(batch);
+    const sent = fetcher.mock.calls.filter(([path]) => path === '/api/batches');
+    expect((sent[1]![1]!.headers as Record<string, string>)['Idempotency-Key']).toBe((sent[0]![1]!.headers as Record<string, string>)['Idempotency-Key']);
+  });
+
+  it('retains the rejected key when account identity changes before rejection confirmation', async () => {
+    let owner = 'alice'; let posts = 0;
+    const fetcher = vi.fn(async (path: string, init?: RequestInit) => {
+      if (path === '/api/auth/session') return reply({ required: true, authenticated: true, user: { id: owner } });
+      const key = (init!.headers as Record<string, string>)['Idempotency-Key']!;
+      if (++posts === 1) { owner = 'bob'; return reply({ detail: 'Rejected' }, 422, { 'Upload-Creation-Rejected': key }); }
+      return reply(batch);
+    });
+    vi.stubGlobal('fetch', fetcher);
+    const api = await import('./batchApi');
+    await expect(api.createUploadBatch([file()], 'independent', metadata, 'alice', options)).rejects.toThrow('account changed');
+    expect(api.rememberedUpload('alice', 'first-content')).toBeNull();
+    owner = 'alice';
+    await expect(api.createUploadBatch([file()], 'independent', { ...metadata, tournament: 'Edited' }, 'alice', options)).rejects.toMatchObject({ name: 'CreationIntentConflict' });
+    await expect(api.createUploadBatch([file()], 'independent', metadata, 'alice', options)).resolves.toMatchObject(batch);
+    const sent = fetcher.mock.calls.filter(([path]) => path === '/api/batches');
+    expect((sent[1]![1]!.headers as Record<string, string>)['Idempotency-Key']).toBe((sent[0]![1]!.headers as Record<string, string>)['Idempotency-Key']);
+    expect((sent[0]![1]!.headers as Record<string, string>)['Upload-Creation-Owner']).toBe('alice');
+  });
+
+  it('does not clear rejected intent when the caller has observed an account change or pause', async () => {
+    let current = true; let rejected = true;
+    const fetcher = vi.fn(async (path: string, init?: RequestInit) => {
+      if (path === '/api/auth/session') return reply(local);
+      const key = (init!.headers as Record<string, string>)['Idempotency-Key']!;
+      if (rejected) { current = false; return reply({ detail: 'Rejected' }, 422, { 'Upload-Creation-Rejected': key }); }
+      return reply(batch);
+    });
+    vi.stubGlobal('fetch', fetcher);
+    const api = await import('./batchApi');
+    await expect(api.createUploadBatch([file()], 'independent', metadata, 'local', { ...options, isCurrent: () => current })).rejects.toThrow('account changed');
+    current = true; rejected = false;
+    await expect(api.createUploadBatch([file()], 'independent', { ...metadata, tournament: 'Edited' }, 'local', options)).rejects.toMatchObject({ name: 'CreationIntentConflict' });
+    await expect(api.createUploadBatch([file()], 'independent', metadata, 'local', options)).resolves.toMatchObject(batch);
   });
 });

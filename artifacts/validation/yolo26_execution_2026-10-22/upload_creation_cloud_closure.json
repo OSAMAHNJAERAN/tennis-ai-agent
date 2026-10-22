@@ -1,0 +1,47 @@
+{
+  "checkpoint_utc": "2026-10-22T13:42:48Z",
+  "base_remote_sha": "96fb7ff0e4912c910f7c50c6a7710ea60f00727a",
+  "scope": "Section 30 phase 9 / requirement 21: initial upload creation acknowledgement recovery",
+  "implementation": {
+    "frontend/src/data/batchApi.ts": "d3aacf2b2949b704057de8c4c782568572d7c00763d4643098339841f714d2e1",
+    "frontend/src/data/batchApi.test.ts": "7399740e86a684fca16b4be3db83a1883e40c942e6ef5fff1c7253ee7e68ac1f",
+    "frontend/src/data/creationIntent.test.ts": "a976ef01bf0997dea72a3266c845b5d1ec8869f4248ce5462164fcb51383cd71",
+    "src/api/creation_requests.py": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+    "src/api/uploads.py": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2"
+  },
+  "receipts": {
+    "artifacts/validation/yolo26_execution_2026-10-22/upload_creation_cloud_backend_v2/receipt.json": {
+      "sha256": "8f56a54a22748ddd368fe381d803f023c5a8e8a654bd930da3789cc481ba3a35",
+      "counts": {
+        "tests": 196,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+      },
+      "stable_pins": 427
+    },
+    "artifacts/validation/yolo26_execution_2026-10-22/upload_creation_cloud_frontend_v2/receipt.json": {
+      "sha256": "990ee6e91f55eb50a8ef113ec1a0eb1d2fdc0d0688d53ba27e0d5d3e1b8a6460",
+      "counts": {
+        "tests": 316,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+      },
+      "stable_pins": 146
+    }
+  },
+  "independent_review": {
+    "remaining_P1_P2": [],
+    "backend": "Atomic acceptance/rejection and owner binding reviewed without code changes",
+    "frontend": "Exact marker/status, owner recheck, uncertain-key preservation and in-flight settlement reviewed independently; 26 targeted tests passed"
+  },
+  "first_attempts_preserved": {
+    "backend": "191 passed, 2 failed, 3 errors; missing pandas/OpenCV in the cloud test environment",
+    "frontend": "316 tests passed and lint/build passed; overall FAIL from new test annotation type error and changed source pins; corrected before the fresh final run"
+  },
+  "actual_browser_visual_inspection": false,
+  "model_training_or_inference": false,
+  "actual_host_ram_gpu_probes": false,
+  "qualification": "Software contract only; no independent vision, duration, live or production qualification claim"
+}

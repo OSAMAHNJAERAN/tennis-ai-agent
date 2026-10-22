@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="316" failures="0" errors="0" time="12.628771596">
+    <testsuite name="src/app/AnalysisContext.test.tsx" timestamp="2026-10-22T13:39:29.076Z" hostname="38588fda2353" tests="1" failures="0" errors="0" skipped="0" time="0.049881466">
+        <testcase classname="src/app/AnalysisContext.test.tsx" name="analysis generation refresh &gt; requests the exact completed generation and clears the stale event selection" time="0.047693157">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/AppShell.test.tsx" timestamp="2026-10-22T13:39:29.077Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.299288935">
+        <testcase classname="src/app/AppShell.test.tsx" name="application shell &gt; navigates with semantic primary links" time="0.170568146">
+        </testcase>
+        <testcase classname="src/app/AppShell.test.tsx" name="application shell &gt; has no automated accessibility violations" time="0.085583933">
+        </testcase>
+        <testcase classname="src/app/AppShell.test.tsx" name="application shell &gt; closes the menu with Escape and restores focus to its toggle" time="0.040072547">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/AccountAccess.test.tsx" timestamp="2026-10-22T13:39:29.078Z" hostname="38588fda2353" tests="2" failures="0" errors="0" skipped="0" time="0.320452249">
+        <testcase classname="src/components/AccountAccess.test.tsx" name="account access &gt; signs in, rechecks the server session and clears the password" time="0.216822491">
+        </testcase>
+        <testcase classname="src/components/AccountAccess.test.tsx" name="account access &gt; announces a failed sign-in and keeps recovery controls" time="0.101277656">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/AnalysisCorrection.test.tsx" timestamp="2026-10-22T13:39:29.078Z" hostname="38588fda2353" tests="11" failures="0" errors="0" skipped="0" time="0.475876659">
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; keeps guests and nonowners read-only without correction controls" time="0.043026165">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; requires explicit authorization, submits exact cloned evidence and keeps the replay usable" time="0.200466458">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; retries an ambiguous network response using the same retained command after remount" time="0.079456766">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; restores persisted active status, polls completion and reloads the exact generation once" time="0.013846392">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; preserves a historical generation until the reviewer explicitly opens a completed successor" time="0.029065674">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; does not follow an active correction for another base generation (current source: false)" time="0.012904606">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; does not follow an active correction for another base generation (current source: true)" time="0.011968922">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; cancels the owned command and stops polling after unmount" time="0.038475935">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; stops owned-command polling and removes controls when owner access is revoked" time="0.007112798">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; supports explicit local-owner review and withholds stale-generation submission" time="0.034415044">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; keeps curated examples read-only even if the local owner is authenticated" time="0.002449592">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/NativeForecast.test.tsx" timestamp="2026-10-22T13:39:29.079Z" hostname="38588fda2353" tests="5" failures="0" errors="0" skipped="0" time="0.164807122">
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; displays the replay prefix, preserves withheld gaps and seeks the actual event frame" time="0.136848931">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; shows confirmed results without a forecast probability" time="0.00641403">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; labels posterior samples as completed points and exposes one keyboard history control" time="0.015197922">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; rejects foreign sources/revisions, future point frontiers, phase and row clock changes" time="0.002111978">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; bounds long histories to 600 columns while retaining gaps and real frame identities" time="0.001946549">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/PointTimelineEvidence.test.tsx" timestamp="2026-10-22T13:39:29.080Z" hostname="38588fda2353" tests="12" failures="0" errors="0" skipped="0" time="0.534668795">
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; preserves optional absence and explicit null for older analyses" time="0.028607308">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; retains nullable timing, separate serve executions, and the unqualified status" time="0.004949347">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; isolates invalid point evidence without hiding replay: {&quot;status&quot;:&quot;QUALIFIED&quot;}" time="0.007391595">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; isolates invalid point evidence without hiding replay: {&quot;independentAccuracyValidated&quot;:true}" time="0.125163405">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; isolates invalid point evidence without hiding replay: {&quot;summary&quot;:{&quot;totalPointsPlayed&quot;:3,&quot;partialOrReviewPoints&quot;:1,&quot;totalRallies&quot;:2,&quot;averageRallyLength&quot;:3,&quot;longestRallyLength&quot;:3,&quot;effectivePlaySeconds&quot;:-1,&quot;timedCompletedRallies&quot;:1,&quot;completedRalliesDurationDenominator&quot;:2,&quot;scoreSummary&quot;:null,&quot;matchComplete&quot;:null,&quot;winnerId&quot;:null}}" time="0.005423687">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; isolates invalid point evidence without hiding replay: {&quot;sourceSha256&quot;:&quot;unbound&quot;}" time="0.004442495">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; rejects foreign or stale point evidence while preserving other sections" time="0.025737842">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; shows timing and percentage denominators without claiming validated accuracy" time="0.145087001">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; keeps faults and lets separate from legal rally timing and does not invent a seek" time="0.037249974">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; does not turn disabled authority and empty evidence into known zero points" time="0.009063023">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; bounds the rendered timeline and pages every record in source order" time="0.113846798">
+        </testcase>
+        <testcase classname="src/components/PointTimelineEvidence.test.tsx" name="provisional native point evidence &gt; bounds a point execution preview even when many service lets are retained" time="0.024932008">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/ReviewWorkflow.test.tsx" timestamp="2026-10-22T13:39:29.082Z" hostname="38588fda2353" tests="2" failures="0" errors="0" skipped="0" time="0.107669413">
+        <testcase classname="src/components/ReviewWorkflow.test.tsx" name="review workflow &gt; shows the current no-review state" time="0.025822044">
+        </testcase>
+        <testcase classname="src/components/ReviewWorkflow.test.tsx" name="review workflow &gt; announces review-required decisions" time="0.079253169">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/States.test.tsx" timestamp="2026-10-22T13:39:29.082Z" hostname="38588fda2353" tests="2" failures="0" errors="0" skipped="0" time="0.147528246">
+        <testcase classname="src/components/States.test.tsx" name="shared states &gt; renders loading and empty messages" time="0.110268847">
+        </testcase>
+        <testcase classname="src/components/States.test.tsx" name="shared states &gt; offers a retry action for errors" time="0.034498818">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/SynchronizedTelemetryView.test.tsx" timestamp="2026-10-22T13:39:29.083Z" hostname="38588fda2353" tests="5" failures="0" errors="0" skipped="0" time="0.814064798">
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; preserves the video element and playback state host while switching tabs" time="0.255603155">
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; supports arrow-key tab navigation" time="0.229233445">
+            <system-err>
+THREE.WARNING: Multiple instances of Three.js being imported.
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; seeks the same source video while stepping frames in an analytical view" time="0.155928088">
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; resets the playhead and analysis interval when switching runs" time="0.069873899">
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; seeks reviewed signals missing from physical events using the same video clock" time="0.101024222">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/UnavailableLineCall.test.tsx" timestamp="2026-10-22T13:39:29.084Z" hostname="38588fda2353" tests="8" failures="0" errors="0" skipped="0" time="0.145664726">
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; accepts explicit null geometry and legacy measured records without reason codes" time="0.003417134">
+        </testcase>
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; does not draw an invented contact patch or signed margin" time="0.105570286">
+        </testcase>
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; preserves the measured geometry display" time="0.006596291">
+        </testcase>
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; plots only known court coordinates" time="0.006453098">
+        </testcase>
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; shows a neutral empty state without claiming all calls resolved" time="0.006255798">
+        </testcase>
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; explains SERVICE_TARGET_UNAVAILABLE without an uncertainty-band claim" time="0.007115879">
+        </testcase>
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; explains SERVICE_CONTEXT_UNAVAILABLE without an uncertainty-band claim" time="0.004127149">
+        </testcase>
+        <testcase classname="src/components/UnavailableLineCall.test.tsx" name="unavailable line-call evidence &gt; distinguishes missing measurements from measured uncertainty in a mixed review" time="0.003645774">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/VideoEvidencePlayer.test.tsx" timestamp="2026-10-22T13:39:29.085Z" hostname="38588fda2353" tests="39" failures="0" errors="0" skipped="0" time="1.911215337">
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; supports keyboard playback and overlay toggles" time="0.262869593">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; keeps fullscreen available when replay transport owns playback" time="0.04874043">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; holds the presented frame through buffering, pause, timeupdate, resume and overlay changes" time="0.136164274">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;rapid frame steps&apos; and resumes from the decoded acknowledgement" time="0.057781995">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;opposing one-second seeks&apos; and resumes from the decoded acknowledgement" time="0.049416095">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;frame steps before a transport commit&apos; and resumes from the decoded acknowledgement" time="0.045589948">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;upper-bound reversal&apos; and resumes from the decoded acknowledgement" time="0.038665429">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates standalone frame buttons while the decoder has not presented the seek" time="0.107801759">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalonePendingRecovery reverses from the final source frame after repeated keys" time="0.043723806">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalonePendingRecovery reverses from the final source frame after repeated buttons" time="0.06276902">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalonePendingRecovery ignores a pre-command callback delivered after seeked and keeps the pending target" time="0.033066449">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; observes paused decoded seeks and ignores a callback queued before a seek command" time="0.018163969">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; waits for the final decoded frame when ended arrives before its callback" time="0.039696802">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; uses media events as the fallback clock when video-frame callbacks are unavailable" time="0.014694847">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; ignores a superseded play rejection after the playback rate changes" time="0.013366374">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; handles a current play rejection named &apos;AbortError&apos; with appropriate feedback" time="0.012800485">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; handles a current play rejection named &apos;NotAllowedError&apos; with appropriate feedback" time="0.014308577">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; keeps the presented frame and offers a retry for a current &apos;NotAllowedError&apos;" time="0.103964954">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; keeps the presented frame and offers a retry for a current &apos;generic error&apos;" time="0.073960479">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; handles a cancelled AbortError without retry feedback or advancing evidence" time="0.049215258">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores an earlier request rejection after a newer successful start" time="0.094526676">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after pause invalidates its playback attempt" time="0.065413105">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after inactive invalidates its playback attempt" time="0.046257418">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after source change invalidates its playback attempt" time="0.048295275">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after unmount invalidates its playback attempt" time="0.034972202">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; offers generic detected people separately from player roles and leaves it off initially" time="0.043328262">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds the generic people overlay when no raw observations were exported" time="0.019280793">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays without exported boxes even when the players capability is false" time="0.027493516">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays without exported boxes even when the players capability is true" time="0.027751626">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when the entire detection section is unavailable" time="0.016037849">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; keeps sparse image boxes usable without court or player world tracking and preserves preferences" time="0.060842936">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; offers UNKNOWN people without presenting them as exported players" time="0.023791947">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.020689507">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 10 were exported" time="0.020034154">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.022109252">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.021642879">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.018950052">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; skips malformed boxes and draws sparse evidence {&quot;bbox&quot;:[1,2,10,20],&quot;expected&quot;:[6,12,54,108]} within the media clip" time="0.046861567">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; skips malformed boxes and draws sparse evidence {&quot;bbox&quot;:[-5,-4,10,20],&quot;expected&quot;:[-30,-24,90,144]} within the media clip" time="0.020692671">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/WinProbability.test.tsx" timestamp="2026-10-22T13:39:29.088Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.04126481">
+        <testcase classname="src/components/WinProbability.test.tsx" name="prediction evidence states &gt; labels the neutral prior without attributing performance data" time="0.031810261">
+        </testcase>
+        <testcase classname="src/components/WinProbability.test.tsx" name="prediction evidence states &gt; shows a completed outcome without a stale probability" time="0.002689011">
+        </testcase>
+        <testcase classname="src/components/WinProbability.test.tsx" name="prediction evidence states &gt; withholds invalid probabilities and an unresolved score" time="0.004498697">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/hooks/useReplay.test.ts" timestamp="2026-10-22T13:39:29.089Z" hostname="38588fda2353" tests="4" failures="0" errors="0" skipped="0" time="0.026001596">
+        <testcase classname="src/hooks/useReplay.test.ts" name="replay clock ownership &gt; holds telemetry without decoded media observations, including playback stalls" time="0.01446028">
+        </testcase>
+        <testcase classname="src/hooks/useReplay.test.ts" name="replay clock ownership &gt; separates seek commands from presented timestamps and steps exactly one frame" time="0.003357093">
+        </testcase>
+        <testcase classname="src/hooks/useReplay.test.ts" name="replay clock ownership &gt; holds media evidence during a pending seek and accumulates steps from the requested target" time="0.002982283">
+        </testcase>
+        <testcase classname="src/hooks/useReplay.test.ts" name="replay clock ownership &gt; retains the video observation when returning from a different simulation position" time="0.002882901">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/hooks/useReplay.test.tsx" timestamp="2026-10-22T13:39:29.089Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.029663399">
+        <testcase classname="src/hooks/useReplay.test.tsx" name="shared replay clock &gt; advances with elapsed time and playback rate, then pauses at the last frame" time="0.022785426">
+        </testcase>
+        <testcase classname="src/hooks/useReplay.test.tsx" name="shared replay clock &gt; clamps seeks and frame steps to the source bounds" time="0.003067305">
+        </testcase>
+        <testcase classname="src/hooks/useReplay.test.tsx" name="shared replay clock &gt; does not play an empty clip" time="0.001613361">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/analytics.test.ts" timestamp="2026-10-22T13:39:29.090Z" hostname="38588fda2353" tests="5" failures="0" errors="0" skipped="0" time="0.004199828">
+        <testcase classname="src/lib/analytics.test.ts" name="analytics utilities &gt; formats valid and unavailable values" time="0.001547459">
+        </testcase>
+        <testcase classname="src/lib/analytics.test.ts" name="analytics utilities &gt; derives coverage without treating missing points as observed" time="0.000304796">
+        </testcase>
+        <testcase classname="src/lib/analytics.test.ts" name="analytics utilities &gt; counts scientific tracking states" time="0.000258071">
+        </testcase>
+        <testcase classname="src/lib/analytics.test.ts" name="analytics utilities &gt; maps canonical court corners into the padded SVG bounds" time="0.00063086">
+        </testcase>
+        <testcase classname="src/lib/analytics.test.ts" name="analytics utilities &gt; steps semantic events and clamps at timeline boundaries" time="0.000304933">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/ballTrail.test.ts" timestamp="2026-10-22T13:39:29.091Z" hostname="38588fda2353" tests="6" failures="0" errors="0" skipped="0" time="0.136548029">
+        <testcase classname="src/lib/ballTrail.test.ts" name="ball overlay trail index &gt; keeps sparse observations and stable duplicate order without changing the source" time="0.002072317">
+        </testcase>
+        <testcase classname="src/lib/ballTrail.test.ts" name="ball overlay trail index &gt; uses the inclusive 25-frame window at clip boundaries and fractional query times" time="0.000614376">
+        </testcase>
+        <testcase classname="src/lib/ballTrail.test.ts" name="ball overlay trail index &gt; retains zero coordinates, omits null coordinates, and does not replace absent frames" time="0.000342492">
+        </testcase>
+        <testcase classname="src/lib/ballTrail.test.ts" name="ball overlay trail index &gt; skips actual array holes just as the previous filter did" time="0.000199255">
+        </testcase>
+        <testcase classname="src/lib/ballTrail.test.ts" name="ball overlay trail index &gt; bounds sample reads for a two-hour 60 FPS ordered recording" time="0.04220906">
+        </testcase>
+        <testcase classname="src/lib/ballTrail.test.ts" name="ball overlay trail index &gt; bounds sample reads for a two-hour 60 FPS out-of-order with duplicates recording" time="0.089488571">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/courtOverlay.test.ts" timestamp="2026-10-22T13:39:29.092Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.003553399">
+        <testcase classname="src/lib/courtOverlay.test.ts" name="court image overlay &gt; follows registered camera motion in the presented frame" time="0.00175582">
+        </testcase>
+        <testcase classname="src/lib/courtOverlay.test.ts" name="court image overlay &gt; withholds invalid, missing or mismatched camera intervals" time="0.000347999">
+        </testcase>
+        <testcase classname="src/lib/courtOverlay.test.ts" name="court image overlay &gt; rejects projective horizons and malformed transforms" time="0.000260963">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/landingZones.test.ts" timestamp="2026-10-22T13:39:29.093Z" hostname="38588fda2353" tests="12" failures="0" errors="0" skipped="0" time="0.016404867">
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; shows complete selected cells after contact for the bounded source-time interval" time="0.003183158">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting revision evidence" time="0.000274741">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting airborne evidence" time="0.000223426">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting dead evidence" time="0.000131049">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting unreviewed evidence" time="0.000273176">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting source evidence" time="0.0001934">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting position evidence" time="0.000253645">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting calibration evidence" time="0.000161004">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; reprojects the same metric cell and contact during camera motion" time="0.000384493">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; ends an old highlight when calibration is lost and later recovers" time="0.000466186">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; rejects singular matrices and polygons crossing a projective horizon" time="0.000267207">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; keeps usable video when an optional zone artifact is malformed" time="0.009268348">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/telemetryGeometry.test.ts" timestamp="2026-10-22T13:39:29.096Z" hostname="38588fda2353" tests="12" failures="0" errors="0" skipped="0" time="0.007004161">
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; scales a 16:9 source into a matching container" time="0.00256096">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; accounts for vertical letterboxing in a square container" time="0.000473908">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; keeps 4:3 media centered and fully visible" time="0.000397477">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; keeps 3:2 media centered and fully visible" time="0.000204808">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; keeps 21:9 media centered and fully visible" time="0.000164002">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; keeps portrait media centered and fully visible" time="0.000184793">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; supports cover cropping with negative offsets" time="0.000372096">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; returns a safe empty rectangle for uninitialized dimensions" time="0.000329087">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; creates a DPR-safe bitmap at DPR 1" time="0.000353504">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; creates a DPR-safe bitmap at DPR 1.25" time="0.000194857">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; creates a DPR-safe bitmap at DPR 1.5" time="0.000100055">
+        </testcase>
+        <testcase classname="src/lib/telemetryGeometry.test.ts" name="telemetry coordinate geometry &gt; creates a DPR-safe bitmap at DPR 2" time="0.000068753">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/tennisTelemetry.test.ts" timestamp="2026-10-22T13:39:29.098Z" hostname="38588fda2353" tests="9" failures="0" errors="0" skipped="0" time="0.018693583">
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; centers the regulation court in X/Z and preserves baseline run-off" time="0.001852604">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; interpolates adjacent observations without filling missing detections or large jumps" time="0.000397254">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; indexes sparse ball data by source frame and never displays missing or occluded samples" time="0.002124438">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; gates invalid court mappings and out-of-field points" time="0.002393221">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; breaks trails at gaps and discontinuities" time="0.000266864">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; computes time-based player speed and rejects discontinuous segments" time="0.000344493">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; counts behind-baseline occupancy with explicit sample denominators" time="0.000401197">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; keeps kernel density proportional to sample count and finite for empty input" time="0.007360029">
+        </testcase>
+        <testcase classname="src/lib/tennisTelemetry.test.ts" name="spatial telemetry &gt; ranges coaching evidence and excludes source paths, raw detections, and credentials" time="0.002144024">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/BatchUpload.test.tsx" timestamp="2026-10-22T13:39:29.100Z" hostname="38588fda2353" tests="6" failures="0" errors="0" skipped="0" time="0.897455418">
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; keeps the second upload usable when the first fails" time="0.289353142">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; requires explicit same-match order and keeps grouping unverified" time="0.098025228">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; restores original metadata after an uncertain creation instead of posting edited details as a new batch" time="0.203805238">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; prevents rapid repeated Analyze clicks while atomic creation is pending" time="0.112258101">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; aborts pending creation and discards its late response after sign-out" time="0.084806499">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; aborts file transfer and ignores late progress and accepted jobs after sign-out" time="0.106580315">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/Events.test.tsx" timestamp="2026-10-22T13:39:29.101Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.458488584">
+        <testcase classname="src/pages/Events.test.tsx" name="events view &gt; filters a TanStack table and renders mobile records" time="0.197153511">
+        </testcase>
+        <testcase classname="src/pages/Events.test.tsx" name="events view &gt; opens a keyboard-accessible evidence drawer" time="0.241698172">
+        </testcase>
+        <testcase classname="src/pages/Events.test.tsx" name="events view &gt; renders an explicit empty state for older generations" time="0.017131761">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/ProductExamples.test.tsx" timestamp="2026-10-22T13:39:29.101Z" hostname="38588fda2353" tests="4" failures="0" errors="0" skipped="0" time="0.181392519">
+        <testcase classname="src/pages/ProductExamples.test.tsx" name="public example analysis selection &gt; selects the curated analysis even with a conflicting run query" time="0.141007837">
+        </testcase>
+        <testcase classname="src/pages/ProductExamples.test.tsx" name="public example analysis selection &gt; does not substitute a historical phase or a default analysis for an unknown example" time="0.024000595">
+        </testcase>
+        <testcase classname="src/pages/ProductExamples.test.tsx" name="public example analysis selection &gt; preserves source attribution, hashes and excerpt metadata in the export contract" time="0.006734751">
+        </testcase>
+        <testcase classname="src/pages/ProductExamples.test.tsx" name="public example analysis selection &gt; keeps valid analysis evidence usable when optional source attribution is malformed" time="0.007558738">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/ProductFlows.test.tsx" timestamp="2026-10-22T13:39:29.102Z" hostname="38588fda2353" tests="8" failures="0" errors="0" skipped="0" time="0.650913425">
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; keeps a failed library request distinct from an empty library in function ProductHome() {
+	const resource = (0,__vite_ssr_import_3__.useProductResource)(&quot;/api/matches&quot;, 5e3);
+	const catalog = (0,__vite_ssr_import_5__.usePublicDemos)();
+	const publicAnalysisIds = new Set(catalog.demos.map((demo) =&gt; demo.analysisId));
+	const matches = (resource.data ?? []).filter((match) =&gt; match.source === &quot;upload&quot; &amp;&amp; !publicAnalysisIds.has(match.analysis_id ?? &quot;&quot;));
+	const active = matches.filter((match) =&gt; [&quot;PROCESSING&quot;, &quot;UPLOADED&quot;].includes(match.status));
+	const completed = matches.filter((match) =&gt; match.status === &quot;COMPLETED&quot; &amp;&amp; match.analysis_id);
+	const [graphicsPaused, setGraphicsPaused] = (0,__vite_ssr_import_1__.useState)(false);
+	const motionScope = (0,__vite_ssr_import_10__.useSocietyMotion)();
+	return /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+		ref: motionScope,
+		className: `page product-page product-home society-home${graphicsPaused ? &quot; motion-is-paused&quot; : &quot;&quot;}`,
+		children: [
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;header&quot;, {
+				className: &quot;society-entry-intro&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+					className: &quot;society-label&quot;,
+					children: &quot;[ AI TENNIS INTELLIGENCE ]&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 12
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h1&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+					className: &quot;society-reveal-line&quot;,
+					children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;See the game.&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 119
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 81
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+					className: &quot;society-reveal-line&quot;,
+					children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: [&quot;See it &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;em&quot;, { children: &quot;differently.&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 203
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 190
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 152
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 77
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 7
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;society-entry-copy&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, { children: [
+						&quot;Your footage. A new perspective.&quot;,
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;br&quot;, {}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 78
+						}, this),
+						&quot;Follow the ball, read the movement, and discover the evidence behind your game.&quot;
+					] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 182,
+						columnNumber: 43
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						className: &quot;society-cta&quot;,
+						to: &quot;/upload&quot;,
+						children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;Analyze your match&quot; }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 210
+						}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowUpRight), {
+							size: 22,
+							&quot;aria-hidden&quot;: &quot;true&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 241
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 182,
+						columnNumber: 167
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 182,
+					columnNumber: 7
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 180,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, {
+				id: &quot;match-intelligence&quot;,
+				className: &quot;society-media-section society-entry-media&quot;,
+				&quot;aria-label&quot;: &quot;Example analyses&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-preview-intro society-section-heading&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h2&quot;, { children: [&quot;Watch the analysis &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;em&quot;, { children: &quot;in action.&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 208
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 185
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: &quot;/examples&quot;,
+						children: [&quot;Explore examples &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowRight), {
+							size: 18,
+							&quot;aria-hidden&quot;: &quot;true&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 270
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 232
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 122
+				}, this), catalog.loading ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-preview-loading&quot;,
+					role: &quot;status&quot;,
+					children: &quot;Loading example videos…&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 345
+				}, this) : catalog.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-demo-unavailable&quot;,
+					role: &quot;status&quot;,
+					children: [
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, { children: &quot;Example videos could not be loaded. You can still upload and open your own analyses.&quot; }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 504
+						}, this),
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;button&quot;, {
+							className: &quot;button&quot;,
+							type: &quot;button&quot;,
+							onClick: catalog.refresh,
+							children: &quot;Retry examples&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 595
+						}, this),
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+							className: &quot;button&quot;,
+							to: &quot;/upload&quot;,
+							children: &quot;Upload video&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 685
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 448
+				}, this) : catalog.demos.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_11__.Fragment), { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(PublicDemoGallery, { demos: catalog.demos }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 776
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+					className: &quot;product-demo-note&quot;,
+					children: &quot;Real processed clips shared under their source licenses. These examples demonstrate the workflow; their measurements have not been independently validated.&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 819
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 774
+				}, this) : /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(PreviewEmptyState, {}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 1017
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 184,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyMarquee), {
+				paused: graphicsPaused,
+				onToggle: () =&gt; setGraphicsPaused((paused) =&gt; !paused)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 185,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(ProductError, {
+				error: resource.error,
+				retry: resource.refresh
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 186,
+				columnNumber: 5
+			}, this),
+			!resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+				role: &quot;status&quot;,
+				children: &quot;Loading your analyses…&quot;
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 187,
+				columnNumber: 42
+			}, this) : completed.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, {
+				className: &quot;society-media-section society-local-section&quot;,
+				&quot;aria-label&quot;: &quot;Your recent analyses&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-preview-intro society-section-heading&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-label&quot;,
+						children: &quot;[ YOUR LOCAL LIBRARY ]&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 274
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h2&quot;, { children: catalog.loading || catalog.error ? &quot;Recent saved analyses&quot; : &quot;Your recent analyzed videos&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 335
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 269
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;Saved on this device · Local library&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 442
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 187,
+					columnNumber: 206
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(LocalAnalysisPreviews, {
+					matches,
+					label: catalog.loading || catalog.error ? &quot;Saved analysis&quot; : &quot;Your local analysis&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 187,
+					columnNumber: 497
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 187,
+				columnNumber: 107
+			}, this) : null,
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, {
+				className: &quot;society-manifesto&quot;,
+				children: [
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-label&quot;,
+						children: &quot;[ INTELLIGENCE WITH EVIDENCE ]&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 44
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, { children: &quot;Every movement tells a story. Every estimate needs evidence. Look beyond the score.&quot;.split(&quot; &quot;).map((word, index) =&gt; /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-manifesto-word&quot;,
+						children: [
+							index === 2 ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+								className: &quot;society-inline-court&quot;,
+								&quot;aria-hidden&quot;: &quot;true&quot;,
+								children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.CourtEmblem), { compact: true }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 361
+								}, this)
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 303
+							}, this) : null,
+							word,
+							&quot; &quot;
+						]
+					}, index, true, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 235
+					}, this)) }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 113
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-manifesto-mark&quot;,
+						&quot;aria-hidden&quot;: &quot;true&quot;,
+						children: &quot;↗&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 419
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+						className: &quot;society-hero-art society-entry-art&quot;,
+						children: [
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+								className: &quot;society-art-caption&quot;,
+								children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;COURT / COMPUTER VISION&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 576
+								}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;+&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 612
+								}, this)]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 539
+							}, this),
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.CourtEmblem), {}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 632
+							}, this),
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+								className: &quot;society-art-footer&quot;,
+								children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;A different angle on every rally.&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 683
+								}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;[ ASTRA ]&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 729
+								}, this)]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 647
+							}, this)
+						]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 487
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 188,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyWorkflow), {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 189,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+				className: &quot;product-home-library&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-section-title&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h2&quot;, { children: active.length ? &quot;Processing your videos&quot; : &quot;Your analysis library&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 190,
+						columnNumber: 91
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: &quot;/match-center&quot;,
+						children: [&quot;My analyses &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowRight), {
+							size: 15,
+							&quot;aria-hidden&quot;: &quot;true&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 190,
+							columnNumber: 205
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 190,
+						columnNumber: 168
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 52
+				}, this), active.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(MatchList, { matches: active }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 278
+				}, this) : resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+					className: &quot;product-empty&quot;,
+					children: matches.length ? &quot;Open My analyses to revisit saved results and downloads.&quot; : &quot;Your uploaded videos and completed results will appear here.&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 346
+				}, this) : null] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 43
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+					className: &quot;product-home-note&quot;,
+					children: &quot;Measurements depend on the camera view and visible evidence. Missing tracks and uncertain estimates stay visible in the analysis.&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 539
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 190,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyAction), {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 191,
+				columnNumber: 5
+			}, this)
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 179,
+		columnNumber: 10
+	}, this);
+}" time="0.275621796">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; keeps a failed library request distinct from an empty library in function MatchCenter() {
+	const resource = (0,__vite_ssr_import_3__.useProductResource)(&quot;/api/matches&quot;, 5e3);
+	const catalog = (0,__vite_ssr_import_5__.usePublicDemos)();
+	const publicAnalysisIds = new Set(catalog.demos.map((demo) =&gt; demo.analysisId));
+	const [params, setParams] = (0,__vite_ssr_import_0__.useSearchParams)();
+	const [query, setQuery] = (0,__vite_ssr_import_1__.useState)(&quot;&quot;);
+	const filter = params.get(&quot;status&quot;) ?? &quot;all&quot;;
+	const matches = (resource.data ?? []).filter((match) =&gt; match.source === &quot;upload&quot; &amp;&amp; !publicAnalysisIds.has(match.analysis_id ?? &quot;&quot;) &amp;&amp; (filter === &quot;all&quot; || (filter === &quot;processing&quot; ? [&quot;UPLOADED&quot;, &quot;PROCESSING&quot;].includes(match.status) : match.status.toLowerCase() === filter)) &amp;&amp; `${(0,__vite_ssr_import_6__.matchTitle)(match)} ${match.filename ?? &quot;&quot;} ${match.metadata.tournament ?? &quot;&quot;}`.toLowerCase().includes(query.toLowerCase()));
+	return /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+		className: &quot;page product-page&quot;,
+		children: [
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_8__.PageHeader), {
+				eyebrow: &quot;YOUR VIDEO LIBRARY&quot;,
+				title: &quot;My analyses&quot;,
+				description: &quot;Follow processing, revisit a replay, and download your results.&quot;,
+				action: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+					className: &quot;button button-primary&quot;,
+					to: &quot;/upload&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.CloudArrowUp), {
+						size: 18,
+						&quot;aria-hidden&quot;: &quot;true&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 245
+					}, this), &quot;Upload video&quot;]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 192
+				}, this)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 45
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+				className: &quot;product-filters&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;label&quot;, { children: [&quot;Find an analysis&quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;input&quot;, {
+					type: &quot;search&quot;,
+					placeholder: &quot;Player, tournament or filename&quot;,
+					value: query,
+					onChange: (event) =&gt; setQuery(event.target.value)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 369
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 346
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;label&quot;, { children: [&quot;Status&quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;select&quot;, {
+					value: filter,
+					onChange: (event) =&gt; setParams(event.target.value === &quot;all&quot; ? {} : { status: event.target.value }),
+					children: [
+						&quot;all&quot;,
+						&quot;processing&quot;,
+						&quot;completed&quot;,
+						&quot;failed&quot;
+					].map((value) =&gt; /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;option&quot;, {
+						value,
+						children: value[0].toUpperCase() + value.slice(1)
+					}, value, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 701
+					}, this))
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 521
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 508
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 313
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(ProductError, {
+				error: resource.error,
+				retry: resource.refresh
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 811
+			}, this),
+			!resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+				role: &quot;status&quot;,
+				children: &quot;Loading analyses…&quot;
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 912
+			}, this) : matches.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(MatchList, { matches }, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 970
+			}, this) : resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+				className: &quot;product-empty&quot;,
+				children: [
+					&quot;No analyses match this view. Adjust your search or &quot;,
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: &quot;/upload&quot;,
+						children: &quot;upload a video&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 1119
+					}, this),
+					&quot;.&quot;
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 1039
+			}, this) : null
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 203,
+		columnNumber: 10
+	}, this);
+}" time="0.018499542">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; focuses home on uploads and keeps manual records out of the video library" time="0.176781097">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; filters match records by names and status" time="0.026742664">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; requires an initial server and sends explicit manual match details" time="0.102747404">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; retries an uncertain point with exactly the same idempotency key" time="0.036050426">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; resolves an explicit legacy ID ahead of a conflicting query and preserves event" time="0.008230951">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; keeps explicit run selection independent of query parameters" time="0.003940377">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/ProductHome.test.tsx" timestamp="2026-10-22T13:39:29.104Z" hostname="38588fda2353" tests="20" failures="0" errors="0" skipped="0" time="0.965481194">
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; loads secondary analyses only on viewport entry and pauses off-screen media" time="0.09643489">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; stops automatic playback when reduced motion changes without creating a manual override" time="0.124204646">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; provides a visible play fallback if the browser rejects autoplay" time="0.024242337">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; keeps a newer playing preview when an earlier manual request rejects" time="0.018301482">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; keeps a paused preview after its canceled manual request rejects" time="0.028910844">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; shows a fallback when the current manual start rejects after its play event" time="0.027143358">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; waits for explicit playback when reduced motion is already enabled" time="0.012279049">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; cancels an outstanding play request when a buffering preview leaves the viewport" time="0.079309176">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; pauses a hidden tab and preserves a native-control pause on viewport return" time="0.022454224">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="local homepage previews &gt; does not play a result returned for a different analysis ID" time="0.007950941">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; replaces the catalog loading preview with the fetched result generation" time="0.020050356">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; can display a fetched generation after the catalog loading media fails" time="0.008235498">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; removes the catalog fallback after an invalid fetched analysis" time="0.018616237">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; links every credited example to its own curated identity and matching media" time="0.117379489">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; rejects a preview bound to another analysis and repeated catalog identities" time="0.002832866">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; accepts media revisions only on the matching analysis route" time="0.000789062">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; accepts exactly one immutable generation only on the matching analysis route" time="0.001383837">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; renders unsafe credit links as text while keeping license attribution" time="0.002977151">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; keeps public examples out of the private recent-analysis gallery" time="0.177468645">
+        </testcase>
+        <testcase classname="src/pages/ProductHome.test.tsx" name="licensed public example previews &gt; keeps a catalog failure distinct from an unavailable example collection" time="0.171812832">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/SpatialAnalysis.test.tsx" timestamp="2026-10-22T13:39:29.110Z" hostname="38588fda2353" tests="4" failures="0" errors="0" skipped="0" time="0.299124823">
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; uses all five supplied export URLs with the same immutable generation" time="0.198338437">
+        </testcase>
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; keeps the historical download routes for a legacy or static result" time="0.065852694">
+        </testcase>
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; does not create current-generation routes when pinned exports are missing or unavailable" time="0.014143951">
+        </testcase>
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; honors an unavailable legacy export while retaining its other supplied URLs" time="0.018328465">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/Upload.test.tsx" timestamp="2026-10-22T13:39:29.112Z" hostname="38588fda2353" tests="19" failures="0" errors="0" skipped="0" time="1.377181002">
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; discards delayed initial history when the owner changes between the before and after checks" time="0.247502097">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; invalidates a pending cancel acknowledgement after a refresh observes 401" time="0.067977423">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; withholds account history if an authenticated server cannot identify its owner" time="0.03225435">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; uses the retry seam once and disables rapid repeat clicks until acknowledged" time="0.069378711">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps retry errors actionable and treats a failed child as its own retry source" time="0.094372432">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; suppresses an earlier account retry response after sign-out" time="0.073326192">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; treats authentication-required as account access while retaining a healthy service" time="0.049830294">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; accepts a selected video and opens persistent processing status" time="0.207932467">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; rejects an unsupported dropped file without uploading" time="0.023928255">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows actual upload progress while keeping cancellation available" time="0.068725846">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; restores completion and a deep result link from job history" time="0.05624529">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows a recoverable connection error rather than losing a job" time="0.021613726">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; excludes public examples from history without removing the active job" time="0.033097544">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows the private archive empty state when only public examples exist" time="0.016964063">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is loading" time="0.05627098">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is unavailable" time="0.057671191">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved analyses accessible and restores public filtering when the catalog recovers" time="0.06876227">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is unavailable" time="0.045076048">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is malformed" time="0.083520683">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/analysisApi.test.ts" timestamp="2026-10-22T13:39:29.114Z" hostname="38588fda2353" tests="8" failures="0" errors="0" skipped="0" time="0.023389899">
+        <testcase classname="src/data/analysisApi.test.ts" name="persisted job API contract &gt; accepts boolean cancellation flags in actual job history" time="0.003195104">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="persisted job API contract &gt; keeps malformed storage details out of the user error" time="0.002006034">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="retry acknowledgement contract &gt; keeps its Idempotency-Key after a lost response and acknowledges only the requested source" time="0.006381375">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="retry acknowledgement contract &gt; retains the saved intent for an invalid child acknowledgement &apos;match_child&apos;/&apos;match_other&apos;" time="0.002599602">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="retry acknowledgement contract &gt; retains the saved intent for an invalid child acknowledgement &apos;match_failed&apos;/&apos;match_failed&apos;" time="0.002085041">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="retry acknowledgement contract &gt; retains the saved intent for an invalid child acknowledgement &apos;../wrong&apos;/&apos;match_failed&apos;" time="0.0019413">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="retry acknowledgement contract &gt; retains the saved intent for an invalid child acknowledgement &apos;match_child\n&apos;/&apos;match_failed&apos;" time="0.001766168">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="retry acknowledgement contract &gt; refuses a previous account response and keeps its key for later reconciliation" time="0.001980698">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/batchApi.test.ts" timestamp="2026-10-22T13:39:29.115Z" hostname="38588fda2353" tests="19" failures="0" errors="0" skipped="0" time="0.177217217">
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; reuses the same full metadata request and key after lost response and reload" time="0.082760917">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; blocks edited metadata and exposes the original request for explicit restoration" time="0.005743036">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains its key when acknowledgement does not match the submitted files" time="0.00469368">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains its key when acknowledgement does not match the submitted files" time="0.004440558">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains its key when acknowledgement does not match the submitted files" time="0.00357466">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains its key when acknowledgement does not match the submitted files" time="0.003712292">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains its key when acknowledgement does not match the submitted files" time="0.00415585">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains its key when acknowledgement does not match the submitted files" time="0.004249033">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains its key when acknowledgement does not match the submitted files" time="0.00365567">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; rejects distinct files acknowledged with the same saved session identity" time="0.003219735">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; does not acknowledge or remember a response after the current account changes" time="0.003222741">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; sends required idempotency key for single-session creation too" time="0.004553987">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; permits corrected metadata after the server durably rejects that exact creation key" time="0.009923232">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; preserves uncertain intent without an exact trusted 4xx rejection: 413/&apos;absent&apos;" time="0.006124302">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; preserves uncertain intent without an exact trusted 4xx rejection: 422/&apos;different_creation_key&apos;" time="0.009400767">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; preserves uncertain intent without an exact trusted 4xx rejection: 409/&apos;duplicate&apos;" time="0.00578702">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; preserves uncertain intent without an exact trusted 4xx rejection: 500/&apos;matching&apos;" time="0.00734287">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; retains the rejected key when account identity changes before rejection confirmation" time="0.004752105">
+        </testcase>
+        <testcase classname="src/data/batchApi.test.ts" name="atomic batch creation &gt; does not clear rejected intent when the caller has observed an account change or pause" time="0.004195597">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/correctionApi.test.ts" timestamp="2026-10-22T13:39:29.118Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.015181465">
+        <testcase classname="src/data/correctionApi.test.ts" name="owner correction HTTP contracts &gt; pins a bounded review page to the requested saved generation" time="0.010686222">
+        </testcase>
+        <testcase classname="src/data/correctionApi.test.ts" name="owner correction HTTP contracts &gt; submits the native body without client supplied reviewer identities and propagates owner denial" time="0.002170669">
+        </testcase>
+        <testcase classname="src/data/correctionApi.test.ts" name="owner correction HTTP contracts &gt; rejects another analysis status and inconsistent completed generation metadata" time="0.001104795">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/correctionDraft.test.ts" timestamp="2026-10-22T13:39:29.121Z" hostname="38588fda2353" tests="6" failures="0" errors="0" skipped="0" time="0.016799065">
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; preserves all 37 fields and derives side/receiver for reviewed standard scores" time="0.00885473">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; derives tie-break service rotation and rejects completed or invalid point scores" time="0.001427093">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; leaves active rallies and completed contexts read-only" time="0.000660596">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; clones complete event measurements including exact PTS and rejects cross-contract signals" time="0.000973791">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; rejects stale generations and requires explicit review evidence" time="0.0009125">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; normalizes textarea line breaks and tabs to the native bounded plain-text contract" time="0.002524338">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/creationIntent.test.ts" timestamp="2026-10-22T13:39:29.123Z" hostname="38588fda2353" tests="7" failures="0" errors="0" skipped="0" time="0.017851116">
+        <testcase classname="src/data/creationIntent.test.ts" name="uncertain upload creation &gt; persists the full original payload and reuses its key after reload and lost response" time="0.011603118">
+        </testcase>
+        <testcase classname="src/data/creationIntent.test.ts" name="uncertain upload creation &gt; blocks edited metadata, file identity or mode until the original request is restored" time="0.001431731">
+        </testcase>
+        <testcase classname="src/data/creationIntent.test.ts" name="uncertain upload creation &gt; coalesces rapid repeated submission but isolates different owners" time="0.000839552">
+        </testcase>
+        <testcase classname="src/data/creationIntent.test.ts" name="uncertain upload creation &gt; permits a fresh intent only after the matching validated acknowledgement" time="0.000555605">
+        </testcase>
+        <testcase classname="src/data/creationIntent.test.ts" name="uncertain upload creation &gt; keeps the same request in memory if browser storage is disabled" time="0.00059548">
+        </testcase>
+        <testcase classname="src/data/creationIntent.test.ts" name="uncertain upload creation &gt; fails closed for corrupted persisted uncertain creation rather than silently replacing it" time="0.000941911">
+        </testcase>
+        <testcase classname="src/data/creationIntent.test.ts" name="uncertain upload creation &gt; keeps in-flight submission coalesced until settlement after a matching terminal acknowledgement" time="0.000662398">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/liveRepository.test.ts" timestamp="2026-10-22T13:39:29.125Z" hostname="38588fda2353" tests="25" failures="0" errors="0" skipped="0" time="0.168379751">
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; preserves immutable generation metadata and all supplied media and export pins" time="0.011701361">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed immutable generation metadata null" time="0.012964657">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed immutable generation metadata " time="0.007344014">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" time="0.007100619">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" time="0.006576582">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed immutable generation metadata AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" time="0.005230562">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed immutable generation metadata gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg" time="0.005598405">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; preserves an explicitly supplied nonnegative analysis revision 0" time="0.004826284">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; preserves an explicitly supplied nonnegative analysis revision 3" time="0.00471338">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed analysis revision metadata -1" time="0.009021303">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed analysis revision metadata 0.5" time="0.005036006">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed analysis revision metadata true" time="0.004834708">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed analysis revision metadata false" time="0.003623142">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed analysis revision metadata null" time="0.007210596">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects malformed analysis revision metadata 0" time="0.005352166">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; keeps legacy and static results available without a generation" time="0.004223356">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; loads the requested analysis and never substitutes a demo on failure" time="0.006431572">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; isolates malformed optional sections and preserves the video" time="0.005804998">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects a valid result that belongs to a different session" time="0.00518912">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; rejects invalid video metadata rather than inventing a time base" time="0.003733842">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; keeps replay available when optional frame evidence is malformed" time="0.01060579">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; preserves generic person observations independently of court calibration and active-player roles" time="0.016075198">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; retains one player&apos;s valid movement when the other player has no measurements" time="0.009090043">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; accepts ISO timestamps from the Python API including an explicit UTC offset" time="0.002303728">
+        </testcase>
+        <testcase classname="src/data/liveRepository.test.ts" name="live analysis repository &gt; loads only lightweight run summaries for the session picker" time="0.000689729">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/nativeForecastRepository.test.ts" timestamp="2026-10-22T13:39:29.128Z" hostname="38588fda2353" tests="2" failures="0" errors="0" skipped="0" time="0.024239977">
+        <testcase classname="src/data/nativeForecastRepository.test.ts" name="native forecast result admission &gt; withholds a foreign causal history while preserving existing video evidence" time="0.013867608">
+        </testcase>
+        <testcase classname="src/data/nativeForecastRepository.test.ts" name="native forecast result admission &gt; requests only the exact saved generation and rejects substitution" time="0.009307751">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/repository.test.ts" timestamp="2026-10-22T13:39:29.129Z" hostname="38588fda2353" tests="11" failures="0" errors="0" skipped="0" time="0.011037357">
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; validates the versioned snapshot" time="0.004302008">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes baseline_run_1 to the current run contract" time="0.00041992">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase2_ball_1 to the current run contract" time="0.000276799">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase2_yolo11_final to the current run contract" time="0.000212361">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase3_events_1 to the current run contract" time="0.000283574">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase4_1_line_calls to the current run contract" time="0.000386269">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase4_line_calls_1 to the current run contract" time="0.000312694">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase5_scoring_1 to the current run contract" time="0.001700943">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; preserves every required scientific enum" time="0.000441803">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; keeps unavailable historical artifacts explicit" time="0.000682466">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; rejects invalid run ids" time="0.000781558">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/retryIntent.test.ts" timestamp="2026-10-22T13:39:29.131Z" hostname="38588fda2353" tests="7" failures="0" errors="0" skipped="0" time="0.009277517">
+        <testcase classname="src/data/retryIntent.test.ts" name="saved analysis retry intent &gt; restores the same uncertain intent after a browser reload" time="0.002465037">
+        </testcase>
+        <testcase classname="src/data/retryIntent.test.ts" name="saved analysis retry intent &gt; records acknowledged child identity and starts fresh explicit intent after acknowledgement" time="0.000304575">
+        </testcase>
+        <testcase classname="src/data/retryIntent.test.ts" name="saved analysis retry intent &gt; keeps owners and failed child sources in separate namespaces" time="0.000543296">
+        </testcase>
+        <testcase classname="src/data/retryIntent.test.ts" name="saved analysis retry intent &gt; reuses the same in-flight promise before any request finishes" time="0.001967788">
+        </testcase>
+        <testcase classname="src/data/retryIntent.test.ts" name="saved analysis retry intent &gt; falls back to stable memory when browser storage access is disabled" time="0.000631914">
+        </testcase>
+        <testcase classname="src/data/retryIntent.test.ts" name="saved analysis retry intent &gt; ignores stale acknowledgements and malformed persisted tokens" time="0.000331387">
+        </testcase>
+        <testcase classname="src/data/retryIntent.test.ts" name="saved analysis retry intent &gt; regenerates persisted tokens with a trailing newline instead of repeating a server-invalid key" time="0.001430232">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/CoachPanel.test.tsx" timestamp="2026-10-22T13:39:29.131Z" hostname="38588fda2353" tests="4" failures="0" errors="0" skipped="0" time="0.273300142">
+        <testcase classname="src/components/spatial/CoachPanel.test.tsx" name="Astra coach connection &gt; keeps the visible question labeled when replay coaching remains mounted" time="0.144706899">
+        </testcase>
+        <testcase classname="src/components/spatial/CoachPanel.test.tsx" name="Astra coach connection &gt; keeps observations local until the user requests coaching, then sends only the selected evidence" time="0.06065988">
+        </testcase>
+        <testcase classname="src/components/spatial/CoachPanel.test.tsx" name="Astra coach connection &gt; explains an unconfigured service without inventing a model response" time="0.041333457">
+        </testcase>
+        <testcase classname="src/components/spatial/CoachPanel.test.tsx" name="Astra coach connection &gt; aborts a pending provider request when the selected evidence is removed" time="0.024003959">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/LandingZones.test.tsx" timestamp="2026-10-22T13:39:29.132Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.505770746">
+        <testcase classname="src/components/spatial/LandingZones.test.tsx" name="shared landing presentation &gt; uses the same partition and visibility on the main court and mini court" time="0.343019711">
+        </testcase>
+        <testcase classname="src/components/spatial/LandingZones.test.tsx" name="shared landing presentation &gt; expires the zone fill after the contact interval while retaining event review" time="0.125783988">
+        </testcase>
+        <testcase classname="src/components/spatial/LandingZones.test.tsx" name="shared landing presentation &gt; does not add overlay controls to a run without reviewed zone records" time="0.034346504">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/SpatialHeatmapPanel.test.tsx" timestamp="2026-10-22T13:39:29.133Z" hostname="38588fda2353" tests="3" failures="0" errors="0" skipped="0" time="0.529513081">
+        <testcase classname="src/components/spatial/SpatialHeatmapPanel.test.tsx" name="spatial density &gt; counts only the selected player&apos;s frames and updates zone explanations" time="0.282188531">
+        </testcase>
+        <testcase classname="src/components/spatial/SpatialHeatmapPanel.test.tsx" name="spatial density &gt; offers an explicit empty state for invalid court calibration" time="0.006032873">
+        </testcase>
+        <testcase classname="src/components/spatial/SpatialHeatmapPanel.test.tsx" name="spatial density &gt; has accessible density and zone controls" time="0.238907598">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/TelemetryDashboard.test.tsx" timestamp="2026-10-22T13:39:29.134Z" hostname="38588fda2353" tests="1" failures="0" errors="0" skipped="0" time="0.326830311">
+        <testcase classname="src/components/spatial/TelemetryDashboard.test.tsx" name="decoded-frame replay integration &gt; holds shared evidence during seeks and commands the decoder on view and source changes" time="0.324624566">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/TennisCourt3D.test.tsx" timestamp="2026-10-22T13:39:29.135Z" hostname="38588fda2353" tests="6" failures="0" errors="0" skipped="0" time="0.445495569">
+        <testcase classname="src/components/spatial/TennisCourt3D.test.tsx" name="WebGL court failure and renderer ownership &gt; offers 2D recovery without camera controls when the WebGL API is absent" time="0.145269169">
+        </testcase>
+        <testcase classname="src/components/spatial/TennisCourt3D.test.tsx" name="WebGL court failure and renderer ownership &gt; catches actual-Canvas renderer construction before async configure can continue" time="0.038887886">
+        </testcase>
+        <testcase classname="src/components/spatial/TennisCourt3D.test.tsx" name="WebGL court failure and renderer ownership &gt; owns one renderer for the real Canvas across StrictMode reattachment and disposes on detachment" time="0.07733585">
+            <system-err>
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/spatial/TennisCourt3D.test.tsx" name="WebGL court failure and renderer ownership &gt; removes the lost-context listener and lets the caller recover without changing the evidence frame" time="0.052840966">
+            <system-err>
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/spatial/TennisCourt3D.test.tsx" name="WebGL court failure and renderer ownership &gt; preserves invalid-court abstention instead of attempting a WebGL scene" time="0.098700094">
+        </testcase>
+        <testcase classname="src/components/spatial/TennisCourt3D.test.tsx" name="WebGL court failure and renderer ownership &gt; recovers when the context was already lost before the monitor subscribed" time="0.029793832">
+            <system-err>
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+            </system-err>
+        </testcase>
+    </testsuite>
+</testsuites>

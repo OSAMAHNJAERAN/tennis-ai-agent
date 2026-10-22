@@ -16,6 +16,8 @@ Once this goal is activated, continue until the required deliverables have been 
 
 **2. Build on the existing project and apply this new scope**
 
+**Cloud continuation, 22 October 2026:** use the live `codex/yolo26-platform` branch of `OSAMAHNJAERAN/tennis-ai-agent` and the existing cloud checkout. The Windows paths below are historical. Verify GitHub and read the canonical handoff before continuing; Section 34 governs checkpointing and cross-account continuity.
+
 The current project is at `C:\Semester 9\FYP2\tennis_ai_agent_bundle`. Begin by inspecting its state when implementation starts, because files may change after this document is written. Read `AGENT.md`, `README.md`, `PROJECT_REPORT.md`, and the relevant parts of `PLAN.md`, then:
 
 - `docs/PRODUCT_WORKFLOW.md` and `docs/PRODUCT_DASHBOARD.md`.

@@ -46,11 +46,19 @@ async function sendCreation<T>(owner: string, request: CreationRequest, options:
   return creationIntents.run(owner, request, async saved => {
     await ownerCurrent(owner, options);
     const response = await fetch(saved.request.kind === 'batch' ? '/api/batches' : '/api/uploads', {
-      method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': saved.key },
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': saved.key,
+        'Upload-Creation-Owner': owner },
       body: JSON.stringify(saved.request.payload), signal: options.signal,
     });
     const data: unknown = await response.json().catch(() => null);
     if (!response.ok) {
+      // Only the server's exact rejection tombstone establishes that this key
+      // cannot have created a session. Other errors remain uncertain intent.
+      if (response.status >= 400 && response.status < 500
+        && response.headers?.get('Upload-Creation-Rejected') === saved.key) {
+        await ownerCurrent(owner, options);
+        creationIntents.acknowledge(owner, saved.key);
+      }
       const detail = data && typeof data === 'object' && 'detail' in data ? data.detail : null;
       throw new ApiError(typeof detail === 'string' ? detail : 'Upload creation could not be confirmed. Retry the saved request.', response.status);
     }
