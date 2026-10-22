@@ -7,7 +7,8 @@
 
 ## تنزيل النسخة كاملة
 
-ثبّت Git وGit LFS وGitHub CLI وPython 3.11 أو أحدث، ثم نفّذ في PowerShell:
+ثبّت Git وGit LFS وGitHub CLI وPython 3.11 أو أحدث. سجّل الدخول إلى
+GitHub CLI بالحساب المطلوب باستخدام `gh auth login`، ثم نفّذ في PowerShell:
 
 ```powershell
 git clone --branch codex/yolo26-platform https://github.com/OSAMAHNJAERAN/tennis-ai-agent.git
