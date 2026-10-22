@@ -1,10 +1,10 @@
 # CURRENT HANDOFF
 
-- Checkpoint time: 2026-10-22 15:20 UTC.
+- Checkpoint time: 2026-10-22 15:23 UTC.
 - Repository: https://github.com/OSAMAHNJAERAN/tennis-ai-agent.git
 - Working/integration branch: `codex/yolo26-platform`; use the existing isolated checkout, no worktree is needed.
-- **Verified pushed recovery implementation SHA: `07bd7843068a146f71fd70c600725711f625be72`** (intermediate 218-check checkpoint). A separate `git ls-remote origin refs/heads/codex/yolo26-platform` matched its ordinary push. Final 228-check closure is locally verified below and will receive a separate push/read-back and metadata record. Resolve the current metadata tip with that remote command; a commit cannot embed its own SHA.
-- Existing open [PR #1](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/pull/1), head `codex/vision-system-upgrade` / `f854804f4f0d3766e70218d59f06cd6ebb8aaff1`, base `master` / `644808f2130ece14dabd2a502db5ff4bc78eeea6`, is already an ancestor of integration. Public GitHub HTML and native Git refs were inspected. It remains unmerged/open and untouched. No new PR is needed for the authorized direct fast-forward checkpoints. GitHub REST/GraphQL egress remains forbidden; no new credentials were requested.
+- **Verified pushed recovery closure SHA: `b26eeb7f232122b6c2a7e904433e7e450a276c15`** (final 228-check implementation and evidence). Ordinary push matched an independent `git ls-remote origin refs/heads/codex/yolo26-platform` read-back. Eleven exact-commit raw GitHub evidence files were then independently fetched and hash-verified; `owner_reservation_recovery_v2/remote_verification.json` records their bytes/hashes. The following metadata commit records those verified revisions; resolve its current tip with the same remote command rather than expecting a commit to embed its own SHA.
+- Existing open [PR #1](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/pull/1), head `codex/vision-system-upgrade` / `f854804f4f0d3766e70218d59f06cd6ebb8aaff1`, base `master` / `644808f2130ece14dabd2a502db5ff4bc78eeea6`, is already an ancestor of integration. Public GitHub HTML was rechecked as OPEN and native Git refs matched at recovery closure. It remains unmerged/open and untouched. No new PR is needed for the authorized direct fast-forward checkpoints. GitHub REST/GraphQL egress remains forbidden; no new credentials were requested.
 
 ## Last completed step
 
@@ -14,7 +14,7 @@ The API now drains actual executor Futures before settlement and lifetime-lock r
 
 Final guarded coupled verification: **228 tests, zero failures/errors/skips, 45.10 seconds, 430 unchanged pins**, no inference imports/attempts, no synthetic resource calls and no actual host/GPU probes. Receipt: `artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v2/receipt.json`, SHA256 `783158eea6dcfd6dc487c9d1395c96e5c3ecd1976059f14e8e6b5c047ff8a4c6`. This includes 32 focused new cases and the existing 196-check admission/API scope; overlapping counts are not added. Five retained child-process records prove actual legacy admission/prequeue/postqueue exits and retry prequeue/postqueue exits. Other cases cover true body streaming, live copies, repeated/all-task cancellation, restart/idempotency, simultaneous recovery, malformed retry maps, owner separation, retained bytes, safe-path refusal, migration and SQL failure. Independent source review found no remaining blocker. The passing intermediate 218-check v1 receipt remains intact at its own revision.
 
-The final closure implementation/evidence is locally verified; this commit must still be pushed and independently read back. The following metadata checkpoint will record its exact verified SHA. Last independently verified implementation checkpoint: `07bd7843068a146f71fd70c600725711f625be72` (218 checks).
+Final recovery implementation and evidence are saved on GitHub at verified `b26eeb7f232122b6c2a7e904433e7e450a276c15`. The intermediate 218-check checkpoint `07bd7843068a146f71fd70c600725711f625be72` was also pushed/read back. The remote verification receipt confirms the actual receipt/closure, JUnit/log, runner, independent review and all five real child-process observations; no manifest-only preservation claim is used.
 
 Earlier completed checkpoint:
 
@@ -50,6 +50,7 @@ Full accepted-analysis deletion requires coordinated worker, retry/correction ad
 ## Runtime, artifacts and blockers
 
 - Cloud checkout `/workspace/tennis-ai-agent`; Python 3.12.14, Node 24.19.0, pinned pnpm 11.19.0 at `/workspace/.tools/node_modules/.bin/pnpm`. Frozen frontend dependencies were installed without lock changes. Model-free API environment `/workspace/.venv-tennis-api` uses the recorded `requirements-product.txt` non-inference pins plus pytest 9.0.3, OpenCV 4.13.0.92 and SciPy 1.17.1. Torch/Ultralytics/Torchvision are absent there. The primary Python has Playwright and `/usr/bin/chromium` 154; socket operations require execution-tool approval. The older onboarding `.venv` does not establish candidate readiness.
+- `owner_reservation_recovery_v2/README.md` gives fresh-sibling reproduction for the 228-check scope; no test/worker process must survive.
 - `owner_browser_cloud_v3/README.md` gives exact fresh-sibling fixture reproduction and graceful shutdown commands. Preserve all existing stores/receipts. The driver accepts separate --fixture and fresh --output paths. Only synthetic observations and generated pixels are injected; real rules, auth, storage, codecs, correction worker and frontend execute.
 - Training remains **blocked pending the previously promised RAM notification**. None arrived; this continuation ran no actual host/GPU admission or training. Source/data/reference rights, specialist accuracy, physical-speed references, original upload-to-qualified inference, 10/30-minute and full-match capacity, mobile qualification, genuine live operation and public deployment remain unresolved/unqualified. The master goal is not complete.
 - The historical 48-part ~22.7-GiB archive remains described in `docs/deployment/SECOND_ACCOUNT_HANDOFF_AR.md` and `project_snapshot/index.json`. Its public release page exists; payloads were not downloaded/hash-verified here, so do not claim full restoration. Required synthetic browser evidence is self-contained in its small archive/receipts.
@@ -60,7 +61,9 @@ Full accepted-analysis deletion requires coordinated worker, retry/correction ad
 - `3cde6b20b5a02ec7e8f7819e8364fb539d404f25`: incoming verified integration/handoff after upload creation recovery (`b5a3d2c8f4a6a7f49ec328141a6a50db93e8515a`); 196 backend and 316 frontend software checks at their retained revisions.
 - `5335af95ac788acfe37b6765bed7e8ddecf1626e`: isolated cloud fixture and actual sign-in/correction-form preflight; pushed/read back.
 - `c7e4dbc5ceaeebe4d65f65b193bb9fed118855ab`: native file-selection reset plus 317-test frontend evidence and preserved browser failures; pushed/read back.
-- `07bd7843068a146f71fd70c600725711f625be72`: first owner-reservation recovery implementation and guarded 218-check receipt; pushed/read back.
 - `fac36f80f8a776f9896b006cb31bbd68ef2e4f5a`: completed five-scenario Chromium journey, final counters and actual download archive; pushed/read back, then archive independently fetched and hash-verified from that exact GitHub commit.
+
+- `07bd7843068a146f71fd70c600725711f625be72`: first owner-reservation recovery implementation and guarded 218-check receipt; pushed/read back.
+- `b26eeb7f232122b6c2a7e904433e7e450a276c15`: final cancellation/crash-safe recovery, 228 coupled checks and durable evidence; pushed/read back, then eleven exact-commit GitHub evidence files fetched and hash-verified.
 
 Before the next session changes files, fetch/reconcile the live integration tip and pending PR refs. Use ordinary tested commit → push → independent remote SHA verification checkpoints, roughly every 20–30 active minutes when feasible. This log and the progress record are canonical; do not rely on chat or infer account/usage reset control.

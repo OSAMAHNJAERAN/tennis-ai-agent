@@ -18,3 +18,5 @@ mkdir "$TENNIS_RECOVERY_RUN" && cp artifacts/validation/yolo26_execution_2026-10
 ```
 
 Local ASGI/TestClient and child-process socket operations require this environment's execution permission. The runner supplies guarded synthetic resource seams, blocks model imports in parent/children, copies pinned sources and writes into its own fresh temporary database tree. Dependencies, temporary stores and source copies are intentionally ignored reproducible outputs; the receipts, runners, review and five child observations are tracked.
+
+Recovery closure `b26eeb7f232122b6c2a7e904433e7e450a276c15` was pushed to `codex/yolo26-platform` and independently matched with `git ls-remote`. A subsequent exact-commit raw GitHub fetch verified all eleven closure/receipt/execution/runner/review/process-observation files against their local SHA256 values. `remote_verification.json` records those HTTP 200 byte read-backs.
