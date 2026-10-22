@@ -2,6 +2,10 @@
 
 University Final Year Project (FYP) focused on AI-powered video analysis of tennis matches from single-camera footage.
 
+## Complete project file snapshot
+
+The [complete supplemental snapshot](project_snapshot/README.md) preserves models, datasets, media, training outputs and validation fixtures that are excluded from the normal source checkout. Its 48 archive parts are available in the [2026-10-22 project snapshot release](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/releases/tag/project-snapshot-2026-10-22), with original-path restoration instructions and SHA-256 checksums.
+
 ## Upload and analyze a video
 
 The website accepts MP4/MOV/AVI uploads, follows persistent processing, reopens saved analyses and exports annotated video, readable HTML reports and JSON/CSV evidence. Home plays three distinct attributed tennis clips. Build the frontend with `pnpm build` in `frontend/`, then run `python scripts/run/serve_product.py` from the repository root using the verified product Python environment. Open [the local website](http://127.0.0.1:8000/).

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "verified_at_utc": "2026-10-22T10:28:32.171516+00:00",
+  "manifest_sha256": "83512c469995c5dea52ac004d94cbb7dfc544612f40a6729556468e26c1252f1",
+  "archive_parts": 48,
+  "supplemental_files": 526806,
+  "unique_objects": 150033,
+  "source_bytes": 42855830024,
+  "archive_bytes": 24392857778,
+  "verification": [
+    "Every archive part SHA-256 matches index.json",
+    "Every unique archived object SHA-256 and byte length matches the manifest",
+    "Manifest file and object counts match index.json",
+    "No original project paths missing from final inventory coverage audit",
+    "Restoration smoke check: duplicate content, empty and Unicode files, existing-file protection, explicit overwrite, corruption detection"
+  ],
+  "credential_scan": {
+    "initial_text_files": 288100,
+    "high_confidence_pattern_findings": 0,
+    "final_delta": "PASS"
+  },
+  "final_inventory_files": 535953,
+  "missing_project_paths": 0,
+  "remote_upload_verification": "Pending; final GitHub asset digests are verified separately before publishing."
+}

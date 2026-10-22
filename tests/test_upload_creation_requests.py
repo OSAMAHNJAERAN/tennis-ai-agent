@@ -109,13 +109,13 @@ def test_atomic_creation_rollback_has_no_batch_session_draft_or_ack(service, mon
         save(*args)
         raise OSError('simulated failure before transaction commit')
 
-    monkeypatch.setattr(CreationRequests, 'save', reject)
+    monkeypatch.setattr(CreationRequests, 'save', staticmethod(reject))
     with pytest.raises(OSError):
         client.post('/api/batches', headers=HEADER, json=BATCH)
     with app.state.store.connect() as conn:
         for table in ('upload_sessions', 'upload_batches', 'matches', 'upload_creation_requests'):
             assert conn.execute('SELECT COUNT(*) FROM '+table).fetchone()[0] == 0
-    monkeypatch.setattr(CreationRequests, 'save', save)
+    monkeypatch.setattr(CreationRequests, 'save', staticmethod(save))
     assert client.post('/api/batches', headers=HEADER, json=BATCH).status_code == 201
 
 
@@ -149,10 +149,87 @@ def test_owner_isolation_and_cross_owner_profile_metadata_are_enforced(tmp_path)
         assert bob.post('/api/batches', headers=HEADER, json=malicious).status_code == 422
         assert guest.post('/api/batches', headers=HEADER, json=BATCH).status_code == 401
         one = alice.post('/api/batches', headers=HEADER, json=BATCH)
-        two = bob.post('/api/batches', headers=HEADER, json=BATCH)
+        two = bob.post('/api/batches', headers={'Idempotency-Key': 'creation-request-test-bob-0002'}, json=BATCH)
         assert one.status_code == two.status_code == 201
         assert one.json()['id'] != two.json()['id']
         assert bob.get('/api/batches/'+one.json()['id']).status_code == 404
+
+
+@pytest.mark.parametrize('invalid', [
+    {**BATCH, 'metadata': {'participants': [{'profile_id': 'missing-profile'}, {}]}},
+    {**BATCH, 'metadata': {'match_date': 'invalid-date'}},
+    {**BATCH, 'files': [{**FILE, 'filename': 'invalid.exe', 'clip_index': 0}]},
+])
+def test_confirmed_rejection_tombstones_old_key_and_permits_corrected_new_intent(service, invalid):
+    client, app, _ = service
+    refused = client.post('/api/batches', headers=HEADER, json=invalid)
+    assert refused.status_code in {415, 422}
+    assert refused.headers['Upload-Creation-Rejected'] == HEADER['Idempotency-Key']
+    # Even a delayed valid request with the rejected key cannot create later.
+    late = client.post('/api/batches', headers=HEADER, json=BATCH)
+    assert late.status_code == 409
+    assert late.headers['Upload-Creation-Rejected'] == HEADER['Idempotency-Key']
+    with app.state.store.connect() as conn:
+        assert conn.execute('SELECT COUNT(*) FROM upload_creation_rejections').fetchone()[0] == 1
+        for table in ('upload_sessions', 'upload_batches', 'matches', 'upload_creation_requests'):
+            assert conn.execute('SELECT COUNT(*) FROM '+table).fetchone()[0] == 0
+    corrected = client.post('/api/batches', headers={'Idempotency-Key': 'corrected-creation-request-0002'}, json=BATCH)
+    assert corrected.status_code == 201
+
+
+def test_accepted_key_is_never_reported_rejected_for_later_invalid_payload(service):
+    client, _, _ = service
+    accepted = client.post('/api/batches', headers=HEADER, json=BATCH)
+    assert accepted.status_code == 201
+    invalid = client.post('/api/batches', headers=HEADER, json={**BATCH, 'metadata': {'match_date': 'invalid-date'}})
+    assert invalid.status_code == 422 and 'Upload-Creation-Rejected' not in invalid.headers
+    conflict = client.post('/api/batches', headers=HEADER, json={**BATCH, 'metadata': {'tournament': 'Changed'}})
+    assert conflict.status_code == 409 and 'Upload-Creation-Rejected' not in conflict.headers
+    assert client.post('/api/batches', headers=HEADER, json=BATCH).json()['id'] == accepted.json()['id']
+
+
+def test_creation_expected_owner_rejects_cookie_switch_without_retiring_intended_key(service):
+    client, app, _ = service
+    for owners in [[('Upload-Creation-Owner', 'alice')],
+                   [('Upload-Creation-Owner', 'local'), ('Upload-Creation-Owner', 'local')]]:
+        response = client.post('/api/batches', headers=[*HEADER.items(), *owners], json=BATCH)
+        assert response.status_code == 409 and 'Upload-Creation-Rejected' not in response.headers
+    with app.state.store.connect() as conn:
+        assert conn.execute('SELECT COUNT(*) FROM upload_creation_rejections').fetchone()[0] == 0
+        assert conn.execute('SELECT COUNT(*) FROM upload_sessions').fetchone()[0] == 0
+    assert client.post('/api/batches', headers={**HEADER, 'Upload-Creation-Owner': 'local'}, json=BATCH).status_code == 201
+
+
+def test_concurrent_rejection_and_creation_never_acknowledge_both_for_same_key(service):
+    _, app, _ = service
+    barrier = Barrier(2)
+
+    def send(payload):
+        with TestClient(app) as client:
+            barrier.wait(timeout=5)
+            return client.post('/api/batches', headers=HEADER, json=payload)
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        valid = pool.submit(send, BATCH)
+        invalid = pool.submit(send, {**BATCH, 'metadata': {'match_date': 'invalid-date'}})
+        valid, invalid = valid.result(timeout=20), invalid.result(timeout=20)
+    assert invalid.status_code == 422
+    with app.state.store.connect() as conn:
+        accepted = conn.execute('SELECT COUNT(*) FROM upload_creation_requests').fetchone()[0]
+        rejected = conn.execute('SELECT COUNT(*) FROM upload_creation_rejections').fetchone()[0]
+    assert accepted + rejected == 1
+    assert (valid.status_code == 201) == bool(accepted)
+    assert ('Upload-Creation-Rejected' in invalid.headers) == bool(rejected)
+
+
+def test_creation_fingerprint_normalizes_typed_defaults_and_json_key_order(service):
+    client, _, _ = service
+    accepted = client.post('/api/uploads', headers=HEADER, json=FILE)
+    expanded = {key: value for key, value in reversed(list({**FILE, 'match_id': None,
+        'batch_id': None, 'clip_index': None, 'start_offset_seconds': None}.items()))}
+    replay = client.post('/api/uploads', headers=HEADER, json=expanded)
+    assert accepted.status_code == replay.status_code == 201
+    assert replay.json()['id'] == accepted.json()['id']
 
 
 @pytest.mark.parametrize('failure', ['before', 'after'])

@@ -87,7 +87,7 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
         if 'error' not in columns:
             conn.execute('ALTER TABLE upload_sessions ADD COLUMN error TEXT')
         conn.execute('CREATE INDEX IF NOT EXISTS uploads_owner ON upload_sessions(owner_id)')
-    router = APIRouter(prefix='/api')
+    router = APIRouter(prefix='/api', route_class=CreationRequests.route_class(jobs))
 
     def check_storage(owner_id):
         with jobs.connect() as conn:
@@ -130,6 +130,7 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
 
     @router.post('/uploads', status_code=201)
     def create(spec: UploadSpec, request: Request, owner_id: str = Depends(current_owner)):
+        creations.check_owner(request, owner_id)
         key, fingerprint = creations.key(request), creations.fingerprint(spec)
         with jobs.connect() as conn:
             conn.execute('BEGIN IMMEDIATE')
@@ -285,6 +286,7 @@ def upload_router(jobs, settings, ensure_worker, *, quotas=None):
 
     @router.post('/batches', status_code=201)
     def batch(spec: BatchSpec, request: Request, owner_id: str = Depends(current_owner)):
+        creations.check_owner(request, owner_id)
         key, fingerprint = creations.key(request), creations.fingerprint(spec)
         with jobs.connect() as conn:
             conn.execute('BEGIN IMMEDIATE')

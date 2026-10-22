@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "reviewer": "native_pipeline_fixture",
+  "review_type": "READ_ONLY_STATIC_BACKEND_REVIEW",
+  "scope": "Initial upload/batch creation acknowledgement, durable rejection tombstones, optional expected-owner admission and transaction races",
+  "outcome": "NO_BLOCKING_FINDINGS_IN_REVIEWED_BACKEND",
+  "source_pins": [
+    {
+      "path": "src/api/creation_requests.py",
+      "sha256": "9076dca4b6c7e67bf214e64d050bc23f5630f83b139d6306e1ca586ed8157c91",
+      "bytes": 7239
+    },
+    {
+      "path": "src/api/uploads.py",
+      "sha256": "f080b28de23f0c839fa9037f561d0f1d6205e9983569f579703877cbfbdb59e2",
+      "bytes": 18749
+    },
+    {
+      "path": "tests/test_upload_creation_requests.py",
+      "sha256": "63911834cb4943feebca9703fb6acb2cccae00b8236c4e86e27110af4dda3b25",
+      "bytes": 14624
+    }
+  ],
+  "findings": [],
+  "verified_invariants": [
+    {
+      "name": "Creation admission is atomic",
+      "evidence": [
+        "src/api/uploads.py:136",
+        "src/api/uploads.py:145",
+        "src/api/uploads.py:288",
+        "src/api/uploads.py:310"
+      ],
+      "conclusion": "BEGIN IMMEDIATE covers rejected/accepted-key lookup, validation, quota admission, every new draft/batch/session row and saved acknowledgement on one connection. Exceptions unwind the connection transaction before rejection handling."
+    },
+    {
+      "name": "Confirmed rejection cannot race a later same-key creation",
+      "evidence": [
+        "src/api/creation_requests.py:37",
+        "src/api/creation_requests.py:42",
+        "src/api/creation_requests.py:100"
+      ],
+      "conclusion": "The second BEGIN IMMEDIATE transaction refuses to tombstone an accepted key. Otherwise the tombstone commits before a rejection header is emitted, and later creation checks the tombstone under the same serialized write admission."
+    },
+    {
+      "name": "Schema and application 4xx rejection share the same durable proof",
+      "evidence": [
+        "src/api/creation_requests.py:50",
+        "src/api/creation_requests.py:60",
+        "src/api/creation_requests.py:75"
+      ],
+      "conclusion": "The custom APIRoute handles RequestValidationError and HTTPException only for the two creation POST paths. It emits the exact-key rejection marker only after reject returns following a successful transaction exit. Existing accepted keys, invalid/duplicate keys, expected-owner mismatch and 5xx exceptions do not receive this proof."
+    },
+    {
+      "name": "Owner binding precedes creation and rejection",
+      "evidence": [
+        "src/api/creation_requests.py:32",
+        "src/api/creation_requests.py:67",
+        "src/api/uploads.py:138",
+        "src/api/uploads.py:290"
+      ],
+      "conclusion": "When supplied, one Upload-Creation-Owner value must exactly equal authenticated current_owner. Both normal handlers and the schema-error wrapper enforce this before admitting or retiring the key. Duplicate and mismatched owner values fail without a rejection marker."
+    },
+    {
+      "name": "Canonicalization and replay preserve original admission",
+      "evidence": [
+        "src/api/creation_requests.py:94",
+        "src/api/creation_requests.py:107",
+        "src/api/uploads.py:142",
+        "src/api/uploads.py:294"
+      ],
+      "conclusion": "Validated Pydantic model dumps with sorted JSON keys bind payloads, including typed defaults. Matching accepted keys bypass new quota/draft admission and return owner-scoped current sessions in the saved order. Different payloads or creation kinds cannot reuse an accepted key."
+    }
+  ],
+  "test_source_review": [
+    "test_confirmed_rejection_tombstones_old_key_and_permits_corrected_new_intent",
+    "test_accepted_key_is_never_reported_rejected_for_later_invalid_payload",
+    "test_creation_expected_owner_rejects_cookie_switch_without_retiring_intended_key",
+    "test_concurrent_rejection_and_creation_never_acknowledge_both_for_same_key",
+    "test_creation_fingerprint_normalizes_typed_defaults_and_json_key_order",
+    "test_actual_creation_process_exit_is_all_or_none_and_replay_does_not_duplicate"
+  ],
+  "validation": {
+    "ast_parse_only": true,
+    "tests_executed_by_reviewer": false,
+    "application_or_model_modules_imported_by_reviewer": false,
+    "hardware_resource_probes": false,
+    "parent_reported_tests": {
+      "checks_passed": 196,
+      "elapsed_seconds": 59.74,
+      "independently_rerun_by_reviewer": false
+    }
+  },
+  "limits": [
+    "This is static inspection of the pinned files, not an independently executed concurrency or HTTP/browser test.",
+    "Expected-owner binding is optional for API compatibility; clients omitting that header use the authenticated request owner.",
+    "Different idempotency keys remain distinct requests. Browser storage failure and cross-tab intent coordination are client concerns outside this backend-only closure.",
+    "No power-loss, actual deployment, model qualification, long-match capacity or live-system claim is made."
+  ]
+}

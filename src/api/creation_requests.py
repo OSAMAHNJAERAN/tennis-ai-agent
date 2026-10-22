@@ -1,11 +1,21 @@
 """Creation acknowledgement identities committed with their upload sessions."""
 import hashlib
 import json
+import logging
+import sqlite3
 
 from fastapi import HTTPException
+from fastapi.exception_handlers import request_validation_exception_handler
+from fastapi.exceptions import RequestValidationError
+from fastapi.routing import APIRoute
+from starlette.concurrency import run_in_threadpool
 
 from src.api.jobs import utc_now
 from src.api.retry_intents import KEY
+
+LOGGER = logging.getLogger(__name__)
+REJECTED_HEADER = 'Upload-Creation-Rejected'
+OWNER_HEADER = 'Upload-Creation-Owner'
 
 
 class CreationRequests:
@@ -15,6 +25,62 @@ class CreationRequests:
                 owner_id TEXT NOT NULL, intent_key TEXT NOT NULL, kind TEXT NOT NULL,
                 payload_sha256 TEXT NOT NULL, descriptor_json TEXT NOT NULL,
                 created_at TEXT NOT NULL, PRIMARY KEY(owner_id,intent_key))''')
+            conn.execute('''CREATE TABLE IF NOT EXISTS upload_creation_rejections (
+                owner_id TEXT NOT NULL, intent_key TEXT NOT NULL, created_at TEXT NOT NULL,
+                PRIMARY KEY(owner_id,intent_key))''')
+
+    @staticmethod
+    def check_owner(request, owner_id):
+        owners = request.headers.getlist(OWNER_HEADER)
+        if owners and owners != [owner_id]:
+            raise HTTPException(409, 'Your account changed. Reconnect before creating an upload.')
+
+    @staticmethod
+    def reject(jobs, owner_id, key):
+        # The tombstone prevents an already in-flight old-key request from
+        # creating after a confirmed rejection has permitted a new intent.
+        with jobs.connect() as conn:
+            conn.execute('BEGIN IMMEDIATE')
+            if conn.execute('SELECT 1 FROM upload_creation_requests WHERE owner_id=? AND intent_key=?',
+                            (owner_id, key)).fetchone():
+                return False
+            conn.execute('INSERT OR IGNORE INTO upload_creation_rejections VALUES (?,?,?)',
+                         (owner_id, key, utc_now()))
+        return True
+
+    @classmethod
+    def route_class(cls, jobs):
+        class CreationRoute(APIRoute):
+            def get_route_handler(self):
+                original = super().get_route_handler()
+
+                async def route(request):
+                    try:
+                        return await original(request)
+                    except (HTTPException, RequestValidationError) as exc:
+                        status = 422 if isinstance(exc, RequestValidationError) else exc.status_code
+                        rejected = False
+                        if request.method == 'POST' and request.url.path in {'/api/uploads', '/api/batches'} and 400 <= status < 500:
+                            try:
+                                owner_id = request.state.owner_id
+                                cls.check_owner(request, owner_id)
+                                key = cls.key(request)
+                                rejected = await run_in_threadpool(cls.reject, jobs, owner_id, key)
+                            except HTTPException:
+                                pass
+                            except (OSError, sqlite3.Error):
+                                LOGGER.exception('Could not confirm upload creation rejection')
+                        if rejected:
+                            if isinstance(exc, RequestValidationError):
+                                response = await request_validation_exception_handler(request, exc)
+                                response.headers[REJECTED_HEADER] = key
+                                return response
+                            exc.headers = {**(exc.headers or {}), REJECTED_HEADER: key}
+                        raise
+
+                return route
+
+        return CreationRoute
 
     @staticmethod
     def key(request):
@@ -32,6 +98,9 @@ class CreationRequests:
     def find(conn, owner_id, key, kind, fingerprint):
         if not conn.in_transaction:
             raise RuntimeError('Creation admission requires the caller write transaction')
+        if conn.execute('SELECT 1 FROM upload_creation_rejections WHERE owner_id=? AND intent_key=?',
+                        (owner_id, key)).fetchone():
+            raise HTTPException(409, 'This upload request was rejected. Submit a new request after correcting the problem.')
         row = conn.execute('SELECT * FROM upload_creation_requests WHERE owner_id=? AND intent_key=?',
                            (owner_id, key)).fetchone()
         if row is None:
