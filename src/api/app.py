@@ -146,10 +146,14 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
         with store.connect() as conn:
             return quotas.snapshot(conn, owner_id)
 
+    @app.post('/api/usage/reconcile')
+    def reconcile_usage(owner_id: str = Depends(current_owner)):
+        return quotas.reconcile_owner(owner_id)
+
     def reserve(analysis_id, owner_id, size, kind):
         with store.connect() as conn:
             conn.execute('BEGIN IMMEDIATE')
-            quotas.reserve(conn, analysis_id, owner_id, size, kind=kind)
+            quotas.reserve(conn, analysis_id, owner_id, size, kind=kind, recovery_version=1)
 
     def release(analysis_id):
         with store.connect() as conn:
@@ -160,6 +164,29 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
         with store.connect() as conn:
             conn.execute('BEGIN IMMEDIATE')
             quotas.check_storage(conn, owner_id)
+
+    async def upload_operation(operation):
+        """Finish in-flight I/O before a cancelled request drops its lease.
+
+        Native asyncio cancellation can leave an executor thread running even
+        after run_in_threadpool unwinds. Shield and drain each operation so
+        settlement cannot race a still-running queue insertion or file write.
+        Request body receives themselves remain cancellable.
+        """
+        task = asyncio.ensure_future(operation)
+        try:
+            return await asyncio.shield(task)
+        except asyncio.CancelledError:
+            while not task.done():
+                try:
+                    await asyncio.shield(task)
+                except asyncio.CancelledError:
+                    continue
+                except Exception:
+                    break
+            if not task.cancelled():
+                task.exception()  # Retrieve failures; cancellation remains authoritative.
+            raise
 
     def settle_reservation(analysis_id, extension, *, accepted=False):
         """Preserve durable acceptance and the request's original failure."""
@@ -227,36 +254,65 @@ def create_app(settings=None, start_worker=True, demos_manifest=None, frontend_r
         if declared is not None and (not declared.isdigit() or int(declared) > settings.max_upload_bytes):
             raise HTTPException(413, 'Video exceeds the upload size limit.')
         analysis_id = store.new_id()
-        await run_in_threadpool(reserve, analysis_id, owner_id,
-                                int(declared) if declared is not None else settings.max_upload_bytes, 'legacy')
-        directory = store.upload_dir(analysis_id)
-        temporary = directory / 'upload.part'
-        size, header = 0, b''
-        accepted = False
+        # Hold across streaming, durable queue insertion and final settlement.
+        # Recovery takes this same OS lock nonblocking before releasing capacity.
         try:
-            directory.mkdir(parents=True)
-            async with aiofiles.open(temporary, 'xb') as handle:
-                async for chunk in request.stream():
-                    size += len(chunk)
-                    if size > settings.max_upload_bytes or declared is not None and size > int(declared):
-                        raise HTTPException(413, 'Video exceeds the upload size limit.')
-                    if len(header) < 32:
-                        header = (header + chunk)[:32]
-                    await handle.write(chunk)
-            signature_ok = (header[:4] == b'RIFF' and header[8:12] == b'AVI ') if extension == '.avi' else (
-                header[4:8] in {b'ftyp', b'moov', b'mdat', b'wide', b'free', b'skip'})
-            if size < 12 or not signature_ok:
-                raise HTTPException(415, 'The file is not a supported video container. Export an MP4, MOV or AVI and try again.')
-            temporary.replace(directory / ('original' + extension))
-            await run_in_threadpool(check_storage, owner_id)
-            job = await run_in_threadpool(store.create, analysis_id, filename, extension, size, settings.config, match_id, owner_id)
-            accepted = True
-            ensure_worker()
-            return public_job(job)
-        except OSError as exc:
-            raise HTTPException(507, 'Video could not be stored. Check available disk space and try again.') from exc
+            request_lock = quotas.reservation_lock(analysis_id)
+            request_lock.acquire(timeout=0)
+        except (OSError, ValueError, Timeout):
+            raise HTTPException(503, 'Storage usage could not be checked. Please try again.') from None
+        try:
+            directory = store.upload_dir(analysis_id)
+            temporary = directory / 'upload.part'
+            size, header = 0, b''
+            accepted = False
+            reserved = False
+
+            async def reserve_request():
+                nonlocal reserved
+                await run_in_threadpool(reserve, analysis_id, owner_id,
+                                        int(declared) if declared is not None else settings.max_upload_bytes, 'legacy')
+                reserved = True
+
+            try:
+                await upload_operation(reserve_request())
+                directory.mkdir(parents=True)
+                handle = None
+
+                async def open_file():
+                    nonlocal handle
+                    handle = await aiofiles.open(temporary, 'xb')
+
+                try:
+                    await upload_operation(open_file())
+                    async for chunk in request.stream():
+                        size += len(chunk)
+                        if size > settings.max_upload_bytes or declared is not None and size > int(declared):
+                            raise HTTPException(413, 'Video exceeds the upload size limit.')
+                        if len(header) < 32:
+                            header = (header + chunk)[:32]
+                        await upload_operation(handle.write(chunk))
+                finally:
+                    if handle is not None:
+                        await upload_operation(handle.close())
+                signature_ok = (header[:4] == b'RIFF' and header[8:12] == b'AVI ') if extension == '.avi' else (
+                    header[4:8] in {b'ftyp', b'moov', b'mdat', b'wide', b'free', b'skip'})
+                if size < 12 or not signature_ok:
+                    raise HTTPException(415, 'The file is not a supported video container. Export an MP4, MOV or AVI and try again.')
+                temporary.replace(directory / ('original' + extension))
+                await upload_operation(run_in_threadpool(check_storage, owner_id))
+                job = await upload_operation(run_in_threadpool(store.create, analysis_id, filename, extension,
+                                                              size, settings.config, match_id, owner_id))
+                accepted = True
+                ensure_worker()
+                return public_job(job)
+            except OSError as exc:
+                raise HTTPException(507, 'Video could not be stored. Check available disk space and try again.') from exc
+            finally:
+                if reserved:
+                    await upload_operation(run_in_threadpool(settle_reservation, analysis_id, extension, accepted=accepted))
         finally:
-            await run_in_threadpool(settle_reservation, analysis_id, extension, accepted=accepted)
+            request_lock.release()
 
     @app.get('/api/analyses/{analysis_id}')
     def status(analysis_id: str, owner_id: str = Depends(current_owner)):

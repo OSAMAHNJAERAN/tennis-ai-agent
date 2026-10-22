@@ -229,10 +229,10 @@ def test_failed_release_preserves_acceptance_original_error_and_durable_owned_by
         bad = client.post('/api/analyses?filename=bad.mp4', content=b'x'*32)
         assert bad.status_code == 415
         assert client.get('/api/usage').json()['pending_jobs'] == 1
-        with jobs.connect() as conn:
-            orphan = conn.execute('SELECT analysis_id FROM resource_reservations WHERE active=1').fetchone()[0]
-            # Isolate the still-conservative orphan from the next acceptance.
-            conn.execute('UPDATE resource_reservations SET active=0 WHERE analysis_id=?', (orphan,))
+        recovered = client.post('/api/usage/reconcile')
+        assert recovered.status_code == 200
+        assert recovered.json()['reconciled_reservations'] == 1
+        assert recovered.json()['usage']['pending_jobs'] == 0
         accepted = client.post('/api/analyses?filename=match.mp4', content=VIDEO)
         assert accepted.status_code == 202
         ident = accepted.json()['id']

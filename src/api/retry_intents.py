@@ -11,6 +11,17 @@ from src.api.jobs import utc_now
 KEY = re.compile(r'[A-Za-z0-9_-]{16,128}\Z')
 
 
+def retry_lock_path(jobs, owner_id, key):
+    """One path shared by retry requests and nonblocking orphan recovery."""
+    if not isinstance(key, str) or KEY.fullmatch(key) is None:
+        raise ValueError('Invalid retry lock identity.')
+    from src.api.analysis_generation import _safe_path
+    directory = _safe_path(jobs.root/'retry-locks')
+    directory.mkdir(exist_ok=True)
+    name = hashlib.sha256((owner_id+'\0'+key).encode('utf-8')).hexdigest()+'.lock'
+    return _safe_path(directory/name)
+
+
 class RetryIntents:
     def __init__(self, jobs, quotas):
         self.jobs, self.quotas = jobs, quotas
@@ -25,12 +36,8 @@ class RetryIntents:
     def lock(self, owner_id, key):
         if not isinstance(key, str) or KEY.fullmatch(key) is None:
             raise HTTPException(422, 'Send a stable Idempotency-Key of 16–128 letters, digits, underscores or hyphens.')
-        from src.api.analysis_generation import _safe_path
-        directory = _safe_path(self.jobs.root/'retry-locks')
-        directory.mkdir(exist_ok=True)
-        name = hashlib.sha256((owner_id+'\0'+key).encode('utf-8')).hexdigest()+'.lock'
         try:
-            with FileLock(str(_safe_path(directory/name)), timeout=15):
+            with FileLock(str(retry_lock_path(self.jobs, owner_id, key)), timeout=15):
                 yield
         except Timeout as error:
             raise HTTPException(409, 'This retry request is still being accepted. Repeat it with the same Idempotency-Key.') from error

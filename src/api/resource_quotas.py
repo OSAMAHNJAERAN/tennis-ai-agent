@@ -18,6 +18,7 @@ import sqlite3
 import stat
 
 from fastapi import HTTPException
+from filelock import FileLock, Timeout
 
 
 _COMPONENT = re.compile(r'[A-Za-z0-9][A-Za-z0-9_-]{0,127}\Z')
@@ -31,12 +32,20 @@ class ResourceQuotas:
         self.root = Path(jobs.root)
         self.settings = settings
         with jobs.connect() as conn:
+            conn.execute('BEGIN IMMEDIATE')
             conn.execute('''CREATE TABLE IF NOT EXISTS resource_reservations (
                 analysis_id TEXT PRIMARY KEY, owner_id TEXT NOT NULL,
                 size_bytes INTEGER NOT NULL CHECK(size_bytes >= 0),
                 kind TEXT NOT NULL CHECK(kind IN ('legacy','retry')),
                 active INTEGER NOT NULL DEFAULT 1 CHECK(active IN (0,1)),
-                created_at TEXT NOT NULL, updated_at TEXT NOT NULL)''')
+                created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
+                recovery_version INTEGER NOT NULL DEFAULT 0 CHECK(recovery_version IN (0,1)))''')
+            columns = {row['name'] for row in conn.execute('PRAGMA table_info(resource_reservations)')}
+            if 'recovery_version' not in columns:
+                # Old legacy HTTP processes did not hold a lifetime lock. A
+                # new server cannot infer their death from a missing queue row.
+                conn.execute('ALTER TABLE resource_reservations ADD COLUMN '
+                             'recovery_version INTEGER NOT NULL DEFAULT 0 CHECK(recovery_version IN (0,1))')
             conn.execute('CREATE INDEX IF NOT EXISTS resource_reservations_owner '
                          'ON resource_reservations(owner_id,active)')
 
@@ -207,12 +216,14 @@ class ResourceQuotas:
             raise HTTPException(507, 'Your storage limit has been reached.')
         return usage
 
-    def reserve(self, conn, analysis_id, owner_id, size_bytes, kind='legacy'):
+    def reserve(self, conn, analysis_id, owner_id, size_bytes, kind='legacy', *, recovery_version=0):
         self._write_transaction(conn)
         ident = self._component(analysis_id)
         size_bytes = self._integer(size_bytes)
         if kind not in {'legacy', 'retry'} or not isinstance(owner_id, str) or not owner_id:
             raise ValueError('Invalid resource reservation.')
+        if type(recovery_version) is not int or recovery_version not in (0, 1):
+            raise ValueError('Invalid reservation recovery protocol.')
         old = conn.execute('SELECT owner_id,size_bytes,kind,active FROM resource_reservations WHERE analysis_id=?',
                            (ident,)).fetchone()
         if old is not None:
@@ -228,8 +239,9 @@ class ResourceQuotas:
         conn.execute('SAVEPOINT resource_quota_reserve')
         try:
             conn.execute('INSERT INTO resource_reservations '
-                         '(analysis_id,owner_id,size_bytes,kind,active,created_at,updated_at) VALUES (?,?,?,?,1,?,?)',
-                         (ident, owner_id, size_bytes, kind, now, now))
+                         '(analysis_id,owner_id,size_bytes,kind,active,created_at,updated_at,recovery_version) '
+                         'VALUES (?,?,?,?,1,?,?,?)',
+                         (ident, owner_id, size_bytes, kind, now, now, recovery_version))
             usage = self.check(conn, owner_id)
         except Exception:
             conn.execute('ROLLBACK TO resource_quota_reserve')
@@ -242,3 +254,108 @@ class ResourceQuotas:
         self._write_transaction(conn)
         conn.execute('UPDATE resource_reservations SET active=0,updated_at=? WHERE analysis_id=? AND active=1',
                      (datetime.now(timezone.utc).isoformat(), self._component(analysis_id)))
+
+    def reservation_lock(self, analysis_id):
+        """Hold before reserving a version-1 legacy request until settlement.
+
+        Never unlink lockfiles: a second inode would split the OS-backed lock.
+        This lock is independent of database connections and the worker lock.
+        """
+        ident = self._component(analysis_id)
+        directory = self._checked_path('reservation-locks')
+        directory.mkdir(exist_ok=True)
+        return FileLock(str(self._checked_path('reservation-locks', ident + '.lock')), timeout=15)
+
+    def _recovery_identity(self, conn, row):
+        """Return a stable lock identity only for a known lifetime protocol."""
+        if row['kind'] == 'legacy':
+            return ('legacy', row['analysis_id']) if row['recovery_version'] == 1 else None
+        if not self._table(conn, 'analysis_retry_intents'):
+            return None
+        intent = conn.execute('SELECT * FROM analysis_retry_intents WHERE analysis_id=?',
+                              (row['analysis_id'],)).fetchone()
+        if (intent is None or intent['owner_id'] != row['owner_id']
+                or intent['size_bytes'] != row['size_bytes']):
+            return None
+        from src.api.retry_intents import KEY
+        if not isinstance(intent['intent_key'], str) or KEY.fullmatch(intent['intent_key']) is None:
+            return None
+        source = conn.execute('SELECT owner_id FROM analyses WHERE id=?',
+                              (intent['source_analysis_id'],)).fetchone()
+        if source is None or source['owner_id'] != row['owner_id']:
+            return None
+        # Retry requests already held this owner/key lock in previous versions.
+        return ('retry', intent['owner_id'], intent['intent_key'], intent['source_analysis_id'])
+
+    def reconcile_owner(self, owner_id):
+        """Release provably abandoned reservations, retaining every owned byte.
+
+        Nonblocking request locks precede each short writer transaction. Never
+        infer liveness from age, heartbeat or a missing analysis. Recheck under
+        the writer lock so admission/acceptance cannot race the decision. Each
+        row commits independently; retries after a partial failure are safe.
+        """
+        if not isinstance(owner_id, str) or not owner_id:
+            raise ValueError('Invalid reservation owner.')
+        counts = {'reconciled_reservations': 0, 'busy_reservations': 0,
+                  'unverified_reservations': 0}
+        previous = ''
+        try:
+            while True:
+                with self.jobs.connect() as conn:
+                    row = conn.execute('SELECT * FROM resource_reservations WHERE owner_id=? '
+                                       'AND active=1 AND analysis_id>? ORDER BY analysis_id LIMIT 1',
+                                       (owner_id, previous)).fetchone()
+                    if row is None:
+                        break
+                    previous = self._component(row['analysis_id'])
+                    identity = self._recovery_identity(conn, row)
+                if identity is None:
+                    counts['unverified_reservations'] += 1
+                    continue
+                if identity[0] == 'legacy':
+                    lock = self.reservation_lock(previous)
+                else:
+                    from src.api.retry_intents import retry_lock_path
+                    lock = FileLock(str(retry_lock_path(self.jobs, owner_id, identity[2])), timeout=0)
+                try:
+                    lock.acquire(timeout=0)
+                except Timeout:
+                    counts['busy_reservations'] += 1
+                    continue
+                try:
+                    with self.jobs.connect() as conn:
+                        conn.execute('BEGIN IMMEDIATE')
+                        current = conn.execute('SELECT * FROM resource_reservations '
+                                               'WHERE analysis_id=? AND owner_id=? AND active=1',
+                                               (previous, owner_id)).fetchone()
+                        if current is None:
+                            continue
+                        if (dict(current) != dict(row)
+                                or self._recovery_identity(conn, current) != identity):
+                            counts['unverified_reservations'] += 1
+                            continue
+                        # A reservation must never retire an independently
+                        # resumable session, including a cross-owner collision.
+                        if self._table(conn, 'upload_sessions') and conn.execute(
+                                'SELECT 1 FROM upload_sessions WHERE analysis_id=?', (previous,)).fetchone():
+                            counts['unverified_reservations'] += 1
+                            continue
+                        accepted = conn.execute('SELECT * FROM analyses WHERE id=?', (previous,)).fetchone()
+                        if accepted is not None and (accepted['owner_id'] != owner_id or (
+                                identity[0] == 'retry' and accepted['retry_of'] != identity[3])):
+                            counts['unverified_reservations'] += 1
+                            continue
+                        # Accepted work remains charged by analyses. Inactive
+                        # reservation rows still attribute all retained paths.
+                        conn.execute('UPDATE resource_reservations SET active=0,updated_at=? '
+                                     'WHERE analysis_id=? AND owner_id=? AND active=1',
+                                     (datetime.now(timezone.utc).isoformat(), previous, owner_id))
+                    counts['reconciled_reservations'] += 1
+                finally:
+                    lock.release()
+            with self.jobs.connect() as conn:
+                conn.execute('BEGIN')
+                return {**counts, 'usage': self.snapshot(conn, owner_id)}
+        except (OSError, sqlite3.Error, ValueError, TypeError, OverflowError):
+            raise HTTPException(503, _UNAVAILABLE) from None

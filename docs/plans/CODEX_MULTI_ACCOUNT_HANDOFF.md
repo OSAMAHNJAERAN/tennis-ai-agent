@@ -1,12 +1,18 @@
 # CURRENT HANDOFF
 
-- Checkpoint time: 2026-10-22 14:49 UTC / 22:49 Asia/Singapore (UTC+08:00).
+- Checkpoint time: 2026-10-22 15:13 UTC.
 - Repository: https://github.com/OSAMAHNJAERAN/tennis-ai-agent.git
 - Working/integration branch: `codex/yolo26-platform`; use the existing isolated checkout, no worktree is needed.
 - **Verified pushed evidence SHA: `fac36f80f8a776f9896b006cb31bbd68ef2e4f5a`**, including implementation SHA `c7e4dbc5ceaeebe4d65f65b193bb9fed118855ab` and fixture checkpoint `5335af95ac788acfe37b6765bed7e8ddecf1626e`. Each ordinary push matched a separate `git ls-remote origin refs/heads/codex/yolo26-platform` read-back. The final metadata commit records these verified revisions; resolve its current tip with the same remote command rather than expecting a commit to embed its own SHA.
 - Existing open [PR #1](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/pull/1), head `codex/vision-system-upgrade` / `f854804f4f0d3766e70218d59f06cd6ebb8aaff1`, base `master` / `644808f2130ece14dabd2a502db5ff4bc78eeea6`, is already an ancestor of integration. Public GitHub HTML and native Git refs were inspected. It remains unmerged/open and untouched. No new PR is needed for the authorized direct fast-forward checkpoints. GitHub REST/GraphQL egress remains forbidden; no new credentials were requested.
 
 ## Last completed step
+
+**Owner-reservation recovery implementation checkpoint (in progress toward final closure).** Added authenticated `POST /api/usage/reconcile`, conservative versioned legacy lifetime locks, retry-key lock reconciliation and cancellation-drained upload operations. The real failed-release regression now calls recovery instead of manually changing SQL. The guarded coupled run passed **218 tests**, zero failures/errors/skips, 45.07 seconds, stable source pins, zero inference imports/attempts, zero synthetic resource calls and zero actual host/GPU probes: `artifacts/validation/yolo26_execution_2026-10-22/owner_reservation_recovery_v1/receipt.json`. This checkpoint is committed/pushed with the handoff; the exact verified implementation SHA will be recorded after independent remote read-back. No source change is claimed remotely saved until that read-back.
+
+Recovery retires only inactive-request capacity, never files, sessions, accepted jobs or upload creation tombstones. Pre-upgrade legacy reservations stay conservatively charged. Documentation: [quota recovery contract](OWNER_RESOURCE_QUOTAS.md). Final negative/concurrent/crash expansion remains active below.
+
+Earlier completed checkpoint:
 
 **Complete in the synthetic software scope — Section 30 phase 9 / requirements 21–22: actual owner browser upload/recovery and source-bound correction/replay/download journey.** Resume after it; do not repeat the initial upload intent implementation or restart the project audit.
 
@@ -25,16 +31,11 @@ The browser found a real native file-input defect. `frontend/src/pages/Upload.ts
 
 ## Active unfinished task and exact next action
 
-**Not attempted here — Section 30 phase 9 / requirement 22: owner-scoped orphan-reservation recovery**, then retention/deletion. This is the next actionable product step, before public capacity. Do not reopen completed browser work unless a regression requires it.
+**In progress — Section 30 phase 9 / requirement 22: final orphan-reservation recovery closure.** The first 218-check coupled implementation passes. Next add negative retry-map and simultaneous recovery cases, an actual legacy process-exit case, and strengthen cancellation draining against private-operation task cancellation during event-loop shutdown. Preserve the passing v1 evidence and run into a fresh v2 directory. Re-review source, record final tests and independently verify a normal GitHub push before declaring this scope complete.
 
-Start by examining the already retained cleanup-failure case and reserve/release paths:
+First inspect `src/api/app.py::upload_operation`, `ResourceQuotas.reconcile_owner`, and `tests/test_resource_quota_recovery.py`. The current helper shields/drains a private asyncio Task; replace the operation with a directly tracked executor Future if proving shutdown cancellation can target that private task. Normal native request cancellation is already covered. Next add four invalid retry-map cases and concurrent reconciliation, then run the guarded coupled suite from a fresh sibling of `owner_reservation_recovery_v1`.
 
-```bash
-cd /workspace/tennis-ai-agent
-rg -n 'orphan|failed_release|resource_reservations' tests/test_owner_quota_api.py src/api/resource_quotas.py src/api/uploads.py
-```
-
-`tests/test_owner_quota_api.py::test_failed_release_preserves_acceptance_original_error_and_durable_owned_bytes` currently manually marks an orphan reservation inactive to isolate its later assertions. Add a real owner-scoped, retry-safe recovery path around `ResourceQuotas.reserve/release/snapshot` and the legacy/upload admission cleanup. First add failure/crash cases proving an abandoned reservation can be reconciled without freeing accepted work, stealing another owner's budget, dropping retained-byte accounting, reviving retired creation intents or deleting user media. Keep real resource/model probes disabled in these software tests, and retain conservative charging until durable reconciliation establishes safety. Success requires restart/idempotency/owner isolation checks and a documented user/API recovery contract. Then implement explicit owner deletion/expiry under the retained-byte policy; public capacity and backup/account recovery remain later work.
+After recovery closure, implement explicit owner deletion of abandoned unaccepted payloads under a clear retention policy. Full accepted-analysis deletion needs coordinated worker, retry/correction and streaming-reader lifecycle guards; a bare recursive delete is unsafe. No automatic expiry default exists and no TTL is inferred. Public capacity, backup/account recovery, original qualified inference and all scientific gates remain later work.
 
 ## Runtime, artifacts and blockers
 
