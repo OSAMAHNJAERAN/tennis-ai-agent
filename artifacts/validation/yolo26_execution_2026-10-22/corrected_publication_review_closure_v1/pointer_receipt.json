@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "scope": "ACTUAL_NATIVE_SYNTHETIC_PREPARATION_AND_CAS; POINTER_TEMP_CORRUPTED_AFTER_NATIVE_WRITE_BEFORE_FINAL_CALLBACK",
+  "publication_token": null,
+  "publication_error": "ValueError: Corrected publication: complete candidate pointer differs from trusted generation",
+  "mutations": [
+    "0da443ba4a7b4753addf1b496020f8d3.store.tmp"
+  ],
+  "current_pointer_unchanged": true,
+  "old_result_readable": true,
+  "private_preparation_unchanged": true,
+  "leftover_delivery_seals": [],
+  "source_before": {
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "src/api/correction_worker.py": "a83f13f531494f2f0fd9bd55986ad2916574a59c696d04b3f08a2f352f74ed95",
+    "src/api/corrections.py": "a95feea1c83871dbfb9fa3c35bbe8d245af5a4b06ba3cdd4e3d67b8235e50184",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "tests/test_corrected_publication.py": "f9ef03268659f9015ccdf4f12e025f76b4c3c30c99e3b63fa74554d84067660c",
+    "tests/test_corrected_preparation.py": "44e5f526475e2036c710bd2cb94a83bd5d1500beba61357da59db8aa5d92fccf",
+    "src/scoring/corrected_preparation.py": "3acaebe4141b7e9eb17f43e131beef34293eda60b911fa440ce080b1380cf5a3"
+  },
+  "source_after": {
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "src/api/correction_worker.py": "a83f13f531494f2f0fd9bd55986ad2916574a59c696d04b3f08a2f352f74ed95",
+    "src/api/corrections.py": "a95feea1c83871dbfb9fa3c35bbe8d245af5a4b06ba3cdd4e3d67b8235e50184",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "tests/test_corrected_publication.py": "f9ef03268659f9015ccdf4f12e025f76b4c3c30c99e3b63fa74554d84067660c",
+    "tests/test_corrected_preparation.py": "44e5f526475e2036c710bd2cb94a83bd5d1500beba61357da59db8aa5d92fccf",
+    "src/scoring/corrected_preparation.py": "3acaebe4141b7e9eb17f43e131beef34293eda60b911fa440ce080b1380cf5a3"
+  },
+  "source_unchanged": true,
+  "forbidden_import_attempts": [],
+  "torch_imported": false,
+  "ultralytics_imported": false,
+  "seconds": 10.996127900085412
+}

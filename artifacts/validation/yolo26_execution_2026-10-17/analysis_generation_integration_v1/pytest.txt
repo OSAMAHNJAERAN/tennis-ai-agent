@@ -1,0 +1,193 @@
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+.........................................................FFF............ [ 82%]
+...............................................                          [100%]
+================================== FAILURES ===================================
+_ test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation[browser_transcode] _
+
+publication_job = namespace(store=<src.api.jobs.JobStore object at 0x00000274A70CBAD0>, job={'id': 'match_64ae53c239d64e79a898decc06b82a...test\\test_same_job_restart_skips_se0\\storage\\analyses\\match_64ae53c239d64e79a898decc06b82a03\\annotated_web.mp4']])
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000274D7A5ABA0>
+boundary = 'browser_transcode'
+
+    @pytest.mark.parametrize('boundary', ['browser_transcode', 'result_build', 'after_publication'])
+    def test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation(
+            publication_job, monkeypatch, boundary):
+        from src.api.result_document import ResultDocument
+        fixture = publication_job
+        native_checkpoint_fixture(fixture, monkeypatch)
+        execute, build, finish = worker.execute, worker.build_result, fixture.store.finish
+        if boundary == 'browser_transcode':
+            def interrupted(args, **kwargs):
+                if '-crf' in args and args[args.index('-crf') + 1] == '20':
+                    raise KeyboardInterrupt('Simulated worker loss after sealed inference')
+                return execute(args, **kwargs)
+            monkeypatch.setattr(worker, 'execute', interrupted)
+        elif boundary == 'result_build':
+            def interrupted(*args, **kwargs):
+                raise KeyboardInterrupt('Simulated worker loss during result build')
+            monkeypatch.setattr(worker, 'build_result', interrupted)
+        else:
+            def interrupted(*args, **kwargs):
+                assert (fixture.output / '.result/current.store').is_file()
+                raise KeyboardInterrupt('Simulated worker loss after result publication')
+            monkeypatch.setattr(fixture.store, 'finish', interrupted)
+        with pytest.raises(KeyboardInterrupt, match='Simulated worker loss'):
+            worker.process_job(fixture.store, fixture.job, fixture.settings)
+        checkpoint = fixture.output / '.pipeline_checkpoint.json'
+        sealed = checkpoint.read_bytes()
+        before = {name: (fixture.output / name).read_bytes() for name in worker.REQUIRED_PIPELINE_FILES}
+        assert fixture.store.get(fixture.job['id'])['status'] == 'PROCESSING'
+        base = f'/api/analyses/{fixture.job["id"]}'
+        assert fixture.client.get(base + '/result').status_code == 409
+        assert fixture.client.get(base + '/media/annotated').status_code == 404
+        monkeypatch.setattr(worker, 'execute', execute)
+        monkeypatch.setattr(worker, 'build_result', build)
+        monkeypatch.setattr(fixture.store, 'finish', finish)
+        restarted = JobStore(fixture.settings.root)
+        restarted.recover_interrupted(lambda job: worker.recoverable_completed_job(restarted, job))
+        resumed = restarted.claim()
+        assert resumed['id'] == fixture.job['id'] and resumed['attempt'] == 2
+        worker.process_job(restarted, resumed, fixture.settings)
+        assert restarted.get(resumed['id'])['status'] == 'COMPLETED'
+        assert fixture.processing_calls.count('pipeline_stub') == 1
+        assert sum(isinstance(call, list) and '-stats_enc_pre' in call for call in fixture.processing_calls) == 1
+        assert checkpoint.read_bytes() == sealed
+        assert {name: (fixture.output / name).read_bytes() for name in before} == before
+>       assert fixture.client.get(base + '/result').json() == fixture.result
+E       AssertionError: assert {'analysisGen...pty': [], ...} == {'contractVer...e': None, ...}
+E         
+E         Omitting 7 identical items, use -vv to show
+E         Left contains 1 more item:
+E         {'analysisGeneration': 'a90d9925d4fd1b6a6234f4d3783b6eac6dee51023c476c00283c23fa59783d84'}
+E         Use -v to get more diff
+
+tests\test_worker_result_publication.py:342: AssertionError
+_ test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation[result_build] _
+
+publication_job = namespace(store=<src.api.jobs.JobStore object at 0x00000274D796C530>, job={'id': 'match_143f24aa11d04bdca127abdee89e3a...test\\test_same_job_restart_skips_se1\\storage\\analyses\\match_143f24aa11d04bdca127abdee89e3a27\\annotated_web.mp4']])
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000274D8B527B0>
+boundary = 'result_build'
+
+    @pytest.mark.parametrize('boundary', ['browser_transcode', 'result_build', 'after_publication'])
+    def test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation(
+            publication_job, monkeypatch, boundary):
+        from src.api.result_document import ResultDocument
+        fixture = publication_job
+        native_checkpoint_fixture(fixture, monkeypatch)
+        execute, build, finish = worker.execute, worker.build_result, fixture.store.finish
+        if boundary == 'browser_transcode':
+            def interrupted(args, **kwargs):
+                if '-crf' in args and args[args.index('-crf') + 1] == '20':
+                    raise KeyboardInterrupt('Simulated worker loss after sealed inference')
+                return execute(args, **kwargs)
+            monkeypatch.setattr(worker, 'execute', interrupted)
+        elif boundary == 'result_build':
+            def interrupted(*args, **kwargs):
+                raise KeyboardInterrupt('Simulated worker loss during result build')
+            monkeypatch.setattr(worker, 'build_result', interrupted)
+        else:
+            def interrupted(*args, **kwargs):
+                assert (fixture.output / '.result/current.store').is_file()
+                raise KeyboardInterrupt('Simulated worker loss after result publication')
+            monkeypatch.setattr(fixture.store, 'finish', interrupted)
+        with pytest.raises(KeyboardInterrupt, match='Simulated worker loss'):
+            worker.process_job(fixture.store, fixture.job, fixture.settings)
+        checkpoint = fixture.output / '.pipeline_checkpoint.json'
+        sealed = checkpoint.read_bytes()
+        before = {name: (fixture.output / name).read_bytes() for name in worker.REQUIRED_PIPELINE_FILES}
+        assert fixture.store.get(fixture.job['id'])['status'] == 'PROCESSING'
+        base = f'/api/analyses/{fixture.job["id"]}'
+        assert fixture.client.get(base + '/result').status_code == 409
+        assert fixture.client.get(base + '/media/annotated').status_code == 404
+        monkeypatch.setattr(worker, 'execute', execute)
+        monkeypatch.setattr(worker, 'build_result', build)
+        monkeypatch.setattr(fixture.store, 'finish', finish)
+        restarted = JobStore(fixture.settings.root)
+        restarted.recover_interrupted(lambda job: worker.recoverable_completed_job(restarted, job))
+        resumed = restarted.claim()
+        assert resumed['id'] == fixture.job['id'] and resumed['attempt'] == 2
+        worker.process_job(restarted, resumed, fixture.settings)
+        assert restarted.get(resumed['id'])['status'] == 'COMPLETED'
+        assert fixture.processing_calls.count('pipeline_stub') == 1
+        assert sum(isinstance(call, list) and '-stats_enc_pre' in call for call in fixture.processing_calls) == 1
+        assert checkpoint.read_bytes() == sealed
+        assert {name: (fixture.output / name).read_bytes() for name in before} == before
+>       assert fixture.client.get(base + '/result').json() == fixture.result
+E       AssertionError: assert {'analysisGen...pty': [], ...} == {'contractVer...e': None, ...}
+E         
+E         Omitting 7 identical items, use -vv to show
+E         Left contains 1 more item:
+E         {'analysisGeneration': 'be65ab86049d7de4457ac4bed502bf9309bc8bbd4b8d6236839a251d5ad68c6a'}
+E         Use -v to get more diff
+
+tests\test_worker_result_publication.py:342: AssertionError
+_ test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation[after_publication] _
+
+publication_job = namespace(store=<src.api.jobs.JobStore object at 0x00000274D8645250>, job={'id': 'match_ede427d398e04ddba51bf6040ac934...test\\test_same_job_restart_skips_se2\\storage\\analyses\\match_ede427d398e04ddba51bf6040ac93455\\annotated_web.mp4']])
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000274A70A5B00>
+boundary = 'after_publication'
+
+    @pytest.mark.parametrize('boundary', ['browser_transcode', 'result_build', 'after_publication'])
+    def test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation(
+            publication_job, monkeypatch, boundary):
+        from src.api.result_document import ResultDocument
+        fixture = publication_job
+        native_checkpoint_fixture(fixture, monkeypatch)
+        execute, build, finish = worker.execute, worker.build_result, fixture.store.finish
+        if boundary == 'browser_transcode':
+            def interrupted(args, **kwargs):
+                if '-crf' in args and args[args.index('-crf') + 1] == '20':
+                    raise KeyboardInterrupt('Simulated worker loss after sealed inference')
+                return execute(args, **kwargs)
+            monkeypatch.setattr(worker, 'execute', interrupted)
+        elif boundary == 'result_build':
+            def interrupted(*args, **kwargs):
+                raise KeyboardInterrupt('Simulated worker loss during result build')
+            monkeypatch.setattr(worker, 'build_result', interrupted)
+        else:
+            def interrupted(*args, **kwargs):
+                assert (fixture.output / '.result/current.store').is_file()
+                raise KeyboardInterrupt('Simulated worker loss after result publication')
+            monkeypatch.setattr(fixture.store, 'finish', interrupted)
+        with pytest.raises(KeyboardInterrupt, match='Simulated worker loss'):
+            worker.process_job(fixture.store, fixture.job, fixture.settings)
+        checkpoint = fixture.output / '.pipeline_checkpoint.json'
+        sealed = checkpoint.read_bytes()
+        before = {name: (fixture.output / name).read_bytes() for name in worker.REQUIRED_PIPELINE_FILES}
+        assert fixture.store.get(fixture.job['id'])['status'] == 'PROCESSING'
+        base = f'/api/analyses/{fixture.job["id"]}'
+        assert fixture.client.get(base + '/result').status_code == 409
+        assert fixture.client.get(base + '/media/annotated').status_code == 404
+        monkeypatch.setattr(worker, 'execute', execute)
+        monkeypatch.setattr(worker, 'build_result', build)
+        monkeypatch.setattr(fixture.store, 'finish', finish)
+        restarted = JobStore(fixture.settings.root)
+        restarted.recover_interrupted(lambda job: worker.recoverable_completed_job(restarted, job))
+        resumed = restarted.claim()
+        assert resumed['id'] == fixture.job['id'] and resumed['attempt'] == 2
+        worker.process_job(restarted, resumed, fixture.settings)
+        assert restarted.get(resumed['id'])['status'] == 'COMPLETED'
+        assert fixture.processing_calls.count('pipeline_stub') == 1
+        assert sum(isinstance(call, list) and '-stats_enc_pre' in call for call in fixture.processing_calls) == 1
+        assert checkpoint.read_bytes() == sealed
+        assert {name: (fixture.output / name).read_bytes() for name in before} == before
+>       assert fixture.client.get(base + '/result').json() == fixture.result
+E       AssertionError: assert {'analysisGen...pty': [], ...} == {'contractVer...e': None, ...}
+E         
+E         Omitting 7 identical items, use -vv to show
+E         Left contains 1 more item:
+E         {'analysisGeneration': '82a2d96030ce16f7d21761d6ccc05a2aeedf9b6e253beba781a6b84af0b2dd7a'}
+E         Use -v to get more diff
+
+tests\test_worker_result_publication.py:342: AssertionError
+============================== warnings summary ===============================
+artifacts\validation\yolo26_execution_2026-10-17\analysis_generation_integration_v1\run_checks.py:82
+  C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\yolo26_execution_2026-10-17\analysis_generation_integration_v1\run_checks.py:82: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    return original_import(name, *args, **kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_worker_result_publication.py::test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation[browser_transcode]
+FAILED tests/test_worker_result_publication.py::test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation[result_build]
+FAILED tests/test_worker_result_publication.py::test_same_job_restart_skips_sealed_inference_and_publishes_only_after_revalidation[after_publication]
+3 failed, 260 passed, 1 warning in 53.89s

@@ -13,11 +13,14 @@ class PoseFeatureExtractor:
     Efficiently processes targeted player crops around hit event frames without running full-frame inference.
     """
     
-    def __init__(self, model_path: str = "yolo11n-pose.pt", device: str = "cuda:0"):
+    def __init__(self, model_path: str = "yolo11n-pose.pt", device: str = "cuda:0", *, model=None):
         self.model_path = model_path
         self.device = device
-        self.model: Optional[YOLO] = None
-        self._init_model()
+        # The YOLO26 production path injects its existing participant model.
+        # Reusing it on a crop keeps the three-checkpoint model boundary.
+        self.model: Optional[YOLO] = model
+        if model is None:
+            self._init_model()
 
     def _init_model(self) -> None:
         try:

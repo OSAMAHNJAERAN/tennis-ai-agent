@@ -1,0 +1,38 @@
+{
+  "status": "PASS_METADATA_AND_PRIOR_USE_BINDINGS_ONLY",
+  "created_utc": "2026-10-09T12:01:43.4525337Z",
+  "reservation_path": "data\\yolo26\\caltennis_reference_reservation_v2.json",
+  "reservation_sha256": "23af7b2875abe45bcdcd3829e3d13bc79ae80245d70d7837996ff9cfafed0a95",
+  "source_bindings": [
+    {
+      "path": "data/yolo26/caltennis_reference_reservation_v1.json",
+      "passed": true,
+      "actual_sha256": "46786c02d25087178e85b0c7d7352577f7dacfcf54108b382ca296468cef2129"
+    },
+    {
+      "path": "data/external/caltennis_diagnostic/manifest.json",
+      "passed": true,
+      "actual_sha256": "d3085e890638064c974e045b25bae73aadeabf1c661137d02940d033cbcd7b3e"
+    },
+    {
+      "path": "docs/experiments/CALTENNIS_CALIBRATION_DIAGNOSTIC.md",
+      "passed": true,
+      "actual_sha256": "5c09d2d7eb06e6a8d0e4c4b5801a1939ba1da0bba1fb11a2f649d60f74c88650"
+    },
+    {
+      "path": "outputs/vision_upgrade_audit/caltennis_court_probe/report.json",
+      "passed": true,
+      "actual_sha256": "7a6faa987d2461ec882f1ac246e3dfd77d719a9f84c4085e41fe79a7a1a6a6d6"
+    },
+    {
+      "path": "data/external/caltennis_qualification/manifest.json",
+      "passed": true,
+      "actual_sha256": "4b6cb0df4ffd0247d16b1da976b8e34be25f533004130b202547579706e28579"
+    }
+  ],
+  "development_groups": 3,
+  "provisionally_reserved_groups": 2,
+  "newly_inspected_frames": 0,
+  "accuracy_qualified": false,
+  "limitation": "Bounded local prior-use audit is not proof of absence of undeclared inspection or participant overlap"
+}

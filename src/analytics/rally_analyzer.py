@@ -1,6 +1,7 @@
 from dataclasses import dataclass, asdict
 from typing import List, Optional, Dict, Any, Tuple
 from src.shot_analysis.shot_types import ShotEventEvidence, ShotType
+from src.utils.shot_evidence_sequence import require_shot_result_owner
 
 @dataclass
 class RallySegment:
@@ -46,24 +47,35 @@ class RallyAnalyzer:
         ending_reason: str = "",
         point_id: int = 1,
         fps: Optional[float] = None,
+        *,
+        result_owner=None,
     ) -> List[RallySegment]:
         """
         Segments shot sequences into formal rally records.
         """
-        live_shots = [s for s in shot_evidences if not s.is_dead_ball]
-        
-        if not live_shots:
+        owner = require_shot_result_owner(shot_evidences, result_owner) if result_owner is not None else None
+        live_shots = owner.select(live_only=True) if owner is not None else shot_evidences
+        start_s = end_s = None
+        total_strokes = rally_hits = shots_p1 = shots_p2 = 0
+        shot_ids = [] if owner is None else live_shots.field('shot_id')
+        for shot in live_shots:
+            if shot.is_dead_ball:
+                continue
+            if start_s is None:
+                start_s = shot
+            end_s = shot
+            total_strokes += 1
+            rally_hits += shot.shot_type != ShotType.SERVE
+            shots_p1 += shot.player_id == 1
+            shots_p2 += shot.player_id == 2
+            if owner is None:
+                shot_ids.append(shot.shot_id)
+
+        if start_s is None:
             # All shots were dead or single serve fault
             return []
 
-        start_s = live_shots[0]
-        end_s = live_shots[-1]
         end_frame = end_s.bounce_frame if end_s.bounce_frame is not None else end_s.frame_index
-        
-        total_strokes = len(live_shots)
-        rally_hits = len([s for s in live_shots if s.shot_type != ShotType.SERVE])
-        shots_p1 = len([s for s in live_shots if s.player_id == 1])
-        shots_p2 = len([s for s in live_shots if s.player_id == 2])
 
         if fps is not None:
             if fps <= 0:
@@ -95,6 +107,6 @@ class RallyAnalyzer:
             winner_id=winner_id,
             ending_reason=ending_reason,
             is_dead_ball_point=(total_strokes == 1 and start_s.shot_type == ShotType.SERVE and start_s.outcome == "FAULT"),
-            shot_ids=[s.shot_id for s in live_shots]
+            shot_ids=shot_ids
         )
         return [rally]

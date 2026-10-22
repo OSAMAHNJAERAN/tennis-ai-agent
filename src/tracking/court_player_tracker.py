@@ -10,6 +10,7 @@ import math
 
 from src.court.calibration import CourtCalibration
 from src.court.court_geometry import TennisCourtGeometry as Court
+from src.utils.bbox_utils import get_foot_position
 
 
 class CourtPlayerTracker:
@@ -27,7 +28,7 @@ class CourtPlayerTracker:
             return None
         if box.x2 <= box.x1 or box.y2 <= box.y1:
             return None
-        point = (calibration or self.calibration).project_ground_point(((box.x1 + box.x2) / 2, box.y2))
+        point = (calibration or self.calibration).project_ground_point(get_foot_position(box))
         if point is None:
             return None
         x, y = point

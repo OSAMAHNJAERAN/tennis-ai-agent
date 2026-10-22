@@ -1,0 +1,816 @@
+{
+  "declaredAt": "2026-10-05T04:06:28.701524+00:00",
+  "scriptSha256": "574f475daee7fded5f91f8c92e89304abca6e9c1049355b97f3a52ebdb5c75b7",
+  "cleanInterpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "freshRunDirectory": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\candidate_storage_real_smoke_2026-10-05\\run",
+  "readOnlyProductionDatabase": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\product\\analyses.sqlite3",
+  "frames": 30,
+  "nativeFps": 60,
+  "sampleIntervalSeconds": 0.25,
+  "preflightAvailableRamBytes": 2500000000,
+  "maximumSampledOwnedTreeRssBytes": 3000000000,
+  "minimumAvailableRamBytes": 400000000,
+  "lowRamConsecutiveSamplesToStop": 5,
+  "maximumChildWallSeconds": 300,
+  "volatilePaths": {
+    "metrics.json": [
+      "$.processing_fps",
+      "$.total_time_s"
+    ]
+  },
+  "expectedJsonFiles": [
+    "ball_metrics.json",
+    "camera_registration.json",
+    "court_geometry.json",
+    "detections.json",
+    "event_candidates.json",
+    "event_verification_trace.json",
+    "image_people.json",
+    "line_calls.json",
+    "match_analytics.json",
+    "match_events.json",
+    "match_state.json",
+    "metrics.json",
+    "patch_persistence_audit.json",
+    "pixel_motion_audit.json",
+    "player_metrics.json",
+    "player_motion.json",
+    "point_analytics.json",
+    "racket_tracking.json",
+    "rallies.json",
+    "score_history.json",
+    "scoring_events.json",
+    "shot_events.json",
+    "stationary_candidate_audit.json",
+    "temporal_detour_audit.json",
+    "temporal_spacing_audit.json",
+    "trajectories.json"
+  ],
+  "ownedTreeMonitor": "scripts/audit/measure_candidate_storage.py::OwnedProcessTree and stop_owned",
+  "retention": "Preserve every owned log, partial artifact, sample and receipt; no deletion or retry.",
+  "qualificationEvidence": false,
+  "productionQualified": false,
+  "productStatePublished": false,
+  "hostRamBeforeBytes": {
+    "total": 16869548032,
+    "available": 3880325120,
+    "percent": 77.0,
+    "used": 12989222912,
+    "free": 3880325120
+  },
+  "diskBeforeBytes": {
+    "total": 1022844989440,
+    "used": 948017934336,
+    "free": 74827055104
+  },
+  "sourceBindingsBefore": {
+    "artifacts/demos/sources/dimitrov_tiafoe_2024.webm": {
+      "bytes": 75005479,
+      "sha256": "e7740e59b96550374e807b666903b1b5eec5e44fd8d97940dc9657892da1e209"
+    },
+    "artifacts/demos/sources/dimitrov_tiafoe_2024_rally.mkv": {
+      "bytes": 237118447,
+      "sha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21"
+    },
+    "artifacts/models/ball/wasb_tennis_best.pth.tar": {
+      "bytes": 6102633,
+      "sha256": "9d391239ab10c733f8e5bfadf16ab72838e7a8ebc88e8ae2038501c03d42b4bb"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/__init__.py": {
+      "bytes": 5582,
+      "sha256": "04c1924a8c1234fc6219ab52737ca7690b0fd8e47dc6a42f5e44f6710423b0f0"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/dataset_loader.py": {
+      "bytes": 7957,
+      "sha256": "cb18001e352b49847ab53ebc69bbaeb80e3fe399a6ec2b1b018b3da6cc22643f"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/heatmaps/__init__.py": {
+      "bytes": 518,
+      "sha256": "7b79f2ee080bd954cf1dfb81f36f342bb09c3f901da3b2b1de187bf9066cfcc1"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/heatmaps/heatmaps.py": {
+      "bytes": 1274,
+      "sha256": "008a03484e8472a49d26b5b1e59451a9c255307d52d1575636988f7259ea55df"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/img_transforms.py": {
+      "bytes": 4145,
+      "sha256": "e9836cdc369220e22f2f7a776d705b4fe37986a52db3d70f4ad40e14778ca688"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/samplers/__init__.py": {
+      "bytes": 4123,
+      "sha256": "8f37da21c1fdfd78a8e86a7fa80b79c8afeb22304b4d0debffa81e19d8519734"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/samplers/samplers.py": {
+      "bytes": 4975,
+      "sha256": "cff4c8297a1140bb53e53465c9cbfd781722d1fcbc5325fffa93cd7ccad5f063"
+    },
+    "artifacts/research/WASB-SBDT/src/dataloaders/seq_transforms.py": {
+      "bytes": 4388,
+      "sha256": "ec245e26dc6445e49a883745697e0f2a20fcaaf2c9dab5c467b78eaab35f53ef"
+    },
+    "artifacts/research/WASB-SBDT/src/datasets/__init__.py": {
+      "bytes": 1699,
+      "sha256": "a91189eeec7bfb9c0dc55632433d6e33a4c760db200e6442a7fa0ad6eda47e2a"
+    },
+    "artifacts/research/WASB-SBDT/src/datasets/badminton.py": {
+      "bytes": 12937,
+      "sha256": "6c3d6c404a4a8cc8429332f83c1f8534635bb8a784cddf5bf02b0980d86a1e26"
+    },
+    "artifacts/research/WASB-SBDT/src/datasets/basketball.py": {
+      "bytes": 16143,
+      "sha256": "6241a9dbd7be1fc8201350072eca47ba45506b2f9e73eee477d909de94ee920f"
+    },
+    "artifacts/research/WASB-SBDT/src/datasets/soccer.py": {
+      "bytes": 13253,
+      "sha256": "7db9c50b138c93b371586a81d0914deedbe3459aff7cd8813295d1984d5a3d45"
+    },
+    "artifacts/research/WASB-SBDT/src/datasets/tennis.py": {
+      "bytes": 13116,
+      "sha256": "b739b8dea9e9f27fdffe78199011fab3b912aa2aa3ee6cb2ec11050940d93513"
+    },
+    "artifacts/research/WASB-SBDT/src/datasets/volleyball.py": {
+      "bytes": 13908,
+      "sha256": "076482c0b817f0c2a296ff98e47f56fada8bea241c395fa7cc54793f177aa99a"
+    },
+    "artifacts/research/WASB-SBDT/src/detectors/__init__.py": {
+      "bytes": 450,
+      "sha256": "9d17be85b25da2a76cec8ff8d10cf8e3e8b379a90b3f7fe864831b55f6f18888"
+    },
+    "artifacts/research/WASB-SBDT/src/detectors/deepball_detector.py": {
+      "bytes": 4653,
+      "sha256": "28f600ae192ec0fddc7efa15ea1cb3a3caed46b5693c9ea5be7136b0a54130b1"
+    },
+    "artifacts/research/WASB-SBDT/src/detectors/deepball_postprocessor.py": {
+      "bytes": 4128,
+      "sha256": "b03fee8fb0c425dc2a2221f9fe6449c6f598d2542484d788a9653bc300361a20"
+    },
+    "artifacts/research/WASB-SBDT/src/detectors/detector.py": {
+      "bytes": 4176,
+      "sha256": "bf917f1eddefaeef4e7be83e5bc12f8e5a00d46985c3cd26407f3b81d0340cc2"
+    },
+    "artifacts/research/WASB-SBDT/src/detectors/postprocessor.py": {
+      "bytes": 6341,
+      "sha256": "365e508a724a34fec37435146fc20b3ee21bbe0abe64fd153690af36425d84fb"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/__init__.py": {
+      "bytes": 496,
+      "sha256": "b93663162b3e0724a96f43eb1a0121c9b53f0a5305a791defbffa2f64439aba7"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/bce.py": {
+      "bytes": 2049,
+      "sha256": "10c57965dc84593a9612d594787dadf4692f929dfcbbcec81570b69be4be15dc"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/combo_loss.py": {
+      "bytes": 2497,
+      "sha256": "a6e439273c47ba912093cf176bb4b9188098ddd90bd09392a0c27a8cfa13d48a"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/dice_loss.py": {
+      "bytes": 1007,
+      "sha256": "8c65cf116e4f88556a103a3acf4c7c2b1b5b2e58338db4045a0da0d7b0d44481"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/focal_loss.py": {
+      "bytes": 2205,
+      "sha256": "7c2e5d3e48e4466d7c3f72298a82b2fd5b7ffc251dba3de6a7a1b852dcb096fa"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/heatmap.py": {
+      "bytes": 1984,
+      "sha256": "779f038adb4f739c83282c5ad57e5ab13ab7b634a766c74c3a30734534ab9534"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/quality_focal_loss.py": {
+      "bytes": 2345,
+      "sha256": "552a327390c6bf426efcc6ed22392d00b572bf9d05343b08ff8e13a657fac578"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/segmentation.py": {
+      "bytes": 896,
+      "sha256": "e30be258744c910ab96d4c1e1ef96f4dda81c56c16d2baecd5e37af75e5f891c"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/ssd_loss.py": {
+      "bytes": 4538,
+      "sha256": "6c6692a25b57602bf4f54887660ef3552188e742f0d1c78f3b6a967356f3372a"
+    },
+    "artifacts/research/WASB-SBDT/src/losses/wbce.py": {
+      "bytes": 1939,
+      "sha256": "b3a845f12a777c7a09c244082c0de3e7d0085f4415cbccdc828bab3905ea98f2"
+    },
+    "artifacts/research/WASB-SBDT/src/main.py": {
+      "bytes": 638,
+      "sha256": "996882cb35724c07e5a88ae92b868dc27e9c0e68871ee82700ac45d9c04cf0b4"
+    },
+    "artifacts/research/WASB-SBDT/src/models/__init__.py": {
+      "bytes": 3460,
+      "sha256": "545ecf54a5bc2e3779a52b768a7802449cb7640b8928fecf5597841a1db6e5df"
+    },
+    "artifacts/research/WASB-SBDT/src/models/ballseg.py": {
+      "bytes": 5244,
+      "sha256": "c7d11502f022b66080460feb29bfb59e21bb2e4d32bd28e20f56a27614b621f2"
+    },
+    "artifacts/research/WASB-SBDT/src/models/deepball.py": {
+      "bytes": 5037,
+      "sha256": "c4ff2e3eec228a4e700bbbe3f961bdc3cca6b3203b03f4eb7ea481d7806d3b21"
+    },
+    "artifacts/research/WASB-SBDT/src/models/hrnet.py": {
+      "bytes": 20707,
+      "sha256": "656c03770e1d7c4442f6f7431ca1f50a674042ac75ff6ba3cd120a2316e74688"
+    },
+    "artifacts/research/WASB-SBDT/src/models/monotrack.py": {
+      "bytes": 4613,
+      "sha256": "ce25c45c3dd2ff771a65145ce065e1d6071a0bb6b14dc6f5c7ee81421b6ef81e"
+    },
+    "artifacts/research/WASB-SBDT/src/models/resnetv1b.py": {
+      "bytes": 11949,
+      "sha256": "5c642f35918bd142f533e320510b508b20a716065b18bd939d55e5c21d7dee10"
+    },
+    "artifacts/research/WASB-SBDT/src/models/resunet2d.py": {
+      "bytes": 7859,
+      "sha256": "6752d81e97b78fc842578dd865c132e5e097c88ec8f6482eb4fb765250560ea5"
+    },
+    "artifacts/research/WASB-SBDT/src/models/segbase.py": {
+      "bytes": 2180,
+      "sha256": "906dcf990c9a37df35f5d06b7c07a0d396f18321db6df4d9d1407d26de22b15c"
+    },
+    "artifacts/research/WASB-SBDT/src/models/unet2d.py": {
+      "bytes": 1316,
+      "sha256": "ab7e5cb782db25319944347b3c38e2e05160af55fba3847360711db773c897d9"
+    },
+    "artifacts/research/WASB-SBDT/src/models/unet2d_parts.py": {
+      "bytes": 5943,
+      "sha256": "2f895cd4f6ca3e49710cfa499b63c0cfa0fb39160d4179e06080e7400b904d56"
+    },
+    "artifacts/research/WASB-SBDT/src/optimizers/__init__.py": {
+      "bytes": 2240,
+      "sha256": "1d16c5967f2268ef17cf964a7f7c1d9b4042a2e5c7202065f9daeca304cb5d2d"
+    },
+    "artifacts/research/WASB-SBDT/src/optimizers/lr_schedulers.py": {
+      "bytes": 2143,
+      "sha256": "97484fb7d3f645749cfdc1c4fa0607f537f86bbd3f01cee2ccdf9807f313215b"
+    },
+    "artifacts/research/WASB-SBDT/src/runners/__init__.py": {
+      "bytes": 687,
+      "sha256": "d1f2f79c340087c8700ead1575e54ce50640082608fed8666a1214155bf18a85"
+    },
+    "artifacts/research/WASB-SBDT/src/runners/base.py": {
+      "bytes": 389,
+      "sha256": "29c2c1f31a8af1a85b2a5a3d36e3e3db1b2d3e20933a3d35cba6f69720a9c1be"
+    },
+    "artifacts/research/WASB-SBDT/src/runners/eval.py": {
+      "bytes": 9140,
+      "sha256": "73317071d58e330875764792712d0e7a560fd6ca32f642141470fd53585482a8"
+    },
+    "artifacts/research/WASB-SBDT/src/runners/extract_frame.py": {
+      "bytes": 4116,
+      "sha256": "3fdf19a4dddf3aca07118a1a78a4a27c695d80f0a065112695a02174f01a1602"
+    },
+    "artifacts/research/WASB-SBDT/src/runners/runner_utils.py": {
+      "bytes": 1966,
+      "sha256": "e52a367f548f2cdb354200fe0e8c0f2cd2d10217c88ee0933a999e291d310539"
+    },
+    "artifacts/research/WASB-SBDT/src/runners/train_and_test.py": {
+      "bytes": 9005,
+      "sha256": "125021f834b695304809ec8e3a2688cc14b56317c67c3bac5bfd693263341f99"
+    },
+    "artifacts/research/WASB-SBDT/src/trackers/__init__.py": {
+      "bytes": 445,
+      "sha256": "b33a35f225e30dce1696bd0c1b2ef63bd5cbeb593f22d0590c97f79fbded5e9d"
+    },
+    "artifacts/research/WASB-SBDT/src/trackers/intra_frame_peak.py": {
+      "bytes": 593,
+      "sha256": "f4af0b581070d696a23d9f3cb04ba73e56818e70b3cad93398674b4f823f70d9"
+    },
+    "artifacts/research/WASB-SBDT/src/trackers/online.py": {
+      "bytes": 2989,
+      "sha256": "31906a6700d097912586ccdad0971f68aba5609be09d547e19fa5ceb2864a1e0"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/__init__.py": {
+      "bytes": 375,
+      "sha256": "a41f62b2ed24646c13efa013055fde06957a460648107d20b01bc38a4898f960"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/dataclasses.py": {
+      "bytes": 751,
+      "sha256": "71ed6c65d30dfa75445795275c5c718522dee92b00794dc56cd7b8432320adf3"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/evaluator.py": {
+      "bytes": 5318,
+      "sha256": "9ad8c3dcd7c05d0fd2823a6abcb1655b1a72451d589a7b25cf8d5c9177703194"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/file.py": {
+      "bytes": 1657,
+      "sha256": "e4a185cd4c9526d055c3ee83a8d38ba0a28f3f66377bb22898c5a7356f4fd7d5"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/heatmap.py": {
+      "bytes": 1230,
+      "sha256": "e9617f8ee32087601b9ebb9d60bf6769eb202cca5ceb1115c693f212d4bc7cb3"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/image.py": {
+      "bytes": 8655,
+      "sha256": "2e35148b8ed519b786487191fb6184d4c931c8c2621f5ab7fea68d8503c9c33c"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/refine_gt.py": {
+      "bytes": 3139,
+      "sha256": "f91fc1cd38bbc1e0ed1670ef7428137e765a3fce5d25eb10c87b66d7e94a7c20"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/utils.py": {
+      "bytes": 3607,
+      "sha256": "2899e0ee8aa290ce48329016cd0e5d84dfd23df9659f1d242aade161c352ce9c"
+    },
+    "artifacts/research/WASB-SBDT/src/utils/vis.py": {
+      "bytes": 1293,
+      "sha256": "d5d3d96a1b7dec6ded8ce0857c5dc5c49fb7c903b7a10955b23e21a6769e9e89"
+    },
+    "artifacts/validation/product_installation/clean_env/Scripts/python.exe": {
+      "bytes": 254800,
+      "sha256": "935016795f3e6908e75acbc2040a01e2e4cdb494a57c42f63a0d6eedb2372256"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/original_frames_0000_0029.mkv": {
+      "bytes": 13014172,
+      "sha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552"
+    },
+    "configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml": {
+      "bytes": 4040,
+      "sha256": "84505e944f2650cbe0edc490e4123e52137dc0a5af5fd6013e47acdf4ba030b6"
+    },
+    "data/demos/sources.json": {
+      "bytes": 7548,
+      "sha256": "9a3d4cfa05bc29f161f796afac6ff4c24d4ddf602295a3d4b81f4e08b5c45105"
+    },
+    "models/keypoints_model.pth": {
+      "bytes": 94582426,
+      "sha256": "16ebb7e46dc88247440c86b388e4f07f0d4abb76ce0a01a22925d3163f7fb7f3"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "scripts/audit/verify_candidate_storage_pipeline_smoke.py": {
+      "bytes": 31336,
+      "sha256": "574f475daee7fded5f91f8c92e89304abca6e9c1049355b97f3a52ebdb5c75b7"
+    },
+    "scripts/setup/verify_clean_pipeline_smoke.py": {
+      "bytes": 11959,
+      "sha256": "e561e8df2700d9f545ee70317baa9bfa4bd2720dc16594039a3ce82a2df52e45"
+    },
+    "src/detection/image_people.py": {
+      "bytes": 3407,
+      "sha256": "3259d982f9a718d52e6152ae825d01570a9e76c2f108c45445817bb96cacb58c"
+    },
+    "src/detection/spaced_ball_stream.py": {
+      "bytes": 2959,
+      "sha256": "f5e51c3e8e2110f083e6c9f6cafc8fb5d15655da2f7b047bdf636e7a2ae9eb0a"
+    },
+    "src/detection/tiled_wasb_candidates.py": {
+      "bytes": 4877,
+      "sha256": "45b31bb0479afdf95367e54cb30a60186faf4263538c6fc4b253ccc38eb1e38c"
+    },
+    "src/detection/wasb_ball_detector.py": {
+      "bytes": 6678,
+      "sha256": "d83e620c917b014fed23a0b7eccf2610ca6e21e085c9d3ae2321c707516db77f"
+    },
+    "src/pipeline/phase6_pipeline.py": {
+      "bytes": 59655,
+      "sha256": "5668caf67dda92d5006c3f3c464abc2b4fab8e09392cce48ca86cd8f0b89f274"
+    },
+    "src/tracking/candidate_pixel_motion.py": {
+      "bytes": 3895,
+      "sha256": "605e1b16f0df37709c6896ab350d6c6b78be48d6424836fe6f7d784bd2ff9000"
+    },
+    "src/tracking/court_player_tracker.py": {
+      "bytes": 4661,
+      "sha256": "56497994399a3de17f3c8a5de951a8b8e41c0fa5fc4a7cfbef550298a1c896b3"
+    },
+    "src/tracking/selected_patch_persistence.py": {
+      "bytes": 4284,
+      "sha256": "e2cc4a88b8f1a2837bffe0de9b69e2ea8b32c9bca44f675489b9189b432af2c1"
+    },
+    "src/tracking/selected_temporal_detours.py": {
+      "bytes": 2827,
+      "sha256": "d9f4d37f30fcd6876c953ec9642dbd7c349f229f6a943b0e64afaa1fe80d76c1"
+    },
+    "src/tracking/stationary_candidate_filter.py": {
+      "bytes": 3203,
+      "sha256": "15522e213a965e0deb16814c47e1ee74a856c90f999080c48d012ae2127e72b7"
+    },
+    "src/tracking/temporal_ball_tracker.py": {
+      "bytes": 21469,
+      "sha256": "c8045be1f24a7f93b5926e5ca4d2cedc6bfe7f2af6e6f2c05f0ad69be8efa650"
+    },
+    "src/utils/ball_candidate_sequence.py": {
+      "bytes": 8403,
+      "sha256": "fc68571dfecb95ecb9896714ccfac16b0d47553ba33b111e5f5d1f549d8da3e5"
+    },
+    "src/utils/json_array_artifact.py": {
+      "bytes": 4048,
+      "sha256": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194"
+    },
+    "src/utils/video_frame_sequence.py": {
+      "bytes": 2532,
+      "sha256": "cbf282e2422ef759bd44220609b5115ec26ca97fa40b585497fddb2bf46ba9ff"
+    },
+    "yolo11m.pt": {
+      "bytes": 40684120,
+      "sha256": "d5ffc1a674953a08e11a8d21e022781b1b23a19b730afc309290bd9fb5305b95"
+    },
+    "yolo11s-pose.pt": {
+      "bytes": 20373161,
+      "sha256": "1060bda4a27012060eca246f9b2adeea22eabb045a1e58f8d229be29b7ebc2ba"
+    }
+  },
+  "historicalArtifactsBefore": {
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/annotated.mp4": {
+      "bytes": 2097362,
+      "sha256": "aa38e454920d77eff1cb4cc2665b1a96b3a5a8610a19450daf8a4bb6c22eff03"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/ball_metrics.json": {
+      "bytes": 380,
+      "sha256": "368b2fbd904701c9effbe06816ad8706c0ff4f97a1cfea9f454e0f805110794a"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/camera_registration.json": {
+      "bytes": 17285,
+      "sha256": "0a6951e0e598e7d092688b2c8e85a7878f800da3da59e511408443eb4072b267"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/court_geometry.json": {
+      "bytes": 2486,
+      "sha256": "9a219213285046fdeb8096b76e93154db650a281af282172af411e3ec67c1af7"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/detections.json": {
+      "bytes": 10342,
+      "sha256": "df5d38d89298ed9f6451de2f1598ca89f63e5ef24bbd9f92fbd953224083421e"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/event_candidates.json": {
+      "bytes": 5000,
+      "sha256": "77584ae252701fb3b7603763bc6afa83d65b84fabecfca98285069a34bee6d10"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/event_verification_trace.json": {
+      "bytes": 12238,
+      "sha256": "07efb44c16830fd7801cecbbd8409d893f5c27cc2d545d6b6c5114807f3e71a0"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/image_people.json": {
+      "bytes": 33686,
+      "sha256": "8f86fdfafb10293927c797890533e051f9cfe38413c59be6a5d8f1d72dc37d05"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/line_calls.json": {
+      "bytes": 52,
+      "sha256": "fa7d491d967112f87286c87044592c35c1788bd0631a723210d9bf50bf076b8b"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/match_analytics.json": {
+      "bytes": 3050,
+      "sha256": "c99b2f252698e173b82f688fc6b1ba289f77bf8e8bb52d56a2922840880b46a9"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/match_events.json": {
+      "bytes": 70,
+      "sha256": "f69d880a3babc496f0eb6ae233044402708b28ed2f737305711e6df9634260ca"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/match_state.json": {
+      "bytes": 878,
+      "sha256": "c322ac3bcfcf3efe433253294d2724237ae3dfef0df2889ddacddc59c0650f5d"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/metrics.json": {
+      "bytes": 358,
+      "sha256": "80a0c4f807de30627ba1a0b08bbc32669e8f2bf2a0b918b63af5efd22f636db5"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/patch_persistence_audit.json": {
+      "bytes": 8619,
+      "sha256": "36de8f451fd415129ab6fe64bbad7cd38ab4665a6e2dfa61955aa0fe4f496ff1"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/pixel_motion_audit.json": {
+      "bytes": 19924,
+      "sha256": "b4a8279fd08dba3c53608e49e7b226930775e3f24dd273a897cbba00d029d5f4"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/player_metrics.json": {
+      "bytes": 394,
+      "sha256": "ef4720f7b43d3187cb156dfac817897db93455f2693083c133f3dcd48b632879"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/player_motion.json": {
+      "bytes": 24334,
+      "sha256": "5b4585ec39d8aa08df41bf32654af7dc0fcec5c71e4754bc38e428272f117077"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/point_analytics.json": {
+      "bytes": 48,
+      "sha256": "0978cfbfa309c9e298cc3971484c4e123aa9c52937a08e1cdd8c68c2301d3ee3"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/racket_tracking.json": {
+      "bytes": 15416,
+      "sha256": "0508bc867033c4fc2aa2cd1a6d237f2857438052557ac9cb5624759acb69249e"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/rallies.json": {
+      "bytes": 49,
+      "sha256": "ec85fc43dede16711bb0144befec822d7ab9d46a7b199126865e110a84f54469"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/run_config.yaml": {
+      "bytes": 3965,
+      "sha256": "23223f1c4679b0e36634fa3a3ecc9e701365799474a9a65f6684076409eeff09"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/score_history.json": {
+      "bytes": 55,
+      "sha256": "d09c631239638299b7581ec71d0958f38764e75ca7d0e8ed641b2b95a0ba35a1"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/scoring_events.json": {
+      "bytes": 56,
+      "sha256": "1b921dbe26f6cbc43c934fcc878167363cf532e42498a2bfc891100741a8c1dc"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/shot_events.json": {
+      "bytes": 53,
+      "sha256": "358874694b93c09a574a05eb3b208fa4dd1d0effe467c406a4fb83edebc94442"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/stationary_candidate_audit.json": {
+      "bytes": 2536,
+      "sha256": "d74ed22dd2aa1c445388fc75911a50c551a8c555b13553a6f6f4825d93edfd75"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/temporal_detour_audit.json": {
+      "bytes": 179,
+      "sha256": "0cb4846fe9b3844a9b38d5a637ad13ed3e57fd441f534d598535b986c74be087"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/temporal_spacing_audit.json": {
+      "bytes": 264,
+      "sha256": "5557784ff362e48e0814d4858dc064eef575a6081b0044eb38ccf26818fc5fa8"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis/trajectories.json": {
+      "bytes": 7788,
+      "sha256": "bfc4323acf1d3c6d1fde05be528325dc5824a9c4f2509269d6ce3b7d6c284c9d"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline/annotated.mp4": {
+      "bytes": 1835052,
+      "sha256": "725fabadde89826c7a3f79810f06de16bb3afb51458914208cf7579ec1ac5f0c"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline/player_motion.json": {
+      "bytes": 8221,
+      "sha256": "7fe11a30d0b1e754733bb200c3b09f81bc5f2b47198487753fc16586197b933d"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/annotated.mp4": {
+      "bytes": 2097362,
+      "sha256": "aa38e454920d77eff1cb4cc2665b1a96b3a5a8610a19450daf8a4bb6c22eff03"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/ball_metrics.json": {
+      "bytes": 380,
+      "sha256": "368b2fbd904701c9effbe06816ad8706c0ff4f97a1cfea9f454e0f805110794a"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/camera_registration.json": {
+      "bytes": 17285,
+      "sha256": "0a6951e0e598e7d092688b2c8e85a7878f800da3da59e511408443eb4072b267"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/court_geometry.json": {
+      "bytes": 2486,
+      "sha256": "9a219213285046fdeb8096b76e93154db650a281af282172af411e3ec67c1af7"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/detections.json": {
+      "bytes": 10342,
+      "sha256": "df5d38d89298ed9f6451de2f1598ca89f63e5ef24bbd9f92fbd953224083421e"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/event_candidates.json": {
+      "bytes": 5000,
+      "sha256": "77584ae252701fb3b7603763bc6afa83d65b84fabecfca98285069a34bee6d10"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/event_verification_trace.json": {
+      "bytes": 12238,
+      "sha256": "07efb44c16830fd7801cecbbd8409d893f5c27cc2d545d6b6c5114807f3e71a0"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/image_people.json": {
+      "bytes": 33686,
+      "sha256": "8f86fdfafb10293927c797890533e051f9cfe38413c59be6a5d8f1d72dc37d05"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/line_calls.json": {
+      "bytes": 52,
+      "sha256": "fa7d491d967112f87286c87044592c35c1788bd0631a723210d9bf50bf076b8b"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/match_analytics.json": {
+      "bytes": 3050,
+      "sha256": "c99b2f252698e173b82f688fc6b1ba289f77bf8e8bb52d56a2922840880b46a9"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/match_events.json": {
+      "bytes": 70,
+      "sha256": "f69d880a3babc496f0eb6ae233044402708b28ed2f737305711e6df9634260ca"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/match_state.json": {
+      "bytes": 878,
+      "sha256": "c322ac3bcfcf3efe433253294d2724237ae3dfef0df2889ddacddc59c0650f5d"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/metrics.json": {
+      "bytes": 357,
+      "sha256": "49341d17577ffb7b942ab28034de0c6be3f1c457de8f393b7ea1d1c8bbee924d"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/patch_persistence_audit.json": {
+      "bytes": 8619,
+      "sha256": "36de8f451fd415129ab6fe64bbad7cd38ab4665a6e2dfa61955aa0fe4f496ff1"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/pixel_motion_audit.json": {
+      "bytes": 19924,
+      "sha256": "b4a8279fd08dba3c53608e49e7b226930775e3f24dd273a897cbba00d029d5f4"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/player_metrics.json": {
+      "bytes": 394,
+      "sha256": "ef4720f7b43d3187cb156dfac817897db93455f2693083c133f3dcd48b632879"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/player_motion.json": {
+      "bytes": 24334,
+      "sha256": "5b4585ec39d8aa08df41bf32654af7dc0fcec5c71e4754bc38e428272f117077"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/point_analytics.json": {
+      "bytes": 48,
+      "sha256": "0978cfbfa309c9e298cc3971484c4e123aa9c52937a08e1cdd8c68c2301d3ee3"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/racket_tracking.json": {
+      "bytes": 15416,
+      "sha256": "0508bc867033c4fc2aa2cd1a6d237f2857438052557ac9cb5624759acb69249e"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/rallies.json": {
+      "bytes": 49,
+      "sha256": "ec85fc43dede16711bb0144befec822d7ab9d46a7b199126865e110a84f54469"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/run_config.yaml": {
+      "bytes": 3965,
+      "sha256": "23223f1c4679b0e36634fa3a3ecc9e701365799474a9a65f6684076409eeff09"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/score_history.json": {
+      "bytes": 55,
+      "sha256": "d09c631239638299b7581ec71d0958f38764e75ca7d0e8ed641b2b95a0ba35a1"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/scoring_events.json": {
+      "bytes": 56,
+      "sha256": "1b921dbe26f6cbc43c934fcc878167363cf532e42498a2bfc891100741a8c1dc"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/shot_events.json": {
+      "bytes": 53,
+      "sha256": "358874694b93c09a574a05eb3b208fa4dd1d0effe467c406a4fb83edebc94442"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/stationary_candidate_audit.json": {
+      "bytes": 2536,
+      "sha256": "d74ed22dd2aa1c445388fc75911a50c551a8c555b13553a6f6f4825d93edfd75"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/temporal_detour_audit.json": {
+      "bytes": 179,
+      "sha256": "0cb4846fe9b3844a9b38d5a637ad13ed3e57fd441f534d598535b986c74be087"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/temporal_spacing_audit.json": {
+      "bytes": 264,
+      "sha256": "5557784ff362e48e0814d4858dc064eef575a6081b0044eb38ccf26818fc5fa8"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline_retry/trajectories.json": {
+      "bytes": 7788,
+      "sha256": "bfc4323acf1d3c6d1fde05be528325dc5824a9c4f2509269d6ce3b7d6c284c9d"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/input_excerpt.json": {
+      "bytes": 2298,
+      "sha256": "ad3eca18aeecd62e33cfa8ffe0c7d952b48b4e7004333f2faaaa421b6a41fb0a"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/original_frames_0000_0029.mkv": {
+      "bytes": 13014172,
+      "sha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/ultralytics_settings/Ultralytics/persistent_cache.json": {
+      "bytes": 43,
+      "sha256": "89f37b31597b20533266a7d65c22dbc1107144e56e9a454e24e5a6e02a569cf6"
+    },
+    "artifacts/validation/product_installation/pipeline_smoke_30_frames/ultralytics_settings/Ultralytics/settings.json": {
+      "bytes": 592,
+      "sha256": "86f92b99f2122cc71fc82abd07437b3e256a45c0a4662e632c04b24b6a95f292"
+    },
+    "artifacts/validation/product_installation/real_pipeline_smoke.json": {
+      "bytes": 14913,
+      "sha256": "bcfafb1d55e8265cca0c62eef687eec494bfa5622d6eb104bc7ca36794fbebeb"
+    }
+  },
+  "productionJobStatesBefore": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\product\\analyses.sqlite3",
+    "exists": true,
+    "jobs": [
+      {
+        "id": "match_02d494b88e99400d8cf7243528302f9b",
+        "filename": "dimitrov_tiafoe_2024_rally.mkv",
+        "extension": ".mkv",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-30T14:38:37.333505+00:00",
+        "started_at": "2026-09-30T14:42:46.037315+00:00",
+        "completed_at": "2026-09-30T14:45:16.531470+00:00",
+        "error": null,
+        "size_bytes": 237118447,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_085721ef943d4a02b4d8117327208186",
+        "filename": "input_video.mp4",
+        "extension": ".mp4",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-30T13:18:45.833873+00:00",
+        "started_at": "2026-09-30T13:18:46.565151+00:00",
+        "completed_at": "2026-09-30T13:20:26.554488+00:00",
+        "error": null,
+        "size_bytes": 12939389,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_1bb12f2aa52a438ebce8a9895fa2bd4f",
+        "filename": "Dimitrov-Tiafoe person-evidence diagnostic.mkv",
+        "extension": ".mkv",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-10-01T03:15:17.128573+00:00",
+        "started_at": "2026-10-01T03:15:17.792139+00:00",
+        "completed_at": "2026-10-01T03:18:06.160667+00:00",
+        "error": null,
+        "size_bytes": 237118447,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_3f7ae891370e4d41a0d028e92464722b",
+        "filename": "input_video.mp4",
+        "extension": ".mp4",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-30T13:45:04.242939+00:00",
+        "started_at": "2026-09-30T13:45:04.279749+00:00",
+        "completed_at": "2026-09-30T13:46:23.724310+00:00",
+        "error": null,
+        "size_bytes": 12939389,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_98bbadb29082430a849171b99f62a986",
+        "filename": "corrupted-check.mp4",
+        "extension": ".mp4",
+        "status": "FAILED",
+        "stage": "Analysis failed",
+        "step": 0,
+        "created_at": "2026-09-19T10:48:43.824982+00:00",
+        "started_at": "2026-09-19T10:48:44.161023+00:00",
+        "completed_at": "2026-09-19T10:48:44.897991+00:00",
+        "error": "The video could not be decoded or encoded. Check disk space, export a playable MP4 and try again.",
+        "size_bytes": 44,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_9de7cb2d09eb46a0af0e34c3b0e6b818",
+        "filename": "djokovic_2012.webm",
+        "extension": ".webm",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-30T14:38:37.077511+00:00",
+        "started_at": "2026-09-30T14:39:15.120350+00:00",
+        "completed_at": "2026-09-30T14:41:19.015226+00:00",
+        "error": null,
+        "size_bytes": 9089830,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_ca65db557684431890bbf3826229e084",
+        "filename": "schiavone_2012.webm",
+        "extension": ".webm",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-30T14:38:37.095864+00:00",
+        "started_at": "2026-09-30T14:41:19.105390+00:00",
+        "completed_at": "2026-09-30T14:42:45.945399+00:00",
+        "error": null,
+        "size_bytes": 11937043,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_dc93224eebea4312bc6effa23badf26c",
+        "filename": "input_video.mp4",
+        "extension": ".mp4",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-19T10:36:10.699060+00:00",
+        "started_at": "2026-09-19T10:36:11.282639+00:00",
+        "completed_at": "2026-09-19T10:37:49.967376+00:00",
+        "error": null,
+        "size_bytes": 12939389,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_f2a47cbd9ab14ddfa3acedbf497d3ea0",
+        "filename": "input_video.mp4",
+        "extension": ".mp4",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-19T13:26:54.185199+00:00",
+        "started_at": "2026-09-19T13:26:54.647000+00:00",
+        "completed_at": "2026-09-19T13:28:11.835255+00:00",
+        "error": null,
+        "size_bytes": 12939389,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      },
+      {
+        "id": "match_fd56f004ae154fb399c6261fa58df39d",
+        "filename": "tennis-integration-check.mp4",
+        "extension": ".mp4",
+        "status": "COMPLETED",
+        "stage": "Analysis complete",
+        "step": 11,
+        "created_at": "2026-09-19T10:32:18.331103+00:00",
+        "started_at": "2026-09-19T10:32:18.711126+00:00",
+        "completed_at": "2026-09-19T10:35:43.220414+00:00",
+        "error": null,
+        "size_bytes": 12939389,
+        "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+      }
+    ]
+  }
+}

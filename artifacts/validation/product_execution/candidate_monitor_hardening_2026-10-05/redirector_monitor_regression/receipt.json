@@ -1,0 +1,176 @@
+{
+  "startedAt": "2026-10-05T04:06:09.129929+00:00",
+  "passed": true,
+  "allocationBytes": 67108864,
+  "controlledAggregateRssThresholdBytes": 33554432,
+  "sourceFile": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\audit\\measure_candidate_storage.py",
+  "sourceSha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39",
+  "helperSha256": "ad9ad535b24d3f2bb78d8cbf12eab9fda1b676e8a44acd7e08a07ebe17f21395",
+  "cleanInterpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "scope": "One controlled 64MiB bytearray child; no models/inference/imports of numpy/torch/pandas/cv2. Proof that the actual clean-env descendant is sampled and stopped by exact identity, with wrapper retirement.",
+  "heavyModulesImportedByHelper": [],
+  "redirectorIdentity": {
+    "pid": 61668,
+    "createTimeUnixSeconds": 1791173169.186525
+  },
+  "actualWorkloadIdentity": {
+    "pid": 52500,
+    "parentPid": 61668,
+    "createTimeUnixSeconds": 1791173169.2147508,
+    "allocatedBytes": 67108864,
+    "memoryBytesAfterAllocation": {
+      "rss": 85897216,
+      "vms": 77070336,
+      "num_page_faults": 21125,
+      "peak_wset": 85897216,
+      "wset": 85897216,
+      "peak_paged_pool": 144832,
+      "paged_pool": 144656,
+      "peak_nonpaged_pool": 12232,
+      "nonpaged_pool": 12232,
+      "pagefile": 77070336,
+      "peak_pagefile": 77107200,
+      "private": 77070336
+    },
+    "windowsPeakWorkingSetBytes": 85897216,
+    "windowsPeakPrivateCommitBytes": 77107200,
+    "heavyModulesImported": []
+  },
+  "triggeringSample": {
+    "at": "2026-10-05T04:06:09.362546+00:00",
+    "elapsedSeconds": 0.23252240000874735,
+    "processes": [
+      {
+        "pid": 61668,
+        "createTimeUnixSeconds": 1791173169.186525,
+        "parentPid": null,
+        "depth": 0,
+        "memoryBytes": {
+          "rss": 4243456,
+          "vms": 872448,
+          "num_page_faults": 1077,
+          "peak_wset": 4243456,
+          "wset": 4243456,
+          "peak_paged_pool": 29112,
+          "paged_pool": 28936,
+          "peak_nonpaged_pool": 21936,
+          "nonpaged_pool": 4768,
+          "pagefile": 872448,
+          "peak_pagefile": 872448,
+          "private": 872448
+        }
+      },
+      {
+        "pid": 51428,
+        "createTimeUnixSeconds": 1791173169.1980765,
+        "parentPid": 61668,
+        "depth": 1,
+        "memoryBytes": {
+          "rss": 7495680,
+          "vms": 1277952,
+          "num_page_faults": 1919,
+          "peak_wset": 7499776,
+          "wset": 7495680,
+          "peak_paged_pool": 114544,
+          "paged_pool": 114544,
+          "peak_nonpaged_pool": 8704,
+          "nonpaged_pool": 8704,
+          "pagefile": 1277952,
+          "peak_pagefile": 1277952,
+          "private": 1277952
+        }
+      },
+      {
+        "pid": 52500,
+        "createTimeUnixSeconds": 1791173169.2147508,
+        "parentPid": 61668,
+        "depth": 1,
+        "memoryBytes": {
+          "rss": 85962752,
+          "vms": 77070336,
+          "num_page_faults": 22441,
+          "peak_wset": 87093248,
+          "wset": 85962752,
+          "peak_paged_pool": 145184,
+          "paged_pool": 144656,
+          "peak_nonpaged_pool": 12504,
+          "nonpaged_pool": 12232,
+          "pagefile": 77070336,
+          "peak_pagefile": 77987840,
+          "private": 77070336
+        }
+      }
+    ],
+    "ownedTreeRssBytes": 97701888
+  },
+  "actualWorkloadSampledByExactIdentity": true,
+  "actualWorkloadRssBytesAtTrigger": 85962752,
+  "distinctRedirectorAndActualInterpreter": true,
+  "ownedTerminationActions": [
+    {
+      "pid": 51428,
+      "createTimeUnixSeconds": 1791173169.1980765,
+      "depth": 1,
+      "signal": "terminate",
+      "at": "2026-10-05T04:06:09.410292+00:00"
+    },
+    {
+      "pid": 52500,
+      "createTimeUnixSeconds": 1791173169.2147508,
+      "depth": 1,
+      "signal": "terminate",
+      "at": "2026-10-05T04:06:09.410383+00:00"
+    },
+    {
+      "pid": 61668,
+      "createTimeUnixSeconds": 1791173169.186525,
+      "depth": 0,
+      "signal": "terminate",
+      "at": "2026-10-05T04:06:09.410458+00:00"
+    }
+  ],
+  "ownedProcessIdentities": [
+    {
+      "pid": 61668,
+      "createTimeUnixSeconds": 1791173169.186525,
+      "parentPid": null,
+      "depth": 0,
+      "firstObservedAt": "2026-10-05T04:06:09.194326+00:00",
+      "sampleCount": 3,
+      "peakSampledRssBytes": 4243456,
+      "peakSampledPrivateBytes": 872448
+    },
+    {
+      "pid": 51428,
+      "createTimeUnixSeconds": 1791173169.1980765,
+      "parentPid": 61668,
+      "depth": 1,
+      "firstObservedAt": "2026-10-05T04:06:09.203162+00:00",
+      "sampleCount": 3,
+      "peakSampledRssBytes": 7495680,
+      "peakSampledPrivateBytes": 1277952
+    },
+    {
+      "pid": 52500,
+      "createTimeUnixSeconds": 1791173169.2147508,
+      "parentPid": 61668,
+      "depth": 1,
+      "firstObservedAt": "2026-10-05T04:06:09.278808+00:00",
+      "sampleCount": 2,
+      "peakSampledRssBytes": 85962752,
+      "peakSampledPrivateBytes": 77070336
+    }
+  ],
+  "redirectorReturncode": 15,
+  "remainingOwnedIdentities": [],
+  "terminationDepths": [
+    1,
+    1,
+    0
+  ],
+  "deepestFirstTermination": true,
+  "sourceUnchanged": true,
+  "finalCleanupActions": [],
+  "completedAt": "2026-10-05T04:06:09.416157+00:00",
+  "elapsedSeconds": 0.2861292000161484
+}

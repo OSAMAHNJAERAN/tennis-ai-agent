@@ -1,0 +1,23 @@
+........................................................................ [ 14%]
+........................................................................ [ 29%]
+........................................................................ [ 44%]
+........................................................................ [ 59%]
+........................................................................ [ 74%]
+........................................................................ [ 89%]
+...................................................F                     [100%]
+================================== FAILURES ===================================
+_ test_hard_process_loss_resumes_same_worker_job_from_two_committed_ball_frames _
+tests\test_native_pipeline_process_resume.py:137: in test_hard_process_loss_resumes_same_worker_job_from_two_committed_ball_frames
+    assert [row['event'] for row in rows].count('normalizing_source') == 1
+E   AssertionError: assert 2 == 1
+E    +  where 2 = <built-in method count of list object at 0x000002159BB21BC0>('normalizing_source')
+E    +    where <built-in method count of list object at 0x000002159BB21BC0> = ['claimed', 'normalizing_source', 'committed_raw_frame', 'committed_raw_frame', 'hard_exit_after_raw_frontier', 'recovered_same_analysis', ...].count
+============================== warnings summary ===============================
+artifacts\validation\yolo26_execution_2026-10-22\native_inference_integration_checks_v2\run_checks.py:128
+  C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\yolo26_execution_2026-10-22\native_inference_integration_checks_v2\run_checks.py:128: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    return native_import(name, *args, **kwargs)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_native_pipeline_process_resume.py::test_hard_process_loss_resumes_same_worker_job_from_two_committed_ball_frames
+1 failed, 483 passed, 4 deselected, 1 warning in 35.92s

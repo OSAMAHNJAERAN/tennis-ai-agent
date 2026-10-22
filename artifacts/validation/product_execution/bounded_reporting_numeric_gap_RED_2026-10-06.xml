@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="7" time="7.282" timestamp="2026-10-06T12:27:02.009917+08:00" hostname="Osamah"><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples0]" time="0.006" /><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples1]" time="0.001" /><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples2]" time="0.001" /><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples3]" time="0.008" /><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples4]" time="0.006" /><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples5]" time="0.003"><failure message="OverflowError: int too large to convert to float">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+samples = [100000000000000000...0000000000000000000, 100000000000000000...0000000000000000000, 1.0, None, 100000000000000000...0000000000000000000, 100000000000000000...0000000000000000000, ...]
+
+    @pytest.mark.parametrize('samples', [
+        [], [None, float('nan'), float('inf')], [0., -0., True, False, 2.],
+        [1e16, 1., -1e16] * 601, [0.1, 0.2, 0.3] * 401,
+        [10 ** 308, 10 ** 308, 1., None] * 601,
+        [None if index % 151 == 0 else float(index % 13) for index in range(1201)],
+    ])
+    def test_speed_bins_preserve_previous_sums_gaps_and_points(original_reporting, samples):
+        series = GeneratedSeries(len(samples), samples.__getitem__)
+&gt;       assert reporting.speed_svg(series, 60.) == original_reporting.speed_svg(samples, 60.)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_bounded_reporting.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+samples = &lt;tests.test_bounded_reporting.GeneratedSeries object at 0x000001ED1546EF90&gt;
+fps = 60.0
+
+    def speed_svg(samples, fps):
+        finite_peak = None
+        for value in samples:
+            if isinstance(value, (float, int)) and math.isfinite(value):
+                if finite_peak is None or value &gt; finite_peak:
+                    finite_peak = value
+        if finite_peak is None:
+            return '&lt;p&gt;Movement speed unavailable.&lt;/p&gt;'
+        peak = max(5., finite_peak)
+        stride = max(1, math.ceil(len(samples) / 600))
+        paths, segment = [], []
+        values = iter(samples)
+        for index in range(0, len(samples), stride):
+            count, valid = 0, True
+    
+            def finite_interval():
+                nonlocal count, valid
+                for value in islice(values, stride):
+                    count += 1
+                    if isinstance(value, (float, int)) and math.isfinite(value):
+                        yield value
+                    else:
+                        valid = False
+    
+            # Built-in sum preserves the previous floating-point accumulation;
+            # the interval generator avoids retaining up to one match's stride.
+&gt;           interval_sum = sum(finite_interval())
+                           ^^^^^^^^^^^^^^^^^^^^^^
+E           OverflowError: int too large to convert to float
+
+src\api\reporting.py:134: OverflowError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples6]" time="0.008" /></testsuite></testsuites>

@@ -1,0 +1,206 @@
+{
+  "status": "PASS",
+  "scope": "SYNTHETIC_ORIGINAL_NATIVE_SHOT_FIXTURE_ONLY",
+  "source_before": "d7e601f1daf65e09a716e2ce31c8e5a3369266c9d3b84125eb1a9fcf7b2766ae",
+  "source_after": "d7e601f1daf65e09a716e2ce31c8e5a3369266c9d3b84125eb1a9fcf7b2766ae",
+  "original": {
+    "shots": [
+      {
+        "shot_id": 1,
+        "match_event_id": 1,
+        "frame_index": 0,
+        "timestamp_s": 0.0,
+        "player_id": 1,
+        "shot_type": "SERVE",
+        "shot_confidence": 0.95,
+        "classification_source": "EVENT_PASSTHROUGH",
+        "direction": "CROSS_COURT",
+        "direction_confidence": 0.98,
+        "direction_source": "GEOMETRY_DERIVED",
+        "source_court_position_m": [
+          88.0,
+          88.0
+        ],
+        "landing_court_position_m": [
+          3.0,
+          8.0
+        ],
+        "landing_zone": "SHORT_LEFT",
+        "bounce_event_id": 2,
+        "bounce_frame": 4,
+        "speed_kmh": null,
+        "outcome": "IN_PLAY",
+        "is_dead_ball": false,
+        "confidence_components": {
+          "event": 0.95,
+          "pose": 0.9,
+          "ball": 0.9
+        },
+        "reason": "Authoritative serve contact verified from kinematics and match state."
+      },
+      {
+        "shot_id": 2,
+        "match_event_id": 3,
+        "frame_index": 8,
+        "timestamp_s": 0.26666666666666666,
+        "player_id": 2,
+        "shot_type": "UNKNOWN",
+        "shot_confidence": 0.5,
+        "classification_source": "ABSTENTION_UNKNOWN",
+        "direction": "UNKNOWN",
+        "direction_confidence": 0.0,
+        "direction_source": "GEOMETRY_DERIVED",
+        "source_court_position_m": [
+          77.0,
+          77.0
+        ],
+        "landing_court_position_m": null,
+        "landing_zone": null,
+        "bounce_event_id": null,
+        "bounce_frame": null,
+        "speed_kmh": null,
+        "outcome": "IN_PLAY",
+        "is_dead_ball": false,
+        "confidence_components": {
+          "event": 0.7,
+          "pose": 0.0,
+          "geometry": 0.0
+        },
+        "reason": "Ambiguous kinematic and spatial evidence. Safely abstained to UNKNOWN."
+      }
+    ],
+    "overview": {
+      "total_points_played": 0,
+      "partial_or_review_points": 1,
+      "total_shots_recorded": 2,
+      "live_shots_recorded": 2,
+      "total_rallies": 0,
+      "average_rally_length": null,
+      "longest_rally_length": null,
+      "effective_play_seconds": null,
+      "timed_completed_rallies": 0,
+      "completed_rallies_duration_denominator": 0
+    },
+    "players": {
+      "player_1": {
+        "id": 1,
+        "movement": {
+          "distance_meters": null,
+          "average_speed_kmh": null
+        },
+        "shots": {
+          "total": 1,
+          "forehand": 0,
+          "backhand": 0,
+          "serve": 1,
+          "volley": 0,
+          "overhead": 0,
+          "unknown": 0
+        },
+        "direction": {
+          "cross_court": 1,
+          "down_the_line": 0,
+          "middle": 0,
+          "unknown": 0
+        },
+        "landing_zones": {
+          "SHORT_LEFT": 1
+        },
+        "court_occupancy_heatmap": []
+      },
+      "player_2": {
+        "id": 2,
+        "movement": {
+          "distance_meters": null,
+          "average_speed_kmh": null
+        },
+        "shots": {
+          "total": 1,
+          "forehand": 0,
+          "backhand": 0,
+          "serve": 0,
+          "volley": 0,
+          "overhead": 0,
+          "unknown": 1
+        },
+        "direction": {
+          "cross_court": 0,
+          "down_the_line": 0,
+          "middle": 0,
+          "unknown": 1
+        },
+        "landing_zones": {},
+        "court_occupancy_heatmap": []
+      }
+    },
+    "serve_analytics": {
+      "by_player": {
+        "1": {
+          "server_id": 1,
+          "contact_executions": 1,
+          "service_lets": 0,
+          "first_serves_attempted": 0,
+          "second_serves_attempted": 1,
+          "first_serves_in": 0,
+          "first_serves_faulted": 0,
+          "second_serves_in": 1,
+          "double_faults": 0,
+          "unresolved_executions": 0,
+          "first_serve_percentage": null,
+          "first_serve_percentage_denominator": 0,
+          "percentage_definition": "RESOLVED_OFFICIAL_FIRST_SLOTS_IN_OVER_IN_PLUS_FAULT; LET_EXECUTIONS_EXCLUDED"
+        },
+        "2": {
+          "server_id": 2,
+          "contact_executions": 0,
+          "service_lets": 0,
+          "first_serves_attempted": 0,
+          "second_serves_attempted": 0,
+          "first_serves_in": 0,
+          "first_serves_faulted": 0,
+          "second_serves_in": 0,
+          "double_faults": 0,
+          "unresolved_executions": 0,
+          "first_serve_percentage": null,
+          "first_serve_percentage_denominator": 0,
+          "percentage_definition": "RESOLVED_OFFICIAL_FIRST_SLOTS_IN_OVER_IN_PLUS_FAULT; LET_EXECUTIONS_EXCLUDED"
+        }
+      }
+    },
+    "landings": [
+      {
+        "shot_id": 1,
+        "player_id": 1,
+        "shot_type": "SERVE",
+        "x_m": 3.0,
+        "y_m": 8.0,
+        "landing_zone": "SHORT_LEFT",
+        "is_dead_ball": false
+      }
+    ],
+    "members": [
+      {
+        "shot_position": 0,
+        "shot_id": 1,
+        "event_id": 1,
+        "point_uid": "point_29f6a6ad89856c63dd2aea09efe719330398e20bca5bf25f6c5007159c56b981",
+        "attempt_uid": "attempt_b6a7d1b086bdcba2607147afdf74a0569039d3c946fe9447a797034d242a94cd",
+        "rally_uid": "rally_94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4",
+        "play_scope": "LEGAL_RALLY",
+        "participant_id": 1
+      },
+      {
+        "shot_position": 1,
+        "shot_id": 2,
+        "event_id": 3,
+        "point_uid": "point_29f6a6ad89856c63dd2aea09efe719330398e20bca5bf25f6c5007159c56b981",
+        "attempt_uid": "attempt_b6a7d1b086bdcba2607147afdf74a0569039d3c946fe9447a797034d242a94cd",
+        "rally_uid": "rally_94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4",
+        "play_scope": "LEGAL_RALLY",
+        "participant_id": 2
+      }
+    ]
+  },
+  "replay_input_count": 3,
+  "forbidden_loaded": []
+}

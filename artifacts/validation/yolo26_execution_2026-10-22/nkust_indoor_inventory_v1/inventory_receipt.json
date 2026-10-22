@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-21T17:56:30.479137+00:00",
+  "scope": "Official v4 metadata-only inventory of one indoor DEV reference CSV and matched straight-shot views",
+  "dataset": {
+    "id": "75m8vz7jr2",
+    "version": 4,
+    "doi": "10.17632/75m8vz7jr2.4",
+    "publisher_page": "https://data.mendeley.com/datasets/75m8vz7jr2/4",
+    "published": "2024-05-01",
+    "license_observed_on_publisher_page": "CC BY 4.0",
+    "attribution": [
+      "Kalin Guanlun Lai",
+      "Hsu-Chun Huang",
+      "Shang-Yi Lin",
+      "Wei-Ting Lin",
+      "Kawuu Weicheng Lin"
+    ]
+  },
+  "metadata_request_accept": "application/vnd.mendeley-public-dataset.1+json",
+  "requests": [
+    {
+      "url": "https://data.mendeley.com/public-api/datasets/75m8vz7jr2/folders/4",
+      "saved": "folders_v4.json",
+      "status": 200,
+      "content_type": [
+        "application/json; charset=utf-8"
+      ],
+      "etag": [
+        "W/\"8f1-utQfAiDqhVh+Qhcz9yDqj+gqPgQ\""
+      ],
+      "last_modified": null,
+      "retrieved_utc": "2026-10-21T17:54:21.2781954Z",
+      "bytes": 2289,
+      "sha256": "f3113ea91c68049b64b215bb518d7803fe959130de0d211bf565061b1545ec91"
+    },
+    {
+      "url": "https://data.mendeley.com/public-api/datasets/75m8vz7jr2/files?folder_id=root&version=4&$start=0&$limit=1000",
+      "saved": "root_files_v4.json",
+      "status": 200,
+      "content_type": [
+        "application/json; charset=utf-8"
+      ],
+      "etag": [
+        "W/\"c61-AtpblRP99cQVGa/bh5+YQHQRv1w\""
+      ],
+      "last_modified": null,
+      "retrieved_utc": "2026-10-21T17:54:21.6217670Z",
+      "bytes": 3169,
+      "sha256": "6be70b218b5ae16079523a9dddb8d1223f7fd0c0ea49e2946e7bc267822328b9"
+    },
+    {
+      "url": "https://data.mendeley.com/public-api/datasets/75m8vz7jr2/files?folder_id=2ba917f5-cd59-40ec-aaab-625522426af5&version=4&$start=0&$limit=1000",
+      "saved": "indoor_straight_top_files_v4.json",
+      "status": 200,
+      "content_type": [
+        "application/json; charset=utf-8"
+      ],
+      "etag": [
+        "W/\"12260-qc4aau5DELZefDr73pywN7PqwAg\""
+      ],
+      "last_modified": null,
+      "retrieved_utc": "2026-10-21T17:54:21.9897565Z",
+      "bytes": 74336,
+      "sha256": "ada39512b8b06f6f054a624f98ceee08ed8ab71f3aa7c17f4416dffa19953506"
+    },
+    {
+      "url": "https://data.mendeley.com/public-api/datasets/75m8vz7jr2/files?folder_id=877e8700-40cf-44cb-a6e5-a1ccb5d9aea3&version=4&$start=0&$limit=1000",
+      "saved": "indoor_straight_side_files_v4.json",
+      "status": 200,
+      "content_type": [
+        "application/json; charset=utf-8"
+      ],
+      "etag": [
+        "W/\"12257-J+9KgkYcHUOgtdDsA6y8d9MVKCI\""
+      ],
+      "last_modified": null,
+      "retrieved_utc": "2026-10-21T17:54:23.1475789Z",
+      "bytes": 74327,
+      "sha256": "a5d85d119d8787b609748596328ff4cf4d06c6d80839e6fcd361055e609bb6ad"
+    },
+    {
+      "url": "https://data.mendeley.com/datasets/bundle.js?8533f74fd5ffa7f3d44f",
+      "saved": "publisher_bundle.js",
+      "status": 200,
+      "content_type": [
+        "application/javascript; charset=UTF-8"
+      ],
+      "etag": [
+        "W/\"9fe23-1a134ac2f70\""
+      ],
+      "last_modified": [
+        "Tue, 13 Oct 2026 09:51:02 GMT"
+      ],
+      "retrieved_utc": "2026-10-21T17:54:24.8814968Z",
+      "bytes": 654883,
+      "sha256": "6dc1ed58657b306832db9f82de114a9f40f7db88f5ce494c10b3a558ad725658"
+    }
+  ],
+  "publisher_route_evidence": {
+    "page_observed_script_url": "https://data.mendeley.com/datasets/bundle.js?8533f74fd5ffa7f3d44f",
+    "bundle_sha256": "6dc1ed58657b306832db9f82de114a9f40f7db88f5ce494c10b3a558ad725658",
+    "route_excerpts": [
+      {
+        "needle": "folder_id=",
+        "character_offset": 559194,
+        "snippet": "mp=e=>({type:K,payload:e}),hp=e=>({type:X,payload:e}),fp=1e3,gp={cancelled:!1},vp=(e,t,n,i,r=gp)=>async(a,o)=>{const{configClient:s,hostname:l}=o();let c=0,d=!0;for(;d&&!r.cancelled;)try{const o=`https://${l}${s.publicApiBaseUrl}/datasets/${t}/files?folder_id=${i}&version=${n}&$start=${c}&$limit=1000`,p=await e.makeCall(o,{allowAnonymous:!0,headers:{Accept:\"application/vnd.mendeley-public-dataset.1+json\"},rawUrl:!0,rawResponse:!0}),u=await p.json();if(r.cancelled)return;a(mp(u)),d=u.length===fp,c+=fp}catch(e){console.log(\"Datasets.js - Error fetching files\"),d=!1}},bp=e=>({type:oe,payload:e});function yp(e,t){return e.map((e=>e[t])).join(\",\")}function wp(e,t){let n=\"md:datasets\";return e.institutions&&(n=`${n}:INSTITUTION:${yp(e.institutions,\"name\")}`),e.categories&&(n=`${n}:CATEGORY:${yp("
+      },
+      {
+        "needle": "/folders/${n}",
+        "character_offset": 566799,
+        "snippet": "t,files:n}){return{dataset:e.snapshot,files:n.list,folders:n.folders,configClient:t}}),{fetchFiles:vp,fetchFolders:(e,t,n,i=gp)=>async(r,a)=>{try{const{configClient:o,hostname:s}=a(),l=await e.makeCall(`https://${s}${o.publicApiBaseUrl}/datasets/${t}/folders/${n}`,{allowAnonymous:!0,rawUrl:!0});if(i.cancelled)return;r((e=>({type:W,payload:e}))(l))}catch(e){console.log(\"Datasets.js - Error fetching folders\",e)}},setFolder:e=>({type:Z,payload:e}),resetFileTree:()=>({type:Q}),setFile:hp,resetFileViewerLoad:()=>({type:ae})})((0,d.withRouter)((0,N.withTranslation)()(Tp))),Np=FocusTrapReact;class Ip extends n().PureComponent{static propTypes={children:F().node,className:F().string,describedBy:F().string,focusTrapProps:F().object,labelledBy:F().string.isRequired,loading:F().bool,onClose:F().func."
+      }
+    ],
+    "note": "Routes copied from the publisher's own linked client bundle; no file download/view URL was requested."
+  },
+  "inventory_counts": {
+    "root_file_records": 4,
+    "indoor_straight_top_records": 99,
+    "indoor_straight_side_records": 99
+  },
+  "selected_dev_assets": [
+    {
+      "record": {
+        "filename": "Indoor Field - Straight Shot.csv",
+        "id": "9991b6fc-1eea-476e-83ac-a0af8ef424e5",
+        "description": "Records of straight shot's landing point in indoor field.",
+        "content_details": {
+          "id": "12f4169b-cfe9-461e-aea2-e314ef326ad2",
+          "sha256_hash": "6ea7649134718c692f31aacf55095e1797aec673b2905a7e1215aae21ba3b53d",
+          "content_type": "text/csv",
+          "size": 1411,
+          "created_date": "2024-02-15T15:02:45.1Z",
+          "download_url": "https://data.mendeley.com/public-files/datasets/75m8vz7jr2/files/9991b6fc-1eea-476e-83ac-a0af8ef424e5/file_downloaded",
+          "view_url": "https://data.mendeley.com/public-files/datasets/75m8vz7jr2/files/9991b6fc-1eea-476e-83ac-a0af8ef424e5/file_viewed",
+          "download_expiry_time": "2126-10-21T17:54:28.743188827Z"
+        },
+        "size": 1411,
+        "last_modified_date": "2024-02-15T15:03:19.616Z",
+        "status": "COMPLETED"
+      },
+      "ancestry": []
+    },
+    {
+      "record": {
+        "filename": "IST01.mp4",
+        "id": "d644feac-66b1-40dc-ac9e-c276db3cd831",
+        "folder_id": "2ba917f5-cd59-40ec-aaab-625522426af5",
+        "content_details": {
+          "id": "18f1eec1-1eec-46d2-b93e-383f10455473",
+          "sha256_hash": "1c457c85355f7b29af814f33f18fcd5ae617ad93317a165081dae3276f119b9b",
+          "content_type": "video/mp4",
+          "size": 6430268,
+          "created_date": "2024-02-15T16:34:49.322Z",
+          "download_url": "https://data.mendeley.com/public-files/datasets/75m8vz7jr2/files/d644feac-66b1-40dc-ac9e-c276db3cd831/file_downloaded",
+          "view_url": "https://data.mendeley.com/public-files/datasets/75m8vz7jr2/files/d644feac-66b1-40dc-ac9e-c276db3cd831/file_viewed",
+          "download_expiry_time": "2126-10-21T17:54:29.113964272Z"
+        },
+        "size": 6430268,
+        "last_modified_date": "2024-02-15T16:34:49.322Z",
+        "status": "COMPLETED"
+      },
+      "ancestry": [
+        {
+          "id": "e58e6989-a112-4378-b1e2-4e4780a0766f",
+          "name": "Indoor Field",
+          "description": "Indoor Field's raw data (video), including side-view and top-view.",
+          "created_date": "2024-02-15T15:02:50.721"
+        },
+        {
+          "id": "a9827a19-27e4-4772-bdb3-301846f1400c",
+          "name": "Straight Shot",
+          "parent_id": "e58e6989-a112-4378-b1e2-4e4780a0766f",
+          "created_date": "2024-02-15T15:02:50.735"
+        },
+        {
+          "id": "2ba917f5-cd59-40ec-aaab-625522426af5",
+          "name": "Top-View",
+          "parent_id": "a9827a19-27e4-4772-bdb3-301846f1400c",
+          "created_date": "2024-02-15T15:02:50.741"
+        }
+      ]
+    },
+    {
+      "record": {
+        "filename": "ISS01.mp4",
+        "id": "c8de595e-512a-46b4-8de8-4a0cfa9a8819",
+        "folder_id": "877e8700-40cf-44cb-a6e5-a1ccb5d9aea3",
+        "content_details": {
+          "id": "ad541d10-087a-4971-84a5-0cd8a7cab008",
+          "sha256_hash": "ebf721e1502143a5df207383ddd4649bc86ef7cf252d650f9f0e7e9f93a940fe",
+          "content_type": "video/mp4",
+          "size": 6755013,
+          "created_date": "2024-02-15T16:00:47.015Z",
+          "download_url": "https://data.mendeley.com/public-files/datasets/75m8vz7jr2/files/c8de595e-512a-46b4-8de8-4a0cfa9a8819/file_downloaded",
+          "view_url": "https://data.mendeley.com/public-files/datasets/75m8vz7jr2/files/c8de595e-512a-46b4-8de8-4a0cfa9a8819/file_viewed",
+          "download_expiry_time": "2126-10-21T17:54:29.904959502Z"
+        },
+        "size": 6755013,
+        "last_modified_date": "2024-02-15T16:00:47.015Z",
+        "status": "COMPLETED"
+      },
+      "ancestry": [
+        {
+          "id": "e58e6989-a112-4378-b1e2-4e4780a0766f",
+          "name": "Indoor Field",
+          "description": "Indoor Field's raw data (video), including side-view and top-view.",
+          "created_date": "2024-02-15T15:02:50.721"
+        },
+        {
+          "id": "a9827a19-27e4-4772-bdb3-301846f1400c",
+          "name": "Straight Shot",
+          "parent_id": "e58e6989-a112-4378-b1e2-4e4780a0766f",
+          "created_date": "2024-02-15T15:02:50.735"
+        },
+        {
+          "id": "877e8700-40cf-44cb-a6e5-a1ccb5d9aea3",
+          "name": "Side-View",
+          "parent_id": "a9827a19-27e4-4772-bdb3-301846f1400c",
+          "created_date": "2024-02-15T15:02:50.737"
+        }
+      ]
+    }
+  ],
+  "selected_publisher_total_bytes": 13186692,
+  "view_pairing_basis": {
+    "publisher_instruction": "The v4 Steps to reproduce requires the same shot category and matching top/side view numbers.",
+    "ancestry_verified": true,
+    "numeric_suffix": "01",
+    "csv_identifier_join": "UNRESOLVED: no row index, identifier or ordering equivalence inferred",
+    "frame_exact_synchronization": "UNRESOLVED: matched clip numbering is insufficient"
+  },
+  "reference_readiness": {
+    "baseline_identity": "UNRESOLVED",
+    "sideline_identity_and_global_axes": "UNRESOLVED",
+    "actual_indoor_court_dimensions": "UNRESOLVED",
+    "line_edge_or_center_convention": "UNRESOLVED",
+    "measurement_uncertainty": "UNQUANTIFIED in reviewed author text",
+    "practice_landing_evaluation_available": false
+  },
+  "bounds": {
+    "metadata_and_javascript_only": true,
+    "media_downloads": 0,
+    "csv_content_downloads": 0,
+    "video_frames_opened": 0,
+    "outdoor_target_values_opened": 0,
+    "model_inference": false,
+    "training": false,
+    "future_acquisition_scope": "Reserved indoor DEV assets only; body acquisition and convention review remain separate work"
+  },
+  "producer": {
+    "path": "make_receipt.py",
+    "sha256": "0a31a59cc534c03cb68b5ad35c4d65b39988e02e7d8416e9c15d02c4ada23f13"
+  }
+}

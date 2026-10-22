@@ -1,0 +1,610 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-14T04:11:28.471415+00:00",
+  "status": "PREDECLARED_DEVELOPMENT_REVIEW_PROTOCOL_NO_EXPORT",
+  "qualification_evidence": false,
+  "scope": "elevated_end_court_singles",
+  "target_accepted_images": {
+    "train": 100,
+    "val": 20
+  },
+  "all_existing_cache_is_development": true,
+  "final_test_images": 0,
+  "cache_manifest_sha256": "399ca7537936bec749f80764683d3d3dd5baf180c14ccb22ea5562985a4af47c",
+  "annotation_file_sha256": {
+    "data_train.json": "f6e2765b299a7dabfbf62b9d00a4202de610704849ed61c6a40af4c267b8264e",
+    "data_val.json": "e85e9f7e0daac399b30709a0928b6cc3c36d3eac58b9ae180d4b707d45a65754"
+  },
+  "source_manifest_sha256": "1a75c087f9748b2e72224e5ac38654ff2c66afbfce5d580848c01ad772f639e0",
+  "archive_index_sha256": "fada024393deb32223344d22f13bb3d43ffde49eb44005bc6863709e6cd74043",
+  "rights": {
+    "author": "yastrebksv",
+    "author_readme": "https://github.com/yastrebksv/TennisCourtDetector#dataset",
+    "training_instructions": "https://github.com/yastrebksv/TennisCourtDetector#how-to-train",
+    "dataset_url": "https://drive.google.com/file/d/1lhAaeQCmk2y440PmagA0KmIVBIysVMwu/view",
+    "basis": "AUTHOR_EXPLICIT_DATASET_RELEASE_WITH_TRAINING_INSTRUCTIONS",
+    "allowed_scope": "PRIVATE_LOCAL_ACADEMIC_DEVELOPMENT_ONLY",
+    "explicit_raw_dataset_license": null,
+    "broadcast_redistribution_cleared": false,
+    "code_license_is_not_data_permission": true
+  },
+  "review_rules": [
+    "Visually identify the same event/court/session across every cached video ID before split assignment",
+    "Conservatively merge similar unresolved event/court contexts; do not invent independent matches",
+    "Reject non-primary-view, doubles, closeups, shifted/wrong semantic landmarks and unresolved out-of-image points",
+    "Publisher coordinates have no visibility; assign 2 only when the actual intersection is visibly supported",
+    "Unknown/hidden landmarks stay null; no imagined visibility or clamped coordinates",
+    "Agent visual review is development annotation, never independent human ground truth",
+    "Root second-pass review is required before YOLO export"
+  ],
+  "selection_rule": "After context grouping and label review, deterministic hash ordering within complete train/val context assignments; cap100/20; reject surplus as UNUSED_DEV",
+  "landmark_schema": "tennis_court_14_v1",
+  "point_names": [
+    "far_left_doubles",
+    "far_right_doubles",
+    "near_left_doubles",
+    "near_right_doubles",
+    "far_left_singles",
+    "near_left_singles",
+    "far_right_singles",
+    "near_right_singles",
+    "far_service_left",
+    "far_service_right",
+    "near_service_left",
+    "near_service_right",
+    "far_service_center",
+    "near_service_center"
+  ],
+  "flip_idx": [
+    1,
+    0,
+    3,
+    2,
+    6,
+    7,
+    4,
+    5,
+    9,
+    8,
+    11,
+    10,
+    12,
+    13
+  ],
+  "augmentation": {
+    "fliplr": 0,
+    "flipud": 0,
+    "mosaic": 0,
+    "mixup": 0
+  },
+  "sources": [
+    {
+      "source_video_id": "-0M6ixK7aIU",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "-Ev4S58UwTU",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "1-UMg_jEcdA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "144Pb0S6UDg",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "1csvtOQNd0M",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "24R8-zWwVUs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "26U1ie8eb7w",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "2pHpfroFK38",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "3dgh4_weRag",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "4nkM76rhvOE",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "5GFMhlMoqUs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "5QObSWGBQB8",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "6CRu9DY7KII",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "7LLSADF9t48",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "7Zet_ieK_JM",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "8PMR9mWhIzQ",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "9BxaDnr8fX0",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "9Tpef3_abKU",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ANPF-QPUe70",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ANscPlTvfXk",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "BiOnysEJdYE",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "Cbge5ffGZyk",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "G749JgIp_A0",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "GHwJBO7cXUs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "GVTQ00tks9s",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "LEm9gYkJfnY",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "LF0JNfJL_Y4",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "MUjxUJ7Ycvw",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "NeHvxtGxj7s",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "OcvlfHjBdwY",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "PFp8OvnQ2og",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "PuAPCalPLM4",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "Sj9l5kEa72U",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "T9S8fQHtV7E",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "T9ld7-zuKx0",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "TcXqTFdDaTA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "UuYiD9JWAgI",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "V-nCyiVkZpg",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "V6NR0NAN_cA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "VDy_CN9nNtY",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "VtqY_T2_gI4",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "WPlUWwAgsSk",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "WYxpTsvXvpA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "XVf2CPo01o0",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "XXkftmekQU8",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ZOlj6B5ecz0",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ZTpdH6MzGC8",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ZelyHJOVZm0",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "Zh1QspMfcwg",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ZoyiZXIb0Jc",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "aSfOC_BE9ac",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "bQiC1RcZOe4",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "cDzdc6J3jWs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "cnw0enfIQBs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "crmaT4qYXao",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "eOSRHcLforU",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ew_01heFYmg",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "g7xG3hCFqLc",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "gyIQ4Zx7qKc",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "iHIsWEdpfxE",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ifUIReZTOmI",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "jm2yTrAvvi4",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "juXbdW7z0WA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "k8WsuGXJM1w",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ktiDOhLZIVs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "l3Eu9pokSQs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "m_njKoEjGQQ",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "muLVX6pLJKs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "olzZJArM6Jc",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "oxaylunY_hc",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "phGwJafjk3M",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "prElOW5cq9w",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "qpRqZ5-UhiY",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "rBHsQe0Nnyo",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "rnTGcDK6JvY",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ru2ikgJUuRE",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "spNfR7EEPoc",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "t_bwJBfOeTw",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "uXkAqALS0AA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "ud1dfBJ5EcA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "unhchQqmD8E",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "upIcj3IJ70o",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "viJcpeucNTs",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "wMjFLZGBBho",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "xGYkRnpL-R8",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "xzjBgO51hsA",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "yXd2XBQX_o4",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    },
+    {
+      "source_video_id": "zJVeyaL4dmQ",
+      "development_split": null,
+      "context_group": null,
+      "group_status": "PENDING_FULL_EVENT_CONTEXT_REVIEW"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="17" time="0.888" timestamp="2026-10-05T11:25:36.317167+08:00" hostname="Osamah"><testcase classname="tests.test_ball_candidate_sequence" name="test_large_producer_is_consumed_one_frame_at_a_time_and_commits_in_bounded_batches" time="0.232"><failure message="PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_large_producer_is_consume0\\ball_candidates_00lqvqu9.sqlite3'">tmp_path = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-3/test_large_producer_is_consume0')
+
+    def test_large_producer_is_consumed_one_frame_at_a_time_and_commits_in_bounded_batches(tmp_path):
+&gt;       with BallCandidateSequence(tmp_path) as sequence:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_ball_candidate_sequence.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\utils\ball_candidate_sequence.py:206: in __exit__
+    owned.unlink(missing_ok=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-3/test_large_producer_is_consume0/ball_candidates_00lqvqu9.sqlite3')
+missing_ok = True
+
+    def unlink(self, missing_ok=False):
+        """
+        Remove this file or link.
+        If the path is a directory, use rmdir() instead.
+        """
+        try:
+&gt;           os.unlink(self)
+E           PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_large_producer_is_consume0\\ball_candidates_00lqvqu9.sqlite3'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:746: PermissionError</failure></testcase><testcase classname="tests.test_ball_candidate_sequence" name="test_float_bbox_null_nonfinite_and_candidate_order_round_trip" time="0.004" /><testcase classname="tests.test_ball_candidate_sequence" name="test_neighbors_backward_slices_and_explicit_updates_preserve_frame_order" time="0.004" /><testcase classname="tests.test_ball_candidate_sequence" name="test_page_cache_journal_and_temp_storage_are_bounded" time="0.007"><failure message="PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_page_cache_journal_and_te0\\ball_candidates_11owa11d.sqlite3'">tmp_path = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-3/test_page_cache_journal_and_te0')
+
+    def test_page_cache_journal_and_temp_storage_are_bounded(tmp_path):
+&gt;       with BallCandidateSequence(tmp_path, transaction_size=2) as sequence:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_ball_candidate_sequence.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\utils\ball_candidate_sequence.py:206: in __exit__
+    owned.unlink(missing_ok=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-3/test_page_cache_journal_and_te0/ball_candidates_11owa11d.sqlite3')
+missing_ok = True
+
+    def unlink(self, missing_ok=False):
+        """
+        Remove this file or link.
+        If the path is a directory, use rmdir() instead.
+        """
+        try:
+&gt;           os.unlink(self)
+E           PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_page_cache_journal_and_te0\\ball_candidates_11owa11d.sqlite3'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:746: PermissionError</failure></testcase><testcase classname="tests.test_ball_candidate_sequence" name="test_success_removes_only_owned_database_and_known_sidecars" time="0.022" /><testcase classname="tests.test_ball_candidate_sequence" name="test_producer_failure_retains_closed_partial_database_and_original_error" time="0.005"><failure message="PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_producer_failure_retains_0\\ball_candidates_jzy7cbgs.sqlite3' -&gt; 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_producer_failure_retains_0\\ball_candidates_jzy7cbgs.retained'">tmp_path = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-3/test_producer_failure_retains_0')
+
+    def test_producer_failure_retains_closed_partial_database_and_original_error(tmp_path):
+        stopped = []
+        sequence = BallCandidateSequence(tmp_path)
+    
+        def frames():
+            try:
+                yield [observation(0)]
+                yield []
+                raise LookupError("Producer failed")
+            finally:
+                stopped.append(True)
+    
+        with pytest.raises(LookupError, match="Producer failed"):
+            with sequence:
+                sequence.extend(frames())
+        assert stopped == [True]
+        assert sequence._connection is None
+        assert sequence.path.exists()
+        assert stored_rows(sequence.path) == 2
+        # Renaming on Windows also checks that no owned DB handle remained open.
+        moved = sequence.path.with_suffix(".retained")
+&gt;       sequence.path.rename(moved)
+
+tests\test_ball_candidate_sequence.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-3/test_producer_failure_retains_0/ball_candidates_jzy7cbgs.sqlite3')
+target = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-3/test_producer_failure_retains_0/ball_candidates_jzy7cbgs.retained')
+
+    def rename(self, target):
+        """
+        Rename this path to the target path.
+    
+        The target path may be absolute or relative. Relative paths are
+        interpreted relative to the current working directory, *not* the
+        directory of the Path object.
+    
+        Returns the new Path instance pointing to the target path.
+        """
+&gt;       os.rename(self, target)
+E       PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_producer_failure_retains_0\\ball_candidates_jzy7cbgs.sqlite3' -&gt; 'C:\\Users\\ac-98\\AppData\\Local\\Temp\\pytest-of-ac-98\\pytest-3\\test_producer_failure_retains_0\\ball_candidates_jzy7cbgs.retained'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:767: PermissionError</failure></testcase><testcase classname="tests.test_ball_candidate_sequence" name="test_serialization_failure_leaves_accepted_record_unchanged_and_retains_database[append]" time="0.005" /><testcase classname="tests.test_ball_candidate_sequence" name="test_serialization_failure_leaves_accepted_record_unchanged_and_retains_database[replace]" time="0.004" /><testcase classname="tests.test_ball_candidate_sequence" name="test_sqlite_mutation_failure_retains_closed_database_and_original_error" time="0.004" /><testcase classname="tests.test_ball_candidate_sequence" name="test_cleanup_failure_does_not_mask_original_exception" time="0.003" /><testcase classname="tests.test_ball_candidate_sequence" name="test_sqlite_setup_failure_retains_owned_file_and_preserves_error" time="0.002" /><testcase classname="tests.test_ball_candidate_sequence" name="test_invalid_transaction_size_creates_no_files[0]" time="0.001" /><testcase classname="tests.test_ball_candidate_sequence" name="test_invalid_transaction_size_creates_no_files[-1]" time="0.001" /><testcase classname="tests.test_ball_candidate_sequence" name="test_invalid_transaction_size_creates_no_files[True]" time="0.001" /><testcase classname="tests.test_ball_candidate_sequence" name="test_invalid_transaction_size_creates_no_files[1.5]" time="0.001" /><testcase classname="tests.test_ball_candidate_sequence" name="test_invalid_transaction_size_creates_no_files[256]" time="0.001" /><testcase classname="tests.test_ball_candidate_sequence" name="test_missing_output_directory_is_not_created" time="0.001" /></testsuite></testsuites>

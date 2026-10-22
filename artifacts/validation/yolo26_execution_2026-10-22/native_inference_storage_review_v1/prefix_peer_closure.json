@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-10-22T00:25:15.2334399Z",
+  "reviewer": "Independent collaborating AI agent /root/resume_contract",
+  "status": "FINDING_CLOSED_STATIC_REVIEW",
+  "prior_review": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_review_v1/prefix_peer_review.json",
+    "sha256": "2ae6bc37af264b3398bea54c09547c1fb989c92a5648194236dc6d3714f6f2d7",
+    "modified": false
+  },
+  "reviewed_files": [
+    {
+      "path": "src/utils/native_inference_prefix.py",
+      "sha256": "ae238c38109512366bea86ef5fe88cc79fa6c53eba488b3ea9dee3a8c2967a97",
+      "bytes": 39520
+    },
+    {
+      "path": "tests/test_native_inference_prefix.py",
+      "sha256": "4634437ba7e95af19dade9f7f460ccb681ded94630adf611915dc8e15d1ac745",
+      "bytes": 25492
+    }
+  ],
+  "finding": {
+    "id": "posix_directory_fsync_cleanup_masking",
+    "status": "CLOSED",
+    "file": "src/utils/native_inference_prefix.py",
+    "line": 419,
+    "resolution": "Directory fsync BaseException now remains the primary error; failed descriptor close adds its diagnostic note. The success branch separately closes and surfaces a close error.",
+    "test_source_review": [
+      "test_directory_sync_and_close_failures_preserve_original_interrupt",
+      "test_directory_close_failure_after_successful_sync_surfaces"
+    ],
+    "test_method": "A module-local platform capability flag enables the directory-sync branch without mutating global os.name or pathlib platform dispatch. Fake descriptor/open/fsync/close functions verify exact primary identity and cleanup ordering.",
+    "tests_run_by_this_reviewer": 0
+  },
+  "conclusion": "The original reported cleanup defect is closed by the current source. No new concrete defect was found within this fix and its controlled regressions.",
+  "verification_status": "Root combined v3 run was in progress when this static closure was requested; this receipt does not claim that run passed.",
+  "limits": {
+    "tests_run": 0,
+    "runtime_or_project_imports": false,
+    "hardware_probes": false,
+    "production_source_edits": false,
+    "pipeline_or_worker_partial_resume_connected": false,
+    "actual_long_match_or_accuracy_qualification": false
+  }
+}

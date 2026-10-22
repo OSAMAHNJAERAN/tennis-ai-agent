@@ -1,0 +1,31 @@
+..F....................................................                  [100%]
+================================== FAILURES ===================================
+___ test_reanchored_valid_current_geometry_does_not_use_invalid_initial_fit ___
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-17/correction_sources_checks_v5/pytest_tmp/test_reanchored_valid_current_0')
+
+    def test_reanchored_valid_current_geometry_does_not_use_invalid_initial_fit(tmp_path):
+        source = SyntheticSourceFrames()
+        for index in range(5, len(source)):
+            source[index][0].update(segment_id='camera_fixture_1', anchor_frame_index=5,
+                                   measurement_transition_allowed=index > 5)
+        def mutate(files):
+            change(files, 'court_geometry.json', lambda data: data.update(
+                is_valid=False, rejection_reason='INITIAL_FIT_REJECTED', homography_matrix=None))
+            change(files, 'camera_registration.json', lambda data: data['frames'][5].__setitem__(
+                'image_to_court', [[.02, 0., 2.], [0., .03, 3.], [0., 0., 1.]]))
+        fixture = sealed_fixture(tmp_path / 'run', source=source, mutate=mutate)
+        with opened(fixture) as sources:
+            geometry = sources.event_geometry(5, current_context(source))
+            assert geometry.usable and geometry.homography_matrix[0, 2] == 2.
+            points = sources.event_ball_points(5, current_context(source))
+>           assert points[4].x_px is None and points[5].x_px is not None and points[6].x_px is not None
+E           AssertionError: assert (None is None and 300.1234567890123 is not None and None is not None)
+E            +  where None = TemporalBallPoint(frame_index=4, timestamp_seconds=0.13333333333333333, x_px=None, y_px=None, court_x_m=None, court_y_...e=<BallState.MISSING: 'MISSING'>, source='correction_continuity_unavailable', velocity_px_per_sec=None, speed_kmh=None).x_px
+E            +  and   300.1234567890123 = TemporalBallPoint(frame_index=5, timestamp_seconds=0.16666666666666666, x_px=300.1234567890123, y_px=800.9876543210987...32101234, state=<BallState.DETECTED: 'DETECTED'>, source='sealed_detections', velocity_px_per_sec=None, speed_kmh=None).x_px
+E            +  and   None = TemporalBallPoint(frame_index=6, timestamp_seconds=0.2, x_px=None, y_px=None, court_x_m=None, court_y_m=None, confiden...e=<BallState.MISSING: 'MISSING'>, source='correction_continuity_unavailable', velocity_px_per_sec=None, speed_kmh=None).x_px
+
+tests\test_correction_sources.py:204: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_correction_sources.py::test_reanchored_valid_current_geometry_does_not_use_invalid_initial_fit
+1 failed, 54 passed in 19.99s

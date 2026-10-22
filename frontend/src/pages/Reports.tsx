@@ -1,8 +1,9 @@
-import { DownloadSimple, FileCode, FileCsv, FilePdf, Printer, ShieldWarning } from "@phosphor-icons/react";
+import { DownloadSimple, FileCode, FileCsv, Printer } from "@phosphor-icons/react";
 import { useAnalysis } from "../app/AnalysisContext";
 import { Card, Metric, PageHeader, SectionHeading, StatusBadge } from "../components/ui";
 import { deriveCoverage } from "../lib/analytics";
 import { formatDateTime, formatNumber, formatPercent } from "../lib/format";
+import { MediaSourceCredit } from '../components/MediaSourceCredit';
 
 function downloadFile(filename: string, contents: string, type: string) {
   const blob = new Blob([contents], { type });
@@ -34,17 +35,18 @@ export default function Reports() {
 
   return (
     <div className="page reports-page">
-      <PageHeader eyebrow="Portable outputs" title="Reports" description="Produce traceable client-side exports and a print-ready summary from the selected offline run. No data leaves this browser." action={<button className="button button-primary no-print" type="button" onClick={() => window.print()}><Printer size={16} /> Print report</button>} />
+      <PageHeader eyebrow="Portable outputs" title="Reports" description="Produce traceable client-side exports and a print-ready summary from the selected analysis. Downloads are generated from its evidence." action={<button className="button button-primary no-print" type="button" onClick={() => window.print()}><Printer size={16} /> Print report</button>} />
       <Card className="report-cover">
-        <div className="report-cover-index">T88 / {run.summary.phase}</div>
-        <div><p className="eyebrow">Selected analysis report</p><h2>{run.summary.label}</h2><p>Generated from the versioned normalized snapshot. Source analyzed {formatDateTime(run.summary.analyzedAt)}.</p></div>
+        <div className="report-cover-index">ASTRA / VIDEO ANALYSIS</div>
+        <div><p className="eyebrow">Selected analysis report</p><h2>{run.summary.label}</h2><p>Generated from the selected analysis. Source analyzed {formatDateTime(run.summary.analyzedAt)}.</p></div>
         <StatusBadge tone="signal">{run.summary.status}</StatusBadge>
       </Card>
+      {run.mediaSource ? <MediaSourceCredit source={run.mediaSource} expanded /> : null}
       <section className="report-kpis" aria-label="Selected run summary">
         <Metric primary label="Pipeline throughput" value={formatNumber(run.pipelineMetrics?.pipelineFps, " FPS")} meta={`${run.summary.frames} source frames`} />
         <Metric label="Tracking coverage" value={formatPercent(coverage)} />
-        <Metric label="Semantic events" value={run.events.length} />
-        <Metric label="Line calls" value={run.lineCalls.length} />
+        <Metric label="Semantic events" value={run.summary.capabilities.events ? run.events.length : "Unavailable"} />
+        <Metric label="Line calls" value={run.summary.capabilities.lineCalls ? run.lineCalls.length : "Unavailable"} />
         <Metric label="Court error" value={formatNumber(run.court?.reprojectionErrorPx, " px")} />
       </section>
       <section className="report-detail-grid">
@@ -53,7 +55,7 @@ export default function Reports() {
           <dl className="report-facts"><div><dt>Match ID</dt><dd>{run.matchState?.match_id ?? "Unavailable"}</dd></div><div><dt>Point state</dt><dd>{run.matchState?.point_state ?? "Unavailable"}</dd></div><div><dt>Server</dt><dd>{run.matchState ? `Player ${run.matchState.server_id}` : "Unavailable"}</dd></div><div><dt>Serve attempt</dt><dd>{run.matchState?.serve_attempt ?? "Unavailable"}</dd></div><div><dt>Match complete</dt><dd>{run.matchState ? (run.matchState.match_complete ? "Yes" : "No") : "Unavailable"}</dd></div></dl>
         </Card>
         <Card className="panel-padding">
-          <SectionHeading eyebrow="Artifacts" title="Availability ledger" detail={`${run.summary.artifacts.length} committed source artifact references.`} />
+          <SectionHeading eyebrow="Artifacts" title="Availability ledger" detail={`${run.summary.artifacts.length} source artifact references.`} />
           <div className="artifact-ledger">{Object.entries(run.summary.capabilities).map(([name, available]) => <div key={name}><span>{name}</span><strong>{available ? "Available" : "Unavailable"}</strong></div>)}</div>
         </Card>
       </section>
@@ -62,7 +64,6 @@ export default function Reports() {
         <div className="export-grid">
           <Card className="export-card"><span className="export-icon"><FileCode size={24} weight="duotone" /></span><div><h3>Normalized JSON</h3><p>Complete selected-run contract with scientific enums and metadata.</p></div><button className="button button-primary" type="button" onClick={exportJson}><DownloadSimple size={16} /> Download JSON</button></Card>
           <Card className="export-card"><span className="export-icon"><FileCsv size={24} weight="duotone" /></span><div><h3>Events CSV</h3><p>Portable semantic event log with frame and time references.</p></div><button className="button" type="button" onClick={exportCsv} disabled={!run.events.length}><DownloadSimple size={16} /> Download CSV</button></Card>
-          <Card className="export-card export-disabled"><span className="export-icon"><FilePdf size={24} weight="duotone" /></span><div><h3>Server PDF</h3><p>Unavailable because this frontend has no report-generation service.</p></div><button className="button" type="button" disabled><ShieldWarning size={16} /> Server required</button></Card>
         </div>
       </section>
     </div>

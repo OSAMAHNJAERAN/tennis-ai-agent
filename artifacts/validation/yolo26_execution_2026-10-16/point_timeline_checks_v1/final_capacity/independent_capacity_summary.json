@@ -1,0 +1,64 @@
+{
+  "status": "FINAL_FROZEN_SEMANTIC_CAPACITY_THREE_CASES_PASSED",
+  "owned_exec_session": 47799,
+  "terminal_exit_code": 0,
+  "test_counts": {
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0
+  },
+  "elapsed_seconds": 64.76646099999198,
+  "peak_owned_working_set_bytes": 45305856,
+  "final_current_working_set_bytes": null,
+  "final_current_memory_note": "Retained runner records peak owned working set only; no final current-RSS value was persisted. No peak/current equivalence is inferred.",
+  "sources_unchanged": true,
+  "forbidden_imports_present": [],
+  "result_receipt_sha256": "03ff13137bd4e28f3b7e6dc0f5c4389dd5f59d4e43394f4cd799af6dec14699f",
+  "cases": [
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-16/point_timeline_checks_v1/final_capacity/temp/pytest/test_indexed_semantic_ledger_s0/capacity.json",
+      "sha256": "27ba6cc750f61908020c1b41f5c6343877d451e97c41c22843a6467c42e6c369",
+      "measurement": {
+        "completed_points": 257,
+        "source_events": 1028,
+        "shot_memberships": 514,
+        "peak_live_shots": 2,
+        "traced_current_bytes": 104896,
+        "traced_peak_bytes": 999894,
+        "excludes_scoring_history_and_inference": true
+      }
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-16/point_timeline_checks_v1/final_capacity/temp/pytest/test_indexed_semantic_ledger_s1/capacity.json",
+      "sha256": "0c157da85275a156d45a1196e6c8499c4a677db5cf11d97cdd1be8c7a300bb1d",
+      "measurement": {
+        "completed_points": 1025,
+        "source_events": 4100,
+        "shot_memberships": 2050,
+        "peak_live_shots": 2,
+        "traced_current_bytes": 986661,
+        "traced_peak_bytes": 1185006,
+        "excludes_scoring_history_and_inference": true
+      }
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-16/point_timeline_checks_v1/final_capacity/temp/pytest/test_indexed_semantic_ledger_s2/capacity.json",
+      "sha256": "cf991a27b67c76e0b25dfcf7fa79029c7cddcadbaad0b1be387d16f6a0a12ea6",
+      "measurement": {
+        "completed_points": 4097,
+        "source_events": 16388,
+        "shot_memberships": 8194,
+        "peak_live_shots": 2,
+        "traced_current_bytes": 336325,
+        "traced_peak_bytes": 1358708,
+        "excludes_scoring_history_and_inference": true
+      }
+    }
+  ],
+  "prior_four_review_findings": "Closed by source guards and root retained 18 focused RED-to-GREEN cases",
+  "unbounded_scoring_history_excluded": true,
+  "inference_excluded": true,
+  "full_match_capacity_proven": false,
+  "qualification_evidence": false
+}

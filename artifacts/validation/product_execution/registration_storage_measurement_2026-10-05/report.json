@@ -1,0 +1,509 @@
+{
+  "startedAt": "2026-10-05T04:38:52.677444+00:00",
+  "passed": false,
+  "runs": [
+    {
+      "profile": "dynamic",
+      "mode": "old",
+      "frames": 600,
+      "samples": 7,
+      "peakSampledOwnedTreeRssBytes": 43954176,
+      "peakSampledOwnedTreePrivateBytes": 796131328,
+      "minimumSampledAvailableRamBytes": 2771369984,
+      "passed": true,
+      "exitCode": 0,
+      "actualWorkloadWasSampled": true,
+      "remainingOwnedIdentities": [],
+      "child": {
+        "profile": "dynamic",
+        "mode": "old",
+        "frames": 600,
+        "passed": true,
+        "actualWorkloadIdentity": {
+          "pid": 58800,
+          "createTimeUnixSeconds": 1791175132.802618
+        },
+        "elapsedScope": "Synthetic construction/checks/owned cleanup after imports and actual-identity sampling handshake; monitor includes startup.",
+        "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+        "libraries": {
+          "numpy": "2.3.1",
+          "opencv": "4.13.0",
+          "psutil": "7.0.0"
+        },
+        "qualificationEvidence": false,
+        "modelsImported": [],
+        "inferenceRun": false,
+        "appendSeconds": 0.0015214000013656914,
+        "allFrameFieldsMatricesAndProjectionsExactlyMatchGeneratedInput": true,
+        "forwardSha256": "46d2fdcd083f73b7975c378f547f27894ebaf88b302f9c9944c770362f76fb9a",
+        "forwardCheckSeconds": 0.018824899976607412,
+        "reverseAndRandomSampleSha256": "c0ca6ebeede14e5a45b7bb5d1cea7b87f3efecff8a17043bd891a476042819cd",
+        "reverseAndRandomSamples": 259,
+        "totalChildElapsedSeconds": 0.028010699956212193,
+        "windowsPeakWorkingSetBytes": 44933120,
+        "windowsPeakPagefileBytes": 803643392,
+        "completedAt": "2026-10-05T04:38:54.686615+00:00"
+      },
+      "completedAt": "2026-10-05T04:38:54.769361+00:00",
+      "monitoredChildWallSeconds": 2.09004310000455,
+      "ownedIdentities": [
+        {
+          "pid": 53696,
+          "createTimeUnixSeconds": 1791175132.7742033,
+          "parentPid": null,
+          "depth": 0,
+          "firstObservedAt": "2026-10-05T04:38:52.784570+00:00",
+          "sampleCount": 7,
+          "peakSampledRssBytes": 4235264,
+          "peakSampledPrivateBytes": 864256
+        },
+        {
+          "pid": 25736,
+          "createTimeUnixSeconds": 1791175132.7897952,
+          "parentPid": 53696,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:52.794928+00:00",
+          "sampleCount": 7,
+          "peakSampledRssBytes": 7487488,
+          "peakSampledPrivateBytes": 1277952
+        },
+        {
+          "pid": 58800,
+          "createTimeUnixSeconds": 1791175132.802618,
+          "parentPid": 53696,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:53.074399+00:00",
+          "sampleCount": 6,
+          "peakSampledRssBytes": 32231424,
+          "peakSampledPrivateBytes": 793989120
+        }
+      ]
+    },
+    {
+      "profile": "dynamic",
+      "mode": "new",
+      "frames": 600,
+      "samples": 2,
+      "peakSampledOwnedTreeRssBytes": 34299904,
+      "peakSampledOwnedTreePrivateBytes": 14999552,
+      "minimumSampledAvailableRamBytes": 2776801280,
+      "passed": true,
+      "exitCode": 0,
+      "actualWorkloadWasSampled": true,
+      "remainingOwnedIdentities": [],
+      "child": {
+        "profile": "dynamic",
+        "mode": "new",
+        "frames": 600,
+        "passed": true,
+        "actualWorkloadIdentity": {
+          "pid": 53400,
+          "createTimeUnixSeconds": 1791175134.7973568
+        },
+        "elapsedScope": "Synthetic construction/checks/owned cleanup after imports and actual-identity sampling handshake; monitor includes startup.",
+        "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+        "libraries": {
+          "numpy": "2.3.1",
+          "opencv": "4.13.0",
+          "psutil": "7.0.0"
+        },
+        "qualificationEvidence": false,
+        "modelsImported": [],
+        "inferenceRun": false,
+        "logicalDatabaseBytesBeforeCleanup": 237568,
+        "finalTransactionFlushedForDiskMeasurement": true,
+        "appendSeconds": 0.009769099997356534,
+        "allFrameFieldsMatricesAndProjectionsExactlyMatchGeneratedInput": true,
+        "forwardSha256": "46d2fdcd083f73b7975c378f547f27894ebaf88b302f9c9944c770362f76fb9a",
+        "forwardCheckSeconds": 0.05328880000161007,
+        "reverseAndRandomSampleSha256": "c0ca6ebeede14e5a45b7bb5d1cea7b87f3efecff8a17043bd891a476042819cd",
+        "reverseAndRandomSamples": 259,
+        "databaseCleanup": {
+          "path": "artifacts/validation/product_execution/registration_storage_measurement_2026-10-05/dynamic_600_new/frame_registration_4dph00by.sqlite3",
+          "allExactOwnedFilesAbsent": true
+        },
+        "totalChildElapsedSeconds": 0.08806599996751174,
+        "windowsPeakWorkingSetBytes": 45527040,
+        "windowsPeakPagefileBytes": 803672064,
+        "completedAt": "2026-10-05T04:38:55.317188+00:00"
+      },
+      "completedAt": "2026-10-05T04:38:55.399483+00:00",
+      "monitoredChildWallSeconds": 0.6279457000200637,
+      "ownedIdentities": [
+        {
+          "pid": 48024,
+          "createTimeUnixSeconds": 1791175134.7724433,
+          "parentPid": null,
+          "depth": 0,
+          "firstObservedAt": "2026-10-05T04:38:54.783566+00:00",
+          "sampleCount": 2,
+          "peakSampledRssBytes": 4235264,
+          "peakSampledPrivateBytes": 860160
+        },
+        {
+          "pid": 14356,
+          "createTimeUnixSeconds": 1791175134.78539,
+          "parentPid": 48024,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:54.793307+00:00",
+          "sampleCount": 2,
+          "peakSampledRssBytes": 7495680,
+          "peakSampledPrivateBytes": 1273856
+        },
+        {
+          "pid": 53400,
+          "createTimeUnixSeconds": 1791175134.7973568,
+          "parentPid": 48024,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:55.078019+00:00",
+          "sampleCount": 1,
+          "peakSampledRssBytes": 22568960,
+          "peakSampledPrivateBytes": 12865536
+        }
+      ]
+    },
+    {
+      "profile": "dynamic",
+      "mode": "old",
+      "frames": 18000,
+      "samples": 4,
+      "peakSampledOwnedTreeRssBytes": 67022848,
+      "peakSampledOwnedTreePrivateBytes": 816758784,
+      "minimumSampledAvailableRamBytes": 2738155520,
+      "passed": true,
+      "exitCode": 0,
+      "actualWorkloadWasSampled": true,
+      "remainingOwnedIdentities": [],
+      "child": {
+        "profile": "dynamic",
+        "mode": "old",
+        "frames": 18000,
+        "passed": true,
+        "actualWorkloadIdentity": {
+          "pid": 56140,
+          "createTimeUnixSeconds": 1791175135.42978
+        },
+        "elapsedScope": "Synthetic construction/checks/owned cleanup after imports and actual-identity sampling handshake; monitor includes startup.",
+        "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+        "libraries": {
+          "numpy": "2.3.1",
+          "opencv": "4.13.0",
+          "psutil": "7.0.0"
+        },
+        "qualificationEvidence": false,
+        "modelsImported": [],
+        "inferenceRun": false,
+        "appendSeconds": 0.04789690003963187,
+        "allFrameFieldsMatricesAndProjectionsExactlyMatchGeneratedInput": true,
+        "forwardSha256": "939d23560e4ccdcd02edf50be0fe10797cfdcce5a69695ab2e18e6a25e83fb54",
+        "forwardCheckSeconds": 0.53133930003969,
+        "reverseAndRandomSampleSha256": "b67417bddc3f0116edf4f70573ccb131c4a1ba1b31967117e54ac08ff286a39a",
+        "reverseAndRandomSamples": 261,
+        "totalChildElapsedSeconds": 0.5872846000129357,
+        "windowsPeakWorkingSetBytes": 55316480,
+        "windowsPeakPagefileBytes": 814612480,
+        "completedAt": "2026-10-05T04:38:56.503063+00:00"
+      },
+      "completedAt": "2026-10-05T04:38:56.796320+00:00",
+      "monitoredChildWallSeconds": 1.3951785000390373,
+      "ownedIdentities": [
+        {
+          "pid": 43920,
+          "createTimeUnixSeconds": 1791175135.4019473,
+          "parentPid": null,
+          "depth": 0,
+          "firstObservedAt": "2026-10-05T04:38:55.415516+00:00",
+          "sampleCount": 4,
+          "peakSampledRssBytes": 4235264,
+          "peakSampledPrivateBytes": 868352
+        },
+        {
+          "pid": 46952,
+          "createTimeUnixSeconds": 1791175135.417242,
+          "parentPid": 43920,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:55.424895+00:00",
+          "sampleCount": 4,
+          "peakSampledRssBytes": 7487488,
+          "peakSampledPrivateBytes": 1277952
+        },
+        {
+          "pid": 56140,
+          "createTimeUnixSeconds": 1791175135.42978,
+          "parentPid": 43920,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:55.758174+00:00",
+          "sampleCount": 2,
+          "peakSampledRssBytes": 55300096,
+          "peakSampledPrivateBytes": 814612480
+        }
+      ]
+    },
+    {
+      "profile": "dynamic",
+      "mode": "new",
+      "frames": 18000,
+      "samples": 6,
+      "peakSampledOwnedTreeRssBytes": 59289600,
+      "peakSampledOwnedTreePrivateBytes": 807841792,
+      "minimumSampledAvailableRamBytes": 2721693696,
+      "passed": true,
+      "exitCode": 0,
+      "actualWorkloadWasSampled": true,
+      "remainingOwnedIdentities": [],
+      "child": {
+        "profile": "dynamic",
+        "mode": "new",
+        "frames": 18000,
+        "passed": true,
+        "actualWorkloadIdentity": {
+          "pid": 44112,
+          "createTimeUnixSeconds": 1791175136.8445892
+        },
+        "elapsedScope": "Synthetic construction/checks/owned cleanup after imports and actual-identity sampling handshake; monitor includes startup.",
+        "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+        "libraries": {
+          "numpy": "2.3.1",
+          "opencv": "4.13.0",
+          "psutil": "7.0.0"
+        },
+        "qualificationEvidence": false,
+        "modelsImported": [],
+        "inferenceRun": false,
+        "logicalDatabaseBytesBeforeCleanup": 6836224,
+        "finalTransactionFlushedForDiskMeasurement": true,
+        "appendSeconds": 0.2585504000307992,
+        "allFrameFieldsMatricesAndProjectionsExactlyMatchGeneratedInput": true,
+        "forwardSha256": "939d23560e4ccdcd02edf50be0fe10797cfdcce5a69695ab2e18e6a25e83fb54",
+        "forwardCheckSeconds": 1.448612799984403,
+        "reverseAndRandomSampleSha256": "b67417bddc3f0116edf4f70573ccb131c4a1ba1b31967117e54ac08ff286a39a",
+        "reverseAndRandomSamples": 261,
+        "databaseCleanup": {
+          "path": "artifacts/validation/product_execution/registration_storage_measurement_2026-10-05/dynamic_18000_new/frame_registration_ie2rzin7.sqlite3",
+          "allExactOwnedFilesAbsent": true
+        },
+        "totalChildElapsedSeconds": 1.7315203999751247,
+        "windowsPeakWorkingSetBytes": 47583232,
+        "windowsPeakPagefileBytes": 805707776,
+        "completedAt": "2026-10-05T04:38:58.804706+00:00"
+      },
+      "completedAt": "2026-10-05T04:38:59.056707+00:00",
+      "monitoredChildWallSeconds": 2.254603200010024,
+      "ownedIdentities": [
+        {
+          "pid": 28600,
+          "createTimeUnixSeconds": 1791175136.8086658,
+          "parentPid": null,
+          "depth": 0,
+          "firstObservedAt": "2026-10-05T04:38:56.825554+00:00",
+          "sampleCount": 6,
+          "peakSampledRssBytes": 4235264,
+          "peakSampledPrivateBytes": 864256
+        },
+        {
+          "pid": 39220,
+          "createTimeUnixSeconds": 1791175136.8271549,
+          "parentPid": 28600,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:56.863571+00:00",
+          "sampleCount": 6,
+          "peakSampledRssBytes": 7487488,
+          "peakSampledPrivateBytes": 1269760
+        },
+        {
+          "pid": 44112,
+          "createTimeUnixSeconds": 1791175136.8445892,
+          "parentPid": 28600,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:56.863606+00:00",
+          "sampleCount": 6,
+          "peakSampledRssBytes": 47566848,
+          "peakSampledPrivateBytes": 805707776
+        }
+      ]
+    },
+    {
+      "profile": "dynamic",
+      "mode": "old",
+      "frames": 432000,
+      "samples": 417,
+      "peakSampledOwnedTreeRssBytes": 299360256,
+      "peakSampledOwnedTreePrivateBytes": 1054273536,
+      "minimumSampledAvailableRamBytes": 2461638656,
+      "passed": true,
+      "exitCode": 0,
+      "actualWorkloadWasSampled": true,
+      "remainingOwnedIdentities": [],
+      "child": {
+        "profile": "dynamic",
+        "mode": "old",
+        "frames": 432000,
+        "passed": true,
+        "actualWorkloadIdentity": {
+          "pid": 45492,
+          "createTimeUnixSeconds": 1791175139.1045837
+        },
+        "elapsedScope": "Synthetic construction/checks/owned cleanup after imports and actual-identity sampling handshake; monitor includes startup.",
+        "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+        "libraries": {
+          "numpy": "2.3.1",
+          "opencv": "4.13.0",
+          "psutil": "7.0.0"
+        },
+        "qualificationEvidence": false,
+        "modelsImported": [],
+        "inferenceRun": false,
+        "appendSeconds": 1.2299629999906756,
+        "allFrameFieldsMatricesAndProjectionsExactlyMatchGeneratedInput": true,
+        "forwardSha256": "e67cf1edbcfafdb243f3ba175d78c1d5c480625a2dfe4ad021e323a465db79bf",
+        "forwardCheckSeconds": 151.77796529995976,
+        "reverseAndRandomSampleSha256": "e1c94b217b408e3522b389d52873598e82f6165a2d6a344745edde45a216542e",
+        "reverseAndRandomSamples": 261,
+        "totalChildElapsedSeconds": 153.1117465000134,
+        "windowsPeakWorkingSetBytes": 287662080,
+        "windowsPeakPagefileBytes": 1052209152,
+        "completedAt": "2026-10-05T04:41:32.785443+00:00"
+      },
+      "completedAt": "2026-10-05T04:41:33.572173+00:00",
+      "monitoredChildWallSeconds": 154.50975309999194,
+      "ownedIdentities": [
+        {
+          "pid": 55760,
+          "createTimeUnixSeconds": 1791175139.0674708,
+          "parentPid": null,
+          "depth": 0,
+          "firstObservedAt": "2026-10-05T04:38:59.086994+00:00",
+          "sampleCount": 417,
+          "peakSampledRssBytes": 4235264,
+          "peakSampledPrivateBytes": 860160
+        },
+        {
+          "pid": 35288,
+          "createTimeUnixSeconds": 1791175139.0883772,
+          "parentPid": 55760,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:59.120208+00:00",
+          "sampleCount": 417,
+          "peakSampledRssBytes": 7495680,
+          "peakSampledPrivateBytes": 1273856
+        },
+        {
+          "pid": 45492,
+          "createTimeUnixSeconds": 1791175139.1045837,
+          "parentPid": 55760,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:38:59.120247+00:00",
+          "sampleCount": 417,
+          "peakSampledRssBytes": 287662080,
+          "peakSampledPrivateBytes": 1052200960
+        }
+      ]
+    },
+    {
+      "profile": "dynamic",
+      "mode": "new",
+      "frames": 432000,
+      "samples": 813,
+      "peakSampledOwnedTreeRssBytes": 59535360,
+      "peakSampledOwnedTreePrivateBytes": 807903232,
+      "minimumSampledAvailableRamBytes": 2678145024,
+      "passed": false,
+      "safeguardStop": "Owned wall-time safeguard",
+      "error": "RuntimeError: Owned wall-time safeguard",
+      "terminationActions": [
+        {
+          "pid": 16996,
+          "createTimeUnixSeconds": 1791175293.6042483,
+          "depth": 1,
+          "signal": "terminate",
+          "at": "2026-10-05T04:46:33.857510+00:00"
+        },
+        {
+          "pid": 40156,
+          "createTimeUnixSeconds": 1791175293.6163251,
+          "depth": 1,
+          "signal": "terminate",
+          "at": "2026-10-05T04:46:33.858129+00:00"
+        },
+        {
+          "pid": 61820,
+          "createTimeUnixSeconds": 1791175293.583476,
+          "depth": 0,
+          "signal": "terminate",
+          "at": "2026-10-05T04:46:33.858576+00:00"
+        }
+      ],
+      "completedAt": "2026-10-05T04:46:33.872503+00:00",
+      "monitoredChildWallSeconds": 300.29419400001643,
+      "ownedIdentities": [
+        {
+          "pid": 61820,
+          "createTimeUnixSeconds": 1791175293.583476,
+          "parentPid": null,
+          "depth": 0,
+          "firstObservedAt": "2026-10-05T04:41:33.601309+00:00",
+          "sampleCount": 813,
+          "peakSampledRssBytes": 4341760,
+          "peakSampledPrivateBytes": 901120
+        },
+        {
+          "pid": 16996,
+          "createTimeUnixSeconds": 1791175293.6042483,
+          "parentPid": 61820,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:41:33.631877+00:00",
+          "sampleCount": 813,
+          "peakSampledRssBytes": 7581696,
+          "peakSampledPrivateBytes": 1290240
+        },
+        {
+          "pid": 40156,
+          "createTimeUnixSeconds": 1791175293.6163251,
+          "parentPid": 61820,
+          "depth": 1,
+          "firstObservedAt": "2026-10-05T04:41:33.631916+00:00",
+          "sampleCount": 813,
+          "peakSampledRssBytes": 47611904,
+          "peakSampledPrivateBytes": 805826560
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "profile": "dynamic",
+      "frames": 600,
+      "passed": true,
+      "allFramesDirectlyComparedToFrozenSyntheticInput": true,
+      "forwardDigestEqual": true,
+      "reverseRandomDigestEqual": true
+    },
+    {
+      "profile": "dynamic",
+      "frames": 18000,
+      "passed": true,
+      "allFramesDirectlyComparedToFrozenSyntheticInput": true,
+      "forwardDigestEqual": true,
+      "reverseRandomDigestEqual": true
+    }
+  ],
+  "qualificationEvidence": false,
+  "inferenceRun": false,
+  "scope": "Synthetic registration records only; no video, models, training or accuracy qualification.",
+  "error": "RuntimeError: Owned wall-time safeguard",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\audit\\measure_registration_storage.py\", line 258, in parent\n    raise RuntimeError(reason)\nRuntimeError: Owned wall-time safeguard\n",
+  "completedAt": "2026-10-05T04:46:33.877996+00:00",
+  "sourceBindingsAfter": {
+    "scripts/audit/measure_registration_storage.py": "b3fb11298aea3d742dbea859b8eabb46e6ce06ef7417056de3374c39e94a97c6",
+    "scripts/audit/measure_candidate_storage.py": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39",
+    "src/utils/frame_registration_sequence.py": "bcff4f7ea0146b16576e5209b436668603894672be07be1e14da397313d2e796",
+    "src/court/calibration.py": "64ebc0a0e3785fc98088ac347c2d999deaf91411f76c1a36191f03fd72f5262c",
+    "src/pipeline/phase6_pipeline.py": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec",
+    "src/court/camera_registration.py": "24793c60a8d3e1fac4c241b66b02d92f93fb982a1b7a90df652db462b0454fd7",
+    "src/tracking/court_player_tracker.py": "56497994399a3de17f3c8a5de951a8b8e41c0fa5fc4a7cfbef550298a1c896b3",
+    "requirements-product.txt": "2d35459dcb01d87f29250e4436fabbf24fef624f7483edc47d666788b3358e09",
+    "configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml": "84505e944f2650cbe0edc490e4123e52137dc0a5af5fd6013e47acdf4ba030b6",
+    "artifacts/validation/product_installation/clean_env/Scripts/python.exe": "935016795f3e6908e75acbc2040a01e2e4cdb494a57c42f63a0d6eedb2372256"
+  },
+  "sourcesUnchanged": true
+}

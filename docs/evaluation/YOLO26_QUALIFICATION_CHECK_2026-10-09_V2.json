@@ -1,0 +1,32 @@
+{
+  "schema_version": "tennis.yolo26.qualification-check.v1",
+  "checked_at": "2026-10-09T10:35:26.635697+00:00",
+  "verification_status": "UNQUALIFIED",
+  "production_eligible": false,
+  "vision_evaluation_executed": false,
+  "required_tasks": [
+    "calibration",
+    "player_ground_position",
+    "player_identity",
+    "visible_ball"
+  ],
+  "retained_hashes": {
+    "configuration": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\production\\yolo26.yaml",
+      "sha256": "8106e134eea5a520c10747a12921d2352643e7df7d3cdb1d30ef29ae94cee9fb"
+    },
+    "checker": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\evaluation\\yolo26_qualification.py",
+      "sha256": "61d9af697ba000105643ac2ea419ed78c5f76490b6ddc4593c25694c7ced0108"
+    },
+    "bundle_gate": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\detection\\yolo26_bundle.py",
+      "sha256": "eb7528a4626fad28711d13172d11038c39747e8df5dac39200151bd32eb59bb8"
+    },
+    "artifact_manifest": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\production\\yolo26.artifacts.json",
+      "sha256": "8a902c6fe9eecbe97799b48c51e2ea55ca92355e44fd7b39527d7665af30f0cb"
+    }
+  },
+  "reason": "Selected ball YOLO26 artifact is missing: C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\models\\yolo26\\ball_best.pt. No legacy fallback."
+}

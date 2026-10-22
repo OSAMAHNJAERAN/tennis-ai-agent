@@ -1,0 +1,112 @@
+{
+  "exit_code": 0,
+  "result": {
+    "base_required_files": 37,
+    "base_file_names": [
+      "annotated.mp4",
+      "ball_metrics.json",
+      "camera_intervals.json",
+      "camera_registration.json",
+      "court_geometry.json",
+      "detections.json",
+      "event_candidates.json",
+      "event_verification_trace.json",
+      "image_people.json",
+      "inference_config.yaml",
+      "line_calls.json",
+      "match_analytics.json",
+      "match_events.json",
+      "match_identity.json",
+      "match_state.json",
+      "media_metadata.json",
+      "metrics.json",
+      "native_rule_replay.json",
+      "original.mp4",
+      "patch_persistence_audit.json",
+      "pixel_motion_audit.json",
+      "player_metrics.json",
+      "player_motion.json",
+      "point_analytics.json",
+      "point_timeline_manifest.json",
+      "racket_tracking.json",
+      "rallies.json",
+      "result.json",
+      "run_config.yaml",
+      "score_history.json",
+      "scoring_events.json",
+      "serve_executions.json",
+      "shot_events.json",
+      "shot_play_scope.json",
+      "source.mp4",
+      "stationary_candidate_audit.json",
+      "summary.json",
+      "temporal_detour_audit.json",
+      "temporal_spacing_audit.json",
+      "trajectories.json"
+    ],
+    "base_points": {
+      "totalPointsPlayed": 0,
+      "partialOrReviewPoints": 1,
+      "totalRallies": 0,
+      "averageRallyLength": null,
+      "longestRallyLength": null,
+      "effectivePlaySeconds": null,
+      "timedCompletedRallies": 0,
+      "completedRalliesDurationDenominator": 0,
+      "scoreSummary": "Set 1 (0-0) | P1 0 - P2 0 | Server: P1 (DEUCE)",
+      "matchComplete": false,
+      "winnerId": null
+    },
+    "base_provenance": {
+      "bundleVersion": "EXPLICIT_SYNTHETIC_CAPTURED_INFERENCE",
+      "bundleStatus": "UNQUALIFIED_CANDIDATE",
+      "productionQualified": false,
+      "configSha256": "9b46048117c47a9fa0c6945792688710224fb9a32d5aeff72bd98d8e501c6695",
+      "bundleSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "checkpointHashes": {
+        "players": {
+          "filename": "explicit-synthetic-players.pt",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "ball": {
+          "filename": "explicit-synthetic-ball.pt",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "court": {
+          "filename": "explicit-synthetic-court.pt",
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      },
+      "datasetHashes": null,
+      "codeCommit": null,
+      "pipeline": "Phase6Pipeline",
+      "ballBackend": "EXPLICIT_SYNTHETIC_FIXTURE",
+      "trackingStrategy": "EXPLICIT_SYNTHETIC_RETAINED_OBSERVATIONS"
+    },
+    "corrected_points": 1,
+    "forecast_rows": 7,
+    "sample_count": 1,
+    "export_files": 20,
+    "render_files": 3,
+    "render_manifest_sha256": "f0df5c37ad33e39c43e79bcb5322a2cfd5b3ac3d86fc98d3c29b5be3b9b67891"
+  },
+  "elapsed_seconds": 3.6295949000050314,
+  "source_before": {
+    "tests/test_corrected_preparation.py": "c641cf0305d6ab9c0dd6708ed180956d327614c2c18403ca71cf09641b4c69a6",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85"
+  },
+  "source_after": {
+    "tests/test_corrected_preparation.py": "c641cf0305d6ab9c0dd6708ed180956d327614c2c18403ca71cf09641b4c69a6",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85"
+  },
+  "forbidden_import_attempts": [],
+  "forbidden_imports_loaded": [],
+  "scope": "Actual complete original native export + fresh corrected pipeline fixture; toy images and synthetic measurements, no accuracy claim",
+  "source_stable": true
+}

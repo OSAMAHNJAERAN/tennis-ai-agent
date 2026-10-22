@@ -1,0 +1,56 @@
+{
+  "recorded_utc": "2026-10-16T16:59:37.7647224Z",
+  "status": "PASS",
+  "scope": "Actual current React point evidence component and synthetic normalized output from actual native rule fixture/API adapter; private artifact-only localhost preview",
+  "url": "http://127.0.0.1:5197/point-preview",
+  "browser": "Codex in-app browser",
+  "verification": "Executed CUA DOM interactions and actual screenshot inspection; screenshots retained during the original checks, final full AX state confirmed afterward",
+  "observed": {
+    "completed_points": 2,
+    "partial_points": 0,
+    "completed_legal_rallies": 1,
+    "known_rally_seconds": 0.97,
+    "timed_rally_coverage": "1/1",
+    "provisional_and_independent_unqualified_label": true,
+    "point2_expanded": true,
+    "point2_server": "Participant B",
+    "point2_winner": "Participant A",
+    "point2_first_attempt": "First fault",
+    "point2_second_attempt": "Double fault",
+    "point2_rally_duration": "Unavailable",
+    "desktop_visual_check": true,
+    "mobile_visual_check": true,
+    "mobile_viewport_requested_width": 390,
+    "mobile_viewport_requested_height": 844,
+    "mobile_observed_document_scroll_width": 375,
+    "mobile_observed_inner_width": 390,
+    "viewport_restored": true
+  },
+  "screenshots": {
+    "desktop.png": {
+      "sha256": "859562e61147434256275c376d8da6a7dd3624a0ecd39f97cb8a4cb61270dd52",
+      "bytes": 89096
+    },
+    "mobile.png": {
+      "sha256": "2398e810730a47c60a75324c249cabc462b2a59743916d6173ec38991a057386",
+      "bytes": 78188
+    }
+  },
+  "source_after_only": {
+    "frontend/src/components/PointTimelineEvidence.tsx": "88d262ba2d62289e1b15bde7d2cf628385e5dfb247cb6cbf875c5e831007eea6",
+    "frontend/src/pages/LiveRunAnalytics.tsx": "5c0d9ad51def3c977c7f74a004a11d3db0efc1e4df2e1e03c69741dcdd046c38",
+    "frontend/src/data/contracts.ts": "f97f34497007478834b54a478d1481cfea1e82b3b888bee8fe70f21e2f911422",
+    "frontend/src/data/repository.ts": "8bb8d6057507cba34456f927ae6590102762392e7d7d717fa8fa8060bf97c96f"
+  },
+  "source_before_captured": false,
+  "fixture_sha256": "530e23d02edff255d06786f0189eb2e77cb7b3728b3a43fc270e460c824986a1",
+  "harness_repairs": [
+    "Custom preview route registered before Vite fallback",
+    "External preview entry module replaced inline route loading",
+    "ReactDOMClient default import supplies createRoot"
+  ],
+  "models_used": false,
+  "video_inference": false,
+  "qualification_evidence": false,
+  "full_authenticated_analysis_page_browser_test": false
+}

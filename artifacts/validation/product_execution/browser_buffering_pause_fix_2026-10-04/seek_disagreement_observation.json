@@ -1,0 +1,16 @@
+{
+  "qualificationEvidence": false,
+  "at": "2026-10-04T05:50:57.607Z",
+  "servedEntry": "/assets/index-B6ZxRbQY.js",
+  "action": "Pause, then press End on the real Replay frame range control while source bytes remain held",
+  "presentedFrame": 30,
+  "presentedSeconds": 1.251,
+  "sharedReplayFrame": 468,
+  "videoCurrentTime": 19.519499,
+  "videoPaused": true,
+  "videoReadyState": 1,
+  "visibleStatusMessages": ["Playback did not start. Press play to try again."],
+  "finding": "The player correctly retains its last decoder observation, but the shared replay advances to the requested seek target before decoding. A pending play interruption also produces an inappropriate start-failure message.",
+  "nextAction": "Separate the seek command target from media observations in useReplay and ignore superseded or expected AbortError play promises. Verify actual paused decode after stream release.",
+  "screenshotArtifact": null
+}

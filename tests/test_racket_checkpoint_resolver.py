@@ -38,7 +38,7 @@ def test_standard_weights_only_resolves_only_reviewed_functions(name):
     with torch.serialization.safe_globals([ExampleHistory, (resolver, 'builtins.getattr')]):
         function = torch.load(data, weights_only=True)
     assert function is ExampleHistory.__dict__[name]
-    assert torch.serialization.get_safe_globals() == original
+    assert set(torch.serialization.get_safe_globals()) == set(original)
 
 
 @pytest.mark.parametrize('name', ['__dict__', '__class__', '__subclasses__', '__globals__', 'statistics', 'update'])

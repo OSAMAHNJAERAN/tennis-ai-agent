@@ -1,0 +1,35 @@
+{
+  "source": "ACTUAL_CUA_BROWSER_ON_CONTROLLED_LOCAL_MEDIA_STREAM",
+  "url": "http://127.0.0.1:8010/examples/djokovic_2012",
+  "heldStreamPrefixBytes": 1048576,
+  "firstStall": {
+    "at": "2026-10-04T05:30:48.756Z",
+    "frameChip": "F 30 / 1.251 s",
+    "replaySlider": 30,
+    "videoCurrentTime": 1.285404,
+    "videoPaused": false,
+    "videoReadyState": 2,
+    "bufferedIntervals": [[0, 2.095]],
+    "status": "Buffering video · analysis holds on the presented frame.",
+    "controls": ["Pause video", "Pause replay"]
+  },
+  "secondStall": {
+    "at": "2026-10-04T05:31:35.458Z",
+    "frameChip": "F 30 / 1.251 s",
+    "replaySlider": 30,
+    "videoCurrentTime": 1.285404,
+    "videoPaused": false,
+    "videoReadyState": 2,
+    "status": "Buffering video · analysis holds on the presented frame."
+  },
+  "pauseAction": {
+    "control": "Pause replay",
+    "frameChipAfter": "F 31 / 1.285 s",
+    "replaySliderAfter": 31,
+    "controlsAfter": ["Play video", "Play replay"],
+    "bufferingMessageHidden": true,
+    "finding": "The pause handler publishes raw video.currentTime and advances the frame display from its last recorded decoder timestamp."
+  },
+  "qualificationEvidence": false,
+  "limitation": "One real browser on one recorded clip with a controlled stream pause. This exposes clock behavior and does not qualify model accuracy or all browser playback conditions."
+}

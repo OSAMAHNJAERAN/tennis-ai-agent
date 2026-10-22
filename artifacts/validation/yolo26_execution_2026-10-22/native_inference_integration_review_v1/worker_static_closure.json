@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T00:34:34.4604911Z",
+  "author": "Collaborating AI agent /root/resume_contract; original reviewer and assigned fix implementer",
+  "status": "FIX_IMPLEMENTED_STATIC_TEST_SOURCE_REVIEW_NOT_EXECUTED",
+  "original_review": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_review_v1/worker_static_review.json",
+    "sha256": "3f73ed3ee9b91c861e824daedf6fe7764d31156d9dcdb1a76127399743259128",
+    "preserved": true
+  },
+  "current_files": [
+    {
+      "path": "src/api/worker.py",
+      "sha256": "5338aa08a599bfd54677f6abb5cff7153ed53fe9b4a4cff422834dcd85a91ce9",
+      "bytes": 23292
+    },
+    {
+      "path": "tests/test_worker_partial_inference.py",
+      "sha256": "8fe4a444f6106e37f2259d76e918c5327a4c7be8559b4e1ee50b289b7af57da5",
+      "bytes": 22216
+    }
+  ],
+  "finding": {
+    "id": "normalized_source_revalidation_at_publication",
+    "status": "IMPLEMENTED_PENDING_EXECUTION",
+    "fix": "Fresh and partial native executions require the normalized source seal through publication. Completed native recovery captures seal presence using lstat; every final_publication_check verifies the seal again. Older completed-only checkpoints with no seal keep their previous contract.",
+    "limits": "This closes the reported gap between post-pipeline normalized-source verification and completed checkpoint hashing; it does not prove model inference, independent accuracy or long-duration recovery."
+  },
+  "added_regressions": [
+    "test_source_change_between_post_pipeline_check_and_completed_hashing_cannot_publish",
+    "test_completed_native_recovery_rechecks_its_existing_source_seal_at_publication[modify]",
+    "test_completed_native_recovery_rechecks_its_existing_source_seal_at_publication[remove]",
+    "test_older_completed_native_checkpoint_without_source_seal_keeps_completed_only_contract"
+  ],
+  "verification": {
+    "AST_parsed": true,
+    "pytest_executed": false,
+    "project_or_inference_modules_imported": false,
+    "hardware_probes": false,
+    "other_production_files_edited": false
+  }
+}

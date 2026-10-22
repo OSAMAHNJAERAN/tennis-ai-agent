@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "executionDateAsiaSingapore": "2026-10-08",
+  "python": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "pythonVersion": "3.13.5",
+  "numpyVersion": "2.3.1",
+  "sourceSha256": {
+    "src/utils/player_detection_sequence.py": "fb1fe58e01a05c009a0bf4b7431fdb037fb74558ea441a953cce42a1fb4e962d",
+    "src/tracking/player_identity.py": "4c487f7778ca83c80feafa011494c22f95fac7c3f1160145629c4e30b357d10b",
+    "tests/test_player_detection_sequence.py": "3a4aef56e946e7695cdc8c0a946783e302705e81294a1791b71eeb0baada4a11",
+    "tests/test_disk_court_player_selection.py": "5d9e1154ac9466bd80f7ee4b04fb209ea185507712f6a7a84ed7c24ebf564bda",
+    "docs/architecture/PLAYER_OBSERVATION_STORAGE.md": "d8455761ecb6c64c72486230ebbafa6d1dbba316d719341742279deed5463ab0",
+    "src/tracking/court_player_tracker.py": "cdf486e4abd4ab605dd511266563d2e6bcf11ec63ad18e69988770d672ebf944",
+    "src/utils/bbox_utils.py": "1a98eafd4a6e04920f5b6ad7ba2c875d146354f9b2f19347dde4d6b31383da0d",
+    "src/detection/yolo26_adapters.py": "1a83d1a599ec21eacf07b295df68b6072eee1f6a8430451b13d50e9d300dcac7"
+  },
+  "tests": 69,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 20.699,
+  "consoleSeconds": 20.85,
+  "junit": "player_observations_final_junit.xml",
+  "consoleLog": "player_observations_final_tests.log",
+  "storageMemoryFixture": {
+    "frames": 25000,
+    "peak_live_source_boxes": 2,
+    "python_current_after_write_bytes": 9504,
+    "python_peak_after_write_bytes": 23671,
+    "python_current_after_read_bytes": 23614,
+    "python_peak_after_read_bytes": 33012,
+    "sqlite_cache_kib": 2048,
+    "scope": "SYNTHETIC_STORAGE_FIXTURE_NOT_PIPELINE_RSS_OR_MATCH_CAPACITY"
+  },
+  "selectionMemoryFixture": {
+    "schemaVersion": 1,
+    "fixture": "25000_synthetic_frames_one_unique_track_id_per_frame",
+    "frame_count": 25000,
+    "presence_rows": 25000,
+    "live_source_boxes_after_spooling": 0,
+    "peak_live_source_boxes": 2,
+    "source_producer_closed": true,
+    "tracemalloc_current_bytes": 189166,
+    "tracemalloc_peak_bytes": 208250,
+    "measurement_scope": "Python allocations traced during source spooling and both candidate passes",
+    "unmeasured_scope": "Native SQLite allocations, process RSS, neural inference and full pipeline capacity",
+    "sqlite_cache_kib_per_database": 2048,
+    "sqlite_mmap_bytes": 0,
+    "sqlite_temp_store": "FILE",
+    "storage_snapshot_scope": "Before normal context close; bounded final transactions may remain in journals",
+    "databases": {
+      "source": {
+        "filename": "player_detections_51k6u826.sqlite3",
+        "database_bytes": 7290880,
+        "sidecar_bytes": {
+          "-journal": 12824,
+          "-wal": 0,
+          "-shm": 0
+        }
+      },
+      "selected": {
+        "filename": "player_detections_barpca9m.sqlite3",
+        "database_bytes": 7290880,
+        "sidecar_bytes": {
+          "-journal": 12824,
+          "-wal": 0,
+          "-shm": 0
+        }
+      },
+      "ledger": {
+        "filename": "court_player_selection_054a2b5b.sqlite3",
+        "database_bytes": 565248,
+        "sidecar_bytes": {
+          "-journal": 12824,
+          "-wal": 0,
+          "-shm": 0
+        }
+      }
+    },
+    "owned_databases_removed_on_success": true
+  },
+  "scope": "Exact admitted BBox/PoseBBox records and legacy offline court-role choices, indexed disk observations, 25000-frame growing-ID stress, fixed per-frame bounds and owned failure lifecycle. No model weights or actual match inference used.",
+  "integrationStatus": "Module seams ready. Root owns Phase6 and source-index-aware image_people export integration. Existing CourtPlayerTracker.select remains unchanged.",
+  "outstandingIntegratedFrameScaledState": [
+    "TemporalBallPoint trajectory and mutable multipass state",
+    "per-frame timestamps and ground positions",
+    "player motion output sample lists",
+    "sparse event/report structures subject to actual match duration"
+  ],
+  "qualification": {
+    "independentPlayerAccuracy": false,
+    "processRSSMeasured": false,
+    "nativeSQLiteMemoryMeasured": false,
+    "GPUMemoryMeasured": false,
+    "longMatchCapacity": false,
+    "liveVideo": false,
+    "frameCheckpointResume": false
+  },
+  "fullBackendRegression": {
+    "receipt": "backend_full_current_receipt.json",
+    "tests": 1637,
+    "passed": 1629,
+    "failed": 8,
+    "skipped": 0,
+    "remainingFailures": "Six root-owned Phase6 __new__ fixtures without yolo26 attribute, two changed legacy NumPy-inf sanitizer contracts. Preserved diagnostic run predates these new storage tests."
+  }
+}

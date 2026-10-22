@@ -164,7 +164,8 @@ def test_frame_81_84_dead_ball_regression():
         timestamp_seconds=0.77,
         player_id=2
     )
-    assert st1.ball_state == BallPlayState.LIVE or st1.point_state == PointState.RALLY_LIVE
+    assert st1.ball_state == BallPlayState.SERVE_STARTED
+    assert st1.point_state == PointState.FIRST_SERVE_IN_PROGRESS
 
     # Frame 81: Ball Bounces Out (SERVE_FAULT)
     fake_line_call = make_fake_line_call(

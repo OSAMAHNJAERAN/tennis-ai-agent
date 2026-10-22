@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-10-22T00:15:47.9472996Z",
+  "reviewer": "Independent collaborating AI agent /root/resume_contract",
+  "status": "CONCRETE_CLEANUP_FINDING_REPORTED",
+  "scope": "Static peer review of completed native player-prefix writer and immutable reopened observations",
+  "reviewed_files": [
+    {
+      "path": "src/utils/native_inference_prefix.py",
+      "sha256": "c3c4c5dba0bb684fe57b34662ee359f8e7d9d6fdded5d978350092e4b877638a",
+      "bytes": 39195
+    },
+    {
+      "path": "tests/test_native_inference_prefix.py",
+      "sha256": "ed7edd118a36c0d09c29d82755227ffe3918f78b5913b5007245d2e39fa577b5",
+      "bytes": 23430
+    }
+  ],
+  "prior_verification": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_checks_v2/receipt.json",
+    "sha256": "9c0e944ce3b1ffe9c21c2f5cdaf251a63a8c557787afae5d8df4f9947684f486",
+    "reported_tests": 264,
+    "reported_status": "PASS",
+    "source_pins_match_review": true,
+    "test_execution_by_this_reviewer": false
+  },
+  "confirmed_design": [
+    "Reopen binds the database and four audit hashes, exact audit frame counts and sequential frame indices before accepting the prefix.",
+    "Typed selected boxes, source proposal indices, registration matrices and candidate records are reconstructed as detached snapshots; header/crop/initial observations also return detached data.",
+    "Reopened SQLite is read-only, query-only and immutable; per-row digest and producer shape/type checks run on requested frames.",
+    "Header, initial and frame component lengths are checked in SQL before the corresponding payload fetch; SQLite also limits record length.",
+    "Previously reported cursor masking is fixed with primary-error-preserving close; schema retrieval now counts and bounds objects and columns."
+  ],
+  "findings": [
+    {
+      "id": "posix_directory_fsync_cleanup_masking",
+      "status": "OPEN_REPORTED_TO_ROOT",
+      "file": "src/utils/native_inference_prefix.py",
+      "line": 418,
+      "trigger": "On the non-Windows directory-sync branch, fsync raises a BaseException and os.close also raises.",
+      "observed_behavior": "The finally-close replaces the original fsync exception.",
+      "impact": "Primary failure identity is lost during prefix seal publication cleanup. Current Windows execution does not enter this branch.",
+      "minimal_fix": "Use except/else descriptor cleanup, attach close failure as a note to the original fsync error, and re-raise the original.",
+      "suggested_regression": "Inject fsync KeyboardInterrupt plus descriptor-close failure in a controlled POSIX-branch unit fixture; verify original identity and attached cleanup note."
+    }
+  ],
+  "limits": {
+    "tests_run_by_reviewer": 0,
+    "project_or_inference_modules_imported": false,
+    "hardware_resource_probes": false,
+    "source_edits": false,
+    "actual_pipeline_or_worker_resume_proven": false,
+    "model_accuracy_or_long_match_qualification": false
+  }
+}

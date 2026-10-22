@@ -1,0 +1,193 @@
+{
+  "status": "PASS",
+  "scope": "ACTUAL_NODE_JSON_PARSE_STRUCTUREDCLONE_STRINGIFY_TO_NATIVE_REPLACEMENT_AND_TYPED_DECODER; READ_ONLY_EXISTING_SYNTHETIC_FIXTURE_PLUS_DECLARED_LOCAL_NESTED_EVIDENCE_CASES",
+  "elapsed_seconds": 0.3790752999484539,
+  "observations": [
+    {
+      "case": "actual_browser_float_zero_and_integral_coordinates",
+      "accepted": true,
+      "expected": true,
+      "rejection": null,
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": true,
+      "typed_decoder_roundtrip_succeeded": true
+    },
+    {
+      "case": "formatting_only_without_semantic_change",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: source amendment is unchanged",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "boolean_timestamp_is_not_zero",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: timestamp_s",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "boolean_coordinate_is_not_number",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: ball_position_px",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "tiny_real_timestamp_change_is_rejected",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: timestamp_s",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "tiny_real_coordinate_change_is_rejected",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: ball_position_px",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "counter_float_remains_invalid",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: frame_index",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "context_boolean_cannot_be_numeric",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source interval: analysis_allowed",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "exact_source_pts_must_stay_string",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source interval: source_pts",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "binding_counter_float_remains_invalid",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Rule reproduction: binding primitive types are invalid",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "nested_evidence_numeric_format_and_negative_zero_restore",
+      "accepted": true,
+      "expected": true,
+      "rejection": null,
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": true,
+      "typed_decoder_roundtrip_succeeded": true
+    },
+    {
+      "case": "nested_evidence_boolean_type_is_strict",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: evidence",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "nested_evidence_list_order_is_strict",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: evidence",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "nested_evidence_dict_keys_are_strict",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: evidence",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "nested_evidence_null_is_not_zero",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: evidence",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    },
+    {
+      "case": "browser_loss_of_large_integer_precision_is_rejected",
+      "accepted": false,
+      "expected": false,
+      "rejection": "ValueError: Corrected rule rebuild: replacement changes source measurement: evidence",
+      "raw_original_preserved": true,
+      "raw_client_preserved": true,
+      "normalized_measurements_restore_original_json": false,
+      "typed_decoder_roundtrip_succeeded": false
+    }
+  ],
+  "source_before": {
+    "src\\scoring\\corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src\\api\\corrections.py": "a95feea1c83871dbfb9fa3c35bbe8d245af5a4b06ba3cdd4e3d67b8235e50184",
+    "src\\scoring\\rule_replay_source.py": "7ea11012695c4ab836fab1a26490340db0c883743ec13add977ff7f63566cda4",
+    "src\\scoring\\point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src\\scoring\\match_state_codec.py": "24f94385f76362b5fe6ccf900f46b39bf176ca7a0052184998fbbbee6cb65abc",
+    "frontend\\src\\data\\correctionDraft.ts": "593c8590472b0f744104367a5bab1a75ac1f8ae6a629aaff7b9a75053e7683a6",
+    "frontend\\src\\data\\correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "artifacts\\validation\\yolo26_execution_2026-10-22\\correction_json_numeric_review_v1\\verify_roundtrip.py": "5b32c1297ba3a23c5e342b436eda94eeede1540dd94a8f048913b3cc0770e27b"
+  },
+  "source_after": {
+    "src\\scoring\\corrected_rule_rebuild.py": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364",
+    "src\\api\\corrections.py": "a95feea1c83871dbfb9fa3c35bbe8d245af5a4b06ba3cdd4e3d67b8235e50184",
+    "src\\scoring\\rule_replay_source.py": "7ea11012695c4ab836fab1a26490340db0c883743ec13add977ff7f63566cda4",
+    "src\\scoring\\point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src\\scoring\\match_state_codec.py": "24f94385f76362b5fe6ccf900f46b39bf176ca7a0052184998fbbbee6cb65abc",
+    "frontend\\src\\data\\correctionDraft.ts": "593c8590472b0f744104367a5bab1a75ac1f8ae6a629aaff7b9a75053e7683a6",
+    "frontend\\src\\data\\correctionApi.ts": "4a7dad1fa6414f1d4b9588cd341457c9330aac9d92a5bc3eb9762ef9d0306769",
+    "artifacts\\validation\\yolo26_execution_2026-10-22\\correction_json_numeric_review_v1\\verify_roundtrip.py": "5b32c1297ba3a23c5e342b436eda94eeede1540dd94a8f048913b3cc0770e27b"
+  },
+  "source_stable": true,
+  "original_input_fingerprint": "f7ca5ce0ffbc0d5b1a9cf8fd2227440e275c9c744c137baada66caaa5fcc5830",
+  "original_fingerprint_verified_unchanged": true,
+  "browser_fixture_store_modified": false,
+  "inference_import_attempts": [],
+  "inference_loaded": []
+}

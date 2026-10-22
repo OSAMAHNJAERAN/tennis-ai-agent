@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-15T14:55:56.8344917Z",
+  "status": "BOUNDED_RESEARCH_COMPLETED_NO_IMMEDIATELY_ADMISSIBLE_HUMAN_BOX_CORPUS_ESTABLISHED",
+  "scope": "Publisher visible tennis-ball bounding-box training data, metadata only",
+  "discovery_query_count": 5,
+  "selected_lead_count": 3,
+  "queries": [
+    "site:huggingface.co/datasets \"tennis\" \"bounding\" \"license\"",
+    "tennis ball detection dataset bounding boxes author dataset license YOLO research",
+    "site:huggingface.co/datasets tennis-ball-detection -table -opentt -racketvision",
+    "\"tennis ball\" \"dataset\" \"manually annotated\" \"license\"",
+    "\"tennis\" \"bounding boxes\" \"dataset\" \"CC BY\" -table -padel"
+  ],
+  "existing_note_prefix_bytes": 22742,
+  "existing_note_prefix_sha256": "0cf08afc75ac715f991948e5a3720fcf975452aadaeeaf2286e5c2851d633918",
+  "note_sha256_after_append": "44abd6458e5fd0c31cc3ded00b99268a524d6edf93b3fb1ea51cbd51191820b9",
+  "strongest_lead": {
+    "doi": "10.5061/dryad.3bk3j9m13",
+    "annotation_license_verified": "CC0-1.0",
+    "publisher_annotation_version": 3,
+    "label_type": "Publisher-described YOLO x,y,w,h bounding boxes",
+    "publisher_tennis_objects": "over 10000, not locally counted",
+    "human_annotation_or_adjudication_verified": false,
+    "visible_only_blur_occlusion_policy_verified": false,
+    "native_dimensions_fps_unknown": true,
+    "companion_doi": "10.5281/zenodo.19874312",
+    "companion_zip_publisher_bytes": 1726054270,
+    "companion_zip_publisher_md5": "afd1ef768d40702f710d475310d02ab6",
+    "author_tree_sha": "656f1625bb2817f8696bc71f49140e2192178485",
+    "tennis_mp4_parts": 18,
+    "tennis_mp4_publisher_bytes": 515185338,
+    "logical_video_aliases": 16,
+    "author_video_license": "CC BY-NC-ND 4.0 in pinned LICENSE.md and Dryad description",
+    "conflicting_zenodo_metadata_license": "CC BY 4.0",
+    "source_footage_training_public_example_grants_verified": false,
+    "linked_preprint": "https://arxiv.org/abs/2509.18387",
+    "linked_preprint_limit": "Table-tennis paper by different authors; its manual blur-line annotation procedure cannot establish this tennis corpus annotation provenance",
+    "decision": "Lead retained for targeted rights and annotation-process audit; not admitted",
+    "private_use_permission_text": "produce and reproduce, but not Share, Adapted Material for NonCommercial purposes only.",
+    "rights_limit": "ND alone does not reject private NonCommercial adaptations. Underlying footage licensing authority remains unresolved, independently of annotation review."
+  },
+  "other_leads": [
+    {
+      "name": "huskyroboticsteam/Tennisball",
+      "primary_url": "https://github.com/huskyroboticsteam/Tennisball",
+      "label_type": "README describes CSV bounding boxes and TFRecords",
+      "api_license": null,
+      "native_dimensions_count_human_process_source_sessions": "unknown",
+      "decision": "No affirmative data/training or public-example license established; not admitted"
+    },
+    {
+      "name": "RJTPP/tennis-ball-detection",
+      "primary_url": "https://huggingface.co/datasets/RJTPP/tennis-ball-detection",
+      "api_status": 401,
+      "raw_card_status": 401,
+      "label_type_native_dimensions_count_human_process_source_sessions_license": "unverified",
+      "decision": "No login or mirror substitution; not admitted"
+    }
+  ],
+  "access_failure_payload": {
+    "path": "dryad_readme.txt",
+    "http_status": 200,
+    "actual_content": "HTML validation challenge, not requested README",
+    "accepted_as_readme": false,
+    "challenge_bypass_attempted": false
+  },
+  "publisher_inventory_sha256": "1b89a2ed445538eae6387fca73783174cf35791a0e34b6bf75c2da3685adc227",
+  "metadata_files": [
+    {
+      "path": "dryad_companion_zenodo_metadata.txt",
+      "bytes": 4207,
+      "sha256": "5999f04ffde4d7f0f85afa54bb14b0e0cface9fd3c6d38614c53d3ed0f080c66"
+    },
+    {
+      "path": "dryad_dataset_api.txt",
+      "bytes": 4424,
+      "sha256": "ab04febd5b1bbb115937eb8f4b323bf89f3b3e6c213e0bd6a3068620a6104f50"
+    },
+    {
+      "path": "dryad_readme.txt",
+      "bytes": 4308,
+      "sha256": "03b880ac85ebe0d07495668ab48a6f8474f296ef767e318bfa05186b08363cbc"
+    },
+    {
+      "path": "husky_readme.txt",
+      "bytes": 5654,
+      "sha256": "888300e1f1d51d6a14d92c4272618b89d6ebd709d26944c2361c282c80b52169"
+    },
+    {
+      "path": "husky_repo_metadata.txt",
+      "bytes": 6692,
+      "sha256": "58a3116baa10acb8e003e774cc7ef48886b46343bfd61149c140c483b167977c"
+    },
+    {
+      "path": "sportball_author_license_md.txt",
+      "bytes": 18078,
+      "sha256": "b268dfa886075be770875818b71c8b5730bf0527513f9232fbcd64ea03c8b645"
+    },
+    {
+      "path": "sportball_author_readme.txt",
+      "bytes": 3217,
+      "sha256": "ee9c4b33b187b1bc47fb2d367648513d32d4461b038a7d4966a73075e8059e0f"
+    },
+    {
+      "path": "sportball_author_tree.txt",
+      "bytes": 26097,
+      "sha256": "d30962d1e0b97cf3b29a00b85317506989444b701af4bd75d89a1f99e475e638"
+    },
+    {
+      "path": "sportball_tennis_readme.txt",
+      "bytes": 2590,
+      "sha256": "f04963216a16e86d28a0894c25272d1dcb96d43a3862a6637c8ec3539123f536"
+    },
+    {
+      "path": "sportball_tennis_videos_readme.txt",
+      "bytes": 1661,
+      "sha256": "115bef8da4527b7b1514dfd2af0f69f1df40ac457ccf66404532e8e8cf6f9ceb"
+    }
+  ],
+  "raw_media_acquired_bytes": 0,
+  "annotation_archives_acquired": 0,
+  "source_images_or_reserved_test_frames_viewed": 0,
+  "models_or_gpu_runs": 0,
+  "training_source_dependency_edits": 0,
+  "outreach_forms_logins_paid_resources_used": false,
+  "new_train_test_split_assigned": false,
+  "known_development_overlap_claimed_absent": false,
+  "qualification_or_rights_clearance_claim": false,
+  "license_crosscheck_sha256": "b828bb31eb1a16143e72d27d45426e40ddc77b134a00acde0d1918f84ee06d12",
+  "private_nc_adaptations_not_blanket_prohibited_by_nd_text": true
+}

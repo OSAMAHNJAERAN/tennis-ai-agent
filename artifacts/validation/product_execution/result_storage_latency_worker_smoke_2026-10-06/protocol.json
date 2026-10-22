@@ -1,0 +1,59 @@
+{
+  "declaredAt": "2026-10-06T06:44:41.458136+00:00",
+  "scope": "One actual 30-frame, native-60-FPS worker/model and saved-result compatibility smoke. No independent labels, accuracy, full-match capacity or deployment qualification.",
+  "launchToken": "a4daf32491d7438e9e32abe4a0aba00b",
+  "scriptSha256": "279464db5328b87b0a524b9f669176f9498b609522718ddc4b2cab7873d7fefe",
+  "originReceipt": {
+    "recordedAt": "2026-10-06T06:04:46.028166+00:00",
+    "helper": "scripts/audit/verify_result_storage_worker_smoke.py",
+    "helperSha256": "8874064cac5a27ae70a7b0784d5f8eca17b1388f1e80665ab304cd1cab112b82",
+    "historicalDirectory": "artifacts/validation/product_execution/result_storage_worker_smoke_2026-10-06",
+    "historicalPreparationSha256": "63791ac2a3b64c1fe3fcfe6ef62081348d41bea79e9ca68fc42a7b6197c43dfa",
+    "historicalObserverRevisionSha256": "135c77b9330213e23f36699d9a367c4b2431ff3fa086820bd6bdbcca1334f434",
+    "newHelper": "scripts/audit/verify_result_storage_latency_worker_smoke.py",
+    "reuse": "Cloned genuine worker/input/normalization/reporting/owned-monitor checks. Fresh paths and initial source-hash gate; no fabricated observer revision.",
+    "status": "PREPARED_NOT_EXECUTED",
+    "inferenceRun": false
+  },
+  "cleanInterpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "readOnlyLiveProductDatabase": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\product\\analyses.sqlite3",
+  "isolatedProductRoot": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_latency_worker_smoke_2026-10-06\\run\\isolated_product",
+  "frames": 30,
+  "nativeFps": 60,
+  "sourceOriginalFrameRange": [
+    390,
+    420
+  ],
+  "sampleIntervalSeconds": 0.25,
+  "preflightAvailableRamBytes": 2500000000,
+  "maximumSampledOwnedTreeRssBytes": 3000000000,
+  "minimumAvailableRamBytes": 400000000,
+  "lowRamConsecutiveSamplesToStop": 5,
+  "maximumChildWallSeconds": 300,
+  "ownedTreeMonitor": "scripts\\audit\\measure_candidate_storage.py::OwnedProcessTree and stop_owned",
+  "ownedTreeMonitorSha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39",
+  "productionWrites": false,
+  "qualificationEvidence": false,
+  "productionQualified": false,
+  "retention": "Retain all owned logs, partial outputs and receipts. No retry or unrelated cleanup.",
+  "host": {
+    "hostname": "Osamah",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "baseInterpreter": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "psutilVersion": "7.0.0",
+    "ramBeforeBytes": {
+      "total": 16869548032,
+      "available": 2355302400,
+      "percent": 86.0,
+      "used": 14514245632,
+      "free": 2355302400
+    },
+    "diskBeforeBytes": {
+      "total": 1022844989440,
+      "used": 953188515840,
+      "free": 69656473600
+    }
+  }
+}

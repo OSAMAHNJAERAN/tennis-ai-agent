@@ -2,17 +2,27 @@
 
 University Final Year Project (FYP) focused on AI-powered video analysis of tennis matches from single-camera footage.
 
+## Upload and analyze a video
+
+The website accepts MP4/MOV/AVI uploads, follows persistent processing, reopens saved analyses and exports annotated video, readable HTML reports and JSON/CSV evidence. Home plays three distinct attributed tennis clips. Build the frontend with `pnpm build` in `frontend/`, then run `python scripts/run/serve_product.py` from the repository root using the verified product Python environment. Open [the local website](http://127.0.0.1:8000/).
+
+See [product setup, storage, limits and workflow](docs/PRODUCT_WORKFLOW.md). Existing models and measurement limitations remain unchanged; unavailable ball speed/events are explicitly identified.
+
+For a separate installation of the current upload/report runtime, use [the product installation guide](docs/deployment/PRODUCT_INSTALLATION.md), [requirements-product.txt](requirements-product.txt) and [the restoration manifest](docs/deployment/PRODUCT_RESTORE_MANIFEST.json). They pin the selected unqualified configuration, runtime dependencies, source revision and retained model hashes. The verifier checks installation evidence without loading models or replacing saved analyses; missing court-weight provenance and public deployment permissions are recorded explicitly.
+
+Use Home, My analyses and the upper-right Upload video action. Each saved analysis has replay, statistics and exports. Tracking observations and available image pose/racket evidence stay synchronized with the video; court positions and physical measurements depend on valid calibration and evidence. The three public examples currently provide image tracking and explicit unavailable states. See [current execution progress and measured limitations](docs/plans/TENNIS_EXECUTION_PROGRESS.md).
+
 ## Astra Tennis workspace
 
-The upgraded React workspace adds an interactive 3D court, animated players and ball, synchronized video/tactical replay, spatial density, and a configurable Astra GPT coach.
+The React workspace provides video controls, 2D/3D court views, tracking overlays and movement summaries for available evidence. Court projection is identified separately from reconstructed flight. Procedural ball height and avatar gait have been removed; physical ball speed and independently validated 3D reconstruction remain open milestones.
 
 ```powershell
 cd frontend
-pnpm install
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open the local Vite URL and select **Phase 5 Scoring** for the bundled spatial example. See [Astra setup and implementation](docs/ASTRA_TENNIS.md) for coach configuration, evidence limitations, and validation. The existing inference commands below remain available.
+Open the local Vite URL while the local API is running. Choose an example from Home or upload a video. The selected website bundle is `configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml`; it remains unqualified. The older baseline/training commands below are retained research workflows.
 
 ---
 
@@ -20,10 +30,11 @@ Open the local Vite URL and select **Phase 5 Scoring** for the bundled spatial e
 
 T88J709 provides an automated computer vision pipeline for pre-recorded, single-camera tennis match videos:
 - **Player Detection & Tracking**: Ultralytics YOLO11 + ByteTrack tracking with foot-position ground mapping and court participant filtering.
-- **Tennis Ball Detection & Trajectory**: Fine-tuned dedicated YOLO11 detector with gap-limited interpolation and state-aware tracking (`DETECTED`, `INTERPOLATED`, `MISSING`).
+- **Tennis Ball Detection & Trajectory**: Selected WASB temporal heatmaps with spatial crops, association and explicit observation states. YOLO ball baselines remain research workflows.
 - **14-Point Court Keypoint Estimation**: ResNet-50 coordinate regression model predicting ITF court line intersections.
-- **Homography & Metric Court Mapping**: Perspective transformation mapping video pixels to true 2D metric court dimensions (meters).
-- **Physical Analytics**: Frame-rate accurate player movement speed (km/h), distance covered (m), and ball trajectory.
+- **Homography & Metric Court Mapping**: Perspective transformation to a metric court plane, gated by registration validity. Fit consistency does not establish independent calibration accuracy.
+- **Movement Estimates**: Timestamp-based player speed/distance on valid observed ground intervals. Independent physical accuracy and ball flight/speed remain unqualified.
+- **Pose & Rackets**: Available per-frame image observations with confidence and missing intervals.
 - **Visual Overlays & Mini-Court**: Top-down synchronized 2D mini-court HUD and bounding box overlays.
 - **Machine-Readable Outputs**: Structured JSON summaries (`detections.json`, `trajectories.json`, `court_geometry.json`, `player_metrics.json`, `run_config.yaml`).
 
@@ -32,21 +43,15 @@ T88J709 provides an automated computer vision pipeline for pre-recorded, single-
 ## 2. Quickstart & Installation
 
 ### Requirements
-- Python 3.10+ (tested on Python 3.13.5)
-- NVIDIA GPU with CUDA support (e.g. RTX 4050, PyTorch CUDA 12.6+)
-- Windows / Linux
+
+- Verified product environment: Windows x86_64 and CPython 3.13.5.
+- Retained selected checkpoints and pinned WASB runtime source, with hashes in the restoration manifest.
+- FFmpeg/ffprobe and Node.js 22+ with project pnpm 11.19.0.
+- CUDA inference uses the recorded PyTorch CUDA 12.6 build and an NVIDIA driver; other runtimes need their own checks.
 
 ### Setup
-```bash
-# 1. Clone / enter project directory
-cd tennis_ai_agent_bundle
 
-# 2. Install PyTorch with CUDA
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
-
-# 3. Install remaining dependencies
-pip install -r requirements.txt
-```
+Follow [the product installation guide](docs/deployment/PRODUCT_INSTALLATION.md) to create a separate environment with `requirements-product.txt` and the recorded transitive constraints, restore the exact assets, build the locked frontend and verify the API. Preserve existing product storage and research environments. The broad historical `requirements.txt` belongs to the retained research/training workflows.
 
 ---
 
@@ -140,7 +145,7 @@ See:
 
 ---
 
-## 8. Phase 2.1: YOLO11 High-Accuracy Ball Detection & Temporal Tracking
+## 8. Historical Phase 2.1 ball detection experiments
 
 ### Train YOLO11 Ball Detector
 ```bash

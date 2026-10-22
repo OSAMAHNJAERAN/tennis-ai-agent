@@ -94,6 +94,26 @@ class MatchState:
     last_point_winner: Optional[int] = None
     last_point_reason: str = ""
     state_version: int = 0
+    tie_break_points_to_win: int = 7
+    deciding_set_tie_break_points_to_win: Optional[int] = None
+    deciding_set_format: Optional[SetFormat] = None
+    player_1_court_end: ServerCourtEnd = ServerCourtEnd.NEAR_COURT
+    initial_state_confirmed: bool = True
+    score_confirmed: bool = True
+    score_source: str = "configured_initial_state"
+    match_status: str = "IN_PROGRESS"
+
+    def active_set_format(self) -> SetFormat:
+        final_set = 3 if self.format == MatchFormat.BEST_OF_3 else 5
+        if self.current_set == final_set and self.deciding_set_format is not None:
+            return self.deciding_set_format
+        return self.set_format
+
+    def active_tie_break_target(self) -> int:
+        final_set = 3 if self.format == MatchFormat.BEST_OF_3 else 5
+        if self.current_set == final_set and self.deciding_set_tie_break_points_to_win is not None:
+            return self.deciding_set_tie_break_points_to_win
+        return self.tie_break_points_to_win
 
     def get_points_display_p1(self) -> str:
         """Returns standard tennis display string for Player 1 points."""
@@ -142,16 +162,18 @@ class MatchState:
         """
         Determines the expected target service box for the current server and service side.
         Cross-court geometry:
-        - Far Server (ServerEnd = FAR_COURT, e.g. Player 2):
-            - Deuce serve -> Receiver's Near Deuce box (X in [1.37, 5.485])
-            - Ad serve    -> Receiver's Near Ad box (X in [5.485, 9.60])
-        - Near Server (ServerEnd = NEAR_COURT, e.g. Player 1):
+        - Far Server (ServerEnd = FAR_COURT):
+            - Deuce serve -> Near Deuce box (X in [5.485, 9.60])
+            - Ad serve    -> Near Ad box (X in [1.37, 5.485])
+        - Near Server (ServerEnd = NEAR_COURT):
             - Deuce serve -> Receiver's Far Deuce box (X in [1.37, 5.485])
             - Ad serve    -> Receiver's Far Ad box (X in [5.485, 9.60])
         """
-        # Default assumption: Player 2 at Far Court, Player 1 at Near Court
         if server_end is None:
-            server_end = ServerCourtEnd.FAR_COURT if self.server_id == 2 else ServerCourtEnd.NEAR_COURT
+            server_end = self.player_1_court_end
+            if self.server_id == self.player_2_id:
+                server_end = (ServerCourtEnd.FAR_COURT if server_end == ServerCourtEnd.NEAR_COURT
+                              else ServerCourtEnd.NEAR_COURT)
 
         if server_end == ServerCourtEnd.FAR_COURT:
             return ServiceBoxType.NEAR_DEUCE if self.service_side == ServiceSide.DEUCE else ServiceBoxType.NEAR_AD
@@ -192,5 +214,14 @@ class MatchState:
             "winner_id": self.winner_id,
             "last_point_winner": self.last_point_winner,
             "last_point_reason": self.last_point_reason,
-            "state_version": self.state_version
+            "state_version": self.state_version,
+            "initial_server_id": self.initial_server_id,
+            "tie_break_points_to_win": self.tie_break_points_to_win,
+            "deciding_set_tie_break_points_to_win": self.deciding_set_tie_break_points_to_win,
+            "deciding_set_format": self.deciding_set_format.value if self.deciding_set_format else None,
+            "player_1_court_end": self.player_1_court_end.value,
+            "initial_state_confirmed": self.initial_state_confirmed,
+            "score_confirmed": self.score_confirmed,
+            "score_source": self.score_source,
+            "match_status": self.match_status
         }

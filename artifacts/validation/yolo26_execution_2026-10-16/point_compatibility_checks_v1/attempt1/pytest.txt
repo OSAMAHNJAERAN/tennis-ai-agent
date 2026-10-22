@@ -1,0 +1,38 @@
+........................................................................ [ 57%]
+...................................................FFF                   [100%]
+================================== FAILURES ===================================
+_ test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded[257] _
+tests\test_analytics_capacity_seam.py:319: in test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded
+    actual = phase6_run(rows, tmp_path, disk=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_analytics_capacity_seam.py:146: in phase6_run
+    exec(compile(ast.Module(body=[sanitize]+statements, type_ignores=[]), str(path), 'exec'), namespace)
+src\pipeline\phase6_pipeline.py:1115: in <module>
+    timeline.attach_shots(shot_evidences)
+    ^^^^^^^^
+E   NameError: name 'timeline' is not defined
+_ test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded[1025] _
+tests\test_analytics_capacity_seam.py:319: in test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded
+    actual = phase6_run(rows, tmp_path, disk=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_analytics_capacity_seam.py:146: in phase6_run
+    exec(compile(ast.Module(body=[sanitize]+statements, type_ignores=[]), str(path), 'exec'), namespace)
+src\pipeline\phase6_pipeline.py:1115: in <module>
+    timeline.attach_shots(shot_evidences)
+    ^^^^^^^^
+E   NameError: name 'timeline' is not defined
+_ test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded[4097] _
+tests\test_analytics_capacity_seam.py:319: in test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded
+    actual = phase6_run(rows, tmp_path, disk=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_analytics_capacity_seam.py:146: in phase6_run
+    exec(compile(ast.Module(body=[sanitize]+statements, type_ignores=[]), str(path), 'exec'), namespace)
+src\pipeline\phase6_pipeline.py:1115: in <module>
+    timeline.attach_shots(shot_evidences)
+    ^^^^^^^^
+E   NameError: name 'timeline' is not defined
+=========================== short test summary info ===========================
+FAILED tests/test_analytics_capacity_seam.py::test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded[257]
+FAILED tests/test_analytics_capacity_seam.py::test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded[1025]
+FAILED tests/test_analytics_capacity_seam.py::test_actual_native_consumers_and_exports_keep_shot_objects_and_retained_arrays_bounded[4097]
+3 failed, 123 passed in 7.17s

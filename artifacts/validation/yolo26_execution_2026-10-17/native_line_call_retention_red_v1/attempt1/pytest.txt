@@ -1,0 +1,10 @@
+...F                                                                     [100%]
+================================== FAILURES ===================================
+_____ test_native_annotation_retention_does_not_grow_with_match_duration ______
+tests\test_native_line_call_retention.py:249: in test_native_annotation_retention_does_not_grow_with_match_duration
+    assert growth <= 256 * 1024, (
+E   AssertionError: Native Phase6 retains duration-growing line-call list, frame map and dead-event set: 3,687,159 extra traced bytes between 257 and 4097 lazy synthetic events
+E   assert 3687159 <= (256 * 1024)
+=========================== short test summary info ===========================
+FAILED tests/test_native_line_call_retention.py::test_native_annotation_retention_does_not_grow_with_match_duration
+1 failed, 3 passed in 17.79s

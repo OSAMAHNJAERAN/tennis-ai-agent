@@ -1,0 +1,151 @@
+{
+  "status": "FAIL",
+  "scope": "activity",
+  "pytest_exit_code": 1,
+  "started_utc": "2026-10-16T18:12:18.346446+00:00",
+  "ended_utc": "2026-10-16T18:12:20.702605+00:00",
+  "seconds": 2.356159899994964,
+  "counts": {
+    "passed": 9,
+    "failed": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "rows": [
+    {
+      "scene": "moving",
+      "frames": 129,
+      "values_sha256": "8a6bc294bac37e9da410a22980e49df0414b7f0a70f5583186186358fe842882",
+      "qualification_evidence": false
+    },
+    {
+      "scene": "mixed",
+      "frames": 129,
+      "values_sha256": "06e0e1fbccabe3fe6603e7483f46bd5bc06f36faf7620217d9c2842be298004c",
+      "qualification_evidence": false
+    },
+    {
+      "scene": "missing",
+      "frames": 129,
+      "values_sha256": "a528f702aeb461e8164ca602f2702b9f1a3d044c2f45023470bb736f51050065",
+      "qualification_evidence": false
+    },
+    {
+      "scene": "static",
+      "frames": 129,
+      "values_sha256": "da22283baa3b854bc9f35d4a6a22671dc0595c8c4edb509c4b487668b524b7a8",
+      "qualification_evidence": false
+    },
+    {
+      "scene": "preplay",
+      "frames": 129,
+      "values_sha256": "fe72874e860bc731424810e357ef3da3542eeae474beeaa4ac636ddb21259e6e",
+      "qualification_evidence": false
+    },
+    {
+      "scene": "preplay_then_active",
+      "frames": 129,
+      "values_sha256": "b4033b0a065a5c9a020165fa2ed150714df2c2b5704d8bee4c9be77d04ffc16e",
+      "qualification_evidence": false
+    },
+    {
+      "scene": "capacity",
+      "frames": 257,
+      "retained_traced_bytes": 122648,
+      "peak_traced_bytes": 145332,
+      "values_sha256": "91b0005c267252c4fefefacf0f074f259a8ad5abd83285ce14b9f26ec65cd3c6",
+      "actual_classifier": true,
+      "lazy_typed_source": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "capacity",
+      "frames": 1025,
+      "retained_traced_bytes": 454936,
+      "peak_traced_bytes": 546100,
+      "values_sha256": "3ac0301e177e62fafb65b3eb887d8737a756dc375b7f1979abd4a9957281409f",
+      "actual_classifier": true,
+      "lazy_typed_source": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "capacity",
+      "frames": 4097,
+      "retained_traced_bytes": 1781656,
+      "peak_traced_bytes": 2143156,
+      "values_sha256": "3938216e435ab428d0b30660dac61ba8c27ec02f02f5a61a80dadd9e24e1cbed",
+      "actual_classifier": true,
+      "lazy_typed_source": true,
+      "qualification_evidence": false
+    }
+  ],
+  "capacity_rows": [],
+  "source_before": {
+    "artifacts\\validation\\yolo26_execution_2026-10-17\\activity_retention_checks_v1\\run_checks.py": "2d0927fc3dd6a45a137c6d855801a46406583c85de253a96ae7e569b29cc45c8",
+    "src/pipeline/phase6_pipeline.py": "600701399e110b5364e5a74b57a8ef1f71ec9aa24b96fd83c7a8c6138eb85b22",
+    "src/visualization/landing_zones.py": "2eea8fd348effe678bd8bc57b0dc72f0e00af520c38da930796e703aa84a4860",
+    "src/utils/landing_zone_sequence.py": "b761d23d8c5af90aa5859af620cc2b74a20b3bc7dad314ea634d3c2a97e31602",
+    "src/utils/analytics_json_artifact.py": "5228b1517f52e8838eb2ca7b7ad8ed02bdf19aa4e9e8819504168ef03aca0c5d",
+    "src/utils/json_array_artifact.py": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194",
+    "src/utils/mapped_sequence_view.py": "5a407654eb4eb21db28effbd5d72c56c07c5c41401f861d492a3bd5e13a112d3",
+    "src/court/court_geometry.py": "a1da8100c2b89562e397024e57e09ad575298b22723cad39436a9852b2981d44",
+    "src/utils/point_analysis_sequence.py": "14d2b27c53d54ebc34d134c55287882ba784d31d6f793d8f7d4832336563e950",
+    "src/utils/scoring_journal.py": "e3e4975e6d624f9089041b67a940072077a2e0dde7ab3a9d0f8c42dabf7253c9",
+    "src/scoring/point_timeline.py": "8c16a14318e861e61b07ca2a4812fe6de8b58fc9229e9712770f549208485ce9",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/api/landing_zone_contract.py": "4f970da685f504563cad2243943a17c2746458bb463064155b8e00f96691d0cb",
+    "src/api/reporting.py": "d037d43ba6fd5b3d3ea77c37f3a0e4dcd4a948f0e882a04342a1d2249be7cf33",
+    "src/events/activity_state.py": "dfb5985fbc60bc64eeaeb268206fd70a9391e56e9e2c1dc2077b05a5f87c9f35",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/events/event_detector.py": "c1ffb1be0a71055b1a2ea295b18f8b55a921917dda2c2b01e27f22edcb20dbc2",
+    "src/utils/event_analysis_sequence.py": "6c87be659f35ff0c4ba0c9ca0ec788da1b2aa1c95cc6b630e31f32cb4cf31a07",
+    "tests/test_native_landing_retention.py": "f1f0d593201d7e3ea509bd21b0f95f0edb4e1e9af29574d2689f1b7c806df552",
+    "tests/test_event_result_pipeline_seam.py": "42cefe4766e0122d10dd40d37895533b6a64b8af1bbdac67e06be2c835b015e1",
+    "tests/test_landing_zone_sequence.py": "5ffdb6dd92ca2374ed7c71f8f35997be7fd7dd3d93f1074b25b7ffced22cd15f",
+    "tests/test_indexed_json_objects.py": "074a17e4337e95ec95e84716c878c36f5288563305d5c81c16e06b8e2652e555",
+    "src/visualization/mini_court.py": "b6b7d4359804df390e534862b7fecb6fbaa90781d0cc37e3bac4032920de3def",
+    "src/visualization/bounce_history.py": "9c7d91aaa4dfee7e0145650a1f476127ed1de047bcc7814c402b1fdc2361f3a5",
+    "tests/test_activity_retention.py": "399356df1d25b307c289cec518640e7f0958f9612b920f4323992bb8ce267d88"
+  },
+  "source_after": {
+    "artifacts\\validation\\yolo26_execution_2026-10-17\\activity_retention_checks_v1\\run_checks.py": "2d0927fc3dd6a45a137c6d855801a46406583c85de253a96ae7e569b29cc45c8",
+    "src/pipeline/phase6_pipeline.py": "600701399e110b5364e5a74b57a8ef1f71ec9aa24b96fd83c7a8c6138eb85b22",
+    "src/visualization/landing_zones.py": "2eea8fd348effe678bd8bc57b0dc72f0e00af520c38da930796e703aa84a4860",
+    "src/utils/landing_zone_sequence.py": "b761d23d8c5af90aa5859af620cc2b74a20b3bc7dad314ea634d3c2a97e31602",
+    "src/utils/analytics_json_artifact.py": "5228b1517f52e8838eb2ca7b7ad8ed02bdf19aa4e9e8819504168ef03aca0c5d",
+    "src/utils/json_array_artifact.py": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194",
+    "src/utils/mapped_sequence_view.py": "5a407654eb4eb21db28effbd5d72c56c07c5c41401f861d492a3bd5e13a112d3",
+    "src/court/court_geometry.py": "a1da8100c2b89562e397024e57e09ad575298b22723cad39436a9852b2981d44",
+    "src/utils/point_analysis_sequence.py": "14d2b27c53d54ebc34d134c55287882ba784d31d6f793d8f7d4832336563e950",
+    "src/utils/scoring_journal.py": "e3e4975e6d624f9089041b67a940072077a2e0dde7ab3a9d0f8c42dabf7253c9",
+    "src/scoring/point_timeline.py": "8c16a14318e861e61b07ca2a4812fe6de8b58fc9229e9712770f549208485ce9",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/api/landing_zone_contract.py": "4f970da685f504563cad2243943a17c2746458bb463064155b8e00f96691d0cb",
+    "src/api/reporting.py": "d037d43ba6fd5b3d3ea77c37f3a0e4dcd4a948f0e882a04342a1d2249be7cf33",
+    "src/events/activity_state.py": "dfb5985fbc60bc64eeaeb268206fd70a9391e56e9e2c1dc2077b05a5f87c9f35",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/events/event_detector.py": "c1ffb1be0a71055b1a2ea295b18f8b55a921917dda2c2b01e27f22edcb20dbc2",
+    "src/utils/event_analysis_sequence.py": "6c87be659f35ff0c4ba0c9ca0ec788da1b2aa1c95cc6b630e31f32cb4cf31a07",
+    "tests/test_native_landing_retention.py": "f1f0d593201d7e3ea509bd21b0f95f0edb4e1e9af29574d2689f1b7c806df552",
+    "tests/test_event_result_pipeline_seam.py": "42cefe4766e0122d10dd40d37895533b6a64b8af1bbdac67e06be2c835b015e1",
+    "tests/test_landing_zone_sequence.py": "5ffdb6dd92ca2374ed7c71f8f35997be7fd7dd3d93f1074b25b7ffced22cd15f",
+    "tests/test_indexed_json_objects.py": "074a17e4337e95ec95e84716c878c36f5288563305d5c81c16e06b8e2652e555",
+    "src/visualization/mini_court.py": "b6b7d4359804df390e534862b7fecb6fbaa90781d0cc37e3bac4032920de3def",
+    "src/visualization/bounce_history.py": "9c7d91aaa4dfee7e0145650a1f476127ed1de047bcc7814c402b1fdc2361f3a5",
+    "tests/test_activity_retention.py": "399356df1d25b307c289cec518640e7f0958f9612b920f4323992bb8ce267d88"
+  },
+  "sources_unchanged": true,
+  "forbidden_runtime_imports_observed": [],
+  "numerical_runtime_imports_observed": [
+    "numpy",
+    "pandas"
+  ],
+  "peak_owned_working_set_bytes": 99819520,
+  "video_used": false,
+  "gpu_used": false,
+  "synthetic_geometry_storage_only": true,
+  "qualification_evidence": false,
+  "runner_sha256": "2d0927fc3dd6a45a137c6d855801a46406583c85de253a96ae7e569b29cc45c8"
+}

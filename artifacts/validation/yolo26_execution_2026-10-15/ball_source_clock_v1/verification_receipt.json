@@ -1,0 +1,92 @@
+{
+  "schema_version": "tennis.source-clock-repair-verification.v1",
+  "created_at_utc": "2026-10-15T08:15:47.3452418+00:00",
+  "status": "PASS_FOCUSED_SOFTWARE_SOURCE_CLOCK_REPAIR_NOT_VISION_QUALIFICATION",
+  "python_executable": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "execution_permission": "Installed Python required sandbox escalation; executed locally after automatic approval.",
+  "actual_red_symptom": "frame_mapping accepts 0->5 PTS at1/100 with25FPS; pre-fix nativeadapter10px displacement returned250px/s rather than200; replaytimestampscorrect.",
+  "initial_red_full_source_snapshot_retained": false,
+  "runs": [
+    {
+      "junit_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_source_clock_v1\\red_junit.xml",
+      "sha256": "8a08e86cd9bcd9f0d9e97fb6f1ecdf41aedac3525a05f9f87d2988cd6e8ef3d4",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 17.142
+    },
+    {
+      "junit_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_source_clock_v1\\green_initial_junit.xml",
+      "sha256": "d97b91299c0e1a02204324f4d0e55c984b9d3fd791c88ec9abaefcc1496e1980",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 23.899
+    },
+    {
+      "junit_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_source_clock_v1\\focused_junit.xml",
+      "sha256": "1457fec7b9a24624577f88102dd09a2fe0746c50a58afd575cb850206a61b61f",
+      "tests": 97,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 25.308
+    },
+    {
+      "junit_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_source_clock_v1\\compatibility_junit.xml",
+      "sha256": "ae9576d90cc39a999d69b8367ab590a266b3a701596d8b8e9c90bb152253d0eb",
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 22.197
+    }
+  ],
+  "counts_overlap": "Initial12 tests overlap focused97; do not add all run counts as distinct tests.",
+  "compatibility_exclusions": "Six existing video pipeline export/render cases deliberately deselected;34 camera/interval/legacy memory cases passed.",
+  "executed_source_bindings": [
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\tracking\\temporal_ball_tracker.py",
+      "sha256": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+      "unchanged_since_focused_start": true
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\pipeline\\phase6_pipeline.py",
+      "sha256": "7d7aea825e044b4ef3eb507ea8f3d659498d6e55a437a7b7105b20f28c92301c",
+      "unchanged_since_focused_start": true
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\tests\\test_temporal_ball_source_clock.py",
+      "sha256": "b063ab512795984c693e0b1d403ff48722e69a86c7a7556c665dd9c46485b368",
+      "unchanged_since_focused_start": true
+    }
+  ],
+  "documentation": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\docs\\experiments\\BALL_SOURCE_CLOCK_REPAIR_2026-10-15.md",
+    "sha256": "1fce23f86185c8b2b4cc579c2709efe04bf47b5d1ab346f36c840b246a822a55"
+  },
+  "legacy_omitted_timing_semantics_preserved": true,
+  "cadence_eligibility_gate_changed": false,
+  "native_yolo26_opt_in": true,
+  "normalized_playback_timestamps_preserved": true,
+  "exact_source_pts_used_before_float_subtraction": true,
+  "disk_prefix_and_lazy_timing_verified": true,
+  "source_timing_sequence_frame_lifetime_case": 1000,
+  "gpu_inference_performed": false,
+  "models_loaded": false,
+  "training_performed": false,
+  "acquired_match_media_processed": false,
+  "synthetic_media_note": "Three existing media_timing tests generated tiny synthetic FFmpeg fixtures; no acquired match video was decoded or analyzed.",
+  "full_backend_suite_run": false,
+  "independent_accuracy_evaluated": false,
+  "physical_speed_qualified": false,
+  "long_match_or_live_qualified": false,
+  "remaining": [
+    "Events/refinement still use their separate normalized-clock path pending source-time audit.",
+    "Timed interpolation is offline and future-anchored; no causal live claim.",
+    "No independently qualified impacts/trajectories/pixel velocity or physical 3D ball speed.",
+    "Output storage is not filter checkpoint/resume."
+  ]
+}

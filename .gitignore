@@ -67,6 +67,14 @@ outputs/
 # Frontend
 node_modules/
 frontend/*
+!frontend/package.json
+!frontend/pnpm-lock.yaml
+!frontend/index.html
+!frontend/vite.config.ts
+!frontend/eslint.config.js
+!frontend/tsconfig*.json
+!frontend/.env.example
+!frontend/README.md
 !frontend/src/
 !frontend/scripts/
 frontend/scripts/*
@@ -102,3 +110,68 @@ artifacts/tools/vision_eval_runtime/
 
 # Downloaded research court checkpoints; retain cards and provenance
 artifacts/models/court/**/*.pth
+
+# Licensed demo bytes are restored by tracked acquisition/preparation scripts.
+# Keep source/hash/license manifests in data/demos/ under version control.
+artifacts/demos/sources/
+
+# Candidate originals remain reproducible through their source/hash records.
+artifacts/demos/candidates/*.webm
+artifacts/demos/candidates/*.mp4
+artifacts/demos/candidates/*.mkv
+artifacts/demos/candidates/*.wav
+
+# Private research pilot media; retain source manifests, labels and receipts.
+data/yolo26/**/*.png
+data/yolo26/**/*.jpg
+data/yolo26/**/*.jpeg
+data/yolo26/**/*.mp4
+data/yolo26/**/*.webm
+data/yolo26/**/*.cache
+
+# Local credentials and interpreter/test caches
+.env.*
+!.env.example
+!.env.sample
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Disposable validation workspaces; keep the surrounding reports and receipts.
+/TEMP/
+/artifacts/test_tmp/
+/artifacts/validation/**/temp/
+/artifacts/validation/**/tmp/
+/artifacts/validation/**/pytest/
+/artifacts/validation/**/pytest_tmp/
+/artifacts/validation/**/pytest-*/
+/artifacts/validation/**/test_*/
+/artifacts/validation/**/*_tmp*/
+/artifacts/validation/**/frontend_build*/
+/artifacts/validation/**/previous_dist/
+/artifacts/validation/**/isolated_product/
+/artifacts/validation/product_installation/clean_env/
+/artifacts/validation/product_installation/frontend_env/
+/artifacts/validation/product_installation/wasb_restore_check/
+/artifacts/validation/product_installation/frontend_source_restore*/
+
+# Reproducible synthetic capacity-test payloads and duplicated runtime output.
+/artifacts/validation/product_execution/**/run/
+/artifacts/validation/product_execution/**/storage_new_*/
+/artifacts/validation/product_execution/**/storage_old_*/
+/artifacts/validation/product_execution/**/dynamic_*/
+/artifacts/validation/product_execution/export_capacity_*/csv_*.csv
+/artifacts/validation/product_execution/export_capacity_*/camera_*.json
+/artifacts/validation/product_execution/repeated_source_capacity_*/repeated_licensed_input.mp4
+/artifacts/validation/yolo26_execution_*/analysis_generation_copy_capacity_*/case_*/
+/artifacts/validation/**/frontend*build*/
+/artifacts/validation/**/browser_storage/
+/artifacts/validation/**/execution_temp/
+/artifacts/validation/**/source_snapshot/
+/artifacts/validation/**/sources/
+/artifacts/validation/**/fixture/
+/artifacts/validation/**/*.sqlite3
+/artifacts/validation/**/*.sqlite3-*
+
+# External sparse checkout used only to inventory upstream annotations.
+/artifacts/validation/yolo26_execution_2026-10-15/ball_bbox_annotation_inventory_v1/author_sparse_checkout/

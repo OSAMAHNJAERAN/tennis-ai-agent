@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-08T03:36:54.467342+00:00",
+  "executionDateAsiaSingapore": "2026-10-08",
+  "python": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "dependencies": {
+    "fastapi": "0.139.2",
+    "starlette": "1.3.1",
+    "pydantic": "2.11.7",
+    "aiofiles": "24.1.0",
+    "filelock": "3.20.3",
+    "pytest": "9.0.3"
+  },
+  "sources": {
+    "src/api/auth.py": "4035dcc7e7a544596d3965e36ff1b89900a75e58bed89bd59d8da9a4cd4d9d53",
+    "src/api/uploads.py": "eba67991bb8dc334de5be00be69b1c55663e86be9d29b09fceebee6cab6c85a8",
+    "src/api/app.py": "d48562d7bf2375c12036d1467b099e5ee2165f70f2ebcf87e21d9bc2e4a33fdc",
+    "src/api/jobs.py": "c0f8aaffd169c25848e938c76399f4b4cdf4a8f85562fc876cef990a2ae68c6a",
+    "src/api/product.py": "49144027a37b4ddb8beff142e787a577eb76f0f9352229a5d4da160b22ec1539",
+    "src/api/worker.py": "55f5ff8d0f336213658158c99c3c2bea54a93fc1ef4407f0dc0c35620e9637ad",
+    "tests/test_product_ownership_uploads.py": "0dc393cbc5201cde7c503042c7b7123d50465203b4ff38a4ba19a2fe0afb5259",
+    "tests/test_streaming_telemetry_csv.py": "adcbe3b869d10fe993e06327643f61dfa3d37dadef139dbe1be10d1bbd9a6c3c",
+    "tests/test_product_matches.py": "66a06f43d4d9068dd1024e4387e5ff3742cd3fe4f980747a7b6a0c8ed7d3fe41",
+    "docs/PRODUCT_WORKFLOW.md": "a0bc517e551f55078a15e35b802f070415e6ab4ba0db9b220e9b20762e750747",
+    "docs/PRODUCT_DASHBOARD.md": "266947864911745c7b35cf5fe3b2571e8f40b3cc0be89efe0f60b095c145f9f4"
+  },
+  "suites": [
+    {
+      "receipt": "api_final_junit.xml",
+      "tests": 135,
+      "failures": 2,
+      "errors": 0,
+      "seconds": 28.818
+    },
+    {
+      "receipt": "api_stream_junit.xml",
+      "tests": 64,
+      "failures": 3,
+      "errors": 0,
+      "seconds": 14.18
+    },
+    {
+      "receipt": "api_verified_junit.xml",
+      "tests": 136,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 25.128
+    },
+    {
+      "receipt": "api_batch_failure_junit.xml",
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 15.25
+    }
+  ],
+  "testScope": "API account ownership, resumable byte transfers, batch saved state, retained-source retry, cooperative cancellation, compatibility and bounded streaming publication; deterministic fixtures, no model inference",
+  "currentProof": [
+    "api_verified_junit.xml: complete API/result streaming regression after ASGI middleware repair",
+    "api_batch_failure_junit.xml: final saved per-file failure state and manual prediction integration"
+  ],
+  "retainedFailedEvidence": [
+    "api_final_junit.xml: decorator middleware streaming regressions",
+    "api_stream_junit.xml: loopback hostname guard rejected historical raw ASGI fixture before loopback server correction"
+  ],
+  "runtimeConstraints": [
+    "Restricted sandbox blocked native Windows socketpair accept in TestClient before API tests ran; local test sockets used narrow escalation.",
+    "Current server and worker processes need normal restart to load these source changes."
+  ],
+  "remaining": [
+    "Arbitrary frame/tracker checkpoint restore and distributed job leases are not implemented.",
+    "Live video, independent CV accuracy, complete-match capacity and scientific model qualification are outside these API fixtures.",
+    "Public deployment quotas, abuse controls, password recovery and operating backup/recovery qualification remain required."
+  ],
+  "visionAccuracyEvidence": false,
+  "longMatchCapacityEvidence": false,
+  "liveVideoEvidence": false
+}

@@ -112,13 +112,13 @@ def test_service_box_near_deuce_evaluation():
     """Test service box boundaries for Near Deuce serve."""
     # Inside Near Deuce box
     res_in = CourtLineGeometry.evaluate_service_box_boundary(
-        court_x_m=3.00, court_y_m=15.00, target_box=ServiceBoxType.NEAR_DEUCE
+        court_x_m=7.00, court_y_m=15.00, target_box=ServiceBoxType.NEAR_DEUCE
     )
     assert res_in.is_center_inside is True
 
     # Fault: Long past service line (Y=19.0m, service line is Y=18.285m)
     res_long = CourtLineGeometry.evaluate_service_box_boundary(
-        court_x_m=3.00, court_y_m=19.00, target_box=ServiceBoxType.NEAR_DEUCE
+        court_x_m=7.00, court_y_m=19.00, target_box=ServiceBoxType.NEAR_DEUCE
     )
     assert res_long.is_center_inside is False
     assert res_long.nearest_line == CourtLineType.NEAR_SERVICE_LINE

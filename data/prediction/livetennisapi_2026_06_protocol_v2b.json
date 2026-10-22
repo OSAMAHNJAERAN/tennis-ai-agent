@@ -1,0 +1,73 @@
+{
+  "schema_version": "tennis.publisher-score-protocol.v1",
+  "protocol_id": "livetennisapi-june2026-conditional-suffix-v2b-player-audit",
+  "frozen_at": "2026-10-09T11:23:44.651270+00:00",
+  "freeze_stage": "before_corrected_player_join_audit_no_forecast_metrics",
+  "publisher_record": "https://zenodo.org/records/22048731",
+  "publisher_version": "1.0.0",
+  "usage": "private_noncommercial_academic_research",
+  "raw_redistribution": false,
+  "camera_qualification_evidence": false,
+  "publication_qualification": false,
+  "splits": {
+    "development": {
+      "scheduled_start_utc_inclusive": "2026-06-01T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-06-15T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    },
+    "calibration": {
+      "scheduled_start_utc_inclusive": "2026-06-15T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-06-22T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    },
+    "test": {
+      "scheduled_start_utc_inclusive": "2026-06-22T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-07-01T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    }
+  },
+  "grouping": "one publisher match_id in exactly one split; preserve every row for that match in capture order; no frame/point/random row split",
+  "eligibility": [
+    "public live-observed score-state provenance only; original UTC capture order retained",
+    "completed BO3 singles metadata with distinct player IDs and empty retirement/walkover event_status; doubles and undocumented formats rejected",
+    "Join player1_id/player2_id to nonempty players.csv names; reject slash-paired participants as doubles and missing joined players as unknown participants.",
+    "first recorded row must already provide valid nonterminal score and server; midmatch starts permitted and historical serve counts reset to the neutral prior without invented past points",
+    "each nonterminal observed row must provide a server and valid score; unknown server or ambiguous/skipped/reversed point transitions rejects the entire match",
+    "every point transition must uniquely match exactly one TennisScoringRules.award_point hypothetical winner under standard advantage games and seven-point set tiebreaks",
+    "undocumented deciding-set tie-breaks rejected instead of assuming a target",
+    "unchanged duplicate score/server states may be removed causally; asynchronous server corrections at an unchanged score reject the match",
+    "original capture UTC timestamps must be finite and nondecreasing, and all captures must remain inside the reserved whole-match chronological split",
+    "ledger must end in a normal rules-complete terminal score; terminal server and point-display cleanup may be ignored only after sets and completed game arrays exactly identify a unique terminal winner",
+    "no prediction quality or outcome-side criterion is used for eligibility, selection or parameter adjustment"
+  ],
+  "bounded_selection": "among all structurally eligible matches in each split, select the earliest scheduled UTC timestamp then lexicographic publisher match_id up to the fixed cap; publish all counts and exclusion reasons",
+  "features": "current and past observed score/server plus past confirmed point winners within this same match only; no final result, future points, whole-match aggregates, next server, ratings or cross-match fitting",
+  "statistical_forecast": "existing src/prediction/tennis.py rule recursion with neutral Beta(2,2) serve prior and causal past-point updates; no parameter tuning on this dataset",
+  "baseline": "same causal current score/server and fixed neutral Beta(2,2) serve prior with no within-match performance updates",
+  "evaluation_snapshots": "first observed nonterminal score and every valid nonterminal post-point state; final labels come from the validated observed terminal score, never enter forecast features; historical unobserved points are not reconstructed",
+  "metric_weighting": "each evaluated match contributes equal total weight; snapshots divide that match weight",
+  "metrics": [
+    "Brier score",
+    "log loss",
+    "fixed ten-bin reliability",
+    "paired delta against neutral score-only baseline",
+    "coverage and exclusions"
+  ],
+  "uncertainty": {
+    "grouping": "match",
+    "bootstrap_resamples": 1000,
+    "seed": 20261009,
+    "interval_quantiles": [
+      0.025,
+      0.975
+    ]
+  },
+  "calibration": "chronological calibration split is measured separately but no calibrator fitted in v1; prediction remains uncalibrated",
+  "release_gate": "No human review or separately confirmed winner is asserted. V2 is real publisher-score engineering evaluation only, and cannot satisfy independent qualification, calibration or physical camera gates.",
+  "amendments": "a schema incompatibility may cause an explicit versioned protocol amendment before metrics are computed; never change eligibility/splits after viewing performance",
+  "parent_protocol_sha256": "10c3cf39bbc823607fb8b4718accbe9bcd77edf477ba80a85cf5520b2245459f",
+  "amendment_reason": "Doubles names may contain slash-paired participants without double in tournament or round. Join publisher players before singles eligibility. Preserve parent v2 receipt; do not reinterpret two groups as independent qualification.",
+  "outcome_reference": "single publisher observed terminal score; independent of forecast model but not a separate human-reviewed result reference",
+  "scope": "private engineering evaluation of complete unambiguous observed suffixes of BO3 singles matches; prediction remains unqualified",
+  "parent_import_sha256": "7dedb4bf869954d5f53d352d548195c4cccf8baabe0722dd1e7d94af35e15a8b"
+}

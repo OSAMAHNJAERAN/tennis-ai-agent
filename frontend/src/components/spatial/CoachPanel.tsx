@@ -1,11 +1,12 @@
 import { ArrowUpRight, PaperPlaneTilt, Sparkle } from "@phosphor-icons/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { AnalysisRun } from "../../data/contracts";
 import { buildCoachEvidence, type FrameRange, type NormalizedTelemetry } from "../../lib/tennisTelemetry";
 
 const QUESTIONS = ["How can P1 improve recovery?", "Compare court positioning", "What should I review next?"];
 
 export function CoachPanel({ run, telemetry, range }: { run: AnalysisRun; telemetry: NormalizedTelemetry; range: FrameRange }) {
+  const questionId = useId();
   const evidence = useMemo(() => buildCoachEvidence(run, telemetry, range), [range, run, telemetry]);
   const [question, setQuestion] = useState(QUESTIONS[0]!);
   const [response, setResponse] = useState<{ text: string; model: string } | null>(null);
@@ -42,7 +43,7 @@ export function CoachPanel({ run, telemetry, range }: { run: AnalysisRun; teleme
     <div className="coach-observation"><div className="coach-source"><span />Local telemetry observation</div><h3>{lead}</h3><p>{observation}</p><div className="coach-evidence-tags"><span>{evidence.range.durationSeconds.toFixed(1)}s interval</span><span>{p1.total + p2.total} samples</span></div></div>
     <div className="coach-next"><span className="astra-eyebrow">Next review</span><p>{enough ? "Compare both players immediately after a contact. Look for open space before attributing a tactical advantage." : "Choose an analysis with player trajectories, then select a longer interval."}</p><ArrowUpRight size={17} /></div>
     <div className="coach-ask"><h3>Ask Astra GPT</h3><p>Send this interval’s telemetry to your configured coach.</p><div className="coach-prompts">{QUESTIONS.map(value => <button key={value} type="button" onClick={() => setQuestion(value)} aria-pressed={question === value}>{value}<ArrowUpRight size={13} /></button>)}</div>
-      <form onSubmit={askCoach}><label className="sr-only" htmlFor="coach-question">Question for Astra GPT</label><textarea id="coach-question" maxLength={1000} value={question} onChange={e => setQuestion(e.target.value)} rows={2} /><button className="astra-button coach-submit" type="submit" disabled={busy || !question.trim()}><span>{busy ? "Reading the court…" : "Generate coaching"}</span><PaperPlaneTilt size={16} /></button></form>
+      <form onSubmit={askCoach}><label className="sr-only" htmlFor={questionId}>Question for Astra GPT</label><textarea id={questionId} maxLength={1000} value={question} onChange={e => setQuestion(e.target.value)} rows={2} /><button className="astra-button coach-submit" type="submit" disabled={busy || !question.trim()}><span>{busy ? "Reading the court…" : "Generate coaching"}</span><PaperPlaneTilt size={16} /></button></form>
       <div aria-live="polite">{error ? <p className="coach-error" role="status">{error}</p> : null}{response ? <article className="coach-response"><span>Astra GPT · {response.model}</span><p>{response.text}</p></article> : null}</div>
     </div>
     <footer>Single-camera evidence. Short intervals describe positioning; they do not establish why a point was won or lost.</footer>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="17" failures="0" errors="0" time="1.8389488">
+    <testsuite name="src/data/analysisApi.test.ts" timestamp="2026-10-09T10:25:34.510Z" hostname="Osamah" tests="2" failures="0" errors="0" skipped="0" time="0.0078762">
+        <testcase classname="src/data/analysisApi.test.ts" name="persisted job API contract &gt; accepts boolean cancellation flags in actual job history" time="0.0041089">
+        </testcase>
+        <testcase classname="src/data/analysisApi.test.ts" name="persisted job API contract &gt; keeps malformed storage details out of the user error" time="0.0021924">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/BatchUpload.test.tsx" timestamp="2026-10-09T10:25:34.512Z" hostname="Osamah" tests="2" failures="0" errors="0" skipped="0" time="0.5711944">
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; keeps the second upload usable when the first fails" time="0.3755555">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; requires explicit same-match order and keeps grouping unverified" time="0.192054">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/Upload.test.tsx" timestamp="2026-10-09T10:25:34.513Z" hostname="Osamah" tests="13" failures="0" errors="0" skipped="0" time="1.2598782">
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; treats authentication-required as account access while retaining a healthy service" time="0.2309136">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; accepts a selected video and opens persistent processing status" time="0.192053">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; rejects an unsupported dropped file without uploading" time="0.0366119">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows actual upload progress while keeping cancellation available" time="0.1455469">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; restores completion and a deep result link from job history" time="0.081056">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows a recoverable connection error rather than losing a job" time="0.0394159">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; excludes public examples from history without removing the active job" time="0.0535465">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows the private archive empty state when only public examples exist" time="0.0241935">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is loading" time="0.0858988">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is unavailable" time="0.1300101">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved analyses accessible and restores public filtering when the catalog recovers" time="0.1180788">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is unavailable" time="0.0605109">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is malformed" time="0.0582685">
+        </testcase>
+    </testsuite>
+</testsuites>

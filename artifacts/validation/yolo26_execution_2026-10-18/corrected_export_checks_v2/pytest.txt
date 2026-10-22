@@ -1,0 +1,44 @@
+............................F........................................... [ 51%]
+.....................................................................    [100%]
+================================== FAILURES ===================================
+_ test_growing_completed_points_bounds_actual_export_history_and_strict_reader_memory _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_export_checks_v2/temp/pytest/test_growing_completed_points_0')
+
+    def test_growing_completed_points_bounds_actual_export_history_and_strict_reader_memory(tmp_path):
+        from src.api.result_storage import ResultStorage
+        measurements = []
+        for count in (8, 128):
+            parent = tmp_path/str(count)
+            parent.mkdir()
+            fixture = build_completed_points_base(parent, point_count=count)
+            with fresh_forecast(fixture) as (rebuilt, shots, forecast):
+                assert len(rebuilt.owner.rows('points', status='COMPLETED')) == count
+                assert len(forecast.history) == 1+6*count
+                gc.collect()
+                tracemalloc.start()
+                started = time.perf_counter()
+                try:
+                    result = export(rebuilt, shots, forecast, fixture.scratch)
+                    gc.collect()
+                    retained, peak = tracemalloc.get_traced_memory()
+                    measurements.append({'completed_points': count, 'accepted_inputs': 3*count,
+                        'forecast_history_rows': 1+6*count,
+                        'retained_python_bytes_after_export': retained, 'peak_python_bytes': peak,
+                        'elapsed_seconds': time.perf_counter()-started,
+                        'exported_bytes': sum(path.stat().st_size for path in result.files.values())})
+                finally:
+                    tracemalloc.stop()
+                assert_export_set(result, fixture)
+                with ResultStorage(fixture.scratch) as storage:
+                    saved = storage.read_json(result.files['corrected_forecasts.json'])
+                    assert saved['current']['sample_count'] == count
+                    assert len(saved['history']) == 1+6*count
+>                   assert not isinstance(saved['history'], list)
+E                   AssertionError: assert not True
+E                    +  where True = isinstance([{'analysis_id': 'fixture', 'analysis_revision': 1, 'base_generation': '9e86dc859f90644d5e93662eaf402159a1bb28d366a429...n': 1, 'base_generation': '9e86dc859f90644d5e93662eaf402159a1bb28d366a4299f883374d644a1b015', 'event_id': 3, ...}, ...], list)
+
+tests\test_corrected_exports.py:466: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_corrected_exports.py::test_growing_completed_points_bounds_actual_export_history_and_strict_reader_memory
+1 failed, 140 passed, 2 deselected in 70.05s (0:01:10)

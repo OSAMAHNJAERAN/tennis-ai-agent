@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-09-30",
+  "status": "CANDIDATE_ACQUISITION_PLAN_NOT_A_FROZEN_TEST_SET",
+  "qualification_evidence": false,
+  "certified_clips": 0,
+  "certified_sessions": 0,
+  "source": "https://huggingface.co/datasets/demalenk/caltennis",
+  "source_revision": "6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d",
+  "local_primary_tree": "data/external/caltennis_diagnostic/tree.json",
+  "local_primary_tree_sha256": "63be664549e351af452a2e954a55c6adf46597a0e54f7fc6e080306929e07da1",
+  "planned_clip_slots": 12,
+  "candidate_date_groups": 6,
+  "expected_video_bytes": 3689298076,
+  "exclusions": [
+    "09_18_2025_16_15_court5",
+    "10_02_2025_08_00_court5",
+    "01_28_2026_16_30_ath",
+    "01_28_2026_19_00_ath"
+  ],
+  "merge_required": [
+    "10_16_2025_16_00_court5 and 10_16_2025_16_51_court2 contain identical SHA256 videos"
+  ],
+  "candidates": [
+    {
+      "candidate_group_id": "caltennis-2026-01-23",
+      "publisher_session_path": "01_23_2026_17_00_court2",
+      "recording_date_from_path": "2026-01-23",
+      "date_verified_from_timestamps": false,
+      "independence_basis": "Different date and immutable source hash; same venue/players may remain correlated",
+      "status": "NOT_ACQUIRED_CAMERA_SINGLES_AND_OVERLAP_REVIEW_PENDING",
+      "license": "CC-BY-NC-4.0",
+      "intended_use": "Private noncommercial academic qualification only",
+      "public_product_demo_permission": false,
+      "pretrained_exposure": "UNKNOWN",
+      "video": {
+        "path": "01_23_2026_17_00_court2/01_23_2026_17_00_17_000_2_W_02_18_10_24_610.mp4",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 1150439524,
+        "publisher_sha256": "f2177d90786b240744ed95fec678615492c1837fdd920dc7794e36822923196a",
+        "publisher_git_blob_oid": "82f0a2702b8dd57eb27a8fb46fcd0bd157c089cc",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/01_23_2026_17_00_court2/01_23_2026_17_00_17_000_2_W_02_18_10_24_610.mp4"
+      },
+      "timestamps": {
+        "path": "01_23_2026_17_00_court2/01_23_2026_17_00_17_000_2_W_02_18_10_24_610_timestamps.npy",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 2018392,
+        "publisher_sha256": "208a2d8b50cedd79a00addcd43ea650e3440725e1e9cfe72d35c0eb7042d4685",
+        "publisher_git_blob_oid": "064406d2b39feeb2caeb65229b001a1dde6467e1",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/01_23_2026_17_00_court2/01_23_2026_17_00_17_000_2_W_02_18_10_24_610_timestamps.npy"
+      },
+      "calibration": {
+        "path": "camera_calibration/01_23_2026_17_00_court2/01_23_2026_17_00_17_000_2_W_02_18_10_24_610/calib.json",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 2217,
+        "publisher_sha256": null,
+        "publisher_git_blob_oid": "28d6e5c3aeda5fb62beafb4019504a10239a5196",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/camera_calibration/01_23_2026_17_00_court2/01_23_2026_17_00_17_000_2_W_02_18_10_24_610/calib.json"
+      },
+      "exact_sha256_in_existing_acquired_manifests": [],
+      "clip_slots": [
+        {
+          "candidate_clip_id": "q01-a",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        },
+        {
+          "candidate_clip_id": "q01-b",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        }
+      ]
+    },
+    {
+      "candidate_group_id": "caltennis-2026-02-25",
+      "publisher_session_path": "02_25_2026_16_30_court1",
+      "recording_date_from_path": "2026-02-25",
+      "date_verified_from_timestamps": false,
+      "independence_basis": "Different date and immutable source hash; same venue/players may remain correlated",
+      "status": "NOT_ACQUIRED_CAMERA_SINGLES_AND_OVERLAP_REVIEW_PENDING",
+      "license": "CC-BY-NC-4.0",
+      "intended_use": "Private noncommercial academic qualification only",
+      "public_product_demo_permission": false,
+      "pretrained_exposure": "UNKNOWN",
+      "video": {
+        "path": "02_25_2026_16_30_court1/02_25_2026_16_27_25_000_1_W_01_16_32_23_111.mp4",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 189513845,
+        "publisher_sha256": "07d9b66824ca77846f24fe0fcba7205bc80e7ab5e8f39125f88764d6eb555f0d",
+        "publisher_git_blob_oid": "dfd7198866509c25931f0bbc9e4ee36dbf70059a",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/02_25_2026_16_30_court1/02_25_2026_16_27_25_000_1_W_01_16_32_23_111.mp4"
+      },
+      "timestamps": {
+        "path": "02_25_2026_16_30_court1/02_25_2026_16_27_25_000_1_W_01_16_32_23_111_timestamps.npy",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 143024,
+        "publisher_sha256": "b4b9e1e4a902e7bac2b986ee8c20aefee311de19b636286ffbf410ee5380e3cb",
+        "publisher_git_blob_oid": "50e26043b8a5d6471e5aa47c3bcc72ecd00c004e",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/02_25_2026_16_30_court1/02_25_2026_16_27_25_000_1_W_01_16_32_23_111_timestamps.npy"
+      },
+      "calibration": {
+        "path": "camera_calibration/02_25_2026_16_30_court1/02_25_2026_16_27_25_000_1_W_01_16_32_23_111/calib.json",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 2206,
+        "publisher_sha256": null,
+        "publisher_git_blob_oid": "9265febd0972c486f2c21cb7ae414c63c2d87f2a",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/camera_calibration/02_25_2026_16_30_court1/02_25_2026_16_27_25_000_1_W_01_16_32_23_111/calib.json"
+      },
+      "exact_sha256_in_existing_acquired_manifests": [],
+      "clip_slots": [
+        {
+          "candidate_clip_id": "q02-a",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        },
+        {
+          "candidate_clip_id": "q02-b",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        }
+      ]
+    },
+    {
+      "candidate_group_id": "caltennis-2026-02-26",
+      "publisher_session_path": "02_26_2026_16_30_court1",
+      "recording_date_from_path": "2026-02-26",
+      "date_verified_from_timestamps": false,
+      "independence_basis": "Different date and immutable source hash; same venue/players may remain correlated",
+      "status": "NOT_ACQUIRED_CAMERA_SINGLES_AND_OVERLAP_REVIEW_PENDING",
+      "license": "CC-BY-NC-4.0",
+      "intended_use": "Private noncommercial academic qualification only",
+      "public_product_demo_permission": false,
+      "pretrained_exposure": "UNKNOWN",
+      "video": {
+        "path": "02_26_2026_16_30_court1/02_26_2026_17_45_02_000_1_E_04_18_27_05_613.mp4",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 878815787,
+        "publisher_sha256": "1768e43a95a7c8c58360c67c6d12a51178d9ddaa3a2d398621df6f95807cda1a",
+        "publisher_git_blob_oid": "c01ed254aaea997cba0991e1450d94aebdea5452",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/02_26_2026_16_30_court1/02_26_2026_17_45_02_000_1_E_04_18_27_05_613.mp4"
+      },
+      "timestamps": {
+        "path": "02_26_2026_16_30_court1/02_26_2026_17_45_02_000_1_E_04_18_27_05_613_timestamps.npy",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 1210896,
+        "publisher_sha256": "1e7648bd7305278d4831c4e0a05311a096b84ceb66f1155ba2e2fba8abce75e3",
+        "publisher_git_blob_oid": "92bfcbd152e57e242b02f1067456eb52c3898ee9",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/02_26_2026_16_30_court1/02_26_2026_17_45_02_000_1_E_04_18_27_05_613_timestamps.npy"
+      },
+      "calibration": {
+        "path": "camera_calibration/02_26_2026_16_30_court1/02_26_2026_17_45_02_000_1_E_04_18_27_05_613/calib.json",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 2199,
+        "publisher_sha256": null,
+        "publisher_git_blob_oid": "343668c032ae4d113fccba88aa31025ed17e5475",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/camera_calibration/02_26_2026_16_30_court1/02_26_2026_17_45_02_000_1_E_04_18_27_05_613/calib.json"
+      },
+      "exact_sha256_in_existing_acquired_manifests": [],
+      "clip_slots": [
+        {
+          "candidate_clip_id": "q03-a",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        },
+        {
+          "candidate_clip_id": "q03-b",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        }
+      ]
+    },
+    {
+      "candidate_group_id": "caltennis-2026-03-04",
+      "publisher_session_path": "03_04_2026_16_30_court1",
+      "recording_date_from_path": "2026-03-04",
+      "date_verified_from_timestamps": false,
+      "independence_basis": "Different date and immutable source hash; same venue/players may remain correlated",
+      "status": "NOT_ACQUIRED_CAMERA_SINGLES_AND_OVERLAP_REVIEW_PENDING",
+      "license": "CC-BY-NC-4.0",
+      "intended_use": "Private noncommercial academic qualification only",
+      "public_product_demo_permission": false,
+      "pretrained_exposure": "UNKNOWN",
+      "video": {
+        "path": "03_04_2026_16_30_court1/03_04_2026_17_42_50_000_1_SE_03_18_24_53_868.mp4",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 178257968,
+        "publisher_sha256": "520da4f94cc21d0877d6e4a804e81e129878afdc51b15d63163757b6de09ca5b",
+        "publisher_git_blob_oid": "935cdf13d049d824a5283d771544d87edc4615a1",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/03_04_2026_16_30_court1/03_04_2026_17_42_50_000_1_SE_03_18_24_53_868.mp4"
+      },
+      "timestamps": {
+        "path": "03_04_2026_16_30_court1/03_04_2026_17_42_50_000_1_SE_03_18_24_53_868_timestamps.npy",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 1210160,
+        "publisher_sha256": "287d5e45161f304597e5322b306e081ac03cf35b011a891efa088e7b7e0c5c85",
+        "publisher_git_blob_oid": "84b592980dc7d11a01b0e454a439b54b05df6a1c",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/03_04_2026_16_30_court1/03_04_2026_17_42_50_000_1_SE_03_18_24_53_868_timestamps.npy"
+      },
+      "calibration": {
+        "path": "camera_calibration/03_04_2026_16_30_court1/03_04_2026_17_42_50_000_1_SE_03_18_24_53_868/calib.json",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 2200,
+        "publisher_sha256": null,
+        "publisher_git_blob_oid": "52afcc13caa3702c269b998fc306124c7df565f2",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/camera_calibration/03_04_2026_16_30_court1/03_04_2026_17_42_50_000_1_SE_03_18_24_53_868/calib.json"
+      },
+      "exact_sha256_in_existing_acquired_manifests": [],
+      "clip_slots": [
+        {
+          "candidate_clip_id": "q04-a",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        },
+        {
+          "candidate_clip_id": "q04-b",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        }
+      ]
+    },
+    {
+      "candidate_group_id": "caltennis-2026-03-05",
+      "publisher_session_path": "03_05_2026_16_30_court1",
+      "recording_date_from_path": "2026-03-05",
+      "date_verified_from_timestamps": false,
+      "independence_basis": "Different date and immutable source hash; same venue/players may remain correlated",
+      "status": "NOT_ACQUIRED_CAMERA_SINGLES_AND_OVERLAP_REVIEW_PENDING",
+      "license": "CC-BY-NC-4.0",
+      "intended_use": "Private noncommercial academic qualification only",
+      "public_product_demo_permission": false,
+      "pretrained_exposure": "UNKNOWN",
+      "video": {
+        "path": "03_05_2026_16_30_court1/03_05_2026_17_29_42_000_1_NE_02_18_21_44_096.mp4",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 315359280,
+        "publisher_sha256": "d2ac3f9964e4ec43d3cbb142855fe9a2d8815d406e9ecbd63d88a7a1554f7dd3",
+        "publisher_git_blob_oid": "b63a063dd2ab00662ea15905eecb3cb686946f83",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/03_05_2026_16_30_court1/03_05_2026_17_29_42_000_1_NE_02_18_21_44_096.mp4"
+      },
+      "timestamps": {
+        "path": "03_05_2026_16_30_court1/03_05_2026_17_29_42_000_1_NE_02_18_21_44_096_timestamps.npy",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 1497928,
+        "publisher_sha256": "bc6050895c62dc0c98308e28ddec0bf185ae686f8bc1444e382da31d67d7bd2a",
+        "publisher_git_blob_oid": "7d8f2e8bf7b3953c9273d7c4d05ff19d2ff11783",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/03_05_2026_16_30_court1/03_05_2026_17_29_42_000_1_NE_02_18_21_44_096_timestamps.npy"
+      },
+      "calibration": {
+        "path": "camera_calibration/03_05_2026_16_30_court1/03_05_2026_17_29_42_000_1_NE_02_18_21_44_096/calib.json",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 2200,
+        "publisher_sha256": null,
+        "publisher_git_blob_oid": "1692d88f002ec2e02234356358a670678c2f493e",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/camera_calibration/03_05_2026_16_30_court1/03_05_2026_17_29_42_000_1_NE_02_18_21_44_096/calib.json"
+      },
+      "exact_sha256_in_existing_acquired_manifests": [],
+      "clip_slots": [
+        {
+          "candidate_clip_id": "q05-a",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        },
+        {
+          "candidate_clip_id": "q05-b",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        }
+      ]
+    },
+    {
+      "candidate_group_id": "caltennis-2026-03-09",
+      "publisher_session_path": "03_09_2026_17_00_court1",
+      "recording_date_from_path": "2026-03-09",
+      "date_verified_from_timestamps": false,
+      "independence_basis": "Different date and immutable source hash; same venue/players may remain correlated",
+      "status": "NOT_ACQUIRED_CAMERA_SINGLES_AND_OVERLAP_REVIEW_PENDING",
+      "license": "CC-BY-NC-4.0",
+      "intended_use": "Private noncommercial academic qualification only",
+      "public_product_demo_permission": false,
+      "pretrained_exposure": "UNKNOWN",
+      "video": {
+        "path": "03_09_2026_17_00_court1/03_09_2026_17_16_43_000_3_SW_02_17_39_13_016.mp4",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 976911672,
+        "publisher_sha256": "d7b387358f148c120bf7ba0c27f1c4c3ce8baaf1dff8269a4efb5f427e8f336a",
+        "publisher_git_blob_oid": "7edd443814e0fcea66020eb21fe6eb454ce7ce91",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/03_09_2026_17_00_court1/03_09_2026_17_16_43_000_3_SW_02_17_39_13_016.mp4"
+      },
+      "timestamps": {
+        "path": "03_09_2026_17_00_court1/03_09_2026_17_16_43_000_3_SW_02_17_39_13_016_timestamps.npy",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 647448,
+        "publisher_sha256": "8a87ace113bfda1d61302402c7e889b679f18067ecb2966d17b84d48bf806031",
+        "publisher_git_blob_oid": "cea31b4f3ad6a72d51f5093642a4e2072ec8bf19",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/03_09_2026_17_00_court1/03_09_2026_17_16_43_000_3_SW_02_17_39_13_016_timestamps.npy"
+      },
+      "calibration": {
+        "path": "camera_calibration/03_09_2026_17_00_court1/03_09_2026_17_16_43_000_3_SW_02_17_39_13_016/calib.json",
+        "present_in_pinned_tree": true,
+        "expected_bytes": 2205,
+        "publisher_sha256": null,
+        "publisher_git_blob_oid": "1d71b8d0f72245a37fec7ca38b0683f7a74c40fa",
+        "source_url": "https://huggingface.co/datasets/demalenk/caltennis/resolve/6c1c10b2e6c16d46ab1a83614f439d2fb91e9d7d/camera_calibration/03_09_2026_17_00_court1/03_09_2026_17_16_43_000_3_SW_02_17_39_13_016/calib.json"
+      },
+      "exact_sha256_in_existing_acquired_manifests": [],
+      "clip_slots": [
+        {
+          "candidate_clip_id": "q06-a",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        },
+        {
+          "candidate_clip_id": "q06-b",
+          "trim_source_pts_start": null,
+          "trim_source_pts_end_exclusive": null,
+          "source_frame_indices": null,
+          "clip_sha256": null,
+          "label_sha256": null
+        }
+      ]
+    }
+  ]
+}

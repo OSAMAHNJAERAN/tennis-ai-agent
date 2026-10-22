@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "status": "NOT_QUALIFICATION",
+  "frozen": true,
+  "review_date": "2026-10-01",
+  "method": "single-AI visual review",
+  "reviewer_count": 1,
+  "review_inputs": "frame_manifest.json and its eight original_frame_*.png files only",
+  "prediction_blind": true,
+  "source": "artifacts\\demos\\sources\\dimitrov_tiafoe_2024_rally.mkv",
+  "source_input_sha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+  "fps": 60,
+  "frame_index_basis": "SEQUENTIAL_DECODE",
+  "image_size_pixels": {"width": 1920, "height": 1080},
+  "coordinate_system": "Native original PNG pixels; x increases rightward, y downward, origin at top left. Centers and intervals are approximate visual estimates.",
+  "visibility_values": ["visible", "invisible_or_occluded", "uncertain"],
+  "counts": {"reviewed": 8, "visible": 4, "invisible_or_occluded": 0, "uncertain": 4},
+  "limitations": [
+    "NOT_QUALIFICATION: development diagnostic review only; not held-out qualification or model-accuracy evidence.",
+    "One AI reviewer; no independent human labels or inter-reviewer agreement.",
+    "Full-frame visual inspection of the eight original PNGs; no detector, tracker, annotated media, prediction files, or audit output was inspected.",
+    "Tiny size, compression, motion blur, and overlap with bright court lines limit visual identification and localization.",
+    "Failure to discern a ball is labeled uncertain with a null center, not proof of absence or occlusion.",
+    "Error intervals express rough visual localization uncertainty, not calibrated confidence intervals.",
+    "Ball-streak centers estimate the middle of the visible streak rather than an exposure-instant physical position.",
+    "Frame mapping and source identity are copied from the supplied manifest; source media was not opened or independently decoded by this reviewer.",
+    "Labels are frozen before any prediction comparison and must not be revised in response to model output."
+  ],
+  "frames": [
+    {
+      "decoder_frame_index": 0,
+      "source_frame_index": 390,
+      "relative_timestamp_seconds": 0.0,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0000.png",
+      "original_png_sha256": "b45f75203f203b4b0da3ba479efd90249e123175eb1526ac620420ea901d22ad",
+      "visibility": "uncertain",
+      "center_pixels": null,
+      "error_interval_pixels": null,
+      "notes": "No clearly isolated ball discernible in this original frame. A ball near the far player's hand cannot be confidently identified; no absence or occlusion claim is made."
+    },
+    {
+      "decoder_frame_index": 30,
+      "source_frame_index": 420,
+      "relative_timestamp_seconds": 0.5,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0030.png",
+      "original_png_sha256": "4992659cdbe07fe203a3d99769e623f68c516dd2f8b89e83f039686cc6fd3662",
+      "visibility": "visible",
+      "center_pixels": {"x": 398, "y": 91},
+      "error_interval_pixels": {"x_min": 394, "x_max": 402, "y_min": 87, "y_max": 95},
+      "notes": "Distinct small light ball above the server, against the dark blue back wall. Approximate center uncertainty is ±4 pixels on each axis."
+    },
+    {
+      "decoder_frame_index": 300,
+      "source_frame_index": 690,
+      "relative_timestamp_seconds": 5.0,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0300.png",
+      "original_png_sha256": "fe973ff457a71153a4c7ef2bf14fe9a26265d287e5e70531640cb7f3d774ece7",
+      "visibility": "visible",
+      "center_pixels": {"x": 995, "y": 421},
+      "error_interval_pixels": {"x_min": 987, "x_max": 1003, "y_min": 413, "y_max": 429},
+      "notes": "Distinct pale horizontal ball streak on green beyond the right portion of the net, separated from the court line. Approximate streak-middle uncertainty is ±8 pixels on each axis."
+    },
+    {
+      "decoder_frame_index": 309,
+      "source_frame_index": 699,
+      "relative_timestamp_seconds": 5.15,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0309.png",
+      "original_png_sha256": "d756ab4b3a26ca768c0157340078a8c38eda5a095ffd5761bc11c5b1ed32dbe3",
+      "visibility": "uncertain",
+      "center_pixels": null,
+      "error_interval_pixels": null,
+      "notes": "A possible light fleck near the far-side white court line is not sufficiently distinct for confident ball identification or localization."
+    },
+    {
+      "decoder_frame_index": 310,
+      "source_frame_index": 700,
+      "relative_timestamp_seconds": 5.166666666666667,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0310.png",
+      "original_png_sha256": "15b83158aeef42491f9e532d1dde774ee46cd2ef379f9c198b4bdddd5d6eb708c",
+      "visibility": "uncertain",
+      "center_pixels": null,
+      "error_interval_pixels": null,
+      "notes": "Potential ball detail overlaps or closely adjoins the far-side white court-line junction; a reliable separate center is not discernible."
+    },
+    {
+      "decoder_frame_index": 311,
+      "source_frame_index": 701,
+      "relative_timestamp_seconds": 5.183333333333334,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0311.png",
+      "original_png_sha256": "9c99d11adea633e540844f85a9341504b5a8072eba9541ad52fdb962a29cd5a0",
+      "visibility": "uncertain",
+      "center_pixels": null,
+      "error_interval_pixels": null,
+      "notes": "A possible pale fleck immediately near the far-side court line remains ambiguous at full-frame scale. No position is extrapolated from adjacent frames."
+    },
+    {
+      "decoder_frame_index": 312,
+      "source_frame_index": 702,
+      "relative_timestamp_seconds": 5.2,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0312.png",
+      "original_png_sha256": "750fd1411ce4845fbf3f0fd39e2fa7fb6b63fb0b292569e270123f86a09d153e",
+      "visibility": "visible",
+      "center_pixels": {"x": 717, "y": 385},
+      "error_interval_pixels": {"x_min": 711, "x_max": 723, "y_min": 379, "y_max": 391},
+      "notes": "Small pale ball streak discernible on the blue far court, just above the slanted white court line. Approximate streak-middle uncertainty is ±6 pixels on each axis."
+    },
+    {
+      "decoder_frame_index": 330,
+      "source_frame_index": 720,
+      "relative_timestamp_seconds": 5.5,
+      "path": "artifacts\\validation\\product_execution\\ball_render_original_review\\original_frame_0330.png",
+      "original_png_sha256": "7010888b46f0f3709fd8a08d7e883a6f27511b573f16cef6319e00c54f5585b6",
+      "visibility": "visible",
+      "center_pixels": {"x": 398, "y": 409},
+      "error_interval_pixels": {"x_min": 392, "x_max": 404, "y_min": 403, "y_max": 415},
+      "notes": "Distinct light ball streak on the blue far court, above and right of the umpire canopy. Approximate streak-middle uncertainty is ±6 pixels on each axis."
+    }
+  ]
+}

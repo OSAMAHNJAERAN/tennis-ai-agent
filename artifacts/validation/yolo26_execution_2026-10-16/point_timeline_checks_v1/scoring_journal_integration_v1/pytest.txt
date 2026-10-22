@@ -1,0 +1,12 @@
+........................................F............................... [ 78%]
+....................                                                     [100%]
+================================== FAILURES ===================================
+_____ test_exact_native_phase6_scoring_aggregation_and_five_exports[True] _____
+tests\test_point_timeline.py:258: in test_exact_native_phase6_scoring_aggregation_and_five_exports
+    assert match['overview']['total_points_played']==(2 if authority else None)
+E   assert 1 == 2
+---------------------------- Captured stdout call -----------------------------
+  -> Scoring State Complete (2 dead-ball events suppressed) in 0.03s
+=========================== short test summary info ===========================
+FAILED tests/test_point_timeline.py::test_exact_native_phase6_scoring_aggregation_and_five_exports[True]
+1 failed, 91 passed, 4 deselected in 2.48s

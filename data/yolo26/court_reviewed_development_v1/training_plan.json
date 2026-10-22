@@ -1,0 +1,49 @@
+{
+  "initialization": "OFFICIAL_YOLO26S_POSE_PRETRAINED_REBUILT_14_POINT_COURT_HEAD",
+  "reuse_prior_six_image_court_checkpoint": false,
+  "training_executed": false,
+  "kpt_shape": [
+    14,
+    3
+  ],
+  "point_names": [
+    "far_left_doubles",
+    "far_right_doubles",
+    "near_left_doubles",
+    "near_right_doubles",
+    "far_left_singles",
+    "near_left_singles",
+    "far_right_singles",
+    "near_right_singles",
+    "far_service_left",
+    "far_service_right",
+    "near_service_left",
+    "near_service_right",
+    "far_service_center",
+    "near_service_center"
+  ],
+  "flip_idx": [
+    1,
+    0,
+    3,
+    2,
+    6,
+    7,
+    4,
+    5,
+    9,
+    8,
+    11,
+    10,
+    12,
+    13
+  ],
+  "augmentation": {
+    "fliplr": 0,
+    "flipud": 0,
+    "mosaic": 0,
+    "mixup": 0
+  },
+  "data_yaml": "data/yolo26/court_reviewed_development_v1/court/data.yaml",
+  "static_image_timing_is_unknown": true
+}

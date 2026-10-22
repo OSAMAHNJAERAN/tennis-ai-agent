@@ -1,0 +1,421 @@
+import io
+import cv2
+import numpy as np
+import json
+import os
+from pathlib import Path
+from PIL import Image, ImageCms
+
+"""
+courtannotator.py
+Annotates tennis court points on an image
+"""
+
+class CourtAnnotator:
+    def __init__(self, image_path):
+        self.image_path = image_path
+        self.image = self._load_image_with_icc(image_path)
+        if self.image is None:
+            raise ValueError(f"Could not load image from {image_path}")
+        
+        # Create a copy for display
+        self.display_image = self._prep_display_image(self.image)
+        
+        # Court points with their 3D coordinates (in meters)
+        self.court_3d = {
+            # near baseline row
+            'A': (0.05, 0.025, 0),
+            'B': (0.05, 1.395, 0),
+            'C': (0.05, 9.575, 0),
+            'D': (0.05, 10.945, 0),
+
+            # near service line
+            'E': (5.51, 1.395, 0),
+            'F': (5.51, 5.485, 0),
+            'G': (5.51, 9.575, 0),
+
+            # net plane (no tape → unchanged)
+            'H': (11.885, 1.395, 0),
+            'I': (11.885, 5.485, 0),
+            'J': (11.885, 9.575, 0),
+
+            # far service line
+            'K': (18.26, 1.395, 0),
+            'L': (18.26, 5.485, 0),
+            'M': (18.26, 9.575, 0),
+
+            # far baseline row
+            'N': (23.72, 0.025, 0),
+            'O': (23.72, 1.395, 0),
+            'P': (23.72, 9.575, 0),
+            'Q': (23.72, 10.945, 0)
+        }
+        
+        # Points to annotate in this session
+        self.points_to_annotate = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+        self.current_point_idx = 0
+        
+        # Annotations storage
+        self.annotations = {}
+        self.skipped_points = []  # Track points marked as not visible
+        
+        # Window setup
+        self.window_name = 'Court Annotation Tool'
+        cv2.namedWindow(self.window_name, cv2.WINDOW_NORMAL)
+        cv2.setMouseCallback(self.window_name, self.mouse_callback)
+        
+        # Colors for visualization
+        self.color_pending = (0, 255, 255)  # Yellow for current point to annotate
+        self.color_done = (0, 255, 0)       # Green for annotated points
+        self.color_hover = (255, 0, 0)      # Blue for hover
+        self.color_skipped = (128, 128, 128) # Gray for skipped points
+        
+        # State
+        self.hover_pos = None
+
+    def _load_image_with_icc(self, image_path: str):
+        """
+        Load image honoring embedded ICC profile, then convert to BGR for OpenCV.
+        Falls back to cv2.imread if anything goes wrong.
+        """
+        try:
+            pil_img = Image.open(image_path)
+            icc_bytes = pil_img.info.get("icc_profile")
+            if icc_bytes:
+                try:
+                    src_profile = ImageCms.ImageCmsProfile(io.BytesIO(icc_bytes))
+                    dst_profile = ImageCms.createProfile("sRGB")
+                    pil_img = ImageCms.profileToProfile(
+                        pil_img, src_profile, dst_profile, outputMode="RGB"
+                    )
+                except Exception:
+                    pil_img = pil_img.convert("RGB")
+            else:
+                pil_img = pil_img.convert("RGB")
+            return cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
+        except Exception as exc:
+            print(f"Warning: PIL ICC-aware load failed ({exc}); falling back to cv2.imread")
+            return cv2.imread(image_path)
+
+    def _prep_display_image(self, img_bgr: np.ndarray) -> np.ndarray:
+        """
+        Apply subtle saturation/gamma boost for display only.
+        This does NOT affect saved annotations or calibration.
+        """
+        # Work in float for safe scaling
+        img = img_bgr.astype(np.float32) / 255.0
+
+        # Boost saturation
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        hsv[..., 1] = np.clip(hsv[..., 1] * 1.12, 0, 1)  # modest saturation gain
+        img = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+        # Gentle gamma tweak
+        gamma = 1.02
+        img = np.power(img, 1.0 / gamma)
+
+        return (img * 255.0).clip(0, 255).astype(np.uint8)
+        
+    def mouse_callback(self, event, x, y, flags, param):
+        if event == cv2.EVENT_MOUSEMOVE:
+            self.hover_pos = (x, y)
+            self.update_display()
+            
+        elif event == cv2.EVENT_LBUTTONDOWN:
+            if self.current_point_idx < len(self.points_to_annotate):
+                point_name = self.points_to_annotate[self.current_point_idx]
+                self.annotations[point_name] = (x, y)
+                print(f"Point {point_name} annotated at ({x}, {y})")
+                self.current_point_idx += 1
+                
+                if self.current_point_idx < len(self.points_to_annotate):
+                    print(f"Next: Click to annotate point {self.points_to_annotate[self.current_point_idx]}")
+                else:
+                    print("All points annotated! Press 's' to save, 'r' to restart, or 'q' to quit")
+                
+                self.update_display()
+    
+    # def update_display(self):
+    #     # Start with fresh image
+    #     self.display_image = self._prep_display_image(self.image)
+        
+    #     # Draw annotated points
+    #     for point_name, (px, py) in self.annotations.items():
+    #         cv2.circle(self.display_image, (px, py), 5, self.color_done, -1)
+    #         cv2.circle(self.display_image, (px, py), 7, (0, 0, 0), 2)
+    #         # Label the point
+    #         cv2.putText(self.display_image, point_name, (px + 10, py - 10),
+    #                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, self.color_done, 2)
+        
+    #     # Show skipped points in the corner
+    #     if self.skipped_points:
+    #         skipped_text = "Skipped: " + ", ".join(self.skipped_points)
+    #         cv2.putText(self.display_image, skipped_text, 
+    #                    (self.image.shape[1] - 300, 30),
+    #                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.color_skipped, 2)
+        
+    #     # Draw hover position if not all points are annotated
+    #     if self.hover_pos and self.current_point_idx < len(self.points_to_annotate):
+    #         cv2.circle(self.display_image, self.hover_pos, 5, self.color_hover, -1)
+    #         cv2.circle(self.display_image, self.hover_pos, 7, (0, 0, 0), 2)
+    #         # Show which point will be annotated
+    #         point_name = self.points_to_annotate[self.current_point_idx]
+    #         cv2.putText(self.display_image, f"{point_name}?", 
+    #                    (self.hover_pos[0] + 10, self.hover_pos[1] - 10),
+    #                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, self.color_hover, 2)
+        
+    #     # Draw instructions
+    #     instructions = []
+    #     if self.current_point_idx < len(self.points_to_annotate):
+    #         instructions.append(f"Click to annotate point {self.points_to_annotate[self.current_point_idx]} | [n] to skip if not visible")
+    #     else:
+    #         instructions.append("All points processed!")
+    #     instructions.append("Keys: [s] save | [r] restart | [u] undo | [n] skip point | [q] quit")
+        
+    #     y_offset = 30
+    #     for instruction in instructions:
+    #         cv2.putText(self.display_image, instruction, (10, y_offset),
+    #                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+    #         cv2.putText(self.display_image, instruction, (10, y_offset),
+    #                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 1)
+    #         y_offset += 25
+        
+    #     # Show progress
+    #     progress = f"Progress: {len(self.annotations)} annotated, {len(self.skipped_points)} skipped / {len(self.points_to_annotate)} total"
+    #     cv2.putText(self.display_image, progress, (10, y_offset),
+    #                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+    #     cv2.putText(self.display_image, progress, (10, y_offset),
+    #                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 1)
+        
+    #     cv2.imshow(self.window_name, self.display_image)
+    
+    def update_display(self):
+        # Start with fresh image
+        self.display_image = self._prep_display_image(self.image)
+        
+        # --- NEW: Zoom Magnifier ---
+        if self.hover_pos:
+            hx, hy = self.hover_pos
+            zoom_factor = 6  # Multiplier for zoom size
+            crop_size = 40   # Number of pixels around cursor to capture
+            
+            h, w = self.image.shape[:2]
+            
+            # Safely calculate boundaries to prevent crashing at image edges
+            y1, y2 = max(0, hy - crop_size//2), min(h, hy + crop_size//2)
+            x1, x2 = max(0, hx - crop_size//2), min(w, hx + crop_size//2)
+            
+            # Extract the crop area
+            crop = self.display_image[y1:y2, x1:x2].copy()
+            
+            if crop.size > 0:
+                # Resize using NEAREST to keep individual pixels sharp and distinct
+                zoomed = cv2.resize(crop, None, fx=zoom_factor, fy=zoom_factor, interpolation=cv2.INTER_NEAREST)
+                zh, zw = zoomed.shape[:2]
+                
+                # Draw a crosshair in the center of the zoomed window
+                cx, cy = zw // 2, zh // 2
+                cv2.line(zoomed, (cx, 0), (cx, zh), (0, 255, 0), 1)
+                cv2.line(zoomed, (0, cy), (zw, cy), (0, 255, 0), 1)
+                
+                # Define placement for the zoom window (Top-Right corner)
+                pad = 10
+                dy1, dy2 = pad, pad + zh
+                dx1, dx2 = w - zw - pad, w - pad
+                
+                # Apply the overlay if it fits within the window
+                if dy2 <= h and dx2 <= w and dx1 >= 0 and dy1 >= 0:
+                    self.display_image[dy1:dy2, dx1:dx2] = zoomed
+                    cv2.rectangle(self.display_image, (dx1, dy1), (dx2, dy2), (255, 255, 255), 2)
+        # ---------------------------
+
+        # Draw annotated points
+        for point_name, (px, py) in self.annotations.items():
+            # CHANGED: Reduced radius from 5/7 to 2/3, and thickness to 1
+            cv2.circle(self.display_image, (px, py), 2, self.color_done, -1)
+            cv2.circle(self.display_image, (px, py), 3, (0, 0, 0), 1)
+            # Label the point
+            cv2.putText(self.display_image, point_name, (px + 10, py - 10),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, self.color_done, 2)
+        
+        # Show skipped points in the corner (shifted slightly left to avoid zoom box)
+        if self.skipped_points:
+            skipped_text = "Skipped: " + ", ".join(self.skipped_points)
+            cv2.putText(self.display_image, skipped_text, 
+                       (self.image.shape[1] - 400, 30),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.color_skipped, 2)
+        
+        # Draw hover position if not all points are annotated
+        if self.hover_pos and self.current_point_idx < len(self.points_to_annotate):
+            # CHANGED: Reduced hover radius from 5/7 to 2/3
+            cv2.circle(self.display_image, self.hover_pos, 2, self.color_hover, -1)
+            cv2.circle(self.display_image, self.hover_pos, 3, (0, 0, 0), 1)
+            
+            # Show which point will be annotated
+            point_name = self.points_to_annotate[self.current_point_idx]
+            cv2.putText(self.display_image, f"{point_name}?", 
+                       (self.hover_pos[0] + 10, self.hover_pos[1] - 10),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, self.color_hover, 2)
+        
+        # Draw instructions
+        instructions = []
+        if self.current_point_idx < len(self.points_to_annotate):
+            instructions.append(f"Click to annotate point {self.points_to_annotate[self.current_point_idx]} | [n] to skip if not visible")
+        else:
+            instructions.append("All points processed!")
+        instructions.append("Keys: [s] save | [r] restart | [u] undo | [n] skip point | [q] quit")
+        
+        y_offset = 30
+        for instruction in instructions:
+            cv2.putText(self.display_image, instruction, (10, y_offset),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            cv2.putText(self.display_image, instruction, (10, y_offset),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 1)
+            y_offset += 25
+        
+        # Show progress
+        progress = f"Progress: {len(self.annotations)} annotated, {len(self.skipped_points)} skipped / {len(self.points_to_annotate)} total"
+        cv2.putText(self.display_image, progress, (10, y_offset),
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+        cv2.putText(self.display_image, progress, (10, y_offset),
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 1)
+        
+        cv2.imshow(self.window_name, self.display_image)
+    
+    def save_annotations(self, output_dir=None):
+        # Prepare data to save
+        save_data = {
+            'image_path': self.image_path,
+            'image_shape': {'height': self.image.shape[0], 'width': self.image.shape[1]},
+            'points_2d': self.annotations,
+            'points_3d': {k: self.court_3d[k] for k in self.annotations.keys()},
+            'skipped_points': self.skipped_points
+        }
+        
+        # Generate output filename
+        base_name = Path(self.image_path).stem
+        output_file = os.path.join(output_dir, f"{base_name}_court_annotations.json")
+        
+        with open(output_file, 'w') as f:
+            json.dump(save_data, f, indent=2)
+        
+        print(f"Annotations saved to {output_file}")
+        return output_file
+    
+    def run(self, output_dir=None):
+        print("=" * 60)
+        print("Tennis Court Annotation Tool")
+        print("=" * 60)
+        print(f"Annotating points: {', '.join(self.points_to_annotate)}")
+        print(f"Click to annotate point {self.points_to_annotate[0]}, or press 'n' to skip if not visible")
+        print("=" * 60)
+        
+        self.update_display()
+        
+        while True:
+            key = cv2.waitKey(1) & 0xFF
+            
+            if key == ord('q'):  # Quit
+                print("Quitting without saving...")
+                break
+                
+            elif key == ord('s'):  # Save
+                if len(self.annotations) + len(self.skipped_points) == len(self.points_to_annotate):
+                    output_file = self.save_annotations(output_dir)
+                    print(f"Saved! File: {output_file}")
+                    break
+                else:
+                    remaining = len(self.points_to_annotate) - len(self.annotations) - len(self.skipped_points)
+                    print(f"Cannot save: {remaining} points still need to be processed")
+                    
+            elif key == ord('r'):  # Restart
+                self.annotations = {}
+                self.skipped_points = []
+                self.current_point_idx = 0
+                print("Annotations cleared. Starting over...")
+                print(f"Click to annotate point {self.points_to_annotate[0]}")
+                self.update_display()
+                
+            elif key == ord('n'):  # Skip current point (not visible)
+                if self.current_point_idx < len(self.points_to_annotate):
+                    point_name = self.points_to_annotate[self.current_point_idx]
+                    self.skipped_points.append(point_name)
+                    print(f"Point {point_name} marked as not visible/skipped")
+                    self.current_point_idx += 1
+                    
+                    if self.current_point_idx < len(self.points_to_annotate):
+                        print(f"Next: Click to annotate point {self.points_to_annotate[self.current_point_idx]}")
+                    else:
+                        print("All points processed! Press 's' to save, 'r' to restart, or 'q' to quit")
+                    
+                    self.update_display()
+                else:
+                    print("All points already processed")
+                
+            elif key == ord('u'):  # Undo
+                if self.current_point_idx > 0:
+                    # Go back one point
+                    self.current_point_idx -= 1
+                    last_point = self.points_to_annotate[self.current_point_idx]
+                    
+                    # Remove from either annotations or skipped list
+                    if last_point in self.annotations:
+                        del self.annotations[last_point]
+                        print(f"Removed annotation for point {last_point}. Click to re-annotate it.")
+                    elif last_point in self.skipped_points:
+                        self.skipped_points.remove(last_point)
+                        print(f"Removed skip for point {last_point}. Click to annotate or press 'n' to skip again.")
+                    
+                    self.update_display()
+                else:
+                    print("No annotations to undo")
+        
+        cv2.destroyAllWindows()
+
+
+def annotate_court(image_path, points_to_annotate=None):
+    """
+    Main function to annotate tennis court points.
+    
+    Args:
+        image_path: Path to the tennis court image
+        points_to_annotate: List of point names to annotate (default: ['A', 'B', 'C', 'D', 'E', 'F', 'G'])
+    
+    Returns:
+        Path to the saved JSON file, or None if cancelled
+    """
+    annotator = CourtAnnotator(image_path)
+    
+    if points_to_annotate:
+        annotator.points_to_annotate = points_to_annotate
+    
+    annotator.run()
+    
+    # Return the path to the saved file if it exists
+    base_name = Path(image_path).stem
+    output_file = f"{base_name}_court_annotations.json"
+    if os.path.exists(output_file):
+        return output_file
+    return None
+
+
+if __name__ == "__main__":
+    import sys
+    
+    if len(sys.argv) < 2:
+        print("Usage: python annotate_court.py <image_path> [point1,point2,...]")
+        print("Example: python annotate_court.py tennis.jpg")
+        print("Example: python annotate_court.py tennis.jpg A,B,C,D,E,F,G,H,I,J")
+        sys.exit(1)
+    
+    image_path = sys.argv[1]
+    
+    # Check if custom points are specified
+    if len(sys.argv) > 2:
+        points = sys.argv[2].split(',')
+    else:
+        points = None
+    
+    result = annotate_court(image_path, points)
+    if result:
+        print(f"\nSuccess! Annotations saved to: {result}")

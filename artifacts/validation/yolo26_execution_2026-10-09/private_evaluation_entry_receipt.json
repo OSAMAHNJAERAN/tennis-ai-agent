@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "scope": "PRIVATE_OFFLINE_THREE_MODEL_EVALUATION_ENTRYPOINT_SOFTWARE_CHECKS",
+  "sourceFiles": {
+    "src/detection/yolo26_bundle.py": "7b209e13c7b7a46937f26e1b9b5df6241f1d3e158cff82551809baa27c4388a6",
+    "scripts/evaluate/run_yolo26_candidate.py": "f53783aa3226608a74751cd0a6b0d8e85fb09f6d3c157842f4861700e95af115",
+    "tests/test_yolo26_private_evaluation.py": "48b8ec5e8b6782832689b19d8ca576dd38779ff1b1e609099cb3f027e4a7d0ee",
+    "configs/evaluation/yolo26.private-pilot-match172.yaml": "0abedfc612a514b94ab5f1cb8e78dc58386cfd789ec6d8e285512daf2e165ac9",
+    "configs/evaluation/yolo26.private-pilot-match172.artifacts.json": "ba3c5122f885e4db9fefef53ba82f15bfafd80f7e3a18dbfb016f89913f394a4",
+    "configs/evaluation/yolo26.private-pilot-match172.sources.json": "11759b3ff5077c635bb9ef757ab9c02df0461f760a286fcd5c4ab2e98bd3c759",
+    "docs/evaluation/YOLO26_PRIVATE_PIPELINE_EVALUATION.md": "7f55d7b2faa563f21623a128072a6998dc14667cd3a370765ed5efa656930098"
+  },
+  "productionManifestSha256": "8a902c6fe9eecbe97799b48c51e2ea55ca92355e44fd7b39527d7665af30f0cb",
+  "productionManifestModified": false,
+  "defaultProductionQualificationRequired": true,
+  "workerEvaluationBypassAvailable": false,
+  "testRuns": [
+    {
+      "artifact": "artifacts/validation/yolo26_execution_2026-10-09/private_evaluation_junit.xml",
+      "sha256": "7d08371216227dc18cf9d221319226a48069dacc5fc99408268b923464c2a1e9",
+      "tests": 43,
+      "failures": 0,
+      "errors": 0,
+      "scope": "Initial private entry plus model/camera identity regression, 43 checks"
+    },
+    {
+      "artifact": "artifacts/validation/yolo26_execution_2026-10-09/private_evaluation_guard_junit.xml",
+      "sha256": "525ff4fe24df7558309db608384b0af85c1d82b0646d7dd622847f20e49d431d",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "scope": "Updated private entry and post-runtime RAM guard, 18 checks"
+    },
+    {
+      "artifact": "artifacts/validation/yolo26_execution_2026-10-09/private_evaluation_source_junit.xml",
+      "sha256": "a1c5d94b5ddade37d18065e276da125cee2ae847660fc1eac29c1f9577286543",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "scope": "Two additional source ID/video/manifest binding checks"
+    }
+  ],
+  "accuracyQualified": false,
+  "fullMatchCapacityQualified": false,
+  "liveLatencyQualified": false,
+  "actualIntegratedInferenceCompleted": false,
+  "guardedAttempts": [
+    {
+      "receipt": "outputs/private_yolo26_candidate_run1_2026-10-09/evaluation_receipt.json",
+      "sha256": "b2621b3745264bff7812e2ee2fb5f102fae44c395c4c1922f908677a8187e956",
+      "status": "RESOURCE_GUARD_BLOCKED_PRIVATE_UNQUALIFIED",
+      "resources": {
+        "free_ram_bytes": 1297846272,
+        "free_disk_bytes": 49487622144,
+        "free_vram_bytes": null,
+        "device": "0"
+      },
+      "source_id": "match172",
+      "source_sha256": "eb1dd91dbdf4c270f02f3f26d86cd9e7ed81606123f354805263771f6f9a5a1a",
+      "modelsLoaded": false
+    },
+    {
+      "receipt": "outputs/private_yolo26_candidate_run2_2026-10-09/evaluation_receipt.json",
+      "sha256": "5a757a459688276986ae9bfa47a8d74ba1e0ae04f17455d4df95b6849f68b2ec",
+      "status": "RESOURCE_GUARD_BLOCKED_PRIVATE_UNQUALIFIED",
+      "resources": {
+        "free_ram_bytes": 866926592,
+        "free_disk_bytes": 50873257984,
+        "free_vram_bytes": 5326766080,
+        "device": "0"
+      },
+      "source_id": "match172",
+      "source_sha256": "eb1dd91dbdf4c270f02f3f26d86cd9e7ed81606123f354805263771f6f9a5a1a",
+      "modelsLoaded": false
+    }
+  ]
+}

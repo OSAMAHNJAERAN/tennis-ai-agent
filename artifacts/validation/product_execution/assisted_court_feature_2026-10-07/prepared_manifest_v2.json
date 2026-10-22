@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "revision": 2,
+  "status": "PREPARED_NOT_EXECUTED",
+  "preparedUtc": "2026-10-07T05:27:09.3960978Z",
+  "previousReceipt": {
+    "path": "prepared_manifest.json",
+    "bytes": 1154,
+    "sha256": "6b2fbfbcc87ddbd0789ba47bc7d09bb29855acc6dfbfb4d1e70eda2b03702d55"
+  },
+  "preparationChanges": [
+    "Explicitly represent actor identity as unverified caller-established provenance",
+    "Replace USER/HUMAN_CLICK with LOCAL_OPERATOR/LOCAL_POINT_SUBMISSION; client claims of verified human identity are rejected",
+    "Retain original prepared manifest as historical before any workload dispatch"
+  ],
+  "files": [
+    {
+      "path": "protocol.json",
+      "bytes": 4868,
+      "sha256": "96afb006648c53c2334325e7bc08d272ce7a12c2d29851c8c62daa298eeb68fe"
+    },
+    {
+      "path": "assisted_anchor.py",
+      "bytes": 17808,
+      "sha256": "78096e50aa2b00e762d241249a1216eb5af842593f41d926bbaa612cb281dccc"
+    },
+    {
+      "path": "test_assisted_anchor.py",
+      "bytes": 22438,
+      "sha256": "c55104226a610bb16fa93e13386e95841a790ccf9ecd6f4eea098f069d75d0ae"
+    }
+  ],
+  "unchangedDependencies": [
+    {
+      "path": "src/court/calibration.py",
+      "bytes": 5507,
+      "sha256": "64ebc0a0e3785fc98088ac347c2d999deaf91411f76c1a36191f03fd72f5262c"
+    },
+    {
+      "path": "src/court/court_geometry.py",
+      "bytes": 4342,
+      "sha256": "a1da8100c2b89562e397024e57e09ad575298b22723cad39436a9852b2981d44"
+    }
+  ],
+  "testsLaunched": false,
+  "videoDecodeLaunched": false,
+  "modelsLaunched": false,
+  "productionEdited": false,
+  "apiIntegrated": false,
+  "frontendIntegrated": false
+}

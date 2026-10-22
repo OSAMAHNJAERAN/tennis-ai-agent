@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-21T23:52:15.425088+00:00",
+  "status": "PASS_SOFTWARE_SCOPE_ONLY",
+  "scope": "SHARED_SELECTED_PLAYER_TRACK_TO_CROP_TRANSITION_AND_NATIVE_BALL_SEQUENTIAL_DECODING",
+  "checks": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_checks_v4/receipt.json",
+    "bytes": 39040,
+    "sha256": "cdd51bde58f78c9893ad6a1a720b623a934f04cf2af24f599a99802f110bd5cd"
+  },
+  "junit": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_checks_v4/junit.xml",
+    "bytes": 19596,
+    "sha256": "ba6739918bbe15ff7596aa734459ba5ecdd3efacaa480baa4d0c14cb6ec426bd"
+  },
+  "counts": {
+    "tests": 132,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "elapsed_seconds": 3.833835499943234,
+  "source_pin_count": 173,
+  "changed_source_since_193_checks": [
+    "src/detection/yolo26_adapters.py",
+    "src/pipeline/phase6_pipeline.py",
+    "src/utils/video_frame_sequence.py"
+  ],
+  "source_delta": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_closure_v1/post_correction_source_delta.patch",
+    "bytes": 16704,
+    "sha256": "2be28822d9442e21e17b26082cbc0a13a38b80c53734505e05a4593a6edb55c8"
+  },
+  "installed_ultralytics_primary_source_snapshots": [
+    {
+      "installed_path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\engine\\model.py",
+      "snapshot": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_closure_v1/installed_primary_source/engine/model.py",
+        "bytes": 54045,
+        "sha256": "b4a798faae21c390bc1fe24080127ce435cb13e528595082fe79485f99ec53a3"
+      },
+      "sha256": "b4a798faae21c390bc1fe24080127ce435cb13e528595082fe79485f99ec53a3"
+    },
+    {
+      "installed_path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\engine\\predictor.py",
+      "snapshot": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_closure_v1/installed_primary_source/engine/predictor.py",
+        "bytes": 23307,
+        "sha256": "423c11df2c1853aa97cf756b9b571367422b9749f9bbf42de03896ff6c57ed72"
+      },
+      "sha256": "423c11df2c1853aa97cf756b9b571367422b9749f9bbf42de03896ff6c57ed72"
+    },
+    {
+      "installed_path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\trackers\\track.py",
+      "snapshot": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_closure_v1/installed_primary_source/trackers/track.py",
+        "bytes": 4742,
+        "sha256": "c6d7b99645416ce9eb67fb552ec1d49b3bed3636dd92c4d5792150b4b08bb7f3"
+      },
+      "sha256": "c6d7b99645416ce9eb67fb552ec1d49b3bed3636dd92c4d5792150b4b08bb7f3"
+    }
+  ],
+  "implementation": {
+    "selected_player_model_reused": true,
+    "additional_selected_model_instances": 0,
+    "tracking_callbacks_predictor_and_feature_hook_disposed_after_complete_player_pass": true,
+    "crop_device_explicitly_bound_to_admitted_actual_device": true,
+    "checkpoint_crop_overrides_snapshotted_before_tracking": true,
+    "failed_crop_prevents_metrics_and_result_publication": true,
+    "actual_forward_counts_retained_in_metrics_and_return": true,
+    "native_ball_pass_uses_fresh_sequential_decoder": true,
+    "sequential_suffix_discards_decoded_prefix_without_yielding_it": true,
+    "original_failure_preserved_when_decoder_cleanup_also_fails": true
+  },
+  "actual_media_check": {
+    "scope": "17_FRAME_SYNTHETIC_64x48_25FPS_MP4V_VIDEO",
+    "full_decode_and_suffix_pixels_equal_after_random_access": true,
+    "real_match_or_pts_qualification": false
+  },
+  "retained_attempts": {
+    "v1": "Failed before collection: -I hides the existing user-site pygments dependency; no installation or environment mutation. Retained unchanged.",
+    "v2": "108 passing checks before sequential decoder changes.",
+    "v3": "126 passing checks before independent cleanup/boolean findings; superseded by v4.",
+    "counts_overlap_do_not_sum": true
+  },
+  "limits": {
+    "torch_ultralytics_imports_or_attempts": 0,
+    "hardware_resource_probes": 0,
+    "actual_selected_model_forwards": 0,
+    "training": false,
+    "partial_ball_inference_frontier_persisted": false,
+    "partial_player_tracking_restored": false,
+    "within_inference_worker_resume_implemented_or_tested": false,
+    "long_match_live_or_independent_accuracy_qualification": false
+  },
+  "waiting_for": "User completion notification before next RAM/GPU admission; no probe performed in this scope",
+  "builder": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_closure_v1/build_closure.py",
+    "bytes": 5460,
+    "sha256": "54579df654109a6973a3a13ac88c8995faf21f165b0aba86da3faa0899e0cd50"
+  }
+}

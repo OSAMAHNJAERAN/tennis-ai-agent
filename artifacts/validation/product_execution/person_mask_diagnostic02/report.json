@@ -1,0 +1,1129 @@
+{
+  "complete": true,
+  "qualification_evidence": false,
+  "purpose": "RAW_PERSON_MASK_OVERLAY_FEASIBILITY_NO_PRODUCTION_IDENTITIES",
+  "protocol_sha256": "9f5e3ba6fcf465338fbbc3c57d3c35882375a995bae6a0c65da2fc0f0055a0ac",
+  "script_sha256": "de4f3c5b97d192a54c1d35da6ebb92bd73aaab60fef7c16d0d181f88974f0434",
+  "checkpoint_sha256": "0bc32bc92e985b881141ef9bd2216e2a746f70519d0d24da9fc85decc4428cf4",
+  "checkpoint_format": "PUBLISHER_ONNX_NO_PICKLE_EXECUTION",
+  "rejected_pickle_checkpoint_executed": false,
+  "installed_packages_modified": false,
+  "torch_imported": false,
+  "gpu_used": false,
+  "configuration": {
+    "method": "OFFICIAL_YOLO11N_SEG_ONNX",
+    "backend": "OPENCV_DNN_CPU",
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "confidence": 0.25,
+    "nms_iou": 0.7,
+    "max_det": 100,
+    "class_id": 0,
+    "mask_logit_threshold": 0.0,
+    "overlay_alpha": 0.22,
+    "opencv_threads": 2,
+    "numpy_blas_threads": 2,
+    "preprocessing": "BGR_TO_RGB_FLOAT32_DIV255_CENTER_LETTERBOX_114",
+    "postprocessing": "PERSON_MAX_CLASS_NMS_NATIVE_LOGIT_MASK_UNPAD_BILINEAR_ORIGINAL_BOX_CROP",
+    "interpolation": "OPENCV_INTER_LINEAR_NOT_CLAIMED_NUMERICALLY_IDENTICAL_TO_TORCH",
+    "identity_or_tracking_used_for_selection": false
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "opencv": "4.13.0",
+    "numpy": "2.3.1",
+    "psutil": "7.0.0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "model_load_seconds": 0.14627769999788143,
+    "memory_before_load_bytes": 48021504,
+    "one_warmup_seconds": 0.351935600003344,
+    "measured_frames": 12,
+    "pipeline_seconds_total": 2.4962255000136793,
+    "mean_pipeline_seconds_per_frame": 0.2080187916678066,
+    "median_pipeline_seconds_per_frame": 0.20693620000383817,
+    "p95_pipeline_seconds_per_frame": 0.22153992000021389,
+    "pipeline_fps": 4.807257998099226,
+    "mean_inference_seconds_per_frame": 0.19056267500006166,
+    "peak_process_rss_bytes": 242024448,
+    "memory_measurement_scope": "PROCESS_PEAK_WORKING_SET_INCLUDING_PNG_AND_MASK_ARTIFACT_CREATION",
+    "disk_write_time_excluded_from_pipeline_fps": true
+  },
+  "frames": [
+    {
+      "frame_index": 0,
+      "source_frame_index": 390,
+      "source_image_sha256": "b45f75203f203b4b0da3ba479efd90249e123175eb1526ac620420ea901d22ad",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.8268080949783325,
+          "bbox": [
+            1299.70068359375,
+            819.9970703125,
+            1397.3538818359375,
+            1000.936767578125
+          ],
+          "mask_area_pixels": 8576,
+          "box_fill_ratio": 0.48536051365687205,
+          "lowest_mask_pixel_y": 998,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.6192868947982788,
+          "bbox": [
+            410.2940673828125,
+            193.22039794921875,
+            451.2698669433594,
+            308.5064697265625
+          ],
+          "mask_area_pixels": 3163,
+          "box_fill_ratio": 0.6695683455216067,
+          "lowest_mask_pixel_y": 308,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.19304340000962839,
+      "preprocess_infer_mask_seconds": 0.20755170000484213,
+      "rss_bytes": 189140992,
+      "peak_rss_bytes": 208367616,
+      "available_ram_bytes": 998469632,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0000.npz",
+      "masks_sha256": "9065b40db48f80bbe678fbb2198421341df5b0a8062b0fac17b57cdcf4cb893e",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0000.png",
+      "overlay_sha256": "71091baaa7b842ea43487bfe69d8ceccbeaac01359555f3f6b9bb9b4e0eef184",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.853466841783425,
+          "mask_proposal": 1,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "B",
+          "bbox_iou": 0.9569326397602936,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [],
+      "absent_active": []
+    },
+    {
+      "frame_index": 120,
+      "source_frame_index": 510,
+      "source_image_sha256": "1d5fdc0f6d1ac854758153895b16850c95ce1f66c41cce07ab115dcee1702985",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.7855223417282104,
+          "bbox": [
+            1449.974853515625,
+            744.5886840820312,
+            1542.727783203125,
+            900.1495971679688
+          ],
+          "mask_area_pixels": 7572,
+          "box_fill_ratio": 0.5247862959845702,
+          "lowest_mask_pixel_y": 899,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.5919293761253357,
+          "bbox": [
+            429.6914978027344,
+            23.55194091796875,
+            470.9317321777344,
+            129.0256805419922
+          ],
+          "mask_area_pixels": 3506,
+          "box_fill_ratio": 0.8060211587550015,
+          "lowest_mask_pixel_y": 128,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.19259920000331476,
+      "preprocess_infer_mask_seconds": 0.2081734000094002,
+      "rss_bytes": 189161472,
+      "peak_rss_bytes": 221163520,
+      "available_ram_bytes": 876355584,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0120.npz",
+      "masks_sha256": "fbd1839825a96e22607ef7b48f07ed7395ed5ea3fe501d97d4f6ed7e461ff22b",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0120.png",
+      "overlay_sha256": "f910d7cf094803831aeb1130f4e5bff7cded6a8fc4c38cebee29e25ce4ff6f50",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "B",
+          "bbox_iou": 0.8957092440468798,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.8889273752935881,
+          "mask_proposal": 1,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [],
+      "absent_active": []
+    },
+    {
+      "frame_index": 240,
+      "source_frame_index": 630,
+      "source_image_sha256": "c3dc89fb7037d2241e0d77717fdd76f7ab2935e7112ba8c57279e1e311a88ae8",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.7526707649230957,
+          "bbox": [
+            1783.0009765625,
+            775.6840209960938,
+            1880.68408203125,
+            959.8963623046875
+          ],
+          "mask_area_pixels": 6871,
+          "box_fill_ratio": 0.38184030496418275,
+          "lowest_mask_pixel_y": 959,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.6581980586051941,
+          "bbox": [
+            256.5311279296875,
+            228.68312072753906,
+            300.3720703125,
+            347.49786376953125
+          ],
+          "mask_area_pixels": 3556,
+          "box_fill_ratio": 0.6826711319006619,
+          "lowest_mask_pixel_y": 346,
+          "track_id": null
+        },
+        {
+          "proposal": 2,
+          "class_id": 0,
+          "confidence": 0.5739181637763977,
+          "bbox": [
+            1799.85498046875,
+            772.8380126953125,
+            1880.407958984375,
+            930.3997192382812
+          ],
+          "mask_area_pixels": 6054,
+          "box_fill_ratio": 0.47699094776967355,
+          "lowest_mask_pixel_y": 929,
+          "track_id": null
+        },
+        {
+          "proposal": 3,
+          "class_id": 0,
+          "confidence": 0.5680481195449829,
+          "bbox": [
+            427.77044677734375,
+            39.79815673828125,
+            463.59515380859375,
+            149.3462677001953
+          ],
+          "mask_area_pixels": 3427,
+          "box_fill_ratio": 0.8732258104242824,
+          "lowest_mask_pixel_y": 147,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.1919186000013724,
+      "preprocess_infer_mask_seconds": 0.21523659999365918,
+      "rss_bytes": 193339392,
+      "peak_rss_bytes": 227422208,
+      "available_ram_bytes": 878665728,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0240.npz",
+      "masks_sha256": "3dc4cf4dd1365f73d4f02d46e96cf6663bf4ef578f408fbabfa83999a63aad05",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0240.png",
+      "overlay_sha256": "5d8a831bf079f5616d1b2274508c5631f8b048e1246d21faeddd087036d6be97",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.788756860074599,
+          "mask_proposal": 1,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "B",
+          "bbox_iou": 0.8908131237084981,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.897131966999172,
+          "mask_proposal": 3,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [],
+      "absent_active": []
+    },
+    {
+      "frame_index": 270,
+      "source_frame_index": 660,
+      "source_image_sha256": "22a67668708099485d37177bf0d652634c8ab8424316e9196819d6bc0ed5f8b9",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.6929322481155396,
+          "bbox": [
+            233.62600708007812,
+            215.87420654296875,
+            287.3901672363281,
+            335.534912109375
+          ],
+          "mask_area_pixels": 3916,
+          "box_fill_ratio": 0.6086929304055834,
+          "lowest_mask_pixel_y": 335,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.4254739582538605,
+          "bbox": [
+            417.2002258300781,
+            47.67572021484375,
+            453.5812072753906,
+            153.8675994873047
+          ],
+          "mask_area_pixels": 3384,
+          "box_fill_ratio": 0.8759203917883248,
+          "lowest_mask_pixel_y": 153,
+          "track_id": null
+        },
+        {
+          "proposal": 2,
+          "class_id": 0,
+          "confidence": 0.3902305066585541,
+          "bbox": [
+            1890.454833984375,
+            765.9671630859375,
+            1919.1463623046875,
+            911.0868530273438
+          ],
+          "mask_area_pixels": 2274,
+          "box_fill_ratio": 0.5461481111386477,
+          "lowest_mask_pixel_y": 910,
+          "track_id": null
+        },
+        {
+          "proposal": 3,
+          "class_id": 0,
+          "confidence": 0.31756243109703064,
+          "bbox": [
+            1897.4864501953125,
+            817.6455688476562,
+            1919.22265625,
+            910.8863525390625
+          ],
+          "mask_area_pixels": 1664,
+          "box_fill_ratio": 0.8210387683054691,
+          "lowest_mask_pixel_y": 910,
+          "track_id": null
+        },
+        {
+          "proposal": 4,
+          "class_id": 0,
+          "confidence": 0.26441797614097595,
+          "bbox": [
+            39.859989166259766,
+            984.9581909179688,
+            114.62004089355469,
+            1077.8997802734375
+          ],
+          "mask_area_pixels": 4080,
+          "box_fill_ratio": 0.5871924663864476,
+          "lowest_mask_pixel_y": 1077,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.19975929999782238,
+      "preprocess_infer_mask_seconds": 0.22519060000195168,
+      "rss_bytes": 195428352,
+      "peak_rss_bytes": 235728896,
+      "available_ram_bytes": 1006063616,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0270.npz",
+      "masks_sha256": "fe20d8b1656fee89ee97f3b73b309b1a22e7d59e35a2d0de485628135678fe35",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0270.png",
+      "overlay_sha256": "c05527265939296339ee6e01a8e1ed0b721d53a6e3c6740cb41620d89cb357d6",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.8311960385635841,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.8629892842670818,
+          "mask_proposal": 1,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [
+        {
+          "identity": "B",
+          "bbox": [
+            1894,
+            764,
+            1920,
+            914
+          ],
+          "visibility": "MOSTLY_OUTSIDE_FRAME",
+          "reason": "Only partial arm and legs visible at the right edge; do not score a full-body box or invent coordinates outside the image."
+        }
+      ],
+      "absent_active": []
+    },
+    {
+      "frame_index": 300,
+      "source_frame_index": 690,
+      "source_image_sha256": "fe973ff457a71153a4c7ef2bf14fe9a26265d287e5e70531640cb7f3d774ece7",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.6840589046478271,
+          "bbox": [
+            175.87843322753906,
+            232.93295288085938,
+            273.61798095703125,
+            335.9920654296875
+          ],
+          "mask_area_pixels": 3656,
+          "box_fill_ratio": 0.36295222540837374,
+          "lowest_mask_pixel_y": 335,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.20708409999497235,
+      "preprocess_infer_mask_seconds": 0.21800700000312645,
+      "rss_bytes": 187166720,
+      "peak_rss_bytes": 235728896,
+      "available_ram_bytes": 966455296,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0300.npz",
+      "masks_sha256": "46302cf157ce2b431d1861942e4ba5318103baad59fae80dd99a8a12080e844d",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0300.png",
+      "overlay_sha256": "c70a673960cb5718aa9193814556020f4e9b69852d5d49d5a3cf387f838665a6",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.9306891178690715,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [],
+      "absent_active": [
+        {
+          "identity": "B",
+          "reason": "OUTSIDE_IMAGE"
+        }
+      ]
+    },
+    {
+      "frame_index": 309,
+      "source_frame_index": 699,
+      "source_image_sha256": "d756ab4b3a26ca768c0157340078a8c38eda5a095ffd5761bc11c5b1ed32dbe3",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.7204556465148926,
+          "bbox": [
+            171.09938049316406,
+            231.9265594482422,
+            271.68377685546875,
+            335.75567626953125
+          ],
+          "mask_area_pixels": 3915,
+          "box_fill_ratio": 0.37487112762599883,
+          "lowest_mask_pixel_y": 335,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.3733881413936615,
+          "bbox": [
+            400.44793701171875,
+            58.32417297363281,
+            435.4425048828125,
+            165.45094299316406
+          ],
+          "mask_area_pixels": 3327,
+          "box_fill_ratio": 0.8874709687278822,
+          "lowest_mask_pixel_y": 164,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.19077260000631213,
+      "preprocess_infer_mask_seconds": 0.2063207000028342,
+      "rss_bytes": 189239296,
+      "peak_rss_bytes": 235728896,
+      "available_ram_bytes": 1009807360,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0309.npz",
+      "masks_sha256": "f8bb070e32c2847987fd0be01e80c5de4bef20ffd071432663c8f169d46fc8e5",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0309.png",
+      "overlay_sha256": "c4052d524afa2fae0aa16501a85d80b6bacc2e7b0b3958e9a18300fd0e809969"
+    },
+    {
+      "frame_index": 310,
+      "source_frame_index": 700,
+      "source_image_sha256": "15b83158aeef42491f9e532d1dde774ee46cd2ef379f9c198b4bddd5d6eb708c",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.755775511264801,
+          "bbox": [
+            171.62924194335938,
+            229.8668975830078,
+            270.50390625,
+            335.2055358886719
+          ],
+          "mask_area_pixels": 3803,
+          "box_fill_ratio": 0.36513511700075435,
+          "lowest_mask_pixel_y": 334,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.5710219144821167,
+          "bbox": [
+            398.9774169921875,
+            57.94679260253906,
+            436.32122802734375,
+            165.48179626464844
+          ],
+          "mask_area_pixels": 3388,
+          "box_fill_ratio": 0.8436744764157251,
+          "lowest_mask_pixel_y": 164,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.18762209999840707,
+      "preprocess_infer_mask_seconds": 0.20240650000050664,
+      "rss_bytes": 193392640,
+      "peak_rss_bytes": 235728896,
+      "available_ram_bytes": 972627968,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0310.npz",
+      "masks_sha256": "77fa5265f55f7b6780a6fe34478bf850e9e5a200979de5ba2197798c4e908a18",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0310.png",
+      "overlay_sha256": "00e71318a25513c7aa901c746c6f83bd51e88c70b0681ace54979d509b9bc5e0"
+    },
+    {
+      "frame_index": 311,
+      "source_frame_index": 701,
+      "source_image_sha256": "9c99d11adea633e540844f85a9341504b5a8072eba9541ad52fdb962a29cd5a0",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.7494836449623108,
+          "bbox": [
+            172.0210723876953,
+            228.13385009765625,
+            270.1753234863281,
+            335.0603332519531
+          ],
+          "mask_area_pixels": 3898,
+          "box_fill_ratio": 0.37140473652737893,
+          "lowest_mask_pixel_y": 334,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.5953039526939392,
+          "bbox": [
+            398.3312072753906,
+            59.03741455078125,
+            435.9972229003906,
+            164.81268310546875
+          ],
+          "mask_area_pixels": 3432,
+          "box_fill_ratio": 0.8614170436913924,
+          "lowest_mask_pixel_y": 164,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.1793829999951413,
+      "preprocess_infer_mask_seconds": 0.19443229999160394,
+      "rss_bytes": 197541888,
+      "peak_rss_bytes": 235728896,
+      "available_ram_bytes": 976113664,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0311.npz",
+      "masks_sha256": "c8438ab418a1a34861bc3fec9c4875e8b5af2174897b3e2a729975a1b8969113",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0311.png",
+      "overlay_sha256": "983e2231f70b37f063ecbada59d66dcbcf62f636317a7a979b5cb86ebc02545c"
+    },
+    {
+      "frame_index": 312,
+      "source_frame_index": 702,
+      "source_image_sha256": "750fd1411ce4845fbf3f0fd39e2fa7fb6b63fb0b292569e270123f86a09d153e",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.7114083170890808,
+          "bbox": [
+            169.51271057128906,
+            227.67462158203125,
+            270.0436706542969,
+            335.8580017089844
+          ],
+          "mask_area_pixels": 3959,
+          "box_fill_ratio": 0.3640198991552092,
+          "lowest_mask_pixel_y": 335,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.534875214099884,
+          "bbox": [
+            398.1643981933594,
+            59.6693115234375,
+            434.8038330078125,
+            165.50363159179688
+          ],
+          "mask_area_pixels": 3394,
+          "box_fill_ratio": 0.875258925427139,
+          "lowest_mask_pixel_y": 165,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.2042529000027571,
+      "preprocess_infer_mask_seconds": 0.21855299999879207,
+      "rss_bytes": 201699328,
+      "peak_rss_bytes": 235728896,
+      "available_ram_bytes": 1017675776,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0312.npz",
+      "masks_sha256": "8d956c16c242ad0049a6db284c63504e57b3054daaede4d457864e54c4af4262",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0312.png",
+      "overlay_sha256": "d5138ecf17cb1cae21a35521016a2989bd7aa68823c60bcf2f091cc20625c658"
+    },
+    {
+      "frame_index": 360,
+      "source_frame_index": 750,
+      "source_image_sha256": "034963bbb1f851b34e94b82c9982c5d1a230ce9e374f83e226cd726a46bb93d7",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.7813934683799744,
+          "bbox": [
+            151.6913299560547,
+            221.89572143554688,
+            239.46505737304688,
+            348.46673583984375
+          ],
+          "mask_area_pixels": 4605,
+          "box_fill_ratio": 0.4145060103114425,
+          "lowest_mask_pixel_y": 347,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.7291486859321594,
+          "bbox": [
+            1803.8133544921875,
+            794.6312866210938,
+            1879.44921875,
+            984.531982421875
+          ],
+          "mask_area_pixels": 8843,
+          "box_fill_ratio": 0.6156661769268127,
+          "lowest_mask_pixel_y": 984,
+          "track_id": null
+        },
+        {
+          "proposal": 2,
+          "class_id": 0,
+          "confidence": 0.5346428751945496,
+          "bbox": [
+            381.8853759765625,
+            71.193603515625,
+            419.6683044433594,
+            178.48251342773438
+          ],
+          "mask_area_pixels": 3379,
+          "box_fill_ratio": 0.8335616832497155,
+          "lowest_mask_pixel_y": 177,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.17832629999611527,
+      "preprocess_infer_mask_seconds": 0.2000934999960009,
+      "rss_bytes": 207937536,
+      "peak_rss_bytes": 235794432,
+      "available_ram_bytes": 931360768,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0360.npz",
+      "masks_sha256": "e013ca8f245427af40a9340bee483c3da032dd8d553309d8b08d4731bd6f432f",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0360.png",
+      "overlay_sha256": "1abf5ed7b8860a1796a9b796984431044f431a49ca11157186fda4862ad66e83",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.9179219794443482,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "B",
+          "bbox_iou": 0.9448269480066589,
+          "mask_proposal": 1,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.8662434196858316,
+          "mask_proposal": 2,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [],
+      "absent_active": []
+    },
+    {
+      "frame_index": 480,
+      "source_frame_index": 870,
+      "source_image_sha256": "09c3d4590d6a49681731b1a8f02d4d6d29961c9287e60b65d8e1883022448b99",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.7916513681411743,
+          "bbox": [
+            1610.5401611328125,
+            864.41015625,
+            1691.5152587890625,
+            1044.378662109375
+          ],
+          "mask_area_pixels": 8929,
+          "box_fill_ratio": 0.6127098066927116,
+          "lowest_mask_pixel_y": 1043,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.7577843070030212,
+          "bbox": [
+            265.688232421875,
+            221.94772338867188,
+            333.021484375,
+            338.4896240234375
+          ],
+          "mask_area_pixels": 4159,
+          "box_fill_ratio": 0.5300016650610213,
+          "lowest_mask_pixel_y": 337,
+          "track_id": null
+        },
+        {
+          "proposal": 2,
+          "class_id": 0,
+          "confidence": 0.5146565437316895,
+          "bbox": [
+            371.8887939453125,
+            95.57972717285156,
+            407.3109130859375,
+            202.76463317871094
+          ],
+          "mask_area_pixels": 3273,
+          "box_fill_ratio": 0.8620606755463976,
+          "lowest_mask_pixel_y": 201,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.1766626000026008,
+      "preprocess_infer_mask_seconds": 0.19498440000461414,
+      "rss_bytes": 207941632,
+      "peak_rss_bytes": 242020352,
+      "available_ram_bytes": 1016668160,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0480.npz",
+      "masks_sha256": "faa4559b7bdf5bec6255a5d35281988512af7b538d5432262573d47f5cfbfde5",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0480.png",
+      "overlay_sha256": "a22d897b148c6d2b42c5acc07798f63bf6e8be062701c463d7c57ccfc3dc7e64",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.9025364861576372,
+          "mask_proposal": 1,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "B",
+          "bbox_iou": 0.8746033396109073,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.9188809828751225,
+          "mask_proposal": 2,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [],
+      "absent_active": []
+    },
+    {
+      "frame_index": 540,
+      "source_frame_index": 930,
+      "source_image_sha256": "d9ff6adff63358874b91dc472ae23fb94cc472f6e29aa0379d3e3e5b8d9b311f",
+      "person_masks": [
+        {
+          "proposal": 0,
+          "class_id": 0,
+          "confidence": 0.8264164328575134,
+          "bbox": [
+            1464.4754638671875,
+            848.7777709960938,
+            1570.528564453125,
+            1027.4764404296875
+          ],
+          "mask_area_pixels": 8664,
+          "box_fill_ratio": 0.4571658218342648,
+          "lowest_mask_pixel_y": 1026,
+          "track_id": null
+        },
+        {
+          "proposal": 1,
+          "class_id": 0,
+          "confidence": 0.5291286706924438,
+          "bbox": [
+            389.2808532714844,
+            203.042724609375,
+            458.643798828125,
+            315.695068359375
+          ],
+          "mask_area_pixels": 3833,
+          "box_fill_ratio": 0.4905361972317555,
+          "lowest_mask_pixel_y": 315,
+          "track_id": null
+        },
+        {
+          "proposal": 2,
+          "class_id": 0,
+          "confidence": 0.4050862491130829,
+          "bbox": [
+            370.3902587890625,
+            105.60067749023438,
+            404.577392578125,
+            210.7079315185547
+          ],
+          "mask_area_pixels": 3226,
+          "box_fill_ratio": 0.8977780466167338,
+          "lowest_mask_pixel_y": 210,
+          "track_id": null
+        }
+      ],
+      "inference_seconds": 0.1853279999922961,
+      "preprocess_infer_mask_seconds": 0.2052758000063477,
+      "rss_bytes": 207941632,
+      "peak_rss_bytes": 242024448,
+      "available_ram_bytes": 997126144,
+      "masks": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\masks_0540.npz",
+      "masks_sha256": "f7e266b119894a0befa5dae0071fe0bf486ff5b0f2c03dd6f9bb3e592368e09a",
+      "overlay": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\overlay_0540.png",
+      "overlay_sha256": "4d0983c5baec3f9f249601d050a092324a829c828a56033f4f7a8d5777aa113e",
+      "label_assisted_body_coverage": [
+        {
+          "identity_or_kind": "A",
+          "bbox_iou": 0.9065501201667299,
+          "mask_proposal": 1,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "B",
+          "bbox_iou": 0.8956308111537861,
+          "mask_proposal": 0,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "explicit_nonparticipant_matches": [
+        {
+          "identity_or_kind": "BACK_WALL_CREW",
+          "bbox_iou": 0.7962899998082899,
+          "mask_proposal": 2,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "CHAIR_UMPIRE",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_LEFT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        },
+        {
+          "identity_or_kind": "NET_SIDE_CREW_RIGHT",
+          "bbox_iou": 0.0,
+          "mask_proposal": null,
+          "scope": "ORACLE_DIAGNOSTIC_MATCH_NOT_DEPLOYABLE_SELECTION"
+        }
+      ],
+      "ignored_active": [],
+      "absent_active": []
+    }
+  ],
+  "temporal_pairs": [
+    {
+      "from_frame": 309,
+      "to_frame": 310,
+      "from_proposal": 0,
+      "to_proposal": 0,
+      "bbox_iou": 0.9590914268819548,
+      "unwarped_mask_iou": 0.8678606001936109,
+      "area_ratio": 0.9713920817369093,
+      "scope": "UNLABELED_MUTUAL_BOX_ASSOCIATION_PROXY_NOT_ID_OR_FLICKER_ACCURACY"
+    },
+    {
+      "from_frame": 309,
+      "to_frame": 310,
+      "from_proposal": 1,
+      "to_proposal": 1,
+      "bbox_iou": 0.9335340318036086,
+      "unwarped_mask_iou": 0.9651741293532339,
+      "area_ratio": 1.0183348361887588,
+      "scope": "UNLABELED_MUTUAL_BOX_ASSOCIATION_PROXY_NOT_ID_OR_FLICKER_ACCURACY"
+    },
+    {
+      "from_frame": 310,
+      "to_frame": 311,
+      "from_proposal": 0,
+      "to_proposal": 0,
+      "bbox_iou": 0.9754147334732709,
+      "unwarped_mask_iou": 0.8673617846750727,
+      "area_ratio": 1.0249802787273206,
+      "scope": "UNLABELED_MUTUAL_BOX_ASSOCIATION_PROXY_NOT_ID_OR_FLICKER_ACCURACY"
+    },
+    {
+      "from_frame": 310,
+      "to_frame": 311,
+      "from_proposal": 1,
+      "to_proposal": 1,
+      "bbox_iou": 0.9587818289781651,
+      "unwarped_mask_iou": 0.9592071243895433,
+      "area_ratio": 1.0129870129870129,
+      "scope": "UNLABELED_MUTUAL_BOX_ASSOCIATION_PROXY_NOT_ID_OR_FLICKER_ACCURACY"
+    },
+    {
+      "from_frame": 311,
+      "to_frame": 312,
+      "from_proposal": 0,
+      "to_proposal": 0,
+      "bbox_iou": 0.9624747533776493,
+      "unwarped_mask_iou": 0.8964518464880521,
+      "area_ratio": 1.0156490507952796,
+      "scope": "UNLABELED_MUTUAL_BOX_ASSOCIATION_PROXY_NOT_ID_OR_FLICKER_ACCURACY"
+    },
+    {
+      "from_frame": 311,
+      "to_frame": 312,
+      "from_proposal": 1,
+      "to_proposal": 1,
+      "bbox_iou": 0.9522886779305423,
+      "unwarped_mask_iou": 0.9486154724521838,
+      "area_ratio": 0.9889277389277389,
+      "scope": "UNLABELED_MUTUAL_BOX_ASSOCIATION_PROXY_NOT_ID_OR_FLICKER_ACCURACY"
+    }
+  ],
+  "mask_pixel_accuracy_measured": false,
+  "summary": {
+    "labeled_visible_bodies": 14,
+    "body_bbox_matches_with_nonempty_masks": 13,
+    "explicit_nonparticipant_boxes": 32,
+    "nonparticipant_boxes_with_mask_bbox_match": 6,
+    "unmatched_proposals_are_not_detector_false_positives": true,
+    "participant_mask_precision_measured": false,
+    "foot_localization_error_measured": false,
+    "mask_flicker_accuracy_measured": false,
+    "identity_switches_measured": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "qualificationEvidence": false,
+  "at": "2026-10-04T05:52:41.773Z",
+  "action": "Release media while paused at the requested last-frame position",
+  "presentedFrame": 467,
+  "presentedSeconds": 19.478,
+  "sharedReplayFrame": 467,
+  "videoCurrentTime": 19.519499,
+  "videoPaused": true,
+  "videoReadyState": 4,
+  "finding": "Paused frame callbacks correctly update player and shared evidence after decode, but the nominal last-frame seek falls just below that frame's quantized media timestamp and decodes the previous frame. Pending-start feedback remained stale.",
+  "cleanup": "Temporary replay rate restored to1, browser tab closed, dedicated probe session28856 stopped. Main server retained. Source integrity recorded in stream journal.",
+  "screenshotArtifact": null
+}

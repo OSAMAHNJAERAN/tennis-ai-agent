@@ -1,0 +1,43 @@
+{
+  "scope": "SYNTHETIC_PROCESS_CRASH_STORAGE_ONLY_NO_MEDIA_OR_INFERENCE",
+  "command": [
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_checkpoint_process_restart.py",
+    "--noconftest",
+    "--basetemp",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-17\\checkpoint_process_restart_v1\\tmp2",
+    "-p",
+    "no:cacheprovider",
+    "-q"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.661652300012065,
+  "source_before": {
+    "tests/helpers/checkpoint_worker_child.py": "ea468341210d76a96d039728d657006e95779f7b0a0442ebca5fa64bbd9677f2",
+    "tests/test_checkpoint_process_restart.py": "8b214230a2d138827bee295040d9fffce1d282200cb21559be1a01e23d907668",
+    "src/api/worker.py": "d62d86d1595f023ff4c2b0294ac2d510a2e01a935d02cd7b2b4fbf9c916406b9",
+    "src/api/jobs.py": "a2721b9359cb439f2d27895a149ae8dc3b6290f4a68b26e2abb8f8efd0e46936",
+    "src/api/analysis_resume.py": "d02992e48cd352ae8c43aa9add7389242e999d4c63e7ad5a36c59eb65bb2a811",
+    "src/api/pipeline_checkpoint.py": "2de795080efdfc7f63295d3861b24acf1d9ce8c46b81442ee3a930ac16ed4f8a",
+    "src/api/result_document.py": "d30e7abe74d5228bae6bfea14ec9ae07bca317d5032cd3aeda6bf92f811d1cdc",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/api/media_timing.py": "a73b073aa164b0a92a6f3ded4966eb5f462ff0cb3630b75ecf14efc31d9fd8d9"
+  },
+  "source_after": {
+    "tests/helpers/checkpoint_worker_child.py": "ea468341210d76a96d039728d657006e95779f7b0a0442ebca5fa64bbd9677f2",
+    "tests/test_checkpoint_process_restart.py": "8b214230a2d138827bee295040d9fffce1d282200cb21559be1a01e23d907668",
+    "src/api/worker.py": "d62d86d1595f023ff4c2b0294ac2d510a2e01a935d02cd7b2b4fbf9c916406b9",
+    "src/api/jobs.py": "a2721b9359cb439f2d27895a149ae8dc3b6290f4a68b26e2abb8f8efd0e46936",
+    "src/api/analysis_resume.py": "d02992e48cd352ae8c43aa9add7389242e999d4c63e7ad5a36c59eb65bb2a811",
+    "src/api/pipeline_checkpoint.py": "2de795080efdfc7f63295d3861b24acf1d9ce8c46b81442ee3a930ac16ed4f8a",
+    "src/api/result_document.py": "d30e7abe74d5228bae6bfea14ec9ae07bca317d5032cd3aeda6bf92f811d1cdc",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/api/media_timing.py": "a73b073aa164b0a92a6f3ded4966eb5f462ff0cb3630b75ecf14efc31d9fd8d9"
+  },
+  "stdout": ".                                                                        [100%]\n1 passed in 2.31s\n",
+  "stderr": "",
+  "first_attempt_setup_error": "Pytest basetemp parent absent; no test body or children ran on first attempt.",
+  "bound_sources_unchanged": true
+}

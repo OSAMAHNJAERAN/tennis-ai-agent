@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-10-21T18:04:21.836722+00:00",
+  "status": "ACQUIRED_AND_AUDITED_DEV_SAMPLE_REFERENCE_NOT_READY",
+  "source_manifest": {
+    "path": "data\\external\\nkust_landing_reference_indoor_development_v4\\source_manifest.json",
+    "sha256": "eb223b2a33d1f36f62523b37a703f78d3d778bc2552af9b075e2850f5c8eff8a"
+  },
+  "receipt_bindings": {
+    "csv_acquisition_receipt.json": "ff2a245518e794424ca4ba0929b27b79831d2e29eac18083f0d6c2453ac374d2",
+    "media_acquisition_receipt.json": "6cfaa7d0abf348cf59da61c92e218351bdb230eb9fb88de3013fdb55a1e6d9b0",
+    "native_inspection_receipt.json": "13639219f3d23cf74e517c25e3e0410c3cfc1173022be13574b0cdabef5125fa",
+    "root_visual_review.json": "bf2d808b53d1b72da8d10383d8ff1b7f77dd9a5cf9b0b1e8c7f6082adc8efa58",
+    "independent_agent_visual_review.json": "439dd433f05c7218ade13851bdac2ac5535cf0b4bb1edb8e0edecfc924c55080"
+  },
+  "official_inventory_sha256": "41844e238e2815c2e83113acb2aafb2d334a76da5c4f11ab0612f0727a1a664e",
+  "publisher_hashes_verified": 3,
+  "acquired_bytes": 13186692,
+  "csv_reference_rows": 99,
+  "matched_view_number_samples_acquired": 1,
+  "native_frames_per_view": 139,
+  "native_frame_rate": "60000/1001",
+  "indoor_development_group_preserved": true,
+  "outdoor_test_images_or_target_values_inspected_in_this_workflow": false,
+  "model_or_training_executed": false,
+  "independent_human_labels_created": false,
+  "accuracy_computed": false,
+  "new_reference_qualified": false,
+  "unresolved": [
+    "Exact CSV identifier to clip/outgoing landing binding",
+    "Actual visible measured outgoing ground contact and contact PTS interval",
+    "Constructed court dimensions, baseline identity, line convention, calibration and reference uncertainty",
+    "Cross-camera synchronization"
+  ],
+  "conclusion": "Retain the licensed development sample and reject unsupported reference-ready/qualification claims; do not build a comparator around inferred geometry or choose mappings from outdoor TEST errors."
+}

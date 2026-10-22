@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-15T14:30:15.2830826Z",
+  "status": "METADATA_FOLLOWUP_COMPLETED_NO_QUALIFYING_PACKAGE_ESTABLISHED",
+  "scope": "Named iScience reference and at most two new primary reference leads; physical real tennis ball translational speed paired with raw video, calibration, synchronization, independent references and compatible speed definition",
+  "skill": "C:/Users/ac-98/.codex/skills/research/SKILL.md",
+  "original_acquisition_note_sha256": "69db8567d3fda90e69fe6ff5c0d9d829e01ba500d17c0034571d2b6466a2ca9d",
+  "original_note_prefix_bytes_preserved": 18688,
+  "note_path": "docs/data/INDEPENDENT_SOURCE_ACQUISITION.md",
+  "note_sha256_after_append": "0cf08afc75ac715f991948e5a3720fcf975452aadaeeaf2286e5c2851d633918",
+  "query_notes": [
+    "Exact DOI/title queries plus targeted data-availability, supplementary and repository terms returned publisher abstract and Crossmark metadata, without an identified raw-data repository.",
+    "A bounded discovery query for tennis speed video/radar references and video/mocap datasets selected two new leads: Bern continuous decision-making under uncertainty and Foo et al. smart tennis ball. Existing CalTennis/NKUST/Bath/TennisEye/TrackNet/MUVY sources were not re-audited.",
+    "Only primary publisher, author repository, DOI-depositor metadata and institutional archive content was used for conclusions. Secondary search hits were not accepted as evidence."
+  ],
+  "sources": [
+    {
+      "name": "Shi, Lv and Wang iScience 2026",
+      "doi": "10.1016/j.isci.2026.117192",
+      "primary_urls": [
+        "https://www.sciencedirect.com/science/article/pii/S2589004226025708",
+        "https://www.cell.com/iscience/fulltext/S2589-0042(26)02570-8",
+        "https://api.elsevier.com/content/article/pii/S2589004226025708?httpAccept=text/xml",
+        "https://api.crossref.org/works/10.1016/j.isci.2026.117192"
+      ],
+      "verified_article_license": "CC BY 4.0",
+      "raw_dataset_license": null,
+      "data_availability_statement_verified": false,
+      "supplementary_inventory_verified": false,
+      "access_observations": [
+        "ScienceDirect/Cell full-text HTTP 403; no login, gate bypass or paid access attempted.",
+        "Elsevier lowercase pii XML endpoint HTTP 200 with 1940 characters of core metadata only, no full article text.",
+        "Explicit PII FULL-view endpoint HTTP 429; this request was not retried.",
+        "Crossref HTTP 200 and article VOR CC BY 4.0 metadata.",
+        "Europe PMC exact DOI metadata search HTTP 200 with hitCount 0; this is index evidence only, not evidence of absent data."
+      ],
+      "decision": "Reference-design lead remains unresolved; no qualifying raw package established, and no claim that the data are absent or request-only."
+    },
+    {
+      "name": "Bern continuous decision-making under uncertainty in tennis",
+      "doi": "10.5281/zenodo.18683813",
+      "primary_urls": [
+        "https://zenodo.org/records/18683813",
+        "https://zenodo.org/api/records/18683813",
+        "https://raw.githubusercontent.com/ispw-unibe-ch/continuous_decision-making_under_uncertainty_in_tennis/main/README.md"
+      ],
+      "verified_dataset_license": "CC BY 4.0",
+      "access_right": "open",
+      "publisher_inventory_only": [
+        {
+          "key": "experimental_task_full_video.mp4",
+          "size": 115681141,
+          "checksum": "md5:97b8e0ec858d4dd37b94b52930ffd4b2"
+        },
+        {
+          "key": "c3d_files.7z",
+          "size": 1764353937,
+          "checksum": "md5:0dc9b7fda09d4bb9704c1cc9f5958b66"
+        },
+        {
+          "key": "continuous_decision-making_under_uncertainty_in_tennis-main.zip",
+          "size": 102407455,
+          "checksum": "md5:f01db186af4234cd809c2de38fdcf2d0"
+        }
+      ],
+      "decision": "Author README explicitly describes XR tennis and human body C3D skeletons; real physical ball/video/reference calibration package not established. No media acquired."
+    },
+    {
+      "name": "Foo, Li and Ghannam smart tennis ball",
+      "doi": "10.3390/s24165306",
+      "primary_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC11359718/",
+        "https://www.mdpi.com/1424-8220/24/16/5306",
+        "https://eprints.gla.ac.uk/329596/"
+      ],
+      "verified_article_license": "CC BY 4.0",
+      "data_statement_paraphrase": "Supporting data contained in the article; additional information through corresponding author request.",
+      "decision": "Instrumented foam ball orientation/spin prototype does not establish a paired real-flight translational speed dataset with calibrated synchronized source video. No outreach or media acquired."
+    }
+  ],
+  "actual_metadata_files": [
+    {
+      "path": "primary_metadata_3.json",
+      "sha256": "39b0d4fec8d0a5fe0a23eca5ea3b3f3f2a76ef43dd540f99cb602b73b3013fd9"
+    },
+    {
+      "path": "iscience_elsevier_core.txt",
+      "sha256": "be14ee94b6b78df731b970ae12dcf04b7777013d05c1323983fbb9d0cec39a86"
+    },
+    {
+      "path": "iscience_europepmc_search.txt",
+      "sha256": "a1e1428a2c9d5eb6bfaae5c6a6bb67cc8ec999893c5bc0f387e731bdaab066d2"
+    },
+    {
+      "path": "bern_zenodo_metadata.txt",
+      "sha256": "86381828e8d4d8f4ad325c1e7e18d753ff784d2e33cc719666b536b4c94e3929"
+    }
+  ],
+  "raw_media_bytes_acquired": 0,
+  "test_frames_inspected": 0,
+  "models_or_gpu_runs": 0,
+  "outreach_performed": false,
+  "forms_submitted": false,
+  "logins_used": false,
+  "paid_resources_used": false,
+  "approval_review_rejected": false,
+  "qualification_claim": false,
+  "limitations": "A metadata-access failure or bounded search cannot prove that no release exists. Reported paper performance does not qualify this project's pipeline."
+}

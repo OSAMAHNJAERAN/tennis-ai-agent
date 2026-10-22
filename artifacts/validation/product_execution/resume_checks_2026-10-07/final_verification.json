@@ -1,0 +1,913 @@
+{
+  "verifiedAt": "2026-10-07T05:06:35.583244+00:00",
+  "status": "CURRENT_WORKER_VERIFIED_MOTION_CANDIDATE_REJECTED",
+  "boundedVerificationPassed": true,
+  "actualWorkerPassed": true,
+  "actualWorkerFrames": 30,
+  "workerOutputBytesComparedExactly": [
+    "JSON",
+    "CSV",
+    "HTML"
+  ],
+  "poseRacketObservedCoverage": {
+    "1": {
+      "poseObservations": 0,
+      "racketObservations": 0,
+      "racketStates": {
+        "MISSING": 30
+      }
+    },
+    "2": {
+      "poseObservations": 0,
+      "racketObservations": 0,
+      "racketStates": {
+        "MISSING": 30
+      }
+    }
+  },
+  "websiteRestoredAndVerified": true,
+  "currentHealth": {
+    "status": "ok",
+    "max_upload_bytes": 1073741824,
+    "supported_formats": [
+      ".avi",
+      ".mov",
+      ".mp4"
+    ],
+    "max_duration_seconds": 7200,
+    "worker_available": true
+  },
+  "currentRuntime": {
+    "state": "OWNED_IDLE_PAIR",
+    "processes": [
+      {
+        "pid": 32552,
+        "createTimeUnixSeconds": 1791348710.7337363,
+        "parentPid": 21516,
+        "name": "python.exe",
+        "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "cmdline": [
+          "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "scripts/run/serve_product.py"
+        ],
+        "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+      },
+      {
+        "pid": 42724,
+        "createTimeUnixSeconds": 1791348712.0018811,
+        "parentPid": 32552,
+        "name": "python.exe",
+        "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "cmdline": [
+          "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-u",
+          "-m",
+          "src.api.worker"
+        ],
+        "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+      }
+    ],
+    "port8000Listeners": [
+      {
+        "pid": 32552,
+        "host": "127.0.0.1",
+        "port": 8000
+      }
+    ],
+    "ownedDescendants": [
+      {
+        "pid": 42148,
+        "createTimeUnixSeconds": 1791348710.7410307,
+        "parentPid": 32552,
+        "name": "conhost.exe",
+        "exe": "C:\\Windows\\System32\\conhost.exe",
+        "cmdline": [
+          "\\??\\C:\\Windows\\system32\\conhost.exe",
+          "0x4"
+        ],
+        "cwd": "C:\\Windows"
+      },
+      {
+        "pid": 31924,
+        "createTimeUnixSeconds": 1791348712.0111527,
+        "parentPid": 42724,
+        "name": "conhost.exe",
+        "exe": "C:\\Windows\\System32\\conhost.exe",
+        "cmdline": [
+          "\\??\\C:\\Windows\\system32\\conhost.exe",
+          "0x4"
+        ],
+        "cwd": "C:\\Windows"
+      }
+    ],
+    "launchWrappers": []
+  },
+  "existingDemos": 3,
+  "existingExportsExact": 12,
+  "savedJobsUnchanged": 10,
+  "savedAnalysisFilesUnchanged": 319,
+  "originalPostStartFailureRetained": true,
+  "motionOriginalTrialPassed": true,
+  "motionIndependentAuditPassed": true,
+  "motionFramesScored": 2230,
+  "motionProposalMatched": 2479,
+  "motionSelectedMatched": 710,
+  "motionPublisherUnmatched": 1620,
+  "motionCandidatePromoted": false,
+  "qualificationEvidence": false,
+  "fullExecutionObjectiveComplete": false,
+  "remaining": [
+    "Court-independent accurate active-player recovery and identity validation",
+    "Automatic ball, court, pose, racket and mask accuracy qualification",
+    "Representative untouched supported recordings and independent labels",
+    "Independent physical speed/3D references and validated estimator",
+    "Full-match capacity verification"
+  ],
+  "evidenceBindings": {
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/audit/receipt.json": {
+      "bytes": 23542,
+      "sha256": "39061fd65e0bb808f61390bb26fb7277937a5810f8640318b51cbe342adbe518"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/audit.py": {
+      "bytes": 38441,
+      "sha256": "a49cb19c96a25adb249cf279f3a53ae43d0e759bfe8a1772f66d2a96740e38bd"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/experiment.py": {
+      "bytes": 40602,
+      "sha256": "dfc485a694fe81e6c83e770bf94aef6237c2599cf8d2ae023f955b3541cae21c"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/preparation.json": {
+      "bytes": 100507,
+      "sha256": "508bc1850f71235e4fba82d190efee1b1ee8548eafc35831087505e7cd6b6dcf"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/protocol.json": {
+      "bytes": 5739,
+      "sha256": "751393a8111275fca54ef13ea6447eb573fc8e06eb2e81ec4cdf5487c883eb48"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "84a2dca3a62e7a3e0fe1756e09c02d02fca1a659bf7ae26370803e9d4970c0d2"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/actual_sampled.json": {
+      "bytes": 168,
+      "sha256": "255eb842314fc971016303d64b2f6a3ff021e2990bb8dbd8fc9b5596cca66dff"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/launch_marker.json": {
+      "bytes": 278,
+      "sha256": "b6627f16931c2fcff92e7972531f3263a2d7e8d69d74f8923fc2210027a025ff"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/report.json": {
+      "bytes": 320537,
+      "sha256": "f0977422b721eb9e016819d7f71488b1e6ae7904f9b3a65388d72c9b58bbe4ff"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/resource_receipt.json": {
+      "bytes": 1237,
+      "sha256": "920d9de99da6aade978624d70ba78631933dbdf84bdf295bbda6c1ce542a8a78"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/samples.jsonl": {
+      "bytes": 140614,
+      "sha256": "925107a40ae82f389de802908839183707274a875445e1589caa280831aafe25"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/selection_stage_receipt.json": {
+      "bytes": 5369,
+      "sha256": "76cb34bbf1a342fb26f1b00b92f06e89cd93fd29f448191e2efe706a6de542ce"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/stdout.log": {
+      "bytes": 1625,
+      "sha256": "a47b9f64b2ae26b096905b419a597fa675e380f5a1ada3413a712909ff760109"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/camera.jsonl": {
+      "bytes": 180636,
+      "sha256": "ab60d25f44808824f14d369c717ad71507f9b124fa983ae8884f756f21e607a6"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000000_original.png": {
+      "bytes": 407812,
+      "sha256": "44ee63db3e1e64a987dcda2bcfaef28874197eefd5aec6b482bec01c546dddc8"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000000_overlay.png": {
+      "bytes": 420060,
+      "sha256": "effdf02957915cf68c6c265666d6fa818272d2ffa00a8ef191a413ff4ad9995e"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000409_original.png": {
+      "bytes": 403060,
+      "sha256": "e5fd5968a7169185d60ccebbed9ae44e478ed4c866a6ac067ee91dbc3981bb50"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000409_overlay.png": {
+      "bytes": 415745,
+      "sha256": "d77bfb2cc66227fd00e03cbeb60bb92573d2a9042019b28313811f879d089e89"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000604_original.png": {
+      "bytes": 397294,
+      "sha256": "5fe83edd46332a40ca8a3e22a758185855de6f6ecc408081ab070cce140adaa7"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000604_overlay.png": {
+      "bytes": 408522,
+      "sha256": "fda62171a28376e8c5e124c527f285b7d133d10a30824fb2b25b4c60a7dbd5ff"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000818_original.png": {
+      "bytes": 335619,
+      "sha256": "208c8d4e43eb84fee4e177c399ff21a0f0f4bcf83053935ad9131d87f872454c"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_000818_overlay.png": {
+      "bytes": 352193,
+      "sha256": "007971eb44783f9d75e61d6a1caa52c269e8836bcdd22bcd48abf5fe87a3dc0d"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/review_receipt.json": {
+      "bytes": 3747,
+      "sha256": "a39cda4bf7c7b3f40a297f8424757923d80230785cc88a129639cdc8fce369e3"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/scoring.jsonl": {
+      "bytes": 1952920,
+      "sha256": "a8851b28d74f2903639d45cc08e69ef723763a2751d85d3efbdce04ebde5ec3f"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/scoring_summary.json": {
+      "bytes": 1282,
+      "sha256": "69c394dda99dae3eb38573895a6355ef62510b23fec60db928bfece79c060304"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/selected.jsonl": {
+      "bytes": 195806,
+      "sha256": "0f67a68ad9a5700862faf2e608c59245c91d2b5e867b5601dc09467364138580"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/selection_audit.json": {
+      "bytes": 15254,
+      "sha256": "406a9793b336c504a535efee930ed712370d508b502bda60537e101810cc26ca"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V01/selection_receipt.json": {
+      "bytes": 1556,
+      "sha256": "c7d0fc290e5803a74f8fd0d52e65dd3e84e99dd2794a9f1eedf79699e5082585"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/camera.jsonl": {
+      "bytes": 225551,
+      "sha256": "0b654c2a18feb6a08b462a598e35a1e11e1cc25dec963f37de58b7d694ab7c6f"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000000_original.png": {
+      "bytes": 448167,
+      "sha256": "76a8d8f3a915d9461b3fb690bf70bd7556ccdf444e967fb8f0a2329c245fb208"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000000_overlay.png": {
+      "bytes": 457016,
+      "sha256": "3cc6f975968a103dc906effba6a3f7b509c4560c7ba3698610cb74f541e12a3f"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000099_original.png": {
+      "bytes": 422278,
+      "sha256": "25f930396db0979f5bb26b1e2a04b6ddd5e2b6372d90db21c8716dbbc792da39"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000099_overlay.png": {
+      "bytes": 434075,
+      "sha256": "8574b17ef7f82bcbedfda00254212c666d37594339da804180416dcceaa118b0"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000484_original.png": {
+      "bytes": 430997,
+      "sha256": "aa8bc9faf1e663f7db8890da49f821a160159051493ad493593929cbd802fe70"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000484_overlay.png": {
+      "bytes": 442613,
+      "sha256": "18419aff8c7137fb731a90ec1e181360ea19b7daf6bea07d1e3e7c1d4fbebca4"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000967_original.png": {
+      "bytes": 368105,
+      "sha256": "3e1896ef6e92cfb86cc83b3c1eb66f97e420ea899a60893197f954375aae038b"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_000967_overlay.png": {
+      "bytes": 379199,
+      "sha256": "cc42b1635cf161b76c01b13faed443e30ddf11081dd1eed7429c9265d9d72561"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/review_receipt.json": {
+      "bytes": 3698,
+      "sha256": "876a1383c7d4893b15f9b3c60decbb715bebf1896344481fc6e79503882d90b7"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/scoring.jsonl": {
+      "bytes": 3279806,
+      "sha256": "2f0e7441eec6b5aba01dbe21a0c9ed4426a7c76ec3f1b00a4ceacd52ec68c817"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/scoring_summary.json": {
+      "bytes": 1110,
+      "sha256": "ce323c7636d820474b3b7e2bfea22e1bd0877ee3fe23e40c65934de039e1d729"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/selected.jsonl": {
+      "bytes": 235361,
+      "sha256": "32c81cf89227e9b8325d8d934f595ca6f746c79c8ce6e7e904ee87c4a32c178d"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/selection_audit.json": {
+      "bytes": 15323,
+      "sha256": "e198c8769049a8c2e56c3274ba48e024ef2f0b091edb5fe3dbec2a0e1053504b"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V02/selection_receipt.json": {
+      "bytes": 1558,
+      "sha256": "63597f633e83a5c70d611bdced075b77cfa15ea4c521ba52ac60ab0c76b57e66"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/camera.jsonl": {
+      "bytes": 102420,
+      "sha256": "123ff6cf657fef8d24f1573d4e19aeafc97a1304695ef2e9343603395df55855"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000000_original.png": {
+      "bytes": 1467750,
+      "sha256": "1e1db4ce9d1109448e33910099183a0f7f24b3fdb6bbb72c3f6b345a79557989"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000000_overlay.png": {
+      "bytes": 1500653,
+      "sha256": "d1469006029dab13b47295c1aad6b5ae293db6aaec5a9c98f2a863a36abe7b68"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000140_original.png": {
+      "bytes": 1467344,
+      "sha256": "70b7ca51a8782c695f689b98d8219db0657cd9b0c08018b0d8ed569893598696"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000140_overlay.png": {
+      "bytes": 1500955,
+      "sha256": "f9f24b101f364c261bfe6b454986154682621ff7727357e3903fc2ef1fbfca08"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000221_original.png": {
+      "bytes": 1491402,
+      "sha256": "fdaf3154f3b6bd1e8878f58d81926c509e082af14dd7036331cd9c9d9fc8d3a7"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000221_overlay.png": {
+      "bytes": 1524454,
+      "sha256": "779af97825bd6edae470835ea1577572f983d826fced915db9bb54b13895a64b"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000230_original.png": {
+      "bytes": 1494163,
+      "sha256": "4261b171292ffd93f646aa48f9dc452c1896b03b5a9bc7146aab28a7ae7c473b"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000230_overlay.png": {
+      "bytes": 1524496,
+      "sha256": "533c199f440372f5fe9f31eeda713f1f0ce2e84d22a755a7ae89610c12b9e60d"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000442_original.png": {
+      "bytes": 1414296,
+      "sha256": "eba4f222fd5adb5ba8962b4f81d6696e78bddd5a1d6180564d5b556fba2e4c20"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_000442_overlay.png": {
+      "bytes": 1450870,
+      "sha256": "9e2bc888f43b782eca980669f3a5e7c72dc4d3728b3f14568cb3ebef2476b516"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/review_receipt.json": {
+      "bytes": 4604,
+      "sha256": "dbaaeaa6830c0ae195dcad1d4b7656561ccbb0712c7706f7be6b2d9ba032f4b8"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/scoring.jsonl": {
+      "bytes": 1610969,
+      "sha256": "71defdb72293d9de1aa836fae73e44215a2862923bfa81de141430f7c6a3e948"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/scoring_summary.json": {
+      "bytes": 1321,
+      "sha256": "fe85aef90dd44dc2859e865b3c47cf72744a1ba26171a7ad6d046de7c01621dc"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/selected.jsonl": {
+      "bytes": 181053,
+      "sha256": "cac3042c236a0e4590e0cb6f31b5eb380b2eaaaee7b82adfa7d60737b7ae1b2e"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/selection_audit.json": {
+      "bytes": 12981,
+      "sha256": "73f2f378bf8f68371651eef4a600f1753158d0432a0249955101120291d07c85"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/run/tennis_V03/selection_receipt.json": {
+      "bytes": 1571,
+      "sha256": "4a0338325a41feb0dd30994bfda31e1648dacd9aafe9774915f0fcfe7d15bb88"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/save_visual_review.py": {
+      "bytes": 5075,
+      "sha256": "555a85168ebd472114d48ee10b5b9282fac4159ed95b8555d3a3d62d90030c10"
+    },
+    "artifacts/validation/product_execution/participant_motion_uvy_2026-10-07/visual_review.json": {
+      "bytes": 14525,
+      "sha256": "b094e8d3f15dad3d94d8fb1dc4934205f242065952fc8caf74a80f0b0fe7b8d9"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/actual_child_identity.json": {
+      "bytes": 65,
+      "sha256": "336d349ad0b4eae92dd11faa14e423d7d155c62a91cf263d3d3202b4014ec148"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/actual_child_sampled.json": {
+      "bytes": 167,
+      "sha256": "d2ac8dd651eaaccdb81655321cc91c168209c7adcd952c7b3edf52661521b47c"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/child_receipt.json": {
+      "bytes": 13108,
+      "sha256": "a034d295e5bb3204140c11757122981b7bc683334d4ed6ed8f92eac3b709b00c"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/child_stdout.txt": {
+      "bytes": 112,
+      "sha256": "45225e8d2ac6ab023c2b60f235a779b16c1112c2ac0e24d8cb97640bf2839b6d"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/golden_raw_artifact_bindings.json": {
+      "bytes": 5809,
+      "sha256": "a8f7e359ef3159c37da73c77504a30dae94744538036835adc9171f71df26ff8"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/isolated_claimed_job.json": {
+      "bytes": 510,
+      "sha256": "04068f2ccff380c637fdc0b51318d5762a4cb52dbe0e0d95acef97e521cfc9ca"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/isolated_completed_job.json": {
+      "bytes": 541,
+      "sha256": "a82f41debd14f9c5998229fd7f0ce3a9fa01df2b5561878fec0127466e389e40"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/launch_marker.json": {
+      "bytes": 126,
+      "sha256": "a62f12e3c00ffecc4fcea6b842938a6a7b5b66f5ebe2d6a57b58002ee3515139"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/media_alignment.json": {
+      "bytes": 10934,
+      "sha256": "1dbde57b8e34d5a6bdda24f72b846669e48a227a01570a467a8ca99f34d8fcbc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/origin.json": {
+      "bytes": 8036,
+      "sha256": "6066fc8c9b0415829a88ad55fe5b58a225cf8e5bddc261de252dc185ef2dad13"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/preparation.json": {
+      "bytes": 5513,
+      "sha256": "1b7205d6ffe88eb68dbe7975d30d15204536ff4be3dd9b3c00a2230d8dc2cfaf"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/protocol.json": {
+      "bytes": 176723,
+      "sha256": "457b8db7bea5e84cc4b0811d5110e1730893675b7ae1dc2df249d7661374518d"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/resource_receipt.json": {
+      "bytes": 173386,
+      "sha256": "740f9c6e8020511b3c14a4faa613d7be0e03cbbc18c7ec3efc01bd607adf88be"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/resource_samples.jsonl": {
+      "bytes": 367333,
+      "sha256": "92d1c1fdf672eec1e2faea99d3cdfd414c3e80823dfbb2ae5751e54588c11542"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/golden_report.csv": {
+      "bytes": 20239,
+      "sha256": "f29e3933a12c1182fad597ed6efcd283c1c5837f4cfc885ca345ee634c653361"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/golden_report.html": {
+      "bytes": 357044,
+      "sha256": "a5d034cf42a90f437e854853f81823b6c68f39fba2d1606a54bb31d31274afea"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/golden_result.json": {
+      "bytes": 81152,
+      "sha256": "6084d6ede01e9200e35e1948b5a389b04675c62adb0678feee1a24f3c7d08751"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/input_excerpt.json": {
+      "bytes": 6901,
+      "sha256": "4281637bf77b012e983a618ddef24e9cb5b272286f5a950717b2851d3c5a3d3c"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_original.mkv": {
+      "bytes": 13014172,
+      "sha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/.result/33b94ac4e2ca4348aa6521586d4037b4.sqlite3": {
+      "bytes": 208896,
+      "sha256": "6d65c6b9e8155a4fe834cb685e3e8a19eecedb709e1d5dbc952c0525330a8811"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/.result/current.store": {
+      "bytes": 257,
+      "sha256": "f6e9591d1754078bd13e2da747c2f0e3529f58dcf47d4337a7a39ea7a3796af1"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/annotated.mp4": {
+      "bytes": 1999055,
+      "sha256": "a4cecdb9fe85339e1b2858451ee488500236322cbfa3d09a6c7f0335daf9581a"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/annotated_web.mp4": {
+      "bytes": 633872,
+      "sha256": "70725bcba53672d690c8df5157134ed9480d89887d5e9440f4c8666a346dd9f5"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/ball_metrics.json": {
+      "bytes": 380,
+      "sha256": "368b2fbd904701c9effbe06816ad8706c0ff4f97a1cfea9f454e0f805110794a"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/camera_registration.json": {
+      "bytes": 13407,
+      "sha256": "f453131f1baa6b93c8fec5eac3068a297964226c1cb47e7ff10e4ea20637d4cc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/court_geometry.json": {
+      "bytes": 2484,
+      "sha256": "357af1d15304d1886c41dced75b3d438146e770acedb108b0a52b9713215f8f2"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/detections.json": {
+      "bytes": 6427,
+      "sha256": "90c1a61285399272d45056abef2c3639091ad450581d1f1f07ca33440abcc6b2"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/event_candidates.json": {
+      "bytes": 6581,
+      "sha256": "0356ef8dd50c2c71e2ac60d960eb9808a731f70d72d49aed417b3787c85545ce"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/event_verification_trace.json": {
+      "bytes": 15105,
+      "sha256": "1bfe8bb50b0a3910f37eeeb851953d44e17fdc25277bca845465ff4e084ca4fa"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/image_people.json": {
+      "bytes": 18564,
+      "sha256": "04db7a00c9b5c4c470421ad99731131f9dae1d4a3baefe71c4267b342be1336e"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/inference_config.yaml": {
+      "bytes": 3987,
+      "sha256": "9fdbdfc7c2e1f41c322757be65672911ffea378be7f082c34ffad77deb4215bb"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/line_calls.json": {
+      "bytes": 52,
+      "sha256": "fa7d491d967112f87286c87044592c35c1788bd0631a723210d9bf50bf076b8b"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/match_analytics.json": {
+      "bytes": 3072,
+      "sha256": "c6bb3b86f585cac4d41674d61a4ef091480cc1a9e27df39be81a81014df9e1cc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/match_events.json": {
+      "bytes": 70,
+      "sha256": "f69d880a3babc496f0eb6ae233044402708b28ed2f737305711e6df9634260ca"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/match_state.json": {
+      "bytes": 900,
+      "sha256": "1c44b61e6ec1590b5eec1000ace816e2e52701a885812917a2ede1049a41e953"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/media_metadata.json": {
+      "bytes": 1330,
+      "sha256": "d7d0c17e53c7f4082a138b30e4e06e6e44043add420d009c7dd2a02965927edf"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/media_source.json": {
+      "bytes": 975,
+      "sha256": "e81c59c8d131c3e08364f0e5ed58c7a02e526f67c961a81eb684e5992a31b4fe"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/metrics.json": {
+      "bytes": 358,
+      "sha256": "df8f74ec2301ccad7920cb773ba2c8521c41fd04219a677fbc8f0ec6c4dc7c9d"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/normalization_frame_stats.txt": {
+      "bytes": 713,
+      "sha256": "7d1d2c0a78e3277ef3e7c25c737030f72bf241e0e65b8378bd4ec7f8de52930d"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/patch_persistence_audit.json": {
+      "bytes": 5727,
+      "sha256": "6a932e5c2428afdc2f287c3ffcffd7868aff2a29e59f5be4a0a47e0340abc830"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/pixel_motion_audit.json": {
+      "bytes": 9809,
+      "sha256": "52868e1564a22115b9aabfc90c3b71ed0fc31259ae5edbbecbffcedc3cb442b3"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/player_metrics.json": {
+      "bytes": 394,
+      "sha256": "ef4720f7b43d3187cb156dfac817897db93455f2693083c133f3dcd48b632879"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/player_motion.json": {
+      "bytes": 24334,
+      "sha256": "5b4585ec39d8aa08df41bf32654af7dc0fcec5c71e4754bc38e428272f117077"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/point_analytics.json": {
+      "bytes": 48,
+      "sha256": "0978cfbfa309c9e298cc3971484c4e123aa9c52937a08e1cdd8c68c2301d3ee3"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/processing.log": {
+      "bytes": 6670,
+      "sha256": "c2116397935be5a75215c26947db5d321195b01daacd56be368b9f508c5c7393"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/racket_tracking.json": {
+      "bytes": 15416,
+      "sha256": "0508bc867033c4fc2aa2cd1a6d237f2857438052557ac9cb5624759acb69249e"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/rallies.json": {
+      "bytes": 49,
+      "sha256": "ec85fc43dede16711bb0144befec822d7ab9d46a7b199126865e110a84f54469"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/result.json": {
+      "bytes": 81152,
+      "sha256": "6084d6ede01e9200e35e1948b5a389b04675c62adb0678feee1a24f3c7d08751"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/run_config.yaml": {
+      "bytes": 3987,
+      "sha256": "9fdbdfc7c2e1f41c322757be65672911ffea378be7f082c34ffad77deb4215bb"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/score_history.json": {
+      "bytes": 55,
+      "sha256": "d09c631239638299b7581ec71d0958f38764e75ca7d0e8ed641b2b95a0ba35a1"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/scoring_events.json": {
+      "bytes": 56,
+      "sha256": "1b921dbe26f6cbc43c934fcc878167363cf532e42498a2bfc891100741a8c1dc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/shot_events.json": {
+      "bytes": 53,
+      "sha256": "358874694b93c09a574a05eb3b208fa4dd1d0effe467c406a4fb83edebc94442"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/source.mp4": {
+      "bytes": 787504,
+      "sha256": "824e0c7cb09c4261cef16dd5264f1bcf73cf192a1b7bcc61e399d357176aa3cf"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/source_frame_mapping.jsonl": {
+      "bytes": 10019,
+      "sha256": "934c86e2cdf17f757bcdde786ae5292dae5b0780be373151ca14eab94bf6e479"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/stationary_candidate_audit.json": {
+      "bytes": 1619,
+      "sha256": "a2b1dafa9bdb8cf4c9991f79b468d1ba768797cf79e86c42f93591c4ebcf7127"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/summary.json": {
+      "bytes": 1421,
+      "sha256": "8ef1462b6bef740fa6cadc964ad0d16cab86e5772bc7ed105ac46dd0cd7b55df"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/temporal_detour_audit.json": {
+      "bytes": 179,
+      "sha256": "0cb4846fe9b3844a9b38d5a637ad13ed3e57fd441f534d598535b986c74be087"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/temporal_spacing_audit.json": {
+      "bytes": 264,
+      "sha256": "5557784ff362e48e0814d4858dc064eef575a6081b0044eb38ccf26818fc5fa8"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses/match_3e6a9f25490142bf946b47e55d3b92b5/trajectories.json": {
+      "bytes": 5024,
+      "sha256": "710540f6640d19cda2f119f599712a5166bded05a81e14e197427c729769f3ce"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/analyses.sqlite3": {
+      "bytes": 40960,
+      "sha256": "d952a883b8e208de567cb047685b4459c586f2fd8b574b0ee6048f32b2c2c904"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/isolated_product/uploads/match_3e6a9f25490142bf946b47e55d3b92b5/original.mkv": {
+      "bytes": 13014172,
+      "sha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/annotated.mp4": {
+      "bytes": 1999055,
+      "sha256": "a4cecdb9fe85339e1b2858451ee488500236322cbfa3d09a6c7f0335daf9581a"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/annotated_web.mp4": {
+      "bytes": 633872,
+      "sha256": "70725bcba53672d690c8df5157134ed9480d89887d5e9440f4c8666a346dd9f5"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/ball_metrics.json": {
+      "bytes": 380,
+      "sha256": "368b2fbd904701c9effbe06816ad8706c0ff4f97a1cfea9f454e0f805110794a"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/camera_registration.json": {
+      "bytes": 13407,
+      "sha256": "f453131f1baa6b93c8fec5eac3068a297964226c1cb47e7ff10e4ea20637d4cc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/court_geometry.json": {
+      "bytes": 2484,
+      "sha256": "357af1d15304d1886c41dced75b3d438146e770acedb108b0a52b9713215f8f2"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/detections.json": {
+      "bytes": 6427,
+      "sha256": "90c1a61285399272d45056abef2c3639091ad450581d1f1f07ca33440abcc6b2"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/event_candidates.json": {
+      "bytes": 6581,
+      "sha256": "0356ef8dd50c2c71e2ac60d960eb9808a731f70d72d49aed417b3787c85545ce"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/event_verification_trace.json": {
+      "bytes": 15105,
+      "sha256": "1bfe8bb50b0a3910f37eeeb851953d44e17fdc25277bca845465ff4e084ca4fa"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/image_people.json": {
+      "bytes": 18564,
+      "sha256": "04db7a00c9b5c4c470421ad99731131f9dae1d4a3baefe71c4267b342be1336e"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/inference_config.yaml": {
+      "bytes": 3987,
+      "sha256": "9fdbdfc7c2e1f41c322757be65672911ffea378be7f082c34ffad77deb4215bb"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/line_calls.json": {
+      "bytes": 52,
+      "sha256": "fa7d491d967112f87286c87044592c35c1788bd0631a723210d9bf50bf076b8b"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/match_analytics.json": {
+      "bytes": 3072,
+      "sha256": "c6bb3b86f585cac4d41674d61a4ef091480cc1a9e27df39be81a81014df9e1cc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/match_events.json": {
+      "bytes": 70,
+      "sha256": "f69d880a3babc496f0eb6ae233044402708b28ed2f737305711e6df9634260ca"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/match_state.json": {
+      "bytes": 900,
+      "sha256": "1c44b61e6ec1590b5eec1000ace816e2e52701a885812917a2ede1049a41e953"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/media_metadata.json": {
+      "bytes": 1330,
+      "sha256": "d7d0c17e53c7f4082a138b30e4e06e6e44043add420d009c7dd2a02965927edf"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/media_source.json": {
+      "bytes": 975,
+      "sha256": "e81c59c8d131c3e08364f0e5ed58c7a02e526f67c961a81eb684e5992a31b4fe"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/metrics.json": {
+      "bytes": 358,
+      "sha256": "df8f74ec2301ccad7920cb773ba2c8521c41fd04219a677fbc8f0ec6c4dc7c9d"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/normalization_frame_stats.txt": {
+      "bytes": 713,
+      "sha256": "7d1d2c0a78e3277ef3e7c25c737030f72bf241e0e65b8378bd4ec7f8de52930d"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/patch_persistence_audit.json": {
+      "bytes": 5727,
+      "sha256": "6a932e5c2428afdc2f287c3ffcffd7868aff2a29e59f5be4a0a47e0340abc830"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/pixel_motion_audit.json": {
+      "bytes": 9809,
+      "sha256": "52868e1564a22115b9aabfc90c3b71ed0fc31259ae5edbbecbffcedc3cb442b3"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/player_metrics.json": {
+      "bytes": 394,
+      "sha256": "ef4720f7b43d3187cb156dfac817897db93455f2693083c133f3dcd48b632879"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/player_motion.json": {
+      "bytes": 24334,
+      "sha256": "5b4585ec39d8aa08df41bf32654af7dc0fcec5c71e4754bc38e428272f117077"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/point_analytics.json": {
+      "bytes": 48,
+      "sha256": "0978cfbfa309c9e298cc3971484c4e123aa9c52937a08e1cdd8c68c2301d3ee3"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/processing.log": {
+      "bytes": 6670,
+      "sha256": "c2116397935be5a75215c26947db5d321195b01daacd56be368b9f508c5c7393"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/racket_tracking.json": {
+      "bytes": 15416,
+      "sha256": "0508bc867033c4fc2aa2cd1a6d237f2857438052557ac9cb5624759acb69249e"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/rallies.json": {
+      "bytes": 49,
+      "sha256": "ec85fc43dede16711bb0144befec822d7ab9d46a7b199126865e110a84f54469"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/run_config.yaml": {
+      "bytes": 3987,
+      "sha256": "9fdbdfc7c2e1f41c322757be65672911ffea378be7f082c34ffad77deb4215bb"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/score_history.json": {
+      "bytes": 55,
+      "sha256": "d09c631239638299b7581ec71d0958f38764e75ca7d0e8ed641b2b95a0ba35a1"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/scoring_events.json": {
+      "bytes": 56,
+      "sha256": "1b921dbe26f6cbc43c934fcc878167363cf532e42498a2bfc891100741a8c1dc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/shot_events.json": {
+      "bytes": 53,
+      "sha256": "358874694b93c09a574a05eb3b208fa4dd1d0effe467c406a4fb83edebc94442"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/source.mp4": {
+      "bytes": 787504,
+      "sha256": "824e0c7cb09c4261cef16dd5264f1bcf73cf192a1b7bcc61e399d357176aa3cf"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/source_frame_mapping.jsonl": {
+      "bytes": 10019,
+      "sha256": "934c86e2cdf17f757bcdde786ae5292dae5b0780be373151ca14eab94bf6e479"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/stationary_candidate_audit.json": {
+      "bytes": 1619,
+      "sha256": "a2b1dafa9bdb8cf4c9991f79b468d1ba768797cf79e86c42f93591c4ebcf7127"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/temporal_detour_audit.json": {
+      "bytes": 179,
+      "sha256": "0cb4846fe9b3844a9b38d5a637ad13ed3e57fd441f534d598535b986c74be087"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/temporal_spacing_audit.json": {
+      "bytes": 264,
+      "sha256": "5557784ff362e48e0814d4858dc064eef575a6081b0044eb38ccf26818fc5fa8"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/raw_artifact_view/trajectories.json": {
+      "bytes": 5024,
+      "sha256": "710540f6640d19cda2f119f599712a5166bded05a81e14e197427c729769f3ce"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/reopened_report.csv": {
+      "bytes": 20239,
+      "sha256": "f29e3933a12c1182fad597ed6efcd283c1c5837f4cfc885ca345ee634c653361"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/reopened_report.html": {
+      "bytes": 357044,
+      "sha256": "a5d034cf42a90f437e854853f81823b6c68f39fba2d1606a54bb31d31274afea"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/reopened_result.json": {
+      "bytes": 81152,
+      "sha256": "6084d6ede01e9200e35e1948b5a389b04675c62adb0678feee1a24f3c7d08751"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/ultralytics_settings/Ultralytics/persistent_cache.json": {
+      "bytes": 43,
+      "sha256": "89f37b31597b20533266a7d65c22dbc1107144e56e9a454e24e5a6e02a569cf6"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/run/ultralytics_settings/Ultralytics/settings.json": {
+      "bytes": 592,
+      "sha256": "86f92b99f2122cc71fc82abd07437b3e256a45c0a4662e632c04b24b6a95f292"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/running_process.json": {
+      "bytes": 453,
+      "sha256": "cf1d648a6128da64f710752fa0642dfa1743e71b2a77beee2d119eba28c9ce89"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_retry_2026-10-07/saved_result_comparison.json": {
+      "bytes": 2377,
+      "sha256": "2c783ff3f02e6e9527fdd5cab989f5c985d6fffd0c316776fcf1652ba5910641"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/append_progress.py": {
+      "bytes": 5733,
+      "sha256": "4ce4514df285b21402fd55919a56a7c609b7076bd5727f1aa30ac80b6741cbb8"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/check_current.py": {
+      "bytes": 3131,
+      "sha256": "8c4b6595f35843b65525dd55225de54836543b270a2265e106d837e9223ac6be"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/check_launch.py": {
+      "bytes": 1314,
+      "sha256": "232bcb199a24b90b812330563e0487e293379e6ad0e6b7fd0a6ac3ea795da6f5"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/current_status.json": {
+      "bytes": 1244,
+      "sha256": "a9e4d260000c55c015205b542674019e183f735ec311938547efcc07f2da476f"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/finalize.py": {
+      "bytes": 6572,
+      "sha256": "f7f8678f70b6217d3afee1c4c6013b744ef19da62af0ab693a02068988467f9c"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/hidden_console_runtime.py": {
+      "bytes": 3673,
+      "sha256": "05697c9292ae1d7b3930789d38391272a435f5576ca71de43d62a05db197ace7"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/hidden_runtime_review.json": {
+      "bytes": 7293,
+      "sha256": "4b031c52df7b9e710a206efbbde8dfef0b4d0e5e530196346cfdf15f71e3a5e3"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/inspect_hidden_runtime.py": {
+      "bytes": 9007,
+      "sha256": "b91ee3ae9fc42e5b8cb04d9eb16f2fc5f62f6371c0a6cbd9ea461d765018cee4"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/inspect_worker_observations.py": {
+      "bytes": 1966,
+      "sha256": "548629e63bafd5d863f92aae417f330fa7ab136ae27fa7dc4059f40f7c9758f2"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/launch_ready.json": {
+      "bytes": 182,
+      "sha256": "b238ba2a9cba74ae028510931847dd5e0a7a2fcba3935e749994a96d1cc61ae6"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/progress_append_receipt.json": {
+      "bytes": 506,
+      "sha256": "ea3f2a3be94608f5da4f79b6795d1928591394078315790093ead798dbefbd43"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/restore_runtime.py": {
+      "bytes": 2507,
+      "sha256": "bb203804d0928efcc74c6557c024147c7f878204b37c2f537d59b47bee541943"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/restore_runtime_v2.py": {
+      "bytes": 2796,
+      "sha256": "31939b7274a514bedd53e8411003370d4c8cc1e19d9206a152b63ce4ab77c9f1"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/review_v4_source.py": {
+      "bytes": 2743,
+      "sha256": "cea591c9efa059eda255b5440b82af9777837d7be915928c800bd37a8e8f64b3"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/review_worker.py": {
+      "bytes": 5630,
+      "sha256": "6722e062dcbc7a49b290b8b5d6ee4e9f1d22992ed7cab954ddb9db94b54d8f3b"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/runtime_preflight.json": {
+      "bytes": 86657,
+      "sha256": "0993ac27d484f51d0a07af976645d1446f3a813400016e98d21b2c65fbbdfb36"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/runtime_preflight_wrapper.json": {
+      "bytes": 1089,
+      "sha256": "afb137b22c5e886be280bcb216873a1672ca4f9d23e846182c9007c7e9ade9f4"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/runtime_verification_failure.json": {
+      "bytes": 770,
+      "sha256": "8fd9fcb1d789b1aa960a04b2216d255f5eb1fdf7e76e470d4a808743016b0f36"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/runtime_verification_v2.json": {
+      "bytes": 159366,
+      "sha256": "c9b1bd832e8a70a91d8b9a6120ccda315003d30fff00d57f8a1e0bcad5b08794"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/runtime_verification_v2_wrapper.json": {
+      "bytes": 1642,
+      "sha256": "1b9767b14281cf0355b6a3d36545c2d3526c7cff3d8d774f4b9df223ac8c2fe1"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/server_launch.json": {
+      "bytes": 402,
+      "sha256": "da9f20e4be01920d8ea722345628488b86eb16bda600d427664d40edac3793f3"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/start_server.ps1": {
+      "bytes": 1474,
+      "sha256": "1652ca4b2b920fabca33d30ff0f09e6efbeab8d2b183defbbb3a2ff6ccabc6e3"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/TENNIS_EXECUTION_PROGRESS_before.md": {
+      "bytes": 106000,
+      "sha256": "568600bf45df94aa12753895831f513aeed7a353e9ed431985cd9b48eb6e7e75"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/v4_source_review.json": {
+      "bytes": 1208,
+      "sha256": "bd55a62ddc16520cd410af76e260545767d85f66f437b8636b1b3294c87fd1dc"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/worker_observation_coverage.json": {
+      "bytes": 1366,
+      "sha256": "b42d3fccdc37c30cd6bb3edaef861f4fbfcab1c1369da4748f89eb35b76ec8ae"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/worker_review.json": {
+      "bytes": 1484,
+      "sha256": "6074148c94bcaf14315348dc3d3db8378f38b71ceafac1d4c0da2be125e0cabc"
+    },
+    "docs/experiments/PARTICIPANT_MOTION_UVY_2026-10-07.md": {
+      "bytes": 6941,
+      "sha256": "c7440e3d86c840ca7774ff5ea73cd1beb8974c8abfa5fca289eea26af80f16f0"
+    },
+    "docs/experiments/WORKER_STORAGE_SMOKE_2026-10-07.md": {
+      "bytes": 4308,
+      "sha256": "291cdd905bf8efb710fedbade0aedcd4b848bb7d34358e65b26738a5022178fe"
+    },
+    "docs/plans/TENNIS_EXECUTION_PROGRESS.md": {
+      "bytes": 109229,
+      "sha256": "da41eb69aef17bc3b4d9b153b5004404fb9225c45ec563c8bb23c6732534d428"
+    },
+    "scripts/audit/verify_pose_racket_storage_worker_smoke_v4.py": {
+      "bytes": 63518,
+      "sha256": "6cad723439512a9feb309a42bf74d34f361e8d1749f3d7531df3fa0a9aab2015"
+    }
+  },
+  "scope": "Successful actual short current-revision worker storage verification, exact existing-result website restoration, and completed audited rejection of a development participant selector. Full original prompt remains active and incomplete."
+}

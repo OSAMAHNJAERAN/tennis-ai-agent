@@ -1,0 +1,330 @@
+{
+  "verifiedAt": "2026-10-01T14:17:26.033345+00:00",
+  "passed": false,
+  "scope": "30-frame, half-second software smoke only; no full-match, accuracy or public-deployment qualification.",
+  "interpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "isolatedEnvironment": true,
+  "configuration": "configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml",
+  "configurationSha256": "84505e944f2650cbe0edc490e4123e52137dc0a5af5fd6013e47acdf4ba030b6",
+  "inputEvidence": "artifacts/validation/product_installation/pipeline_smoke_30_frames/input_excerpt.json",
+  "inputSha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552",
+  "inferenceRun": true,
+  "networkAttempts": [
+    "('2404:6800:4001:c01::66', 443, 0, 0)"
+  ],
+  "productionQualified": false,
+  "publicDeploymentPermissionsVerified": false,
+  "productStatePublished": false,
+  "loadedAssets": {
+    "court": {
+      "parameters": 23565404,
+      "devices": [
+        "cuda"
+      ]
+    },
+    "personAndRacket": {
+      "parameters": 20114688,
+      "devices": [
+        "cpu"
+      ]
+    },
+    "ball": {
+      "parameters": 1481427,
+      "devices": [
+        "cuda"
+      ]
+    },
+    "pose": {
+      "parameters": 9918238,
+      "devices": [
+        "cpu"
+      ]
+    }
+  },
+  "cudaAvailable": true,
+  "modelLoadCompleted": true,
+  "pipelineResult": {
+    "status": "success",
+    "phase": "phase_6_shot_analytics",
+    "processing_fps": 2.2590017171261967,
+    "total_time_seconds": 13.280202388763428,
+    "shots_linked": 0,
+    "match_analytics": {
+      "match_id": "match_phase6_001",
+      "format": "BEST_OF_3",
+      "match_complete": false,
+      "winner_id": null,
+      "score_summary": null,
+      "overview": {
+        "total_points_played": null,
+        "total_shots_recorded": 0,
+        "live_shots_recorded": 0,
+        "dead_ball_shots_suppressed": 0,
+        "total_rallies": 0,
+        "average_rally_length": null,
+        "longest_rally_length": null
+      },
+      "players": {
+        "player_1": {
+          "id": 1,
+          "movement": {
+            "distance_meters": null,
+            "average_speed_kmh": null
+          },
+          "shots": {
+            "total": 0,
+            "forehand": 0,
+            "backhand": 0,
+            "serve": 0,
+            "unknown": 0
+          },
+          "direction": {
+            "cross_court": 0,
+            "down_the_line": 0,
+            "middle": 0,
+            "unknown": 0
+          },
+          "landing_zones": {
+            "SHORT_LEFT": 0,
+            "SHORT_CENTER": 0,
+            "SHORT_RIGHT": 0,
+            "MID_LEFT": 0,
+            "MID_CENTER": 0,
+            "MID_RIGHT": 0,
+            "DEEP_LEFT": 0,
+            "DEEP_CENTER": 0,
+            "DEEP_RIGHT": 0,
+            "OUT_OF_BOUNDS": 0
+          },
+          "court_occupancy_heatmap": []
+        },
+        "player_2": {
+          "id": 2,
+          "movement": {
+            "distance_meters": null,
+            "average_speed_kmh": null
+          },
+          "shots": {
+            "total": 0,
+            "forehand": 0,
+            "backhand": 0,
+            "serve": 0,
+            "unknown": 0
+          },
+          "direction": {
+            "cross_court": 0,
+            "down_the_line": 0,
+            "middle": 0,
+            "unknown": 0
+          },
+          "landing_zones": {
+            "SHORT_LEFT": 0,
+            "SHORT_CENTER": 0,
+            "SHORT_RIGHT": 0,
+            "MID_LEFT": 0,
+            "MID_CENTER": 0,
+            "MID_RIGHT": 0,
+            "DEEP_LEFT": 0,
+            "DEEP_CENTER": 0,
+            "DEEP_RIGHT": 0,
+            "OUT_OF_BOUNDS": 0
+          },
+          "court_occupancy_heatmap": []
+        }
+      },
+      "serve_analytics": {
+        "server_id": 2,
+        "first_serves_attempted": 0,
+        "first_serves_in": 0,
+        "first_serves_faulted": 0,
+        "first_serve_percentage": 0.0,
+        "second_serves_attempted": 0,
+        "second_serves_in": 0,
+        "double_faults": 0,
+        "placement_distribution": {
+          "WIDE": 0,
+          "BODY": 0,
+          "T": 0,
+          "UNKNOWN": 0
+        }
+      },
+      "ball_landing_heatmap": [],
+      "ball_speed_analytics": {
+        "available": false,
+        "reason": "AIRBORNE_3D_POSITION_AND_INDEPENDENT_SPEED_REFERENCE_UNAVAILABLE",
+        "average_speed_kmh": null,
+        "maximum_speed_kmh": null,
+        "serve_speed_kmh": null,
+        "segments_count": 0,
+        "court_projection_semantics": "VIEWING_RAY_INTERSECTION_WITH_GROUND_PLANE"
+      },
+      "authoritative_events_enabled": false,
+      "movement_measurement": {
+        "source": "CALIBRATED_BBOX_BOTTOM_CENTER_PROXY",
+        "distance_estimator": "INTEGRAL_OF_BACKWARD_WINDOW_LEAST_SQUARES_SPEED",
+        "independent_speed_accuracy_validated": false
+      },
+      "event_statistics_scope": "EVENT_AUTHORITY_WITHHELD; COUNTS_DESCRIBE_EXPORTED_RECORDS_ONLY"
+    }
+  },
+  "exportedJsonFiles": [
+    "ball_metrics.json",
+    "camera_registration.json",
+    "court_geometry.json",
+    "detections.json",
+    "event_candidates.json",
+    "event_verification_trace.json",
+    "image_people.json",
+    "line_calls.json",
+    "match_analytics.json",
+    "match_events.json",
+    "match_state.json",
+    "metrics.json",
+    "patch_persistence_audit.json",
+    "pixel_motion_audit.json",
+    "player_metrics.json",
+    "player_motion.json",
+    "point_analytics.json",
+    "racket_tracking.json",
+    "rallies.json",
+    "score_history.json",
+    "scoring_events.json",
+    "shot_events.json",
+    "stationary_candidate_audit.json",
+    "temporal_detour_audit.json",
+    "temporal_spacing_audit.json",
+    "trajectories.json"
+  ],
+  "exportedJsonCount": 26,
+  "metrics": {
+    "schema_version": "1.0",
+    "processing_fps": 2.2590017171261967,
+    "total_time_s": 13.280202388763428,
+    "total_frames": 30,
+    "shots_linked": 0,
+    "rallies": 0,
+    "ball_backend": "wasb",
+    "tracking_strategy": "model_top1",
+    "authoritative_events_enabled": false,
+    "production_qualified": false,
+    "frame_storage": "8_FRAME_DECODE_CACHE"
+  },
+  "detectionFrames": 30,
+  "annotatedDecodedFrames": 30,
+  "annotatedAverageFrameRate": "60/1",
+  "outputArtifacts": {
+    "annotated.mp4": {
+      "bytes": 2097362,
+      "sha256": "aa38e454920d77eff1cb4cc2665b1a96b3a5a8610a19450daf8a4bb6c22eff03"
+    },
+    "ball_metrics.json": {
+      "bytes": 380,
+      "sha256": "368b2fbd904701c9effbe06816ad8706c0ff4f97a1cfea9f454e0f805110794a"
+    },
+    "camera_registration.json": {
+      "bytes": 17285,
+      "sha256": "0a6951e0e598e7d092688b2c8e85a7878f800da3da59e511408443eb4072b267"
+    },
+    "court_geometry.json": {
+      "bytes": 2486,
+      "sha256": "9a219213285046fdeb8096b76e93154db650a281af282172af411e3ec67c1af7"
+    },
+    "detections.json": {
+      "bytes": 10342,
+      "sha256": "df5d38d89298ed9f6451de2f1598ca89f63e5ef24bbd9f92fbd953224083421e"
+    },
+    "event_candidates.json": {
+      "bytes": 5000,
+      "sha256": "77584ae252701fb3b7603763bc6afa83d65b84fabecfca98285069a34bee6d10"
+    },
+    "event_verification_trace.json": {
+      "bytes": 12238,
+      "sha256": "07efb44c16830fd7801cecbbd8409d893f5c27cc2d545d6b6c5114807f3e71a0"
+    },
+    "image_people.json": {
+      "bytes": 33686,
+      "sha256": "8f86fdfafb10293927c797890533e051f9cfe38413c59be6a5d8f1d72dc37d05"
+    },
+    "line_calls.json": {
+      "bytes": 52,
+      "sha256": "fa7d491d967112f87286c87044592c35c1788bd0631a723210d9bf50bf076b8b"
+    },
+    "match_analytics.json": {
+      "bytes": 3050,
+      "sha256": "c99b2f252698e173b82f688fc6b1ba289f77bf8e8bb52d56a2922840880b46a9"
+    },
+    "match_events.json": {
+      "bytes": 70,
+      "sha256": "f69d880a3babc496f0eb6ae233044402708b28ed2f737305711e6df9634260ca"
+    },
+    "match_state.json": {
+      "bytes": 878,
+      "sha256": "c322ac3bcfcf3efe433253294d2724237ae3dfef0df2889ddacddc59c0650f5d"
+    },
+    "metrics.json": {
+      "bytes": 358,
+      "sha256": "80a0c4f807de30627ba1a0b08bbc32669e8f2bf2a0b918b63af5efd22f636db5"
+    },
+    "patch_persistence_audit.json": {
+      "bytes": 8619,
+      "sha256": "36de8f451fd415129ab6fe64bbad7cd38ab4665a6e2dfa61955aa0fe4f496ff1"
+    },
+    "pixel_motion_audit.json": {
+      "bytes": 19924,
+      "sha256": "b4a8279fd08dba3c53608e49e7b226930775e3f24dd273a897cbba00d029d5f4"
+    },
+    "player_metrics.json": {
+      "bytes": 394,
+      "sha256": "ef4720f7b43d3187cb156dfac817897db93455f2693083c133f3dcd48b632879"
+    },
+    "player_motion.json": {
+      "bytes": 24334,
+      "sha256": "5b4585ec39d8aa08df41bf32654af7dc0fcec5c71e4754bc38e428272f117077"
+    },
+    "point_analytics.json": {
+      "bytes": 48,
+      "sha256": "0978cfbfa309c9e298cc3971484c4e123aa9c52937a08e1cdd8c68c2301d3ee3"
+    },
+    "racket_tracking.json": {
+      "bytes": 15416,
+      "sha256": "0508bc867033c4fc2aa2cd1a6d237f2857438052557ac9cb5624759acb69249e"
+    },
+    "rallies.json": {
+      "bytes": 49,
+      "sha256": "ec85fc43dede16711bb0144befec822d7ab9d46a7b199126865e110a84f54469"
+    },
+    "run_config.yaml": {
+      "bytes": 3965,
+      "sha256": "23223f1c4679b0e36634fa3a3ecc9e701365799474a9a65f6684076409eeff09"
+    },
+    "score_history.json": {
+      "bytes": 55,
+      "sha256": "d09c631239638299b7581ec71d0958f38764e75ca7d0e8ed641b2b95a0ba35a1"
+    },
+    "scoring_events.json": {
+      "bytes": 56,
+      "sha256": "1b921dbe26f6cbc43c934fcc878167363cf532e42498a2bfc891100741a8c1dc"
+    },
+    "shot_events.json": {
+      "bytes": 53,
+      "sha256": "358874694b93c09a574a05eb3b208fa4dd1d0effe467c406a4fb83edebc94442"
+    },
+    "stationary_candidate_audit.json": {
+      "bytes": 2536,
+      "sha256": "d74ed22dd2aa1c445388fc75911a50c551a8c555b13553a6f6f4825d93edfd75"
+    },
+    "temporal_detour_audit.json": {
+      "bytes": 179,
+      "sha256": "0cb4846fe9b3844a9b38d5a637ad13ed3e57fd441f534d598535b986c74be087"
+    },
+    "temporal_spacing_audit.json": {
+      "bytes": 264,
+      "sha256": "5557784ff362e48e0814d4858dc064eef575a6081b0044eb38ccf26818fc5fa8"
+    },
+    "trajectories.json": {
+      "bytes": 7788,
+      "sha256": "bfc4323acf1d3c6d1fde05be528325dc5824a9c4f2509269d6ce3b7d6c284c9d"
+    }
+  },
+  "elapsedSeconds": 29.047464899995248
+}

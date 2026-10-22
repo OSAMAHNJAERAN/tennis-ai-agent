@@ -1,0 +1,579 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-16T00:49:17.9490183Z",
+  "status": "TEN_ORIGINAL_NATIVE_OVERLAYS_ACTUALLY_VIEWED_AGENT_DEVELOPMENT_REVIEW",
+  "diagnostic": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\diagnostic.json",
+    "sha256": "a180ee2f713c6cb8e342216e8e9454740a6f9032fc59f471cedd89b05da3b38e"
+  },
+  "reviewer": "AGENT /root/court_wave_continue",
+  "root_actually_viewed_these_images": false,
+  "independent_human_review": false,
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "training_performed": false,
+  "checkpoint_promoted": false,
+  "thresholds_changed": false,
+  "annotations_changed": false,
+  "scope": "Rows10-19 only, original1920x1080 overlays. Green reviewed target, orange returned proposal. Existing diagnostic measurements copied unchanged; observations do not establish full-frame precision or false alarms per minute.",
+  "counts": {
+    "images_actually_viewed": 10,
+    "target_matches": 3,
+    "target_misses": 7,
+    "zero_returned": 1,
+    "near_target_box_iou_failure": 1,
+    "frames_with_scoreboard_dot_proposal": 6
+  },
+  "patterns": [
+    "Tiny far-court targets are repeatedly missed.",
+    "All six Stockholm frames contain a proposal on the yellow scoreboard server dot; target matching succeeds in only one of those six.",
+    "Elongated near-court blur can have a nearby center yet fail the frozen box IoU criterion.",
+    "Bright far-left Dubai back-wall graphic/clock proposals coexist with target misses or matches.",
+    "Model confidence is not calibrated detection correctness. No inference threshold or target box was adjusted."
+  ],
+  "rows": [
+    {
+      "id": "positive_0428",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000251.png",
+        "sha256": "92039590afd5f9359ba4b57567210ae80e9ec13dbb4ce467c148b9a59f72974d"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0428.png",
+        "sha256": "e98661a069ab20d1b0eb407f80532bfc399540074e9456faf7b7379d963561da"
+      },
+      "source_id": "match196",
+      "frame_index": 251,
+      "source_pts": 64256,
+      "source_time_base": "1/15360",
+      "target_box": [
+        1100,
+        231,
+        1105,
+        237
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 0,
+        "matched_target_at_iou05": false,
+        "matched_candidate_id": null,
+        "unmatched_or_duplicate_candidates": 0,
+        "maximum_iou": 0.0,
+        "maximum_iou_candidate_id": null,
+        "confidence_at_maximum_iou": null,
+        "nearest_candidate_center_error_native_px": null,
+        "nearest_candidate_id": null,
+        "nearest_candidate_confidence": null,
+        "matched_candidate_center_error_native_px": null,
+        "candidate_target_assessments": []
+      },
+      "visual_category": "ZERO_RETURNED",
+      "visual_findings": "Tiny target just left of the far player lower body at x1102.5,y234; no model proposals returned.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0435",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000339.png",
+        "sha256": "9c30edeea52fb8058729e31901d1b3f9eb647286a6df445790c56925933e6d62"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0435.png",
+        "sha256": "5228033b53686ffda6dd1a6718f64ec10e7372d6dedb324b50f334ea7ffda335"
+      },
+      "source_id": "match196",
+      "frame_index": 339,
+      "source_pts": 86784,
+      "source_time_base": "1/15360",
+      "target_box": [
+        1216,
+        264,
+        1224,
+        280
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 1,
+        "matched_target_at_iou05": true,
+        "matched_candidate_id": "positive_0435:t2:p000",
+        "unmatched_or_duplicate_candidates": 0,
+        "maximum_iou": 0.5688735044795284,
+        "maximum_iou_candidate_id": "positive_0435:t2:p000",
+        "confidence_at_maximum_iou": 0.04688512906432152,
+        "nearest_candidate_center_error_native_px": 2.170203099120098,
+        "nearest_candidate_id": "positive_0435:t2:p000",
+        "nearest_candidate_confidence": 0.04688512906432152,
+        "matched_candidate_center_error_native_px": 2.170203099120098,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0435:t2:p000",
+            "target_iou": 0.5688735044795284,
+            "one_to_one_match": true,
+            "visible_extent_center_error_native_px": 2.170203099120098
+          }
+        ]
+      },
+      "visual_category": "MATCHED_TARGET",
+      "visual_findings": "Vertical visible ball extent at far baseline right, x1220,y272; orange proposal overlaps reviewed target.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0443",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000449.png",
+        "sha256": "391555ce0aecb5c6ed89e1324953856ad54524dce20b7c16002e9f9a478ec047"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0443.png",
+        "sha256": "30af05154f57998e269835022906dfb6d68a3d52896467834fd35bccc16b1470"
+      },
+      "source_id": "match196",
+      "frame_index": 449,
+      "source_pts": 114944,
+      "source_time_base": "1/15360",
+      "target_box": [
+        806,
+        224,
+        810,
+        231
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 2,
+        "matched_target_at_iou05": false,
+        "matched_candidate_id": null,
+        "unmatched_or_duplicate_candidates": 2,
+        "maximum_iou": 0.0,
+        "maximum_iou_candidate_id": "positive_0443:t0:p000",
+        "confidence_at_maximum_iou": 0.08238780498504639,
+        "nearest_candidate_center_error_native_px": 59.40563267603492,
+        "nearest_candidate_id": "positive_0443:t1:p000",
+        "nearest_candidate_confidence": 0.011258167214691639,
+        "matched_candidate_center_error_native_px": null,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0443:t0:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 379.52055193447825
+          },
+          {
+            "candidate_id": "positive_0443:t1:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 59.40563267603492
+          }
+        ]
+      },
+      "visual_category": "DISTANT_PROPOSALS_TARGET_MISSED",
+      "visual_findings": "Tiny far-player-side target at x808,y227.5 is missed. One proposal lies on the bright far-left back-wall graphic; nearest other proposal lies by the far player lower leg/shoe. Object identities outside the target remain diagnostic visual descriptions only.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0451",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000548.png",
+        "sha256": "8e3d5295484c5a8d8b33ad7ec583de961466488bd588d742c48114c77cd9ea0c"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0451.png",
+        "sha256": "e3aac45714f6b1993041155f0583dae612f4483dd6f5285fa39edc35ab47a01d"
+      },
+      "source_id": "match196",
+      "frame_index": 548,
+      "source_pts": 140288,
+      "source_time_base": "1/15360",
+      "target_box": [
+        984,
+        369,
+        996,
+        384
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 3,
+        "matched_target_at_iou05": true,
+        "matched_candidate_id": "positive_0451:t1:p000",
+        "unmatched_or_duplicate_candidates": 2,
+        "maximum_iou": 0.7108528740405634,
+        "maximum_iou_candidate_id": "positive_0451:t1:p000",
+        "confidence_at_maximum_iou": 0.4951302111148834,
+        "nearest_candidate_center_error_native_px": 1.0673391626844,
+        "nearest_candidate_id": "positive_0451:t1:p000",
+        "nearest_candidate_confidence": 0.4951302111148834,
+        "matched_candidate_center_error_native_px": 1.0673391626844,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0451:t1:p000",
+            "target_iou": 0.7108528740405634,
+            "one_to_one_match": true,
+            "visible_extent_center_error_native_px": 1.0673391626844
+          },
+          {
+            "candidate_id": "positive_0451:t1:p002",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 531.1495245944748
+          },
+          {
+            "candidate_id": "positive_0451:t0:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 534.3171658753892
+          }
+        ]
+      },
+      "visual_category": "MATCHED_WITH_GRAPHIC_PROPOSALS",
+      "visual_findings": "Target vertical streak near net center x990,y376.5 overlaps the returned ball proposal. Two additional orange boxes overlap the bright far-left back-wall clock/graphic display.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0560",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000009.png",
+        "sha256": "7468122f6ee15054f327f371bbce977f45aa5c1c0d362a5741388e1c61828292"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0560.png",
+        "sha256": "2c671c386ae63c19715a0f88a122b493fb745fe5d1cc4360696da05bc5759d59"
+      },
+      "source_id": "match219",
+      "frame_index": 9,
+      "source_pts": 5120,
+      "source_time_base": "1/12800",
+      "target_box": [
+        987,
+        508,
+        996,
+        533
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 1,
+        "matched_target_at_iou05": false,
+        "matched_candidate_id": null,
+        "unmatched_or_duplicate_candidates": 1,
+        "maximum_iou": 0.0,
+        "maximum_iou_candidate_id": "positive_0560:t4:p000",
+        "confidence_at_maximum_iou": 0.3203105330467224,
+        "nearest_candidate_center_error_native_px": 901.8756756424527,
+        "nearest_candidate_id": "positive_0560:t4:p000",
+        "nearest_candidate_confidence": 0.3203105330467224,
+        "matched_candidate_center_error_native_px": null,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0560:t4:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 901.8756756424527
+          }
+        ]
+      },
+      "visual_category": "SCOREBOARD_GRAPHIC_TARGET_MISSED",
+      "visual_findings": "Long vertical target blur in near service box x991.5,y520.5 is missed. Sole orange proposal overlaps yellow scoreboard server dot beside RUUD, lower left.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0568",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000051.png",
+        "sha256": "612f2d9d6934623747eff949f40069c46de72359a9940128ec245345ddb7e025"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0568.png",
+        "sha256": "269879a3bfb0425a1c12d4583100a6f0aca3cb83ada6355fb2df2ce375a92f31"
+      },
+      "source_id": "match219",
+      "frame_index": 51,
+      "source_pts": 26624,
+      "source_time_base": "1/12800",
+      "target_box": [
+        828,
+        134,
+        834,
+        140
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 1,
+        "matched_target_at_iou05": false,
+        "matched_candidate_id": null,
+        "unmatched_or_duplicate_candidates": 1,
+        "maximum_iou": 0.0,
+        "maximum_iou_candidate_id": "positive_0568:t4:p000",
+        "confidence_at_maximum_iou": 0.32068395614624023,
+        "nearest_candidate_center_error_native_px": 1040.58759059167,
+        "nearest_candidate_id": "positive_0568:t4:p000",
+        "nearest_candidate_confidence": 0.32068395614624023,
+        "matched_candidate_center_error_native_px": null,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0568:t4:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 1040.58759059167
+          }
+        ]
+      },
+      "visual_category": "SCOREBOARD_GRAPHIC_TARGET_MISSED",
+      "visual_findings": "Tiny far-backcourt target x831,y137 left of far player is missed. Sole orange proposal overlaps yellow scoreboard server dot beside RUUD.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0576",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000098.png",
+        "sha256": "da62274400b498397317dcfae441cbf661693c243e6e0456981fbcc599f7a61d"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0576.png",
+        "sha256": "ab028ce7fdbee25eaaf692984ee7483910e7ec18bf9f782f854a4983a3d2f3e9"
+      },
+      "source_id": "match219",
+      "frame_index": 98,
+      "source_pts": 50688,
+      "source_time_base": "1/12800",
+      "target_box": [
+        1398,
+        761,
+        1418,
+        774
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 2,
+        "matched_target_at_iou05": false,
+        "matched_candidate_id": null,
+        "unmatched_or_duplicate_candidates": 2,
+        "maximum_iou": 0.3938270363024374,
+        "maximum_iou_candidate_id": "positive_0576:t6:p000",
+        "confidence_at_maximum_iou": 0.4375773072242737,
+        "nearest_candidate_center_error_native_px": 4.356963100293891,
+        "nearest_candidate_id": "positive_0576:t6:p000",
+        "nearest_candidate_confidence": 0.4375773072242737,
+        "matched_candidate_center_error_native_px": null,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0576:t6:p000",
+            "target_iou": 0.3938270363024374,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 4.356963100293891
+          },
+          {
+            "candidate_id": "positive_0576:t4:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 1214.175885949701
+          }
+        ]
+      },
+      "visual_category": "NEAR_CENTER_BOX_IOU_FAILURE_WITH_GRAPHIC",
+      "visual_findings": "Near-right backcourt target is horizontally elongated. Nearby orange candidate reaches it but maximum IoU0.393827 is below frozen0.5, so remains a miss; center error4.356963px. Another proposal overlaps scoreboard server dot.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0583",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000140.png",
+        "sha256": "15e1ed7c2d6e6686a99165c2e38b1cd27efc8791e62ede6779a56deedf8d1e30"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0583.png",
+        "sha256": "e06d7fbb34694d8f1b83aba135a9b3648f8f09679b103273ce3756dd1c720e0b"
+      },
+      "source_id": "match219",
+      "frame_index": 140,
+      "source_pts": 72192,
+      "source_time_base": "1/12800",
+      "target_box": [
+        1137,
+        133,
+        1144,
+        138
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 1,
+        "matched_target_at_iou05": false,
+        "matched_candidate_id": null,
+        "unmatched_or_duplicate_candidates": 1,
+        "maximum_iou": 0.0,
+        "maximum_iou_candidate_id": "positive_0583:t4:p000",
+        "confidence_at_maximum_iou": 0.33586448431015015,
+        "nearest_candidate_center_error_native_px": 1250.90474981063,
+        "nearest_candidate_id": "positive_0583:t4:p000",
+        "nearest_candidate_confidence": 0.33586448431015015,
+        "matched_candidate_center_error_native_px": null,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0583:t4:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 1250.90474981063
+          }
+        ]
+      },
+      "visual_category": "SCOREBOARD_GRAPHIC_TARGET_MISSED",
+      "visual_findings": "Tiny target x1140.5,y135.5 right of far player near green/back-wall boundary is missed. Sole proposal overlaps yellow scoreboard server dot.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0591",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000187.png",
+        "sha256": "94362ea339f47c689d828a7af1a21bec9602f1afcb859db89d0e71f40417b566"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0591.png",
+        "sha256": "8ea747343cfbd4d270c381561f6e2ca3fa4eef387e83ea96b30303f8b646c09b"
+      },
+      "source_id": "match219",
+      "frame_index": 187,
+      "source_pts": 96256,
+      "source_time_base": "1/12800",
+      "target_box": [
+        696,
+        733,
+        712,
+        746
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 2,
+        "matched_target_at_iou05": true,
+        "matched_candidate_id": "positive_0591:t5:p000",
+        "unmatched_or_duplicate_candidates": 1,
+        "maximum_iou": 0.5135361829844232,
+        "maximum_iou_candidate_id": "positive_0591:t5:p000",
+        "confidence_at_maximum_iou": 0.4936900734901428,
+        "nearest_candidate_center_error_native_px": 0.8425364100574081,
+        "nearest_candidate_id": "positive_0591:t5:p000",
+        "nearest_candidate_confidence": 0.4936900734901428,
+        "matched_candidate_center_error_native_px": 0.8425364100574081,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0591:t5:p000",
+            "target_iou": 0.5135361829844232,
+            "one_to_one_match": true,
+            "visible_extent_center_error_native_px": 0.8425364100574081
+          },
+          {
+            "candidate_id": "positive_0591:t4:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 545.2089547920637
+          }
+        ]
+      },
+      "visual_category": "MATCHED_WITH_GRAPHIC_PROPOSAL",
+      "visual_findings": "Near-left backcourt ball blur x704,y739.5 matches a returned candidate at IoU0.513536; extra proposal overlaps scoreboard server dot.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    },
+    {
+      "id": "positive_0599",
+      "reviewer": "AGENT /root/court_wave_continue",
+      "actually_viewed_original_overlay": true,
+      "image_pixels": [
+        1920,
+        1080
+      ],
+      "source_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000239.png",
+        "sha256": "6f1da5471c50814b2d8a3a8ad238edb1b6b634a897376244f30227a663661ed5"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\overlays\\positive_0599.png",
+        "sha256": "60f754bdf09ea22c953ff65fae223b933fc7d4351bb8361c4df3c4eb7180907d"
+      },
+      "source_id": "match219",
+      "frame_index": 239,
+      "source_pts": 122880,
+      "source_time_base": "1/12800",
+      "target_box": [
+        873,
+        188,
+        877,
+        192
+      ],
+      "fixed_measurements": {
+        "candidate_count_at_conf001": 1,
+        "matched_target_at_iou05": false,
+        "matched_candidate_id": null,
+        "unmatched_or_duplicate_candidates": 1,
+        "maximum_iou": 0.0,
+        "maximum_iou_candidate_id": "positive_0599:t4:p000",
+        "confidence_at_maximum_iou": 0.33748558163642883,
+        "nearest_candidate_center_error_native_px": 1026.4230122891138,
+        "nearest_candidate_id": "positive_0599:t4:p000",
+        "nearest_candidate_confidence": 0.33748558163642883,
+        "matched_candidate_center_error_native_px": null,
+        "candidate_target_assessments": [
+          {
+            "candidate_id": "positive_0599:t4:p000",
+            "target_iou": 0.0,
+            "one_to_one_match": false,
+            "visible_extent_center_error_native_px": 1026.4230122891138
+          }
+        ]
+      },
+      "visual_category": "SCOREBOARD_GRAPHIC_TARGET_MISSED",
+      "visual_findings": "Very small target x875,y190 beside far player racket is missed. Sole proposal overlaps yellow scoreboard server dot.",
+      "full_frame_other_objects": "UNADJUDICATED",
+      "annotation_changed": false
+    }
+  ]
+}

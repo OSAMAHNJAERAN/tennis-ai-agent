@@ -1,0 +1,1045 @@
+{
+  "comparedAt": "2026-10-02T02:13:16.724792+00:00",
+  "scope": "36_SYSTEMATIC_FRAMES; SINGLE_AI_APPROXIMATE_LABELS_PER_CLIP; NOT_FULL_CLIP_OR_QUALIFIED_ACCURACY",
+  "protocolSha256": "fb8eb06010f999262c2c3e911418650d435d4647397d433253e4e89c1302533b",
+  "comparisonScriptSha256": "a949aa1b2d2e3955bfea3457e2b9f0ced6a24a0bc783cb03bcff5942c7d11e03",
+  "centerTolerancePx": 8,
+  "modelInferenceRun": false,
+  "candidateFilterRun": false,
+  "reasonCandidateNotRun": "This label-protocol pilot does not supply dense contact/fast-travel/camera-cut controls for a detour promotion comparison.",
+  "sources": [
+    {
+      "id": "djokovic_2012",
+      "analysisId": "match_9de7cb2d09eb46a0af0e34c3b0e6b818",
+      "inputSha256": "0258d7c06fb175e52beb0a2238da3984a45bffc39454aa04d4c814da3779d999",
+      "labelsSha256": "5bc680bf20ca070c2286154a5bcf3f37119287b5f391a24d1a06dc722ec43d5b",
+      "protectedEvidenceHashes": {
+        "result.json": "6f9f0dbb8382265782531301ee4f9b0944cd76cc5d409208aeecfdcd685ea295",
+        "detections.json": "0796d62d5a25ac258852b470fa97c8634dc7ea69d2c30784f029b05f0865457d",
+        "trajectories.json": "66959bef52005913c71baebea5cb87e62cebddcaf85ddfeb689eec885101ff7e"
+      },
+      "allPublishedControlFramesReproduced": 469,
+      "counts": {
+        "excluded": 8,
+        "reviewedCenters": 12,
+        "FN": 2,
+        "FP": 2,
+        "visibleControls": 4,
+        "TP": 2
+      },
+      "outcomes": [
+        {
+          "originalLabel": {
+            "frame_index": 15,
+            "sha256": "e14086279133b0b53dcc346229b9b447b5887622b90f8b5a117d25c0c9ee6b10",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No in-play ball can be confidently localized in the center or either context original. The large round green object in the seating persists in context and does not establish an in-play ball location. There is no positive temporal evidence of absence.",
+            "context_frame_indices": [
+              12,
+              15,
+              18
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              181.86,
+              702.4
+            ],
+            "confidence": 0.818,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 59,
+            "sha256": "0005fa26e85fb6fb1a2e684c10830f031c78d347e83a455afe56d6dc293fbbfd",
+            "visibility": "VISIBLE",
+            "center_px": [
+              1104,
+              174
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Small yellow-green ball is clearly isolated against the blue wall just above the net. Frames 56 and 62 show the same ball farther left and near the right edge respectively, supporting its rightward travel.",
+            "context_frame_indices": [
+              56,
+              59,
+              62
+            ],
+            "motion_context": "Clear rightward travel across the three originals."
+          },
+          "savedObservation": {
+            "position_px": [
+              465.12,
+              645.29
+            ],
+            "confidence": 0.827,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 793.9029654183186,
+          "outcome": "FP_AND_FN"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 101,
+            "sha256": "e7ea99c4b157c385bb9d7ce8ee29f3c2de9dd9795257f6a69c8e9082e4497c8e",
+            "visibility": "VISIBLE",
+            "center_px": [
+              744,
+              335
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Distinct yellow-green ball sits above the diagonal white service line against blue court. Its displacement from frame 98 through frame 104 supports leftward travel; center is taken from the visible ball patch.",
+            "context_frame_indices": [
+              98,
+              101,
+              104
+            ],
+            "motion_context": "Clear leftward travel; vertical position changes across the originals."
+          },
+          "savedObservation": {
+            "position_px": [
+              354.22,
+              631.01
+            ],
+            "confidence": 0.869,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 489.43883019229276,
+          "outcome": "FP_AND_FN"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 150,
+            "sha256": "383fd0caf8a6e7c9c2ae1c1be66bedcaf5a4ab49dc057a43851615b431e9f7ee",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "Ball cannot be confidently localized on the court, net or wall in the center original. Context 147 and 153 does not expose a track sufficient to establish absence.",
+            "context_frame_indices": [
+              147,
+              150,
+              153
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              387.94,
+              601.6
+            ],
+            "confidence": 0.863,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 193,
+            "sha256": "0af6e1c47a82e36917eaae79fddd2041a884e6685ea1babf559e62d26dc16286",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No identifiable ball patch in the center original; nearby court specks do not provide a reliable ball center. Both context originals were inspected and do not positively show the ball outside the view.",
+            "context_frame_indices": [
+              190,
+              193,
+              196
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              863.35,
+              694.22
+            ],
+            "confidence": 0.856,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 220,
+            "sha256": "53612a9edfc628756d1432438186c10b1cabcba44337eafdce95ad873431c8aa",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No in-play ball can be confidently distinguished in the center original. Context 217 and 223 does not establish a visible ball trajectory or positive absence evidence.",
+            "context_frame_indices": [
+              217,
+              220,
+              223
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 241,
+            "sha256": "5ed51bb1f478c6a64dc8fb37c554afcf1bdba5d957b4d86a4285342d7668a741",
+            "visibility": "VISIBLE",
+            "center_px": [
+              843,
+              264
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Compact yellow-green ball is clearly visible against the dark back-court bench. Frame 238 shows a ball nearer the player, supporting rightward travel; frame 244 was also inspected but its ball cannot be confidently localized.",
+            "context_frame_indices": [
+              238,
+              241,
+              244
+            ],
+            "motion_context": "Ball moves rightward between frames 238 and 241."
+          },
+          "savedObservation": {
+            "position_px": [
+              843.52,
+              264.1
+            ],
+            "confidence": 0.822,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 0.5295280917949355,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 311,
+            "sha256": "2612aa5992cc0e1cbf4c23d0e5a322463d67583a1c9b8bca2e3b59fba9beccce",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "Frame 308 has a clear ball, but its location in the center original cannot be resolved after the player's swing. Frame 314 does not reveal a track or boundary crossing sufficient to confirm absence.",
+            "context_frame_indices": [
+              308,
+              311,
+              314
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 321,
+            "sha256": "94f8e45d7600dcb6745b224ac4485eb2b2e17fa745a38a834809511fcbad4681",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No reliable ball patch in this closer crop. Frames 318 and 324 also leave the ball location unresolved; the player's ready stance alone does not establish ball absence.",
+            "context_frame_indices": [
+              318,
+              321,
+              324
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 363,
+            "sha256": "7f20f15e556147aff76478954b1053e717e1198a39507fe681fdf0aec231d8c0",
+            "visibility": "VISIBLE",
+            "center_px": [
+              1191,
+              433
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Large clear yellow-green ball is isolated over blue court near the right side. Frame 366 shows it farther left and lower toward the player, supporting inbound travel; frame 360 was inspected without a reliable ball location.",
+            "context_frame_indices": [
+              360,
+              363,
+              366
+            ],
+            "motion_context": "Clear leftward and downward travel between frames 363 and 366."
+          },
+          "savedObservation": {
+            "position_px": [
+              1193.44,
+              430.72
+            ],
+            "confidence": 0.313,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 3.3394610343587097,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 394,
+            "sha256": "0fe7f070f9809f6f0142445627a59ad351cc66b5dd55faa74be21585869e23af",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "The center original contains no confidently identifiable ball patch. Context 391 and 397 does not provide a visible boundary crossing or occlusion sequence that establishes absence.",
+            "context_frame_indices": [
+              391,
+              394,
+              397
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              731.96,
+              30.56
+            ],
+            "confidence": 0.296,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 437,
+            "sha256": "400238ebbdf9718e450eba6aef91e8adc4b2fd263b083dd5ab80ad5b0ef8b95a",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "Ball cannot be confidently localized after the swing in the center original. Context 434 and 440 leaves its whereabouts unresolved and does not positively establish absence.",
+            "context_frame_indices": [
+              434,
+              437,
+              440
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              907.48,
+              160.0
+            ],
+            "confidence": 0.235,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        }
+      ]
+    },
+    {
+      "id": "schiavone_2012",
+      "analysisId": "match_ca65db557684431890bbf3826229e084",
+      "inputSha256": "964059dfa99763aab2da785185315d6dfd36c0d3f02a5f65f15fe3b17a8ec738",
+      "labelsSha256": "02750b2a2cee865e72858e9faacc87f71776b968ffc5a096ce7e06edd1a077a4",
+      "protectedEvidenceHashes": {
+        "result.json": "804065203060cbe36513d850e195a17aa4b87b55f95f0f38b9f328abfb8a780c",
+        "detections.json": "7ce0d47700c38a5dad6f96677e8670ae49bdf6946c6b72024e7836000008ee16",
+        "trajectories.json": "f9a5dc59d0459efe25e907b604bb71bb1a4a6f95da98790f9f49839719ab0115"
+      },
+      "allPublishedControlFramesReproduced": 408,
+      "counts": {
+        "excluded": 10,
+        "reviewedCenters": 12,
+        "TP": 1,
+        "visibleControls": 2,
+        "FN": 1,
+        "FP": 1
+      },
+      "outcomes": [
+        {
+          "originalLabel": {
+            "frame_index": 2,
+            "sha256": "b0289fadfc0f36f636ca27069207b98fd1c9671774ea971da26b72ad747d5e5f",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No distinct tennis ball can be resolved in the center or either adjacent original. The ready stance gives no positive evidence that the ball is outside the view.",
+            "context_frame_indices": [
+              0,
+              2,
+              5
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 45,
+            "sha256": "bd54e952ed91a82d9c40bb78afed29d7dff47d8503e2be2377fd24c3286fcfe6",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "The racket and player move across the three originals, but no distinct ball or ball trajectory is resolved. Nothing visible positively establishes absence from the view.",
+            "context_frame_indices": [
+              42,
+              45,
+              48
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 97,
+            "sha256": "9e8229ef0fc4987e4e3992a5be4dd50a37136f0109954672a90eeeb2ca022eaa",
+            "visibility": "VISIBLE",
+            "center_px": [
+              786,
+              378
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "A distinct yellow-green ball is visible against the blue wall, to the player's right. The adjacent originals show a ball approaching the stroke and then travelling right after contact.",
+            "context_frame_indices": [
+              94,
+              97,
+              100
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              786.57,
+              376.65
+            ],
+            "confidence": 0.528,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 1.465400969018418,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 126,
+            "sha256": "357e9b33620d48b4149119a355a9d9e6b8a7f1af012cd3b9f584eddd9ff490e9",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No distinct ball is resolved in any of the three originals while the player returns to a ready position. The adjacent frames do not show an exit or other positive evidence of absence.",
+            "context_frame_indices": [
+              123,
+              126,
+              129
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 149,
+            "sha256": "29a19e887242a22059be3950c7cac25a799f0abaab9e74d894d03faf7f437f2a",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No distinct ball can be resolved as the player shuffles into position. Both adjacent originals also lack a resolved ball, so there is no positive temporal support for an absence label.",
+            "context_frame_indices": [
+              146,
+              149,
+              152
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 191,
+            "sha256": "e777391e363a42ac8b08204a973ead57aeae506d32372d151b70085aff6c02f7",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "The center and both adjacent originals show a ready stance, but no distinct ball is resolved. A ball outside the view cannot be confirmed from these originals.",
+            "context_frame_indices": [
+              188,
+              191,
+              194
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 216,
+            "sha256": "760f6e5baabff6402df6cb255d25cb18244589bb437b298a6e5f5bd0a6af6910",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No distinct tennis ball is resolved while the player moves to the right in the center and adjacent originals. The movement alone does not positively locate the ball outside the view.",
+            "context_frame_indices": [
+              213,
+              216,
+              219
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 255,
+            "sha256": "bb97a6b87028e23fc3932cceb56f37c799e149b5942399252cec235089a6c8f6",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No distinct tennis ball can be resolved in the center or adjacent originals during the rightward run. The camera pan and player motion provide no observed ball exit to confirm absence.",
+            "context_frame_indices": [
+              252,
+              255,
+              258
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 288,
+            "sha256": "cc5d4ba805103608cfe1013b87c9cf772a0d7eddf4ef856ace2b4f5b444cdc54",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "A small yellow-green object at the far-right attendant's hand persists in both adjacent originals and may be a held spare ball. No moving ball is resolved, and this object's identity as the target ball cannot be established.",
+            "context_frame_indices": [
+              285,
+              288,
+              291
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 331,
+            "sha256": "481e20edb608bbce78aa28dca8099acf347b6e5915c0a440cd41e6ea0e8b3053",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "No distinct ball is resolved in the center or either adjacent original. The player's upward gaze alone does not establish that the ball is outside the image.",
+            "context_frame_indices": [
+              328,
+              331,
+              334
+            ]
+          },
+          "savedObservation": {
+            "position_px": null,
+            "confidence": null,
+            "state": "MISSING"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 353,
+            "sha256": "cb344e9b7af8b575eab50e8c97f6bd0a3a4e1dbea700b6e07147690e02763cb8",
+            "visibility": "VISIBLE",
+            "center_px": [
+              653,
+              714
+            ],
+            "uncertainty_radius_px": 5,
+            "reason": "A yellow-green ball is visible partly clipped by the bottom edge. Its center is estimated from the visible blob; bottom clipping and blur limit localization. The following adjacent original shows a clear ball higher in the image.",
+            "context_frame_indices": [
+              350,
+              353,
+              356
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              660.0,
+              712.5
+            ],
+            "confidence": 0.202,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": 7.158910531638177,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 394,
+            "sha256": "34296710c2a85186479dfad722a7ba28f4912c3eec6006c6f193bea3dd439c4a",
+            "visibility": "VISIBLE",
+            "center_px": [
+              685,
+              389
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "A distinct yellow-green tennis ball is visible in the player's raised hand. Both adjacent originals clearly show the ball held in that hand.",
+            "context_frame_indices": [
+              391,
+              394,
+              397
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              198.73,
+              480.0
+            ],
+            "confidence": 0.226,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 494.71154514524926,
+          "outcome": "FP_AND_FN"
+        }
+      ]
+    },
+    {
+      "id": "dimitrov_tiafoe_2024",
+      "analysisId": "match_02d494b88e99400d8cf7243528302f9b",
+      "inputSha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+      "labelsSha256": "0f86652eaad0373be2f19baa788bd362e021a874e87cb64881330ce9a8f6ee51",
+      "protectedEvidenceHashes": {
+        "result.json": "e192bef01fd35292d98e061417d9b77fded9a21ae0028925d28fcb01d9f45fc6",
+        "detections.json": "82e4a5c5fc79802a7b488755430efa29771ef0e3f05228dbc8da278eb7e9660b",
+        "trajectories.json": "38c01525a273445de08a200c8db21697f634648fece68ab040f7aacf0b6ef805"
+      },
+      "allPublishedControlFramesReproduced": 600,
+      "counts": {
+        "excluded": 1,
+        "reviewedCenters": 12,
+        "FN": 1,
+        "FP": 1,
+        "visibleControls": 11,
+        "TP": 10
+      },
+      "outcomes": [
+        {
+          "originalLabel": {
+            "frame_index": 1,
+            "sha256": "65526dc5c732e58323ad3cc94ee8a0b749528e20f80f92c9787faaa5f3ea6359",
+            "visibility": "UNCERTAIN",
+            "center_px": null,
+            "uncertainty_radius_px": null,
+            "reason": "Pre-serve pose; a ball cannot be separated reliably from the server's hand in the center or neighboring originals. No positive evidence of absence.",
+            "context_frame_indices": [
+              0,
+              1,
+              4
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              406.54,
+              242.29
+            ],
+            "confidence": 0.595,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": false,
+          "centerSeparationPx": null,
+          "outcome": "EXCLUDED_UNCERTAIN_OR_IMPRECISE_LABEL"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 64,
+            "sha256": "0302ade9dc0d5a563cba0d9a66b4371db7f5eb19a6c18d3cec7a6b790f9c0a1a",
+            "visibility": "VISIBLE",
+            "center_px": [
+              483,
+              149
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Distinct pale-yellow diagonal ball streak above and right of the server. Adjacent originals show the ball progressing away from the raised racket toward the court; midpoint annotated.",
+            "context_frame_indices": [
+              61,
+              64,
+              67
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              489.73,
+              154.25
+            ],
+            "confidence": 0.877,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 8.535537475753959,
+          "outcome": "FP_AND_FN"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 135,
+            "sha256": "e5daf13ad4d72ba38dac72309229dd65f0e75aaca856a2dc7484788592eb9b3b",
+            "visibility": "VISIBLE",
+            "center_px": [
+              807,
+              399
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Isolated pale-yellow oval over the far blue court. Both adjacent originals show the same ball moving leftward across that court.",
+            "context_frame_indices": [
+              132,
+              135,
+              138
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              806.23,
+              398.77
+            ],
+            "confidence": 0.879,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 0.8036168241145654,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 165,
+            "sha256": "c71d6513728cd4a336e5cf92d329ccedc3015c317b8b2645ae388282bc65895f",
+            "visibility": "VISIBLE",
+            "center_px": [
+              475,
+              402
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Small isolated pale-yellow ball over the far blue court, clear of the service line. Adjacent originals support its continued leftward motion toward the far player.",
+            "context_frame_indices": [
+              162,
+              165,
+              168
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              475.55,
+              401.93
+            ],
+            "confidence": 0.916,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 0.5544366510251749,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 247,
+            "sha256": "2e7ebea51266d7e58e6bc2d16169dbb1caa8893f7ffc68ba88e0593a338c2aa7",
+            "visibility": "VISIBLE",
+            "center_px": [
+              1456,
+              664
+            ],
+            "uncertainty_radius_px": 4,
+            "reason": "Pale oval ball beside the near right singles sideline; white-line proximity slightly obscures its edge. Adjacent originals show a distinct ball at successive rightward positions.",
+            "context_frame_indices": [
+              244,
+              247,
+              250
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              1457.04,
+              664.21
+            ],
+            "confidence": 0.822,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 1.0609901036295954,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 266,
+            "sha256": "0786e00a9e4301497b1a66cf8945c94f2798ee38c2685dd93e1f88c2539ead45",
+            "visibility": "VISIBLE",
+            "center_px": [
+              1854,
+              725
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Distinct yellow oval on the right green apron, separated from the partially cropped player. Adjacent originals show progression toward the right image edge.",
+            "context_frame_indices": [
+              263,
+              266,
+              269
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              1859.02,
+              725.6
+            ],
+            "confidence": 0.845,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 5.055729423139637,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 330,
+            "sha256": "7010888b46f0f3709fd8a08d7e883a6f27511b573f16cef6319e00c54f5585b6",
+            "visibility": "VISIBLE",
+            "center_px": [
+              398,
+              409
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Isolated pale-yellow short streak over the far blue court. Adjacent originals show the ball at successive leftward positions, separate from the umpire canopy.",
+            "context_frame_indices": [
+              327,
+              330,
+              333
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              396.28,
+              409.52
+            ],
+            "confidence": 0.876,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 1.796886195617317,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 378,
+            "sha256": "503c3827d4952f1d9a8f2c2d91575ac09a72774c6afa2cae8554eb0627794cf0",
+            "visibility": "VISIBLE",
+            "center_px": [
+              566,
+              412
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Clear pale-yellow diagonal ball streak over the far blue court. Both adjacent originals show it traveling rightward and downward across the court; midpoint annotated.",
+            "context_frame_indices": [
+              375,
+              378,
+              381
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              570.4,
+              412.91
+            ],
+            "confidence": 0.865,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 4.493116958192814,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 411,
+            "sha256": "853b61c837684ecb9b359efa0e2a0311594448d77a4d56a44a5243ffb3732328",
+            "visibility": "VISIBLE",
+            "center_px": [
+              1176,
+              820
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Distinct pale-yellow ball over the near blue court, separated from the faint shadow below it. Both adjacent originals support continued rightward travel.",
+            "context_frame_indices": [
+              408,
+              411,
+              414
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              1178.72,
+              819.72
+            ],
+            "confidence": 0.891,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 2.7343737857140407,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 473,
+            "sha256": "088d62f59c576761da958022d21cadd4814cdccd0fdbe74f3c3c93d5217b57b8",
+            "visibility": "VISIBLE",
+            "center_px": [
+              857,
+              460
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Isolated pale-yellow oval over the far right blue court, above the net tape and clear of the line. Adjacent originals show continued leftward travel toward the far player.",
+            "context_frame_indices": [
+              470,
+              473,
+              476
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              856.55,
+              459.05
+            ],
+            "confidence": 0.854,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 1.0511898020814412,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 524,
+            "sha256": "5694ffddaa3ce23979e100212533e502c0668a1cc6748cccb0926f879597649a",
+            "visibility": "VISIBLE",
+            "center_px": [
+              377,
+              271
+            ],
+            "uncertainty_radius_px": 4,
+            "reason": "Small pale-yellow ball dot directly below the far player's racket on the green apron. The ball is separate from the racket in this original; adjacent originals place the approach near the racket.",
+            "context_frame_indices": [
+              521,
+              524,
+              527
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              376.42,
+              271.56
+            ],
+            "confidence": 0.728,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 0.8062257748298451,
+          "outcome": "TP"
+        },
+        {
+          "originalLabel": {
+            "frame_index": 582,
+            "sha256": "b0fe600ccaaddd9be1dece8dcb89dcbd88a207796706200d910ae58605dae124",
+            "visibility": "VISIBLE",
+            "center_px": [
+              986,
+              849
+            ],
+            "uncertainty_radius_px": 3,
+            "reason": "Clear pale-yellow short streak over the near blue court. Adjacent originals show the same ball moving rightward and downward toward the near player; midpoint annotated.",
+            "context_frame_indices": [
+              579,
+              582,
+              585
+            ]
+          },
+          "savedObservation": {
+            "position_px": [
+              988.71,
+              849.94
+            ],
+            "confidence": 0.891,
+            "state": "DETECTED"
+          },
+          "eligibleForBoundedComparison": true,
+          "centerSeparationPx": 2.868396764745125,
+          "outcome": "TP"
+        }
+      ]
+    }
+  ],
+  "boundedCounts": {
+    "excluded": 19,
+    "reviewedCenters": 36,
+    "FN": 4,
+    "FP": 4,
+    "visibleControls": 17,
+    "TP": 13
+  },
+  "noFullClipAccuracyExtrapolation": true
+}

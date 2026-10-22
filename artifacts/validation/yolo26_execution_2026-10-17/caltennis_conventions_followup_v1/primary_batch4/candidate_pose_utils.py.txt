@@ -1,0 +1,852 @@
+import numpy as np
+import torch
+from scipy.spatial.transform import Rotation as R
+
+from prompt_hmr.utils.rotation_conversions import axis_angle_to_matrix
+
+import pdb
+
+debug = False
+
+"""
+
+pose_utils.py
+
+helper methods to pose_alignment.py, very similar to ilona_utils.py
+
+"""
+
+
+######################################## temporal alignment ########################################
+def align_temporally(world4d_src, times_src, times_target, smplx):
+    """
+    Interpolate world4d_src to include both times_src and times_target timestamps.
+    Frames without pose data are skipped in interpolation.
+    """
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    # Collect all unique timestamps and sort them
+    all_timestamps = np.unique(np.concatenate([times_src, times_target]))
+
+    # Extract source data for interpolation (only frames with valid poses)
+    valid_src_frames = [
+        k
+        for k in sorted(world4d_src.keys())
+        if "pose" in world4d_src[k] and len(world4d_src[k].get("trans", [])) > 0
+    ]
+
+    if len(valid_src_frames) == 0:
+        raise ValueError("No valid pose frames found in world4d_src")
+
+    src_trans = np.array([world4d_src[k]["trans"][0] for k in valid_src_frames])
+    src_poses = np.array(
+        [world4d_src[k]["pose"][0].reshape(55, 3) for k in valid_src_frames]
+    )
+    src_shapes = np.array(
+        [world4d_src[k]["shape"][0] for k in valid_src_frames]
+    )
+    src_times = times_src[valid_src_frames]
+
+    # Build output dictionary
+    world4d_aligned = {}
+
+    for new_idx, target_time in enumerate(all_timestamps):
+        # Check if this is an original frame
+        orig_frame_idx = np.where(np.abs(times_src - target_time) < 1e-9)[0]
+
+        if len(orig_frame_idx) > 0:
+            # Use original frame data
+            orig_key = orig_frame_idx[0]
+            w = world4d_src[orig_key]
+
+            # Check if this frame has pose data
+            if "pose" not in w or len(w.get("trans", [])) == 0:
+                # No pose - create minimal frame with just camera and track_id
+                frame_data = {
+                    "track_id": w.get("track_id", []),
+                    "timestamp": target_time,
+                }
+                if "camera" in w:
+                    frame_data["camera"] = w["camera"].copy()
+            else:
+                # Has pose - use it
+                frame_data = {
+                    "trans": torch.tensor(
+                        w["trans"][0], dtype=torch.float32, device=device
+                    ).reshape(1, 3),
+                    "pose": torch.tensor(
+                        w["pose"][0], dtype=torch.float32, device=device
+                    ).reshape(1, 55, 3),
+                    "shape": torch.tensor(
+                        w["shape"][0], dtype=torch.float32, device=device
+                    ).reshape(1, -1),
+                    "joints": w.get("joints", None),
+                    "vertices": w.get("vertices", None),
+                    "track_id": w.get("track_id", [0]),
+                    "timestamp": target_time,
+                }
+                if "camera" in w:
+                    frame_data["camera"] = w["camera"].copy()
+
+        else:
+            # Need to interpolate - check if we're in a valid range
+            if target_time < src_times[0] or target_time > src_times[-1]:
+                # Outside range of valid poses - no pose estimate
+                frame_data = {
+                    "track_id": world4d_src[list(world4d_src.keys())[0]].get(
+                        "track_id", []
+                    ),
+                    "timestamp": target_time,
+                }
+                if "camera" in world4d_src[list(world4d_src.keys())[0]]:
+                    frame_data["camera"] = world4d_src[
+                        list(world4d_src.keys())[0]
+                    ]["camera"].copy()
+            else:
+                # Check if surrounding frames both have poses
+                idx_after = np.searchsorted(src_times, target_time)
+                idx_before = idx_after - 1
+
+                # Get the actual frame indices for these times
+                time_before = src_times[idx_before]
+                time_after = src_times[idx_after]
+
+                frame_before_idx = np.where(
+                    np.abs(times_src - time_before) < 1e-9
+                )[0][0]
+                frame_after_idx = np.where(
+                    np.abs(times_src - time_after) < 1e-9
+                )[0][0]
+
+                # Check if both surrounding frames have poses
+                has_pose_before = (
+                    "pose" in world4d_src[frame_before_idx]
+                    and len(world4d_src[frame_before_idx].get("trans", [])) > 0
+                )
+                has_pose_after = (
+                    "pose" in world4d_src[frame_after_idx]
+                    and len(world4d_src[frame_after_idx].get("trans", [])) > 0
+                )
+
+                if not (has_pose_before and has_pose_after):
+                    # One or both neighbors missing pose - skip interpolation
+                    frame_data = {
+                        "track_id": world4d_src[valid_src_frames[0]].get(
+                            "track_id", [0]
+                        ),
+                        "timestamp": target_time,
+                    }
+                    if "camera" in world4d_src[valid_src_frames[0]]:
+                        frame_data["camera"] = world4d_src[valid_src_frames[0]][
+                            "camera"
+                        ].copy()
+                else:
+                    # Both neighbors have poses - interpolate
+                    trans_interp, pose_interp, shape_interp = interpolate_pose(
+                        target_time, src_times, src_trans, src_poses, src_shapes
+                    )
+
+                    # Convert to torch and compute SMPLX
+                    trans_tensor = torch.tensor(
+                        trans_interp, dtype=torch.float32, device=device
+                    ).reshape(1, 3)
+                    pose_tensor = torch.tensor(
+                        pose_interp, dtype=torch.float32, device=device
+                    ).reshape(1, 55, 3)
+                    shape_tensor = torch.tensor(
+                        shape_interp, dtype=torch.float32, device=device
+                    ).reshape(1, -1)
+
+                    rotmats = axis_angle_to_matrix(pose_tensor)
+                    smplx_out = smplx(
+                        global_orient=rotmats[:, :1],
+                        body_pose=rotmats[:, 1:22],
+                        betas=shape_tensor,
+                        transl=trans_tensor,
+                    )
+
+                    frame_data = {
+                        "trans": trans_tensor,
+                        "pose": pose_tensor,
+                        "shape": shape_tensor,
+                        "joints": smplx_out.joints[0],
+                        "vertices": (
+                            smplx_out.vertices.cpu().numpy()
+                            if smplx_out.vertices is not None
+                            else None
+                        ),
+                        "track_id": world4d_src[valid_src_frames[0]].get(
+                            "track_id", [0]
+                        ),
+                        "timestamp": target_time,
+                    }
+
+                    if "camera" in world4d_src[valid_src_frames[0]]:
+                        frame_data["camera"] = world4d_src[valid_src_frames[0]][
+                            "camera"
+                        ].copy()
+
+        world4d_aligned[new_idx] = frame_data
+
+    num_with_pose = sum(1 for f in world4d_aligned.values() if "pose" in f)
+    print(
+        f"Temporally aligned: {len(world4d_aligned)} total frames, {num_with_pose} with poses"
+    )
+
+    return world4d_aligned, all_timestamps
+
+
+def interpolate_pose(target_time, src_times, src_trans, src_poses, src_shapes):
+    """Helper function to interpolate pose parameters at target_time."""
+
+    # Boundary cases
+    if target_time <= src_times[0]:
+        return src_trans[0], src_poses[0], src_shapes[0]
+    elif target_time >= src_times[-1]:
+        return src_trans[-1], src_poses[-1], src_shapes[-1]
+
+    # Find surrounding frames
+    idx_after = np.searchsorted(src_times, target_time)
+    idx_before = idx_after - 1
+
+    # Compute interpolation weight
+    t0, t1 = src_times[idx_before], src_times[idx_after]
+    alpha = (target_time - t0) / (t1 - t0)
+
+    # Linear interpolation for trans and shape
+    trans_interp = (1 - alpha) * src_trans[idx_before] + alpha * src_trans[
+        idx_after
+    ]
+    shape_interp = (1 - alpha) * src_shapes[idx_before] + alpha * src_shapes[
+        idx_after
+    ]
+
+    # SLERP for pose rotations
+    pose_interp = slerp_pose(src_poses[idx_before], src_poses[idx_after], alpha)
+
+    return trans_interp, pose_interp, shape_interp
+
+
+def slerp_pose(pose0, pose1, alpha):
+    """Interpolate between two pose arrays using quaternion SLERP."""
+    from scipy.spatial.transform import Rotation as R
+
+    result = np.zeros_like(pose0)
+
+    for j in range(55):
+        q0 = R.from_rotvec(pose0[j]).as_quat()
+        q1 = R.from_rotvec(pose1[j]).as_quat()
+        q_interp = slerp_quat(q0, q1, alpha)
+        result[j] = R.from_quat(q_interp).as_rotvec()
+
+    return result.astype(np.float32)
+
+
+def slerp_quat(q0, q1, alpha):
+    """SLERP between two quaternions."""
+    q0 = q0.astype(np.float64)
+    q1 = q1.astype(np.float64)
+    dot = np.dot(q0, q1)
+
+    if dot < 0:
+        q1 = -q1
+        dot = -dot
+
+    if dot > 0.9995:
+        result = q0 + alpha * (q1 - q0)
+        return result / np.linalg.norm(result)
+
+    theta_0 = np.arccos(np.clip(dot, -1.0, 1.0))
+    sin_theta_0 = np.sin(theta_0)
+    theta = theta_0 * alpha
+
+    s0 = np.sin(theta_0 - theta) / sin_theta_0
+    s1 = np.sin(theta) / sin_theta_0
+
+    result = s0 * q0 + s1 * q1
+    return result / np.linalg.norm(result)
+
+
+######################################## spatial alignment ########################################
+def batch_compute_similarity_transform_torch_modified(S1, S2):
+    """
+    Modified to return R, t, scale separately instead of transformed points
+    """
+    # Handle batch dimension properly
+    if len(S1.shape) == 2:
+        S1 = S1.T.unsqueeze(0)  # (N, 3) -> (1, 3, N)
+        S2 = S2.T.unsqueeze(0)
+    elif S1.shape[0] != 3:
+        S1 = S1.permute(0, 2, 1)
+        S2 = S2.permute(0, 2, 1)
+
+    # 1. Remove mean
+    mu1 = S1.mean(axis=-1, keepdims=True)
+    mu2 = S2.mean(axis=-1, keepdims=True)
+    X1 = S1 - mu1
+    X2 = S2 - mu2
+
+    # 2. Compute variance of X1 for scale
+    var1 = torch.sum(X1**2, dim=1).sum(dim=1)
+
+    # 3. Cross-covariance
+    K = X1.bmm(X2.permute(0, 2, 1))
+
+    # 4. SVD for rotation
+    U, s, V = torch.svd(K)
+    Z = (
+        torch.eye(U.shape[1], device=S1.device)
+        .unsqueeze(0)
+        .repeat(U.shape[0], 1, 1)
+    )
+    Z[:, -1, -1] *= torch.sign(torch.det(U.bmm(V.permute(0, 2, 1))))
+    R = V.bmm(Z.bmm(U.permute(0, 2, 1)))
+
+    # 5. Compute scale
+    scale = torch.cat([torch.trace(x).unsqueeze(0) for x in R.bmm(K)]) / var1
+
+    # 6. Compute translation
+    t = mu2 - (scale.unsqueeze(-1).unsqueeze(-1) * R.bmm(mu1))
+
+    # Extract from batch dimension if single batch
+    if R.shape[0] == 1:
+        R = R.squeeze(0)
+        t = t.squeeze(0).squeeze(-1)
+        scale = scale.item()
+
+    return R, t, scale
+
+
+def align_with_kabsch(joints1, joints2):
+    """
+    Align joints2 to joints1 using Kabsch algorithm
+    joints1, joints2: (N, 3) arrays of corresponding points
+    """
+    # Center the point clouds
+    centroid1 = np.mean(joints1, axis=0)
+    centroid2 = np.mean(joints2, axis=0)
+
+    centered1 = joints1 - centroid1
+    centered2 = joints2 - centroid2
+
+    # Compute covariance matrix
+    H = centered2.T @ centered1
+
+    # SVD
+    U, S, Vt = np.linalg.svd(H)
+    R = Vt.T @ U.T
+
+    # Ensure proper rotation (det(R) = 1)
+    if np.linalg.det(R) < 0:
+        Vt[-1, :] *= -1
+        R = Vt.T @ U.T
+
+    # Translation
+    t = centroid1 - R @ centroid2
+
+    return R, t
+
+def load_body_joints_per_frame_for_all_people_as_dict(world4d, smplx, frame_idx, device=None):
+    """
+    Returns a dict mapping track_id to joints array (25, 3).
+    Missing people are not included in the dict.
+    """
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    w = world4d[frame_idx]
+    if "track_id" not in w or len(w["track_id"]) == 0:
+        return {}
+    
+    joints_dict = {}
+    for idx, track_id in enumerate(w['track_id']):
+        rotmat = axis_angle_to_matrix(w["pose"][idx:idx+1].reshape(-1, 55, 3))
+        joints = (
+            smplx(
+                global_orient=rotmat[:, :1].to(device),
+                body_pose=rotmat[:, 1:22].to(device),
+                betas=w["shape"][idx:idx+1].to(device),
+                transl=w["trans"][idx:idx+1].to(device),
+            )
+            .body_joints[0]
+            .cpu()
+            .numpy()
+        )
+        joints_dict[track_id.item()] = joints
+    
+    return joints_dict
+
+
+def load_body_joints_per_frame_for_all_people(world4d, smplx, frame_idx, device=None):
+    """
+    returns an (25,3) array of joint positions in 3D. joint indices follow:
+    0: nose
+    1: neck
+    2: right shoulder
+    3: right elbow
+    4: right wrist
+    5: left shoulder
+    6: left elbow
+    7: left wrist
+    8: pelvis
+    9: right hip
+    10: right knee
+    11: right ankle
+    12: left hip
+    13: left knee
+    14: left ankle
+    15: right eye
+    16: left eye
+    17: right ear
+    18: left ear
+    19: left big toe
+    20: left pinky
+    21: left heel
+    22: right big toe
+    23: right pinky
+    24: right heel
+
+    """
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    all_joints = []
+    w = world4d[frame_idx]
+
+
+    for idx, person in enumerate(w['track_id']):
+
+        rotmat = axis_angle_to_matrix(w["pose"][p:p+1].reshape(-1, 55, 3))
+
+        joints = (
+            smplx(
+                global_orient=rotmat[:, :1].to(device),
+                body_pose=rotmat[:, 1:22].to(device),
+                betas=w["shape"][idx:idx+1].to(device),
+                transl=w["trans"][idx:idx+1].to(device),
+            )
+            .body_joints[0]
+            .cpu()
+            .numpy()
+        )
+        all_joints.append(joints)
+
+    return all_joints
+
+def load_body_joints_per_frame(world4d, smplx, frame_idx, device=None):
+    """
+    returns an (25,3) array of joint positions in 3D. joint indices follow:
+    0: nose
+    1: neck
+    2: right shoulder
+    3: right elbow
+    4: right wrist
+    5: left shoulder
+    6: left elbow
+    7: left wrist
+    8: pelvis
+    9: right hip
+    10: right knee
+    11: right ankle
+    12: left hip
+    13: left knee
+    14: left ankle
+    15: right eye
+    16: left eye
+    17: right ear
+    18: left ear
+    19: left big toe
+    20: left pinky
+    21: left heel
+    22: right big toe
+    23: right pinky
+    24: right heel
+
+    """
+    if device is None:
+        device = torch.device("mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu"))
+    
+
+    all_joints = []
+    # for frame_idx in sorted(set(world4d.keys())):
+    w = world4d[frame_idx]
+
+    if "pose" in w:
+        rotmat = axis_angle_to_matrix(w["pose"][0:1].reshape(-1, 55, 3))
+        joints = (
+            smplx(
+                global_orient=rotmat[:, :1].to(device),
+                body_pose=rotmat[:, 1:22].to(device),
+                betas=w["shape"][0:1].to(device),
+                transl=w["trans"][0:1].to(device),
+            )
+            .body_joints[0]
+            .cpu()
+            .numpy()
+        )
+    else:
+        joints = None
+
+    return joints
+
+
+
+
+
+def load_joints_per_frame(world4d, smplx, frame_idx):
+
+    all_joints = []
+    # for frame_idx in sorted(set(world4d.keys())):
+    w = world4d[frame_idx]
+    rotmat = axis_angle_to_matrix(w["pose"][0:1].reshape(-1, 55, 3))
+    joints = (
+        smplx(
+            global_orient=rotmat[:, :1].cuda(),
+            body_pose=rotmat[:, 1:22].cuda(),
+            betas=w["shape"][0:1].cuda(),
+            transl=w["trans"][0:1].cuda(),
+        )
+        .joints[0]
+        .cpu()
+        .numpy()
+    )
+
+    return joints
+
+
+def load_joints(world4d, smplx):
+
+    all_joints = []
+    for frame_idx in sorted(set(world4d.keys())):
+        w = world4d[frame_idx]
+        rotmat = axis_angle_to_matrix(w["pose"][0:1].reshape(-1, 55, 3))
+        joints = (
+            smplx(
+                global_orient=rotmat[:, :1].cuda(),
+                body_pose=rotmat[:, 1:22].cuda(),
+                betas=w["shape"][0:1].cuda(),
+                transl=w["trans"][0:1].cuda(),
+            )
+            .joints[0]
+            .cpu()
+            .numpy()
+        )
+
+        all_joints.append(joints)
+
+    all_joints = np.vstack(all_joints)
+    return all_joints
+
+
+def load_body_joints(world4d, smplx):
+
+    all_joints = []
+    for frame_idx in sorted(set(world4d.keys())):
+        w = world4d[frame_idx]
+
+        if "pose" in w:
+            rotmat = axis_angle_to_matrix(w["pose"][0:1].reshape(-1, 55, 3))
+            joints = (
+                smplx(
+                    global_orient=rotmat[:, :1].cuda(),
+                    body_pose=rotmat[:, 1:22].cuda(),
+                    betas=w["shape"][0:1].cuda(),
+                    transl=w["trans"][0:1].cuda(),
+                )
+                .body_joints[0]
+                .cpu()
+                .numpy()
+            )
+
+            all_joints.append(joints)
+
+    all_joints = np.vstack(all_joints)
+    return all_joints
+
+
+def align_world4d_data(
+    world4d1, world4d2, smplx, times1, times2, separation=0.0, title=""
+):
+
+    # ALIGN TEMPORALLY HERE
+    # TODO: insert align_temporally(world4d1, times1, times2) and align_temporally(world4d2, times2, times1) here
+    # for k in world4d1[0].keys():
+    #     print(k)
+    #     print(type(world4d1[0][k]))
+
+    og_joints1 = load_joints(world4d1, smplx)
+    og_joints2 = load_joints(world4d2, smplx)
+
+    world4d1 = align_temporally(world4d1, times1, times2, smplx)
+    world4d2 = align_temporally(world4d2, times2, times1, smplx)
+
+    for k in world4d1[0].keys():
+        print(k)
+        print(type(world4d1[0][k]))
+
+    all_joints1 = load_joints(world4d1, smplx)
+    all_joints2 = load_joints(world4d2, smplx)
+
+    ######################################## ALIGNMENT ########################################
+    # # Compute alignment with Kabsch
+    # R_align, t_align = align_with_kabsch(all_joints1, all_joints2)
+    # scale_align = 1.0
+    # compute alignment as per HMR eval
+    all_joints1_torch = torch.tensor(all_joints1, dtype=torch.float32)
+    all_joints2_torch = torch.tensor(all_joints2, dtype=torch.float32)
+    R_align, t_align, scale_align = (
+        batch_compute_similarity_transform_torch_modified(
+            all_joints2_torch, all_joints1_torch
+        )
+    )
+
+    if debug:
+        # After: R_align, t_align = align_with_kabsch(all_joints1, all_joints2)
+        print(f"\n=== Alignment Result ===")
+        print(f"R_align:\n{R_align}")
+        print(f"t_align: {t_align}")
+        print(f"Det(R): {np.linalg.det(R_align):.3f}")  # Should be 1.0
+
+        # Check rotation angle
+        trace = np.trace(R_align)
+        angle = np.arccos(np.clip((trace - 1) / 2, -1, 1)) * 180 / np.pi
+        print(f"Rotation angle: {angle:.1f} degrees")
+
+        # Test alignment on first few joints
+        test_joints2 = all_joints2[:127]  # First frame
+        test_aligned = (R_align @ test_joints2.T).T + t_align
+        test_joints1 = all_joints1[:127]
+        print(
+            f"RMSE after alignment: {np.sqrt(np.mean((test_joints1 - np.array(test_aligned))**2)):.4f}"
+        )
+
+        num_frames = len(world4d1)
+        l2_norms = []
+        # Get L2 norm b/n joints:
+        for frame_idx in range(num_frames):
+            # print(frame_idx)
+            frame_joints_1 = load_joints_per_frame(world4d1, smplx, frame_idx)
+            frame_joints_2 = load_joints_per_frame(world4d2, smplx, frame_idx)
+
+            aligned_joints = (R_align @ frame_joints_2.T).T + t_align
+
+            l2_norm = np.sqrt(
+                np.sum((frame_joints_1 - np.array(aligned_joints)) ** 2)
+            )
+
+            l2_norms.append(l2_norm)
+
+        l2_norms = np.array(l2_norms)
+
+        import matplotlib
+
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+
+        x = np.arange(len(l2_norms))
+        fig, ax = plt.subplots(figsize=(10, 3.5))
+        ax.scatter(x, l2_norms, s=8, alpha=0.8)
+        ax.set_xlabel("Frame index")
+        ax.set_ylim(0, 30)
+        ax.set_ylabel("L2 norm")
+        ax.set_title("Per-frame alignment error (L2)")
+        ax.grid(True, alpha=0.3)
+
+        plt.tight_layout()
+        plt.savefig(f"ilona_figs/{title}_l2_norms_scatter.png", dpi=200)
+        print("Saved scatterplot to l2_norms_scatter.png")
+
+    # TODO(ilona) - plot L2 norms per-instance somewhere here
+
+    ##########################################################################################
+
+    # Apply alignment to all frames in world4d2
+    for frame_idx in world4d2:
+        w2 = world4d2[frame_idx]
+
+        # Transform translations
+        if len(w2["trans"]) > 0:
+            w2["trans"] = (
+                scale_align * (R_align @ w2["trans"].cpu().T).T + t_align
+            )
+
+        # Transform global orientations
+        for i in range(len(w2["pose"])):
+            pose = w2["pose"][i].reshape(55, 3)
+            global_orient = pose[0]
+
+            # Convert to rotation matrix, apply R, convert back
+            rot_mat = (
+                axis_angle_to_matrix(global_orient.reshape(1, 3))
+                .squeeze()
+                .cpu()
+            )
+            aligned_rot = R_align @ rot_mat
+
+            # Convert back to axis-angle
+            aligned_aa = torch.Tensor(R.from_matrix(aligned_rot).as_rotvec())
+            pose[0] = aligned_aa
+            w2["pose"][i] = pose
+
+        if frame_idx == 10:  # Print for first frame
+            print(f"\n=== Frame 0 After Transform ===")
+            print(f"Original trans2: {w2['trans'][frame_idx].numpy()}")
+            print(f"Aligned trans2: {w2['trans'][frame_idx].numpy()}")
+            print(f"Video1 trans: {world4d1[frame_idx]['trans'][0]}")
+
+            # Check global orientation
+            print(f"Original global_orient: {w2['pose'][frame_idx][:3]}")
+
+        # Update camera matrix if present
+        if "camera" in w2:
+            cam = w2["camera"].copy()
+            cam[:3, :3] = R_align @ cam[:3, :3]
+            cam[:3, 3] = scale_align * (R_align @ cam[:3, 3]) + t_align
+            w2["camera"] = cam
+
+        if "vertices" in w2:
+            # Just apply rotation and translation, no offset handling
+            device = w2["vertices"][0].device
+            for j in range(len(w2["vertices"])):
+                vertex_j = scale_align * (
+                    R_align.to(device) @ w2["vertices"][j].T
+                ).T + t_align.to(device)
+                w2["vertices"][j] = vertex_j
+
+            if not isinstance(w2["vertices"], np.ndarray):
+                w2["vertices"] = np.array(w2["vertices"].cpu())
+
+    return R_align, t_align, world4d1, world4d2
+
+
+def spatial_align(world4d1, world4d2, all_joints1_torch, all_joints2_torch):
+
+    print("\n BEFORE")
+    print(f"world 1 frame 1 pose: {world4d1[1]['trans']}")
+    print(f"world 2 frame 1 pose: {world4d2[1]['trans']}")
+    print()
+
+    # compute Kabsch alignment
+    R_align, t_align, scale_align = (
+        batch_compute_similarity_transform_torch_modified(
+            all_joints2_torch, all_joints1_torch
+        )
+    )
+
+    # Apply alignment to all frames in world4d2
+    for frame_idx in world4d2:
+        w2 = world4d2[frame_idx]
+
+        # Transform translations
+        if "trans" in w2.keys():
+            w2["trans"] = (
+                scale_align * (R_align @ w2["trans"].cpu().T).T + t_align
+            )
+
+        if "pose" in w2.keys():  # Transform global orientations
+            for i in range(len(w2["pose"])):
+                pose = w2["pose"][i].reshape(55, 3)
+                global_orient = pose[0]
+
+                # Convert to rotation matrix, apply R, convert back
+                rot_mat = (
+                    axis_angle_to_matrix(global_orient.reshape(1, 3))
+                    .squeeze()
+                    .cpu()
+                )
+                aligned_rot = R_align @ rot_mat
+
+                # Convert back to axis-angle
+                aligned_aa = torch.Tensor(
+                    R.from_matrix(aligned_rot).as_rotvec()
+                )
+                pose[0] = aligned_aa
+                w2["pose"][i] = pose
+
+        if "vertices" in w2.keys():
+            if w2["vertices"] is not None:
+                # Just apply rotation and translation, no offset handling
+                device = w2["vertices"][0].device
+                for j in range(len(w2["vertices"])):
+                    vertex_j = scale_align * (
+                        R_align.to(device) @ w2["vertices"][j].T
+                    ).T + t_align.to(device)
+                    w2["vertices"][j] = vertex_j
+
+                if not isinstance(w2["vertices"], np.ndarray):
+                    w2["vertices"] = np.array(w2["vertices"].cpu())
+
+        # # # Check global orientation
+        # print(f"Original global_orient: {w2['pose'][0][:3]}")
+
+        # Update camera matrix if present
+        if "camera" in w2:
+            cam = w2["camera"].copy()
+            cam[:3, :3] = R_align @ cam[:3, :3]
+            cam[:3, 3] = scale_align * (R_align @ cam[:3, 3]) + t_align
+            w2["camera"] = cam
+
+        world4d2[frame_idx] = w2
+
+    print("\n AFTER")
+    print(f"world 1 frame 1 pose: {world4d1[1]['trans']}")
+    print(f"world 2 frame 1 pose: {world4d2[1]['trans']}")
+    print()
+
+    return R_align, t_align, world4d1, world4d2
+
+
+def load_body_joints_for_spatial_alignment(world4d1, world4d2, smplx):
+
+    all_joints1 = []
+    all_joints2 = []
+
+    timestamps = []
+
+    for frame_idx in sorted(set(world4d1.keys())):
+        if frame_idx not in world4d2.keys():
+            continue
+
+        w1 = world4d1[frame_idx]
+        w2 = world4d2[frame_idx]
+
+        assert w1["timestamp"] == w2["timestamp"]
+
+        if "pose" in w1 and "pose" in w2:
+            timestamps.append(w1["timestamp"])
+            rotmat1 = axis_angle_to_matrix(w1["pose"][0:1].reshape(-1, 55, 3))
+            rotmat2 = axis_angle_to_matrix(w2["pose"][0:1].reshape(-1, 55, 3))
+            joints1 = (
+                smplx(
+                    global_orient=rotmat1[:, :1].cuda(),
+                    body_pose=rotmat1[:, 1:22].cuda(),
+                    betas=w1["shape"][0:1].cuda(),
+                    transl=w1["trans"][0:1].cuda(),
+                )
+                .body_joints[0]
+                # .joints[0]
+                .cpu()
+                .numpy()
+            )  # [25, 3]
+            joints2 = (
+                smplx(
+                    global_orient=rotmat2[:, :1].cuda(),
+                    body_pose=rotmat2[:, 1:22].cuda(),
+                    betas=w2["shape"][0:1].cuda(),
+                    transl=w2["trans"][0:1].cuda(),
+                )
+                .body_joints[0]
+                # .joints[0]
+                .cpu()
+                .numpy()
+            )  # [25, 3]
+
+            all_joints1.append(joints1)
+            all_joints2.append(joints2)
+
+    all_joints1 = np.array(all_joints1)
+    all_joints2 = np.array(all_joints2)
+
+    return all_joints1, all_joints2, timestamps
+
+
+###########################################################################################

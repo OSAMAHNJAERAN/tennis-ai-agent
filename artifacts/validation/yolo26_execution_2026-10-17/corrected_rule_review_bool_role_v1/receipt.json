@@ -1,0 +1,44 @@
+{
+  "status": "REPRODUCED_MALFORMED_BOOL_ROLE_AMENDMENT",
+  "started_utc": "2026-10-17T11:45:08.468593+00:00",
+  "ended_utc": "2026-10-17T11:45:09.959857+00:00",
+  "seconds": 1.4912745999754407,
+  "observation": {
+    "pending_revision_yielded": true,
+    "original_source_player_id": 1,
+    "replacement_source_player_id": true,
+    "replacement_player_id_python_type": "bool",
+    "original_rule_player_id": 1,
+    "accepted_rule_player_id": 1,
+    "original_rule_event_type": "SERVE_CONTACT",
+    "accepted_rule_event_type": "SERVE_CONTACT",
+    "applied_event_ids": [
+      1
+    ],
+    "published": false
+  },
+  "source_before": {
+    "src/scoring/corrected_rule_rebuild.py": "d1301c9d3467e202693ff93d8041121e6a7b68d09724a50d274fe406630412e5",
+    "src/scoring/correction_sources.py": "9accb32e2b473eb31cd815dded09084464c54cd73482de04e034cb6610ce8536",
+    "src/scoring/rule_replay_source.py": "b757f4a9092ea925ceb64db6359b4f6c9e242010dc686047f4dde049d0c8ca44",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "tests/test_corrected_rule_rebuild.py": "c65199f9e005dd696e361c194ee4a76f98cc4668023abe20ef959bad147f4274",
+    "tests/test_correction_sources.py": "aebb0f0b9721ef380666bf3a3c3726cbbd56dbf7960ee5b28fcfa0fcd09e11f3"
+  },
+  "source_after": {
+    "src/scoring/corrected_rule_rebuild.py": "d1301c9d3467e202693ff93d8041121e6a7b68d09724a50d274fe406630412e5",
+    "src/scoring/correction_sources.py": "9accb32e2b473eb31cd815dded09084464c54cd73482de04e034cb6610ce8536",
+    "src/scoring/rule_replay_source.py": "b757f4a9092ea925ceb64db6359b4f6c9e242010dc686047f4dde049d0c8ca44",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "tests/test_corrected_rule_rebuild.py": "c65199f9e005dd696e361c194ee4a76f98cc4668023abe20ef959bad147f4274",
+    "tests/test_correction_sources.py": "aebb0f0b9721ef380666bf3a3c3726cbbd56dbf7960ee5b28fcfa0fcd09e11f3"
+  },
+  "sources_unchanged": true,
+  "forbidden_import_attempts": [],
+  "forbidden_modules_present": [],
+  "video_used": false,
+  "inference_used": false,
+  "independent_accuracy_validated": false,
+  "scope": "Synthetic committed native generation and real rule evaluator; no production data or files modified",
+  "runner_sha256": "29eb1429a0ff686bcabe805bc4751e295ba2fbdbd039987d345dd31f9714ae18"
+}

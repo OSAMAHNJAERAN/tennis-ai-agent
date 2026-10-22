@@ -1,0 +1,701 @@
+{
+  "schema_version": "1.0",
+  "scope": "elevated_end_court_singles",
+  "created_on": "2026-10-08",
+  "frozen": false,
+  "status": "AUTHORIZED_DEVELOPMENT_PILOTS_PRESENT_NO_FROZEN_INDEPENDENT_QUALIFICATION",
+  "split_policy": {
+    "group_keys": [
+      "match_id",
+      "session_id",
+      "original_source_video_id"
+    ],
+    "target_ratios": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "seed": 709,
+    "final_test_model_blind": true,
+    "actual_counts": {
+      "train": 0,
+      "val": 0,
+      "test": 0
+    },
+    "previously_inspected_examples": "DEVELOPMENT_ONLY_NOT_FINAL_TEST"
+  },
+  "sources": [],
+  "samples": [],
+  "label_review": {
+    "training_reviewed": false,
+    "independent_test_reviewed": false
+  },
+  "candidate_ledger": "data/yolo26/acquisition_sources.json",
+  "required_source_fields": [
+    "source_id",
+    "match_id",
+    "session_id",
+    "owner",
+    "rights_evidence",
+    "training_allowed",
+    "sha256",
+    "surface",
+    "view",
+    "fps",
+    "resolution",
+    "acquired_on"
+  ],
+  "required_sample_fields": [
+    "role",
+    "source_id",
+    "image",
+    "label",
+    "split",
+    "sha256",
+    "label_sha256",
+    "frame_index",
+    "timestamp_seconds",
+    "annotation_provenance"
+  ],
+  "blockers": [
+    "Production specialist artifacts remain unqualified; pilot weights are retained only in outputs and never promoted.",
+    "Independent human box review and reviewed hard negatives are pending. The expanded ball development corpus has81images from8publisherclips, without independent qualification evidence.",
+    "Original match years/rounds and full source independence remain unresolved. Expanded pilot groups use visible event/player pairs and conservative shared-event sessions; all accepted clips remain development only.",
+    "Untouched independent final-test sessions and complete role/event/score labels are not yet frozen."
+  ],
+  "qualification_evidence": false,
+  "pilot_datasets": [
+    {
+      "role": "ball",
+      "manifest": "data/yolo26/pilot_v1/source_manifest.json",
+      "train_images": 6,
+      "val_images": 0,
+      "test_images": 0,
+      "qualification_evidence": false
+    },
+    {
+      "role": "court",
+      "manifest": "data/yolo26/pilot_court_v1/source_manifest.json",
+      "train_images": 6,
+      "val_images": 0,
+      "test_images": 0,
+      "qualification_evidence": false
+    },
+    {
+      "role": "ball",
+      "manifest": "data/yolo26/pilot_v2/source_manifest.json",
+      "train_images": 5,
+      "val_images": 0,
+      "test_images": 0,
+      "qualification_evidence": false
+    },
+    {
+      "role": "ball",
+      "manifest": "data/yolo26/pilot_broadcast_v1/source_manifest.json",
+      "train_images": 71,
+      "val_images": 10,
+      "test_images": 0,
+      "qualification_evidence": false,
+      "source_independence_verified": false,
+      "source_clip_count": 8,
+      "conservative_event_group_count": 6,
+      "full_frame_training_receipt": "outputs/yolo26_ball_broadcast_pilot_v1/run_metadata.json",
+      "full_frame_training_status": "RESOURCE_GUARD_BLOCKED_NOT_TRAINED"
+    },
+    {
+      "role": "ball",
+      "manifest": "data/yolo26/pilot_broadcast_native_crop_v1/source_manifest.json",
+      "train_images": 71,
+      "val_images": 10,
+      "test_images": 0,
+      "qualification_evidence": false,
+      "source_independence_verified": false,
+      "purpose": "ONE_SAME_MODEL_NATIVE_CROP_LEARNING_DIAGNOSTIC_AFTER_FULL_FRAME_RAM_REJECTION",
+      "transform_audit": "outputs/yolo26_native_crop_transform_audit_v1.json",
+      "validation_limitation": "GROUND_TRUTH_TARGETED_JITTERED_CROPS_NOT_FULL_FRAME_DISCOVERY_OR_INDEPENDENT_QUALIFICATION",
+      "training_receipt": "outputs/yolo26_ball_native_crop_pilot_v1/run_metadata.json",
+      "training_receipt_sha256": "a924258db95b52ac01940f706228b73d7fb34a85cbeeaa23b8358407c92dabd2",
+      "training_status": "TRAINED_UNQUALIFIED",
+      "completed_epochs": 4,
+      "maximum_optimizer_state_step": 284,
+      "fixed_threshold_development_diagnostic": {
+        "status": "FIXED_THRESHOLD_DEVELOPMENT_ERROR_DIAGNOSTIC_NOT_QUALIFICATION",
+        "qualification_evidence": false,
+        "final_test_used": false,
+        "confidence": 0.01,
+        "iou_match": 0.5,
+        "aggregates": {
+          "oracle_crop": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 3,
+            "missed_targets_conf001_iou05": 7,
+            "total_returned_candidates_conf001": 21,
+            "unmatched_or_duplicate_candidates": 18,
+            "median_nearest_candidate_center_error_native_px": 1.78935308164533
+          },
+          "full_native_frame": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 0,
+            "missed_targets_conf001_iou05": 10,
+            "total_returned_candidates_conf001": 43,
+            "unmatched_or_duplicate_candidates": 43,
+            "median_nearest_candidate_center_error_native_px": 400.7617116442058
+          }
+        },
+        "limitations": [
+          "Agent-expanded boxes, no independent human review",
+          "Only one development indoor broadcast context",
+          "Oracle crops selected using ground truth; crop scores do not show full-frame coverage",
+          "Nearest-center errors are conditional on a returned candidate and may describe false detections",
+          "Unmatched predictions on positive-only frames are diagnostic false/duplicate candidates, not negative-video false-alarm rate"
+        ],
+        "receipt_path": "outputs/yolo26_ball_native_crop_diagnostic_v1/diagnostic.json",
+        "receipt_sha256": "4133cbcff09b4339934b10ee1e8bf4bf413c6d8ae83823fa94366cb8df613275",
+        "script_sha256": "ee433657a3d178ca694e59ab73e5c14cc24d9636ffb08a94c1a208cded853e2b",
+        "review_sheets": [
+          {
+            "path": "outputs/yolo26_ball_native_crop_diagnostic_v1/review_00.jpg",
+            "sha256": "892b82ecd139fb35ec305b209cdc1ef3d9a2d1967837e2f7b179490731615d90",
+            "reviewer": "AGENT_VISUAL_REVIEW",
+            "independent_human_review": false
+          },
+          {
+            "path": "outputs/yolo26_ball_native_crop_diagnostic_v1/review_01.jpg",
+            "sha256": "f9f95d0b6180e97d988fe56d5569857585eb6c1bff930b923eeedd3f2d4184e3",
+            "reviewer": "AGENT_VISUAL_REVIEW",
+            "independent_human_review": false
+          }
+        ]
+      },
+      "fixed_native_tile_development_diagnostic": {
+        "status": "FIXED_NATIVE_TILE_DEVELOPMENT_DIAGNOSTIC_NOT_QUALIFICATION",
+        "qualification_evidence": false,
+        "final_test_used": false,
+        "training_performed": false,
+        "checkpoint_promoted": false,
+        "private_local_only": true,
+        "confidence": 0.01,
+        "iou_match": 0.5,
+        "checkpoint_sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78",
+        "manifest_sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6",
+        "protocol_sha256": "6ead01a0255af64b68dda683dd9fb2bd4b3b6bfca6bd09087fad3c11ddb6cee8",
+        "script_sha256": "b419c059a54db89b5cae744cc5a23f7971e95850355cc653dcf85b57888712cd",
+        "resource_guard": {
+          "free_disk_bytes": 50951757824,
+          "free_ram_bytes": 1984892928,
+          "free_vram_bytes": 5326766080
+        },
+        "limitations": [
+          "Ten positive development frames from one already-seen indoor broadcast context",
+          "Agent-selected boxes have no independent human box review",
+          "Nearest-center errors can describe false objects and exclude frames with no candidates",
+          "Unmatched proposals are positive-frame false/duplicate candidates, not a negative-video false-alarm rate",
+          "No final-test, reserved NKUST reference, speed, tracking or qualification evidence"
+        ],
+        "receipt_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/diagnostic.json",
+        "receipt_sha256": "237fae8f7a33aa64a3f03393e387099682e023c330ca8c73015fb5b92a2f56f2",
+        "protocol_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/protocol.json",
+        "script_path": "scripts/data/diagnose_yolo26_native_tiles.py",
+        "tiling": {
+          "tile_size_px": 640,
+          "nominal_overlap": 0.2,
+          "native_pixel_scale": 1.0,
+          "edge_anchored_regions_xyxy_px": [
+            [
+              0,
+              0,
+              640,
+              640
+            ],
+            [
+              512,
+              0,
+              1152,
+              640
+            ],
+            [
+              1024,
+              0,
+              1664,
+              640
+            ],
+            [
+              1280,
+              0,
+              1920,
+              640
+            ],
+            [
+              0,
+              440,
+              640,
+              1080
+            ],
+            [
+              512,
+              440,
+              1152,
+              1080
+            ],
+            [
+              1024,
+              440,
+              1664,
+              1080
+            ],
+            [
+              1280,
+              440,
+              1920,
+              1080
+            ]
+          ],
+          "selection": "ALL_EIGHT_FIXED_LABEL_INDEPENDENT_TILES_NO_FULL_FRAME_PASS"
+        },
+        "deduplication": {
+          "iou": 0.5,
+          "center_distance_px": 2.0,
+          "rule": "IOU_GE_0_5_OR_CENTER_DISTANCE_LE_2_NATIVE_PX",
+          "ordering": "STABLE_DESCENDING_CONFIDENCE_FIRST_ACCEPTED_REPRESENTATIVE"
+        },
+        "aggregates": {
+          "native_tiles": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": 9,
+            "total_returned_candidates_conf001": 2,
+            "unmatched_or_duplicate_candidates": 1,
+            "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+            "median_matched_candidate_center_error_native_px": 1.141992567712991
+          },
+          "raw_native_tiles_before_dedup": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": 9,
+            "total_returned_candidates_conf001": 2,
+            "unmatched_or_duplicate_candidates": 1,
+            "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+            "median_matched_candidate_center_error_native_px": 1.141992567712991
+          },
+          "total_raw_returned_candidates": 2,
+          "total_dedup_suppressed_candidates": 0
+        },
+        "before_after": {
+          "baseline_full_native_frame_imgsz1280": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 0,
+            "missed_targets_conf001_iou05": 10,
+            "total_returned_candidates_conf001": 43,
+            "unmatched_or_duplicate_candidates": 43,
+            "median_nearest_candidate_center_error_native_px": 400.7617116442058
+          },
+          "context_only_oracle_crop_imgsz640": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 3,
+            "missed_targets_conf001_iou05": 7,
+            "total_returned_candidates_conf001": 21,
+            "unmatched_or_duplicate_candidates": 18,
+            "median_nearest_candidate_center_error_native_px": 1.78935308164533
+          },
+          "native_tiles_imgsz640_after_dedup": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": 9,
+            "total_returned_candidates_conf001": 2,
+            "unmatched_or_duplicate_candidates": 1,
+            "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+            "median_matched_candidate_center_error_native_px": 1.141992567712991
+          },
+          "native_tiles_minus_baseline_counts": {
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": -1,
+            "total_returned_candidates_conf001": -41,
+            "unmatched_or_duplicate_candidates": -42
+          },
+          "frame_match_transitions": [
+            {
+              "frame_index": 56,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 103,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 163,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 234,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 281,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 329,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 376,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 435,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 483,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 530,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": true
+            }
+          ],
+          "interpretation": "POSITIVE_ONLY_DEVELOPMENT_COMPARISON_NO_NEGATIVE_FALSE_ALARM_RATE_OR_QUALIFICATION"
+        },
+        "actual_network_tensor_shapes": [
+          [
+            1,
+            3,
+            640,
+            640
+          ]
+        ],
+        "resource_usage": {
+          "elapsed_seconds": 2.8693419999908656,
+          "torch_peak_allocated_bytes": 200986112,
+          "torch_peak_reserved_bytes": 257949696
+        }
+      },
+      "fixed_native_tile_development_diagnostic_attempts": [
+        {
+          "status": "RESOURCE_GUARD_BLOCKED_NOT_INFERRED",
+          "qualification_evidence": false,
+          "final_test_used": false,
+          "training_performed": false,
+          "checkpoint_promoted": false,
+          "private_local_only": true,
+          "confidence": 0.01,
+          "iou_match": 0.5,
+          "checkpoint_sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78",
+          "manifest_sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6",
+          "protocol_sha256": "6179d5c93331f54a71146b9d49292e4dcba5f5e114e9a59e68bed0ab1e3dbc1d",
+          "script_sha256": "7282a3c1cb742444d40b97c36ecad3a3b204611ffd5e955e1d32509fb2861309",
+          "resource_guard": {
+            "free_disk_bytes": 50987155456,
+            "free_ram_bytes": 956555264,
+            "free_vram_bytes": 5326766080
+          },
+          "limitations": [
+            "Ten positive development frames from one already-seen indoor broadcast context",
+            "Agent-selected boxes have no independent human box review",
+            "Nearest-center errors can describe false objects and exclude frames with no candidates",
+            "Unmatched proposals are positive-frame false/duplicate candidates, not a negative-video false-alarm rate",
+            "No final-test, reserved NKUST reference, speed, tracking or qualification evidence"
+          ],
+          "receipt_path": "outputs/yolo26_ball_native_tile_diagnostic_v1/diagnostic.json",
+          "receipt_sha256": "4e6036adbca52f11a636c23b9c6ee538b2d7dde747d97b36832f4e3aed689681",
+          "protocol_path": "outputs/yolo26_ball_native_tile_diagnostic_v1/protocol.json",
+          "script_path": "outputs/yolo26_ball_native_tile_diagnostic_v1/diagnostic_script.py",
+          "tiling": {
+            "tile_size_px": 640,
+            "nominal_overlap": 0.2,
+            "native_pixel_scale": 1.0,
+            "edge_anchored_regions_xyxy_px": [
+              [
+                0,
+                0,
+                640,
+                640
+              ],
+              [
+                512,
+                0,
+                1152,
+                640
+              ],
+              [
+                1024,
+                0,
+                1664,
+                640
+              ],
+              [
+                1280,
+                0,
+                1920,
+                640
+              ],
+              [
+                0,
+                440,
+                640,
+                1080
+              ],
+              [
+                512,
+                440,
+                1152,
+                1080
+              ],
+              [
+                1024,
+                440,
+                1664,
+                1080
+              ],
+              [
+                1280,
+                440,
+                1920,
+                1080
+              ]
+            ],
+            "selection": "ALL_EIGHT_FIXED_LABEL_INDEPENDENT_TILES_NO_FULL_FRAME_PASS"
+          },
+          "deduplication": {
+            "iou": 0.5,
+            "center_distance_px": 2.0,
+            "rule": "IOU_GE_0_5_OR_CENTER_DISTANCE_LE_2_NATIVE_PX",
+            "ordering": "STABLE_DESCENDING_CONFIDENCE_FIRST_ACCEPTED_REPRESENTATIVE"
+          },
+          "resource_guard_floors_bytes": {
+            "free_disk_bytes": 1073741824,
+            "free_ram_bytes": 1073741824,
+            "free_vram_bytes": 2147483648
+          },
+          "guard_error": "Native tile inference guard requires 1 GiB available RAM after CUDA initialization; no unrelated processes are stopped",
+          "model_constructed": false,
+          "inference_performed": false
+        },
+        {
+          "status": "FIXED_NATIVE_TILE_DEVELOPMENT_DIAGNOSTIC_NOT_QUALIFICATION",
+          "qualification_evidence": false,
+          "final_test_used": false,
+          "training_performed": false,
+          "checkpoint_promoted": false,
+          "private_local_only": true,
+          "confidence": 0.01,
+          "iou_match": 0.5,
+          "checkpoint_sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78",
+          "manifest_sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6",
+          "protocol_sha256": "6ead01a0255af64b68dda683dd9fb2bd4b3b6bfca6bd09087fad3c11ddb6cee8",
+          "script_sha256": "b419c059a54db89b5cae744cc5a23f7971e95850355cc653dcf85b57888712cd",
+          "resource_guard": {
+            "free_disk_bytes": 50951757824,
+            "free_ram_bytes": 1984892928,
+            "free_vram_bytes": 5326766080
+          },
+          "limitations": [
+            "Ten positive development frames from one already-seen indoor broadcast context",
+            "Agent-selected boxes have no independent human box review",
+            "Nearest-center errors can describe false objects and exclude frames with no candidates",
+            "Unmatched proposals are positive-frame false/duplicate candidates, not a negative-video false-alarm rate",
+            "No final-test, reserved NKUST reference, speed, tracking or qualification evidence"
+          ],
+          "receipt_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/diagnostic.json",
+          "receipt_sha256": "237fae8f7a33aa64a3f03393e387099682e023c330ca8c73015fb5b92a2f56f2",
+          "protocol_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/protocol.json",
+          "script_path": "scripts/data/diagnose_yolo26_native_tiles.py",
+          "tiling": {
+            "tile_size_px": 640,
+            "nominal_overlap": 0.2,
+            "native_pixel_scale": 1.0,
+            "edge_anchored_regions_xyxy_px": [
+              [
+                0,
+                0,
+                640,
+                640
+              ],
+              [
+                512,
+                0,
+                1152,
+                640
+              ],
+              [
+                1024,
+                0,
+                1664,
+                640
+              ],
+              [
+                1280,
+                0,
+                1920,
+                640
+              ],
+              [
+                0,
+                440,
+                640,
+                1080
+              ],
+              [
+                512,
+                440,
+                1152,
+                1080
+              ],
+              [
+                1024,
+                440,
+                1664,
+                1080
+              ],
+              [
+                1280,
+                440,
+                1920,
+                1080
+              ]
+            ],
+            "selection": "ALL_EIGHT_FIXED_LABEL_INDEPENDENT_TILES_NO_FULL_FRAME_PASS"
+          },
+          "deduplication": {
+            "iou": 0.5,
+            "center_distance_px": 2.0,
+            "rule": "IOU_GE_0_5_OR_CENTER_DISTANCE_LE_2_NATIVE_PX",
+            "ordering": "STABLE_DESCENDING_CONFIDENCE_FIRST_ACCEPTED_REPRESENTATIVE"
+          },
+          "aggregates": {
+            "native_tiles": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": 9,
+              "total_returned_candidates_conf001": 2,
+              "unmatched_or_duplicate_candidates": 1,
+              "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+              "median_matched_candidate_center_error_native_px": 1.141992567712991
+            },
+            "raw_native_tiles_before_dedup": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": 9,
+              "total_returned_candidates_conf001": 2,
+              "unmatched_or_duplicate_candidates": 1,
+              "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+              "median_matched_candidate_center_error_native_px": 1.141992567712991
+            },
+            "total_raw_returned_candidates": 2,
+            "total_dedup_suppressed_candidates": 0
+          },
+          "before_after": {
+            "baseline_full_native_frame_imgsz1280": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 0,
+              "missed_targets_conf001_iou05": 10,
+              "total_returned_candidates_conf001": 43,
+              "unmatched_or_duplicate_candidates": 43,
+              "median_nearest_candidate_center_error_native_px": 400.7617116442058
+            },
+            "context_only_oracle_crop_imgsz640": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 3,
+              "missed_targets_conf001_iou05": 7,
+              "total_returned_candidates_conf001": 21,
+              "unmatched_or_duplicate_candidates": 18,
+              "median_nearest_candidate_center_error_native_px": 1.78935308164533
+            },
+            "native_tiles_imgsz640_after_dedup": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": 9,
+              "total_returned_candidates_conf001": 2,
+              "unmatched_or_duplicate_candidates": 1,
+              "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+              "median_matched_candidate_center_error_native_px": 1.141992567712991
+            },
+            "native_tiles_minus_baseline_counts": {
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": -1,
+              "total_returned_candidates_conf001": -41,
+              "unmatched_or_duplicate_candidates": -42
+            },
+            "frame_match_transitions": [
+              {
+                "frame_index": 56,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 103,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 163,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 234,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 281,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 329,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 376,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 435,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 483,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 530,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": true
+              }
+            ],
+            "interpretation": "POSITIVE_ONLY_DEVELOPMENT_COMPARISON_NO_NEGATIVE_FALSE_ALARM_RATE_OR_QUALIFICATION"
+          },
+          "actual_network_tensor_shapes": [
+            [
+              1,
+              3,
+              640,
+              640
+            ]
+          ],
+          "resource_usage": {
+            "elapsed_seconds": 2.8693419999908656,
+            "torch_peak_allocated_bytes": 200986112,
+            "torch_peak_reserved_bytes": 257949696
+          }
+        }
+      ]
+    }
+  ],
+  "pilot_training_receipts": "data/yolo26/pilot_training_receipts.json"
+}

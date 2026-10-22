@@ -1,0 +1,13 @@
+F..                                                                      [100%]
+================================== FAILURES ===================================
+___ test_one_reader_keeps_generation_snapshot_across_external_atomic_commit ___
+tests\test_result_reader_snapshot.py:34: in test_one_reader_keeps_generation_snapshot_across_external_atomic_commit
+    assert frames[1] == {'frame': 1}
+E   AssertionError: assert {'frame': 0} == {'frame': 1}
+E     
+E     Differing items:
+E     {'frame': 0} != {'frame': 1}
+E     Use -v to get more diff
+=========================== short test summary info ===========================
+FAILED tests/test_result_reader_snapshot.py::test_one_reader_keeps_generation_snapshot_across_external_atomic_commit
+1 failed, 2 passed in 0.21s

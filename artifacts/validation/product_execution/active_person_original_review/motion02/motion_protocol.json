@@ -1,0 +1,33 @@
+{
+  "sourceSha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+  "labelsSha256": "6a714c0967fbc53183bea15658dced5a1453a20adaf47ca75a0d69dea67cfa01",
+  "predictionsSha256": "9f6b980a28a7c48a979b7ffa089c317c67a88a14673d2255ac3daebc06adee35",
+  "scriptSha256": "9134fafd3340309686a1ea8a8ba7ff10620618de5d906b17c31545309622e101",
+  "selectorSha256": "d9d01ae9b34e68b82ca963f03fbb0af4961ffaf3a27fe259f32b1c9424e9b247",
+  "camera": {
+    "width": 960,
+    "sampleFrameStride": 12,
+    "orbFeatures": 4000,
+    "ratio": 0.75,
+    "minimumInliers": 20,
+    "minimumInlierFraction": 0.5,
+    "maximumMeanResidualPx": 2,
+    "minimumMatchedSpanFraction": [
+      0.4,
+      0.3
+    ],
+    "ransacThresholdPx": 2
+  },
+  "selector": {
+    "minimum_observed_seconds": 0.5,
+    "minimum_motion_extent_heights": 0.6,
+    "minimum_camera_samples": 4,
+    "minimum_motion_span_seconds": 0.5
+  },
+  "selection": "ALL_ELIGIBLE_OBSERVED_MOVING_FRAGMENTS; ABSTAIN_IF_MORE_THAN_TWO_COOCCUR",
+  "independentHumanReview": false,
+  "qualificationEvidence": false,
+  "productionDefaultsChanged": false,
+  "identityMerging": false,
+  "courtRolesAssigned": false
+}

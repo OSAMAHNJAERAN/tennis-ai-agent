@@ -1,0 +1,15 @@
+{
+  "status": "PREPARED_NOT_EXECUTED",
+  "originSha256": "140d462c754ff1a6a3656ee104a6b32a1674cf1928f1566fd8f2819525bedd51",
+  "helperSha256": "88fd4b366b7064851e9f9f448148da1b703f4bac3ce304dde0d3c0f6f629dabe",
+  "onlyChanges": {
+    "ROOT = Path(__file__).resolve().parents[3]": "ROOT = Path(__file__).resolve().parents[4]",
+    "PREFLIGHT = BASE / 'result_storage_latency_runtime_preflight_2026-10-06.json'": "PREFLIGHT = BASE / 'runtime_preflight.json'",
+    "RECEIPT = BASE / 'result_storage_latency_runtime_verification_2026-10-06.json'": "RECEIPT = BASE / 'runtime_verification.json'",
+    "ORIGINAL = BASE / 'verify_result_storage_runtime_2026-10-06.py'": "ORIGINAL = BASE.parent / 'verify_result_storage_runtime_2026-10-06.py'",
+    "names += sorted((ROOT / 'src/api').glob('*.py'))": "names += sorted((ROOT / 'src').rglob('*.py'))"
+  },
+  "unchangedSnapshotRequestAndExportFunctions": true,
+  "productionOrHistoricalEvidenceChanged": false,
+  "inferenceRun": false
+}

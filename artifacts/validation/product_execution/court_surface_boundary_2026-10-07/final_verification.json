@@ -1,0 +1,501 @@
+{
+  "verifiedAt": "2026-10-07T04:27:32.114133+00:00",
+  "status": "REVIEWED_DEVELOPMENT_CANDIDATE_NOT_PROMOTED",
+  "boundedEvidenceAuditPassed": true,
+  "originalCourtTrialPassed": false,
+  "originalCourtTrialStatus": "FAILED_FINALIZATION",
+  "recoveredRecordsAudited": true,
+  "nativeErrorsIndependentlyChecked": 2240,
+  "courtSelectionBaselineTp": 369,
+  "courtSelectionCandidateTp": 368,
+  "courtCandidatePromoted": false,
+  "realWorkerStatus": "NOT_STARTED",
+  "realWorkerVerified": false,
+  "realWorkerInferenceStarted": false,
+  "websiteRestoredAndVerified": true,
+  "savedJobsUnchanged": 10,
+  "savedAnalysisFilesUnchanged": 319,
+  "currentRuntime": {
+    "state": "OWNED_IDLE_PAIR",
+    "processes": [
+      {
+        "pid": 41000,
+        "createTimeUnixSeconds": 1791346822.2917533,
+        "parentPid": 28908,
+        "name": "python.exe",
+        "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "cmdline": [
+          "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "scripts/run/serve_product.py"
+        ],
+        "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+      },
+      {
+        "pid": 41940,
+        "createTimeUnixSeconds": 1791346824.1294599,
+        "parentPid": 41000,
+        "name": "python.exe",
+        "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "cmdline": [
+          "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-u",
+          "-m",
+          "src.api.worker"
+        ],
+        "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+      }
+    ],
+    "port8000Listeners": [
+      {
+        "pid": 41000,
+        "host": "127.0.0.1",
+        "port": 8000
+      }
+    ],
+    "ownedDescendants": [
+      {
+        "pid": 7604,
+        "createTimeUnixSeconds": 1791346824.1428843,
+        "parentPid": 41940,
+        "name": "conhost.exe",
+        "exe": "C:\\Windows\\System32\\conhost.exe",
+        "cmdline": [
+          "\\??\\C:\\Windows\\system32\\conhost.exe",
+          "0x4"
+        ],
+        "cwd": "C:\\Windows"
+      }
+    ],
+    "launchWrappers": [
+      {
+        "pid": 28908,
+        "createTimeUnixSeconds": 1791346822.270114,
+        "parentPid": 38840,
+        "name": "cmd.exe",
+        "exe": "C:\\Windows\\System32\\cmd.exe",
+        "cmdline": [
+          "C:\\Windows\\system32\\cmd.exe",
+          "/c",
+          "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe scripts/run/serve_product.py"
+        ],
+        "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+      }
+    ]
+  },
+  "qualificationEvidence": false,
+  "fullExecutionObjectiveComplete": false,
+  "remaining": [
+    "Real current-revision worker output verification with adequate unchanged resource headroom",
+    "Full-match capacity evidence",
+    "Untouched independent supported singles recordings and labels",
+    "Automatic player/pose/racket/mask and ball qualification",
+    "Independent physical speed and 3D references"
+  ],
+  "trialLimitations": [
+    "Historical original-refinement maxDifference is an in-trial asserted parity value; actual replay arrays were not persisted and are not independently reproduced.",
+    "Source video first-frame identity is checked against the bound sequential-decode harness and source hash, not a second video decode.",
+    "Photometric per-sample boundary observations are checked for recorded invariants; candidate photometry is not rerun.",
+    "The original run failed finalization and has no report.json. This audit recovers flushed observations; it does not convert the original execution into a pass.",
+    "Loaded-module before/after inventories and runtime version inventory were not persisted and cannot be verified or reconstructed.",
+    "No independent court accuracy, physical geometry, participant accuracy or production qualification."
+  ],
+  "evidenceBindings": {
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/append_progress.py": {
+      "bytes": 3998,
+      "sha256": "e2c11d00c3031bc6f309aedb8731edfa570c1043cc90725b42cb16d53bdecbd3"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/audit.py": {
+      "bytes": 41225,
+      "sha256": "36d575878a4729ceb92ca83dffdb9fffdd4d815a612c960cbe41a52f3272fcf9"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/benchmark.py": {
+      "bytes": 35823,
+      "sha256": "65d3074f90f3a0f5d496345aa83e120afd37461095cae1c8566ceb6ace34b716"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/candidate.py": {
+      "bytes": 7099,
+      "sha256": "0e0a6420432ca3866326d0fe6c5fa69494110c2719e6faa6b7a658931ebccfd0"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/check_live_status.py": {
+      "bytes": 3490,
+      "sha256": "a3df5d7bb8f16d1617dae52b0d200b00106538dd00b59668e389ac62a1264d29"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/check_syntax.py": {
+      "bytes": 326,
+      "sha256": "247c84f53a4727609b4724f4bf8eebcaeba568e8fce4faae8ed29c40e9126e71"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/finalize_unit.py": {
+      "bytes": 9364,
+      "sha256": "33e08755aed25a084f58f64b2ae4fae66ceca5bb1eb4f5e8ee055a1714478647"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/live_status.json": {
+      "bytes": 1320,
+      "sha256": "131bae23642ab3a04ce5d15dfdb1cda1b3bad024bc5dcff86d3c569e0b786ddc"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/preparation.json": {
+      "bytes": 108986,
+      "sha256": "21d010f3ffd195d39a1a9ec420bb6a03b6a80b8247adf862672212a143088df2"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/prepare_test_followup.py": {
+      "bytes": 3551,
+      "sha256": "0a1a58cd9f4d662b6eee9bb3010e78a0223df44fb2c1cc09ad2b25e1637fbb4e"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/progress_append_receipt.json": {
+      "bytes": 553,
+      "sha256": "3323f32fcfdd43d9fa85c17f4cd7718138157c21f6279463791701373bd2dd38"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/protocol.json": {
+      "bytes": 6801,
+      "sha256": "6b6609c7743a5a5434f2a56951fdaf4f1b29febeb32b7d69782bd5ef2fc93421"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/recovery.json": {
+      "bytes": 7872527,
+      "sha256": "73ad170039d35bce97a535ad4e2ae100d93e22874a5dedbcc7dd9e2f15951b99"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/recover_records.py": {
+      "bytes": 5347,
+      "sha256": "598ec4cbfcbb9540d014098d48d39d58ab25d2f97143c586e52474e9fcf1ebed"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/restore_runtime_checks.py": {
+      "bytes": 2411,
+      "sha256": "4683fe434889fe32cbbd2cf7d6f2e790971eacb8fb8370ebc80b4baa08dd0ff3"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/runtime_restore_preflight.json": {
+      "bytes": 86657,
+      "sha256": "f00f98b74bee241c9cc08853ab59fb14f62bb86514ec92485f2f1baea39b3c20"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/runtime_restore_preflight_wrapper.json": {
+      "bytes": 1045,
+      "sha256": "cbb215e464f257efdef883630d6ed2b3f1d1dda767504bbee5eca4853fd1dc67"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/runtime_restore_verification.json": {
+      "bytes": 159500,
+      "sha256": "5244b03d42ddbe3ccc52b01018ddd19f65705bc3c14e4edd87bb2742d4fab7ff"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/runtime_restore_verification_wrapper.json": {
+      "bytes": 1050,
+      "sha256": "ae90af3067a55e71b6192807babace48377102354eb573c379ab3a776fee4c02"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run_tests.py": {
+      "bytes": 8114,
+      "sha256": "4052381358cd9a49cea3f475f297813cf8c4129d1f041ffde0b9a0d2493a0c93"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run_tests_v2.py": {
+      "bytes": 8126,
+      "sha256": "1ebcbd31f4c0b76622741359f1c7082cc8594b2887ef62c7f9f936ccba48e44d"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/TENNIS_EXECUTION_PROGRESS_before.md": {
+      "bytes": 103687,
+      "sha256": "bd3e5e51a1133c878ae480641bca5037ec24d30bab19295958180b1a64495570"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/test_candidate.py": {
+      "bytes": 8819,
+      "sha256": "ee137105840dc0ab451748d8cd21c4226a4dcd5fb487ee621a1ea3f0ce3a8fc5"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/test_candidate_v2.py": {
+      "bytes": 9585,
+      "sha256": "0d8fd1760e0bf558454d33880a83eeddee5c77d50f7f20fcc1ed71f0a1bf98c9"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/test_followup_preparation.json": {
+      "bytes": 779,
+      "sha256": "9e8e6db773c6836b4969133a625a0730ab316389d0a7264f32414d7e8856413c"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/visual_review.json": {
+      "bytes": 31725,
+      "sha256": "3aa45fcbfacefa49d38795df6f8997024c751cd7e222f873acd96aa5b6771ba0"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/audit/receipt.json": {
+      "bytes": 88762,
+      "sha256": "6d9eacd9aa3c791e003e29b7e5841216129a6d6732111b48a471f354a82409d4"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/actual_identity.json": {
+      "bytes": 65,
+      "sha256": "3cfc91ebc50025f6b1dc4a01a1bd6185d862053d7c6b99f42ab0eb3a2078cb00"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/actual_sampled.json": {
+      "bytes": 167,
+      "sha256": "dbe6e098e8a268c90ce12da39f7fd1cd0664b5fb833a649ef89257bae32aa84d"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_00_original.png": {
+      "bytes": 797689,
+      "sha256": "5685dbdbefef98359111e27d39656f68dbd90a522bce77385838874e4d055ddf"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_00_panel.png": {
+      "bytes": 1072656,
+      "sha256": "a897c320577ec1271722176bb1efeeac6402240685cda1dbf416de02b609874e"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_01_original.png": {
+      "bytes": 621357,
+      "sha256": "800a695a9fe5d5e9140f6cae7b6f8b2bf8cc24e4a2abe4b75f3a12e3d428bf26"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_01_panel.png": {
+      "bytes": 815731,
+      "sha256": "f637d219ec54ccd59f9c69dd883c5314632a7ba99e2ed7fdbe329ce1d1629052"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_02_original.png": {
+      "bytes": 2318109,
+      "sha256": "b45f75203f203b4b0da3ba479efd90249e123175eb1526ac620420ea901d22ad"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_02_panel.png": {
+      "bytes": 1465845,
+      "sha256": "20202ff6180b31e3fada56d3bf35b7dd05bf58d76faf835b94c66d7c5f592bb6"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_03_original.png": {
+      "bytes": 407812,
+      "sha256": "44ee63db3e1e64a987dcda2bcfaef28874197eefd5aec6b482bec01c546dddc8"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_03_panel.png": {
+      "bytes": 1565720,
+      "sha256": "17fe013e2fde5b53ac60f848d6705e54513a7a8b5209c5af03c4c504664da3e0"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_04_original.png": {
+      "bytes": 448167,
+      "sha256": "76a8d8f3a915d9461b3fb690bf70bd7556ccdf444e967fb8f0a2329c245fb208"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_04_panel.png": {
+      "bytes": 1698024,
+      "sha256": "1623f16b1778023815a2b1df1869bd61e41464c18aef08e6a6632fe8663e7cb0"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_05_original.png": {
+      "bytes": 1467750,
+      "sha256": "1e1db4ce9d1109448e33910099183a0f7f24b3fdb6bbb72c3f6b345a79557989"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_05_panel.png": {
+      "bytes": 1733362,
+      "sha256": "3c8ad482688745aa2c415c3f6160a5989fff65f73eaf22a1f893e8120158fd64"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_06_original.png": {
+      "bytes": 1872574,
+      "sha256": "8a769c92b5d1628302af0840a1b7089cda87725eeee0c3cbdbe02bcd990a6afe"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_06_panel.png": {
+      "bytes": 1154972,
+      "sha256": "4b92de78768e04bb7c5896ee19325fda71554f7289d71ab2d678fbc7d15ecbb0"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_07_original.png": {
+      "bytes": 2426515,
+      "sha256": "7509db999d5df2357b6448b765ca9745e10715b3ec389c0f63020a01f314b059"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_07_panel.png": {
+      "bytes": 1374255,
+      "sha256": "403c605725040ba3feda8e975a06b0c5830e93e2f4553994724fca21eed221d2"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_08_original.png": {
+      "bytes": 2082291,
+      "sha256": "2af2dc22ab9d8a7746fd20656ed4dc555ae2d7869369fed9eae3e8b6fc2dcdf3"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_08_panel.png": {
+      "bytes": 1230715,
+      "sha256": "6aec03d0f1f79192a3863e601e5e91769d473211d4f8d7f2a3d1f86c49ca0dc9"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_14.png": {
+      "bytes": 938861,
+      "sha256": "e88ce0e8eebc437a4c4f8da89c18a0f50233f6b9a872a45b1c39265951911e90"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_22.png": {
+      "bytes": 1023317,
+      "sha256": "b9524f0f53783dc5edff795aac8f45a84254eaf9ea6dfdc2ab5b681c71b005bd"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_23.png": {
+      "bytes": 1011785,
+      "sha256": "75c58c60958604db7b8445e0794e97850f390fa0159d482bb7fb3749a66c4524"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_24.png": {
+      "bytes": 1045325,
+      "sha256": "e6b15ec43ecacda31e77f31bbd12c97dc85ee23d5ff7ede4511a14fb8b7ea5a2"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_27.png": {
+      "bytes": 1035719,
+      "sha256": "a676e3646e37843fef9a4964a104eac23f4ce8a4c14ada81ad3e5aebfa0554cf"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/launch_marker.json": {
+      "bytes": 277,
+      "sha256": "ed026082aadac74af41b942a7272bd3262018e40bf76cfc142b57092bbc26b76"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/progress.jsonl": {
+      "bytes": 4511711,
+      "sha256": "e728e98cb4c45a5772cd90b90089d2625ac755dd863bfa795e5513e6378fc47b"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/resource_receipt.json": {
+      "bytes": 1428,
+      "sha256": "73ced561b386ffa6c399927193230d99784b0596f68eb6e7172711eaee7fda33"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/samples.jsonl": {
+      "bytes": 618266,
+      "sha256": "4ed71853fbf85bd79cbc0ec8695b647caf5b797fa51f04a2f1424d67156119fb"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/spectator_control.json": {
+      "bytes": 119823,
+      "sha256": "5af2640d77193c4d20c385bce77f707aa3f60fe791757cc9d3983d7548c5d530"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/spectator_control_panel.png": {
+      "bytes": 1697351,
+      "sha256": "02c65d34c1e0550ced591fd4ff261cf0079777fff4aa95855ef4073f755cdb6a"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/stdout.log": {
+      "bytes": 6377,
+      "sha256": "07d53b9e54e54a7745bd27768bea28621d9bbf49943f1049d09e227ae619e9cb"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/junit.xml": {
+      "bytes": 14183,
+      "sha256": "af3a5adb749c9a042a46becddb4d3b23cdbba1ea9230f7ee69b512e252bf4398"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/launch.json": {
+      "bytes": 3509,
+      "sha256": "7cc27666085624499a2717113f2bfba238e09f74dd75eb5fcfa45c34d19825b4"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/receipt.json": {
+      "bytes": 10981,
+      "sha256": "2cc43dc19d89dad94882c2d308925b3dc15fe93d9249c02c39406ad72095cd38"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/samples.jsonl": {
+      "bytes": 8276,
+      "sha256": "973e38795101ebca17fc1ca8a9a55d31908f62de34a34c802a12bc9e083a10d5"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/stdout.log": {
+      "bytes": 2255,
+      "sha256": "e8d27a045d16e889742fc8429a01d75ee2d0d62176729780b4f60d9efd4042f4"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/junit.xml": {
+      "bytes": 11424,
+      "sha256": "2e040bb244ebc7ede07ae83320894c577ae88c5ee2b7cf8d783d6c25b9ea2223"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/launch.json": {
+      "bytes": 3524,
+      "sha256": "d8ba22cf8f07f48a1430e5e6c6849ad61c833ebe8d87a15db1a3218a0133f5e3"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/receipt.json": {
+      "bytes": 7603,
+      "sha256": "fe128322b16061140c2ff495ce5f10deff7f4e821fa0f09dcc5bd42f4c04c238"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/samples.jsonl": {
+      "bytes": 2758,
+      "sha256": "95c7a4a9383cac14e762ea51e2f878ec8ac127d9567c107e746eb65fa77f52f3"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/stdout.log": {
+      "bytes": 101,
+      "sha256": "a7e1d255d7e4e101e1258bffc7566b325239547a3bb9ee386c3c5f15f19df39f"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/pytest.ini": {
+      "bytes": 171,
+      "sha256": "ebe6562349369527478c04f1c945ef6b9103bec1810a22866ab1b7fe3a4e08e8"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/interpreter/python.exe": {
+      "bytes": 105816,
+      "sha256": "5341746f92483a93e44c313de830f2fba2956f0759094404a16b2fed06c9a2ed"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/scripts/evaluate/probe_court_line_segments.py": {
+      "bytes": 6023,
+      "sha256": "2832506e88f0ab692af99a92a9d7345f42f59368f06730e079dd4c6b549d23d4"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/scripts/evaluate/probe_court_surface_support.py": {
+      "bytes": 5617,
+      "sha256": "73c8c8695c06377f3b498e3fc6be4669c08721c659aff8dacc0abc15a0f2c4bc"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/candidate.py": {
+      "bytes": 7099,
+      "sha256": "0e0a6420432ca3866326d0fe6c5fa69494110c2719e6faa6b7a658931ebccfd0"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/protocol.json": {
+      "bytes": 6801,
+      "sha256": "6b6609c7743a5a5434f2a56951fdaf4f1b29febeb32b7d69782bd5ef2fc93421"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run_tests_v2.py": {
+      "bytes": 8126,
+      "sha256": "1ebcbd31f4c0b76622741359f1c7082cc8594b2887ef62c7f9f936ccba48e44d"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests_v2/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/test_candidate_v2.py": {
+      "bytes": 9585,
+      "sha256": "0d8fd1760e0bf558454d33880a83eeddee5c77d50f7f20fcc1ed71f0a1bf98c9"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/pytest.ini": {
+      "bytes": 171,
+      "sha256": "ebe6562349369527478c04f1c945ef6b9103bec1810a22866ab1b7fe3a4e08e8"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/interpreter/python.exe": {
+      "bytes": 105816,
+      "sha256": "5341746f92483a93e44c313de830f2fba2956f0759094404a16b2fed06c9a2ed"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/scripts/evaluate/probe_court_line_segments.py": {
+      "bytes": 6023,
+      "sha256": "2832506e88f0ab692af99a92a9d7345f42f59368f06730e079dd4c6b549d23d4"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/scripts/evaluate/probe_court_surface_support.py": {
+      "bytes": 5617,
+      "sha256": "73c8c8695c06377f3b498e3fc6be4669c08721c659aff8dacc0abc15a0f2c4bc"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/candidate.py": {
+      "bytes": 7099,
+      "sha256": "0e0a6420432ca3866326d0fe6c5fa69494110c2719e6faa6b7a658931ebccfd0"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/protocol.json": {
+      "bytes": 6801,
+      "sha256": "6b6609c7743a5a5434f2a56951fdaf4f1b29febeb32b7d69782bd5ef2fc93421"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run_tests.py": {
+      "bytes": 8114,
+      "sha256": "4052381358cd9a49cea3f475f297813cf8c4129d1f041ffde0b9a0d2493a0c93"
+    },
+    "artifacts/validation/product_execution/court_surface_boundary_2026-10-07/tests/sources/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/test_candidate.py": {
+      "bytes": 8819,
+      "sha256": "ee137105840dc0ab451748d8cd21c4226a4dcd5fb487ee621a1ea3f0ce3a8fc5"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/launch_marker.json": {
+      "bytes": 126,
+      "sha256": "5cbc93052dc3a0eb36212ab7f85b39a350e1632d2e8059ca3192cd2247b183bc"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/origin.json": {
+      "bytes": 6253,
+      "sha256": "476afa82337f98b6ae52f320c2c261e18c1014312da6a338d160c9a9b06d433a"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/preparation.json": {
+      "bytes": 3730,
+      "sha256": "cc5961474806a2546aac0b1b8d53e17593a4af10fc6097226a1c389eef198845"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/protocol.json": {
+      "bytes": 8892,
+      "sha256": "ac51b264637e3c938be500f669f288969c408be4f4976c7e7273b869dde03339"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/resource_receipt.json": {
+      "bytes": 1190,
+      "sha256": "aaeb8bd61114f9d12240ec228f825e7298314bdf7a4bf062d6bf210a9a53abb6"
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/terminal_review.json": {
+      "bytes": 4142,
+      "sha256": "3114660b0445ade1f7e440b018c31a06d025f743003bcf924fa83d288e61c67c"
+    },
+    "docs/plans/TENNIS_EXECUTION_PROGRESS.md": {
+      "bytes": 106000,
+      "sha256": "568600bf45df94aa12753895831f513aeed7a353e9ed431985cd9b48eb6e7e75"
+    },
+    "docs/experiments/COURT_SURFACE_BOUNDARY_RESULTS_2026-10-07.md": {
+      "bytes": 8394,
+      "sha256": "22fe25614ac997f6e1be2e8b6af3b803244e6b3fd4ace57ec199521b1f6988e0"
+    },
+    "docs/research/ACCURACY_DATA_RECHECK_2026-10-07.md": {
+      "bytes": 7654,
+      "sha256": "fdd9054a7361cc06af1816653807f7c7cced5a84ce46ba5f376054c993d1ad35"
+    },
+    "scripts/audit/verify_pose_racket_storage_worker_smoke_v3.py": {
+      "bytes": 57748,
+      "sha256": "967ddbd5ed2c28d4b64edb13508a6f5b7a81726b70f7d75bebcef398a3a35e11"
+    }
+  },
+  "scope": "Seal of preserved failed court trial, independent recovered-record/visual audits, genuine zero-work worker memory decline and successful existing-result website restoration. No failed or unstarted run is relabeled passed."
+}

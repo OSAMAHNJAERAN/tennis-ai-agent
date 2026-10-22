@@ -1,0 +1,40 @@
+{
+  "schema": "tennis.yolo26.root-court-initial20-release.v1",
+  "created_utc": "2026-10-15T02:59:00.844753+00:00",
+  "status": "ROOT_REVIEWED_COURT_DEVELOPMENT_INITIAL20_APPROVED",
+  "trainer_sha256": "cd05fe4983bb9edac77d76ebc32f1b59a1aa0697392abb15ff096608a7d6d6b1",
+  "source_manifest_sha256": "0fadd340acc2fdfa5db9083474f620b396eea1d1eaf8fe025fdf050e43c3c90f",
+  "output": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1",
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "independent_human_reviewed": false,
+  "actual_root_visual_review": {
+    "files": [
+      "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\1csvtOQNd0M_1900_actual_train_overlay.png",
+      "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\TcXqTFdDaTA_2250_actual_train_overlay.png",
+      "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\spNfR7EEPoc_3200_actual_train_overlay.png"
+    ],
+    "findings": "Root viewed all three actual transformed TRAIN overlays: clay, grass and hard. Visible semantic intersections align; no flips/stretch; grass null slots2/5 remain unobserved. This is data preparation review, not independent court accuracy."
+  },
+  "evidence": {
+    "junit_v2.xml": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\junit_v2.xml",
+      "sha256": "2f183a15a4eb089c1e78a31d608936807657b30a3729aec9077604d83c0feeb3"
+    },
+    "preflight_data_only_v2/run_metadata.json": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\preflight_data_only_v2\\run_metadata.json",
+      "sha256": "2f6205cb178ffbce7113266536b5f97f612c102327a9d914b36d47e63241d7f1"
+    },
+    "transform_preview_v1/receipt.json": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\receipt.json",
+      "sha256": "0d976046982fa0b60c239f23a6a3847085b3e82f4e1795b088067ea39ac1df9c"
+    }
+  },
+  "post20_diagnostic_protocol": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\court_development_run1\\post20_diagnostic_protocol.json",
+    "sha256": "edd562e603c6ed7abd517b384daca3226fd00cf76ec074cbdac4b83075212760"
+  },
+  "independent_code_review_agent": "/root/court_training_protocol",
+  "launch_conditions": "Exact final source and data pins. Twenty epochs, patience20, official source weights, fresh output. Trainer must pass unchanged post-CUDA RAM/VRAM/disk launch guard. No other GPU jobs or source/config edits during run.",
+  "extension": "No extension authorized before actual retained learning and error review."
+}

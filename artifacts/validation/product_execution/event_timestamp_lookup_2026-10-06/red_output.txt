@@ -1,0 +1,60 @@
+{"measurements": [{"frames": 128, "timestampReads": 65536, "nearestQueries": 512, "timestampReadBudget": 20480, "exactFrozenFeatureBytes": true, "featureBytes": 109119, "featureSha256": "19561b8621d58ba5d4add6820b7d9fb49762c139090a9f1800a2df3f6c8797f3"}, {"frames": 256, "timestampReads": 262144, "nearestQueries": 1024, "timestampReadBudget": 45056, "exactFrozenFeatureBytes": true, "featureBytes": 218934, "featureSha256": "45fe6d75dd7153dbcffb08016c3a15aef1b8ca3cfeb3cc044ac3553238c2e9b1"}, {"frames": 512, "timestampReads": 1048576, "nearestQueries": 2048, "timestampReadBudget": 98304, "exactFrozenFeatureBytes": true, "featureBytes": 437042, "featureSha256": "68a319a000f85740f744d372657a528a589525f219206a7f21aa5059268e91e1"}], "doublingReadRatios": [4.0, 4.0]}
+F................................
+================================== FAILURES ===================================
+________ test_actual_features_nearest_timestamp_reads_are_subquadratic ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026348530640>
+frozen = <module 'frozen_event_timestamp_lookup_20261006' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\event_timestamp_lookup_2026-10-06\\src\\events\\event_detector.py'>
+record_property = <function record_property.<locals>.append_property at 0x000002634852DD00>
+
+    def test_actual_features_nearest_timestamp_reads_are_subquadratic(monkeypatch, frozen, record_property):
+        measurements = []
+        for count in (128, 256, 512):
+            timestamps = [index / 60.0 for index in range(count)]
+            points = trajectory(timestamps)
+            current = TennisEventDetector()
+            reference = frozen.TennisEventDetector()
+            positions, _ = current._positions(points, None)
+            expected = feature_bytes(reference._features(points, FRAME_SIZE, positions))
+            counts = {'timestampReads': 0, 'nearestQueries': 0}
+            # Root may add a validated sorted helper, preserving the general helper
+            # for fallbacks. Observe both real implementations when present.
+            for name in ('_nearest_index', '_nearest_ordered_index'):
+                if not hasattr(current, name):
+                    continue
+                implementation = getattr(current, name)
+    
+                def observed(values, target, *args, _implementation=implementation, **kwargs):
+                    counts['nearestQueries'] += 1
+                    return _implementation(CountedTimestamps(values, counts), target, *args, **kwargs)
+    
+                monkeypatch.setattr(current, name, observed)
+            actual = feature_bytes(current._features(points, FRAME_SIZE, positions))
+            assert actual == expected, 'Every serialized _Feature field must match the frozen detector'
+            preserve_diagnostic(f'features_{count}_current.json', actual)
+            preserve_diagnostic(f'features_{count}_frozen.json', expected)
+            # Generous to binary search and earliest rounded-distance plateau
+            # searches; still sharply catches a full N scan for each query.
+            read_budget = 4 * count * (4 * math.ceil(math.log2(count + 1)) + 8)
+            measurements.append({'frames': count, **counts, 'timestampReadBudget': read_budget,
+                                 'exactFrozenFeatureBytes': True, 'featureBytes': len(actual),
+                                 'featureSha256': hashlib.sha256(actual).hexdigest()})
+        message = {'measurements': measurements,
+                   'doublingReadRatios': [measurements[i + 1]['timestampReads'] /
+                                          measurements[i]['timestampReads']
+                                          for i in range(len(measurements) - 1)]}
+        print(json.dumps(message, allow_nan=False), flush=True)
+        record_property('nearestTimestampMeasurements', json.dumps(message, allow_nan=False))
+        preserve_diagnostic('nearest_timestamp_measurements.json',
+                            json.dumps(message, indent=2, allow_nan=False).encode('utf-8'))
+        # Check after collecting all sizes, so the genuine RED receipt retains the
+        # growth evidence rather than only the first failing scalar.
+>       assert all(row['timestampReads'] <= row['timestampReadBudget'] for row in measurements), message
+E       AssertionError: {'doublingReadRatios': [4.0, 4.0], 'measurements': [{'exactFrozenFeatureBytes': True, 'featureBytes': 109119, 'feature...es': 437042, 'featureSha256': '68a319a000f85740f744d372657a528a589525f219206a7f21aa5059268e91e1', 'frames': 512, ...}]}
+E       assert False
+E        +  where False = all(<generator object test_actual_features_nearest_timestamp_reads_are_subquadratic.<locals>.<genexpr> at 0x00000263484A79F0>)
+
+tests\test_event_timestamp_lookup.py:138: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_event_timestamp_lookup.py::test_actual_features_nearest_timestamp_reads_are_subquadratic
+1 failed, 32 passed in 4.57s

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.1",
+  "bundle_id": "private-yolo26-native-crop-ball-court14-2026-10-09",
+  "status": "UNQUALIFIED_PRIVATE_DEVELOPMENT_PILOTS",
+  "qualification_receipt": null,
+  "models": {
+    "ball": {
+      "family": "yolo26m",
+      "task": "detect",
+      "kpt_shape": null,
+      "path": "outputs/yolo26_ball_native_crop_pilot_v1/training/weights/best.pt",
+      "sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78",
+      "initial_weights": "yolo26m.pt",
+      "training_provenance": {
+        "path": "outputs/yolo26_ball_native_crop_pilot_v1/run_metadata.json",
+        "sha256": "a924258db95b52ac01940f706228b73d7fb34a85cbeeaa23b8358407c92dabd2"
+      },
+      "independent_accuracy_validated": false
+    },
+    "players": {
+      "family": "yolo26s",
+      "task": "pose",
+      "kpt_shape": [
+        17,
+        3
+      ],
+      "path": "models/yolo26/yolo26s-pose.pt",
+      "sha256": "a083adb42303728ae14c4bd6bd56d80da46f82fb2564dbd6f31dcc92ea321646",
+      "initial_weights": "yolo26s-pose.pt",
+      "training_provenance": null,
+      "independent_accuracy_validated": false,
+      "origin_provenance": {
+        "path": "models/yolo26/provenance.json",
+        "sha256": "04a666caa99962653fc273f7dd057f6cd51037d120285930e5548437c40443db"
+      }
+    },
+    "court": {
+      "family": "yolo26s",
+      "task": "pose",
+      "kpt_shape": [
+        14,
+        3
+      ],
+      "path": "outputs/yolo26_court_pilot_v1/training/weights/best.pt",
+      "sha256": "351b91633dcf5919c327815f23411edcb65ca0531edad0ed4fa529ab2c6ad45c",
+      "initial_weights": "yolo26s-pose.pt",
+      "training_provenance": {
+        "path": "outputs/yolo26_court_pilot_v1/run_metadata.json",
+        "sha256": "35aebe7975e26c1e38a6de439bfc7ff1854660af8f51a35ac11e39fc065d0dd3"
+      },
+      "independent_accuracy_validated": false
+    }
+  },
+  "use_scope": "PRIVATE_OFFLINE_EVALUATION",
+  "evaluation_only": true,
+  "public_redistribution_allowed": false,
+  "evaluation_sources": {
+    "path": "data/yolo26/pilot_broadcast_native_crop_v1/source_manifest.json",
+    "sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6"
+  }
+}

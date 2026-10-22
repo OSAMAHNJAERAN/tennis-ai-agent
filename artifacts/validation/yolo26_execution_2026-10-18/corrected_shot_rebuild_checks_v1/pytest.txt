@@ -1,0 +1,339 @@
+..F.F.....FFFFFFFF.                                                      [100%]
+================================== FAILURES ===================================
+_ test_missing_required_pose_provider_refuses_without_silent_geometry_fallback _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_missing_required_pose_pro0')
+
+    def test_missing_required_pose_provider_refuses_without_silent_geometry_fallback(tmp_path):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises(RuntimeError, match='[Pp]ose|provider'):
+                with relink_corrected_shots(rebuilt, fixture.scratch):
+                    pytest.fail('Configured reachable pose branch was silently omitted')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_missing_required_pose_pro0/private-rebuild/.result_storage_yvghm_07.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_missing_required_pose_pro0/private-rebuild/.result_storage_yvghm_07.sqlite3')] = list(<map object at 0x00000150CBA03A90>)
+E        +    where <map object at 0x00000150CBA03A90> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_missing_required_pose_pro0/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_missing_required_pose_pro0/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:241: AssertionError
+____ test_downstream_failure_closes_fresh_shots_and_preserves_sealed_base _____
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_downstream_failure_closes0')
+
+    def test_downstream_failure_closes_fresh_shots_and_preserves_sealed_base(tmp_path):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path)
+        with pytest.raises(RuntimeError, match='downstream renderer'):
+            with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                                request=fixture.request) as rebuilt:
+                with relink_corrected_shots(rebuilt, fixture.scratch) as analysis:
+                    shots, events, owner = analysis.shots, analysis.events, rebuilt.owner
+                    raise RuntimeError('Synthetic downstream renderer failure')
+        with pytest.raises(RuntimeError):
+            shots[0]
+        with pytest.raises(RuntimeError):
+            events[0]
+        with pytest.raises(RuntimeError):
+            owner.event(1)
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_sho..._shot_rebuild_checks_v1/temp/pytest/test_downstream_failure_closes0/private-rebuild/.result_storage_uffrfds_.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_sho..._shot_rebuild_checks_v1/temp/pytest/test_downstream_failure_closes0/private-rebuild/.result_storage_uffrfds_.sqlite3')] = list(<map object at 0x00000150CDB4D870>)
+E        +    where <map object at 0x00000150CDB4D870> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_downstream_failure_closes0/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_downstream_failure_closes0/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:274: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response0] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res0')
+response = []
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res0/private-rebuild/.result_storage_tk5mdyxb.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res0/private-rebuild/.result_storage_tk5mdyxb.sqlite3')] = list(<map object at 0x00000150CDC18400>)
+E        +    where <map object at 0x00000150CDC18400> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res0/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res0/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response1] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res1')
+response = {}
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res1/private-rebuild/.result_storage_bj56udrv.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res1/private-rebuild/.result_storage_bj56udrv.sqlite3')] = list(<map object at 0x00000150CDB59090>)
+E        +    where <map object at 0x00000150CDB59090> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res1/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res1/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response2] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res2')
+response = {'valid': 1}
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res2/private-rebuild/.result_storage_u9f548dh.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res2/private-rebuild/.result_storage_u9f548dh.sqlite3')] = list(<map object at 0x00000150CB190280>)
+E        +    where <map object at 0x00000150CB190280> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res2/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res2/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response3] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res3')
+response = {'mean_pose_confidence': 0.9, 'normalized_wrist_displacement': False, 'valid': True}
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res3/private-rebuild/.result_storage_jmo4k73j.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res3/private-rebuild/.result_storage_jmo4k73j.sqlite3')] = list(<map object at 0x00000150CDB4F040>)
+E        +    where <map object at 0x00000150CDB4F040> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res3/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res3/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response4] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res4')
+response = {'mean_pose_confidence': True, 'normalized_wrist_displacement': 0.5, 'valid': True}
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res4/private-rebuild/.result_storage_t6fcimo8.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res4/private-rebuild/.result_storage_t6fcimo8.sqlite3')] = list(<map object at 0x00000150CDB58DC0>)
+E        +    where <map object at 0x00000150CDB58DC0> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res4/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res4/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response5] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res5')
+response = {'mean_pose_confidence': 0.9, 'normalized_wrist_displacement': nan, 'valid': True}
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res5/private-rebuild/.result_storage__a843a2d.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res5/private-rebuild/.result_storage__a843a2d.sqlite3')] = list(<map object at 0x00000150CDC1A140>)
+E        +    where <map object at 0x00000150CDC1A140> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res5/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res5/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response6] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res6')
+response = {'mean_pose_confidence': 1.1, 'normalized_wrist_displacement': 0.5, 'valid': True}
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res6/private-rebuild/.result_storage_7joxaqyj.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res6/private-rebuild/.result_storage_7joxaqyj.sqlite3')] = list(<map object at 0x00000150CDC18550>)
+E        +    where <map object at 0x00000150CDC18550> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res6/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res6/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+_ test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response7] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res7')
+response = {'reason': 'oversizedoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversiz...edoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversizedoversized', 'valid': False}
+
+    @pytest.mark.parametrize('response', [
+        [], {}, {'valid': 1}, {'valid': True, 'normalized_wrist_displacement': False,
+                               'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': True},
+        {'valid': True, 'normalized_wrist_displacement': float('nan'), 'mean_pose_confidence': .9},
+        {'valid': True, 'normalized_wrist_displacement': .5, 'mean_pose_confidence': 1.1},
+        {'valid': False, 'reason': 'oversized' * 3000},
+    ])
+    def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        from src.scoring.corrected_shot_rebuild import relink_corrected_shots
+        fixture = build_shot_base(tmp_path, configured_players=True)
+        with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch,
+                                            request=binding_amendment(fixture)) as rebuilt:
+            with pytest.raises((ValueError, TypeError)):
+                with relink_corrected_shots(rebuilt, fixture.scratch,
+                                           pose_provider=lambda _: copy.deepcopy(response)):
+                    pytest.fail('Invalid crop features yielded corrected analytics')
+            assert not rebuilt.owner.sealed
+            assert len(rebuilt.owner.member_rows()) == 0
+        unchanged(fixture)
+>       assert not list(fixture.scratch.glob('*'))
+E       AssertionError: assert not [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res7/private-rebuild/.result_storage_9joplpx6.sqlite3')]
+E        +  where [WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res7/private-rebuild/.result_storage_9joplpx6.sqlite3')] = list(<map object at 0x00000150CDC18310>)
+E        +    where <map object at 0x00000150CDC18310> = glob('*')
+E        +      where glob = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res7/private-rebuild').glob
+E        +        where WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_rebuild_checks_v1/temp/pytest/test_invalid_pose_callback_res7/private-rebuild') = namespace(directory=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-...94b40e2508d0bcd69bd5cba89f467b60b102757a42ef15e26f470942c7eeaba4', 'play_scope': 'LEGAL_RALLY', 'participant_id': 2}]}).scratch
+
+tests\test_corrected_shot_rebuild.py:366: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_corrected_shot_rebuild.py::test_missing_required_pose_provider_refuses_without_silent_geometry_fallback
+FAILED tests/test_corrected_shot_rebuild.py::test_downstream_failure_closes_fresh_shots_and_preserves_sealed_base
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response0]
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response1]
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response2]
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response3]
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response4]
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response5]
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response6]
+FAILED tests/test_corrected_shot_rebuild.py::test_invalid_pose_callback_response_is_rejected_before_attaching_shots[response7]
+10 failed, 9 passed in 11.09s

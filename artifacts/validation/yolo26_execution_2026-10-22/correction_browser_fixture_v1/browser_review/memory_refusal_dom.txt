@@ -1,0 +1,282 @@
+- link "Skip to content":
+  - /url: "#main-content"
+- banner:
+  - link "Astra Tennis home":
+    - /url: /overview
+    - generic: Astra Tennis®
+  - navigation "Primary":
+    - link "[Home]":
+      - /url: /overview
+    - link "[My analyses]":
+      - /url: /match-center
+    - link "[Examples]":
+      - /url: /examples
+  - link "Settings":
+    - /url: /settings
+  - link "Upload video":
+    - /url: /upload
+    - text: Upload video
+- main:
+  - link "← Match Center":
+    - /url: /match-center
+  - text: RECORDED MATCH
+  - heading "SYNTHETIC SOFTWARE TEST - correction workflow.mp4" [level=1]
+  - generic: Completed
+  - generic: Tournament unknown
+  - generic: Match date unknown
+  - generic: Result unknown
+  - paragraph: "Uploaded 10/22/2026, 1:25:27 AM · Match details: unknown"
+  - navigation "Match sections":
+    - link "Replay":
+      - /url: /matches/match_7a26c0de7a26c0de7a26c0de7a26c0de?section=replay&event=2
+    - link "Movement & tracking":
+      - /url: /matches/match_7a26c0de7a26c0de7a26c0de7a26c0de?section=statistics&event=2
+    - link "Notes":
+      - /url: /matches/match_7a26c0de7a26c0de7a26c0de7a26c0de?section=insights&event=2
+    - link "Details & exports":
+      - /url: /matches/match_7a26c0de7a26c0de7a26c0de7a26c0de?section=details&event=2
+  - text: ASTRA / TENNIS INTELLIGENCE
+  - heading "Match replay" [level=1]
+  - paragraph: Review the video alongside player movement and court evidence.
+  - text: Analysis complete
+  - generic: SINGLE CAMERA · RECORDED SESSION
+  - generic "Analysis summary":
+    - generic: Analyzed duration
+    - strong: 0.40seconds
+    - generic: Detected events
+    - strong: 00to explore
+    - generic: Movement estimate
+    - strong: —meters · both players
+    - generic: Court reprojection
+    - strong: 0.25px residual
+  - generic "Measurement availability and confidence"
+  - link "Download report":
+    - /url: /api/analyses/match_7a26c0de7a26c0de7a26c0de7a26c0de/download/readable-report?generation=be4ae5d9f0b5734bff08916197c6f8ff55581e0f7a71c4021ee8f5f2b97b9c8b
+  - link "Download annotated video":
+    - /url: /api/analyses/match_7a26c0de7a26c0de7a26c0de7a26c0de/download/annotated?generation=be4ae5d9f0b5734bff08916197c6f8ff55581e0f7a71c4021ee8f5f2b97b9c8b
+  - link "Analysis JSON":
+    - /url: /api/analyses/match_7a26c0de7a26c0de7a26c0de7a26c0de/download/report?generation=be4ae5d9f0b5734bff08916197c6f8ff55581e0f7a71c4021ee8f5f2b97b9c8b
+  - link "Movement CSV":
+    - /url: /api/analyses/match_7a26c0de7a26c0de7a26c0de7a26c0de/download/csv?generation=be4ae5d9f0b5734bff08916197c6f8ff55581e0f7a71c4021ee8f5f2b97b9c8b
+  - link "Original video":
+    - /url: /api/analyses/match_7a26c0de7a26c0de7a26c0de7a26c0de/download/original?generation=be4ae5d9f0b5734bff08916197c6f8ff55581e0f7a71c4021ee8f5f2b97b9c8b
+  - region "Synchronized Court Telemetry View":
+    - generic: SPATIAL WORKSPACE
+    - generic: 12 frames · 30 FPS source
+    - button "Export evidence":
+      - text: Export evidence
+    - tablist "Telemetry representation":
+      - tab "Video Feed" [selected]:
+        - generic: Video Feed
+      - tab "2D Court Model":
+        - generic: 2D Court Model
+      - tab "3D Court":
+        - generic: 3D Court
+      - tab "Spatial Heatmap":
+        - generic: Spatial Heatmap
+    - generic: REPLAY READY
+    - generic: ● P1
+    - generic: ◆ P2
+    - generic: ○ Ball
+    - tabpanel "Video Feed":
+      - generic "Video source":
+        - generic: Video
+        - button "Original" [pressed]
+        - button "AI annotated"
+      - generic "Video evidence player. Space plays or pauses. Arrow keys step frames. Shift and arrow keys seek one second.":
+        - generic "Source match video"
+        - generic "Frame 4, 0.133 seconds":
+          - strong: F 4
+          - generic: 0.133 s
+        - generic: 0:00.1 / 0:00.4
+        - button "Play video":
+        - button "Enter fullscreen":
+        - text: Overlays
+        - toolbar "Video overlay controls":
+          - button "Toggle detected people overlay": Detected people
+          - button "Toggle players overlay" [pressed]: Players
+          - button "Toggle ball overlay" [pressed]: Ball
+          - button "Toggle trajectory overlay" [pressed]: Trajectory
+          - button "Toggle skeleton overlay" [disabled] [pressed]: Skeleton
+          - button "Toggle racket overlay" [disabled] [pressed]: Racket
+          - button "Toggle court overlay": Court
+          - button "Toggle events overlay": Events
+        - paragraph: Skeleton observations unavailable. Racket observations unavailable.
+    - generic "Synchronized replay controls":
+      - generic: 0:00
+      - generic: 0.18s
+      - generic: 0.37s
+      - slider "Replay frame": "4"
+      - button "Play replay":
+      - button "Previous replay frame":
+      - button "Next replay frame":
+      - text: "0.13"
+      - generic: / 0.37 s
+      - text: Speed
+      - combobox "Replay speed":
+        - option "0.25×"
+        - option "0.5×"
+        - option "1×" [selected]
+        - option "1.5×"
+        - option "2×"
+      - button "Loop replay":
+      - button "Restart replay":
+      - generic: F 004
+      - paragraph: No event annotations in this analysis. Frame replay is still available.
+    - article:
+      - generic: P1
+      - text: Player 1
+      - generic: Position unavailable
+      - term: Speed estimate
+      - definition: — km/h
+      - term: Distance estimate
+      - definition: — m
+      - term: Behind baseline
+      - definition: —%
+    - article:
+      - generic: P2
+      - text: Player 2
+      - generic: Position unavailable
+      - term: Speed estimate
+      - definition: — km/h
+      - term: Distance estimate
+      - definition: — m
+      - term: Behind baseline
+      - definition: —%
+    - complementary:
+      - heading "Frame evidence" [level=2]
+      - paragraph: Player positions use a calibrated ground proxy. The ball marker shows its viewing ray projected onto the court.
+      - paragraph: Skeleton and racket overlays show image observations. Reconstructed height and physical ball speed are unavailable.
+    - text: Analysis interval
+    - heading "Focus the evidence." [level=3]
+    - paragraph: Apply a frame range to density, position breakdowns, and export.
+    - text: From frame
+    - spinbutton "Analysis start frame": "0"
+    - generic: →
+    - text: To frame
+    - spinbutton "Analysis end frame": "11"
+    - button "Full clip"
+    - text: Event inspector
+    - heading "A closer look at the moment." [level=3]
+    - paragraph: Select a contact or bounce in the timeline to inspect its evidence.
+    - generic: Court mapping available
+    - generic: Frame 4 / 11
+    - generic: "Ball: Unavailable"
+    - generic: "Ball speed: Unavailable"
+    - generic: "Source: single camera"
+  - region "Review and correct analysis":
+    - text: Human review
+    - heading "Review and correct analysis" [level=2]
+    - generic: Revision 0
+    - paragraph: Rebuild score, point evidence, forecasts, reports and annotated video together. Your current replay remains available while processing. Reviewed outputs remain unqualified.
+    - status:
+      - strong: FAILED
+      - generic: Correction failed · attempt 1
+      - generic: Request correction_ebc90a946e724c9ab149365eda8ecb64
+      - paragraph: Insufficient free processing memory or disk space. The correction was stopped before publication; retry when resources are available.
+    - group "Initial score context":
+      - generic: Initial score context
+      - paragraph: Set 1 · games 0–0 · Standard game. Completed sets and playing phase are retained.
+      - checkbox "Review initial score and serve context" [checked]
+      - text: Review initial score and serve context
+      - text: Player 1 initial points
+      - combobox "Player 1 initial points":
+        - option "0" [selected]
+        - option "15"
+        - option "30"
+        - option "40"
+        - option "Adv"
+      - text: Player 2 initial points
+      - combobox "Player 2 initial points":
+        - option "0"
+        - option "15" [selected]
+        - option "30"
+        - option "40"
+        - option "Adv"
+      - text: Server
+      - combobox "Server":
+        - option "Player 1" [selected]
+        - option "Player 2"
+      - text: Serve attempt
+      - combobox "Serve attempt":
+        - option "First serve"
+        - option "Second serve" [selected]
+      - generic: Receiver and service side are derived from server and point parity.
+    - group "Existing event interpretations":
+      - generic: Existing event interpretations
+      - paragraph: Source times, coordinates, detector roles, confidence and identity provenance are retained. Select an event to compare the replay.
+      - button "Event 1 · frame 0"
+      - text: Interpretation
+      - combobox "Event 1 interpretation":
+        - option "serve contact" [selected]
+        - option "player 1 hit"
+        - option "player 2 hit"
+        - option "bounce"
+        - option "unknown event"
+      - text: Reviewed participant
+      - combobox "Event 1 participant":
+        - option "Player 1" [selected]
+        - option "Player 2"
+      - text: Reviewed court end
+      - combobox "Event 1 court end":
+        - option "Near court" [selected]
+        - option "Far court"
+      - button "Event 2 · frame 4"
+      - text: Interpretation
+      - combobox "Event 2 interpretation":
+        - option "serve contact"
+        - option "player 1 hit"
+        - option "player 2 hit"
+        - option "bounce" [selected]
+        - option "unknown event"
+      - text: Reviewed participant
+      - combobox "Event 2 participant":
+        - option "Player 1" [selected]
+        - option "Player 2"
+      - text: Reviewed court end
+      - combobox "Event 2 court end":
+        - option "Near court" [selected]
+        - option "Far court"
+      - button "Event 3 · frame 8"
+      - text: Interpretation
+      - combobox "Event 3 interpretation":
+        - option "serve contact"
+        - option "player 1 hit"
+        - option "player 2 hit" [selected]
+        - option "bounce"
+        - option "unknown event"
+      - text: Reviewed participant
+      - combobox "Event 3 participant":
+        - option "Player 1"
+        - option "Player 2" [selected]
+      - text: Reviewed court end
+      - combobox "Event 3 court end":
+        - option "Near court"
+        - option "Far court" [selected]
+      - generic: 1–3 of 3 events
+      - button "Previous events" [disabled]
+      - button "Next events" [disabled]
+      - text: Submit or reset this page’s edits before changing pages.
+    - group "Review evidence and authorization":
+      - generic: Review evidence and authorization
+      - text: Reason for correction
+      - textbox "Reason for correction": Synthetic browser software test. Review initial score before the toy second serve.
+      - text: Video evidence reference
+      - textbox "Video evidence reference":
+        - /placeholder: "For example: original video, 00:12–00:15"
+        - text: "EXPLICIT SYNTHETIC fixture: source frame 4 at 0.133 seconds; no real-match qualification."
+      - checkbox "I reviewed the source video and authorize this correction as the signed-in owner." [checked]
+      - text: I reviewed the source video and authorize this correction as the signed-in owner.
+      - button "Submit correction and rebuild"
+      - button "Reset edits"
+    - generic "Saved correction history (1)"
+- contentinfo:
+  - generic: TENNIS. SEEN DIFFERENTLY.
+  - link "Service and replay settings":
+    - /url: /settings
+    - text: Service and replay settings
+  - generic: ASTRA
+  - generic: Astra Tennis · Video analysis
+  - generic: "[ BUILT AROUND THE EVIDENCE ]"
+  - link "Your next match ↗":
+    - /url: /upload

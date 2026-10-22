@@ -1,0 +1,24 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_____ test_exact_native_phase6_scoring_aggregation_and_five_exports[True] _____
+tests\test_point_timeline.py:259: in test_exact_native_phase6_scoring_aggregation_and_five_exports
+    exec(compile(ast.Module(body=exports,type_ignores=[]),str(path),'exec'),namespace)
+src\pipeline\phase6_pipeline.py:1494: in <module>
+    'events_count': len(authoritative_events),
+                        ^^^^^^^^^^^^^^^^^^^^
+E   NameError: name 'authoritative_events' is not defined
+---------------------------- Captured stdout call -----------------------------
+  -> Scoring State Complete (3 dead-ball events suppressed) in 0.07s
+____ test_exact_native_phase6_scoring_aggregation_and_five_exports[False] _____
+tests\test_point_timeline.py:259: in test_exact_native_phase6_scoring_aggregation_and_five_exports
+    exec(compile(ast.Module(body=exports,type_ignores=[]),str(path),'exec'),namespace)
+src\pipeline\phase6_pipeline.py:1494: in <module>
+    'events_count': len(authoritative_events),
+                        ^^^^^^^^^^^^^^^^^^^^
+E   NameError: name 'authoritative_events' is not defined
+---------------------------- Captured stdout call -----------------------------
+  -> Scoring State Complete (0 dead-ball events suppressed) in 0.04s
+=========================== short test summary info ===========================
+FAILED tests/test_point_timeline.py::test_exact_native_phase6_scoring_aggregation_and_five_exports[True]
+FAILED tests/test_point_timeline.py::test_exact_native_phase6_scoring_aggregation_and_five_exports[False]
+2 failed, 53 deselected in 0.96s

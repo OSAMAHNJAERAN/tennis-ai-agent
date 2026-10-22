@@ -1,0 +1,2413 @@
+{
+  "status": "FROZEN_BEFORE_ANY_COURT175_GPU_DIAGNOSTIC_OR_TRAINING",
+  "created_utc": "2026-10-16T06:44:52.559395+00:00",
+  "protocol": {
+    "schema": "tennis.yolo26.court175-native-diagnostic.v1",
+    "qualification_evidence": false,
+    "final_test_used": false,
+    "independent_human_review": false,
+    "manifest_sha256": "4029e043f0fd67ac1b7458543cef4e12d73b6dcb01a88c7570fc66a79ba3be28",
+    "baseline_checkpoint": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1\\training\\weights\\best.pt",
+      "sha256": "e47db3784adb39b82be6df7fca73ed0206f67f4f5d1bb029f0f862a34a4feefa"
+    },
+    "selection": "ALL26_DEV_IN_MANIFEST_ORDER_NO_SWEEP",
+    "inference": {
+      "imgsz": 1280,
+      "batch": 1,
+      "device": "0",
+      "conf": 0.05,
+      "iou": 0.7,
+      "max_det": 10,
+      "rect": true,
+      "half": false,
+      "augment": false,
+      "end2end": true,
+      "nms": false
+    },
+    "court_instance": "HIGHEST_CLASS0_CONFIDENCE_STABLE_RETURNED_INDEX_TIE",
+    "bbox_iou_minimum": 0.5,
+    "keypoint_confidence_minimum": 0.25,
+    "native_pixel_error_thresholds": [
+      10,
+      20
+    ],
+    "denominator": "ALL_VISIBLE_REFERENCE_SLOTS_IN_ALL26_INPUTS_INCLUDING_MISSES",
+    "missing_policy": "MISSING_INSTANCE_LOW_CONFIDENCE_OR_NONFINITE_POINT_FAILS_VISIBLE_THRESHOLD_RECALL",
+    "null_policy": "REPORT_UNKNOWN_SLOTS_SEPARATELY_EXCLUDE_FROM_LOCALIZATION_REFERENCE_NO_HIDDEN_POINT_CLAIM",
+    "required_outputs": [
+      "EVERY_IMAGE_LABEL_HASH_NATIVE_PREPROCESSING_AND_INVERSE",
+      "EVERY_RETURNED_BOX_AND_ALL14_RAW_KEYPOINT_COORDINATES_AND_CONFIDENCES",
+      "EVERY_VISIBLE_REFERENCE_ERROR_OR_MISSING_REASON",
+      "MEDIAN_P95_WITH_CONDITIONAL_DENOMINATOR_AND_COVERAGE",
+      "ALL_VISIBLE_DENOMINATOR_RECALL_AT10_AND20PX",
+      "PER_LANDMARK_AND_CONTEXT_COUNTS_AND_ERRORS",
+      "COMPLETE_IMAGE_MISSES_EXTRA_INSTANCES",
+      "ALL26_NATIVE_TARGET_AND_PREDICTION_OVERLAYS",
+      "NO_RECT_OR_THRESHOLD_SEARCH_NO_TEST_NO_METRIC_GROUND_OR_LINE_CALL_CLAIM"
+    ],
+    "posttraining_selection": "REGISTERED_ENGINEERING_DEV_FITNESS_BEST_ONLY_NO_PROMOTION",
+    "baseline_before_any_training_required": true,
+    "preprocessing_observation": "EVERY_NATIVE_RGB_PIXEL_AND114_PADDING; ACTUAL_IMAGE_FORWARDS_SEPARATE_FROM_LIBRARY_WARMUP; INDEPENDENT_SCALE_COORDS_ROUNDTRIP",
+    "samples": [
+      {
+        "id": "oxaylunY_hc_250",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\oxaylunY_hc_250.png",
+          "sha256": "fd27ba101690992bf136220e4656d81707f2a0a258fc216d9913947960171d00"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\oxaylunY_hc_250.txt",
+          "sha256": "1cfc5b825665e22f42ea380db1f1733a877e64d016715b3157b4ea401ec532e4"
+        },
+        "bbox_xyxy_px": [
+          199,
+          250,
+          1077,
+          554
+        ],
+        "keypoints_px": [
+          [
+            374,
+            250,
+            2
+          ],
+          [
+            913,
+            250,
+            2
+          ],
+          [
+            199,
+            554,
+            2
+          ],
+          [
+            1077,
+            554,
+            2
+          ],
+          [
+            441,
+            250,
+            2
+          ],
+          [
+            309,
+            554,
+            2
+          ],
+          [
+            845,
+            250,
+            2
+          ],
+          [
+            967,
+            554,
+            2
+          ],
+          [
+            421,
+            297,
+            2
+          ],
+          [
+            864,
+            297,
+            2
+          ],
+          [
+            353,
+            453,
+            2
+          ],
+          [
+            927,
+            453,
+            2
+          ],
+          [
+            642,
+            297,
+            2
+          ],
+          [
+            640,
+            453,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "V6NR0NAN_cA_3650",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\V6NR0NAN_cA_3650.png",
+          "sha256": "48b82db88faafe410c06149108c62938b306c62638dab6b685af229383cc219d"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\V6NR0NAN_cA_3650.txt",
+          "sha256": "4927bcaebe05c73f78c3b931c44644d1b475a06b571283c10384980fbbc5142b"
+        },
+        "bbox_xyxy_px": [
+          174,
+          177,
+          1096,
+          574
+        ],
+        "keypoints_px": [
+          [
+            397,
+            177,
+            2
+          ],
+          [
+            883,
+            181,
+            2
+          ],
+          [
+            174,
+            574,
+            2
+          ],
+          [
+            1096,
+            572,
+            2
+          ],
+          [
+            458,
+            178,
+            2
+          ],
+          [
+            291,
+            573,
+            2
+          ],
+          [
+            823,
+            181,
+            2
+          ],
+          [
+            983,
+            573,
+            2
+          ],
+          [
+            435,
+            232,
+            2
+          ],
+          [
+            845,
+            234,
+            2
+          ],
+          [
+            352,
+            430,
+            2
+          ],
+          [
+            925,
+            430,
+            2
+          ],
+          [
+            641,
+            233,
+            2
+          ],
+          [
+            640,
+            430,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "VtqY_T2_gI4_750",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\VtqY_T2_gI4_750.png",
+          "sha256": "9fbc978de0532227125d278f490f2cf22c66d0c4ec570b68abdec98a3106b1ce"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\VtqY_T2_gI4_750.txt",
+          "sha256": "25acdd0ee134b26cd6e29d6547819d7510da23d462f9622638a4f35ba18971f0"
+        },
+        "bbox_xyxy_px": [
+          208,
+          208,
+          1062,
+          558
+        ],
+        "keypoints_px": [
+          [
+            406,
+            208,
+            2
+          ],
+          [
+            874,
+            208,
+            2
+          ],
+          [
+            208,
+            557,
+            2
+          ],
+          [
+            1062,
+            558,
+            2
+          ],
+          [
+            464,
+            208,
+            2
+          ],
+          [
+            315,
+            557,
+            2
+          ],
+          [
+            815,
+            208,
+            2
+          ],
+          [
+            955,
+            558,
+            2
+          ],
+          [
+            443,
+            258,
+            2
+          ],
+          [
+            835,
+            258,
+            2
+          ],
+          [
+            368,
+            433,
+            2
+          ],
+          [
+            905,
+            434,
+            2
+          ],
+          [
+            638,
+            258,
+            2
+          ],
+          [
+            636,
+            434,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "bQiC1RcZOe4_200",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\bQiC1RcZOe4_200.png",
+          "sha256": "7a28ca21df9c492ac0a692b3b40fe0175c2f8c39a7f3057bec93590cbeec08ba"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\bQiC1RcZOe4_200.txt",
+          "sha256": "ddf382d76da85ae9e9669d1a7453455526532004eea6a0302a5fe435ea8e6531"
+        },
+        "bbox_xyxy_px": [
+          215,
+          251,
+          1063,
+          551
+        ],
+        "keypoints_px": [
+          [
+            380,
+            251,
+            2
+          ],
+          [
+            899,
+            251,
+            2
+          ],
+          [
+            215,
+            551,
+            2
+          ],
+          [
+            1063,
+            551,
+            2
+          ],
+          [
+            445,
+            251,
+            2
+          ],
+          [
+            322,
+            551,
+            2
+          ],
+          [
+            834,
+            251,
+            2
+          ],
+          [
+            956,
+            551,
+            2
+          ],
+          [
+            426,
+            297,
+            2
+          ],
+          [
+            853,
+            297,
+            2
+          ],
+          [
+            362,
+            452,
+            2
+          ],
+          [
+            916,
+            452,
+            2
+          ],
+          [
+            639,
+            297,
+            2
+          ],
+          [
+            639,
+            452,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "oxaylunY_hc_800",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\oxaylunY_hc_800.png",
+          "sha256": "af78ec034132602148220d7b2a9f57a3547d18e84c546cf34b0afe2b11c15778"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\oxaylunY_hc_800.txt",
+          "sha256": "fc183b11449e9322ba63abd1f1d140db1b96f7fe60340100ac836483537946d6"
+        },
+        "bbox_xyxy_px": [
+          196,
+          250,
+          1077,
+          555
+        ],
+        "keypoints_px": [
+          [
+            369,
+            250,
+            2
+          ],
+          [
+            909,
+            250,
+            2
+          ],
+          [
+            196,
+            555,
+            2
+          ],
+          [
+            1077,
+            553,
+            2
+          ],
+          [
+            437,
+            250,
+            2
+          ],
+          [
+            307,
+            554,
+            2
+          ],
+          [
+            842,
+            250,
+            2
+          ],
+          [
+            967,
+            553,
+            2
+          ],
+          [
+            417,
+            297,
+            2
+          ],
+          [
+            861,
+            297,
+            2
+          ],
+          [
+            350,
+            454,
+            2
+          ],
+          [
+            925,
+            453,
+            2
+          ],
+          [
+            639,
+            297,
+            2
+          ],
+          [
+            638,
+            454,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "5QObSWGBQB8_1200",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\5QObSWGBQB8_1200.png",
+          "sha256": "b4cc089783d291460b47fe61802377e1e421f9ac71a8d23de384552ed68a6c8e"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\5QObSWGBQB8_1200.txt",
+          "sha256": "3e1fe535c35e4690155640a868e55b5d578e719182fa91d219def5dce61aa76f"
+        },
+        "bbox_xyxy_px": [
+          232,
+          183,
+          1114,
+          548
+        ],
+        "keypoints_px": [
+          [
+            430,
+            186,
+            2
+          ],
+          [
+            909,
+            183,
+            2
+          ],
+          null,
+          [
+            1114,
+            548,
+            2
+          ],
+          [
+            490,
+            185,
+            2
+          ],
+          [
+            342,
+            548,
+            2
+          ],
+          [
+            848,
+            183,
+            2
+          ],
+          [
+            1003,
+            548,
+            2
+          ],
+          [
+            469,
+            236,
+            2
+          ],
+          [
+            870,
+            234,
+            2
+          ],
+          [
+            394,
+            419,
+            2
+          ],
+          [
+            948,
+            418,
+            2
+          ],
+          [
+            669,
+            235,
+            2
+          ],
+          [
+            669,
+            418,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "wMjFLZGBBho_450",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\wMjFLZGBBho_450.png",
+          "sha256": "ac1497af6b41a8d924937be33e7e26e2ee8ab277bd235d53cd8d7c404b9ad7dc"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\wMjFLZGBBho_450.txt",
+          "sha256": "ba06404daea782f61c9ec8300e601a739c9265858b4137044ea71bea0833aa5d"
+        },
+        "bbox_xyxy_px": [
+          195,
+          197,
+          1125,
+          572
+        ],
+        "keypoints_px": [
+          [
+            411,
+            197,
+            2
+          ],
+          [
+            911,
+            197,
+            2
+          ],
+          [
+            195,
+            572,
+            2
+          ],
+          [
+            1125,
+            572,
+            2
+          ],
+          [
+            474,
+            197,
+            2
+          ],
+          [
+            312,
+            572,
+            2
+          ],
+          [
+            848,
+            197,
+            2
+          ],
+          [
+            1009,
+            572,
+            2
+          ],
+          [
+            451,
+            249,
+            2
+          ],
+          [
+            870,
+            249,
+            2
+          ],
+          [
+            370,
+            438,
+            2
+          ],
+          [
+            951,
+            438,
+            2
+          ],
+          [
+            660,
+            249,
+            2
+          ],
+          [
+            660,
+            438,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "5QObSWGBQB8_1250",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\5QObSWGBQB8_1250.png",
+          "sha256": "c1ec84ac6481e50e07e01c885251d1104e8eef9d199717a679432512a1e8fc9e"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\5QObSWGBQB8_1250.txt",
+          "sha256": "bde293cd9a85a181b6bd8a2ba6fe3d648a31fc9fde14e0dcc3d4fe804dcfcf6e"
+        },
+        "bbox_xyxy_px": [
+          151,
+          198,
+          1033,
+          554
+        ],
+        "keypoints_px": [
+          [
+            344,
+            203,
+            2
+          ],
+          [
+            840,
+            198,
+            2
+          ],
+          [
+            151,
+            554,
+            2
+          ],
+          null,
+          [
+            407,
+            202,
+            2
+          ],
+          [
+            263,
+            553,
+            2
+          ],
+          [
+            778,
+            198,
+            2
+          ],
+          [
+            923,
+            543,
+            2
+          ],
+          [
+            386,
+            253,
+            2
+          ],
+          [
+            799,
+            248,
+            2
+          ],
+          [
+            313,
+            430,
+            2
+          ],
+          [
+            873,
+            423,
+            2
+          ],
+          [
+            593,
+            251,
+            2
+          ],
+          [
+            593,
+            427,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "wMjFLZGBBho_700",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\wMjFLZGBBho_700.png",
+          "sha256": "9ba57bbc641803f9a5dff4ca2bc443b7b22f31bad74b8187a230c48c6b50e60e"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\wMjFLZGBBho_700.txt",
+          "sha256": "077870c05be3ae4a2d561070f06f8825261222a61e1cc59e11bda34028979140"
+        },
+        "bbox_xyxy_px": [
+          141,
+          195,
+          1071,
+          581
+        ],
+        "keypoints_px": [
+          [
+            362,
+            195,
+            2
+          ],
+          [
+            860,
+            196,
+            2
+          ],
+          [
+            141,
+            581,
+            2
+          ],
+          [
+            1071,
+            571,
+            2
+          ],
+          [
+            425,
+            196,
+            2
+          ],
+          [
+            261,
+            579,
+            2
+          ],
+          [
+            798,
+            196,
+            2
+          ],
+          [
+            958,
+            573,
+            2
+          ],
+          [
+            403,
+            249,
+            2
+          ],
+          [
+            821,
+            249,
+            2
+          ],
+          [
+            320,
+            441,
+            2
+          ],
+          [
+            901,
+            437,
+            2
+          ],
+          [
+            613,
+            249,
+            2
+          ],
+          [
+            612,
+            439,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "UuYiD9JWAgI_100",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\UuYiD9JWAgI_100.png",
+          "sha256": "8cfcd29f0d17e035e516055061bc56cca76e53979bb5f3421958ffa9aa7bf493"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\UuYiD9JWAgI_100.txt",
+          "sha256": "7675af07ceaa2c7b5730539db4189c5d742ac82270b62b77d2565dd5f3955e5c"
+        },
+        "bbox_xyxy_px": [
+          175,
+          180,
+          1098,
+          573
+        ],
+        "keypoints_px": [
+          [
+            396,
+            180,
+            2
+          ],
+          [
+            884,
+            180,
+            2
+          ],
+          [
+            175,
+            573,
+            2
+          ],
+          [
+            1098,
+            573,
+            2
+          ],
+          [
+            457,
+            180,
+            2
+          ],
+          [
+            290,
+            573,
+            2
+          ],
+          [
+            823,
+            180,
+            2
+          ],
+          [
+            982,
+            573,
+            2
+          ],
+          [
+            435,
+            234,
+            2
+          ],
+          [
+            844,
+            234,
+            2
+          ],
+          [
+            351,
+            430,
+            2
+          ],
+          [
+            924,
+            430,
+            2
+          ],
+          [
+            639,
+            234,
+            2
+          ],
+          [
+            637,
+            430,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "gyIQ4Zx7qKc_200",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\gyIQ4Zx7qKc_200.png",
+          "sha256": "de2938fb7e7182773aef74dd09e7483c5bfa2b6720aae65fea9a87f298026a10"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\gyIQ4Zx7qKc_200.txt",
+          "sha256": "46b302125aedf53c8874d1275eed130899159450d63da29eaec0fb370a64f3f5"
+        },
+        "bbox_xyxy_px": [
+          181,
+          229,
+          1092,
+          543
+        ],
+        "keypoints_px": [
+          [
+            362,
+            229,
+            2
+          ],
+          [
+            919,
+            229,
+            2
+          ],
+          [
+            181,
+            541,
+            2
+          ],
+          [
+            1092,
+            543,
+            2
+          ],
+          [
+            432,
+            229,
+            2
+          ],
+          [
+            295,
+            542,
+            2
+          ],
+          [
+            849,
+            229,
+            2
+          ],
+          [
+            977,
+            543,
+            2
+          ],
+          [
+            410,
+            277,
+            2
+          ],
+          [
+            869,
+            277,
+            2
+          ],
+          [
+            340,
+            438,
+            2
+          ],
+          [
+            935,
+            439,
+            2
+          ],
+          [
+            639,
+            277,
+            2
+          ],
+          [
+            637,
+            439,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "V-nCyiVkZpg_700",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\V-nCyiVkZpg_700.png",
+          "sha256": "ce28d79d618e1d5929ea2dd59e2b67e64e15bf031bb48373cd3006d8d3426a23"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\V-nCyiVkZpg_700.txt",
+          "sha256": "e83d1eef0a60ff707979f2d98a6df036e8e745e44a183e81e8fabf693d6fdf01"
+        },
+        "bbox_xyxy_px": [
+          162,
+          203,
+          1111,
+          530
+        ],
+        "keypoints_px": [
+          [
+            349,
+            203,
+            2
+          ],
+          [
+            931,
+            203,
+            2
+          ],
+          [
+            162,
+            529,
+            2
+          ],
+          [
+            1111,
+            530,
+            2
+          ],
+          [
+            422,
+            203,
+            2
+          ],
+          [
+            280,
+            529,
+            2
+          ],
+          [
+            858,
+            203,
+            2
+          ],
+          [
+            991,
+            530,
+            2
+          ],
+          [
+            400,
+            253,
+            2
+          ],
+          [
+            879,
+            253,
+            2
+          ],
+          [
+            327,
+            421,
+            2
+          ],
+          [
+            948,
+            422,
+            2
+          ],
+          [
+            639,
+            253,
+            2
+          ],
+          [
+            637,
+            422,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "m_njKoEjGQQ_1000",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\m_njKoEjGQQ_1000.png",
+          "sha256": "76ce35fef7858853df8825e01c791280d430fae56e6c4040dbc2f9cbdf48243e"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\m_njKoEjGQQ_1000.txt",
+          "sha256": "8c011bc9b2048dac130404ab1e9fb14ec77717e41d88ee27700ce5614d3ccf41"
+        },
+        "bbox_xyxy_px": [
+          182,
+          225,
+          1090,
+          541
+        ],
+        "keypoints_px": [
+          [
+            363,
+            225,
+            2
+          ],
+          [
+            919,
+            226,
+            2
+          ],
+          [
+            182,
+            540,
+            2
+          ],
+          [
+            1090,
+            541,
+            2
+          ],
+          [
+            433,
+            225,
+            2
+          ],
+          [
+            296,
+            540,
+            2
+          ],
+          [
+            849,
+            226,
+            2
+          ],
+          [
+            977,
+            540,
+            2
+          ],
+          [
+            412,
+            274,
+            2
+          ],
+          [
+            869,
+            275,
+            2
+          ],
+          [
+            341,
+            436,
+            2
+          ],
+          [
+            935,
+            437,
+            2
+          ],
+          [
+            640,
+            275,
+            2
+          ],
+          [
+            638,
+            436,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "bQiC1RcZOe4_500",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\bQiC1RcZOe4_500.png",
+          "sha256": "6783fab9113ffd45002b5285eaed538c6a140231b78733a35e48c02741440900"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\bQiC1RcZOe4_500.txt",
+          "sha256": "41ad56b2aefce43eab9f6f8485298fe106dfb1478f41d08d583c4c164da290eb"
+        },
+        "bbox_xyxy_px": [
+          213,
+          251,
+          1062,
+          556
+        ],
+        "keypoints_px": [
+          [
+            379,
+            251,
+            2
+          ],
+          [
+            903,
+            251,
+            2
+          ],
+          [
+            213,
+            556,
+            2
+          ],
+          [
+            1062,
+            551,
+            2
+          ],
+          [
+            446,
+            251,
+            2
+          ],
+          [
+            322,
+            556,
+            2
+          ],
+          [
+            838,
+            251,
+            2
+          ],
+          [
+            957,
+            551,
+            2
+          ],
+          [
+            426,
+            298,
+            2
+          ],
+          [
+            857,
+            298,
+            2
+          ],
+          [
+            362,
+            456,
+            2
+          ],
+          [
+            918,
+            453,
+            2
+          ],
+          [
+            642,
+            298,
+            2
+          ],
+          [
+            642,
+            454,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "gyIQ4Zx7qKc_500",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\gyIQ4Zx7qKc_500.png",
+          "sha256": "53067ae304d82e003d96a66393805c5ce1bc34fab92a3280297171d38e94f501"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\gyIQ4Zx7qKc_500.txt",
+          "sha256": "90c18138ba39cef6281016d407e2ef79a80b0a34e72f6f2ae54b94ad331c27b5"
+        },
+        "bbox_xyxy_px": [
+          187,
+          229,
+          1095,
+          543
+        ],
+        "keypoints_px": [
+          [
+            361,
+            229,
+            2
+          ],
+          [
+            920,
+            229,
+            2
+          ],
+          [
+            187,
+            543,
+            2
+          ],
+          [
+            1095,
+            543,
+            2
+          ],
+          [
+            431,
+            229,
+            2
+          ],
+          [
+            301,
+            543,
+            2
+          ],
+          [
+            850,
+            229,
+            2
+          ],
+          [
+            981,
+            543,
+            2
+          ],
+          [
+            411,
+            278,
+            2
+          ],
+          [
+            870,
+            278,
+            2
+          ],
+          [
+            343,
+            439,
+            2
+          ],
+          [
+            938,
+            439,
+            2
+          ],
+          [
+            640,
+            278,
+            2
+          ],
+          [
+            640,
+            439,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "uXkAqALS0AA_100",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\uXkAqALS0AA_100.png",
+          "sha256": "d7cadaafb02cfd6ca8ef187d89fc36f5337da7a928bfb1d3b7e259daa04aeb68"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\uXkAqALS0AA_100.txt",
+          "sha256": "c7a4d5475bc7b782a579a4c5d3b8761d85d9163b1727457f608c04b7cfd66159"
+        },
+        "bbox_xyxy_px": [
+          207,
+          207,
+          1067,
+          558
+        ],
+        "keypoints_px": [
+          [
+            407,
+            207,
+            2
+          ],
+          [
+            876,
+            208,
+            2
+          ],
+          [
+            207,
+            557,
+            2
+          ],
+          [
+            1067,
+            558,
+            2
+          ],
+          [
+            466,
+            207,
+            2
+          ],
+          [
+            315,
+            557,
+            2
+          ],
+          [
+            817,
+            208,
+            2
+          ],
+          [
+            960,
+            558,
+            2
+          ],
+          [
+            444,
+            257,
+            2
+          ],
+          [
+            837,
+            257,
+            2
+          ],
+          [
+            369,
+            432,
+            2
+          ],
+          [
+            909,
+            434,
+            2
+          ],
+          [
+            641,
+            257,
+            2
+          ],
+          [
+            638,
+            433,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "V-nCyiVkZpg_350",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\V-nCyiVkZpg_350.png",
+          "sha256": "e198f24188702ede78cab5189a5e2cc25f5c105a66278cafcc9e83a4624e0b1e"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\V-nCyiVkZpg_350.txt",
+          "sha256": "8e2fd9e0e393aace6f086f5680fa7bb9581478d4eefd0d29e7175be3623da071"
+        },
+        "bbox_xyxy_px": [
+          162,
+          204,
+          1111,
+          530
+        ],
+        "keypoints_px": [
+          [
+            348,
+            204,
+            2
+          ],
+          [
+            931,
+            204,
+            2
+          ],
+          [
+            162,
+            528,
+            2
+          ],
+          [
+            1111,
+            530,
+            2
+          ],
+          [
+            421,
+            204,
+            2
+          ],
+          [
+            280,
+            528,
+            2
+          ],
+          [
+            857,
+            204,
+            2
+          ],
+          [
+            991,
+            529,
+            2
+          ],
+          [
+            399,
+            254,
+            2
+          ],
+          [
+            878,
+            254,
+            2
+          ],
+          [
+            326,
+            422,
+            2
+          ],
+          [
+            947,
+            422,
+            2
+          ],
+          [
+            638,
+            254,
+            2
+          ],
+          [
+            636,
+            422,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "m_njKoEjGQQ_250",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\m_njKoEjGQQ_250.png",
+          "sha256": "3e60587d1e64224e74ba1046e9b318cd3faff64287f16de35fdd91d5164408f6"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\m_njKoEjGQQ_250.txt",
+          "sha256": "098668512b9bebe45b3832439cccf97edf1cc0693a372e075ba023edf5cc3232"
+        },
+        "bbox_xyxy_px": [
+          186,
+          227,
+          1091,
+          540
+        ],
+        "keypoints_px": [
+          [
+            362,
+            227,
+            2
+          ],
+          [
+            918,
+            227,
+            2
+          ],
+          [
+            186,
+            540,
+            2
+          ],
+          [
+            1091,
+            540,
+            2
+          ],
+          [
+            432,
+            227,
+            2
+          ],
+          [
+            300,
+            540,
+            2
+          ],
+          [
+            848,
+            227,
+            2
+          ],
+          [
+            977,
+            540,
+            2
+          ],
+          [
+            411,
+            276,
+            2
+          ],
+          [
+            868,
+            276,
+            2
+          ],
+          [
+            343,
+            437,
+            2
+          ],
+          [
+            935,
+            437,
+            2
+          ],
+          [
+            639,
+            276,
+            2
+          ],
+          [
+            639,
+            437,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "UuYiD9JWAgI_1850",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\UuYiD9JWAgI_1850.png",
+          "sha256": "5e57f6023659577f81740543491a436983ec7d228df1dc8118ee5c8b104a821a"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\UuYiD9JWAgI_1850.txt",
+          "sha256": "6bf9c390598b245e1352853629178191fef7c50eb74767d12d5d33a300fec560"
+        },
+        "bbox_xyxy_px": [
+          206,
+          202,
+          1070,
+          572
+        ],
+        "keypoints_px": [
+          [
+            416,
+            202,
+            2
+          ],
+          [
+            874,
+            202,
+            2
+          ],
+          [
+            206,
+            572,
+            2
+          ],
+          [
+            1070,
+            569,
+            2
+          ],
+          [
+            473,
+            202,
+            2
+          ],
+          [
+            315,
+            572,
+            2
+          ],
+          [
+            817,
+            202,
+            2
+          ],
+          [
+            963,
+            569,
+            2
+          ],
+          [
+            452,
+            253,
+            2
+          ],
+          [
+            837,
+            253,
+            2
+          ],
+          [
+            373,
+            437,
+            2
+          ],
+          [
+            910,
+            437,
+            2
+          ],
+          [
+            644,
+            253,
+            2
+          ],
+          [
+            642,
+            437,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "VtqY_T2_gI4_700",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\VtqY_T2_gI4_700.png",
+          "sha256": "2bee7f47f278d2d195e8b097b07cde8c63fded75ade9b90c3d919489ede4e780"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\VtqY_T2_gI4_700.txt",
+          "sha256": "f51bb441fa52fe1de9a575a2a6bc28a91489ea24476d6dff5bc03fc27468df8f"
+        },
+        "bbox_xyxy_px": [
+          209,
+          208,
+          1065,
+          558
+        ],
+        "keypoints_px": [
+          [
+            404,
+            208,
+            2
+          ],
+          [
+            873,
+            208,
+            2
+          ],
+          [
+            209,
+            557,
+            2
+          ],
+          [
+            1065,
+            558,
+            2
+          ],
+          [
+            462,
+            208,
+            2
+          ],
+          [
+            316,
+            557,
+            2
+          ],
+          [
+            814,
+            208,
+            2
+          ],
+          [
+            958,
+            558,
+            2
+          ],
+          [
+            442,
+            258,
+            2
+          ],
+          [
+            834,
+            258,
+            2
+          ],
+          [
+            368,
+            433,
+            2
+          ],
+          [
+            907,
+            434,
+            2
+          ],
+          [
+            637,
+            258,
+            2
+          ],
+          [
+            636,
+            433,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "rqxU1mUEw9Y_1950",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\rqxU1mUEw9Y_1950.png",
+          "sha256": "33764e780a9cc19aad75ae994d815c0643d687dccb400e988b2434e934d9e974"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\rqxU1mUEw9Y_1950.txt",
+          "sha256": "631d234c909d6306cd06eb811541ec25265bc7a84f6a9026936300f5a7fdd0a8"
+        },
+        "bbox_xyxy_px": [
+          201,
+          187,
+          1083,
+          553
+        ],
+        "keypoints_px": [
+          [
+            401,
+            187,
+            2
+          ],
+          [
+            878,
+            187,
+            2
+          ],
+          [
+            201,
+            553,
+            2
+          ],
+          [
+            1083,
+            553,
+            2
+          ],
+          [
+            460,
+            187,
+            2
+          ],
+          [
+            311,
+            553,
+            2
+          ],
+          [
+            818,
+            187,
+            2
+          ],
+          [
+            973,
+            553,
+            2
+          ],
+          [
+            439,
+            239,
+            2
+          ],
+          [
+            840,
+            239,
+            2
+          ],
+          [
+            365,
+            422,
+            2
+          ],
+          [
+            917,
+            422,
+            2
+          ],
+          [
+            639,
+            239,
+            2
+          ],
+          [
+            641,
+            422,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "tNNwTcnG4wo_150",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\tNNwTcnG4wo_150.png",
+          "sha256": "de85c8404676e87a95b94ad4e3c4927d48672e515b393c02da3b800d2d2916d8"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\tNNwTcnG4wo_150.txt",
+          "sha256": "736a5dcb5f1347b99943d81cb54cebde8198a774eb4882b0025a9954e387f056"
+        },
+        "bbox_xyxy_px": [
+          213,
+          194,
+          1083,
+          555
+        ],
+        "keypoints_px": [
+          [
+            410,
+            194,
+            2
+          ],
+          [
+            878,
+            194,
+            2
+          ],
+          [
+            213,
+            555,
+            2
+          ],
+          [
+            1083,
+            555,
+            2
+          ],
+          [
+            469,
+            194,
+            2
+          ],
+          [
+            322,
+            555,
+            2
+          ],
+          [
+            820,
+            194,
+            2
+          ],
+          [
+            974,
+            555,
+            2
+          ],
+          [
+            448,
+            245,
+            2
+          ],
+          [
+            841,
+            245,
+            2
+          ],
+          [
+            375,
+            426,
+            2
+          ],
+          [
+            918,
+            426,
+            2
+          ],
+          [
+            644,
+            245,
+            2
+          ],
+          [
+            646,
+            426,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "dYM5le3Ixio_550",
+        "context_group": "context_0c2a0c466ea4d3e9",
+        "visual_event_family": "LondonFinals",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\dYM5le3Ixio_550.png",
+          "sha256": "c3b9784d859d446b68468c59e3baddb9fa32c35ab6fbd35d08a39a39d97ee960"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\dYM5le3Ixio_550.txt",
+          "sha256": "085d965046d2f7f6ceeaf477e819a91907de16ddbacfce1c18140640ef2bec05"
+        },
+        "bbox_xyxy_px": [
+          159,
+          233,
+          1112,
+          561
+        ],
+        "keypoints_px": [
+          [
+            346,
+            233,
+            2
+          ],
+          [
+            930,
+            233,
+            2
+          ],
+          [
+            159,
+            561,
+            2
+          ],
+          [
+            1112,
+            561,
+            2
+          ],
+          [
+            420,
+            233,
+            2
+          ],
+          [
+            279,
+            561,
+            2
+          ],
+          [
+            857,
+            233,
+            2
+          ],
+          [
+            992,
+            561,
+            2
+          ],
+          [
+            398,
+            284,
+            2
+          ],
+          [
+            878,
+            284,
+            2
+          ],
+          [
+            325,
+            453,
+            2
+          ],
+          [
+            948,
+            453,
+            2
+          ],
+          [
+            638,
+            284,
+            2
+          ],
+          [
+            636,
+            453,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "EVieRm_YcbE_1400",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\EVieRm_YcbE_1400.png",
+          "sha256": "5a339beb22ba48293da01e447a97c5a5a742a50236df4309c6d7d21a25a1fe38"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\EVieRm_YcbE_1400.txt",
+          "sha256": "ecd195f10060c859214dd91a0cbb0e3a21a4eb92dc090f42ad536ca8b5d0701a"
+        },
+        "bbox_xyxy_px": [
+          136,
+          185,
+          1145,
+          596
+        ],
+        "keypoints_px": [
+          [
+            374,
+            185,
+            2
+          ],
+          [
+            910,
+            185,
+            2
+          ],
+          [
+            136,
+            596,
+            2
+          ],
+          [
+            1145,
+            596,
+            2
+          ],
+          [
+            441,
+            185,
+            2
+          ],
+          [
+            262,
+            596,
+            2
+          ],
+          [
+            843,
+            185,
+            2
+          ],
+          [
+            1018,
+            596,
+            2
+          ],
+          [
+            417,
+            242,
+            2
+          ],
+          [
+            867,
+            242,
+            2
+          ],
+          [
+            327,
+            447,
+            2
+          ],
+          [
+            955,
+            447,
+            2
+          ],
+          [
+            642,
+            242,
+            2
+          ],
+          [
+            641,
+            447,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "M0IgVgbRhD8_1900",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\M0IgVgbRhD8_1900.png",
+          "sha256": "80e05ba6050946df708d5a8c505825d66643ee157c0a7a7c4016d8e638f86b81"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\M0IgVgbRhD8_1900.txt",
+          "sha256": "2ca6d9362ba471fb73ebbcfc8dbb813aeed2f0f8b7c712d33073d01917a18579"
+        },
+        "bbox_xyxy_px": [
+          204,
+          183,
+          1092,
+          547
+        ],
+        "keypoints_px": [
+          [
+            412,
+            183,
+            2
+          ],
+          [
+            892,
+            183,
+            2
+          ],
+          [
+            204,
+            547,
+            2
+          ],
+          [
+            1092,
+            547,
+            2
+          ],
+          [
+            472,
+            183,
+            2
+          ],
+          [
+            315,
+            547,
+            2
+          ],
+          [
+            832,
+            183,
+            2
+          ],
+          [
+            980,
+            547,
+            2
+          ],
+          [
+            450,
+            234,
+            2
+          ],
+          [
+            853,
+            234,
+            2
+          ],
+          [
+            371,
+            417,
+            2
+          ],
+          [
+            927,
+            417,
+            2
+          ],
+          [
+            651,
+            234,
+            2
+          ],
+          [
+            649,
+            417,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "HF8ZA2maj3E_1050",
+        "context_group": "context_d22c613e937856fd",
+        "visual_event_family": "MonteCarlo",
+        "image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\val\\HF8ZA2maj3E_1050.png",
+          "sha256": "9f991451ca5fdea902b573f7ec70af9d765803e9c6847723ed09bb9e966a4472"
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\val\\HF8ZA2maj3E_1050.txt",
+          "sha256": "b269fcda96faa1a541d5bae3f5742f8ffcf4c7a56da3d1833117ca39fa509da7"
+        },
+        "bbox_xyxy_px": [
+          174,
+          170,
+          1100,
+          550
+        ],
+        "keypoints_px": [
+          [
+            387,
+            170,
+            2
+          ],
+          [
+            894,
+            172,
+            2
+          ],
+          [
+            174,
+            550,
+            2
+          ],
+          [
+            1100,
+            550,
+            2
+          ],
+          [
+            451,
+            171,
+            2
+          ],
+          [
+            291,
+            550,
+            2
+          ],
+          [
+            831,
+            172,
+            2
+          ],
+          [
+            985,
+            550,
+            2
+          ],
+          [
+            429,
+            224,
+            2
+          ],
+          [
+            853,
+            225,
+            2
+          ],
+          [
+            348,
+            415,
+            2
+          ],
+          [
+            930,
+            416,
+            2
+          ],
+          [
+            641,
+            225,
+            2
+          ],
+          [
+            640,
+            415,
+            2
+          ]
+        ]
+      }
+    ]
+  }
+}

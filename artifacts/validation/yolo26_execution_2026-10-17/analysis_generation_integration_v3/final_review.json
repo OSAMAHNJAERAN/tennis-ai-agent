@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/correction_publication_audit",
+  "recordedUtc": "2026-10-17T11:31:38.0624557Z",
+  "status": "PASS",
+  "scope": "Independent final read-only review of immutable whole-analysis publication, retained committed generations, owner/curated HTTP selection and cache policy, pinned media/report readers, and native-worker publication integration.",
+  "productionEdits": false,
+  "testEdits": false,
+  "newTestsRun": false,
+  "remainingActionableFindings": [],
+  "sourceVerification": {
+    "firstPinCheckUtc": "2026-10-17T11:30:49.8597005Z",
+    "lastPinCheckUtc": "2026-10-17T11:31:38.0624557Z",
+    "integrationSourcePinsChecked": 53,
+    "allCurrentPinsMatchIntegrationV3": true,
+    "sourceDriftDuringFinalReview": []
+  },
+  "reviewConclusions": [
+    "Explicit generation resolution requires current-pointer proof or a committed-history receipt. Sealed candidates rejected by final verification/CAS remain diagnostic and cannot be opened as completed history.",
+    "Publication binds database and copied media/timing/metadata/export files in one content-addressed manifest. Shared publication locking and pointer CAS preserve the previous complete generation on rejected publication; legacy database-only publication cannot replace a full generation.",
+    "ResultDocument and full-generation asset routes pin one selected generation, enforce analysis identity and exact integer revision alignment, and fail without mutable-root fallback. HTML validates declared annotation bytes before response headers and ignores undeclared annotation files.",
+    "Owners retain latest and historical access. A full-generation public catalog entry must explicitly select its generation; guest and other-account bare URLs resolve that approved generation, private later generations remain inaccessible, and removing curation revokes public access.",
+    "AccessMiddleware now forces every authenticated response to private, no-store. Curated account-mode responses add Vary: Cookie, including owner latest-private responses reached through curated bare URLs.",
+    "Native-worker publication is reached after checkpoint/input revalidation and source/browser frame-count checks, with a final cancellation/identity callback immediately before pointer commit. Job completion follows publication."
+  ],
+  "closedFindings": [
+    {
+      "priority": 2,
+      "finding": "Known sealed but never-committed token was readable as a completed generation.",
+      "originalReproduction": "generation_review_reproduction_v1/receipt.json",
+      "fix": "src/api/analysis_generation.py:283-339; committed-history receipts are retained only for a previously committed current generation; current pointer proves the new generation.",
+      "passingRegression": "tests/test_generation_commit_contract.py::test_final_verification_rejection_never_creates_readable_committed_history"
+    },
+    {
+      "priority": 2,
+      "finding": "A raw result revision could disagree with the sealed manifest revision.",
+      "originalReproduction": "generation_review_reproduction_v1/receipt.json",
+      "fix": "publish_analysis_generation validates present raw/point revisions as exact integers equal to the publication revision; ResultDocument enforces the same read guard; presentation uses the manifest revision.",
+      "passingRegression": "tests/test_generation_commit_contract.py::test_present_raw_and_point_revisions_must_match_publication_revision (6 cases)"
+    },
+    {
+      "priority": 2,
+      "finding": "HTML evidence extraction could bypass declared generation annotation hash validation.",
+      "originalReproduction": "generation_html_integrity_review_v1/receipt.json",
+      "fix": "src/api/app.py:331-337 validates document.asset_path('annotated_web.mp4') before headers, closes on corrupt declared assets, and passes no image directory when annotation is undeclared.",
+      "passingRegression": "tests/test_generation_commit_contract.py::test_html_images_validate_declared_generation_asset_and_ignore_untracked_file (2 cases)"
+    },
+    {
+      "priority": 2,
+      "finding": "Owner latest-private bytes selected through a curated bare URL received public-style cache headers without Cookie variation.",
+      "originalReproduction": "generation_owner_cache_review_v1/receipt.json",
+      "originalObservationLimit": "Observed response-body selection and header policy; no shared-cache data leak was demonstrated.",
+      "fix": "src/api/auth.py:175-184 forces private, no-store whenever authenticated and adds Vary: Cookie for curated account-mode responses.",
+      "passingRegression": "tests/test_generation_http_contract.py::test_curated_bare_urls_preserve_private_owner_cache_and_cookie_variation",
+      "coverage": "Nine bare result/media/export paths select private latest for owner and approved old generation for guest; authenticated responses stay private; Cookie variation is present; Range 206 and an authenticated visitor to the approved pinned generation are covered."
+    }
+  ],
+  "verificationEvidence": {
+    "integrationV3": {
+      "receipt": "analysis_generation_integration_v3/receipt.json",
+      "status": "PASS",
+      "passed": 283,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "runnerSeconds": 65.31576359999599,
+      "pytestReportedSeconds": 64.88,
+      "junitCasesIndependentlyCounted": 283,
+      "generationHttpAndCommitCasesIndependentlyCounted": 21,
+      "selectedCasesAllPassed": true,
+      "sourcePinsStable": 53,
+      "forbiddenImportAttempts": [],
+      "forbiddenModulesPresent": [],
+      "mediaScope": "Existing demo regression uses three synthetic 100x100 OpenCV frames; generation HTTP fixtures use synthetic undecoded bytes; no actual match video."
+    },
+    "earlierIndependentSubagentRun": {
+      "receipt": "generation_http_checks_v1/post_review_v1/receipt.json",
+      "passed": 20,
+      "runnerSeconds": 17.308250100002624,
+      "sourcePinsStable": 20,
+      "scope": "First three fixes plus the then-current 11 HTTP cases; this run predates the final cache fix and cache regression. The current cache fix is supported by code review and the recorded integration_v3 run, not by a new subagent rerun."
+    },
+    "retainedArtifactHashes": {
+      "analysis_generation_integration_v3/receipt.json": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-17/analysis_generation_integration_v3/receipt.json",
+        "sha256": "62eee0e809250e402a769af7471aeff61930cdcfc8dad6eea81c869c671377ea",
+        "bytes": 12627
+      },
+      "analysis_generation_integration_v3/junit.xml": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-17/analysis_generation_integration_v3/junit.xml",
+        "sha256": "3a509e9ceb40a855a947d53855c0281e05082d714b24c807ea515cf8f0db25ba",
+        "bytes": 43521
+      },
+      "analysis_generation_integration_v3/pytest.txt": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-17/analysis_generation_integration_v3/pytest.txt",
+        "sha256": "70968225c67dfd85fd5658970a6fce256c6304bcb462a26ff69b36b0c049ac8e",
+        "bytes": 935
+      },
+      "generation_http_checks_v1/post_review_v1/receipt.json": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-17/generation_http_checks_v1/post_review_v1/receipt.json",
+        "sha256": "b1f2d2e8ed3a24f0c403ceb17cca657064fbec0c9b667dab9a3cd7cdacd92143",
+        "bytes": 5694
+      },
+      "generation_review_reproduction_v1/receipt.json": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-17/generation_review_reproduction_v1/receipt.json",
+        "sha256": "41bca59a4369db867594ee914d06be387b7b2a059c61a2d2f055788d2e36611e",
+        "bytes": 3902
+      },
+      "generation_html_integrity_review_v1/receipt.json": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-17/generation_html_integrity_review_v1/receipt.json",
+        "sha256": "f5cb0fa8e8424d79f414aaf7585318edca08d8af01d0bdb6ff65e034e4c0758b",
+        "bytes": 2478
+      },
+      "generation_owner_cache_review_v1/receipt.json": {
+        "path": "artifacts/validation/yolo26_execution_2026-10-17/generation_owner_cache_review_v1/receipt.json",
+        "sha256": "d410c0c760385e1ab80dc80d86887e710b8b6dc7d625d798c4434ead71cbacc7",
+        "bytes": 4469
+      }
+    }
+  },
+  "limitations": [
+    "This is publication/storage and HTTP integration review, not full master-prompt acceptance.",
+    "HTTP fixtures use synthetic media bytes; HTML image extraction is mocked at the selected asset-directory boundary. Existing integrated demo coverage decodes only three synthetic OpenCV frames.",
+    "No new suite, actual inference, model training, independent tennis accuracy, long-match playback, live video, or network deployment qualification was performed for this final review.",
+    "Corrected point/timeline regeneration and corrected full-analysis publication are not implemented or claimed by this immutable-generation foundation."
+  ],
+  "reviewConclusion": "NO_REMAINING_ACTIONABLE_P1_P2_IN_REVIEWED_SCOPE",
+  "remaining_actionable_p1_p2": [],
+  "source_pins": {
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/auth.py": "7f6f5cef47d969cfda672a566cf3069777486d19258ea2d372f91cfef742fd5d",
+    "src/api/app.py": "5c517e6bdd705bdb0586807aea6563fcd3c835b2fde6c204a8cea0fa4e662667",
+    "src/api/demos.py": "38535fd81b3161a2a1018afc05116cb3f8d15d0e01fc57227db3213ae447fad2",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/media_revision.py": "dad47ca4054f826c3aacbd8fa249c3b106ca0e9863064ec495a8ef928dcdde47",
+    "src/api/product.py": "9f0216fdbcba2f685e53d7abcd55642e874bfbe6a0b985ca93900bf99a709750",
+    "src/api/reporting.py": "d037d43ba6fd5b3d3ea77c37f3a0e4dcd4a948f0e882a04342a1d2249be7cf33",
+    "src/api/worker.py": "aefc2008a171ac689948fcbc961b603bd57fe5860c81b06218472c363b92196e",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/api/analysis_resume.py": "732a3bdca9d62c7b72913cdd6e3cd4b992734c06192c16b45e8526ed25b128b9",
+    "src/api/pipeline_checkpoint.py": "2de795080efdfc7f63295d3861b24acf1d9ce8c46b81442ee3a930ac16ed4f8a",
+    "tests/test_analysis_generation.py": "d0202826f4b13f541ab74f88b87836ac5aeaec895fd473d60e484dbb24121c11",
+    "tests/test_generation_http_contract.py": "f2ee9b36900b3e13c5a89525937cf57d395611018a58b9b814d442e2e953f5d1",
+    "tests/test_generation_commit_contract.py": "f047cfa3b4211c508cc0cc0c760f5c51127ddd672d911f39e98971baf1091585"
+  }
+}

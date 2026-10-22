@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-10-22T00:35:23.339602+00:00",
+  "reviewer": "Independent collaborating AI agent /root/native_pipeline_fixture",
+  "status": "DEFENSIVE_INVARIANT_RECOMMENDATION_CLOSED_STATIC_SCOPE_ONLY",
+  "reviewed_pipeline": {
+    "path": "src/pipeline/phase6_pipeline.py",
+    "sha256": "1086c25de98f9e5c8a11986ef94e00095ca5499c4b6d2c707422318351ac31ff",
+    "bytes": 109731
+  },
+  "prior_review": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_review_v1/pipeline_static_review.json",
+    "sha256": "110fbb0697ffc767da97c08d84dba1e8f80e982475084b2b75e9cb5e61e4cdbf"
+  },
+  "closed_finding": {
+    "id": "authority_guard_branch_consistency",
+    "resolution": "Native event-authority guard now executes at run top before prefix lookup and both fresh/restored branches. Both paths retain the preexisting dynamic registration restriction.",
+    "guard_line": 654,
+    "prefix_lookup_line": 658,
+    "branch_line": 673
+  },
+  "new_concrete_defect_found": false,
+  "limits": {
+    "static_ast_read_only": true,
+    "tests_run": 0,
+    "project_or_inference_imports": false,
+    "hardware_resource_probes": false,
+    "worker_session_scope_reviewed": false,
+    "actual_model_long_match_or_live_qualification": false
+  }
+}

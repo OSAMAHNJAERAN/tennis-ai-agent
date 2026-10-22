@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "use_scope": "PRIVATE_OFFLINE_EVALUATION",
+  "qualification_evidence": false,
+  "sources": [
+    {
+      "source_id": "match172",
+      "match_id": null,
+      "session_id": null,
+      "original_source_video_id": "publisher_match172_000",
+      "owner": "Linfeng Dong et al. / linfeng302 (publisher; original broadcaster unresolved)",
+      "rights_evidence": "https://huggingface.co/datasets/linfeng302/RacketVision (dataset card declares MIT and explicitly documents video/CSV download for training; checked 2026-10-08)",
+      "training_allowed": true,
+      "use_scope": "PRIVATE_LOCAL_NONCOMMERCIAL_ACADEMIC_PILOT_ONLY",
+      "public_redistribution_allowed": false,
+      "underlying_broadcast_permission": "NOT_SEPARATELY_VERIFIED_NO_PUBLIC_DERIVATIVES",
+      "source_url": "https://huggingface.co/datasets/linfeng302/RacketVision/resolve/85157ca21faa2abca96d837dd2b963738029bcc8/tennis/videos/match172_000.mp4",
+      "source_path": "data/external/racketvision_training20/tennis/videos/match172_000.mp4",
+      "sha256": "eb1dd91dbdf4c270f02f3f26d86cd9e7ed81606123f354805263771f6f9a5a1a",
+      "surface": "hard",
+      "view": "elevated_end_court_singles",
+      "camera_reviewed": true,
+      "fps": 25.0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "clip_duration_seconds": 10.0,
+      "acquired_on": "2026-09-14 (historical local research acquisition)",
+      "reviewed_on": "2026-10-08",
+      "grouping_status": "TRAIN_EXPOSED_BEIJING_CONTEXT_NOT_INDEPENDENT_MATCH_OR_SESSION",
+      "qualification_evidence": false,
+      "development_split": "train",
+      "normal_speed_verified": false,
+      "source_registry_provenance": {
+        "path": "data/yolo26/pilot_v2/source_manifest.json",
+        "sha256": "f893ddebf4167e4ee7bad937e661fce96492c74b591c9189e13c779cd999b55e"
+      },
+      "reviewer_type": "AGENT_VISUAL_REVIEW_NOT_INDEPENDENT_HUMAN_QUALIFICATION",
+      "actual_match_identity_verified": false,
+      "actual_session_identity_verified": false,
+      "current_conservative_context": "beijing",
+      "current_component_id": "context_07c57da9b804e010",
+      "training_exposed": true,
+      "final_test_used": false,
+      "current_source_registry": {
+        "path": "data/yolo26/ball_reviewed_development_v1/source_manifest.json",
+        "sha256": "b3fa03c171c797db9df52038fe1b984cd6aef6aafb942e6885207430832a25ab"
+      },
+      "current_ball_training_samples": [
+        {
+          "sample_id": "positive_0000",
+          "frame_index": 9,
+          "split": "train"
+        },
+        {
+          "sample_id": "positive_0007",
+          "frame_index": 75,
+          "split": "train"
+        },
+        {
+          "sample_id": "tile_review_beijing_frame15_scoreboard",
+          "frame_index": 15,
+          "split": "train"
+        }
+      ],
+      "historical_private_engineering_evaluations": "Previously inspected and repeatedly evaluated; never a final test",
+      "separate_old_development_quarantine": "match182 is St Petersburg; match172 is Beijing training, not that quarantine"
+    }
+  ]
+}

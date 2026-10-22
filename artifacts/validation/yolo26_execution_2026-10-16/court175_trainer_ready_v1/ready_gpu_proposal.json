@@ -1,0 +1,66 @@
+{
+  "status": "IMPLEMENTATION_AND_CPU_REVIEW_READY_BASELINE26_GPU_AND_ROOT_APPROVAL_PENDING",
+  "created_utc": "2026-10-16T06:49:10.116752+00:00",
+  "files": [
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_court_repair.py",
+      "sha256": "51dbb4c19e6bf07303598e4c643425dc20203ac0fd777a134e18c4339740f182"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_court_repair.py",
+      "sha256": "029c759d2c94052f3f25928d5a75fce4bc0aa28dd79dd48fe530d70609b3dd3b"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\tests\\test_yolo26_court_repair_training.py",
+      "sha256": "234e37b57184b23f3745f27fa1156d19cd9914bc4059cc884d9afe883a799ef8"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\tests\\test_yolo26_court_repair_diagnostic.py",
+      "sha256": "1bfb150edd2d16b313e52aa541c730c02d5cf34dfe27d0eaec460f4a8be0d35e"
+    }
+  ],
+  "final_preflight": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\court175_trainer_ready_v1\\preflight.json",
+    "sha256": "c9b2b340c127243a8e0fac189e0995a960774cb8639c47fc25171bb539ae5f85"
+  },
+  "baseline26_plan": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\court175_trainer_ready_v1\\baseline26_plan.json",
+    "sha256": "481639dcbabf5aaa49a9ac977759265f9775d93d06ebe02d5d19133d4d25824d"
+  },
+  "frozen_native26_protocol": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\court175_trainer_preflight_v1\\native26_protocol.json",
+    "sha256": "c805089d1d06ed42f686778bd8c080a5a069134415d2d9f05c7fb508630d5e73"
+  },
+  "cpu_inspection": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\receipt.json",
+    "sha256": "d629771e232ec2db86c8f77f07d24d635663709aacc2ddb32046dbf4d934bcfd"
+  },
+  "cpu_visual_review": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\court175_trainer_ready_v1\\cpu_visual_review.json",
+    "sha256": "89249f7c32809987ba818869093e63ab95d31023e19c09adb85b0a08e344c41d"
+  },
+  "focused58_tests": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\court175_trainer_checks_v2\\receipt.json",
+    "sha256": "bd1a69973f3f2e509ae920f188a7ab10aff27af05ee5086e018388dd7997ad31"
+  },
+  "cpu_transfer_count": 879,
+  "all3TRAIN_actual_transforms_checked": true,
+  "all6_actual_images_locally_viewed": true,
+  "all26DEV_baseline_performed": false,
+  "GPU_training_performed": false,
+  "qualification_evidence": false,
+  "production_promoted": false,
+  "elapsed_pure_reconstruction_seconds": 5.1879757000133395,
+  "pure_reconstruction_heavy_imported": [],
+  "pending": [
+    "ROOT settledSRC freeze and refreshed exact source/runtime snapshot",
+    "One owned diagnostic baseline26 GPU attempt with unchanged4.5GiB preTorch/1.5GiB postCUDA2GiBVRAM1GiBdisk admission and finite observed job ceiling; no fallback/retry",
+    "Root actualall26 result and visual review bound into separateGPUapproval",
+    "First2epochs only configuredtotal20, finite supervised loss+validation+optimizer/headparameterchange receipts and exclusive unstrippedepoch2",
+    "Separate rootreview and exactsameunfinished20 freshoutputresume before remaining18epochs"
+  ],
+  "initial2epoch_owned_wall_ceiling_seconds": 600,
+  "remaining18epoch_owned_wall_ceiling_seconds": 2700,
+  "observer_poll_seconds": 2,
+  "GPU_approval_not_granted_by_this_receipt": true
+}

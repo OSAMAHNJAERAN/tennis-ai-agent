@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "remaining_P1_P2": [],
+  "source_sha256": {
+    "src/scoring/corrected_preparation.py": "3acaebe4141b7e9eb17f43e131beef34293eda60b911fa440ce080b1380cf5a3",
+    "src/scoring/corrected_forecast_presentation.py": "eae419797e0449cfb7fe0f95016d7c76e4fe78a7a995afe581076c637991a2ad",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85",
+    "src/scoring/corrected_exports.py": "719fa7a6556b3d082189cee9373ff3dc4b312d196dedcfd8bf60f4e950064ae2",
+    "src/scoring/corrected_landing_exports.py": "5c0d47e9b9a1eee9a39f029c5c70ab4e5d8f38e179d352f0f7da0cf009fd7437",
+    "src/api/results.py": "e13614beba4f6720b69efa129b4ce94aad17fa445039df587d21e7920dec12fa",
+    "src/api/reporting.py": "7302594a9d8872b68ecaf48c62c272589203d6e5ac88e44c7190d30d6d236c40",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/point_timeline_contract.py": "5b0a8d18019efe5df1f54f6fc1c91e941b492c0cb208fef1cdf85d295245413a",
+    "src/api/landing_zone_contract.py": "4f970da685f504563cad2243943a17c2746458bb463064155b8e00f96691d0cb",
+    "tests/test_corrected_preparation.py": "44e5f526475e2036c710bd2cb94a83bd5d1500beba61357da59db8aa5d92fccf",
+    "tests/test_corrected_forecast_presentation.py": "65fe7328645b0d657ace443d88392d1ea5140ecd6dd84776d6ace6024b05e24a"
+  },
+  "receipt": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_final_v1\\receipt.json",
+  "receipt_sha256": "1677f83a80e6c71521014a3788aef7c6dc3fb2d3fc2abd054f86e0316c89adfa",
+  "combined_counts": {
+    "tests": 875,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "combined_current_source_pin_count": 394,
+  "reviewer_independence": "No application or test source edits by reviewer; only isolated review harnesses, synthetic outputs and receipts were created.",
+  "closed_findings": [
+    {
+      "priority": 2,
+      "title": "Copied semantic artifacts could change during report production and be rebound into a valid preparation seal",
+      "baseline": {
+        "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_review_v1\\receipt.json",
+        "sha256": "9ed5bb559db53af2bb15cd10bfe61db02131bea011eccf4a144aad71cf535ae7"
+      },
+      "executed_proof": "The first HTML producer callback changed only copied match_state.json from receiver 30 to FORGED 999. Native state, trusted exports, reports and base stayed unchanged, but the preparation entered, exited successfully and retained a final seal.",
+      "fix": "Expected copy records come from the frozen native export/render producer manifests and original generation inventory; retain and check every copy before parsing, after each report writer, before sealing and through context exit. Hash generated report bytes as streamed before later writers execute.",
+      "closure": {
+        "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_review_copy_closure_v1\\receipt.json",
+        "sha256": "1d5274abba48cc9665d5f23d290c98ba5e150cfe30e8a4afd2628f26c2c93259"
+      },
+      "transient_producer_guard": {
+        "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_review_transient_v1\\receipt.json",
+        "sha256": "55b7f4f41d61593e9e39c64f0fef5760bee18eaa26abf18fc4e2dfe72a73e623"
+      },
+      "closure_result": "Exact staged-copy mutation is rejected without a seal. A producer metrics mutation after entry guards is rejected before copying against its frozen record, even when cleanup restores all original bytes. Export/render/base bytes remain unchanged.",
+      "evidence_note": "Closure receipts retain their original source pins; the only subsequent preparation addition updates new derivative modifications in the normalized mediaSource, covered by the current coupled run and optional-credit fixture."
+    }
+  ],
+  "reviewed_boundaries": [
+    "Complete immutable observation inventory, exactly one sealed original extension, and independent copied assets; no mutable analysis-root fallback.",
+    "Current owned rule/shot/forecast/export/render bindings and frozen manifest records; no current-generation pointer publication.",
+    "Captured bounded inference provenance from the sealed base result, with explicit unknown fallback and no lookup of current checkpoint files.",
+    "Original display filename, label and analysis timestamp from the sealed summary; caller job values supply neither provenance nor authorization.",
+    "Strict native point and landing readers before normalization, followed by strict normalized source/revision/content checks.",
+    "Fresh causal native forecasts reverified and detached into the one result-storage owner; both exposed result and stored root hashes checked against sealed report JSON.",
+    "Atomic streamed escaped HTML/JSON/CSV, artifact hashes pinned before later producers, fresh derivative credit plus unchanged original attribution.",
+    "Consumer/write failures remove only the pending preparation seal, close owned storage and preserve earlier complete private bundles and the immutable base."
+  ],
+  "optional_credit_fixture": {
+    "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_optional_v1\\receipt.json",
+    "sha256": "b37646a62751929449bd568f137494e6f127b702e70ab3bb79b32d2da3f6065c"
+  },
+  "historical_closure_source_equivalence": {
+    "retained_source": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_checks_v2\\sources\\src\\scoring\\corrected_preparation.py",
+    "sha256": "b80c25acd9e44702f0c9d7d3d9cdd94e2d257b14a7470be4b4a14d6c4cafa089",
+    "current_ast_difference": "Only result['mediaSource'] = {**source, 'modifications': modifications}",
+    "all_copy_report_and_owner_guard_ast_unchanged": true
+  },
+  "future_integration_note": "A future authenticated publisher should open a separate result-storage owner from sealed report JSON or use an explicit commit protocol. Publishing this context-owned storage closes it and would violate the preparation exit guard.",
+  "limitations": [
+    "Synthetic toy imagery, coordinates, identity reviews and retained model hashes; these tests establish software consistency, not independent tennis accuracy.",
+    "Private preparation does not supply owner-authenticated correction commands, queue integration, compare-and-swap publication or UI review editing.",
+    "Complete-match/live operation, model training, detector/geometry/speed/scoring qualification and calibrated forecast accuracy remain separate goal work."
+  ],
+  "published": false
+}

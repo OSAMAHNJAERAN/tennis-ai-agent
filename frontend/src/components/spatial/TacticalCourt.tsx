@@ -1,6 +1,7 @@
-import { useId } from "react";
+import { useId, useMemo } from "react";
 import type { AnalysisRun } from "../../data/contracts";
 import { COURT, FIELD, interpolatePosition, splitTrail, validPoint, type CourtPoint, type NormalizedTelemetry } from "../../lib/tennisTelemetry";
+import { createLandingZoneIndex, DEFAULT_LANDING_PRESENTATION, type LandingPresentation } from '../../lib/landingZones';
 
 export function CourtLines2D() {
   const { width, length, singles, alley, service } = COURT;
@@ -13,8 +14,10 @@ export function CourtLines2D() {
   </g>;
 }
 
-export function TacticalCourt({ run, telemetry, frame, trails, selectedEventId, onSelectEvent }: { run: AnalysisRun; telemetry: NormalizedTelemetry; frame: number; trails: boolean; selectedEventId: number | null; onSelectEvent: (id: number) => void }) {
+export function TacticalCourt({ run, telemetry, frame, trails, selectedEventId, onSelectEvent, landingPresentation = DEFAULT_LANDING_PRESENTATION }: { run: AnalysisRun; telemetry: NormalizedTelemetry; frame: number; trails: boolean; selectedEventId: number | null; onSelectEvent: (id: number) => void; landingPresentation?: LandingPresentation }) {
   const id = useId();
+  const landingZonesAtTime = useMemo(() => createLandingZoneIndex(run), [run]);
+  const landings = landingPresentation.visible ? landingZonesAtTime(frame / run.summary.fps, Math.floor(frame), landingPresentation.partition) : [];
   const playerPoints = telemetry.players.map(points => interpolatePosition(points, frame));
   const ball = interpolatePosition(telemetry.ballPositions, frame, 5);
   const path = (points: CourtPoint[]) => points.map((p, i) => `${i ? "L" : "M"}${p[0]},${p[1]}`).join(" ");
@@ -24,6 +27,12 @@ export function TacticalCourt({ run, telemetry, frame, trails, selectedEventId, 
       <title id={id}>Tactical tennis court at frame {Math.floor(frame)} with player and ball positions</title>
       <rect x={FIELD.minX} y={FIELD.minY} width={FIELD.maxX - FIELD.minX} height={FIELD.maxY - FIELD.minY} rx="0.5" fill="#1a3032" />
       <rect width={COURT.width} height={COURT.length} fill="#345951" />
+      {landings.flatMap(landing => landing.zones.map(zone => <polygon key={`${landing.event_id}-${zone.id}`}
+        data-landing-zone={zone.id} points={zone.polygon_m.map(point => point.join(',')).join(' ')}
+        fill={landing.status === 'inside' ? '#78daa3' : '#f1c36e'} fillOpacity=".22"
+        stroke={landing.status === 'inside' ? '#78daa3' : '#f1c36e'} strokeWidth=".04">
+        <title>{landing.label}; contact uncertainty ±{landing.position_uncertainty_m.toFixed(2)} m</title>
+      </polygon>))}
       <CourtLines2D />
       {trails ? [...telemetry.players, telemetry.ballPositions].flatMap((points, i) => splitTrail(points, frame, i === 2 ? 28 : 60, i === 2 ? 5 : 1).map((segment, j) => <path key={`${i}-${j}`} d={path(segment)} className={`tactical-trail tactical-trail-${i}`} fill="none" strokeWidth="0.08" strokeDasharray={i === 2 ? ".2 .12" : undefined} />)) : null}
       {run.events.filter(event => event.frame <= frame && validPoint(event.court_position_m)).map(event => <g key={event.event_id} transform={`translate(${event.court_position_m![0]} ${event.court_position_m![1]})`} className="tactical-event" role="button" tabIndex={0} aria-label={`Inspect ${event.event_type.toLowerCase()} at frame ${event.frame}`} onClick={() => onSelectEvent(event.event_id)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelectEvent(event.event_id); } }}><circle r=".6" fill="transparent" /><circle r={event.event_id === selectedEventId ? ".38" : ".2"} fill="none" stroke="#f1d693" strokeWidth=".055" /><path d="M-.12 0h.24M0-.12v.24" stroke="#f1d693" strokeWidth=".04" /></g>)}
@@ -32,6 +41,11 @@ export function TacticalCourt({ run, telemetry, frame, trails, selectedEventId, 
         <text y="-.7" textAnchor="middle" fontSize=".65" fontWeight="700" fill="currentColor">P{i + 1}</text>
       </g> : null)}
       {ball ? <g transform={`translate(${ball[0]} ${ball[1]})`}><circle r=".16" fill="#f0ff9d" /><circle r=".3" fill="none" stroke="#f0ff9d" strokeWidth=".025" /></g> : null}
+      {landings.map(landing => <g key={`contact-${landing.event_id}`} transform={`translate(${landing.contact_position_m.join(' ')})`}>
+        <circle r=".16" fill={landing.status === 'inside' ? '#78daa3' : '#f1c36e'} stroke="#edf2e7" strokeWidth=".04" />
+        <title>{landing.label}</title>
+      </g>)}
     </svg>
+    {landings.length ? <p className="landing-zone-caption" role="status">{landings.map(landing => landing.label).join(' · ')}</p> : null}
   </div>;
 }

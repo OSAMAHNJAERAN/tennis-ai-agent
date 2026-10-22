@@ -1,0 +1,24 @@
+{
+  "preparedAt": "2026-10-06T09:56:37.212136+00:00",
+  "workerInvoked": false,
+  "status": "PREPARED_NOT_EXECUTED",
+  "oldPreparedHelper": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\audit\\verify_pose_racket_storage_worker_smoke.py",
+    "sha256": "1fee98a45597e5744aa2e22cb4a343b15e929b94bcb36fa23d9d65df5e78734a"
+  },
+  "oldPreparationSha256": "00610eae75040b21d52313632c6224bc876700054388a021e5401291d6e7d5b1",
+  "newHelper": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\audit\\verify_pose_racket_storage_worker_smoke_v2.py",
+    "bytes": 53977,
+    "sha256": "802963484bd482415a603f9ff1257a72412be137368cde6627ac05ad9185a28d"
+  },
+  "reason": "Independent review found generic smoke allowed optional null pose/racket sections. Require enabled complete raw and normalized 30-frame series, while accepting zero detector coverage.",
+  "oldPreparationPreservedUnlaunched": true,
+  "guardsChanged": false,
+  "earlierCliDiagnostic": {
+    "commandOmittedRequiredPrepareFlag": true,
+    "exitCode": 2,
+    "prepareWritesOrChildLaunch": false,
+    "correctedInvocationUsedPrepareFlag": true
+  }
+}

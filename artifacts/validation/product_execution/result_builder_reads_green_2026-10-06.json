@@ -1,0 +1,29 @@
+{
+  "recordedAt": "2026-10-06T06:01:18+00:00",
+  "status": "GREEN",
+  "command": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m pytest tests\\test_result_builder_reads.py tests\\test_bounded_result_contract.py -q -s --junitxml=artifacts\\validation\\product_execution\\result_builder_reads_green_2026-10-06.xml",
+  "shell": "cmd.exe",
+  "login": false,
+  "exitCode": 0,
+  "toolSessionId": 34189,
+  "toolChunks": ["1bb423", "50f14f"],
+  "pytestSummary": "47 passed in 17.27s",
+  "outputArtifact": "artifacts/validation/product_execution/result_builder_reads_green_2026-10-06.xml",
+  "outputArtifactSha256": "3c9428472c05cad54748ebd8c640c7b59f3a4984be79a844bea99a38fb5405e1",
+  "sourceBindings": {
+    "src/api/results.py": "01d8fb7d04edb0c0d5d980d0c79f71b54c8cc3acea8200c9a486d2b2952f02a2",
+    "tests/test_result_builder_reads.py": "373d7ec54f8b7d9246dd85b9891201955d4581970ce9affcc2388e2bc036eb5e",
+    "src/api/result_storage.py": "6c553e36e55bbf54888819162b6207297686fd050cd62e085821d04fedee5fc2",
+    "artifacts/validation/product_execution/result_storage_latency_baseline_2026-10-06/src/api/results.py": "30a64418e141d2ab5d847c33aa6fcc0386807ff7a04a5891b5172a904f9c1a55"
+  },
+  "cases": [
+    {"frames": 65, "beforeNormalizedFrameDecodesDuringBuild": 3441, "afterNormalizedFrameDecodesDuringBuild": 632, "peakLiveNormalizedFrameSnapshots": 2, "liveAfterBuild": 0, "exactFrozenJsonBytes": true},
+    {"frames": 600, "beforeNormalizedFrameDecodesDuringBuild": 31948, "afterNormalizedFrameDecodesDuringBuild": 5838, "peakLiveNormalizedFrameSnapshots": 2, "liveAfterBuild": 0, "exactFrozenJsonBytes": true}
+  ],
+  "change": "Pose/racket normalizers reuse one local selected-frame snapshot for both roles. Person normalization lazily reuses its selected-frame snapshot across all valid proposals; no read is introduced when existing court/role short-circuiting would not access normalized frames.",
+  "scope": "These counts observe normalized detection-frame decodes in the regression fixtures, not every ResultStorage payload decode and not the parent's separate 600-frame latency trace workload.",
+  "contractValidation": "Both 65/600-frame fixtures reproduce exact frozen resident JSON bytes, UNKNOWN persons, invalid court roles, null/empty people and low-confidence pose joints. The 45 existing bounded contract regressions also pass, including full optional parse failure, disabled/fallback sections, frame/time gates and warnings/order.",
+  "modelInference": false,
+  "benchmark": false,
+  "productionStateWrites": false
+}

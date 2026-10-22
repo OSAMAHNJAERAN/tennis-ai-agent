@@ -1,0 +1,1498 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="17" skipped="0" tests="17" time="14.362" timestamp="2026-10-06T17:42:04.151697+08:00" hostname="Osamah"><testcase classname="tests.test_pipeline_pose_storage" name="test_pose_and_racket_original_records_are_bounded_before_shot_linking[64]" time="0.015"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_pose_and_racket_original_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A01F40C3E0&gt;
+count = 64
+
+    @pytest.mark.parametrize('count', [64, 512])
+    def test_pose_and_racket_original_records_are_bounded_before_shot_linking(tmp_path, monkeypatch, count):
+&gt;       pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, count,
+                                                      stop_before_shots=True)
+
+tests\test_pipeline_pose_storage.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_pose_and_racket_original_records_are_bounded_before_shot_linking[512]" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_pose_and_racket_original_1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A01F40C510&gt;
+count = 512
+
+    @pytest.mark.parametrize('count', [64, 512])
+    def test_pose_and_racket_original_records_are_bounded_before_shot_linking(tmp_path, monkeypatch, count):
+&gt;       pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, count,
+                                                      stop_before_shots=True)
+
+tests\test_pipeline_pose_storage.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[writer_open]" time="0.005"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_render_handles_release_on0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022BDA7B0&gt;
+failure = 'writer_open'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+&gt;       pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pipeline_pose_storage.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[read]" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_render_handles_release_on1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022C01590&gt;
+failure = 'read'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+&gt;       pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pipeline_pose_storage.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[draw]" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_render_handles_release_on2')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022C01BF0&gt;
+failure = 'draw'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+&gt;       pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pipeline_pose_storage.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[write]" time="0.005"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_render_handles_release_on3')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A02A1DDD50&gt;
+failure = 'write'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+&gt;       pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pipeline_pose_storage.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_cleanup_failure_preserves_primary_and_releases_other_handle" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_render_cleanup_failure_pr0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A02A1DD950&gt;
+
+    def test_render_cleanup_failure_preserves_primary_and_releases_other_handle(tmp_path, monkeypatch):
+&gt;       pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch,
+                                                      failure='write', release_failure=True)
+
+tests\test_pipeline_pose_storage.py:269: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled0]" time="0.013"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022DA86E0&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (True, True), numpy_values = False
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled1]" time="0.013"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022D32350&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (True, False), numpy_values = False
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled2]" time="0.012"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_2')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022E914A0&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (False, True), numpy_values = False
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled3]" time="0.016"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_3')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A02A18B950&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (False, False), numpy_values = False
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled0]" time="0.025"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_4')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022D95390&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (True, True), numpy_values = True
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled1]" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_5')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022C43D90&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (True, False), numpy_values = True
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled2]" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_6')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022C0AAD0&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (False, True), numpy_values = True
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled3]" time="0.005"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_complete_pose_racket_raw_7')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022C63310&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+enabled = (False, False), numpy_values = True
+
+    @pytest.mark.parametrize('enabled', [(True, True), (True, False), (False, True), (False, False)])
+    @pytest.mark.parametrize('numpy_values', [False, True])
+    def test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline, enabled, numpy_values):
+        outputs, renders = [], []
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              enabled=enabled, numpy_values=numpy_values)
+
+tests\test_pipeline_pose_storage.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_integer_pose_identities_keep_distinct_render_colors_and_detected_rackets" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_integer_pose_identities_k0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022C635B0&gt;
+
+    def test_integer_pose_identities_keep_distinct_render_colors_and_detected_rackets(tmp_path, monkeypatch):
+        original_line, original_rectangle = current.cv2.line, current.cv2.rectangle
+        colors, racket_boxes = set(), []
+    
+        def line(frame, first, second, color, *args):
+            if color in ((220, 210, 40), (40, 180, 255)):
+                colors.add(color)
+            return original_line(frame, first, second, color, *args)
+    
+        def rectangle(frame, first, second, color, *args):
+            if color == (80, 240, 160):
+                racket_boxes.append((first, second))
+            return original_rectangle(frame, first, second, color, *args)
+    
+        monkeypatch.setattr(current.cv2, 'line', line)
+        monkeypatch.setattr(current.cv2, 'rectangle', rectangle)
+&gt;       pipeline, _, _, output = build_harness(current, tmp_path / 'run', monkeypatch)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pipeline_pose_storage.py:327: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_nonfinite_numpy_array_export_failure_matches_frozen_pipeline" time="0.004"><failure message="ValueError: Incomplete temporal tracker configuration: 'high_conf'">source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+&gt;               high_conf_thresh=float(ball["high_conf"]),
+                                       ^^^^^^^^^^^^^^^^^
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+E           KeyError: 'high_conf'
+
+src\tracking\tracker_factory.py:55: KeyError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/tmp/test_nonfinite_numpy_array_exp0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001A022C63D90&gt;
+frozen_pipeline = &lt;module 'frozen_pose_pipeline' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\before\\src\\pipeline\\phase6_pipeline.py'&gt;
+
+    def test_nonfinite_numpy_array_export_failure_matches_frozen_pipeline(tmp_path, monkeypatch, frozen_pipeline):
+        for name, module in [('frozen', frozen_pipeline), ('current', current)]:
+            with monkeypatch.context() as patch:
+&gt;               pipeline, frames, state, output = build_harness(module, tmp_path / name, patch,
+                                                              nonfinite_array=True)
+
+tests\test_pipeline_pose_storage.py:337: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_pipeline_pose_storage.py:230: in build_harness
+    pipeline = module.Phase6Pipeline(str(config_path))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+artifacts\validation\product_execution\pose_racket_storage_2026-10-06\before\src\pipeline\phase6_pipeline.py:164: in __init__
+    self.temporal_tracker = build_temporal_ball_tracker(self.config)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tracking\tracker_factory.py:73: in build_temporal_ball_tracker
+    settings = resolve_temporal_tracker_settings(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = {'ball_detection': {'backend': 'wasb', 'model': 'never-opened', 'source_directory': 'never-opened', 'temporal_step': 1...ever-opened'}, 'event_detection': {'authoritative_enabled': False}, 'player_detection': {'model': 'never-opened'}, ...}
+
+    def resolve_temporal_tracker_settings(source: ConfigSource) -&gt; TemporalTrackerSettings:
+        """Resolve every tracker setting explicitly; no class-default fallback is allowed."""
+        if isinstance(source, (str, Path)):
+            with Path(source).open("r", encoding="utf-8") as stream:
+                config = yaml.safe_load(stream)
+        else:
+            config = source
+        try:
+            ball = config["ball_detection"]
+            tracking = config["temporal_tracking"]
+            return TemporalTrackerSettings(
+                high_conf_thresh=float(ball["high_conf"]),
+                low_conf_thresh=float(ball["low_conf"]),
+                max_prediction_gap=int(tracking["max_prediction_gap"]),
+                max_interpolation_gap=int(tracking["max_interpolation_gap"]),
+                max_valid_speed_px_per_frame=float(tracking["max_valid_speed_px_per_frame"]),
+                base_gating_radius_px=float(tracking["base_gating_radius_px"]),
+                enable_multi_candidate_association=bool(tracking["enable_multi_candidate_association"]),
+                enable_adaptive_gate=bool(tracking["enable_adaptive_gate"]),
+                enable_short_gap_reacquisition=bool(tracking["enable_short_gap_reacquisition"]),
+                enable_camera_motion_compensation=bool(tracking["enable_camera_motion_compensation"]),
+                enable_scale_normalization=bool(tracking["enable_scale_normalization"]),
+                enable_frame_bounds_filter=bool(tracking["enable_frame_bounds_filter"]),
+            )
+        except (KeyError, TypeError) as exc:
+&gt;           raise ValueError(f"Incomplete temporal tracker configuration: {exc}") from exc
+E           ValueError: Incomplete temporal tracker configuration: 'high_conf'
+
+src\tracking\tracker_factory.py:69: ValueError</failure></testcase></testsuite></testsuites>

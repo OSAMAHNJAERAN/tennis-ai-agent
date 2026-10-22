@@ -1,0 +1,28 @@
+{
+  "verifiedAt": "2026-10-07T04:46:46.914582+00:00",
+  "passed": false,
+  "runtimeStoppedOrStarted": false,
+  "inferenceStarted": false,
+  "scope": "Read-only current runtime, frontend, persistent files and RAM. No inference or accuracy verification.",
+  "helperBinding": {
+    "bytes": 18500,
+    "sha256": "620285d1ea9446f92194fa6f4ba595573c21f724bc61e46497bd2a5c08b67743"
+  },
+  "scriptBinding": {
+    "bytes": 3131,
+    "sha256": "8c4b6595f35843b65525dd55225de54836543b270a2265e106d837e9223ac6be"
+  },
+  "availableRamBeforeBytes": 2965254144,
+  "runtime": {
+    "state": "ABSENT",
+    "processes": [],
+    "port8000Listeners": [],
+    "ownedDescendants": [],
+    "launchWrappers": []
+  },
+  "error": "AssertionError('ABSENT')",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\resume_checks_2026-10-07\\check_current.py\", line 40, in <module>\n    assert runtime['state'] == 'OWNED_IDLE_PAIR', runtime['state']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ABSENT\n",
+  "availableRamAfterBytes": 2954129408,
+  "realWorkerGuardRequiredAvailableBytes": 2500000000,
+  "realWorkerMemoryPreflightCurrentlyPossible": true
+}

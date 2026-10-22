@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "status": "UNQUALIFIED",
+  "analysisId": "fixture",
+  "analysisRevision": 0,
+  "scoringRevision": 0,
+  "sourceSha256": "d17b77f6e9f394630193766f472abf51a43a30b1083fa79428d850d032dd07ca",
+  "independentAccuracyValidated": false,
+  "authoritativeEventsEnabled": true,
+  "summary": {
+    "totalPointsPlayed": 1,
+    "partialOrReviewPoints": 0,
+    "totalRallies": 1,
+    "averageRallyLength": 2.0,
+    "longestRallyLength": 2,
+    "effectivePlaySeconds": 0.81,
+    "timedCompletedRallies": 1,
+    "completedRalliesDurationDenominator": 1,
+    "scoreSummary": "Set 1 (1-0) | P1 0 - P2 0 | Server: P2 (DEUCE)",
+    "matchComplete": false,
+    "winnerId": null
+  },
+  "serveByPlayer": {
+    "player_1": {
+      "serverId": 1,
+      "contactExecutions": 2,
+      "serviceLets": 1,
+      "firstServesAttempted": 1,
+      "secondServesAttempted": 0,
+      "firstServesIn": 1,
+      "firstServesFaulted": 0,
+      "secondServesIn": 0,
+      "doubleFaults": 0,
+      "unresolvedExecutions": 0,
+      "firstServePercentageDenominator": 1,
+      "firstServePercentage": 100.0
+    },
+    "player_2": {
+      "serverId": 2,
+      "contactExecutions": 0,
+      "serviceLets": 0,
+      "firstServesAttempted": 0,
+      "secondServesAttempted": 0,
+      "firstServesIn": 0,
+      "firstServesFaulted": 0,
+      "secondServesIn": 0,
+      "doubleFaults": 0,
+      "unresolvedExecutions": 0,
+      "firstServePercentageDenominator": 0,
+      "firstServePercentage": null
+    }
+  },
+  "points": [
+    {
+      "id": "point_7d2a6d2abfe62f50b89e70313727a45b02c8936d9b918a25b0c9aa2bd918aa2f",
+      "status": "COMPLETED",
+      "anchorEventId": 1,
+      "terminalEventId": 6,
+      "serverId": 1,
+      "receiverId": 2,
+      "setNumber": 1,
+      "gameNumber": 1,
+      "serviceSide": "DEUCE",
+      "winnerId": 1,
+      "endingReason": "Player 2 shot landed OUT (Explicit rule fixture, not geometric GT): Player 1 wins point.",
+      "isReviewPending": false,
+      "totalStrokesIncludingServe": 2,
+      "rallyHitsExcludingServe": 1,
+      "durationSeconds": 0.81
+    }
+  ],
+  "rallies": [
+    {
+      "id": "rally_4f8c0d436162734dd600393807d91aa121ed148203efb79dec7058413d2efc70",
+      "pointId": "point_7d2a6d2abfe62f50b89e70313727a45b02c8936d9b918a25b0c9aa2bd918aa2f",
+      "status": "COMPLETED",
+      "serverId": 1,
+      "receiverId": 2,
+      "serveAttempt": 1,
+      "winnerId": 1,
+      "endingReason": "Player 2 shot landed OUT (Explicit rule fixture, not geometric GT): Player 1 wins point.",
+      "startFrame": 2,
+      "terminalEventId": 6,
+      "durationSeconds": 0.81,
+      "durationReason": null,
+      "totalStrokesIncludingServe": 2,
+      "rallyHitsExcludingServe": 1
+    }
+  ],
+  "serveExecutions": [
+    {
+      "id": "attempt_ed2573e6fb9d2d02e72cd09ec4f736158483d7f255ad0cbbe1fb34193fa41c13",
+      "pointId": "point_7d2a6d2abfe62f50b89e70313727a45b02c8936d9b918a25b0c9aa2bd918aa2f",
+      "status": "SERVICE_LET",
+      "officialAttempt": 1,
+      "replayIndex": 0,
+      "contactEventId": 1,
+      "resultEventId": 2,
+      "serverId": 1,
+      "serverEnd": "NEAR_COURT",
+      "serviceSide": "DEUCE",
+      "rallyId": null
+    },
+    {
+      "id": "attempt_4bc0e46f9b02f8d195bd00a643c758b461053aa420ff91dd7d4d9f6e38026540",
+      "pointId": "point_7d2a6d2abfe62f50b89e70313727a45b02c8936d9b918a25b0c9aa2bd918aa2f",
+      "status": "SERVE_IN_PLAY",
+      "officialAttempt": 1,
+      "replayIndex": 1,
+      "contactEventId": 3,
+      "resultEventId": 4,
+      "serverId": 1,
+      "serverEnd": "NEAR_COURT",
+      "serviceSide": "DEUCE",
+      "rallyId": "rally_4f8c0d436162734dd600393807d91aa121ed148203efb79dec7058413d2efc70"
+    }
+  ]
+}

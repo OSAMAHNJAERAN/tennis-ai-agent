@@ -1,0 +1,141 @@
+{
+  "status": "PASS",
+  "scope": "activity",
+  "pytest_exit_code": 0,
+  "started_utc": "2026-10-16T18:16:52.234740+00:00",
+  "ended_utc": "2026-10-16T18:17:05.173172+00:00",
+  "seconds": 12.93843520001974,
+  "counts": {
+    "passed": 142,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "rows": [
+    {
+      "scene": "moving",
+      "frames": 129,
+      "values_sha256": "8a6bc294bac37e9da410a22980e49df0414b7f0a70f5583186186358fe842882",
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "mixed",
+      "frames": 129,
+      "values_sha256": "06e0e1fbccabe3fe6603e7483f46bd5bc06f36faf7620217d9c2842be298004c",
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "missing",
+      "frames": 129,
+      "values_sha256": "a528f702aeb461e8164ca602f2702b9f1a3d044c2f45023470bb736f51050065",
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "static",
+      "frames": 129,
+      "values_sha256": "da22283baa3b854bc9f35d4a6a22671dc0595c8c4edb509c4b487668b524b7a8",
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "preplay",
+      "frames": 129,
+      "values_sha256": "fe72874e860bc731424810e357ef3da3542eeae474beeaa4ac636ddb21259e6e",
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "preplay_then_active",
+      "frames": 129,
+      "values_sha256": "b4033b0a065a5c9a020165fa2ed150714df2c2b5704d8bee4c9be77d04ffc16e",
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "capacity",
+      "frames": 257,
+      "retained_traced_bytes": 13720,
+      "peak_traced_bytes": 32848,
+      "values_sha256": "91b0005c267252c4fefefacf0f074f259a8ad5abd83285ce14b9f26ec65cd3c6",
+      "actual_classifier": true,
+      "lazy_typed_source": true,
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "capacity",
+      "frames": 1025,
+      "retained_traced_bytes": 10584,
+      "peak_traced_bytes": 34604,
+      "values_sha256": "3ac0301e177e62fafb65b3eb887d8737a756dc375b7f1979abd4a9957281409f",
+      "actual_classifier": true,
+      "lazy_typed_source": true,
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    },
+    {
+      "scene": "capacity",
+      "frames": 4097,
+      "retained_traced_bytes": 15624,
+      "peak_traced_bytes": 34636,
+      "values_sha256": "3938216e435ab428d0b30660dac61ba8c27ec02f02f5a61a80dadd9e24e1cbed",
+      "actual_classifier": true,
+      "lazy_typed_source": true,
+      "retained_red_values_equal": true,
+      "qualification_evidence": false
+    }
+  ],
+  "capacity_rows": [],
+  "source_before": {
+    "artifacts\\validation\\yolo26_execution_2026-10-17\\activity_retention_checks_v1\\run_checks.py": "61ddb8f045845dc2cf122d9f90902e0671d8507411201fe136ab7bba05851526",
+    "src/pipeline/phase6_pipeline.py": "600701399e110b5364e5a74b57a8ef1f71ec9aa24b96fd83c7a8c6138eb85b22",
+    "src/events/activity_state.py": "864603f58a4c5e9fa43b4fb113eb52f211d20bc3fa0b52642434598dd44574d1",
+    "src/events/event_detector.py": "69cf7dc2487c078fd0fac24434997256e57e7c530b6b9914a9672c81b7e77e7b",
+    "src/utils/activity_state_sequence.py": "42d4572d015a75eca00672d88585b2a076472689a60b8d235aa5a7b033ac872f",
+    "src/utils/event_analysis_sequence.py": "6c87be659f35ff0c4ba0c9ca0ec788da1b2aa1c95cc6b630e31f32cb4cf31a07",
+    "src/utils/identity_frame_sequence.py": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04",
+    "src/utils/mapped_sequence_view.py": "5a407654eb4eb21db28effbd5d72c56c07c5c41401f861d492a3bd5e13a112d3",
+    "src/utils/temporal_ball_point_sequence.py": "a2525411d165e1cbea51938ecc31787b62d67452f05f1e3a45b7c75901132342",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/events/provenance_auditor.py": "cafc815e60ec16e42477d439c9692d29dbbcae331ba1338809a8afba9c29be86",
+    "tests/test_activity_state_sequence.py": "00a765f65bf66cf4c6395b7dd8da2a7a6645cda5f0a4a0543e4362dd2106f329",
+    "tests/test_event_analysis_sequence.py": "237bd3909879fc3e4ec47121c8bf0f6519ff4cde1b9d05023beeacae7f88e375",
+    "tests/test_event_result_pipeline_seam.py": "e2fca19f0236895e76942d08781576dfd6ad67d694bcd1c68575320b981e6202",
+    "tests/test_phase6_4_physical_precision.py": "5d0e1e2d88eb46e8612282cb61419799d5d3712ec032bdab483af028f8b68782",
+    "tests/test_activity_retention.py": "f9bab3d715a2f5ed388626e63a098ee5043049aa30f748c3363b861fbbdc7daf"
+  },
+  "source_after": {
+    "artifacts\\validation\\yolo26_execution_2026-10-17\\activity_retention_checks_v1\\run_checks.py": "61ddb8f045845dc2cf122d9f90902e0671d8507411201fe136ab7bba05851526",
+    "src/pipeline/phase6_pipeline.py": "600701399e110b5364e5a74b57a8ef1f71ec9aa24b96fd83c7a8c6138eb85b22",
+    "src/events/activity_state.py": "864603f58a4c5e9fa43b4fb113eb52f211d20bc3fa0b52642434598dd44574d1",
+    "src/events/event_detector.py": "69cf7dc2487c078fd0fac24434997256e57e7c530b6b9914a9672c81b7e77e7b",
+    "src/utils/activity_state_sequence.py": "42d4572d015a75eca00672d88585b2a076472689a60b8d235aa5a7b033ac872f",
+    "src/utils/event_analysis_sequence.py": "6c87be659f35ff0c4ba0c9ca0ec788da1b2aa1c95cc6b630e31f32cb4cf31a07",
+    "src/utils/identity_frame_sequence.py": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04",
+    "src/utils/mapped_sequence_view.py": "5a407654eb4eb21db28effbd5d72c56c07c5c41401f861d492a3bd5e13a112d3",
+    "src/utils/temporal_ball_point_sequence.py": "a2525411d165e1cbea51938ecc31787b62d67452f05f1e3a45b7c75901132342",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/events/provenance_auditor.py": "cafc815e60ec16e42477d439c9692d29dbbcae331ba1338809a8afba9c29be86",
+    "tests/test_activity_state_sequence.py": "00a765f65bf66cf4c6395b7dd8da2a7a6645cda5f0a4a0543e4362dd2106f329",
+    "tests/test_event_analysis_sequence.py": "237bd3909879fc3e4ec47121c8bf0f6519ff4cde1b9d05023beeacae7f88e375",
+    "tests/test_event_result_pipeline_seam.py": "e2fca19f0236895e76942d08781576dfd6ad67d694bcd1c68575320b981e6202",
+    "tests/test_phase6_4_physical_precision.py": "5d0e1e2d88eb46e8612282cb61419799d5d3712ec032bdab483af028f8b68782",
+    "tests/test_activity_retention.py": "f9bab3d715a2f5ed388626e63a098ee5043049aa30f748c3363b861fbbdc7daf"
+  },
+  "sources_unchanged": true,
+  "forbidden_runtime_imports_observed": [],
+  "numerical_runtime_imports_observed": [
+    "cv2",
+    "numpy",
+    "pandas"
+  ],
+  "peak_owned_working_set_bytes": 122286080,
+  "video_used": false,
+  "gpu_used": false,
+  "synthetic_activity_storage_only": true,
+  "qualification_evidence": false,
+  "runner_sha256": "61ddb8f045845dc2cf122d9f90902e0671d8507411201fe136ab7bba05851526"
+}

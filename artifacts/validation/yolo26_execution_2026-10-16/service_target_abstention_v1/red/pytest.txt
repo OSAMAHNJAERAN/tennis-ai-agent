@@ -1,0 +1,172 @@
+FFFFFFFFFFFFFFFF.FFFF                                                    [100%]
+================================== FAILURES ===================================
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[None] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[UNKNOWN] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[near_deuce] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[0] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[True] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[target6] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_unavailable_target_abstains_before_any_geometry_or_observation_access[target7] _
+tests\test_service_target_abstention.py:71: in test_unavailable_target_abstains_before_any_geometry_or_observation_access
+    evidence = engine.evaluate_bounce(19, 987, ForbiddenAccess(), ForbiddenAccess(),
+src\line_calling\line_call_engine.py:93: in evaluate_bounce
+    base_pt = ball_trajectory[bounce_frame]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_service_target_abstention.py:58: in __getitem__
+    raise AssertionError("Unavailable service target must not read trajectory/frame data")
+E   AssertionError: Unavailable service target must not read trajectory/frame data
+_ test_explicit_correct_target_preserves_real_geometry[False-NEAR_DEUCE-point0] _
+tests\test_service_target_abstention.py:111: in test_explicit_correct_target_preserves_real_geometry
+    assert evidence.reason_code is None
+           ^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'LineCallEvidence' object has no attribute 'reason_code'
+_ test_explicit_correct_target_preserves_real_geometry[False-NEAR_AD-point1] __
+tests\test_service_target_abstention.py:111: in test_explicit_correct_target_preserves_real_geometry
+    assert evidence.reason_code is None
+           ^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'LineCallEvidence' object has no attribute 'reason_code'
+_ test_explicit_correct_target_preserves_real_geometry[False-FAR_DEUCE-point2] _
+tests\test_service_target_abstention.py:111: in test_explicit_correct_target_preserves_real_geometry
+    assert evidence.reason_code is None
+           ^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'LineCallEvidence' object has no attribute 'reason_code'
+__ test_explicit_correct_target_preserves_real_geometry[False-FAR_AD-point3] __
+tests\test_service_target_abstention.py:111: in test_explicit_correct_target_preserves_real_geometry
+    assert evidence.reason_code is None
+           ^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'LineCallEvidence' object has no attribute 'reason_code'
+_ test_explicit_correct_target_preserves_real_geometry[True-NEAR_DEUCE-point0] _
+tests\test_service_target_abstention.py:105: in test_explicit_correct_target_preserves_real_geometry
+    evidence = api.TennisLineCallEngine(refiner=refiner).evaluate_bounce(
+src\line_calling\line_call_engine.py:148: in evaluate_bounce
+    eval_res = CourtLineGeometry.evaluate_service_box_boundary(
+src\line_calling\line_geometry.py:350: in evaluate_service_box_boundary
+    target_region_name=target_box.value,
+                       ^^^^^^^^^^^^^^^^
+E   AttributeError: 'str' object has no attribute 'value'
+__ test_explicit_correct_target_preserves_real_geometry[True-NEAR_AD-point1] __
+tests\test_service_target_abstention.py:105: in test_explicit_correct_target_preserves_real_geometry
+    evidence = api.TennisLineCallEngine(refiner=refiner).evaluate_bounce(
+src\line_calling\line_call_engine.py:148: in evaluate_bounce
+    eval_res = CourtLineGeometry.evaluate_service_box_boundary(
+src\line_calling\line_geometry.py:350: in evaluate_service_box_boundary
+    target_region_name=target_box.value,
+                       ^^^^^^^^^^^^^^^^
+E   AttributeError: 'str' object has no attribute 'value'
+_ test_explicit_correct_target_preserves_real_geometry[True-FAR_DEUCE-point2] _
+tests\test_service_target_abstention.py:105: in test_explicit_correct_target_preserves_real_geometry
+    evidence = api.TennisLineCallEngine(refiner=refiner).evaluate_bounce(
+src\line_calling\line_call_engine.py:148: in evaluate_bounce
+    eval_res = CourtLineGeometry.evaluate_service_box_boundary(
+src\line_calling\line_geometry.py:350: in evaluate_service_box_boundary
+    target_region_name=target_box.value,
+                       ^^^^^^^^^^^^^^^^
+E   AttributeError: 'str' object has no attribute 'value'
+__ test_explicit_correct_target_preserves_real_geometry[True-FAR_AD-point3] ___
+tests\test_service_target_abstention.py:105: in test_explicit_correct_target_preserves_real_geometry
+    evidence = api.TennisLineCallEngine(refiner=refiner).evaluate_bounce(
+src\line_calling\line_call_engine.py:148: in evaluate_bounce
+    eval_res = CourtLineGeometry.evaluate_service_box_boundary(
+src\line_calling\line_geometry.py:350: in evaluate_service_box_boundary
+    target_region_name=target_box.value,
+                       ^^^^^^^^^^^^^^^^
+E   AttributeError: 'str' object has no attribute 'value'
+_ test_caller_can_record_missing_current_end_evidence_without_calling_geometry _
+tests\test_service_target_abstention.py:130: in test_caller_can_record_missing_current_end_evidence_without_calling_geometry
+    evidence = api.LineCallEvidence.unavailable(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'LineCallEvidence' has no attribute 'unavailable'
+_______ test_measured_evidence_overlay_keeps_the_existing_numeric_text ________
+tests\test_service_target_abstention.py:148: in test_measured_evidence_overlay_keeps_the_existing_numeric_text
+    assert evidence.overlay_text() == "LINE CALL: [IN] (LEFT_SIDELINE +5.2cm, Unc: +- 1.5cm)"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'LineCallEvidence' object has no attribute 'overlay_text'
+_ test_existing_pipeline_overlay_executes_with_nullable_evidence[src/pipeline/phase4_pipeline.py] _
+tests\test_service_target_abstention.py:154: in test_existing_pipeline_overlay_executes_with_nullable_evidence
+    evidence = api.LineCallEvidence.unavailable(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'LineCallEvidence' has no attribute 'unavailable'
+_ test_existing_pipeline_overlay_executes_with_nullable_evidence[src/pipeline/phase5_pipeline.py] _
+tests\test_service_target_abstention.py:154: in test_existing_pipeline_overlay_executes_with_nullable_evidence
+    evidence = api.LineCallEvidence.unavailable(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: type object 'LineCallEvidence' has no attribute 'unavailable'
+=========================== short test summary info ===========================
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[None]
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[]
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[UNKNOWN]
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[near_deuce]
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[0]
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[True]
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[target6]
+FAILED tests/test_service_target_abstention.py::test_unavailable_target_abstains_before_any_geometry_or_observation_access[target7]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[False-NEAR_DEUCE-point0]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[False-NEAR_AD-point1]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[False-FAR_DEUCE-point2]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[False-FAR_AD-point3]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[True-NEAR_DEUCE-point0]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[True-NEAR_AD-point1]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[True-FAR_DEUCE-point2]
+FAILED tests/test_service_target_abstention.py::test_explicit_correct_target_preserves_real_geometry[True-FAR_AD-point3]
+FAILED tests/test_service_target_abstention.py::test_caller_can_record_missing_current_end_evidence_without_calling_geometry
+FAILED tests/test_service_target_abstention.py::test_measured_evidence_overlay_keeps_the_existing_numeric_text
+FAILED tests/test_service_target_abstention.py::test_existing_pipeline_overlay_executes_with_nullable_evidence[src/pipeline/phase4_pipeline.py]
+FAILED tests/test_service_target_abstention.py::test_existing_pipeline_overlay_executes_with_nullable_evidence[src/pipeline/phase5_pipeline.py]
+20 failed, 1 passed in 0.41s

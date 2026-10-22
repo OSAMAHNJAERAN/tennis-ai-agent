@@ -1,0 +1,46 @@
+{
+  "schema_version": "tennis.publisher-snapshot-validation.v1",
+  "created_at": "2026-10-09T11:28:43.133583+00:00",
+  "status": "PASS_PRIVATE_ENGINEERING_ONLY",
+  "protocol_unchanged_after_metrics": true,
+  "original_protocol_sha256": "d44cd3e316f67c9b16922e3678f36bcedd83a4f471f528c838deff8feca2a391",
+  "same_time_terminal_conflict_bug_fixed": true,
+  "selected_match_features_and_targets_unchanged": true,
+  "full_corrected_coverage_groups_unchanged": true,
+  "row_audit_unchanged": true,
+  "metrics_rerun_required": false,
+  "metrics_reexecuted_after_fix": false,
+  "raw_model_equals_primary_score_baseline": true,
+  "fabricated_point_updates": 0,
+  "development_parameters_frozen_for_calibration_and_test": true,
+  "human_independent_review": false,
+  "production_promotion": false,
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "numpy": "2.3.1",
+    "scipy": "1.17.1"
+  },
+  "receipt_sha256": {
+    "data\\prediction\\livetennisapi_2026_06_conditional_player_audit_v2b.json": "fb8ab2a1a24fd0ea21f4dcc88bc124e503254a98402f2c563c997c2337070db4",
+    "data\\prediction\\livetennisapi_2026_06_inventory_v1.json": "e2b114482be2a1b1724926dccdd37aefe6bb72121000e860cdbfbd06bfb1615d",
+    "data\\prediction\\livetennisapi_2026_06_protocol_v1.json": "3bf5ad17227d3bbb148a4ca7e7076b0184c932359240f835b2cff7a15f502a7c",
+    "data\\prediction\\livetennisapi_2026_06_protocol_v2.json": "10c3cf39bbc823607fb8b4718accbe9bcd77edf477ba80a85cf5520b2245459f",
+    "data\\prediction\\livetennisapi_2026_06_protocol_v2b.json": "dd0df8cb8c014e0f74e86820a3d470e4d2486e17d8b75f5837c43a7063c62ca9",
+    "data\\prediction\\livetennisapi_2026_06_protocol_v3.json": "d44cd3e316f67c9b16922e3678f36bcedd83a4f471f528c838deff8feca2a391",
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3.json": "e23f0a33bf44278d443843b48b05725e394d250a15bde7ef5cfd33d5dfc091aa",
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3b.json": "06aa4acabbdb4ddc15461c3b7a80481afa860a93f6868623ba1bbfdc71448486",
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3_calibration_evaluation.json": "1208b12b34df544b6d5ce079ad10421e8325f14fefd116935c02cbb2d0746722",
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3_development_evaluation.json": "d66e3d664787845f2df27f62b605d086cd4a982d37ceedb50c48e6138b0f5793",
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3_development_fit.json": "4eb7512e3b173b9c646c399915632cb4e85837f58255816d0b77142f9804ac59",
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3_test_evaluation.json": "97d3516769139195c1df994666d63f42447b7cc94d0d285645f73ad193d985cd",
+    "data\\prediction\\livetennisapi_2026_06_snapshot_v3_same_time_fix_audit.json": "d26df3e004a5155af0cb36f30c14fbc913efb1cb0bf622b5a6e3c9fe711aa9c3",
+    "data\\external\\livetennisapi_public_sample_v1\\acquisition_receipt.json": "8cb46be68db4e360eb8ad026873ab320cbc54ce832b0739dfecec571ca476881",
+    "data\\external\\livetennisapi_public_sample_v1\\conditional_import_v2.json": "7dedb4bf869954d5f53d352d548195c4cccf8baabe0722dd1e7d94af35e15a8b"
+  },
+  "implementation_sha256": {
+    "scripts\\evaluate\\evaluate_publisher_snapshots.py": "aacd530860af121c798271dcac50e504949d8b808e841abf458ce2083beafff3",
+    "scripts\\data\\audit_publisher_suffix_players.py": "c528e68b1372e3ffe2e21c19e2428ba202c98c2cb2af21a33f426fb766f12f9d",
+    "tests\\test_publisher_snapshots.py": "bfbde6eac848e2180c3cb5fd308b0c3c04e938babf5969bb2721f62e8d6655c8"
+  },
+  "focused_tests": 16
+}

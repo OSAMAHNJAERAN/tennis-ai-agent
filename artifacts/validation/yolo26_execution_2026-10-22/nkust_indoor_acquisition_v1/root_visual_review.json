@@ -1,0 +1,64 @@
+{
+  "reviewed_utc": "2026-10-21T18:01:05.730670+00:00",
+  "reviewer_kind": "ROOT_AGENT_VISUAL_REVIEW_NOT_INDEPENDENT_HUMAN_GROUND_TRUTH",
+  "scope": "Only acquired indoor DEV pair; coarse video overview and four exact native-frame anchors",
+  "native_receipt_sha256": "13639219f3d23cf74e517c25e3e0410c3cfc1173022be13574b0cdabef5125fa",
+  "viewed_exact_native_anchors": [
+    {
+      "source_filename": "IST01.mp4",
+      "native_frame_index": 104,
+      "source_pts": "104104",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.735067",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_frame_0104.png",
+      "sha256": "1e1a926c9fd3d732ad097be5a952aae12310610c090a9da855c19e7bbd87d9a3"
+    },
+    {
+      "source_filename": "IST01.mp4",
+      "native_frame_index": 138,
+      "source_pts": "138138",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.302300",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_frame_0138.png",
+      "sha256": "b97f0038050632105a15339906367f8c758485b09b86f4bb24e4e411cc1910ce"
+    },
+    {
+      "source_filename": "ISS01.mp4",
+      "native_frame_index": 104,
+      "source_pts": "104104",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.735067",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\ISS01_frame_0104.png",
+      "sha256": "49689ede60ac1ba940ab4d0d1ff3e9d4eb0d03528cb27eb67070f84ca44b4a5d"
+    },
+    {
+      "source_filename": "ISS01.mp4",
+      "native_frame_index": 138,
+      "source_pts": "138138",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.302300",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\ISS01_frame_0138.png",
+      "sha256": "902a9763176258e61c6ee6a8feb8582c7b272358f4967d8906300a32bae47b6f"
+    }
+  ],
+  "observations": [
+    "Elevated view is directed at the hitter and nearby constructed indoor sports floor, with overlapping painted line systems.",
+    "Side view shows the hitter, practice equipment and gym floor; it is not the primary elevated full-court singles view.",
+    "The inspected latter frames show preparation/contact-phase motion and follow-through; they do not establish a numbered measured outgoing landing point.",
+    "A full regulation court mapping, baseline selection and line definition cannot be derived merely from these visible line patterns."
+  ],
+  "not_established": [
+    "An independently identified outgoing ground-contact frame tied to the CSV landing row.",
+    "Exact file-number-to-CSV join, beyond matching category/view numbering and numeric99-row compatibility.",
+    "Camera calibration, physical constructed-court dimensions and line-center/edge convention.",
+    "Frame-exact cross-camera synchronization; equal frame counts and time bases do not prove it."
+  ],
+  "whole_clip_landing_absence_claimed": false,
+  "whole_dataset_ineligible_claimed": false,
+  "contact_time_or_calibration_annotation_created": false,
+  "model_or_training_executed": false,
+  "outdoor_test_frames_or_targets_inspected": false,
+  "accuracy_computed": false,
+  "disposition": "DEVELOPMENT_SAMPLE_AUDITED_REFERENCE_NOT_READY",
+  "next_prerequisite": "Verify actual measurable outgoing landing visibility and author-supported row/geometry semantics before implementing or running a held-out landing comparator."
+}

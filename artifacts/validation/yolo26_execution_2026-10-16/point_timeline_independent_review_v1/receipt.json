@@ -1,0 +1,64 @@
+{
+  "created_utc": "2026-10-16T11:49:12.659640+00:00",
+  "findings": {
+    "mid_rally_identity_and_calibration_revision_change": {
+      "completed_points": 1,
+      "score_confirmed": true,
+      "event3_rule_type": "PLAYER_2_HIT",
+      "start_identity_revision": 0,
+      "return_identity_revision": 1,
+      "start_calibration_revision": "synthetic-qualified-calibration",
+      "return_calibration_revision": "revised-calibration",
+      "expected": "REVIEW_REQUIRED_UNTIL_EXPLICIT_REANCHORED_REVISION"
+    },
+    "duplicate_id_with_changed_participant_timestamp_confidence": {
+      "rejected": false,
+      "error": null,
+      "returned_outcome": "SERVE_IN_PLAY",
+      "expected": "REJECT_CONFLICTING_EVENT_PAYLOAD_OR_REQUIRE_NEW_REVISION"
+    },
+    "owner_context_analysis_and_source_mismatch": {
+      "owner_analysis": "different-analysis",
+      "binding_analysis": "fixture",
+      "owner_source": "different-source",
+      "binding_source": "synthetic-source-v1",
+      "outcome": "SERVE_IN_PLAY",
+      "attempt_count": 1,
+      "expected": "REJECT_OR_WITHHOLD_CONTEXT_NOT_BOUND_TO_THE_OWNER"
+    },
+    "same_frame_reviewed_let_preceding_bounce": {
+      "actual_event_ids": [
+        1,
+        3,
+        2
+      ],
+      "declared_timestamps": [
+        0.1,
+        0.3,
+        0.2
+      ],
+      "expected": "PRESERVE_EXPLICIT_ORDER_OR_ABSTAIN_AMBIGUOUS_SAME_FRAME_SIGNALS"
+    }
+  },
+  "source_bindings_before": {
+    "src\\scoring\\point_timeline.py": "277fb8428eb0e24fe7054c8ff91880e0651e5b9caed65c73927aecb875b49474",
+    "src\\utils\\point_analysis_sequence.py": "d8184a65a9e9b711233d651263cd9c85f0552cb4d6e33544040d95fd96bf2d37",
+    "src\\scoring\\scoring_engine.py": "137d4f28a65e881c4820d31676c754939ac1685d3ca63bb1ccefc0728cee9d4e",
+    "tests\\test_point_timeline.py": "ce319bfb9e09e2dc0611b1dab0876c1e80fa723a61e4124bc73369777217ed5f"
+  },
+  "source_bindings_after": {
+    "src\\scoring\\point_timeline.py": "277fb8428eb0e24fe7054c8ff91880e0651e5b9caed65c73927aecb875b49474",
+    "src\\utils\\point_analysis_sequence.py": "d8184a65a9e9b711233d651263cd9c85f0552cb4d6e33544040d95fd96bf2d37",
+    "src\\scoring\\scoring_engine.py": "137d4f28a65e881c4820d31676c754939ac1685d3ca63bb1ccefc0728cee9d4e",
+    "tests\\test_point_timeline.py": "ce319bfb9e09e2dc0611b1dab0876c1e80fa723a61e4124bc73369777217ed5f"
+  },
+  "sources_changed_during_probe": [],
+  "torch_imported": false,
+  "ultralytics_imported": false,
+  "model_used": false,
+  "media_used": false,
+  "training_performed": false,
+  "production_source_edited": false,
+  "qualification_evidence": false,
+  "script_sha256": "42ca080b3bfd483a39046e8628590df7f678f92ba6e6c8f4d6d1b7d39e415825"
+}

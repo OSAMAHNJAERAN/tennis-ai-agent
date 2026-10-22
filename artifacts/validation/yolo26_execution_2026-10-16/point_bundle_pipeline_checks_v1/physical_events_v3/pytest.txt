@@ -1,0 +1,19 @@
+F.                                                                       [100%]
+================================== FAILURES ===================================
+_____ test_exact_native_phase6_scoring_aggregation_and_five_exports[True] _____
+tests\test_point_timeline.py:259: in test_exact_native_phase6_scoring_aggregation_and_five_exports
+    exec(compile(ast.Module(body=exports,type_ignores=[]),str(path),'exec'),namespace)
+src\pipeline\phase6_pipeline.py:1490: in <module>
+    write_json_array_artifact(os.path.join(output_dir, 'match_events.json'), {
+src\utils\json_array_artifact.py:97: in write_json_array_artifact
+    for record in iterator:
+                  ^^^^^^^^
+src\pipeline\phase6_pipeline.py:352: in event_export_records
+    'ball_position_px': [round(ev.ball_position_px[0], 2), round(ev.ball_position_px[1], 2)] if ev.ball_position_px else None,
+                                                                                                ^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'types.SimpleNamespace' object has no attribute 'ball_position_px'
+---------------------------- Captured stdout call -----------------------------
+  -> Scoring State Complete (3 dead-ball events suppressed) in 0.06s
+=========================== short test summary info ===========================
+FAILED tests/test_point_timeline.py::test_exact_native_phase6_scoring_aggregation_and_five_exports[True]
+1 failed, 1 passed, 53 deselected in 0.93s

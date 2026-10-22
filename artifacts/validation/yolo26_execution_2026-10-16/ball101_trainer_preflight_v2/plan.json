@@ -1,0 +1,724 @@
+{
+  "schema": "tennis.private-ball101-controlled-training.v1",
+  "mode": "PRIVATE_NATIVE_BALL101_FINITE_REPAIR",
+  "status": "PURE_PREFLIGHT_PENDING_SEPARATE_CPU_BASELINE_AND_GPU_ROOT_RELEASES",
+  "output": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_author_repair_run1",
+  "dataset": {
+    "manifest": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\source_manifest.json",
+      "sha256": "fdd63635665ebd03426ab452496cf0b93ad52d462f9c32886e6ff7f3ab564c22"
+    },
+    "export_receipt": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\export_receipt.json",
+      "sha256": "554fb861957b130f65b3936f63ac159dc65e2fc9fe0ed9a1eb5bc667f50568d6"
+    },
+    "yaml": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\ball\\data.yaml",
+      "sha256": "0941286e0cd90efab514b033378be4738f47549ab15e94ae7d123f8f5ebca0c8"
+    },
+    "counts": {
+      "images": 101,
+      "positive_boxes": 97,
+      "negative_tiles": 4,
+      "train": 80,
+      "val": 21,
+      "test": 0,
+      "inherited_images": 79,
+      "new_positive_images": 22
+    }
+  },
+  "initialization": {
+    "checkpoint": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_development_run1\\training\\weights\\best.pt",
+      "sha256": "90a141489dc7198789043466d7ab3c0245b86cb0135122f7b78d62115a8a9fcc"
+    },
+    "prior_metadata": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_development_run1\\run_metadata.json",
+      "sha256": "8bd1a064a5379f0730d743da3c2bd0209679c65240ea967d2b92febf3f7fc5a3"
+    },
+    "official_ancestor_sha256": "401cea9ab23ad19246ff7744859816bc599f350e93c9dd30367b6f0a0745d0b7",
+    "required_transfer": "ALL_TENSOR_KEYS_SHAPES_AND_EXACT_FP32_VALUES_NO_HEAD_REINITIALIZATION",
+    "actual_tensor_count": null,
+    "runtime_transfer_not_yet_executed": true
+  },
+  "versions": {
+    "torch": "2.13.0+cu126",
+    "ultralytics": "8.4.36"
+  },
+  "training_arguments": {
+    "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_author_repair_run1\\training_inputs\\dataset.yaml",
+    "epochs": 20,
+    "imgsz": 640,
+    "batch": 1,
+    "device": "0",
+    "seed": 709,
+    "deterministic": true,
+    "patience": 20,
+    "save": true,
+    "save_period": 5,
+    "amp": false,
+    "workers": 0,
+    "cache": false,
+    "optimizer": "AdamW",
+    "lr0": 0.0005,
+    "nbs": 1,
+    "warmup_epochs": 0.0,
+    "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_author_repair_run1",
+    "name": "training",
+    "exist_ok": false,
+    "val": true,
+    "plots": false,
+    "mosaic": 0.0,
+    "close_mosaic": 0,
+    "mixup": 0.0,
+    "cutmix": 0.0,
+    "copy_paste": 0.0,
+    "scale": 0.0,
+    "translate": 0.0,
+    "degrees": 0.0,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "fliplr": 0.0,
+    "flipud": 0.0,
+    "bgr": 0.0,
+    "multi_scale": 0.0,
+    "rect": false,
+    "auto_augment": null,
+    "augmentations": [],
+    "erasing": 0.0,
+    "hsv_h": 0.01,
+    "hsv_s": 0.15,
+    "hsv_v": 0.15
+  },
+  "initial_completed_epoch_budget": 2,
+  "total_epoch_ceiling": 20,
+  "initial_maximum_batch1_optimizer_steps": 160,
+  "continuation": "ONLY_REGISTERED_UNSTRIPPED_EPOCH2_EMA_OPTIMIZER_STATE_SAME20_AFTER_ROOT_REVIEW",
+  "owned_process_wall_seconds": 900,
+  "cpu_preview_train_ids": [
+    "author_France_Review_Red_Court_1_f000139",
+    "author_America_Best_10_1_f000784",
+    "tile_review_0056"
+  ],
+  "cpu_preview_selection": "MIN_AND_MAX_VISIBLE_BOX_AREA_AMONG_NEW22_TRAIN_PLUS_FIRST_INHERITED_TRAIN_ABSENCE",
+  "diagnostic_protocol": {
+    "inference": {
+      "imgsz": 640,
+      "batch": 1,
+      "conf": 0.01,
+      "classes": [
+        0
+      ],
+      "device": 0,
+      "end2end": true,
+      "nms": false,
+      "iou": 0.7,
+      "max_det": 300,
+      "half": false,
+      "rect": false,
+      "augment": false,
+      "save": false,
+      "save_txt": false,
+      "save_crop": false,
+      "verbose": false
+    },
+    "native_frame_wh": [
+      1920,
+      1080
+    ],
+    "fixed_native_tile_grid": [
+      [
+        0,
+        0,
+        640,
+        640
+      ],
+      [
+        512,
+        0,
+        1152,
+        640
+      ],
+      [
+        1024,
+        0,
+        1664,
+        640
+      ],
+      [
+        1280,
+        0,
+        1920,
+        640
+      ],
+      [
+        0,
+        440,
+        640,
+        1080
+      ],
+      [
+        512,
+        440,
+        1152,
+        1080
+      ],
+      [
+        1024,
+        440,
+        1664,
+        1080
+      ],
+      [
+        1280,
+        440,
+        1920,
+        1080
+      ]
+    ],
+    "target_iou_minimum": 0.5,
+    "dedup_iou_or_center": [
+      0.5,
+      2.0
+    ],
+    "positive_samples": [
+      {
+        "id": "positive_0121",
+        "source_id": "match177",
+        "clip": "match177_000",
+        "frame_index": 349,
+        "source_pts": 89344,
+        "source_time_base": "1/15360",
+        "component": "context_57259171fd43edb2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match177_000_f000349.png",
+          "sha256": "3016ebea9d80a09a901cdec8d86d1f7b1fff87513b015d224e1c16e5c6f4ed84"
+        },
+        "target_box": [
+          850,
+          123,
+          856,
+          129
+        ],
+        "visible_center": [
+          853.0,
+          126.0
+        ]
+      },
+      {
+        "id": "positive_0129",
+        "source_id": "match200",
+        "clip": "match200_000",
+        "frame_index": 126,
+        "source_pts": 64512,
+        "source_time_base": "1/12800",
+        "component": "context_57259171fd43edb2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match200_000_f000126.png",
+          "sha256": "b25ce59603bd15abb2ab62a9e631008f84230f7a321ecb5197b92a1b7bcc1a29"
+        },
+        "target_box": [
+          766,
+          589,
+          777,
+          601
+        ],
+        "visible_center": [
+          771.5,
+          595.0
+        ]
+      },
+      {
+        "id": "positive_0136",
+        "source_id": "match215",
+        "clip": "match215_000",
+        "frame_index": 151,
+        "source_pts": 38656,
+        "source_time_base": "1/15360",
+        "component": "context_57259171fd43edb2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match215_000_f000151.png",
+          "sha256": "541f316e2bf1a696f4765271d08ba786fdc7f001bda44068b3058ac02cf6d95a"
+        },
+        "target_box": [
+          985,
+          439,
+          993,
+          447
+        ],
+        "visible_center": [
+          989.0,
+          443.0
+        ]
+      },
+      {
+        "id": "positive_0152",
+        "source_id": "match221",
+        "clip": "match221_000",
+        "frame_index": 560,
+        "source_pts": 143360,
+        "source_time_base": "1/15360",
+        "component": "context_57259171fd43edb2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match221_000_f000560.png",
+          "sha256": "bbd22188d3fe9507999b1ef179ea0a119376e0736222814d05c1a3d21067c194"
+        },
+        "target_box": [
+          1380,
+          588,
+          1388,
+          595
+        ],
+        "visible_center": [
+          1384.0,
+          591.5
+        ]
+      },
+      {
+        "id": "positive_0197",
+        "source_id": "match181",
+        "clip": "match181_000",
+        "frame_index": 246,
+        "source_pts": 62976,
+        "source_time_base": "1/15360",
+        "component": "context_57259171fd43edb2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match181_000_f000246.png",
+          "sha256": "8d8528770aec9a6043aeef2b0589b83de3121f40591dba2f5734734fa00abae3"
+        },
+        "target_box": [
+          1152,
+          369,
+          1160,
+          377
+        ],
+        "visible_center": [
+          1156.0,
+          373.0
+        ]
+      },
+      {
+        "id": "positive_0204",
+        "source_id": "match181",
+        "clip": "match181_000",
+        "frame_index": 483,
+        "source_pts": 123648,
+        "source_time_base": "1/15360",
+        "component": "context_57259171fd43edb2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match181_000_f000483.png",
+          "sha256": "03cba1abf64d21540a541df8fd12a42447a788540618340579fd041b20d21294"
+        },
+        "target_box": [
+          916,
+          508,
+          928,
+          526
+        ],
+        "visible_center": [
+          922.0,
+          517.0
+        ]
+      },
+      {
+        "id": "positive_0249",
+        "source_id": "match217",
+        "clip": "match217_000",
+        "frame_index": 115,
+        "source_pts": 29440,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match217_000_f000115.png",
+          "sha256": "4feeb4ac34935ccad6c40043908798bd5c3e4eb5deeb64f6cb78ff41cba04f2e"
+        },
+        "target_box": [
+          915,
+          99,
+          920,
+          106
+        ],
+        "visible_center": [
+          917.5,
+          102.5
+        ]
+      },
+      {
+        "id": "positive_0256",
+        "source_id": "match217",
+        "clip": "match217_000",
+        "frame_index": 376,
+        "source_pts": 96256,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match217_000_f000376.png",
+          "sha256": "b56b3c4f1877555007074be4cd1c10009fdccf8710de7c12eee3c7a51a902862"
+        },
+        "target_box": [
+          1488,
+          592,
+          1503,
+          600
+        ],
+        "visible_center": [
+          1495.5,
+          596.0
+        ]
+      },
+      {
+        "id": "positive_0263",
+        "source_id": "match217",
+        "clip": "match217_000",
+        "frame_index": 590,
+        "source_pts": 151040,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match217_000_f000590.png",
+          "sha256": "c93da57d0f4c145d2028a3c95d775fdae20abceef033b68e2540cb5369e6d67b"
+        },
+        "target_box": [
+          978,
+          72,
+          983,
+          79
+        ],
+        "visible_center": [
+          980.5,
+          75.5
+        ]
+      },
+      {
+        "id": "positive_0420",
+        "source_id": "match196",
+        "clip": "match196_000",
+        "frame_index": 130,
+        "source_pts": 33280,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000130.png",
+          "sha256": "da6e841bc798fbe059267fade918b643b11b541d00822a4cfce7c0383b34086c"
+        },
+        "target_box": [
+          851,
+          200,
+          859,
+          205
+        ],
+        "visible_center": [
+          855.0,
+          202.5
+        ]
+      },
+      {
+        "id": "positive_0428",
+        "source_id": "match196",
+        "clip": "match196_000",
+        "frame_index": 251,
+        "source_pts": 64256,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000251.png",
+          "sha256": "92039590afd5f9359ba4b57567210ae80e9ec13dbb4ce467c148b9a59f72974d"
+        },
+        "target_box": [
+          1100,
+          231,
+          1105,
+          237
+        ],
+        "visible_center": [
+          1102.5,
+          234.0
+        ]
+      },
+      {
+        "id": "positive_0435",
+        "source_id": "match196",
+        "clip": "match196_000",
+        "frame_index": 339,
+        "source_pts": 86784,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000339.png",
+          "sha256": "9c30edeea52fb8058729e31901d1b3f9eb647286a6df445790c56925933e6d62"
+        },
+        "target_box": [
+          1216,
+          264,
+          1224,
+          280
+        ],
+        "visible_center": [
+          1220.0,
+          272.0
+        ]
+      },
+      {
+        "id": "positive_0443",
+        "source_id": "match196",
+        "clip": "match196_000",
+        "frame_index": 449,
+        "source_pts": 114944,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000449.png",
+          "sha256": "391555ce0aecb5c6ed89e1324953856ad54524dce20b7c16002e9f9a478ec047"
+        },
+        "target_box": [
+          806,
+          224,
+          810,
+          231
+        ],
+        "visible_center": [
+          808.0,
+          227.5
+        ]
+      },
+      {
+        "id": "positive_0451",
+        "source_id": "match196",
+        "clip": "match196_000",
+        "frame_index": 548,
+        "source_pts": 140288,
+        "source_time_base": "1/15360",
+        "component": "context_568512acb1a75d5e",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match196_000_f000548.png",
+          "sha256": "8e3d5295484c5a8d8b33ad7ec583de961466488bd588d742c48114c77cd9ea0c"
+        },
+        "target_box": [
+          984,
+          369,
+          996,
+          384
+        ],
+        "visible_center": [
+          990.0,
+          376.5
+        ]
+      },
+      {
+        "id": "positive_0560",
+        "source_id": "match219",
+        "clip": "match219_000",
+        "frame_index": 9,
+        "source_pts": 5120,
+        "source_time_base": "1/12800",
+        "component": "context_424acd876ba005d2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000009.png",
+          "sha256": "7468122f6ee15054f327f371bbce977f45aa5c1c0d362a5741388e1c61828292"
+        },
+        "target_box": [
+          987,
+          508,
+          996,
+          533
+        ],
+        "visible_center": [
+          991.5,
+          520.5
+        ]
+      },
+      {
+        "id": "positive_0568",
+        "source_id": "match219",
+        "clip": "match219_000",
+        "frame_index": 51,
+        "source_pts": 26624,
+        "source_time_base": "1/12800",
+        "component": "context_424acd876ba005d2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000051.png",
+          "sha256": "612f2d9d6934623747eff949f40069c46de72359a9940128ec245345ddb7e025"
+        },
+        "target_box": [
+          828,
+          134,
+          834,
+          140
+        ],
+        "visible_center": [
+          831.0,
+          137.0
+        ]
+      },
+      {
+        "id": "positive_0576",
+        "source_id": "match219",
+        "clip": "match219_000",
+        "frame_index": 98,
+        "source_pts": 50688,
+        "source_time_base": "1/12800",
+        "component": "context_424acd876ba005d2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000098.png",
+          "sha256": "da62274400b498397317dcfae441cbf661693c243e6e0456981fbcc599f7a61d"
+        },
+        "target_box": [
+          1398,
+          761,
+          1418,
+          774
+        ],
+        "visible_center": [
+          1408.0,
+          767.5
+        ]
+      },
+      {
+        "id": "positive_0583",
+        "source_id": "match219",
+        "clip": "match219_000",
+        "frame_index": 140,
+        "source_pts": 72192,
+        "source_time_base": "1/12800",
+        "component": "context_424acd876ba005d2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000140.png",
+          "sha256": "15e1ed7c2d6e6686a99165c2e38b1cd27efc8791e62ede6779a56deedf8d1e30"
+        },
+        "target_box": [
+          1137,
+          133,
+          1144,
+          138
+        ],
+        "visible_center": [
+          1140.5,
+          135.5
+        ]
+      },
+      {
+        "id": "positive_0591",
+        "source_id": "match219",
+        "clip": "match219_000",
+        "frame_index": 187,
+        "source_pts": 96256,
+        "source_time_base": "1/12800",
+        "component": "context_424acd876ba005d2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000187.png",
+          "sha256": "94362ea339f47c689d828a7af1a21bec9602f1afcb859db89d0e71f40417b566"
+        },
+        "target_box": [
+          696,
+          733,
+          712,
+          746
+        ],
+        "visible_center": [
+          704.0,
+          739.5
+        ]
+      },
+      {
+        "id": "positive_0599",
+        "source_id": "match219",
+        "clip": "match219_000",
+        "frame_index": 239,
+        "source_pts": 122880,
+        "source_time_base": "1/12800",
+        "component": "context_424acd876ba005d2",
+        "native_frame": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000239.png",
+          "sha256": "6f1da5471c50814b2d8a3a8ad238edb1b6b634a897376244f30227a663661ed5"
+        },
+        "target_box": [
+          873,
+          188,
+          877,
+          192
+        ],
+        "visible_center": [
+          875.0,
+          190.0
+        ]
+      }
+    ],
+    "negative_samples": [
+      {
+        "id": "tile_review_0113",
+        "source_id": "match219",
+        "frame_index": 9,
+        "source_pts": 5120,
+        "source_time_base": "1/12800",
+        "crop": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0113_context1.png",
+          "sha256": "917f82e7e408d41d96a3e0d22c965a3ee82c5b9e803c1a6e360d47dfd26e41e9"
+        },
+        "origin": [
+          0,
+          0
+        ]
+      }
+    ],
+    "all_target_denominator": 20,
+    "actual_image_forward_count": 161,
+    "unmatched_full_frame_candidates": "UNADJUDICATED_OTHER_BALL_OR_FALSE_OBJECT_NOT_PRECISION_GROUND_TRUTH",
+    "center_definition": "MIDPOINT_OF_AGENT_REVIEWED_VISIBLE_EXTENT_NOT_PHYSICAL_3D_CENTER",
+    "schema": "tennis.private-ball101-fixed-before-after20dev.v1",
+    "reference_protocol": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_diagnostic_protocol_v1\\protocol.json",
+      "sha256": "21a40651572f6666153b28fc6656502e2b12b8f9f0a27b856c13e64fda5d7abe"
+    },
+    "legacy_native_helper": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_reviewed_ball.py",
+      "sha256": "f8cedb210b160d6e21c4d028b045712ee4bbd5ad41b0de2e08275b6310446283"
+    },
+    "dataset_manifest": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\source_manifest.json",
+      "sha256": "fdd63635665ebd03426ab452496cf0b93ad52d462f9c32886e6ff7f3ab564c22"
+    },
+    "source": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_author_ball_repair.py",
+      "sha256": "60564d14ad16e49090fefc3fa741da4a71ea7322d1c64b6162fbf49e45f04917"
+    },
+    "checkpoint_comparison": "PINNED_OLD_BEST_BEFORE_VS_REGISTERED_DEV_FITNESS_BEST_AFTER_APPROVED_STAGE",
+    "full_frame_precision": null,
+    "negative_video_false_alarms_per_minute": null,
+    "qualification_evidence": false,
+    "independent_human_review": false,
+    "final_test_used": false
+  },
+  "parameter_logic_bindings": {
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_author_ball_repair.py": "a046c92639378c39cb2c7ca2ad86b2a18f5d759c8080feef2eb656389d7b5c6f",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_author_ball_repair.py": "60564d14ad16e49090fefc3fa741da4a71ea7322d1c64b6162fbf49e45f04917",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\export_yolo26_author_ball_repair_v2.py": "b4067e9cd0068628c5c0cf464c86ac78ab17f61cb6e0569690f9bcf198120ac0",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_reviewed_ball.py": "76896dab6d6287a7356fa9edfd74cd22073e7ed5604fec4eec35abed2e891945",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_tennis.py": "cd05fe4983bb9edac77d76ebc32f1b59a1aa0697392abb15ff096608a7d6d6b1",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\export_yolo26_reviewed_ball_wave.py": "39d7148702004dd6a5c27b544725ba3d07fbc80f2d9c612274e52ecdb1d9aa00",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\prepare_yolo26_reviewed_ball_wave.py": "d9d7a94acdb457fcfd43d18d72e839d17f95df6d2cae19adab1f1779786a16ff",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\prepare_yolo26_ball_review_wave.py": "64d45730ed36ff14357ab31ff5c21d80b942eb708c471ec7d75797a508d93cc7",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\acquire_yolo26_court_source_wave.py": "ac856236aaa6c81ab4f70fa479773da1a43c4759e760970db1fd3bf3766a1771",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\diagnose_yolo26_native_tiles.py": "b419c059a54db89b5cae744cc5a23f7971e95850355cc653dcf85b57888712cd",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_court_input_transform.py": "75790efd6ebe7ec878188352ec9060c31a87dfa1c10ac4b6c7ce9ae9ab694b66",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_reviewed_ball.py": "f8cedb210b160d6e21c4d028b045712ee4bbd5ad41b0de2e08275b6310446283"
+  },
+  "global_src_bindings": null,
+  "global_src_snapshot_policy": "DEFER_UNTIL_ROOT_RELEASE_AFTER_CONCURRENT_SEMANTIC_EDITS_SETTLE",
+  "cpu_admission": {
+    "ram_before_and_after_torch_bytes": 1610612736,
+    "disk_bytes": 1073741824,
+    "cuda_allowed": false
+  },
+  "gpu_admission": {
+    "ram_before_torch_bytes": 4831838208,
+    "ram_after_cuda_bytes": 1073741824,
+    "free_vram_bytes": 2147483648,
+    "disk_bytes": 1073741824
+  },
+  "source_scope": "OLD79_TRAINED_PLUS22_TRAIN_DATA_REPAIR_UNCHANGED21DEV_NOT_INDEPENDENT_TEST",
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "training_performed": false,
+  "raw_or_weight_public_release_cleared": false,
+  "commercial_clearance": false
+}

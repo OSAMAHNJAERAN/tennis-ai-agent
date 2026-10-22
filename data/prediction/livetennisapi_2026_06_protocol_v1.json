@@ -1,0 +1,67 @@
+{
+  "schema_version": "tennis.publisher-score-protocol.v1",
+  "protocol_id": "livetennisapi-june2026-chronological-v1",
+  "frozen_at": "2026-10-09T10:47:23.324435+00:00",
+  "freeze_stage": "before_public_sample_acquisition_or_score_row_inspection",
+  "publisher_record": "https://zenodo.org/records/22048731",
+  "publisher_version": "1.0.0",
+  "usage": "private_noncommercial_academic_research",
+  "raw_redistribution": false,
+  "camera_qualification_evidence": false,
+  "publication_qualification": false,
+  "splits": {
+    "development": {
+      "scheduled_start_utc_inclusive": "2026-06-01T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-06-15T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    },
+    "calibration": {
+      "scheduled_start_utc_inclusive": "2026-06-15T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-06-22T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    },
+    "test": {
+      "scheduled_start_utc_inclusive": "2026-06-22T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-07-01T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    }
+  },
+  "grouping": "one publisher match_id in exactly one split; preserve every row for that match in capture order; no frame/point/random row split",
+  "eligibility": [
+    "observed live score-state provenance only",
+    "completed singles matches with known participants, match format, server and independent publisher result",
+    "initial observation must be a valid all-zero pre-first-point score",
+    "original capture UTC timestamps must be finite and nondecreasing",
+    "no observed row may cross its chronological split boundary",
+    "score transitions must correspond uniquely to one valid tennis point under explicit match rules",
+    "identical unchanged score states may be logged as duplicates and removed causally; ambiguous transitions, skipped points, reversals and resets reject the entire match",
+    "ledger must terminate in the independently recorded publisher full-match winner; retirement/walkover/truncated tapes rejected",
+    "unsupported or undocumented scoring formats rejected, including doubles match tie-breaks",
+    "eligibility never depends on prediction quality or whether the model wins against the baseline"
+  ],
+  "bounded_selection": "among all structurally eligible matches in each split, select the earliest scheduled UTC timestamp then lexicographic publisher match_id up to the fixed cap; publish all counts and exclusion reasons",
+  "features": "current and past observed score/server plus past confirmed point winners within this same match only; no final result, future points, whole-match aggregates, next server, ratings or cross-match fitting",
+  "statistical_forecast": "existing src/prediction/tennis.py rule recursion with neutral Beta(2,2) serve prior and causal past-point updates; no parameter tuning on this dataset",
+  "baseline": "same causal current score/server and fixed neutral Beta(2,2) serve prior with no within-match performance updates",
+  "evaluation_snapshots": "first observed score and every valid nonterminal post-point state; terminal confirmed result is excluded from forecast metrics",
+  "metric_weighting": "each evaluated match contributes equal total weight; snapshots divide that match weight",
+  "metrics": [
+    "Brier score",
+    "log loss",
+    "fixed ten-bin reliability",
+    "paired delta against neutral score-only baseline",
+    "coverage and exclusions"
+  ],
+  "uncertainty": {
+    "grouping": "match",
+    "bootstrap_resamples": 1000,
+    "seed": 20261009,
+    "interval_quantiles": [
+      0.025,
+      0.975
+    ]
+  },
+  "calibration": "chronological calibration split is measured separately but no calibrator fitted in v1; prediction remains uncalibrated",
+  "release_gate": "publisher observed replay is real-data engineering evaluation; independent human/reference provenance and calibration remain required before any qualified prediction claim",
+  "amendments": "a schema incompatibility may cause an explicit versioned protocol amendment before metrics are computed; never change eligibility/splits after viewing performance"
+}

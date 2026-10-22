@@ -1,0 +1,9 @@
+...F                                                                     [100%]
+================================== FAILURES ===================================
+________________ test_native_landing_retention_remains_bounded ________________
+tests\test_native_landing_retention.py:141: in test_native_landing_retention_remains_bounded
+    assert rows[-1]['retained_traced_bytes'] < rows[0]['retained_traced_bytes'] + 1024**2
+E   assert 26187382 < (1642015 + (1024 ** 2))
+=========================== short test summary info ===========================
+FAILED tests/test_native_landing_retention.py::test_native_landing_retention_remains_bounded
+1 failed, 3 passed in 12.09s

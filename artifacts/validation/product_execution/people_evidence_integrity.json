@@ -1,0 +1,129 @@
+{
+  "analysis_id": "match_1bb12f2aa52a438ebce8a9895fa2bd4f",
+  "job": {
+    "id": "match_1bb12f2aa52a438ebce8a9895fa2bd4f",
+    "filename": "Dimitrov-Tiafoe person-evidence diagnostic.mkv",
+    "status": "COMPLETED",
+    "stage": "Analysis complete",
+    "step": 11,
+    "created_at": "2026-10-01T03:15:17.128573+00:00",
+    "started_at": "2026-10-01T03:15:17.792139+00:00",
+    "completed_at": "2026-10-01T03:18:06.160667+00:00",
+    "error": null,
+    "size_bytes": 237118447
+  },
+  "observed_states": [
+    [
+      "COMPLETED",
+      "Analysis complete"
+    ]
+  ],
+  "summary": {
+    "id": "match_1bb12f2aa52a438ebce8a9895fa2bd4f",
+    "label": "Dimitrov-Tiafoe person-evidence diagnostic.mkv",
+    "phase": "Match analysis",
+    "status": "COMPLETED",
+    "analyzedAt": "2026-10-01T03:15:17.792139+00:00",
+    "sourceVideoPath": "Dimitrov-Tiafoe person-evidence diagnostic.mkv",
+    "frames": 600,
+    "fps": 60.0,
+    "durationSeconds": 10.0,
+    "eventCount": 0,
+    "lineCallCount": 0,
+    "artifacts": [
+      "annotated.mp4",
+      "annotated_web.mp4",
+      "ball_metrics.json",
+      "camera_registration.json",
+      "court_geometry.json",
+      "detections.json",
+      "event_candidates.json",
+      "event_verification_trace.json",
+      "image_people.json",
+      "inference_config.yaml",
+      "line_calls.json",
+      "match_analytics.json",
+      "match_events.json",
+      "match_state.json",
+      "media_metadata.json",
+      "media_source.json",
+      "metrics.json",
+      "patch_persistence_audit.json",
+      "pixel_motion_audit.json",
+      "player_metrics.json",
+      "player_motion.json",
+      "point_analytics.json",
+      "racket_tracking.json",
+      "rallies.json",
+      "run_config.yaml",
+      "score_history.json",
+      "scoring_events.json",
+      "shot_events.json",
+      "source.mp4",
+      "stationary_candidate_audit.json",
+      "temporal_detour_audit.json",
+      "temporal_spacing_audit.json",
+      "trajectories.json"
+    ],
+    "capabilities": {
+      "detections": true,
+      "trajectories": true,
+      "court": false,
+      "players": false,
+      "ballMetrics": false,
+      "events": false,
+      "lineCalls": false,
+      "scoring": false,
+      "video": true,
+      "pose": false,
+      "racket": false,
+      "imagePeople": true,
+      "masks": false,
+      "world3d": false,
+      "report": true,
+      "csv": true
+    }
+  },
+  "original_sha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+  "media_ranges": {
+    "source": "bytes 0-1023/12994365",
+    "annotated": "bytes 0-1023/9977555"
+  },
+  "player_metrics": null,
+  "pipeline_metrics": {
+    "pipelineFps": 4.243385521759051,
+    "eventCount": 0,
+    "lineCallCount": 0,
+    "courtReprojectionErrorPx": null,
+    "raw": {
+      "production_qualified": false,
+      "authoritative_events_enabled": false
+    }
+  },
+  "warnings": [
+    "Court mapping unavailable: calibration was not reliable enough for metric positions.",
+    "Analysis unavailable for this section: player distance and average speed.",
+    "Ball speed is unavailable: single-camera court projection does not measure airborne speed.",
+    "Bounce, shot placement, rally and scoring analysis unavailable: event measurements are not qualified."
+  ],
+  "result_sha256": "58ec52cd5bcfc4d5057f2e70c9a3c2195019fc4fd04c4deb5a1ee5407dfa18c5",
+  "export_checks": {
+    "readable_report_bytes": 366873,
+    "csv_rows": 600,
+    "contract_version": "2.0"
+  },
+  "image_people_checks": {
+    "frames": 600,
+    "observation_count": 1745,
+    "frames_with_observations": 600,
+    "minimum_people_per_frame": 2,
+    "maximum_people_per_frame": 4,
+    "court_role_counts": {
+      "None": 1745
+    },
+    "observations_without_tracker_id": 0,
+    "accuracy_validated": false,
+    "participant_accuracy_measured": false
+  },
+  "verification": "HTTP_ARTIFACT_AND_CONTRACT_CHECK; NOT_MODEL_ACCURACY"
+}

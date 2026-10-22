@@ -39,6 +39,8 @@ class VideoAnnotator:
     def draw_court_keypoints(frame: np.ndarray, keypoints: np.ndarray) -> np.ndarray:
         img = frame.copy()
         for i, kp in enumerate(keypoints):
+            if len(kp) != 2 or not np.isfinite(kp).all():
+                continue
             x, y = int(kp[0]), int(kp[1])
             cv2.circle(img, (x, y), 5, (0, 0, 255), -1)
             cv2.putText(img, str(i), (x + 5, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
@@ -97,4 +99,3 @@ class VideoAnnotator:
             img[0:h, frame_w-w:frame_w] = mini_court_image
             
         return img
-

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "1.0",
+  "outcome": "PASS",
+  "startedAt": "2026-10-16T14:32:46.6054368Z",
+  "finishedAt": "2026-10-16T14:32:57.5739326Z",
+  "scope": "Frontend optional native point evidence contract, section isolation, provisional presentation, and bounded DOM previews",
+  "validation": {
+    "tests": 21,
+    "passed": 21,
+    "failed": 0,
+    "pending": 0,
+    "testFiles": [
+      {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/frontend/src/components/PointTimelineEvidence.test.tsx",
+        "tests": 12,
+        "status": "passed"
+      },
+      {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/frontend/src/data/liveRepository.test.ts",
+        "tests": 9,
+        "status": "passed"
+      }
+    ],
+    "tscExitCode": 0,
+    "eslintExitCode": 0,
+    "vitestExitCode": 0
+  },
+  "sourceBindingsBefore": [
+    {
+      "path": "frontend/src/data/contracts.ts",
+      "sha256": "f97f34497007478834b54a478d1481cfea1e82b3b888bee8fe70f21e2f911422"
+    },
+    {
+      "path": "frontend/src/data/repository.ts",
+      "sha256": "8bb8d6057507cba34456f927ae6590102762392e7d7d717fa8fa8060bf97c96f"
+    },
+    {
+      "path": "frontend/src/pages/LiveRunAnalytics.tsx",
+      "sha256": "5c0d9ad51def3c977c7f74a004a11d3db0efc1e4df2e1e03c69741dcdd046c38"
+    },
+    {
+      "path": "frontend/src/components/PointTimelineEvidence.tsx",
+      "sha256": "88d262ba2d62289e1b15bde7d2cf628385e5dfb247cb6cbf875c5e831007eea6"
+    },
+    {
+      "path": "frontend/src/components/PointTimelineEvidence.test.tsx",
+      "sha256": "bcef18be4aca074ce92800e838ce1926f1515caf3fe409c20df3b754c91ab8ea"
+    },
+    {
+      "path": "frontend/src/data/liveRepository.test.ts",
+      "sha256": "9c94b7c2353f0836c67336fda2c6f0922510d40f7a5c7416c4546077c5fe3c9c"
+    }
+  ],
+  "sourceBindingsAfter": [
+    {
+      "path": "frontend/src/data/contracts.ts",
+      "sha256": "f97f34497007478834b54a478d1481cfea1e82b3b888bee8fe70f21e2f911422"
+    },
+    {
+      "path": "frontend/src/data/repository.ts",
+      "sha256": "8bb8d6057507cba34456f927ae6590102762392e7d7d717fa8fa8060bf97c96f"
+    },
+    {
+      "path": "frontend/src/pages/LiveRunAnalytics.tsx",
+      "sha256": "5c0d9ad51def3c977c7f74a004a11d3db0efc1e4df2e1e03c69741dcdd046c38"
+    },
+    {
+      "path": "frontend/src/components/PointTimelineEvidence.tsx",
+      "sha256": "88d262ba2d62289e1b15bde7d2cf628385e5dfb247cb6cbf875c5e831007eea6"
+    },
+    {
+      "path": "frontend/src/components/PointTimelineEvidence.test.tsx",
+      "sha256": "bcef18be4aca074ce92800e838ce1926f1515caf3fe409c20df3b754c91ab8ea"
+    },
+    {
+      "path": "frontend/src/data/liveRepository.test.ts",
+      "sha256": "9c94b7c2353f0836c67336fda2c6f0922510d40f7a5c7416c4546077c5fe3c9c"
+    }
+  ],
+  "changedFiles": [],
+  "reportBindings": [
+    {
+      "path": "vitest.json",
+      "sha256": "b924e684c49d19e02d65e7f3a0eeef14b0cda6e22430896aca5362465a7dc971"
+    },
+    {
+      "path": "vitest.stdout.txt",
+      "sha256": "803c21bc67851fa8ed93b29af2f444801b25231aeb0fc9a9b91c5dd0b5fa5ad1"
+    },
+    {
+      "path": "tsc.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "eslint.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "static.exit.json",
+      "sha256": "fede9fa4df822ea117af7a0f192789adb2cbff8aedece01c51a641a44269440a"
+    },
+    {
+      "path": "vitest.exit.json",
+      "sha256": "850d1f577254c61f74d9629b2f12515ff0072df1c5124f837eecf13886b5fb8f"
+    }
+  ],
+  "sourceTimingSeek": "No point-specific seek is exposed because this contract has no verified source timestamp mapping. No frame/FPS timing is synthesized.",
+  "availability": "Authority-off masks completed point/rally/serve/timing metrics as unavailable; partial/review record counts remain counts of saved records.",
+  "previewLimits": {
+    "pointsPerPage": 20,
+    "executionsPerPoint": 10,
+    "omissionCountVisible": true,
+    "actualDomTests": "45 point records paged through the end and 1000 service-let executions capped to 10 visible rows."
+  },
+  "priorEvidence": [
+    "point_timeline_frontend_v1/vitest.json: 21 PASS, terminal exit 0 before interruption; predates final legal-rally labels and marker/warning changes.",
+    "point_timeline_frontend_v2/static.exit.json: TypeScript and focused ESLint exit 0; predates final marker/warning changes."
+  ],
+  "limitations": [
+    "Synthetic contract and DOM fixtures do not qualify event, identity, scoring, rally duration, or serve accuracy.",
+    "No actual browser, full frontend suite, production build, video inference, training, GPU, or physical-time accuracy test was performed by this subtask."
+  ]
+}

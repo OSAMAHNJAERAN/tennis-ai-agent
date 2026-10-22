@@ -1,0 +1,277 @@
+FFFFFFFFFFF.                                                             [100%]
+================================== FAILURES ===================================
+_ test_actual_contact_keeps_serve_started_and_native_first_bounce_requests_serve _
+
+    def test_actual_contact_keeps_serve_started_and_native_first_bounce_requests_serve():
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        _, outcome = process(engine, 1, "SERVE_CONTACT", player_id=1)
+        assert outcome.outcome_type == api.PointOutcomeType.SERVE_IN_PLAY
+>       assert_phase(api, engine, "SERVE_STARTED", "FIRST_SERVE_IN_PROGRESS")
+
+tests\test_scoring_service_phase.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+api = namespace(__name__='actual_scoring_service_phase_current', __doc__=None, __package__=None, __loader__=None, __spec__=N...se_current.ScoreEventHistory'>, TennisScoringEngine=<class 'actual_scoring_service_phase_current.TennisScoringEngine'>)
+engine = <actual_scoring_service_phase_current.TennisScoringEngine object at 0x000002D341D796A0>
+ball = 'SERVE_STARTED', point = 'FIRST_SERVE_IN_PROGRESS'
+
+    def assert_phase(api, engine, ball, point):
+>       assert engine.state.ball_state == api.BallPlayState(ball)
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:98: AssertionError
+___ test_first_fault_second_contact_in_then_rally_uses_exact_native_context ___
+
+    def test_first_fault_second_contact_in_then_rally_uses_exact_native_context():
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        process(engine, 1, "SERVE_CONTACT", player_id=1)
+        contexts = [actual_phase6_context(api, engine)[0].value]
+        _, fault = process(engine, 2, "BOUNCE", line_call=call(api, "SERVE_FAULT", 2))
+        assert fault.outcome_type == api.PointOutcomeType.FIRST_SERVE_FAULT
+        assert_phase(api, engine, "DEAD", "SECOND_SERVE_WAITING")
+        assert engine.state.serve_attempt == 2 and engine.state.points_p2 == 0
+        _, dead = process(engine, 3, "PLAYER_2_HIT", player_id=2)
+        assert dead.outcome_type == api.PointOutcomeType.DEAD_BALL_IGNORED
+        process(engine, 4, "SERVE_CONTACT", player_id=1)
+>       assert_phase(api, engine, "SERVE_STARTED", "SECOND_SERVE_IN_PROGRESS")
+
+tests\test_scoring_service_phase.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+api = namespace(__name__='actual_scoring_service_phase_current', __doc__=None, __package__=None, __loader__=None, __spec__=N...se_current.ScoreEventHistory'>, TennisScoringEngine=<class 'actual_scoring_service_phase_current.TennisScoringEngine'>)
+engine = <actual_scoring_service_phase_current.TennisScoringEngine object at 0x000002D341D7ABA0>
+ball = 'SERVE_STARTED', point = 'SECOND_SERVE_IN_PROGRESS'
+
+    def assert_phase(api, engine, ball, point):
+>       assert engine.state.ball_state == api.BallPlayState(ball)
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:98: AssertionError
+_ test_first_and_second_serve_lets_replay_same_attempt_without_live_phase[1] __
+
+attempt = 1
+
+    @pytest.mark.parametrize("attempt", [1, 2])
+    def test_first_and_second_serve_lets_replay_same_attempt_without_live_phase(attempt):
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        ident = 1
+        if attempt == 2:
+            process(engine, ident, "SERVE_CONTACT"); ident += 1
+            process(engine, ident, "BOUNCE", line_call=call(api, "SERVE_FAULT", ident)); ident += 1
+        process(engine, ident, "SERVE_CONTACT"); ident += 1
+        expected = "FIRST_SERVE_IN_PROGRESS" if attempt == 1 else "SECOND_SERVE_IN_PROGRESS"
+>       assert_phase(api, engine, "SERVE_STARTED", expected)
+
+tests\test_scoring_service_phase.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+api = namespace(__name__='actual_scoring_service_phase_current', __doc__=None, __package__=None, __loader__=None, __spec__=N...se_current.ScoreEventHistory'>, TennisScoringEngine=<class 'actual_scoring_service_phase_current.TennisScoringEngine'>)
+engine = <actual_scoring_service_phase_current.TennisScoringEngine object at 0x000002D341D79400>
+ball = 'SERVE_STARTED', point = 'FIRST_SERVE_IN_PROGRESS'
+
+    def assert_phase(api, engine, ball, point):
+>       assert engine.state.ball_state == api.BallPlayState(ball)
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:98: AssertionError
+_ test_first_and_second_serve_lets_replay_same_attempt_without_live_phase[2] __
+
+attempt = 2
+
+    @pytest.mark.parametrize("attempt", [1, 2])
+    def test_first_and_second_serve_lets_replay_same_attempt_without_live_phase(attempt):
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        ident = 1
+        if attempt == 2:
+            process(engine, ident, "SERVE_CONTACT"); ident += 1
+            process(engine, ident, "BOUNCE", line_call=call(api, "SERVE_FAULT", ident)); ident += 1
+        process(engine, ident, "SERVE_CONTACT"); ident += 1
+        expected = "FIRST_SERVE_IN_PROGRESS" if attempt == 1 else "SECOND_SERVE_IN_PROGRESS"
+>       assert_phase(api, engine, "SERVE_STARTED", expected)
+
+tests\test_scoring_service_phase.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+api = namespace(__name__='actual_scoring_service_phase_current', __doc__=None, __package__=None, __loader__=None, __spec__=N...se_current.ScoreEventHistory'>, TennisScoringEngine=<class 'actual_scoring_service_phase_current.TennisScoringEngine'>)
+engine = <actual_scoring_service_phase_current.TennisScoringEngine object at 0x000002D341D7B380>
+ball = 'SERVE_STARTED', point = 'SECOND_SERVE_IN_PROGRESS'
+
+    def assert_phase(api, engine, ball, point):
+>       assert engine.state.ball_state == api.BallPlayState(ball)
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:98: AssertionError
+_ test_second_fault_awards_receiver_once_dead_ball_and_next_attempt_reset_preserved _
+
+    def test_second_fault_awards_receiver_once_dead_ball_and_next_attempt_reset_preserved():
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        for ident in (1, 3):
+            process(engine, ident, "SERVE_CONTACT")
+>           assert engine.state.ball_state == api.BallPlayState.SERVE_STARTED
+E           AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E             
+E             - SERVE_STARTED
+E             + LIVE
+
+tests\test_scoring_service_phase.py:171: AssertionError
+_ test_duplicate_contact_and_bounce_ids_cannot_advance_phase_or_history_twice _
+
+    def test_duplicate_contact_and_bounce_ids_cannot_advance_phase_or_history_twice():
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        process(engine, 1, "SERVE_CONTACT")
+        snapshot = copy.deepcopy(engine.state.to_dict())
+        _, duplicate = process(engine, 1, "BOUNCE", line_call=call(api, "SERVE_IN", 1))
+        assert duplicate.outcome_type == api.PointOutcomeType.UNKNOWN_EVENT and engine.state.to_dict() == snapshot
+>       assert engine.state.ball_state == api.BallPlayState.SERVE_STARTED and len(engine.history.entries) == 1
+E       AssertionError: assert (<BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE)
+
+tests\test_scoring_service_phase.py:190: AssertionError
+_ test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally[AD_BREAK] _
+
+unknown = 'AD_BREAK'
+
+    @pytest.mark.parametrize("unknown", ["AD_BREAK", "BOUNCE"])
+    def test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally(unknown):
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        process(engine, 1, "SERVE_CONTACT")
+        before = copy.deepcopy(engine.state.to_dict())
+        _, outcome = process(engine, 2, unknown)
+        assert outcome.outcome_type == api.PointOutcomeType.UNKNOWN_EVENT
+        assert engine.state.to_dict() == before
+>       assert_phase(api, engine, "SERVE_STARTED", "FIRST_SERVE_IN_PROGRESS")
+
+tests\test_scoring_service_phase.py:206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+api = namespace(__name__='actual_scoring_service_phase_current', __doc__=None, __package__=None, __loader__=None, __spec__=N...se_current.ScoreEventHistory'>, TennisScoringEngine=<class 'actual_scoring_service_phase_current.TennisScoringEngine'>)
+engine = <actual_scoring_service_phase_current.TennisScoringEngine object at 0x000002D341D79A90>
+ball = 'SERVE_STARTED', point = 'FIRST_SERVE_IN_PROGRESS'
+
+    def assert_phase(api, engine, ball, point):
+>       assert engine.state.ball_state == api.BallPlayState(ball)
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:98: AssertionError
+_ test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally[BOUNCE] _
+
+unknown = 'BOUNCE'
+
+    @pytest.mark.parametrize("unknown", ["AD_BREAK", "BOUNCE"])
+    def test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally(unknown):
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        process(engine, 1, "SERVE_CONTACT")
+        before = copy.deepcopy(engine.state.to_dict())
+        _, outcome = process(engine, 2, unknown)
+        assert outcome.outcome_type == api.PointOutcomeType.UNKNOWN_EVENT
+        assert engine.state.to_dict() == before
+>       assert_phase(api, engine, "SERVE_STARTED", "FIRST_SERVE_IN_PROGRESS")
+
+tests\test_scoring_service_phase.py:206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+api = namespace(__name__='actual_scoring_service_phase_current', __doc__=None, __package__=None, __loader__=None, __spec__=N...se_current.ScoreEventHistory'>, TennisScoringEngine=<class 'actual_scoring_service_phase_current.TennisScoringEngine'>)
+engine = <actual_scoring_service_phase_current.TennisScoringEngine object at 0x000002D341D7AF90>
+ball = 'SERVE_STARTED', point = 'FIRST_SERVE_IN_PROGRESS'
+
+    def assert_phase(api, engine, ball, point):
+>       assert engine.state.ball_state == api.BallPlayState(ball)
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:98: AssertionError
+_ test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority[CONSEQUENTIAL_GAP] _
+
+gap = 'CONSEQUENTIAL_GAP'
+
+    @pytest.mark.parametrize("gap", ["CONSEQUENTIAL_GAP", "POINT_OUTCOME_UNKNOWN"])
+    def test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority(gap):
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        process(engine, 1, "SERVE_CONTACT")
+        process(engine, 2, gap)
+        assert engine.state.point_state == api.PointState.POINT_REVIEW_PENDING and engine.state.score_confirmed is False
+        _, outcome = process(engine, 3, "BOUNCE", line_call=call(api, "SERVE_IN", 3))
+        assert outcome.outcome_type == api.PointOutcomeType.POINT_REVIEW_REQUIRED
+>       assert engine.state.ball_state == api.BallPlayState.SERVE_STARTED
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:219: AssertionError
+_ test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority[POINT_OUTCOME_UNKNOWN] _
+
+gap = 'POINT_OUTCOME_UNKNOWN'
+
+    @pytest.mark.parametrize("gap", ["CONSEQUENTIAL_GAP", "POINT_OUTCOME_UNKNOWN"])
+    def test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority(gap):
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        process(engine, 1, "SERVE_CONTACT")
+        process(engine, 2, gap)
+        assert engine.state.point_state == api.PointState.POINT_REVIEW_PENDING and engine.state.score_confirmed is False
+        _, outcome = process(engine, 3, "BOUNCE", line_call=call(api, "SERVE_IN", 3))
+        assert outcome.outcome_type == api.PointOutcomeType.POINT_REVIEW_REQUIRED
+>       assert engine.state.ball_state == api.BallPlayState.SERVE_STARTED
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:219: AssertionError
+_____ test_unknown_line_decision_and_premature_return_withhold_live_phase _____
+
+    def test_unknown_line_decision_and_premature_return_withhold_live_phase():
+        api = actual_classes()
+        engine = api.TennisScoringEngine()
+        process(engine, 1, "SERVE_CONTACT")
+        _, unknown = process(engine, 2, "BOUNCE", line_call=call(api, "UNKNOWN", 2))
+        assert unknown.outcome_type == api.PointOutcomeType.UNKNOWN_EVENT
+>       assert engine.state.ball_state == api.BallPlayState.SERVE_STARTED
+E       AssertionError: assert <BallPlayState.LIVE: 'LIVE'> == <BallPlayStat...ERVE_STARTED'>
+E         
+E         - SERVE_STARTED
+E         + LIVE
+
+tests\test_scoring_service_phase.py:230: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_scoring_service_phase.py::test_actual_contact_keeps_serve_started_and_native_first_bounce_requests_serve
+FAILED tests/test_scoring_service_phase.py::test_first_fault_second_contact_in_then_rally_uses_exact_native_context
+FAILED tests/test_scoring_service_phase.py::test_first_and_second_serve_lets_replay_same_attempt_without_live_phase[1]
+FAILED tests/test_scoring_service_phase.py::test_first_and_second_serve_lets_replay_same_attempt_without_live_phase[2]
+FAILED tests/test_scoring_service_phase.py::test_second_fault_awards_receiver_once_dead_ball_and_next_attempt_reset_preserved
+FAILED tests/test_scoring_service_phase.py::test_duplicate_contact_and_bounce_ids_cannot_advance_phase_or_history_twice
+FAILED tests/test_scoring_service_phase.py::test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally[AD_BREAK]
+FAILED tests/test_scoring_service_phase.py::test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally[BOUNCE]
+FAILED tests/test_scoring_service_phase.py::test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority[CONSEQUENTIAL_GAP]
+FAILED tests/test_scoring_service_phase.py::test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority[POINT_OUTCOME_UNKNOWN]
+FAILED tests/test_scoring_service_phase.py::test_unknown_line_decision_and_premature_return_withhold_live_phase
+11 failed, 1 passed in 0.43s

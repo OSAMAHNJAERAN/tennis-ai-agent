@@ -1,0 +1,379 @@
+"""
+gets camera pose from lines of tennis court
+"""
+
+import cv2
+import numpy as np
+import json
+import os
+from pathlib import Path
+import sys
+import pdb
+import joblib
+import argparse
+
+from courtannotator import CourtAnnotator  
+from camera_calibration import CameraCalibrator, calibrate_from_annotations 
+# from viz_camera_on_court import visualize_camera_on_tennis_court
+from camera_pose_recovery.viz_camera_on_court_fast import FastTennisVisualizer
+
+"""
+recover_camera_pose.py
+Recovers camera pose from tennis court points
+
+python recover_camera_pose.py \
+    --image_path 10_02_2025_08_00_court5/10_02_2025_08_14_59_000_court5_N_2_08_30_22_535/frame_first.png \
+    --camera_model pinhole \
+    --phmr_results ../prompthmr/results/10_02_2025_08_00_court5/10_02_2025_08_14_59_000_court5_N_2_08_30_22_535/results_4000_4499.pkl \
+    --output_dir calibration_results/10_02_2025_08_00_court5/10_02_2025_08_14_59_000_court5_N_2_08_30_22_535
+    
+python recover_camera_pose.py \
+    --image_path 10_02_2025_08_00_court5/10_02_2025_08_14_59_000_court5_N_2_08_30_22_535/frame_first.png \
+    --camera_model pinhole \
+    --phmr_results ../prompthmr/results/10_02_2025_08_00_court5/10_02_2025_08_14_59_000_court5_N_2_08_30_22_535/results_0_499.pkl \
+    --output_dir calibration_results/10_02_2025_08_00_court5/10_02_2025_08_14_59_000_court5_N_2_08_30_22_535
+
+pinhole:
+python recover_camera_pose.py --image_path example_court_images/overhead_court.png
+
+fisheye:
+python recover_camera_pose.py --image_path example_court_images/overhead_court.png --camera_model fisheye
+"""
+
+import subprocess
+import json
+import numpy as np
+
+def extract_intrinsics_from_exif(video_path, image_width=1920, image_height=1080):
+    """
+    Attempts to get focal length from EXIF. 
+    Falls back to a heuristic if metadata is missing.
+    """
+    f_p = None
+
+    try:
+        # 1. Attempt ExifTool Extraction
+        cmd = ["exiftool", "-FocalLengthIn35mmFormat", "-j", str(video_path)]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        metadata = json.loads(result.stdout)[0]
+        
+        f_35mm = metadata.get("FocalLengthIn35mmFormat")
+        
+        if f_35mm is not None:
+            if isinstance(f_35mm, str):
+                f_35mm = float(f_35mm.split()[0])
+            
+            # Convert 35mm equiv to pixels
+            f_p = image_width * (f_35mm / 36.0)
+
+    except Exception as e:
+        print(f"ExifTool check failed with error: {e}")
+
+    # 2. Heuristic Fallback (Triggers if f_p is still None)
+    if f_p is None:
+        print(f"--- Metadata missing/invalid. Applying heuristic fallback for: {video_path} ---")
+        # Standard CV heuristic: f = 1.2 * max(w, h)
+        f_p = 1.2 * max(image_width, image_height)
+        
+    # 3. Build and Return Matrix
+    cx = image_width / 2.0
+    cy = image_height / 2.0
+    
+    K = np.array([
+        [f_p, 0,  cx],
+        [0,  f_p, cy],
+        [0,  0,   1]
+    ], dtype=np.float64)
+    
+    return K
+
+def interpolate_paired_2d_3d_data(points_2d: dict, points_3d: dict, num_interpolated: int = 5) -> tuple[dict, dict]:
+    """
+    Interpolate additional 2D-3D point correspondences along tennis court lines.
+    
+    Args:
+        points_2d: Dictionary mapping point names to 2D pixel coordinates
+        points_3d: Dictionary mapping point names to 3D world coordinates
+        num_interpolated: Number of points to interpolate between each pair
+    
+    Returns:
+        interpolated_2d: Dictionary with original + interpolated 2D points
+        interpolated_3d: Dictionary with original + interpolated 3D points
+    """
+    
+    # Define the tennis court line segments to interpolate along
+    # Based on standard tennis court layout
+    court_lines = {
+        'baseline_near': ['A', 'B'],      # Near baseline left segment
+        'baseline_near2': ['B', 'C'],     # Near baseline middle segment  
+        'baseline_near3': ['C', 'D'],     # Near baseline right segment
+        'singles_left': ['B', 'E'],       # Left singles sideline
+        'service_left': ['E', 'F'],       # Left service line
+        'center_service': ['F', 'G'],     # Center service line
+        'singles_right': ['C', 'G'],      # Right singles sideline
+    }
+    
+    # Additional lines if more points are available
+    extended_lines = {
+        'service_mid_left': ['E', 'H'],   # Service box connections
+        'net_left': ['F', 'I'],
+        'service_mid_right': ['G', 'J'],
+        'singles_mid_left': ['H', 'K'],
+        'net_mid': ['I', 'L'],
+        'singles_mid_right': ['J', 'M'],
+        'baseline_far': ['N', 'O'],       # Far baseline
+        'baseline_far2': ['O', 'P'],
+        'baseline_far3': ['P', 'Q'],
+        'singles_left_full': ['B', 'O'],  # Full court sidelines
+        'singles_right_full': ['C', 'P'],
+    }
+    
+    # Start with original points
+    interpolated_2d = points_2d.copy()
+    interpolated_3d = points_3d.copy()
+    
+    # Counter for naming interpolated points
+    interp_counter = 0
+    
+    # Function to interpolate between two points
+    def interpolate_between(p1_name, p2_name, n_points):
+        nonlocal interp_counter
+        
+        if p1_name not in points_2d or p2_name not in points_2d:
+            return  # Skip if points not available
+        if p1_name not in points_3d or p2_name not in points_3d:
+            return
+            
+        # Get 2D points
+        p1_2d = np.array(points_2d[p1_name])
+        p2_2d = np.array(points_2d[p2_name])
+        
+        # Get 3D points
+        p1_3d = np.array(points_3d[p1_name])
+        p2_3d = np.array(points_3d[p2_name])
+        
+        # Interpolate along the line segment
+        for i in range(1, n_points + 1):
+            t = i / (n_points + 1)
+            
+            # Linear interpolation in 2D
+            interp_2d = (1 - t) * p1_2d + t * p2_2d
+            
+            # Linear interpolation in 3D
+            interp_3d = (1 - t) * p1_3d + t * p2_3d
+            
+            # Create unique name for interpolated point
+            interp_name = f"I_{p1_name}{p2_name}_{i}"
+            
+            interpolated_2d[interp_name] = tuple(interp_2d)
+            interpolated_3d[interp_name] = tuple(interp_3d)
+            
+            interp_counter += 1
+    
+    # Interpolate along defined court lines
+    for line_name, (start, end) in court_lines.items():
+        interpolate_between(start, end, num_interpolated)
+    
+    # Try extended lines if those points exist
+    for line_name, (start, end) in extended_lines.items():
+        interpolate_between(start, end, num_interpolated)
+    
+    print(f"Added {interp_counter} interpolated points to {len(points_2d)} original points")
+    print(f"Total points for calibration: {len(interpolated_2d)}")
+    
+    return interpolated_2d, interpolated_3d
+
+def annotate_court(image_path, points_to_annotate=None, output_dir=None):
+    """
+    Main function to annotate tennis court points.
+    
+    Args:
+        image_path: Path to the tennis court image
+        points_to_annotate: List of point names to annotate (default: ['A', 'B', 'C', 'D', 'E', 'F', 'G'])
+    
+    Returns:
+        Path to the saved JSON file, or None if cancelled
+    """
+    annotator = CourtAnnotator(image_path)
+    
+    if points_to_annotate:
+        annotator.points_to_annotate = points_to_annotate
+    
+    annotator.run(output_dir)
+    
+    # Return the path to the saved file if it exists
+    base_name = Path(image_path).stem
+    output_file = os.path.join(output_dir, f"{base_name}_court_annotations.json")
+    if os.path.exists(output_file):
+        return output_file
+    return None
+
+if __name__ == "__main__":
+    
+    parser = argparse.ArgumentParser(description='Recover camera pose from tennis court annotations')
+
+    parser.add_argument('--image_path', type=str, default="example_court_images/overhead_court.png",
+                        help='Path to the tennis court image')
+    parser.add_argument('--video_path', type=str, help='Path to the original .MOV file')
+    parser.add_argument('--camera_model', type=str, default='pinhole', choices=['pinhole', 'fisheye'],
+                        help='Camera model type: pinhole (default) or fisheye')
+    parser.add_argument('--phmr_results', type=str, 
+                        default=None,
+                        help='Path to PHMR results file (optional)')
+    parser.add_argument('--output_dir', type=Path, default=Path("calibration_results"),
+                        help='Root folder to save annotations and outputs (default: calibration_results/<image_stem>)')
+    
+    args = parser.parse_args()
+
+    if args.phmr_results is None:
+        # pdb.set_trace()
+        video_stem = Path(args.image_path).parent.stem
+    
+    image_path = args.image_path
+    camera_model = args.camera_model
+    points = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q']
+
+    # Load or annotate image
+    base_name = Path(image_path).stem
+
+    # # Load PHMR results if provided
+    # phmr_results_file = args.phmr_results
+    results = None
+    # if os.path.exists(phmr_results_file):
+    #     results = joblib.load(phmr_results_file)
+    #     print(f"Loaded PHMR results from: {phmr_results_file}")
+    # else:
+    #     print(f"Warning: PHMR results file not found: {phmr_results_file}")
+    #     print("Continuing without PHMR results...")
+
+    output_root = args.output_dir
+    output_dir = output_root / base_name
+    output_dir.mkdir(parents=True, exist_ok=True)
+    annotation_file = output_dir / f"{base_name}_court_annotations.json"
+
+    print(f"Looking for annotations in: {annotation_file}")
+    
+    if not os.path.exists(annotation_file):
+        print("No existing annotations found. Starting annotation tool...")
+        annotation_result = annotate_court(image_path, points, output_dir)
+        if not annotation_result:
+            print("Annotation cancelled.")
+            sys.exit(1)
+        annotation_file = Path(annotation_result)
+    else:
+        print("Found existing annotations!")
+    
+    # Load the annotations
+    with open(annotation_file, 'r') as f:
+        annotation_data = json.load(f)
+    
+    print(f"\nLoaded annotations for {len(annotation_data['points_2d'])} points")
+    if 'skipped_points' in annotation_data and annotation_data['skipped_points']:
+        print(f"Skipped points: {', '.join(annotation_data['skipped_points'])}")
+    
+    # Skip calibration if nothing annotated
+    if not annotation_data.get('points_2d'):
+        print("No annotated points found in file; skipping calibration for this image.")
+        sys.exit(0)
+    
+    # if len(annotation_data['points_2d']) < 6:
+    #     print("Warning: Fewer than 6 annotated points found. Calibration may be unreliable.")
+
+    if len(annotation_data['points_2d']) < 4:
+        print("Error: Fewer than 4 annotated points found. Cannot perform calibration.")
+        sys.exit(1)
+    
+    # set up 2d : 3d data pairs
+    points_2d = annotation_data['points_2d']
+    points_3d = annotation_data['points_3d']
+
+    print("\n" + "="*60)
+    print("Starting Camera Calibration")
+    print("="*60)
+    
+    video_intrinsics = None
+    if args.video_path is not None:
+        video_intrinsics = extract_intrinsics_from_exif(args.video_path)
+    
+    if video_intrinsics is None:
+        pdb.set_trace()
+    # Pass it to the calibrator
+    if video_intrinsics is not None:
+           calibrator = CameraCalibrator(
+                points_2d=points_2d,
+                points_3d=points_3d,
+                image_shape=annotation_data['image_shape'],
+                camera_model=camera_model,
+                video_intrinsics = video_intrinsics
+            )
+    else:
+        print("couldn't load camera intrinsics!")
+        calibrator = CameraCalibrator(
+            points_2d=points_2d,
+            points_3d=points_3d,
+            image_shape=annotation_data['image_shape'],
+            camera_model=camera_model
+        )
+    
+    # Run calibration with different configurations
+    if results is not None:
+        results_full = calibrator.calibrate(fix_principal_point=False, fix_aspect_ratio=False, results=results)
+    else:
+        results_full = calibrator.calibrate(fix_principal_point=False, fix_aspect_ratio=False)
+    
+    if results_full is None:
+        print("Calibration failed due to degenerate point configuration.")
+        sys.exit(0)
+    best_results = results_full
+
+    K = best_results['K']
+    R_c2w = best_results['R_c2w']
+    R_w2c = best_results['R_w2c']
+    t_c2w = best_results['t_c2w']
+    t_w2c = best_results['t_w2c']
+
+    print(f"\nMean Reprojection Error: {best_results['reprojection_error']:.3f} pixels")
+
+    # Create visualization
+    image = cv2.imread(image_path)
+
+    viz = calibrator.visualize_reprojection(best_results, image, camera_type=camera_model)
+
+    # Save visualization
+    viz_output = annotation_file.with_name(annotation_file.stem + '_calibration_viz.jpg')
+    cv2.imwrite(str(viz_output), viz)
+    print(f"Visualization saved to: {viz_output}")
+
+    # Save calibration results
+    calibration_output = annotation_file.with_name(annotation_file.stem + '_calibration.json')
+    save_data = {
+        'K': K.tolist(),
+        'R_c2w': R_c2w.tolist(),           # camera-to-world rotation
+        'R_w2c': R_w2c.tolist(),           # world-to-camera rotation
+        't_c2w': t_c2w.tolist(),           # camera-to-world translation (camera center)
+        't_w2c': t_w2c.tolist(),           # world-to-camera translation
+        'C': best_results['C'].tolist(),   # camera center (same as t_c2w)
+        'Rt_c2w': best_results['Rt_c2w'].tolist(),  # 3x4 camera-to-world
+        'Rt_w2c': best_results['Rt_w2c'].tolist(),  # 3x4 world-to-camera
+        'reprojection_error': best_results['reprojection_error'],
+        'camera_model': best_results.get('camera_model', 'pinhole'),
+        'image_shape': annotation_data['image_shape'],
+        'annotation_file': str(annotation_file)
+    }
+
+    # Add distortion coefficients if fisheye
+    if best_results.get('dist_coeffs') is not None:
+        save_data['dist_coeffs'] = best_results['dist_coeffs'].tolist()
+    else:
+        save_data['dist_coeffs'] = None
+
+    with open(calibration_output, 'w') as f:
+        json.dump(save_data, f, indent=2)
+
+    ######################## save court visualization ########################
+
+    # Pass R_c2w and t_c2w (camera center) for visualization
+    vis = FastTennisVisualizer()
+    png_path = output_dir / f"{base_name}_camera_on_court.png"
+    vis.visualize_camera_on_tennis_court(R_c2w, t_c2w, out_path=str(png_path), axis_len=1.0, is_c2w=True)
+    print(f"Saved court+camera visualization to: {png_path}")

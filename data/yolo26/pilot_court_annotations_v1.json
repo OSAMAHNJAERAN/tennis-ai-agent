@@ -1,0 +1,647 @@
+{
+  "schema_version": "1.0",
+  "purpose": "SIX_AGENT_MANUAL_COURT14_DEVELOPMENT_LABELS_NO_INDEPENDENT_HUMAN_QUALIFICATION",
+  "sources": [
+    {
+      "source_id": "match172",
+      "match_id": "publisher_match172_original_match_unverified",
+      "session_id": "RACKETVISION_ORIGINAL_SESSION_MAPPING_UNRESOLVED_DEVELOPMENT_GROUP",
+      "original_source_video_id": "publisher_match172_000",
+      "owner": "Linfeng Dong et al. / linfeng302 (publisher; original broadcaster unresolved)",
+      "rights_evidence": "https://huggingface.co/datasets/linfeng302/RacketVision (dataset card declares MIT and explicitly documents video/CSV download for training; checked 2026-10-08)",
+      "training_allowed": true,
+      "use_scope": "PRIVATE_LOCAL_NONCOMMERCIAL_ACADEMIC_PILOT_ONLY",
+      "public_redistribution_allowed": false,
+      "underlying_broadcast_permission": "NOT_SEPARATELY_VERIFIED_NO_PUBLIC_DERIVATIVES",
+      "source_url": "https://huggingface.co/datasets/linfeng302/RacketVision/resolve/85157ca21faa2abca96d837dd2b963738029bcc8/tennis/videos/match172_000.mp4",
+      "source_path": "data/external/racketvision_training20/tennis/videos/match172_000.mp4",
+      "sha256": "eb1dd91dbdf4c270f02f3f26d86cd9e7ed81606123f354805263771f6f9a5a1a",
+      "surface": "hard",
+      "view": "elevated_end_court_singles",
+      "camera_reviewed": true,
+      "fps": 25.0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "clip_duration_seconds": 10.0,
+      "acquired_on": "2026-09-14 (historical local research acquisition)",
+      "reviewed_on": "2026-10-08",
+      "grouping_status": "PUBLISHER_IDS_ONLY_NO_ORIGINAL_MATCH_INDEPENDENCE_CLAIM",
+      "qualification_evidence": false
+    },
+    {
+      "source_id": "match175",
+      "match_id": "publisher_match175_original_match_unverified",
+      "session_id": "RACKETVISION_ORIGINAL_SESSION_MAPPING_UNRESOLVED_DEVELOPMENT_GROUP",
+      "original_source_video_id": "publisher_match175_000",
+      "owner": "Linfeng Dong et al. / linfeng302 (publisher; original broadcaster unresolved)",
+      "rights_evidence": "https://huggingface.co/datasets/linfeng302/RacketVision (dataset card declares MIT and explicitly documents video/CSV download for training; checked 2026-10-08)",
+      "training_allowed": true,
+      "use_scope": "PRIVATE_LOCAL_NONCOMMERCIAL_ACADEMIC_PILOT_ONLY",
+      "public_redistribution_allowed": false,
+      "underlying_broadcast_permission": "NOT_SEPARATELY_VERIFIED_NO_PUBLIC_DERIVATIVES",
+      "source_url": "https://huggingface.co/datasets/linfeng302/RacketVision/resolve/85157ca21faa2abca96d837dd2b963738029bcc8/tennis/videos/match175_000.mp4",
+      "source_path": "data/external/racketvision_training20/tennis/videos/match175_000.mp4",
+      "sha256": "0dafea81a8e09847fbb9ca9a194ba33ab1d190fdf91d075cbff4f28d5976d3ca",
+      "surface": "clay",
+      "view": "elevated_end_court_singles",
+      "camera_reviewed": true,
+      "fps": 25.0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "clip_duration_seconds": 10.0,
+      "acquired_on": "2026-09-14 (historical local research acquisition)",
+      "reviewed_on": "2026-10-08",
+      "grouping_status": "PUBLISHER_IDS_ONLY_NO_ORIGINAL_MATCH_INDEPENDENCE_CLAIM",
+      "qualification_evidence": false
+    }
+  ],
+  "annotations": [
+    {
+      "source_id": "match172",
+      "frame_index": 9,
+      "timestamp_seconds": 0.36,
+      "image": "data/yolo26/racketvision_pilot_review/match172_9.png",
+      "role": "court",
+      "landmark_schema": "tennis_court_14_v1",
+      "human_reviewed": false,
+      "manual_reviewed": true,
+      "reviewer_type": "AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "annotation_provenance": "AGENT_VISUAL_MANUAL",
+      "review_method": "Codex manual visual review of native image and court intersections; each frame inspected; no detector predictions or homography-projected labels; independent human label review still pending",
+      "annotation_uncertainty_pixels": 3,
+      "instances": [
+        {
+          "bbox_xyxy_px": [
+            386,
+            200,
+            1525,
+            758
+          ],
+          "keypoints_px": [
+            [
+              659,
+              203,
+              2
+            ],
+            [
+              1227,
+              203,
+              2
+            ],
+            [
+              389,
+              754,
+              2
+            ],
+            [
+              1522,
+              752,
+              2
+            ],
+            [
+              731,
+              203,
+              2
+            ],
+            [
+              532,
+              754,
+              2
+            ],
+            [
+              1157,
+              203,
+              2
+            ],
+            [
+              1378,
+              752,
+              2
+            ],
+            [
+              705,
+              276,
+              2
+            ],
+            [
+              1186,
+              275,
+              2
+            ],
+            [
+              609,
+              548,
+              2
+            ],
+            [
+              1296,
+              547,
+              2
+            ],
+            [
+              946,
+              275,
+              2
+            ],
+            [
+              951,
+              548,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "match172",
+      "frame_index": 13,
+      "timestamp_seconds": 0.52,
+      "image": "data/yolo26/racketvision_pilot_review/match172_13.png",
+      "role": "court",
+      "landmark_schema": "tennis_court_14_v1",
+      "human_reviewed": false,
+      "manual_reviewed": true,
+      "reviewer_type": "AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "annotation_provenance": "AGENT_VISUAL_MANUAL",
+      "review_method": "Codex manual visual review of native image and court intersections; each frame inspected; no detector predictions or homography-projected labels; independent human label review still pending",
+      "annotation_uncertainty_pixels": 3,
+      "instances": [
+        {
+          "bbox_xyxy_px": [
+            386,
+            200,
+            1525,
+            758
+          ],
+          "keypoints_px": [
+            [
+              659,
+              203,
+              2
+            ],
+            [
+              1227,
+              203,
+              2
+            ],
+            [
+              389,
+              754,
+              2
+            ],
+            [
+              1522,
+              752,
+              2
+            ],
+            [
+              731,
+              203,
+              2
+            ],
+            [
+              532,
+              754,
+              2
+            ],
+            [
+              1157,
+              203,
+              2
+            ],
+            [
+              1378,
+              752,
+              2
+            ],
+            [
+              705,
+              276,
+              2
+            ],
+            [
+              1186,
+              275,
+              2
+            ],
+            [
+              609,
+              548,
+              2
+            ],
+            [
+              1296,
+              547,
+              2
+            ],
+            [
+              946,
+              275,
+              2
+            ],
+            [
+              951,
+              548,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "match172",
+      "frame_index": 18,
+      "timestamp_seconds": 0.72,
+      "image": "data/yolo26/racketvision_pilot_review/match172_18.png",
+      "role": "court",
+      "landmark_schema": "tennis_court_14_v1",
+      "human_reviewed": false,
+      "manual_reviewed": true,
+      "reviewer_type": "AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "annotation_provenance": "AGENT_VISUAL_MANUAL",
+      "review_method": "Codex manual visual review of native image and court intersections; each frame inspected; no detector predictions or homography-projected labels; independent human label review still pending",
+      "annotation_uncertainty_pixels": 3,
+      "instances": [
+        {
+          "bbox_xyxy_px": [
+            386,
+            200,
+            1525,
+            758
+          ],
+          "keypoints_px": [
+            [
+              659,
+              203,
+              2
+            ],
+            [
+              1227,
+              203,
+              2
+            ],
+            [
+              389,
+              754,
+              2
+            ],
+            [
+              1522,
+              752,
+              2
+            ],
+            [
+              731,
+              203,
+              2
+            ],
+            [
+              532,
+              754,
+              2
+            ],
+            [
+              1157,
+              203,
+              2
+            ],
+            [
+              1378,
+              752,
+              2
+            ],
+            [
+              705,
+              276,
+              2
+            ],
+            [
+              1186,
+              275,
+              2
+            ],
+            [
+              609,
+              548,
+              2
+            ],
+            [
+              1296,
+              547,
+              2
+            ],
+            [
+              946,
+              275,
+              2
+            ],
+            [
+              951,
+              548,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "match172",
+      "frame_index": 27,
+      "timestamp_seconds": 1.08,
+      "image": "data/yolo26/racketvision_pilot_review/match172_27.png",
+      "role": "court",
+      "landmark_schema": "tennis_court_14_v1",
+      "human_reviewed": false,
+      "manual_reviewed": true,
+      "reviewer_type": "AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "annotation_provenance": "AGENT_VISUAL_MANUAL",
+      "review_method": "Codex manual visual review of native image and court intersections; each frame inspected; no detector predictions or homography-projected labels; independent human label review still pending",
+      "annotation_uncertainty_pixels": 3,
+      "instances": [
+        {
+          "bbox_xyxy_px": [
+            386,
+            200,
+            1525,
+            758
+          ],
+          "keypoints_px": [
+            [
+              659,
+              203,
+              2
+            ],
+            [
+              1227,
+              203,
+              2
+            ],
+            [
+              389,
+              754,
+              2
+            ],
+            [
+              1522,
+              752,
+              2
+            ],
+            [
+              731,
+              203,
+              2
+            ],
+            [
+              532,
+              754,
+              2
+            ],
+            [
+              1157,
+              203,
+              2
+            ],
+            [
+              1378,
+              752,
+              2
+            ],
+            [
+              705,
+              276,
+              2
+            ],
+            [
+              1186,
+              275,
+              2
+            ],
+            [
+              609,
+              548,
+              2
+            ],
+            [
+              1296,
+              547,
+              2
+            ],
+            [
+              946,
+              275,
+              2
+            ],
+            [
+              951,
+              548,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "match175",
+      "frame_index": 9,
+      "timestamp_seconds": 0.36,
+      "image": "data/yolo26/racketvision_pilot_review/match175_9.png",
+      "role": "court",
+      "landmark_schema": "tennis_court_14_v1",
+      "human_reviewed": false,
+      "manual_reviewed": true,
+      "reviewer_type": "AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "annotation_provenance": "AGENT_VISUAL_MANUAL",
+      "review_method": "Codex manual visual review of native image and court intersections; each frame inspected; no detector predictions or homography-projected labels; independent human label review still pending",
+      "annotation_uncertainty_pixels": 3,
+      "instances": [
+        {
+          "bbox_xyxy_px": [
+            250,
+            276,
+            1685,
+            895
+          ],
+          "keypoints_px": [
+            [
+              586,
+              281,
+              2
+            ],
+            [
+              1334,
+              279,
+              2
+            ],
+            [
+              254,
+              890,
+              2
+            ],
+            [
+              1681,
+              888,
+              2
+            ],
+            [
+              680,
+              281,
+              2
+            ],
+            [
+              437,
+              889,
+              2
+            ],
+            [
+              1240,
+              280,
+              2
+            ],
+            [
+              1498,
+              887,
+              2
+            ],
+            [
+              649,
+              363,
+              2
+            ],
+            [
+              1278,
+              362,
+              2
+            ],
+            [
+              526,
+              667,
+              2
+            ],
+            [
+              1401,
+              666,
+              2
+            ],
+            [
+              960,
+              363,
+              2
+            ],
+            [
+              965,
+              666,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "match175",
+      "frame_index": 18,
+      "timestamp_seconds": 0.72,
+      "image": "data/yolo26/racketvision_pilot_review/match175_18.png",
+      "role": "court",
+      "landmark_schema": "tennis_court_14_v1",
+      "human_reviewed": false,
+      "manual_reviewed": true,
+      "reviewer_type": "AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "annotation_provenance": "AGENT_VISUAL_MANUAL",
+      "review_method": "Codex manual visual review of native image and court intersections; each frame inspected; no detector predictions or homography-projected labels; independent human label review still pending",
+      "annotation_uncertainty_pixels": 3,
+      "instances": [
+        {
+          "bbox_xyxy_px": [
+            250,
+            276,
+            1685,
+            895
+          ],
+          "keypoints_px": [
+            [
+              586,
+              281,
+              2
+            ],
+            [
+              1334,
+              279,
+              2
+            ],
+            [
+              254,
+              890,
+              2
+            ],
+            [
+              1681,
+              888,
+              2
+            ],
+            [
+              680,
+              281,
+              2
+            ],
+            [
+              437,
+              889,
+              2
+            ],
+            [
+              1240,
+              280,
+              2
+            ],
+            [
+              1498,
+              887,
+              2
+            ],
+            [
+              649,
+              363,
+              2
+            ],
+            [
+              1278,
+              362,
+              2
+            ],
+            [
+              526,
+              667,
+              2
+            ],
+            [
+              1401,
+              666,
+              2
+            ],
+            [
+              960,
+              363,
+              2
+            ],
+            [
+              965,
+              666,
+              2
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "independent_test_reviewed": false
+}

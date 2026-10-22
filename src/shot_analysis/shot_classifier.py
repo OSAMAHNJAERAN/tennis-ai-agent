@@ -1,4 +1,6 @@
-from typing import Tuple, Optional, Dict, Any, List
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Tuple, Optional, Dict, Any, List
 import numpy as np
 
 from src.utils.bbox_utils import BBox
@@ -8,7 +10,8 @@ from src.shot_analysis.shot_types import (
     PlayerHandedness,
     ShotClassificationSource
 )
-from src.shot_analysis.pose_feature_extractor import PoseFeatureExtractor
+if TYPE_CHECKING:
+    from src.shot_analysis.pose_feature_extractor import PoseFeatureExtractor
 
 class TennisShotClassifier:
     """

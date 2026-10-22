@@ -1,0 +1,66 @@
+{
+  "created_utc": "2026-10-21T18:08:50.152058+00:00",
+  "reviewer_kind": "ROOT_AI_AGENT_NOT_INDEPENDENT_HUMAN_GROUND_TRUTH",
+  "scope": "SIDE_VIEW_INDOOR_DEVELOPMENT_SINGLE_SAMPLE",
+  "source_sha256": "ebf721e1502143a5df207383ddd4649bc86ef7cf252d650f9f0e7e9f93a940fe",
+  "extraction_receipt_sha256": "4d658c406380fc7288132e533e0a491be89577c8bc520b4555c938c863252e15",
+  "viewed_new_frames": [
+    110,
+    118,
+    126,
+    134
+  ],
+  "reused_prior_anchor_frames": [
+    104,
+    138
+  ],
+  "native_source_time_base": "1/60000",
+  "strike_phase_bracket": {
+    "first_candidate_frame": 104,
+    "last_candidate_frame": 118,
+    "first_source_pts": "104104",
+    "last_source_pts": "118118",
+    "first_seconds_exact": "13013/7500",
+    "last_seconds_exact": "59059/30000",
+    "label_status": "COARSE_AGENT_VISUAL_PHASE_ONLY_NOT_INDEPENDENT_CONTACT_GROUND_TRUTH",
+    "near_contact_candidate_frame": 110,
+    "near_contact_candidate_not_accepted_as_exact_contact": true
+  },
+  "observations": [
+    {
+      "frame": 110,
+      "observation": "Visible ball close to blurred racket and hitting arm; exact impact instant unresolved."
+    },
+    {
+      "frame": 118,
+      "observation": "Ball separated from hitter, moving toward upper-right region, visibly above gym floor."
+    },
+    {
+      "frame": 126,
+      "observation": "Outgoing ball high in image against upper background, with follow-through below."
+    },
+    {
+      "frame": 134,
+      "observation": "Outgoing ball near upper-right image edge, above floor."
+    },
+    {
+      "frame": 138,
+      "observation": "Final retained anchor shows follow-through; no measured outgoing ground contact or numbered marker established."
+    }
+  ],
+  "container_end_seconds": "2318983/1000000",
+  "last_native_frame_seconds": "23023/10000",
+  "container_remaining_after_strike_bracket_seconds": {
+    "minimum_exact": "1051049/3000000",
+    "maximum_exact": "1751749/3000000"
+  },
+  "measured_outgoing_ground_contact_established": false,
+  "readable_numbered_landing_marker_established": false,
+  "cross_camera_synchronization_established": false,
+  "direct_landing_reference_admission": "NOT_ESTABLISHED_FOR_THIS_VIEW_PAIR",
+  "whole_dataset_absence_claimed": false,
+  "every_native_frame_visually_reviewed": false,
+  "test_frames_or_labels_inspected": false,
+  "model_or_training_executed": false,
+  "accuracy_computed": false
+}

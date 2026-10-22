@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="27" time="151.832" timestamp="2026-10-18T17:07:18.743133+08:00" hostname="Osamah"><testcase classname="tests.test_corrected_publication" name="test_actual_complete_authorized_cas_preserves_old_generation_and_delivers_consistent_reports[AUTHENTICATED_OWNER-False]" time="9.620" /><testcase classname="tests.test_corrected_publication" name="test_actual_complete_authorized_cas_preserves_old_generation_and_delivers_consistent_reports[EXPLICIT_LOCAL_OWNER-False]" time="6.728" /><testcase classname="tests.test_corrected_publication" name="test_actual_complete_authorized_cas_preserves_old_generation_and_delivers_consistent_reports[AUTHENTICATED_OWNER-True]" time="8.212" /><testcase classname="tests.test_corrected_publication" name="test_owner_receipt_must_match_exact_original_reviewed_command[missing]" time="4.620" /><testcase classname="tests.test_corrected_publication" name="test_owner_receipt_must_match_exact_original_reviewed_command[foreign_owner]" time="4.943" /><testcase classname="tests.test_corrected_publication" name="test_owner_receipt_must_match_exact_original_reviewed_command[foreign_request]" time="4.681" /><testcase classname="tests.test_corrected_publication" name="test_owner_receipt_must_match_exact_original_reviewed_command[foreign_analysis]" time="4.665" /><testcase classname="tests.test_corrected_publication" name="test_owner_receipt_must_match_exact_original_reviewed_command[bool_schema]" time="4.780" /><testcase classname="tests.test_corrected_publication" name="test_owner_receipt_must_match_exact_original_reviewed_command[unknown_method]" time="4.627" /><testcase classname="tests.test_corrected_publication" name="test_final_authorization_callback_cannot_change_the_complete_candidate[metrics.json]" time="7.466"><failure message="AssertionError: assert 3 == 1&#10; +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb0/analysis/.result/dfc474469462456db722bb4ac6f90617.files')])">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb0')
+name = 'metrics.json'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+&gt;           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+&gt;       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb0/analysis/.result/dfc474469462456db722bb4ac6f90617.files')])
+
+tests\test_corrected_publication.py:146: AssertionError</failure></testcase><testcase classname="tests.test_corrected_publication" name="test_final_authorization_callback_cannot_change_the_complete_candidate[result.json]" time="6.597"><failure message="AssertionError: assert 3 == 1&#10; +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb1/analysis/.result/ce94f0eb0a3e444b851b75d334ec4cde.files')])">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb1')
+name = 'result.json'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+&gt;           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+&gt;       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb1/analysis/.result/ce94f0eb0a3e444b851b75d334ec4cde.files')])
+
+tests\test_corrected_publication.py:146: AssertionError</failure></testcase><testcase classname="tests.test_corrected_publication" name="test_final_authorization_callback_cannot_change_the_complete_candidate[summary.json]" time="6.086"><failure message="AssertionError: assert 3 == 1&#10; +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb2/analysis/.result/f155640449954c50bfade55bc5e45667.files')])">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb2')
+name = 'summary.json'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+&gt;           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+&gt;       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb2/analysis/.result/f155640449954c50bfade55bc5e45667.files')])
+
+tests\test_corrected_publication.py:146: AssertionError</failure></testcase><testcase classname="tests.test_corrected_publication" name="test_final_authorization_callback_cannot_change_the_complete_candidate[DATABASE]" time="6.198"><failure message="AssertionError: assert 3 == 1&#10; +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb3/analysis/.result/d541f644053249b79c7d542571318d69.files')])">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb3')
+name = 'DATABASE'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+&gt;           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+&gt;       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb3/analysis/.result/d541f644053249b79c7d542571318d69.files')])
+
+tests\test_corrected_publication.py:146: AssertionError</failure></testcase><testcase classname="tests.test_corrected_publication" name="test_delivery_report_failure_preserves_complete_old_result_and_private_evidence[readable_report_chunks]" time="4.937" /><testcase classname="tests.test_corrected_publication" name="test_delivery_report_failure_preserves_complete_old_result_and_private_evidence[telemetry_csv_chunks]" time="5.101" /><testcase classname="tests.test_corrected_publication" name="test_changed_prepared_bytes_cannot_be_published_even_after_native_owners_close[report.json]" time="4.261" /><testcase classname="tests.test_corrected_publication" name="test_changed_prepared_bytes_cannot_be_published_even_after_native_owners_close[native_rule_replay.json]" time="4.200" /><testcase classname="tests.test_corrected_publication" name="test_changed_prepared_bytes_cannot_be_published_even_after_native_owners_close[source.mp4]" time="4.249" /><testcase classname="tests.test_corrected_publication" name="test_changed_prepared_bytes_cannot_be_published_even_after_native_owners_close[corrected_preparation_manifest.json]" time="4.047" /><testcase classname="tests.test_corrected_publication" name="test_failed_final_cancel_check_preserves_old_pointer_and_private_artifacts" time="6.489" /><testcase classname="tests.test_corrected_publication" name="test_actual_new_base_generation_prevents_stale_correction_publication" time="4.928" /><testcase classname="tests.test_corrected_publication" name="test_lost_acknowledgement_is_reconciled_from_actual_current_generation_and_retry_is_idempotent" time="7.359" /><testcase classname="tests.test_corrected_publication" name="test_transient_delivery_copy_corruption_in_real_generation_writer_rejects_candidate" time="6.521" /><testcase classname="tests.test_corrected_publication" name="test_descriptor_cannot_be_issued_from_a_closed_prepared_owner" time="4.732" /><testcase classname="tests.test_corrected_publication" name="test_delivery_execution_cannot_claim_a_different_source_or_selected_model[foreign_source]" time="5.424" /><testcase classname="tests.test_corrected_publication" name="test_delivery_execution_cannot_claim_a_different_source_or_selected_model[unused_with_model]" time="4.523" /><testcase classname="tests.test_corrected_publication" name="test_delivery_execution_cannot_claim_a_different_source_or_selected_model[wrong_selected_checkpoint]" time="5.272" /></testsuite></testsuites>

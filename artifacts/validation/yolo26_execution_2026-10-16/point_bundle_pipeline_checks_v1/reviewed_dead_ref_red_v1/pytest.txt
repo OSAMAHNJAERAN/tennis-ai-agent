@@ -1,0 +1,9 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+______ test_reviewed_signal_after_closed_point_keeps_explicit_reference _______
+tests\test_point_timeline.py:186: in test_reviewed_signal_after_closed_point_keeps_explicit_reference
+    assert transition['reviewed_rule_evidence_ref']=='synthetic-post-point-review'
+E   AssertionError: assert None == 'synthetic-post-point-review'
+=========================== short test summary info ===========================
+FAILED tests/test_point_timeline.py::test_reviewed_signal_after_closed_point_keeps_explicit_reference
+1 failed, 56 deselected in 0.47s

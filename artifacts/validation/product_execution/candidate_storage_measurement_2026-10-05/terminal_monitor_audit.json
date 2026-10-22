@@ -1,0 +1,37 @@
+{
+  "scope": "Terminal audit of retained candidate-only measurement; this supplements, rather than rewrites, the original protocol, samples and receipts.",
+  "overallGuardedProtocolVerified": false,
+  "allEightChildrenReturnedZero": true,
+  "allFourExactOutputComparisonsPassed": true,
+  "actualChildWindowsPeakMemoryReceiptsAvailable": true,
+  "sourceBindingsUnchangedDuringRun": true,
+  "finding": "The clean-environment Windows Python executable is a redirector. The parent monitored the Popen redirector PID only, while the actual interpreter workload ran under a descendant PID. Consequently parent sampled RSS/private values and RSS termination coverage describe the redirector, not the workload.",
+  "evidence": [
+    {
+      "run": "storage_old_432000",
+      "popenRedirectorPid": 34072,
+      "actualInterpreterPidFromChildReceipt": 38144,
+      "redirectorPeakSampledRssBytes": 4235264,
+      "actualChildWindowsPeakWorkingSetBytes": 533684224,
+      "actualChildWindowsPeakPrivateCommitBytes": 1288683520
+    },
+    {
+      "run": "storage_new_432000",
+      "popenRedirectorPid": 33676,
+      "actualInterpreterPidFromChildReceipt": 44192,
+      "redirectorPeakSampledRssBytes": 4231168,
+      "actualChildWindowsPeakWorkingSetBytes": 75333632,
+      "actualChildWindowsPeakPrivateCommitBytes": 828784640
+    }
+  ],
+  "interpretation": {
+    "exactOutputAndLifetimeEvidence": "Valid for the retained deterministic synthetic workload; all actual children completed normally.",
+    "actualChildReportedMemoryAndTiming": "Valid Windows process peak and elapsed receipts for completed children; not sampled parent process-tree measurements.",
+    "rssSafeguard": "Not verified for the actual interpreter workload; its observed terminal peak happened to remain below the declared RSS limit.",
+    "availableHostRamAndWallSafeguards": "The parent sampled these values as declared; neither triggered.",
+    "termination": "Not exercised. The implementation would have targeted the redirector alone, which is insufficient to guarantee descendant termination.",
+    "qualification": "No inference, accuracy or full-pipeline capacity qualification. Original passed flags represent execution/equivalence only and must not be read as proof of correct workload RSS monitoring."
+  },
+  "nextStep": "Correct monitoring to retain exact owned redirector and descendant process identities, sample actual workload RSS/private memory, and stop only owned processes. Preserve this directory and request root authorization before a differently named exclusive rerun.",
+  "automaticRerunPerformed": false
+}

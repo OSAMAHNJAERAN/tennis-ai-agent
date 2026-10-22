@@ -1,0 +1,64 @@
+{
+  "schema": "tennis.yolo26.court-paired-transform-ready-checks.v1",
+  "status": "PASS_PURE_TESTS_AND_FULL_IMPORT_GUARDED_PREFLIGHT_NOT_INFERRED",
+  "created_utc": "2026-10-15T07:48:08.206869+00:00",
+  "qualification_evidence": false,
+  "inference_performed": false,
+  "training_performed": false,
+  "source": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_court_input_transform.py",
+    "sha256": "75790efd6ebe7ec878188352ec9060c31a87dfa1c10ac4b6c7ce9ae9ab694b66",
+    "bytes": 30699
+  },
+  "new_tests": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\tests\\test_yolo26_court_input_transform.py",
+    "sha256": "fd1acbb88ce20cadeb00516707dace56c576baf3a9472421fbd46dcdb22cf736",
+    "bytes": 11988
+  },
+  "junit": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\court_paired_transform_checks_v2\\junit.xml",
+    "sha256": "d0619ba9ddb66be06ce14d58898e98f500a40749bde9849f9510e7b449c7256d",
+    "bytes": 13220
+  },
+  "console": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\court_paired_transform_checks_v2\\console.log",
+    "sha256": "c0aa1ceaa9ba3065a73cdd30e5009d6cbd3d11d8a8cba4e1ad658be9ca81b0cc",
+    "bytes": 182
+  },
+  "test_counts": {
+    "tests": 80,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "actual_preflight_receipt": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_input_transform_preflight_v2\\diagnostic.json",
+    "sha256": "c9b51a7715124fa26877a76a831ad288e814a0102153cfccbafc4c0980340152",
+    "bytes": 362538
+  },
+  "protocol_candidate": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_input_transform_preflight_v2\\protocol_candidate.json",
+    "sha256": "cef8c1eb0a7f6325b06e4a44477dbe81ee838832684637b4424b1dc006ad61fa",
+    "bytes": 18797
+  },
+  "full_preflight_forbidden_import_attempts": [],
+  "full_preflight_forbidden_modules_loaded": [],
+  "full_preflight_forbidden_roots": [
+    "PIL",
+    "cv2",
+    "numpy",
+    "psutil",
+    "torch",
+    "ultralytics"
+  ],
+  "preflight_elapsed_seconds": 0.8671624999988126,
+  "source_unchanged_during_preflight": true,
+  "failed_first_test_evidence_preserved": "artifacts/validation/yolo26_execution_2026-10-15/court_paired_transform_checks_v1",
+  "runtime_untested": [
+    "ACTUAL_PREDICTOR_HOOKS",
+    "ACTUAL_INPUT_PIXEL_COMPARISON",
+    "ACTUAL_MODEL_FORWARDS",
+    "GPU_RESOURCE_GUARD"
+  ],
+  "runtime_command_requires_root_frozen_protocol_and_sha256": true
+}

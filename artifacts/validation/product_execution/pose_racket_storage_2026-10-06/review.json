@@ -1,0 +1,61 @@
+{
+  "findings": [],
+  "checkedLineLocations": {
+    "pipelineRawExports": 909,
+    "storageCursorOwnership": 136,
+    "lazyRawExporter": 245,
+    "storageCleanup": 187,
+    "pipelineRenderContext": 750,
+    "pipelineStoreSetup": 657
+  },
+  "sanitizerDefinitionExactlyUnchanged": true,
+  "limitations": [
+    "The unchanged player_1/player_2 motion samples still grow with frame count; sanitize(metadata) temporarily copies those movement arrays.",
+    "Selected player boxes, positions, timestamps, ball trajectories and event/analytics structures retain existing whole-clip growth; browser arrays remain outside this unit.",
+    "Sequence slices explicitly requested by a caller materialize that requested slice; production render/export use indexed reads/iteration.",
+    "Temporary database disk bytes grow with accepted observations; no full-match or independent pose/racket accuracy qualification follows from this review.",
+    "Exception tracebacks can retain the current observation/codec/decoded frame and unchanged whole-clip pipeline arrays; no new all-pose/all-racket Python list is retained by these sequences.",
+    "Snapshot semantics assume append-time observations: substitute trackers that mutate the same previously returned mapping across frames have a different alias contract from the built-in fresh-mapping producers."
+  ],
+  "atUtc": "2026-10-06T09:51:52.1247139Z",
+  "mode": "Independent read-only source and existing-test review; no test, inference, model, benchmark or source mutation performed",
+  "reviewedSources": {
+    "src/tracking/racket_tracking.py": {
+      "sha256": "85154bdc2e18bcb75ab879c237299356a5e0f0f1e5e0ab7c9ba482e368309426",
+      "bytes": 4167
+    },
+    "src/pipeline/phase6_pipeline.py": {
+      "sha256": "ce88b62b44613509d5f4217d0d11fe8c13d9136c9f32c8bf97813d3bdc922811",
+      "bytes": 61515
+    },
+    "tests/test_identity_frame_sequence.py": {
+      "sha256": "149ecfd4eec084c27e70469302413e9cc7d17bbcaced7e0cee8a6fb436e35913",
+      "bytes": 24210
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/src/pipeline/phase6_pipeline.py": {
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec",
+      "bytes": 60228
+    },
+    "src/utils/identity_frame_sequence.py": {
+      "sha256": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04",
+      "bytes": 10709
+    },
+    "src/tracking/player_motion_tracking.py": {
+      "sha256": "4b7835932b6e7646507fd223ee4df8c8f4650caba440dce843da88bfbf9d07ef",
+      "bytes": 7820
+    },
+    "tests/test_pipeline_pose_storage.py": {
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0",
+      "bytes": 15543
+    }
+  },
+  "assessedInvariants": [
+    "Snapshot encode immediately after each built-in observation releases original pose/racket records; built-in producers create fresh mappings rather than mutating earlier records.",
+    "Identity dictionaries retain insertion order and typed integer keys, so identity==1 render coloring and iteration remain unchanged.",
+    "Scalar IEEE bytes and safe numeric NumPy dtype/shape/buffer codec preserve exact raw values until existing sanitizer/export.",
+    "Negative indexed reads normalize before lookup; SQLite cursors close before decode/yield.",
+    "Both temporary stores are registered in the outer ExitStack before observation work and remain open through render/export. Failed second-store setup, observation, render and serialization unwind registered stores and remove exact owned files; cleanup errors are notes on the original error.",
+    "Capture/writer release contexts are registered before reads or drawing and ExitStack releases other handles if one release fails, including while traceback frames remain alive.",
+    "Raw metadata is sanitized before attaching the lazy frame adapter; dictionary key order, indentation, native text newlines, no final newline and disabled [] remain consistent with the preserved implementation."
+  ]
+}

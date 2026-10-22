@@ -1,0 +1,334 @@
+--- before/src/detection/yolo26_adapters.py
++++ after/src/detection/yolo26_adapters.py
+@@ -7,6 +7,7 @@
+ 
+ from __future__ import annotations
+ 
++from copy import deepcopy
+ from dataclasses import dataclass, field
+ from pathlib import Path
+ from typing import Any
+@@ -62,6 +63,91 @@
+     return options
+ 
+ 
++def _resolved_crop_device(value):
++    """Accept an admitted device, never automatic accelerator selection."""
++    if isinstance(value, (bool, np.bool_)):
++        raise ValueError('Crop inference needs an explicit CPU or indexed CUDA device')
++    if isinstance(value, (int, np.integer)) and value >= 0:
++        return f'cuda:{int(value)}'
++    if type(value) is str:
++        if value == 'cpu':
++            return value
++        index = value[5:] if value.startswith('cuda:') else value
++        if index.isascii() and index.isdecimal():
++            return f'cuda:{int(index)}'
++    raise ValueError('Crop inference needs an explicit CPU or indexed CUDA device')
++
++
++def _native_crop_options(overrides, device):
++    if type(overrides) is not dict:
++        raise ValueError('Selected checkpoint crop overrides are unavailable')
++    imgsz = overrides.get('imgsz', 640)
++    dimensions = [imgsz] if type(imgsz) is int else imgsz
++    if (type(dimensions) not in (list, tuple) or not 1 <= len(dimensions) <= 2
++            or any(type(value) is not int or not 32 <= value <= 4096 for value in dimensions)):
++        raise ValueError('Selected checkpoint crop image size is invalid')
++    single_cls = overrides.get('single_cls', False)
++    if type(single_cls) is not bool:
++        raise ValueError('Selected checkpoint crop class configuration is invalid')
++    return {'imgsz': imgsz if type(imgsz) is int else list(imgsz), 'conf': .25,
++            'verbose': False, 'device': device, 'end2end': True, 'nms': False,
++            'batch': 1, 'rect': True, 'half': False, 'max_det': 300, 'iou': .7,
++            'augment': False, 'agnostic_nms': False, 'classes': None,
++            'single_cls': single_cls, 'mode': 'predict', 'save': False}
++
++
++class PredictionOnlyCropProvider:
++    """Reuse one selected model after tracking, retaining swallowed failures."""
++
++    def __init__(self, detector, options):
++        self._detector, self.model = detector, detector.model
++        self._options = deepcopy(options)
++        self.failure = None
++        self.prediction_calls = self.completed_prediction_calls = 0
++
++    def assert_success(self):
++        if self.failure is not None:
++            raise RuntimeError('Selected-player crop inference failed') from self.failure
++
++    def _check(self):
++        self.assert_success()
++        if self._detector.model is not self.model:
++            raise RuntimeError('Selected player model changed after tracking')
++        predictor = getattr(self.model, 'predictor', None)
++        if predictor is not None:
++            if hasattr(predictor, 'trackers') or getattr(predictor, '_hook', None) is not None:
++                raise RuntimeError('Tracking state reappeared in prediction-only crops')
++            device = getattr(predictor, 'device', None)
++            if device is None or _resolved_crop_device(str(device)) != self._options['device']:
++                raise RuntimeError('Crop predictor differs from the admitted device')
++
++    def predict(self, image, **_arguments):
++        # The legacy extractor supplies its own device/defaults. Only the
++        # admitted immutable options define this selected-checkpoint operation.
++        try:
++            self._check()
++            self.prediction_calls += 1
++            result = self.model.predict(image, **deepcopy(self._options))
++            self._check()
++            self.completed_prediction_calls += 1
++            return result
++        except BaseException as error:
++            if self.failure is None:
++                self.failure = error
++            raise
++
++    def record(self):
++        return {'schema_version': 1, 'role': 'players',
++                'selected_model_path': self._detector.model_path,
++                'tracking_policy': 'DISABLED_BOUND_SOURCE_CROPS',
++                'configured_device': str(self._detector.device),
++                'resolved_device': self._options['device'],
++                'input_spec': deepcopy(self._options),
++                'prediction_calls': self.prediction_calls,
++                'completed_prediction_calls': self.completed_prediction_calls,
++                'failed': self.failure is not None}
++
++
+ @dataclass
+ class PoseBBox(BBox):
+     """Local track ID and anatomical evidence; neither establishes match identity."""
+@@ -82,6 +168,11 @@
+         self.model_path, self.tracker = str(model_path), str(tracker)
+         self.confidence, self.imgsz = confidence, imgsz
+         self.min_pose_confidence, self.device = min_pose_confidence, device
++        overrides = getattr(self.model, 'overrides', None)
++        self._checkpoint_crop_overrides = ({key: deepcopy(overrides[key])
++                                           for key in ('imgsz', 'single_cls') if key in overrides}
++                                          if type(overrides) is dict else None)
++        self._tracking_finished = False
+ 
+     def _decode(self, results):
+         detections = []
+@@ -114,10 +205,14 @@
+         return detections
+ 
+     def detect(self, frame):
++        if self._tracking_finished:
++            raise RuntimeError('Full-frame player inference is closed after tracking finishes')
+         return self._decode(self.model.predict(frame, classes=[0],
+                             **_inference_args(self.imgsz, self.confidence, self.device)))
+ 
+     def detect_and_track(self, frame, persist=True):
++        if self._tracking_finished:
++            raise RuntimeError('Full-frame player inference is closed after tracking finishes')
+         return self._decode(self.model.track(frame, classes=[0], persist=persist, tracker=self.tracker,
+                             **_inference_args(self.imgsz, self.confidence, self.device)))
+ 
+@@ -132,6 +227,59 @@
+         predictor = getattr(self.model, "predictor", None)
+         for tracker in getattr(predictor, "trackers", ()):
+             tracker.reset()
++
++    def finish_tracking_for_crops(self, *, admitted_device, expected_device=None):
++        """Close the player pass and return prediction-only crops on this model.
++
++        Call only after complete player/role evidence is consumed. A fresh
++        auto-configured resume must supply the previously sealed device as
++        ``expected_device`` as well as the currently admitted device. This
++        method admits no hardware, loads no model and never guesses a device.
++        Failed disposal still closes full-frame inference permanently.
++        """
++        if self._tracking_finished:
++            raise RuntimeError('Player tracking has already finished')
++        device = _resolved_crop_device(admitted_device)
++        if expected_device is not None and _resolved_crop_device(expected_device) != device:
++            raise ValueError('Saved crop device differs from the admitted device')
++        if self.device != 'auto' and _resolved_crop_device(str(_torch_device(self.device))) != device:
++            raise ValueError('Configured crop device differs from the admitted device')
++        predictor = getattr(self.model, 'predictor', None)
++        if predictor is not None:
++            observed = getattr(predictor, 'device', None)
++            if observed is None or _resolved_crop_device(str(observed)) != device:
++                raise ValueError('Player predictor differs from the admitted device')
++        elif self.device == 'auto' and expected_device is None:
++            raise ValueError('A fresh automatic-device resume needs its saved crop device')
++        options = _native_crop_options(self._checkpoint_crop_overrides, device)
++        reset_callbacks = getattr(self.model, 'reset_callbacks', None)
++        if not callable(reset_callbacks):
++            raise ValueError('Selected model callback reset is unavailable')
++
++        self._tracking_finished = True
++        failures = []
++        if predictor is not None:
++            hook = getattr(predictor, '_hook', None)
++            if hook is not None:
++                try:
++                    hook.remove()
++                    del predictor._hook
++                except BaseException as error:
++                    failures.append(error)
++            if hasattr(predictor, '_feats'):
++                predictor._feats = None
++        try:
++            reset_callbacks()
++        except BaseException as error:
++            failures.append(error)
++        finally:
++            self.model.predictor = None
++        if failures:
++            error = failures[0]
++            for failure in failures[1:]:
++                error.add_note('Player predictor disposal also failed: ' + str(failure))
++            raise error
++        return PredictionOnlyCropProvider(self, options)
+ 
+ 
+ def tile_regions(width, height, tile_size, overlap):
+--- before/src/pipeline/phase6_pipeline.py
++++ after/src/pipeline/phase6_pipeline.py
+@@ -731,6 +731,15 @@
+         p1_cov = (sum(1 for b in p1_boxes if b is not None) / total_frames) * 100.0
+         p2_cov = (sum(1 for b in p2_boxes if b is not None) / total_frames) * 100.0
+         print(f"  -> Player Tracking Coverage: P1: {p1_cov:.1f}%, P2: {p2_cov:.1f}% in {time.time()-t0:.2f}s")
++        player_crop_provider = None
++        if disk_players:
++            # Tracking callbacks otherwise also run on later pose .predict()
++            # calls. Finish the complete player pass before releasing its
++            # predictor; preserve the selected weights and stored pose boxes.
++            player_crop_provider = self.player_detector.finish_tracking_for_crops(
++                admitted_device=str(self.player_detector.model.device))
++            if self.pose_extractor is not None:
++                self.pose_extractor.model = player_crop_provider
+         if torch.cuda.is_available():
+             torch.cuda.empty_cache()
+ 
+@@ -771,9 +780,26 @@
+             else:
+                 raise ValueError('WASB temporal_step must be 1 or 3')
+         else:
+-            for frame in tqdm(frames, desc="  Ball Detection"):
+-                cands = self.ball_detector.extract_candidates(frame, imgsz=imgsz)
+-                raw_candidates_per_frame.append(cands)
++            # The native candidate pass uses a fresh sequential decoder. A
++            # future saved frontier can discard its prefix without approximate
++            # frame seeking or replaying any ball-model invocations.
++            ball_frames = frames.iter_decoded() if disk_players else iter(frames)
++            try:
++                for frame in tqdm(ball_frames, total=total_frames, desc="  Ball Detection"):
++                    cands = self.ball_detector.extract_candidates(frame, imgsz=imgsz)
++                    raw_candidates_per_frame.append(cands)
++            except BaseException as error:
++                close = getattr(ball_frames, 'close', None)
++                if close is not None:
++                    try:
++                        close()
++                    except BaseException as cleanup_error:
++                        error.add_note('Ball decoder cleanup also failed: ' + str(cleanup_error))
++                raise
++            else:
++                close = getattr(ball_frames, 'close', None)
++                if close is not None:
++                    close()
+         if len(raw_candidates_per_frame) != total_frames:
+             raise ValueError('Ball candidate frames did not align with normalized video frames')
+         print(f"  -> Extracted raw ball candidates in {time.time()-t0:.2f}s")
+@@ -1112,6 +1138,10 @@
+             **({'result_output': shot_output, 'event_output': event_output if authoritative_enabled else None}
+                if disk_players else {}),
+         )
++        if player_crop_provider is not None:
++            # The legacy extractor catches ordinary inference errors. A failed
++            # selected-model crop must still fail this unpublished analysis.
++            player_crop_provider.assert_success()
+         print(f"  -> Extracted & Linked {len(shot_evidences)} Shot Events in {time.time()-t0:.2f}s")
+         for s in shot_evidences:
+             print(f"     * Shot #{s.shot_id} (Frame {s.frame_index:3d}): {s.shot_type.value:10s} (Conf: {s.shot_confidence:.2f}, Src: {s.classification_source.value}) | Dir: {s.direction.value:15s} | Zone: {s.landing_zone.value if s.landing_zone else 'N/A':15s} | Dead: {s.is_dead_ball}")
+@@ -1603,7 +1633,8 @@
+                 "authoritative_events_enabled": authoritative_enabled,
+                 "production_qualified": False,
+                 "evaluation_only": getattr(self, 'evaluation_only', False),
+-                "frame_storage": "8_FRAME_DECODE_CACHE"
++                "frame_storage": "8_FRAME_DECODE_CACHE",
++                **({'pose_crop_execution': player_crop_provider.record()} if player_crop_provider is not None else {})
+             }, f, indent=2)
+ 
+         # Save run_config.yaml
+@@ -1633,5 +1664,6 @@
+             "processing_fps": fps_proc,
+             "total_time_seconds": t_total,
+             "shots_linked": len(shot_evidences),
++            **({'pose_crop_execution': player_crop_provider.record()} if player_crop_provider is not None else {}),
+             "match_analytics": native_match_analytics_summary(match_analytics) if disk_players else match_analytics
+         }
+--- before/src/utils/video_frame_sequence.py
++++ after/src/utils/video_frame_sequence.py
+@@ -5,6 +5,7 @@
+ import operator
+ 
+ import cv2
++import numpy as np
+ 
+ from src.utils.video_io import get_video_metadata
+ 
+@@ -27,6 +28,7 @@
+         if not self._cap.isOpened():
+             raise ValueError(f"Cannot decode video: {path}")
+         self._cache = OrderedDict()
++        self._path = path
+         self._cache_size = cache_size
+         self._next_index = 0
+ 
+@@ -59,6 +61,50 @@
+             self._cache.popitem(last=False)
+         return frame
+ 
++    def iter_decoded(self, start_index=0):
++        """Decode from frame zero, yielding the requested normalized suffix.
++
++        A new capture avoids approximate random seeking. Prefix frames are
++        decoded and discarded, never yielded to an inference consumer. This
++        preserves decoder ordering on a sealed constant-rate source; it does
++        not recover tracker state or establish original variable-rate PTS.
++        Closing or interrupting this iterator releases its independent handle.
++        """
++        if isinstance(start_index, (bool, np.bool_)):
++            raise ValueError('Sequential start must be an integer frame boundary')
++        try:
++            start_index = operator.index(start_index)
++        except TypeError as error:
++            raise ValueError('Sequential start must be an integer frame boundary') from error
++        if not 0 <= start_index <= len(self):
++            raise ValueError('Sequential start is outside the normalized video')
++        if start_index == len(self):
++            return
++        capture = cv2.VideoCapture(self._path)
++        try:
++            if not capture.isOpened():
++                raise RuntimeError('Unable to open independent sequential video decoder')
++            for index in range(len(self)):
++                ret, frame = capture.read()
++                if not ret or frame is None:
++                    raise RuntimeError(f'Sequential decoder failed at frame {index}; output would be incomplete')
++                if frame.shape[:2] != (self.metadata.height, self.metadata.width):
++                    raise ValueError('Video resolution changed; split into separately calibrated segments')
++                if index >= start_index:
++                    yield frame
++        except GeneratorExit:
++            # close() must surface a release failure to its owning consumer.
++            capture.release()
++            raise
++        except BaseException as error:
++            try:
++                capture.release()
++            except BaseException as cleanup_error:
++                error.add_note('Sequential decoder cleanup also failed: ' + str(cleanup_error))
++            raise
++        else:
++            capture.release()
++
+     def close(self):
+         self._cache.clear()
+         self._cap.release()

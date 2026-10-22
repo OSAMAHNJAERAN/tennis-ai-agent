@@ -1,0 +1,160 @@
+{
+  "analysis_id": "match_3f7ae891370e4d41a0d028e92464722b",
+  "job": {
+    "id": "match_3f7ae891370e4d41a0d028e92464722b",
+    "filename": "input_video.mp4",
+    "status": "COMPLETED",
+    "stage": "Analysis complete",
+    "step": 11,
+    "created_at": "2026-09-30T13:45:04.242939+00:00",
+    "started_at": "2026-09-30T13:45:04.279749+00:00",
+    "completed_at": "2026-09-30T13:46:23.724310+00:00",
+    "error": null,
+    "size_bytes": 12939389
+  },
+  "observed_states": [
+    [
+      "UPLOADED",
+      "Waiting for the analysis worker"
+    ],
+    [
+      "PROCESSING",
+      "Preparing video for synchronized playback"
+    ],
+    [
+      "PROCESSING",
+      "Loading the existing tennis models"
+    ],
+    [
+      "PROCESSING",
+      "Ingesting video"
+    ],
+    [
+      "PROCESSING",
+      "Running Player Tracking (ByteTrack)"
+    ],
+    [
+      "PROCESSING",
+      "Running wasb Tennis Ball Detection"
+    ],
+    [
+      "PROCESSING",
+      "Estimating Player Locomotion; Physical Ball Speed Unavailable"
+    ],
+    [
+      "PROCESSING",
+      "Rendering Annotated Video & Broadcast HUD"
+    ],
+    [
+      "PROCESSING",
+      "Preparing annotated playback and validating results"
+    ],
+    [
+      "COMPLETED",
+      "Analysis complete"
+    ]
+  ],
+  "summary": {
+    "id": "match_3f7ae891370e4d41a0d028e92464722b",
+    "label": "input_video.mp4",
+    "phase": "Match analysis",
+    "status": "COMPLETED",
+    "analyzedAt": "2026-09-30T13:45:04.279749+00:00",
+    "sourceVideoPath": "input_video.mp4",
+    "frames": 214,
+    "fps": 30.0,
+    "durationSeconds": 7.133333333333334,
+    "eventCount": 0,
+    "lineCallCount": 0,
+    "artifacts": [
+      "annotated.mp4",
+      "annotated_web.mp4",
+      "ball_metrics.json",
+      "camera_registration.json",
+      "court_geometry.json",
+      "detections.json",
+      "event_candidates.json",
+      "event_verification_trace.json",
+      "inference_config.yaml",
+      "line_calls.json",
+      "match_analytics.json",
+      "match_events.json",
+      "match_state.json",
+      "media_metadata.json",
+      "metrics.json",
+      "patch_persistence_audit.json",
+      "pixel_motion_audit.json",
+      "player_metrics.json",
+      "player_motion.json",
+      "point_analytics.json",
+      "racket_tracking.json",
+      "rallies.json",
+      "run_config.yaml",
+      "score_history.json",
+      "scoring_events.json",
+      "shot_events.json",
+      "source.mp4",
+      "stationary_candidate_audit.json",
+      "temporal_detour_audit.json",
+      "temporal_spacing_audit.json",
+      "trajectories.json"
+    ],
+    "capabilities": {
+      "detections": true,
+      "trajectories": true,
+      "court": true,
+      "players": true,
+      "ballMetrics": false,
+      "events": false,
+      "lineCalls": false,
+      "scoring": false,
+      "video": true,
+      "pose": true,
+      "racket": true,
+      "masks": false,
+      "world3d": false,
+      "report": true,
+      "csv": true
+    }
+  },
+  "original_sha256": "5f2584a2010864d5d8624c325d7f0571d48bd0756164657ef603dc8a97bab22d",
+  "media_ranges": {
+    "source": "bytes 0-1023/1827827",
+    "annotated": "bytes 0-1023/1964851"
+  },
+  "player_metrics": {
+    "player_1": {
+      "total_distance_m": 16.905845070882783,
+      "avg_speed_kmh": 8.57197778241944,
+      "max_speed_kmh": 28.72821772183101,
+      "coverage_pct": 100.0
+    },
+    "player_2": {
+      "total_distance_m": 19.259743351213,
+      "avg_speed_kmh": 9.765503671037578,
+      "max_speed_kmh": 30.000295432974305,
+      "coverage_pct": 100.0
+    }
+  },
+  "pipeline_metrics": {
+    "pipelineFps": 3.2806957063829407,
+    "eventCount": 0,
+    "lineCallCount": 0,
+    "courtReprojectionErrorPx": 0.9186424773457963,
+    "raw": {
+      "production_qualified": false,
+      "authoritative_events_enabled": false
+    }
+  },
+  "warnings": [
+    "Ball speed is unavailable: single-camera court projection does not measure airborne speed.",
+    "Bounce, shot placement, rally and scoring analysis unavailable: event measurements are not qualified."
+  ],
+  "result_sha256": "343f18983a27ada1abd11a06ccc929de2265c7c45e3ddbffeb1a714017b59f79",
+  "export_checks": {
+    "readable_report_bytes": 274786,
+    "csv_rows": 214,
+    "contract_version": "2.0"
+  },
+  "verification": "HTTP_ARTIFACT_AND_CONTRACT_CHECK; NOT_MODEL_ACCURACY"
+}

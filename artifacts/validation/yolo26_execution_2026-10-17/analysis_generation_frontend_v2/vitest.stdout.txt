@@ -1,0 +1,58 @@
+
+ RUN  v4.1.11 C:/Semester 9/FYP2/tennis_ai_agent_bundle/frontend
+
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > preserves optional absence and explicit null for older analyses 12ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > retains nullable timing, separate serve executions, and the unqualified status 2ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"status":"QUALIFIED"} 3ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"independentAccuracyValidated":true} 2ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"summary":{"totalPointsPlayed":3,"partialOrReviewPoints":1,"totalRallies":2,"averageRallyLength":3,"longestRallyLength":3,"effectivePlaySeconds":-1,"timedCompletedRallies":1,"completedRalliesDurationDenominator":2,"scoreSummary":null,"matchComplete":null,"winnerId":null}} 6ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > isolates invalid point evidence without hiding replay: {"sourceSha256":"unbound"} 2ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > rejects foreign or stale point evidence while preserving other sections 7ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > shows timing and percentage denominators without claiming validated accuracy 80ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > keeps faults and lets separate from legal rally timing and does not invent a seek 17ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > does not turn disabled authority and empty evidence into known zero points 5ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > bounds the rendered timeline and pages every record in source order 55ms
+ ✓ src/components/PointTimelineEvidence.test.tsx > provisional native point evidence > bounds a point execution preview even when many service lets are retained 10ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves immutable generation metadata and all supplied media and export pins 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata null 5ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata  3ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves an explicitly supplied nonnegative analysis revision 0 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves an explicitly supplied nonnegative analysis revision 3 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata -1 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata 0.5 3ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata true 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata false 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata null 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed analysis revision metadata 0 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > keeps legacy and static results available without a generation 1ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > loads the requested analysis and never substitutes a demo on failure 3ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > isolates malformed optional sections and preserves the video 3ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects a valid result that belongs to a different session 1ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects invalid video metadata rather than inventing a time base 1ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > keeps replay available when optional frame evidence is malformed 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves generic person observations independently of court calibration and active-player roles 6ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > retains one player's valid movement when the other player has no measurements 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > accepts ISO timestamps from the Python API including an explicit UTC offset 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > loads only lightweight run summaries for the session picker 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > validates the versioned snapshot 3ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes baseline_run_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase2_ball_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase2_yolo11_final to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase3_events_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase4_1_line_calls to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase4_line_calls_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase5_scoring_1 to the current run contract 1ms
+ ✓ src/data/repository.test.ts > offline analysis repository > preserves every required scientific enum 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > keeps unavailable historical artifacts explicit 1ms
+ ✓ src/data/repository.test.ts > offline analysis repository > rejects invalid run ids 1ms
+
+ Test Files  3 passed (3)
+      Tests  48 passed (48)
+   Start at  14:34:40
+   Duration  3.45s (transform 93ms, setup 474ms, import 330ms, tests 273ms, environment 1.91s)
+
+JSON report written to C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-17/analysis_generation_frontend_v2/vitest.json

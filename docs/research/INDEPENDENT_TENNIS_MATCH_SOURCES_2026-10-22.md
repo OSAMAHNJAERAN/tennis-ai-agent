@@ -1,0 +1,30 @@
+# Independent recorded tennis-match source follow-up
+
+22 October 2026. Metadata-only research using primary publishers. No video, image, archive, annotation target or reserved TEST frame was acquired or inspected; no model or host-resource probe ran. This extends the existing [source ledger](../data/INDEPENDENT_SOURCE_ACQUISITION.md), rather than reopening its rejected sources.
+
+The useful new lead is the official **Playable Environments** source index. It supplies original video IDs and tournament/year/participants for whole-match grouping. It does **not** yet supply an authorized independent qualification video. Its reference-generation annotations are automatic, and separately downloaded YouTube broadcasts have no per-video research grant established by this audit. [Author README](https://raw.githubusercontent.com/willi-menapace/PlayableEnvironments/e1eb9f3ccbd3faaf26eebc0e069b6c59d1fda3b6/README.md)
+
+## New primary leads
+
+| Publisher | What is actually established | Decision |
+| --- | --- | --- |
+| Menapace et al., Playable Environments, CVPR 2022 | The exact author index has 43 source IDs with tournament, year and two participants. The repo license names CC BY-NC 4.0; its rights apply only to material the licensor can license. The README downloads broadcasts separately from YouTube. | Best **metadata/provenance** lead. Do not transfer the repository license to separately fetched broadcasts or admit automatic camera/player annotations as human test truth. No native dimensions, PTS, original frame rates or uninterrupted eligible duration measured. [Pinned index](https://raw.githubusercontent.com/willi-menapace/PlayableEnvironments/e1eb9f3ccbd3faaf26eebc0e069b6c59d1fda3b6/dataset/acquisition/tennis/tennis_annotations/tennis_youtube_videos.csv), [license](https://raw.githubusercontent.com/willi-menapace/PlayableEnvironments/e1eb9f3ccbd3faaf26eebc0e069b6c59d1fda3b6/LICENSE), [acquisition script text](https://raw.githubusercontent.com/willi-menapace/PlayableEnvironments/e1eb9f3ccbd3faaf26eebc0e069b6c59d1fda3b6/dataset/acquisition/tennis/scripts/download_tennis_v7.sh) |
+| Abdullah Khan's Sports broadcast collection | Publisher describes seven tennis recordings totaling 17h14m, nominally 27–30 FPS, via institutional cloud storage. Its current repository API reports `license: null`; no affirmative footage grant or complete match identity manifest was established. | No video acquisition. Keep as a provision/identity lead; publisher duration/FPS are not local measurements. [Publisher README](https://github.com/abdkhanstd/Sports), [repository metadata](https://api.github.com/repos/abdkhanstd/Sports) |
+| Wang et al., UVA Tennis Serve Analysis Dataset | Author README states 5,966 serves from 113 US Open 2024 matches, with CC BY 4.0. Listed release consists of derived 3D pose/features and serve metadata from an automated pipeline. | Not a full raw-match video source or independent human pose/physical-speed truth. No Drive files or speed/outcome targets opened. [Author README](https://raw.githubusercontent.com/jasnwag/tennis_serve_dataset/main/README.md), [license](https://raw.githubusercontent.com/jasnwag/tennis_serve_dataset/main/LICENSE) |
+
+## Actual bounded acquisition and overlap result
+
+The author repository is pinned to `e1eb9f3ccbd3faaf26eebc0e069b6c59d1fda3b6`. Nine public text/JSON responses total **126,605 bytes**, including four Git-blob-verified files: LICENSE 13,354 bytes; README 16,675; acquisition shell text 1,995; source CSV 1,944. The shell script was retained as text and never executed. The recursive tree is complete. Its 309,361-byte split YAML was not fetched because this pass did not establish that every field is only time/source metadata. [Exact acquisition receipt](../../artifacts/validation/yolo26_execution_2026-10-22/independent_match_source_followup_v1/acquisition_receipt.json)
+
+The 43 IDs reduce to **41 conservative tournament/year/participant groups**, before round/date verification. Two duplicate groups must remain joined:
+
+- Wimbledon 2015 Brown–Nadal: `3FrNVOfQVfU`, `g2-CAWnLa1Y`.
+- Roland Garros 2015 Djokovic–Wawrinka: `_7RwWoY_vSw`, `v2MhLx9wk9M`.
+
+A bounded exact-ID search across existing text metadata in `data/yolo26`, `data/external` and `docs` found no matching IDs. That does not demonstrate an untouched match. In particular, source **`TUikJi0Qhhw` (Wimbledon 2019 Djokovic–Federer)** matches the original final already exposed through UVY/MUVY IDs `aIPCfLKF1LI`, `6UAPY52TU9g` and `iKTX1GPwiPk`; it is ineligible as a new holdout. The index itself lacks exact dates/rounds, and unknown compilation content prevents certifying the other groups independent. [Retained overlap screen](../../artifacts/validation/yolo26_execution_2026-10-22/independent_match_source_followup_v1/source_overlap_receipt.json), [prior-use ledger](../data/INDEPENDENT_SOURCE_ACQUISITION.md#original-match-overlap-found-before-frame-review)
+
+## Next safe acquisition
+
+The source-index/license/revision inventory is now concrete and retained. The next bounded request should be **text-only uploader/title/license metadata for a single still-unexposed index entry**, for example the publisher-listed Australian Open 2021 Djokovic–Medvedev source `MG-RjlqyaJI`: [YouTube text metadata endpoint](https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DMG-RjlqyaJI&format=json), [source page](https://www.youtube.com/watch?v=MG-RjlqyaJI). oEmbed can establish uploader/title, not permission; affirmative source-specific research rights and original match identity still need verification before media. Keep the entire original match and any reuploads together. Do not reserve it as TEST merely because this exact ID has no local hit.
+
+If that grant is absent, retain the metadata and continue to another explicitly licensed original recording; do not download a mirror or substitute a software license. No candidate in this bounded pass is promoted to training, independent TEST, public example or production qualification.

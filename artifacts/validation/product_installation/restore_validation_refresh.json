@@ -1,0 +1,101 @@
+{
+  "updatedAt": "2026-10-01T14:28:47.205195+00:00",
+  "validation": {
+    "directDependencyResolution": "PASSED in isolated environment with no installed product packages; unconstrained transitive selection was inspected but not used as a working-environment lock.",
+    "observedTransitiveConstraintResolution": "PASSED: 57 exact recorded runtime distributions; see observed_dependency_resolution.json.",
+    "cleanInstall": "PASSED: 57 exact recorded runtime distributions; see clean_install.json.",
+    "apiSmokeWithoutWorker": "PASSED: 75 isolated installation/API checks; health 200, empty library, invalid upload 415, worker disabled, no model imports.",
+    "modelLoadAndInferenceInCleanEnvironment": "PASSED_SHORT_SOFTWARE_SMOKE: selected pipeline completed on 30 original-pixel frames at native 60 FPS in 26.04s, all exports parsed, 30 annotated frames decoded, zero network attempts.",
+    "courtBootstrapTests": "4 passed, including offline full checkpoint and strict missing/shape rejection",
+    "frontendFrozenInstall": "PASSED: isolated frozen offline restore, 373 package-store directories; Node v26.7.0, effective pnpm 11.19.0 (launcher 10.28.0); original manifests unchanged.",
+    "cleanDependencyHealth": "PASSED: pip check reports no broken requirements in the isolated environment.",
+    "offlineModelLoadInCleanEnvironment": "PASSED: all four retained model assets loaded on CPU in 18.17s, with zero network attempts; not an inference check.",
+    "wasbSourceRestore": "PASSED: exact commit and four required runtime/license file hashes restored independently.",
+    "cleanPipelineSmokeScope": "Half-second excerpt only; no full-match performance, independent accuracy, or public deployment qualification.",
+    "cleanPipelineSmokeLimitations": "Court calibration rejected this excerpt; selected player roles and meaningful pose/racket measurements were withheld. All four assets loaded, and the selected pipeline exported its unavailable states correctly."
+  },
+  "validationEvidence": [
+    {
+      "path": "artifacts/validation/product_installation/observed_dependency_resolution.json",
+      "verifiedAt": null,
+      "scope": "Package resolution/install receipt; no model inference or accuracy qualification.",
+      "passed": null,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/clean_install.json",
+      "verifiedAt": null,
+      "scope": "Package resolution/install receipt; no model inference or accuracy qualification.",
+      "passed": null,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/clean_host_verification.json",
+      "verifiedAt": "2026-10-01T03:30:59.057815+00:00",
+      "scope": "Historical isolated host/API receipt; manifest metadata has since been updated. No inference.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/clean_dependency_health.json",
+      "verifiedAt": "2026-10-01T14:10:07.971126+00:00",
+      "scope": "Fresh isolated dependency consistency check; no inference.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/offline_model_asset_load.json",
+      "verifiedAt": "2026-10-01T03:31:04.131106+00:00",
+      "scope": "Historical real four-model CPU load; no inference or accuracy qualification.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/wasb_source_restore_check.json",
+      "verifiedAt": "2026-10-01T03:29:31.981999+00:00",
+      "scope": "Independent source checkout restore; Windows core.autocrlf=true byte policy.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_restore_check.json",
+      "verifiedAt": "2026-10-01T14:11:43.188239+00:00",
+      "scope": "Fresh cached frozen dependency restore; production build and UI tests are separate.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/real_pipeline_smoke_online_probe_20261001.json",
+      "verifiedAt": "2026-10-01T14:17:26.033345+00:00",
+      "scope": "Initial pipeline completed, but strict smoke failed because a network probe was blocked.",
+      "passed": false,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/real_pipeline_smoke_disk_failure_20261001.json",
+      "verifiedAt": "2026-10-01T14:20:12.331154+00:00",
+      "scope": "Offline inference/render completed with zero network attempts, but export failed when disk free space reached zero.",
+      "passed": false,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_restore_check_launcher_probe_20261001.json",
+      "verifiedAt": "2026-10-01T14:09:57.120403+00:00",
+      "scope": "Frozen install succeeded using project pnpm 11.19.0; initial version probe incorrectly inspected the external launcher.",
+      "passed": false,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/real_pipeline_smoke.json",
+      "verifiedAt": "2026-10-01T14:26:30.283632+00:00",
+      "scope": "Half-second excerpt only; no full-match performance, independent accuracy, or public deployment qualification.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    }
+  ],
+  "productionQualified": false,
+  "publicDeploymentPermissionsVerified": false,
+  "modelsImported": false,
+  "inferenceRun": false,
+  "note": "Manifest status refresh only; original clean-host and offline-model-load reports remain historical receipts."
+}

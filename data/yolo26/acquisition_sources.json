@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "checked_on": "2026-10-09",
+  "purpose": "Primary-source dataset acquisition review for YOLO26; license declarations, footage rights and viewpoint are separate gates.",
+  "selected_scope": "elevated_end_court_singles",
+  "sources": [
+    {
+      "id": "racketvision_official",
+      "url": "https://huggingface.co/datasets/linfeng302/RacketVision",
+      "author_repository": "https://github.com/OrcustD/RacketVision",
+      "owner_or_publisher": "Linfeng Dong et al. / linfeng302",
+      "version": "Local pinned acquisition 85157ca21faa2abca96d837dd2b963738029bcc8; current card checked 2026-10-08",
+      "declared_dataset_license": "MIT",
+      "code_license": "MIT",
+      "underlying_footage_permission": "PUBLISHER_DATASET_MIT_TRAINING_DECLARATION_ACCEPTED_FOR_PRIVATE_LOCAL_RESEARCH; RAW_BROADCAST_PUBLIC_REDISTRIBUTION_NOT_SEPARATELY_VERIFIED",
+      "annotations": "Raw CSV frame index, center X/Y in 1920x1080 coordinates, visibility; racket boxes/5 keypoints are not human pose/court labels",
+      "local_existing_clips": 60,
+      "local_existing_sparse_ball_labels": 2999,
+      "local_paths": [
+        "data/external/racketvision_training20",
+        "data/external/racketvision_training_additional20",
+        "data/external/racketvision_training_third20"
+      ],
+      "view_status": "Broadcast tennis includes supported candidates and doubles; per-source singles/end-court review required",
+      "grouping_status": "Publisher match IDs present; original match/session independence not established",
+      "training_allowed": true,
+      "decision": "PUBLISHER_MIT_PRIVATE_ACADEMIC_DEVELOPMENT_TWO_HISTORIC_AND_EIGHT_EXPANDED_VIEW_REVIEWED_CLIPS",
+      "new_media_downloaded": false,
+      "qualification_evidence": false,
+      "use_scope": "PRIVATE_LOCAL_NONCOMMERCIAL_ACADEMIC_PILOT_ONLY",
+      "public_redistribution_allowed": false,
+      "accepted_clip_ids": [
+        "match172_000",
+        "match175_000",
+        "match173_000",
+        "match176_000",
+        "match179_000",
+        "match180_000",
+        "match182_000",
+        "match183_000",
+        "match185_000",
+        "match188_000"
+      ],
+      "accepted_training_image_count": 77,
+      "role_annotation_count": {
+        "ball": 87,
+        "court": 6
+      },
+      "reviewer_type": "AGENT_VISUAL_REVIEW_WITH_PUBLISHER_BALL_CENTERS",
+      "independent_human_label_reviewed": false,
+      "pilot_training_receipts": "data/yolo26/pilot_training_receipts.json",
+      "expanded_development_manifest": "data/yolo26/pilot_broadcast_v1/source_manifest.json",
+      "expanded_development_counts": {
+        "conservative_event_groups": 6,
+        "val": 10,
+        "source_clips": 8,
+        "independent_qualification": false,
+        "test": 0,
+        "train": 71
+      }
+    },
+    {
+      "id": "original_court_14",
+      "url": "https://github.com/yastrebksv/TennisCourtDetector",
+      "mirror_url": "https://huggingface.co/datasets/Gholamreza/tennis_court_keypoints_dataset",
+      "owner_or_publisher": "yastrebksv; mirror Gholamreza",
+      "publisher_image_count": 8841,
+      "annotations": "14 court intersections; 1280x720 frames",
+      "declared_dataset_license": null,
+      "underlying_footage_permission": "Author states frames were extracted from YouTube tournament highlights; no training grant verified",
+      "view_status": "Broadcast baseline, hard/clay/grass",
+      "grouping_status": "Filename source-video IDs are useful grouping leads, not rights evidence; supplied frame split is not independently qualified",
+      "training_allowed": false,
+      "decision": "BLOCKED_LICENSE_PERMISSION",
+      "new_media_downloaded": false,
+      "qualification_evidence": false
+    },
+    {
+      "id": "hooper_court14_candidate",
+      "url": "https://universe.roboflow.com/hooper-ibdsr/tennis-court-keypoints-yf8lo/dataset/1",
+      "owner_or_publisher": "Hooper",
+      "version": "v1 generated 2026-04-20",
+      "declared_dataset_license": "CC BY 4.0",
+      "publisher_image_count": 262,
+      "publisher_splits": {
+        "train": 262,
+        "val": 0,
+        "test": 0
+      },
+      "underlying_footage_permission": "Original author/session/source mapping not supplied in checked version page",
+      "view_status": "Needs sample review",
+      "annotations": "Publisher lists keypoint task; exact 14-order/visibility schema requires downloaded-label verification",
+      "training_allowed": false,
+      "decision": "AUTHOR_DECLARED_CC_BY_4_LOCAL_RESEARCH_CANDIDATE_BLOCKED_DOWNLOAD_LOGIN_SCHEMA_VIEW",
+      "new_media_downloaded": false,
+      "qualification_evidence": false,
+      "access_result": "Bounded archive URLs returned403; browser Download Dataset opened login/create account dialog, no authenticated session; no account or terms acceptance performed"
+    },
+    {
+      "id": "dryad_ball_annotations_2026",
+      "url": "https://datadryad.org/dataset/doi:10.5061/dryad.3bk3j9m13",
+      "media_url": "https://doi.org/10.5281/zenodo.19874311",
+      "owner_or_publisher": "Tianjian Zou and Jun Liu, Beijing University of Posts and Telecommunications",
+      "version": "2026-04-30",
+      "declared_annotation_license": "Dryad CC0; separate footage declared CC BY-NC-ND 4.0",
+      "annotations": "Tennis YOLO boxes; tennis label archive listed as 2.38MB",
+      "underlying_footage_permission": "Publisher describes open-source/competition videos and consent for de-identified publication; source grants and training terms need review",
+      "view_status": "Unverified; humans blurred, unsuitable for shared player-model training",
+      "training_allowed": false,
+      "decision": "CANDIDATE_NONCOMMERCIAL_REVIEW_REQUIRED",
+      "access_result": "Web tool label download 403 and linked Zenodo record inaccessible; no bytes acquired",
+      "new_media_downloaded": false,
+      "qualification_evidence": false
+    },
+    {
+      "id": "tracknet_original",
+      "url": "https://arxiv.org/abs/1907.03698",
+      "author_data_url": "https://nol.cs.nctu.edu.tw/ndo3je6av9/",
+      "owner_or_publisher": "TrackNet authors",
+      "declared_dataset_license": null,
+      "underlying_footage_permission": "Unverified",
+      "view_status": "Broadcast tennis, matches target ball task",
+      "training_allowed": false,
+      "decision": "BLOCKED_DATA_RIGHTS_AND_AUTHOR_LINK_ACCESS",
+      "access_result": "Author dataset page inaccessible through web tool",
+      "new_media_downloaded": false,
+      "qualification_evidence": false
+    },
+    {
+      "id": "ace_rallies",
+      "url": "https://huggingface.co/datasets/XSpaceCoderX/ACE-Rallies",
+      "owner_or_publisher": "Alexandra Goeppert / XSpaceCoderX, University Augsburg",
+      "declared_dataset_license": "GPL-3.0",
+      "publisher_rally_count": 93,
+      "annotations": "Coordinates/spin/camera arrays; no images. 2D player pose is model estimation, not independent ground truth",
+      "underlying_footage_permission": "Derived from TrackNet downloaded from Kaggle; no broader media grant established",
+      "training_allowed": false,
+      "decision": "REFERENCE_ONLY_NOT_PHYSICAL_SPEED_GROUND_TRUTH_OR_AUTHORIZED_MEDIA",
+      "new_media_downloaded": false,
+      "qualification_evidence": false
+    },
+    {
+      "id": "caltennis",
+      "url": "https://huggingface.co/datasets/demalenk/caltennis",
+      "owner_or_publisher": "Ilona Demalenka et al.",
+      "declared_dataset_license": "CC BY-NC 4.0",
+      "annotations": "Human pose/multiview/session calibration and timestamps; ball-speed references not provided",
+      "view_status": "Native N camera review observed low baseline, heavy net occlusion; E camera low side. Reviewed views outside primary elevated broadcast scope",
+      "training_allowed": false,
+      "decision": "REJECT_REVIEWED_N_E_VIEWS_FOR_INITIAL_SCOPE_RETAIN_SEPARATE_RESEARCH_REFERENCE",
+      "new_media_downloaded": false,
+      "qualification_evidence": false,
+      "underlying_footage_permission": "Author describes IRB-reviewed participant consent; CC BY-NC4 publisher grant; private academic research candidate"
+    },
+    {
+      "id": "mendeley_author_ball_photos",
+      "url": "https://data.mendeley.com/datasets/ppr8rdw98w/1",
+      "owner_or_publisher": "Karan Jagtiani",
+      "version": "v1, 2021-12-20",
+      "declared_dataset_license": "CC BY 4.0",
+      "underlying_footage_permission": "Author states images manually photographed with mobile phones",
+      "view_status": "Object photos and varied camera angles, outside elevated end-court match scope",
+      "training_allowed": false,
+      "decision": "REJECT_CURRENT_VIEW_SCOPE",
+      "new_media_downloaded": false,
+      "qualification_evidence": false
+    },
+    {
+      "id": "tenniset_author",
+      "url": "https://github.com/HaydenFaulkner/Tennis",
+      "owner_or_publisher": "Hayden Faulkner and Anthony Dick",
+      "paper_url": "https://hayden.faulkner.codes/pdfs/DICTA17_Tennis.pdf",
+      "author_data_instructions": "https://raw.githubusercontent.com/HaydenFaulkner/Tennis/master/data/README.md",
+      "author_license_url": "https://raw.githubusercontent.com/HaydenFaulkner/Tennis/master/LICENSE",
+      "declared_repository_license": "MIT software and associated documentation; separate raw video grant scope not verified",
+      "publisher_research_access": "Author openly provides5videos and annotation downloads, asks research citation",
+      "dataset_description": "Five singles matches from2012London Olympics;1280x72025FPS grass; manually annotated dense temporal events and point captions, not ball boxes/court14",
+      "original_video_identifiers": [
+        {
+          "id": "1w1R6R6BAa_9K-he5nqygT5Bvb5CsyKhT",
+          "name": "V006.mp4"
+        },
+        {
+          "id": "12M3X2nxkOrjjUhXyyDxB42CBy0Mvj937",
+          "name": "V007.mp4"
+        },
+        {
+          "id": "1cIRteQttU5YTSMaa-_icXv-eqt2Fo4dH",
+          "name": "V008.mp4"
+        },
+        {
+          "id": "15-juiUBq29FYsfUTpsmYaMXNz3GxvTaQ",
+          "name": "V009.mp4"
+        },
+        {
+          "id": "169cmHfVdpikwGdS3xnsq0t_LQBSYjCBu",
+          "name": "V010.mp4"
+        }
+      ],
+      "grouping_status": "Five distinct publisher full-match IDs; original player/match mapping still needs metadata review; supplied split01 usesV010forbothval/test and must not be inherited",
+      "training_allowed": false,
+      "decision": "PROMISING_DIFFERENT_PRIMARY_VIEW_SOURCE_RIGHTS_SCOPE_REVIEW_REQUIRED",
+      "access_result": "Direct bounded public Drive folder requests200withoutlogin; metadata lists5MP4files; no11.1GBarchive orrawmedia downloaded",
+      "new_media_downloaded": false,
+      "qualification_evidence": false
+    }
+  ],
+  "accepted_training_source_count": 9,
+  "accepted_training_image_count": 77,
+  "next_actions": [
+    "Expand primary-view sources with original match/session mapping; all previously inspected/optimized examples remain development only.",
+    "Complete independent human box/court label review and reserve untouched grouped60/20/20 final-test sources before qualification.",
+    "Hooper archive requires user authenticated account; do not retry anonymous403 or accept new external terms automatically.",
+    "Continue no-login publisher sources without spending money; local one/two-epoch pilots remain explicitly unqualified."
+  ],
+  "accepted_role_annotation_count": {
+    "ball": 87,
+    "court": 6
+  },
+  "qualified_source_count": 0,
+  "qualified_independent_test_image_count": 0,
+  "accepted_development_validation_image_count": 10,
+  "counting_policy": "Unique nativeballimages across original and expandeddevelopment versions:77train+10devval; v2corrected/croppedvariants notaddedagain. Court6sharedhistoricalimages; allqualificationcounts remain0."
+}

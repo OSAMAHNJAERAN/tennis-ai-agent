@@ -1,0 +1,201 @@
+__vite_ssr_exportName__("LineGeometryZoom", () => { try { return LineGeometryZoom } catch {} });
+const __vite_ssr_import_0__ = await __vite_ssr_import__("/node_modules/.pnpm/react@19.2.8/node_modules/react/index.js", {"importedNames":["useId"]});
+const __vite_ssr_import_1__ = await __vite_ssr_import__("/node_modules/.pnpm/react@19.2.8/node_modules/react/jsx-dev-runtime.js", {"importedNames":["jsxDEV"]});
+
+var _jsxFileName = "C:/Semester 9/FYP2/tennis_ai_agent_bundle/frontend/src/components/LineGeometryZoom.tsx";
+
+function LineGeometryZoom({ call }) {
+	const titleId = (0,__vite_ssr_import_0__.useId)();
+	if (call.ball_edge_margin_cm == null || call.position_uncertainty_cm == null || call.contact_patch_radius_cm == null || !Number.isFinite(call.ball_edge_margin_cm) || !Number.isFinite(call.position_uncertainty_cm) || !Number.isFinite(call.contact_patch_radius_cm)) {
+		return /* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("svg", {
+			className: "line-geometry-zoom",
+			viewBox: "0 0 520 250",
+			role: "img",
+			"aria-labelledby": titleId,
+			children: [
+				/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("title", {
+					id: titleId,
+					children: "Line-call geometry unavailable"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 10,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("rect", {
+					className: "zoom-surface",
+					x: "1",
+					y: "1",
+					width: "518",
+					height: "248",
+					rx: "12"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 11,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("text", {
+					x: "260",
+					y: "115",
+					textAnchor: "middle",
+					children: "Geometry unavailable"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 12,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("text", {
+					x: "260",
+					y: "145",
+					textAnchor: "middle",
+					children: "Complete contact measurements are unavailable."
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 13,
+					columnNumber: 9
+				}, this)
+			]
+		}, void 0, true, {
+			fileName: _jsxFileName,
+			lineNumber: 9,
+			columnNumber: 7
+		}, this);
+	};
+	const margin = Math.max(-250, Math.min(250, call.ball_edge_margin_cm));
+	const centerX = 260 + margin * .7;
+	const uncertainty = Math.max(4, call.position_uncertainty_cm * 2.2);
+	const radius = Math.max(12, call.contact_patch_radius_cm * 3.2);
+	return /* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("svg", {
+		className: "line-geometry-zoom",
+		viewBox: "0 0 520 250",
+		role: "img",
+		"aria-labelledby": titleId,
+		children: [
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("title", {
+				id: titleId,
+				children: [
+					"Zoomed ",
+					call.nearest_line,
+					" geometry with contact patch, signed margin, and uncertainty"
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 23,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("rect", {
+				className: "zoom-surface",
+				x: "1",
+				y: "1",
+				width: "518",
+				height: "248",
+				rx: "12"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 24,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("rect", {
+				className: "line-strip",
+				x: "244",
+				y: "24",
+				width: "32",
+				height: "202"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 25,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("line", {
+				className: "line-center",
+				x1: "260",
+				y1: "24",
+				x2: "260",
+				y2: "226"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 26,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("rect", {
+				className: "uncertainty-band",
+				x: centerX - uncertainty,
+				y: "75",
+				width: uncertainty * 2,
+				height: "100",
+				rx: "8"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 27,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("circle", {
+				className: "contact-patch",
+				cx: centerX,
+				cy: "125",
+				r: radius
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 28,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("line", {
+				className: "margin-arrow",
+				x1: "260",
+				y1: "205",
+				x2: centerX,
+				y2: "205"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 29,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("circle", {
+				className: "margin-end",
+				cx: centerX,
+				cy: "205",
+				r: "4"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 30,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("text", {
+				x: "24",
+				y: "34",
+				children: "OUTSIDE"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 31,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("text", {
+				x: "496",
+				y: "34",
+				textAnchor: "end",
+				children: "LEGAL SIDE"
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 32,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_1__.jsxDEV)("text", {
+				x: "260",
+				y: "240",
+				textAnchor: "middle",
+				children: [call.ball_edge_margin_cm.toFixed(1), " CM SIGNED MARGIN"]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 33,
+				columnNumber: 7
+			}, this)
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 22,
+		columnNumber: 5
+	}, this);
+}
+//# sourceMappingSource=vite-generated
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6IkFBQUEsQ0FBQTtBQUFBOzs7OztBQUdPLFNBQVMsaUJBQWlCLEVBQUUsUUFBNEI7Q0FDN0QsTUFBTSxVQUFVLGlDQUFNO0NBQ3RCLElBQUksS0FBSyx1QkFBdUIsUUFBUSxLQUFLLDJCQUEyQixRQUFRLEtBQUssMkJBQTJCLFFBQ3pHLENBQUMsT0FBTyxTQUFTLEtBQUssbUJBQW1CLEtBQUssQ0FBQyxPQUFPLFNBQVMsS0FBSyx1QkFBdUIsS0FBSyxDQUFDLE9BQU8sU0FBUyxLQUFLLHVCQUF1QixHQUFHO0VBQ3JKLE9BQ0UsaURBQUMsT0FBRDtHQUFLLFdBQVU7R0FBcUIsU0FBUTtHQUFjLE1BQUs7R0FBTSxtQkFBaUI7YUFBdEY7SUFDRSxpREFBQyxTQUFEO0tBQU8sSUFBSTtlQUFTO0lBQXFDOzs7OztJQUN6RCxpREFBQyxRQUFEO0tBQU0sV0FBVTtLQUFlLEdBQUU7S0FBSSxHQUFFO0tBQUksT0FBTTtLQUFNLFFBQU87S0FBTSxJQUFHO0lBQU07Ozs7O0lBQzdFLGlEQUFDLFFBQUQ7S0FBTSxHQUFFO0tBQU0sR0FBRTtLQUFNLFlBQVc7ZUFBUztJQUEwQjs7Ozs7SUFDcEUsaURBQUMsUUFBRDtLQUFNLEdBQUU7S0FBTSxHQUFFO0tBQU0sWUFBVztlQUFTO0lBQW9EOzs7OztHQUMzRjs7Ozs7O0NBRVQ7Q0FDQSxNQUFNLFNBQVMsS0FBSyxJQUFJLENBQUMsS0FBSyxLQUFLLElBQUksS0FBSyxLQUFLLG1CQUFtQixDQUFDO0NBQ3JFLE1BQU0sVUFBVSxNQUFNLFNBQVM7Q0FDL0IsTUFBTSxjQUFjLEtBQUssSUFBSSxHQUFHLEtBQUssMEJBQTBCLEdBQUc7Q0FDbEUsTUFBTSxTQUFTLEtBQUssSUFBSSxJQUFJLEtBQUssMEJBQTBCLEdBQUc7Q0FDOUQsT0FDRSxpREFBQyxPQUFEO0VBQUssV0FBVTtFQUFxQixTQUFRO0VBQWMsTUFBSztFQUFNLG1CQUFpQjtZQUF0RjtHQUNFLGlEQUFDLFNBQUQ7SUFBTyxJQUFJO2NBQVg7S0FBb0I7S0FBUSxLQUFLO0tBQWE7SUFBbUU7Ozs7OztHQUNqSCxpREFBQyxRQUFEO0lBQU0sV0FBVTtJQUFlLEdBQUU7SUFBSSxHQUFFO0lBQUksT0FBTTtJQUFNLFFBQU87SUFBTSxJQUFHO0dBQU07Ozs7O0dBQzdFLGlEQUFDLFFBQUQ7SUFBTSxXQUFVO0lBQWEsR0FBRTtJQUFNLEdBQUU7SUFBSyxPQUFNO0lBQUssUUFBTztHQUFPOzs7OztHQUNyRSxpREFBQyxRQUFEO0lBQU0sV0FBVTtJQUFjLElBQUc7SUFBTSxJQUFHO0lBQUssSUFBRztJQUFNLElBQUc7R0FBTzs7Ozs7R0FDbEUsaURBQUMsUUFBRDtJQUFNLFdBQVU7SUFBbUIsR0FBRyxVQUFVO0lBQWEsR0FBRTtJQUFLLE9BQU8sY0FBYztJQUFHLFFBQU87SUFBTSxJQUFHO0dBQUs7Ozs7O0dBQ2pILGlEQUFDLFVBQUQ7SUFBUSxXQUFVO0lBQWdCLElBQUk7SUFBUyxJQUFHO0lBQU0sR0FBRztHQUFTOzs7OztHQUNwRSxpREFBQyxRQUFEO0lBQU0sV0FBVTtJQUFlLElBQUc7SUFBTSxJQUFHO0lBQU0sSUFBSTtJQUFTLElBQUc7R0FBTzs7Ozs7R0FDeEUsaURBQUMsVUFBRDtJQUFRLFdBQVU7SUFBYSxJQUFJO0lBQVMsSUFBRztJQUFNLEdBQUU7R0FBSzs7Ozs7R0FDNUQsaURBQUMsUUFBRDtJQUFNLEdBQUU7SUFBSyxHQUFFO2NBQUs7R0FBYTs7Ozs7R0FDakMsaURBQUMsUUFBRDtJQUFNLEdBQUU7SUFBTSxHQUFFO0lBQUssWUFBVztjQUFNO0dBQWdCOzs7OztHQUN0RCxpREFBQyxRQUFEO0lBQU0sR0FBRTtJQUFNLEdBQUU7SUFBTSxZQUFXO2NBQWpDLENBQTJDLEtBQUssb0JBQW9CLFFBQVEsQ0FBQyxHQUFFLG1CQUF1Qjs7Ozs7O0VBQ25HOzs7Ozs7QUFFVCIsIm5hbWVzIjpbXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiTGluZUdlb21ldHJ5Wm9vbS50c3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlSWQgfSBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IHR5cGUgeyBMaW5lQ2FsbCB9IGZyb20gXCIuLi9kYXRhL2NvbnRyYWN0c1wiO1xyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIExpbmVHZW9tZXRyeVpvb20oeyBjYWxsIH06IHsgY2FsbDogTGluZUNhbGwgfSkge1xyXG4gIGNvbnN0IHRpdGxlSWQgPSB1c2VJZCgpO1xyXG4gIGlmIChjYWxsLmJhbGxfZWRnZV9tYXJnaW5fY20gPT0gbnVsbCB8fCBjYWxsLnBvc2l0aW9uX3VuY2VydGFpbnR5X2NtID09IG51bGwgfHwgY2FsbC5jb250YWN0X3BhdGNoX3JhZGl1c19jbSA9PSBudWxsXHJcbiAgICAgIHx8ICFOdW1iZXIuaXNGaW5pdGUoY2FsbC5iYWxsX2VkZ2VfbWFyZ2luX2NtKSB8fCAhTnVtYmVyLmlzRmluaXRlKGNhbGwucG9zaXRpb25fdW5jZXJ0YWludHlfY20pIHx8ICFOdW1iZXIuaXNGaW5pdGUoY2FsbC5jb250YWN0X3BhdGNoX3JhZGl1c19jbSkpIHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxzdmcgY2xhc3NOYW1lPVwibGluZS1nZW9tZXRyeS16b29tXCIgdmlld0JveD1cIjAgMCA1MjAgMjUwXCIgcm9sZT1cImltZ1wiIGFyaWEtbGFiZWxsZWRieT17dGl0bGVJZH0+XHJcbiAgICAgICAgPHRpdGxlIGlkPXt0aXRsZUlkfT5MaW5lLWNhbGwgZ2VvbWV0cnkgdW5hdmFpbGFibGU8L3RpdGxlPlxyXG4gICAgICAgIDxyZWN0IGNsYXNzTmFtZT1cInpvb20tc3VyZmFjZVwiIHg9XCIxXCIgeT1cIjFcIiB3aWR0aD1cIjUxOFwiIGhlaWdodD1cIjI0OFwiIHJ4PVwiMTJcIiAvPlxyXG4gICAgICAgIDx0ZXh0IHg9XCIyNjBcIiB5PVwiMTE1XCIgdGV4dEFuY2hvcj1cIm1pZGRsZVwiPkdlb21ldHJ5IHVuYXZhaWxhYmxlPC90ZXh0PlxyXG4gICAgICAgIDx0ZXh0IHg9XCIyNjBcIiB5PVwiMTQ1XCIgdGV4dEFuY2hvcj1cIm1pZGRsZVwiPkNvbXBsZXRlIGNvbnRhY3QgbWVhc3VyZW1lbnRzIGFyZSB1bmF2YWlsYWJsZS48L3RleHQ+XHJcbiAgICAgIDwvc3ZnPlxyXG4gICAgKTtcclxuICB9XHJcbiAgY29uc3QgbWFyZ2luID0gTWF0aC5tYXgoLTI1MCwgTWF0aC5taW4oMjUwLCBjYWxsLmJhbGxfZWRnZV9tYXJnaW5fY20pKTtcclxuICBjb25zdCBjZW50ZXJYID0gMjYwICsgbWFyZ2luICogLjc7XHJcbiAgY29uc3QgdW5jZXJ0YWludHkgPSBNYXRoLm1heCg0LCBjYWxsLnBvc2l0aW9uX3VuY2VydGFpbnR5X2NtICogMi4yKTtcclxuICBjb25zdCByYWRpdXMgPSBNYXRoLm1heCgxMiwgY2FsbC5jb250YWN0X3BhdGNoX3JhZGl1c19jbSAqIDMuMik7XHJcbiAgcmV0dXJuIChcclxuICAgIDxzdmcgY2xhc3NOYW1lPVwibGluZS1nZW9tZXRyeS16b29tXCIgdmlld0JveD1cIjAgMCA1MjAgMjUwXCIgcm9sZT1cImltZ1wiIGFyaWEtbGFiZWxsZWRieT17dGl0bGVJZH0+XHJcbiAgICAgIDx0aXRsZSBpZD17dGl0bGVJZH0+Wm9vbWVkIHtjYWxsLm5lYXJlc3RfbGluZX0gZ2VvbWV0cnkgd2l0aCBjb250YWN0IHBhdGNoLCBzaWduZWQgbWFyZ2luLCBhbmQgdW5jZXJ0YWludHk8L3RpdGxlPlxyXG4gICAgICA8cmVjdCBjbGFzc05hbWU9XCJ6b29tLXN1cmZhY2VcIiB4PVwiMVwiIHk9XCIxXCIgd2lkdGg9XCI1MThcIiBoZWlnaHQ9XCIyNDhcIiByeD1cIjEyXCIgLz5cclxuICAgICAgPHJlY3QgY2xhc3NOYW1lPVwibGluZS1zdHJpcFwiIHg9XCIyNDRcIiB5PVwiMjRcIiB3aWR0aD1cIjMyXCIgaGVpZ2h0PVwiMjAyXCIgLz5cclxuICAgICAgPGxpbmUgY2xhc3NOYW1lPVwibGluZS1jZW50ZXJcIiB4MT1cIjI2MFwiIHkxPVwiMjRcIiB4Mj1cIjI2MFwiIHkyPVwiMjI2XCIgLz5cclxuICAgICAgPHJlY3QgY2xhc3NOYW1lPVwidW5jZXJ0YWludHktYmFuZFwiIHg9e2NlbnRlclggLSB1bmNlcnRhaW50eX0geT1cIjc1XCIgd2lkdGg9e3VuY2VydGFpbnR5ICogMn0gaGVpZ2h0PVwiMTAwXCIgcng9XCI4XCIgLz5cclxuICAgICAgPGNpcmNsZSBjbGFzc05hbWU9XCJjb250YWN0LXBhdGNoXCIgY3g9e2NlbnRlclh9IGN5PVwiMTI1XCIgcj17cmFkaXVzfSAvPlxyXG4gICAgICA8bGluZSBjbGFzc05hbWU9XCJtYXJnaW4tYXJyb3dcIiB4MT1cIjI2MFwiIHkxPVwiMjA1XCIgeDI9e2NlbnRlclh9IHkyPVwiMjA1XCIgLz5cclxuICAgICAgPGNpcmNsZSBjbGFzc05hbWU9XCJtYXJnaW4tZW5kXCIgY3g9e2NlbnRlclh9IGN5PVwiMjA1XCIgcj1cIjRcIiAvPlxyXG4gICAgICA8dGV4dCB4PVwiMjRcIiB5PVwiMzRcIj5PVVRTSURFPC90ZXh0PlxyXG4gICAgICA8dGV4dCB4PVwiNDk2XCIgeT1cIjM0XCIgdGV4dEFuY2hvcj1cImVuZFwiPkxFR0FMIFNJREU8L3RleHQ+XHJcbiAgICAgIDx0ZXh0IHg9XCIyNjBcIiB5PVwiMjQwXCIgdGV4dEFuY2hvcj1cIm1pZGRsZVwiPntjYWxsLmJhbGxfZWRnZV9tYXJnaW5fY20udG9GaXhlZCgxKX0gQ00gU0lHTkVEIE1BUkdJTjwvdGV4dD5cclxuICAgIDwvc3ZnPlxyXG4gICk7XHJcbn1cclxuXHJcbiJdLCJmaWxlIjoiL3NyYy9jb21wb25lbnRzL0xpbmVHZW9tZXRyeVpvb20udHN4In0=
+
+//# vitestCache=W3siZmlsZSI6IjEiLCJpZCI6IjEiLCJ1cmwiOiIyIiwiaW1wb3J0ZWRVcmxzIjoiMyIsIm1hcHBpbmdzIjpmYWxzZX0sIkM6L1NlbWVzdGVyIDkvRllQMi90ZW5uaXNfYWlfYWdlbnRfYnVuZGxlL2Zyb250ZW5kL3NyYy9jb21wb25lbnRzL0xpbmVHZW9tZXRyeVpvb20udHN4IiwiL3NyYy9jb21wb25lbnRzL0xpbmVHZW9tZXRyeVpvb20udHN4IixbXV0=

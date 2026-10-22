@@ -38,7 +38,10 @@ class PointOutcomeResolver:
     Enforces dead-ball suppression, fault tracking, and legal hitter attribution.
     """
 
-    def __init__(self, current_server_id: int = 1, initial_serve_attempt: int = 1):
+    def __init__(self, current_server_id: int = 1, initial_serve_attempt: int = 1,
+                 player_1_id: int = 1, player_2_id: int = 2):
+        self.player_1_id = player_1_id
+        self.player_2_id = player_2_id
         self.current_server_id = current_server_id
         self.serve_attempt = initial_serve_attempt
         self.last_legal_hitter_id: Optional[int] = None
@@ -76,7 +79,7 @@ class PointOutcomeResolver:
             )
 
         # 2. Dead-Ball Suppression Gate (Critical Rule: dead ball cannot continue play)
-        if self.ball_play_state == BallPlayState.DEAD:
+        if self.ball_play_state == BallPlayState.DEAD and event_type != "SERVE_CONTACT":
             return PointOutcome(
                 outcome_type=PointOutcomeType.DEAD_BALL_IGNORED,
                 winner_id=None,
@@ -88,6 +91,10 @@ class PointOutcomeResolver:
 
         # 3. Serve Contact
         if event_type == "SERVE_CONTACT":
+            if player_id is not None and player_id != self.current_server_id:
+                return self._review(event_id, "Serve attribution conflicts with the configured server.", confidence)
+            if self.ball_play_state not in (BallPlayState.NOT_STARTED, BallPlayState.DEAD, BallPlayState.LET_REPLAY):
+                return self._review(event_id, "New serve before the previous point/attempt was resolved.", confidence)
             self.ball_play_state = BallPlayState.SERVE_STARTED
             self.last_legal_hitter_id = player_id or self.current_server_id
             self.in_bounce_count = 0
@@ -102,6 +109,8 @@ class PointOutcomeResolver:
 
         # 4. Service Let
         if event_type == "SERVICE_LET":
+            if self.ball_play_state != BallPlayState.SERVE_STARTED:
+                return self._review(event_id, "Service let without an active service attempt.", confidence)
             self.ball_play_state = BallPlayState.LET_REPLAY
             return PointOutcome(
                 outcome_type=PointOutcomeType.SERVICE_LET,
@@ -127,7 +136,7 @@ class PointOutcomeResolver:
                     )
                 else:
                     # Second fault -> Double fault -> Receiver point
-                    receiver_id = 2 if self.current_server_id == 1 else 1
+                    receiver_id = self._opponent(self.current_server_id)
                     return PointOutcome(
                         outcome_type=PointOutcomeType.DOUBLE_FAULT,
                         winner_id=receiver_id,
@@ -151,7 +160,11 @@ class PointOutcomeResolver:
 
         # 6. Player Hit during Live Rally
         if event_type in ("PLAYER_1_HIT", "PLAYER_2_HIT"):
-            hitter = 1 if event_type == "PLAYER_1_HIT" else 2
+            hitter = self.player_1_id if event_type == "PLAYER_1_HIT" else self.player_2_id
+            if self.ball_play_state != BallPlayState.LIVE or hitter == self.last_legal_hitter_id:
+                return self._review(event_id, "Return contact lacks a legal preceding serve/shot sequence.", confidence)
+            if player_id is not None and player_id != hitter:
+                return self._review(event_id, "Contact player conflicts with the event participant.", confidence)
             self.last_legal_hitter_id = hitter
             self.ball_play_state = BallPlayState.LIVE
             self.in_bounce_count = 0
@@ -167,11 +180,13 @@ class PointOutcomeResolver:
         # 7. Rally Bounce Evaluation
         if event_type == "BOUNCE" and self.ball_play_state == BallPlayState.LIVE:
             if line_call and line_call.decision == LineCallDecision.OUT:
+                if self.last_legal_hitter_id is None:
+                    return self._review(event_id, "Cannot assign an out ball without a known legal hitter.", confidence)
                 self.ball_play_state = BallPlayState.DEAD
-                hitter = self.last_legal_hitter_id or (1 if self.current_server_id == 2 else 2)
-                winner = 2 if hitter == 1 else 1
+                hitter = self.last_legal_hitter_id
+                winner = self._opponent(hitter)
                 return PointOutcome(
-                    outcome_type=PointOutcomeType.POINT_WON_PLAYER_2 if winner == 2 else PointOutcomeType.POINT_WON_PLAYER_1,
+                    outcome_type=PointOutcomeType.POINT_WON_PLAYER_2 if winner == self.player_2_id else PointOutcomeType.POINT_WON_PLAYER_1,
                     winner_id=winner,
                     reason=f"Player {hitter} shot landed OUT ({line_call.reason}): Player {winner} wins point.",
                     is_point_ending=True,
@@ -182,10 +197,12 @@ class PointOutcomeResolver:
             elif line_call and line_call.decision == LineCallDecision.IN:
                 self.in_bounce_count += 1
                 if self.in_bounce_count >= 2:
+                    if self.last_legal_hitter_id is None:
+                        return self._review(event_id, "Cannot assign a second bounce without a known legal hitter.", confidence)
                     self.ball_play_state = BallPlayState.DEAD
-                    winner = self.last_legal_hitter_id or self.current_server_id
+                    winner = self.last_legal_hitter_id
                     return PointOutcome(
-                        outcome_type=PointOutcomeType.POINT_WON_PLAYER_1 if winner == 1 else PointOutcomeType.POINT_WON_PLAYER_2,
+                        outcome_type=PointOutcomeType.POINT_WON_PLAYER_1 if winner == self.player_1_id else PointOutcomeType.POINT_WON_PLAYER_2,
                         winner_id=winner,
                         reason=f"Ball bounced twice without legal return: Player {winner} wins point.",
                         is_point_ending=True,
@@ -211,3 +228,11 @@ class PointOutcomeResolver:
             confidence=confidence,
             source_event_id=event_id
         )
+
+    def _opponent(self, player_id: int) -> int:
+        return self.player_2_id if player_id == self.player_1_id else self.player_1_id
+
+    @staticmethod
+    def _review(event_id: int, reason: str, confidence: float) -> PointOutcome:
+        return PointOutcome(PointOutcomeType.POINT_REVIEW_REQUIRED, reason=reason,
+                            is_point_ending=True, confidence=confidence, source_event_id=event_id)

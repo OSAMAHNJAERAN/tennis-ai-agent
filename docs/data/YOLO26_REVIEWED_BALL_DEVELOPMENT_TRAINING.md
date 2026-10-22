@@ -1,0 +1,41 @@
+# Reviewed native640 ball development training
+
+`scripts/train/train_yolo26_reviewed_ball.py` is a restricted private development entry for the completed, approved export at `data/yolo26/ball_reviewed_development_v1/source_manifest.json`, SHA256 `b3fa03c171c797db9df52038fe1b984cd6aef6aafb942e6885207430832a25ab`. It leaves the existing generic trainer's independent qualification requirements unchanged. It never promotes weights or supplies a TEST split.
+
+The export contains 79 byte-identical native640 crops: 58 training and 21 development images, with 75 manually reviewed visible boxes and four reviewed empty labels. Positive images are 55 training and 20 development; the four negative images are three training and one development. Labels describe visible current crop pixels. Rejected crops containing additional visible balls, ball-like props or unresolved objects remain excluded. Full-frame absence, hidden balls and continuous event ground truth are not inferred from an empty crop label.
+
+Grouping uses the corrected transitive source/event components, including the Miami/Washington and Rome/Dubai alias connections. Original match and camera-session identities remain unverified; the wrapper does not fabricate them. The reviews were performed by agents and are development annotations. Neither source independence nor independent human qualification is claimed. The retained publisher release is used only for private local academic development; raw broadcast redistribution remains uncleared.
+
+The default command performs a read-only byte/provenance preflight:
+
+```powershell
+& 'C:\Users\ac-98\AppData\Local\Programs\Python\Python313\python.exe' -m scripts.train.train_yolo26_reviewed_ball --manifest-sha256 b3fa03c171c797db9df52038fe1b984cd6aef6aafb942e6885207430832a25ab --output outputs/yolo26_ball_reviewed_preflight_v1
+```
+
+It reconstructs the exporter's approved plan and checks the manifest, final root approval, reviews, source bindings, all image/label bytes, native image headers, label inverse transforms, split directory inventories and export receipt. It also checks installed package metadata and the official initializer hash. Preflight imports no Torch, Ultralytics, NumPy, image/video decoder or psutil, creates no output directory and reports `resource_guard_pending: true`. A successful preflight proves data integrity and admissibility for this private development experiment; it does not prove available training resources or detection accuracy.
+
+After the controlling run has finished reviewing transformed training examples and released GPU execution, the bounded initial training command is:
+
+```powershell
+& 'C:\Users\ac-98\AppData\Local\Programs\Python\Python313\python.exe' -m scripts.train.train_yolo26_reviewed_ball --manifest-sha256 b3fa03c171c797db9df52038fe1b984cd6aef6aafb942e6885207430832a25ab --output outputs/yolo26_ball_reviewed_development_run1 --epochs 20 --execute
+```
+
+This document does not record execution of that command. Actual run metadata, optimizer receipts, checkpoints and independent diagnostic results must establish what occurred.
+
+The only initializer is local official `models/yolo26/yolo26m.pt`, SHA256 `401cea9ab23ad19246ff7744859816bc599f350e93c9dd30367b6f0a0745d0b7`. The shared model builder verifies the YOLO26 Detect task and m scale, creates the one-class tennis-ball architecture and records transferred versus newly initialized tensor keys. Old pilot weights are not accepted as initializers. AMP is disabled, including its library model-checking path. No additional detector, ReID model or fourth vision model is introduced.
+
+Settings fix native640 input, batch 1, CUDA device 0, workers 0, no cache, seed 709, deterministic mode, AdamW, learning rate 0.0005, `nbs=1`, zero warmup, validation enabled and early-stop patience 15. Initial runs allow 1–20 total epochs, defaulting to 20. Extensions are not implemented. Measured optimizer step values are saved after each epoch rather than inferred from epoch count.
+
+All geometric augmentation is disabled: scale, translation, rotation, shear, perspective, reflection, mosaic, mixup, cutmix, copy-paste and multiscale. Erasing, BGR swaps and rectangular training are disabled. `auto_augment=None` and explicit `augmentations=[]` suppress the installed library's implicit augmentation list. Only the conservative HSV values 0.01/0.15/0.15 remain. The native crop sizes preserve the reviewed small-ball pixel extents; an actual transform preview is still required before training.
+
+Execution measures resources after Torch/CUDA initialization and before model construction. It requires at least 1 GiB available system RAM, 2 GiB free GPU memory and 1 GiB free disk, using the unchanged native-ball guard. An unavailable CUDA device does not select CPU training automatically. These are launch floors. The controller must retain actual runtime samples and any stop decision; the trainer does not continuously enforce those resource floors.
+
+The immutable export is copied byte-for-byte into the fresh run's `training_inputs` tree so library label-scan caches stay away from reviewed data. The working images, labels, dataset YAML, train/DEV lists and official initializer are hash-bound through completion. Start/end source snapshots cover all Python files under `src`, the exact training/export/preparation scripts and every installed Ultralytics `.py`/`.yaml` file. Changed, newly added and removed files are reported. A detected change makes the run fail as unqualified while preserving its evidence. These snapshots do not cover all third-party package binaries or prove a clean Git working tree.
+
+Every execution, including resume, requires a previously nonexistent directory strictly beneath the workspace `outputs` root. Existing empty directories are also refused. Metadata retains runtime versions, source/input/argument hashes, resources, actual optimizer updates, final CSV hash and checkpoint hashes. Atomic metadata replacement retries only Windows `PermissionError` after 10/25/50/100 ms; a persistent permission failure or another I/O error still raises, with no plain-write fallback. The library chooses its development checkpoint using the pinned mAP50–95 fitness. Performance on these reviewed crops is an engineering signal; it is not full-frame, tracking, event, physical-speed or independent-test accuracy. The separately fixed label-independent native-tile diagnostic is necessary to assess behavior outside oracle-centered crops.
+
+Resume requires both `--resume <checkpoint>` and `--resume-sha256 <digest>`. The checkpoint must be hash-registered in its original reviewed-ball metadata, retain the same exact export, runtime, source snapshots, settings and total epoch budget, and contain an unfinished epoch with optimizer and EMA state. It must identify the selected YOLO26m end-to-end one-class `tennis-ball` Detect architecture. Completed or stripped checkpoints cannot resume this experiment; a new output directory is always required.
+
+The runtime saves periodic checkpoints with `save_period=5` and preserves the final or early-stopped optimizer-bearing file as `development_epochN.pt` before normal `last.pt`/`best.pt` stripping. Ultralytics 8.4.36 stores the zero-based epoch, EMA model and update count, FP16-converted optimizer state, scaler fields, arguments, metrics and CSV history. It restores optimizer/scaler/EMA/best fitness and resumes at the next epoch; its scheduler is reconstructed from the arguments. RNG state, the data-loader cursor and early-stopping history are not checkpointed. Resume therefore preserves the available optimizer-bearing epoch state and has documented restart/precision limits; it is not bitwise continuation.
+
+The focused test file is `tests/test_yolo26_reviewed_ball_training.py`. It uses metadata/byte fixtures and inert execution stand-ins to check rejected mutations, exact resource boundaries, no-overwrite behavior, checkpoint retention, recorded optimizer values, resume restrictions, and start/end source integrity. One test audits the actual exact export with heavy imports forbidden. These tests do not execute a model, decode an image, initialize a GPU, train weights or measure vision accuracy.

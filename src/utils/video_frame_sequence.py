@@ -5,6 +5,7 @@ from collections.abc import Sequence
 import operator
 
 import cv2
+import numpy as np
 
 from src.utils.video_io import get_video_metadata
 
@@ -27,6 +28,7 @@ class VideoFrameSequence(Sequence):
         if not self._cap.isOpened():
             raise ValueError(f"Cannot decode video: {path}")
         self._cache = OrderedDict()
+        self._path = path
         self._cache_size = cache_size
         self._next_index = 0
 
@@ -58,6 +60,50 @@ class VideoFrameSequence(Sequence):
         if len(self._cache) > self._cache_size:
             self._cache.popitem(last=False)
         return frame
+
+    def iter_decoded(self, start_index=0):
+        """Decode from frame zero, yielding the requested normalized suffix.
+
+        A new capture avoids approximate random seeking. Prefix frames are
+        decoded and discarded, never yielded to an inference consumer. This
+        preserves decoder ordering on a sealed constant-rate source; it does
+        not recover tracker state or establish original variable-rate PTS.
+        Closing or interrupting this iterator releases its independent handle.
+        """
+        if isinstance(start_index, (bool, np.bool_)):
+            raise ValueError('Sequential start must be an integer frame boundary')
+        try:
+            start_index = operator.index(start_index)
+        except TypeError as error:
+            raise ValueError('Sequential start must be an integer frame boundary') from error
+        if not 0 <= start_index <= len(self):
+            raise ValueError('Sequential start is outside the normalized video')
+        if start_index == len(self):
+            return
+        capture = cv2.VideoCapture(self._path)
+        try:
+            if not capture.isOpened():
+                raise RuntimeError('Unable to open independent sequential video decoder')
+            for index in range(len(self)):
+                ret, frame = capture.read()
+                if not ret or frame is None:
+                    raise RuntimeError(f'Sequential decoder failed at frame {index}; output would be incomplete')
+                if frame.shape[:2] != (self.metadata.height, self.metadata.width):
+                    raise ValueError('Video resolution changed; split into separately calibrated segments')
+                if index >= start_index:
+                    yield frame
+        except GeneratorExit:
+            # close() must surface a release failure to its owning consumer.
+            capture.release()
+            raise
+        except BaseException as error:
+            try:
+                capture.release()
+            except BaseException as cleanup_error:
+                error.add_note('Sequential decoder cleanup also failed: ' + str(cleanup_error))
+            raise
+        else:
+            capture.release()
 
     def close(self):
         self._cache.clear()

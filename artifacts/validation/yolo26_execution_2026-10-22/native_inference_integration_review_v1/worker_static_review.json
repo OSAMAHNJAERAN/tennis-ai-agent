@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-10-22T00:33:37.4984545Z",
+  "reviewer": "Independent collaborating AI agent /root/resume_contract",
+  "status": "PUBLICATION_SOURCE_GUARD_FINDING_REPORTED",
+  "scope": "Static worker routing/recovery/publication review, compared with existing queue and completed checkpoint semantics",
+  "reviewed_files": [
+    {
+      "path": "src/api/worker.py",
+      "sha256": "06597d2db4764f2306665b00368e9cc518a4da2448c63d8e4d5cd44572b7d502",
+      "bytes": 21843
+    },
+    {
+      "path": "tests/test_worker_partial_inference.py",
+      "sha256": "f549f63cf46384121921df353af30cf238f08f3a5dffe5db3dfb92ffe2185e81",
+      "bytes": 18575
+    },
+    {
+      "path": "src/api/jobs.py",
+      "sha256": "afad8b2fca6fbe689c1bd3ca6e0e1481cc5df921d289caa54c17e4e4a069aeee",
+      "bytes": 10019
+    },
+    {
+      "path": "src/api/pipeline_checkpoint.py",
+      "sha256": "2de795080efdfc7f63295d3861b24acf1d9ce8c46b81442ee3a930ac16ed4f8a",
+      "bytes": 11896
+    },
+    {
+      "path": "src/utils/native_inference_session.py",
+      "sha256": "d694abc98138b9409197fcbb908d98b757d836ac285fd02d1dc511a960c3c19b",
+      "bytes": 16719
+    }
+  ],
+  "confirmed": [
+    "Partial-inference admission is gated to family=yolo26 and ball backend=yolo26.",
+    "Completed checkpoint loading has precedence; corrupt completed markers do not fall back to a partial prefix.",
+    "Valid partial recovery reuses sealed source/config files and supplies the derived inference identity to the pipeline; it does not normalize again.",
+    "Fresh native normalization seals source/config/timing assets before constructing the pipeline, and normalized bindings are checked after pipeline return.",
+    "Partial validation corruption is translated to a failed admission without replacing retained artifacts; worker logs append diagnostics.",
+    "The queue still checks cancellation and fewer than three attempts before and after validation outside its transaction.",
+    "Ordinary inference exceptions are FAILED; BaseException process-loss simulation retains PROCESSING for validated same-job recovery.",
+    "Worker tests inject model/media boundaries and do not establish actual suffix-model inference or actual process-loss pipeline equivalence."
+  ],
+  "findings": [
+    {
+      "id": "normalized_source_revalidation_at_publication",
+      "status": "OPEN_REPORTED_TO_ROOT",
+      "file": "src/api/worker.py",
+      "function": "process_job.final_publication_check",
+      "trigger": "Normalized source changes after the post-pipeline source-seal check but before write_pipeline_checkpoint hashes the output files.",
+      "behavior": "The completed marker can bind the new source bytes; later final_publication_check validates that completed marker and base original/config identity but not the native source seal, accepting the mismatch between computed analysis and normalized source.",
+      "minimal_fix": "Require the normalized source seal again in final_publication_check for fresh/partial native runs, and for completed native recovery when that seal is present, while preserving any intentionally supported older completed-only contract.",
+      "suggested_regression": "Wrap write_pipeline_checkpoint to mutate source immediately before its actual hashing; ensure publication/current generation and COMPLETED status are rejected."
+    }
+  ],
+  "limits": {
+    "tests_run": 0,
+    "project_or_inference_modules_imported": false,
+    "hardware_probes": false,
+    "product_edits": false,
+    "actual_model_inference_or_process_loss_recovery_qualified": false
+  }
+}

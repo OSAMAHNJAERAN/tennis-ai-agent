@@ -1,0 +1,42 @@
+{
+  "status": "fitted_development_only",
+  "parameters": [
+    0.15629601140499222,
+    1.34932608812652
+  ],
+  "match_count": 57,
+  "snapshot_count": 6330,
+  "regularized_training_objective": 0.5116978054776261,
+  "optimizer_success": true,
+  "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+  "optimizer_iterations": 7,
+  "settings": {
+    "method": "logistic(a + b*logit(raw_probability)); a intercept, b slope",
+    "training_split": "development only; equal total weight per match divided among its unique snapshots",
+    "minimum_development_match_groups": 20,
+    "logit_probability_clip": 1e-06,
+    "regularization_lambda": 0.01,
+    "objective": "mean equally match-weighted Bernoulli log loss + lambda/2*(a*a+(b-1)*(b-1))",
+    "initial_parameters": [
+      0.0,
+      1.0
+    ],
+    "parameter_bounds": [
+      [
+        -5.0,
+        5.0
+      ],
+      [
+        0.1,
+        10.0
+      ]
+    ],
+    "optimizer": "scipy.optimize.minimize L-BFGS-B with analytic gradient; maxiter100, ftol1e-12, gtol1e-9; failed/nonfinite fit means no calibrated metrics",
+    "parameter_selection": "No tuning/threshold selection from development metrics, calibration or test. Fit once using declared objective. Calibration split only separately assessed; never refit after its metrics.",
+    "status": "Private publisher engineering calibration only; independent qualification remains absent."
+  },
+  "calibration_status": "unqualified_same_publisher_engineering_only",
+  "protocol_sha256": "d44cd3e316f67c9b16922e3678f36bcedd83a4f471f528c838deff8feca2a391",
+  "import_sha256": "e23f0a33bf44278d443843b48b05725e394d250a15bde7ef5cfd33d5dfc091aa",
+  "created_at": "2026-10-09T11:21:49.422737+00:00"
+}

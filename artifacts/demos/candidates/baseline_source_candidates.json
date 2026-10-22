@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Camera suitability review only; no inference, queue, or public manifest change.",
+  "candidates": [
+    {
+      "id": "ibm_tennis_highlights_2017",
+      "fileTitle": "File:Auto curation for sports highlights for Wimbledon and US Open 2017.webm",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Auto_curation_for_sports_highlights_for_Wimbledon_and_US_Open_2017.webm",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Auto_curation_for_sports_highlights_for_Wimbledon_and_US_Open_2017.webm?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "sourceBytes": 15436210,
+      "sourceSha1": "b47ff38bb1b4b9006bb8fb5ccd99dd3509d95d96",
+      "sourceSha256": "6df7cc03ee97880cd0131207c0c7c9295b64b914e38c12ebffc96166dbd7f845",
+      "publishedRevisionTimestamp": "2024-08-27T15:37:17Z",
+      "author": "IBM Research",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "attribution": "IBM Research / CC BY 3.0",
+      "shareAlikeRequired": false,
+      "publicDisplayLicenseAvailable": null,
+      "modifications": "None; publisher original retained for camera review.",
+      "sourcePath": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\demos\\candidates\\ibm_tennis_highlights_2017.webm",
+      "publisherMetadata": {
+        "DateTime": "2024-08-27 15:37:17",
+        "ObjectName": "Auto curation for sports highlights for Wimbledon and US Open 2017",
+        "CommonsMetadataExtension": 1.2,
+        "Categories": "Media from YouTube|License review needed (video)|Uploaded with video2commons|Videos by IBM Research",
+        "Assessments": "",
+        "ImageDescription": "Auto curation for sports highlights for Wimbledon and US Open 2017",
+        "DateTimeOriginal": "2017-09-14 18:18:11",
+        "Credit": "<bdi lang=\"en\" dir=\"ltr\"><a href=\"//commons.wikimedia.org/wiki/Commons:YouTube_files\" title=\"Commons:YouTube files\">YouTube</a>: <a rel=\"nofollow\" class=\"external text\" href=\"https://www.youtube.com/watch?v=v4Fi5vDuwqI\"><bdi lang=\"\">Auto curation for sports highlights for Wimbledon and US Open 2017</bdi></a> \u2013 View/save archived versions on <a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/*/https://www.youtube.com/watch?v=v4Fi5vDuwqI\">archive.org</a></bdi>",
+        "Artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.youtube.com/@ibmresearch\">IBM Research</a>",
+        "LicenseShortName": "CC BY 3.0",
+        "UsageTerms": "Creative Commons Attribution 3.0",
+        "AttributionRequired": "true",
+        "Attribution": "IBM Research",
+        "LicenseUrl": "https://creativecommons.org/licenses/by/3.0",
+        "Copyrighted": "True",
+        "Restrictions": "",
+        "License": "cc-by-3.0"
+      },
+      "checkedAt": "2026-10-01T03:07:11.996130+00:00",
+      "status": "CAMERA_REVIEW_REJECTED_NON_MATCH_VIDEO",
+      "qualificationEvidence": false,
+      "cameraSuitability": false,
+      "licenseVerificationStatus": "EXTERNAL_SOURCE_LICENSE_REVIEW_PENDING",
+      "originalAuthorSource": "https://www.youtube.com/watch?v=v4Fi5vDuwqI",
+      "cameraReview": {
+        "reviewedAt": "2026-10-01T03:10:18.580162+00:00",
+        "tool": "claude-video-vision",
+        "metadata": {
+          "durationSeconds": 175.086,
+          "width": 1920,
+          "height": 1080,
+          "reportedFps": 30
+        },
+        "sceneAnalysis": {
+          "requestedFilters": {
+            "scene_changes": true,
+            "transcription": true
+          },
+          "sceneTimesSeconds": [
+            18,
+            43,
+            54,
+            83,
+            106,
+            116,
+            171
+          ],
+          "transcription": []
+        },
+        "extraction": {
+          "initialStrategy": "Variable low FPS segments around scene boundaries; initial returned labels exceeded duration and were not used as source timestamps.",
+          "verifiedStrategy": "Uniform 0.2 FPS, 512 px, 18 evenly spaced returned frames from the full clip.",
+          "reviewedTimestampsSeconds": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90,
+            100,
+            110,
+            120,
+            130,
+            140,
+            150,
+            160,
+            170
+          ]
+        },
+        "contentIntervals": [
+          {
+            "startSeconds": 0,
+            "endSeconds": 18,
+            "content": "Presentation title"
+          },
+          {
+            "startSeconds": 18,
+            "endSeconds": 43,
+            "content": "Screenshots of cognitive-highlights interfaces and player celebration images"
+          },
+          {
+            "startSeconds": 43,
+            "endSeconds": 54,
+            "content": "Research team slide"
+          },
+          {
+            "startSeconds": 54,
+            "endSeconds": 83,
+            "content": "Contributions slide"
+          },
+          {
+            "startSeconds": 83,
+            "endSeconds": 106,
+            "content": "Venue still-image collage with footage statistics"
+          },
+          {
+            "startSeconds": 106,
+            "endSeconds": 116,
+            "content": "Impact slide with article and website screenshots"
+          },
+          {
+            "startSeconds": 116,
+            "endSeconds": 171,
+            "content": "System overview diagram"
+          },
+          {
+            "startSeconds": 171,
+            "endSeconds": 175.086,
+            "content": "Thanks slide"
+          }
+        ],
+        "observation": "Conference slide presentation, not a raw singles recording. Static court photographs, interface screenshots and research diagrams provide no usable continuous rally interval.",
+        "rejectionCode": "PRESENTATION_SLIDES_NO_RAW_MATCH_INTERVAL",
+        "licenseObservation": "Commons lists CC BY 3.0 with IBM Research attribution but explicitly marks the external YouTube source as not yet license reviewed; public display eligibility is unverified.",
+        "publicDemoEligible": false,
+        "queueCreated": false,
+        "inferenceRun": false,
+        "qualificationEvidence": false,
+        "modelAccuracyEvidence": null
+      }
+    }
+  ]
+}

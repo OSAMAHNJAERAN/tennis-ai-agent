@@ -1,0 +1,1398 @@
+{
+  "schema_version": "1.0",
+  "checked_on": "2026-10-09",
+  "qualification_evidence": false,
+  "purpose": "Measured bounded local private academic pilots; no checkpoint promotion; independent human review and final tests pending",
+  "rights_evidence": "https://huggingface.co/datasets/linfeng302/RacketVision",
+  "rights_basis": "Publisher explicitly declares MIT dataset license and training downloads; underlying raw broadcast redistribution not separately verified",
+  "use_scope": "PRIVATE_LOCAL_NONCOMMERCIAL_ACADEMIC_PILOT_ONLY",
+  "public_redistribution_allowed": false,
+  "label_review_clarification": "Publisher ball centers were reviewed and expanded into boxes by Codex manual visual inspection; court14 points were manually visually labelled by Codex. This is agent visual review, not independently verified human qualification ground truth. Original ball pilot human_reviewed flags must be read with this clarification. No model prediction or homography-projected labels were used.",
+  "runs": [
+    {
+      "status": "TRAINED_UNQUALIFIED",
+      "role": "ball",
+      "started_utc": "2026-10-08T11:43:12.217864+08:00",
+      "completed_utc": "2026-10-08T11:43:40.901271+08:00",
+      "git_revision": "f854804f4f0d3766e70218d59f06cd6ebb8aaff1",
+      "training_script_sha256": "47704ac84009d39cc8edcb753e4a2923aa01ffd60ef1bde455f0e7d1b66ffc74",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "torch": "2.13.0+cu126",
+      "ultralytics": "8.4.36",
+      "cuda": "12.6",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "free_vram_bytes": 5326766080,
+      "free_ram_bytes": null,
+      "free_disk_bytes": 39442247680,
+      "data_audit": {
+        "manifest_sha256": "2c5b943167ea8c9ff4fe3fbde4582a27bd82f7e5f2043e23e514c39a33ca8440",
+        "split_image_counts": {
+          "train": 6,
+          "val": 0,
+          "test": 0
+        },
+        "labeled_instances": 6,
+        "source_count": 2,
+        "pilot": true,
+        "final_test_used": false,
+        "independent_validation_available": false
+      },
+      "training_arguments": {
+        "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v1\\dataset.yaml",
+        "epochs": 1,
+        "imgsz": 1280,
+        "batch": 1,
+        "device": "0",
+        "seed": 709,
+        "deterministic": true,
+        "patience": 20,
+        "save_period": 5,
+        "amp": false,
+        "workers": 0,
+        "cache": false,
+        "optimizer": "AdamW",
+        "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v1",
+        "name": "training",
+        "mosaic": 0.0,
+        "close_mosaic": 0,
+        "mixup": 0.0,
+        "copy_paste": 0.0,
+        "scale": 0.1,
+        "translate": 0.03,
+        "fliplr": 0.0,
+        "flipud": 0.0,
+        "degrees": 0.0,
+        "perspective": 0.0,
+        "hsv_h": 0.015,
+        "hsv_s": 0.25,
+        "hsv_v": 0.25
+      },
+      "selection_policy": "PILOT_CHECKPOINT_NEVER_PROMOTED",
+      "validation_policy": "TRAINING_LABEL_OVERFIT_CHECK_NOT_ACCURACY_EVIDENCE",
+      "test_policy": "FINAL_TEST_IS_NOT_RUN_BY_TRAINING_SCRIPT",
+      "training_elapsed_seconds": null,
+      "peak_torch_cuda_allocated_bytes": null,
+      "peak_torch_cuda_reserved_bytes": null,
+      "checkpoints": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v1\\training\\weights\\best.pt",
+          "sha256": "d8bb97a501171202ef585dc8acf486c0d1997367db31c101789a7d7d07f5741c"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v1\\training\\weights\\epoch0.pt",
+          "sha256": "64cd2a93dbea14573b9e30d4f14d92ff5fcf3a08173fe6fe3927f955024223c9"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v1\\training\\weights\\last.pt",
+          "sha256": "46013f63ae14fda2532378f9be6a1b6d12f30c3b7ea67e60eb00112b063c9394"
+        }
+      ],
+      "metadata_path": "outputs\\yolo26_ball_pilot_v1\\run_metadata.json",
+      "metadata_sha256": "e18350ba4fcfca870a20a0832c4c13a735910c852622930850a943cbadca3454",
+      "results_path": "outputs\\yolo26_ball_pilot_v1\\training\\results.csv",
+      "results_sha256": "b41653d8c06ebee3f66bf83ff2be91f715d0587fdcbe1fb5472abd3f806621ad",
+      "epoch_results": [
+        {
+          "epoch": "1",
+          "time": "17.1839",
+          "train/box_loss": "1.6163",
+          "train/cls_loss": "38.8036",
+          "train/dfl_loss": "0.0004",
+          "metrics/precision(B)": "0",
+          "metrics/recall(B)": "0",
+          "metrics/mAP50(B)": "0",
+          "metrics/mAP50-95(B)": "0",
+          "val/box_loss": "3.3494",
+          "val/cls_loss": "98.6405",
+          "val/dfl_loss": "0.00129",
+          "lr/pg0": "0.0005",
+          "lr/pg1": "0.0005",
+          "lr/pg2": "0.0955"
+        }
+      ],
+      "transfer_count": 756,
+      "initialized_count": 12,
+      "kpt_shape": null,
+      "official_weights_sha256": "401cea9ab23ad19246ff7744859816bc599f350e93c9dd30367b6f0a0745d0b7",
+      "logged_peak_gpu_memory_gib": 5.04,
+      "first_run_ball_wall_time_seconds": 28.683407,
+      "independent_human_label_reviewed": false,
+      "final_test_used": false,
+      "qualification_evidence": false
+    },
+    {
+      "status": "TRAINED_UNQUALIFIED",
+      "role": "court",
+      "started_utc": "2026-10-08T11:52:09.258791+08:00",
+      "completed_utc": "2026-10-08T11:52:23.966783+08:00",
+      "git_revision": "f854804f4f0d3766e70218d59f06cd6ebb8aaff1",
+      "training_script_sha256": "e72f02d53e369418bb80cb4020b9cf925d8c6ba795dbbf626eb1565dfb671239",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "torch": "2.13.0+cu126",
+      "ultralytics": "8.4.36",
+      "cuda": "12.6",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "free_vram_bytes": 5326766080,
+      "free_ram_bytes": 3022610432,
+      "free_disk_bytes": 39167574016,
+      "data_audit": {
+        "manifest_sha256": "c173b958081176d3765cafb0d6ebcc9b81f9e0bc02146e8d79a7d64e5f27afc5",
+        "split_image_counts": {
+          "train": 6,
+          "val": 0,
+          "test": 0
+        },
+        "labeled_instances": 6,
+        "source_count": 2,
+        "pilot": true,
+        "final_test_used": false,
+        "independent_validation_available": false
+      },
+      "training_arguments": {
+        "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_pilot_v1\\dataset.yaml",
+        "epochs": 1,
+        "imgsz": 1280,
+        "batch": 1,
+        "device": "0",
+        "seed": 709,
+        "deterministic": true,
+        "patience": 20,
+        "save_period": 5,
+        "amp": false,
+        "workers": 0,
+        "cache": false,
+        "optimizer": "AdamW",
+        "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_pilot_v1",
+        "name": "training",
+        "mosaic": 0.0,
+        "close_mosaic": 0,
+        "mixup": 0.0,
+        "copy_paste": 0.0,
+        "scale": 0.1,
+        "translate": 0.03,
+        "fliplr": 0.0,
+        "flipud": 0.0,
+        "degrees": 0.0,
+        "perspective": 0.0,
+        "hsv_h": 0.015,
+        "hsv_s": 0.25,
+        "hsv_v": 0.25
+      },
+      "selection_policy": "PILOT_CHECKPOINT_NEVER_PROMOTED",
+      "validation_policy": "TRAINING_LABEL_OVERFIT_CHECK_NOT_ACCURACY_EVIDENCE",
+      "test_policy": "FINAL_TEST_IS_NOT_RUN_BY_TRAINING_SCRIPT",
+      "training_elapsed_seconds": 12.003318300005049,
+      "peak_torch_cuda_allocated_bytes": 2579936768,
+      "peak_torch_cuda_reserved_bytes": 3149922304,
+      "checkpoints": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_pilot_v1\\training\\weights\\best.pt",
+          "sha256": "351b91633dcf5919c327815f23411edcb65ca0531edad0ed4fa529ab2c6ad45c"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_pilot_v1\\training\\weights\\epoch0.pt",
+          "sha256": "f896ff52c917ce43897892f814f27327f7f086ec25d4ccfc366ddc954a167338"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_pilot_v1\\training\\weights\\last.pt",
+          "sha256": "8a1c03b19ebb413d827c95fdbd7342b563b0527187900b1d2062cabf8db9e52e"
+        }
+      ],
+      "metadata_path": "outputs\\yolo26_court_pilot_v1\\run_metadata.json",
+      "metadata_sha256": "35aebe7975e26c1e38a6de439bfc7ff1854660af8f51a35ac11e39fc065d0dd3",
+      "results_path": "outputs\\yolo26_court_pilot_v1\\training\\results.csv",
+      "results_sha256": "9df90f0a9bf5882f79d3448cd28410f8ea67247052ed643adf3493f055162a10",
+      "epoch_results": [
+        {
+          "epoch": "1",
+          "time": "5.58077",
+          "train/box_loss": "1.05783",
+          "train/pose_loss": "10.9893",
+          "train/kobj_loss": "0.61601",
+          "train/cls_loss": "4.18915",
+          "train/dfl_loss": "0.03411",
+          "train/rle_loss": "47.5997",
+          "metrics/precision(B)": "0",
+          "metrics/recall(B)": "0",
+          "metrics/mAP50(B)": "0",
+          "metrics/mAP50-95(B)": "0",
+          "metrics/precision(P)": "0",
+          "metrics/recall(P)": "0",
+          "metrics/mAP50(P)": "0",
+          "metrics/mAP50-95(P)": "0",
+          "val/box_loss": "3.66404",
+          "val/pose_loss": "11.4315",
+          "val/kobj_loss": "0.60671",
+          "val/cls_loss": "22.0029",
+          "val/dfl_loss": "0.1569",
+          "val/rle_loss": "0",
+          "lr/pg0": "0.0005",
+          "lr/pg1": "0.0005",
+          "lr/pg2": "0.0955"
+        }
+      ],
+      "transfer_count": 795,
+      "initialized_count": 84,
+      "kpt_shape": [
+        14,
+        3
+      ],
+      "official_weights_sha256": "a083adb42303728ae14c4bd6bd56d80da46f82fb2564dbd6f31dcc92ea321646",
+      "logged_peak_gpu_memory_gib": 2.92,
+      "first_run_ball_wall_time_seconds": null,
+      "independent_human_label_reviewed": false,
+      "final_test_used": false,
+      "qualification_evidence": false
+    },
+    {
+      "status": "TRAINED_UNQUALIFIED",
+      "role": "ball",
+      "started_utc": "2026-10-09T18:19:11.044695+08:00",
+      "git_revision": "f854804f4f0d3766e70218d59f06cd6ebb8aaff1",
+      "training_script_sha256": "ac1a1b3cf0571185c5edd5ef5e8ff33755438268a19c839149f76c36ba58707b",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "torch": "2.13.0+cu126",
+      "ultralytics": "8.4.36",
+      "cuda": "12.6",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "free_vram_bytes": 5326766080,
+      "free_ram_bytes": 1177096192,
+      "free_disk_bytes": 53382721536,
+      "data_audit": {
+        "manifest_sha256": "f893ddebf4167e4ee7bad937e661fce96492c74b591c9189e13c779cd999b55e",
+        "split_image_counts": {
+          "train": 5,
+          "val": 0,
+          "test": 0
+        },
+        "labeled_instances": 5,
+        "source_count": 2,
+        "pilot": true,
+        "final_test_used": false,
+        "independent_validation_available": false
+      },
+      "training_arguments": {
+        "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2\\dataset.yaml",
+        "epochs": 4,
+        "imgsz": 1280,
+        "batch": 1,
+        "device": "0",
+        "seed": 709,
+        "deterministic": true,
+        "patience": 20,
+        "save_period": 1,
+        "amp": false,
+        "workers": 0,
+        "cache": false,
+        "optimizer": "AdamW",
+        "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2",
+        "name": "training",
+        "mosaic": 0.0,
+        "close_mosaic": 0,
+        "mixup": 0.0,
+        "copy_paste": 0.0,
+        "scale": 0.1,
+        "translate": 0.03,
+        "fliplr": 0.0,
+        "flipud": 0.0,
+        "degrees": 0.0,
+        "perspective": 0.0,
+        "hsv_h": 0.015,
+        "hsv_s": 0.25,
+        "hsv_v": 0.25,
+        "nbs": 1,
+        "warmup_epochs": 0.0,
+        "lr0": 0.0005
+      },
+      "player_finetune_reason": null,
+      "selection_policy": "PILOT_CHECKPOINT_NEVER_PROMOTED",
+      "validation_policy": "TRAINING_LABEL_OVERFIT_CHECK_NOT_ACCURACY_EVIDENCE",
+      "test_policy": "FINAL_TEST_IS_NOT_RUN_BY_TRAINING_SCRIPT",
+      "optimizer_update_receipts": [
+        {
+          "epoch": 1,
+          "optimizer_step_values": [
+            3.0,
+            5.0
+          ],
+          "batches_per_epoch": 5,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        },
+        {
+          "epoch": 2,
+          "optimizer_step_values": [
+            6.0,
+            10.0
+          ],
+          "batches_per_epoch": 5,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        },
+        {
+          "epoch": 3,
+          "optimizer_step_values": [
+            10.0,
+            15.0
+          ],
+          "batches_per_epoch": 5,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        },
+        {
+          "epoch": 4,
+          "optimizer_step_values": [
+            15.0,
+            20.0
+          ],
+          "batches_per_epoch": 5,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        }
+      ],
+      "completed_utc": "2026-10-09T18:19:58.08165+08:00",
+      "training_elapsed_seconds": 39.70168019999983,
+      "peak_torch_cuda_allocated_bytes": 4644299264,
+      "peak_torch_cuda_reserved_bytes": 5536481280,
+      "checkpoints": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2\\training\\weights\\best.pt",
+          "sha256": "0c008dd2acd9b22681f4574071d28b7046a8b11ff09a8869420b66908278ee16"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2\\training\\weights\\epoch0.pt",
+          "sha256": "064fe1c2b51df94bc0dd9400b18bb5c357daaa32164cbd2990d117216450f381"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2\\training\\weights\\epoch1.pt",
+          "sha256": "235610be11a8aec846c5dcc9a8a03a01f7f3939f566e96361ec436273d240ebe"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2\\training\\weights\\epoch2.pt",
+          "sha256": "f62f1d6f3207a4250a6d17847c32546aeea38902370f706a699e9086d1029a2a"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2\\training\\weights\\epoch3.pt",
+          "sha256": "900ac0580bb71f1e2d2f13c2c9612cdeb62cfb3cdc5db931b255fe1410e8dfa9"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_pilot_v2\\training\\weights\\last.pt",
+          "sha256": "f1c1031dc2064b397dc8572733330ced5cce4c436d5646c118cce1ff862b5d18"
+        }
+      ],
+      "metadata_path": "outputs/yolo26_ball_pilot_v2/run_metadata.json",
+      "metadata_sha256": "43755e4f8b77f58ff06e383d6d020271dece031c906f4142e0a4b74442eee7d8",
+      "results_path": "outputs/yolo26_ball_pilot_v2/training/results.csv",
+      "epoch_results": [
+        {
+          "epoch": "1",
+          "time": "6.5903",
+          "train/box_loss": "1.31901",
+          "train/cls_loss": "29.8067",
+          "train/dfl_loss": "0.00034",
+          "metrics/precision(B)": "0",
+          "metrics/recall(B)": "0",
+          "metrics/mAP50(B)": "0",
+          "metrics/mAP50-95(B)": "0",
+          "val/box_loss": "0.96942",
+          "val/cls_loss": "31.998",
+          "val/dfl_loss": "0.00063",
+          "lr/pg0": "0.0005",
+          "lr/pg1": "0.0005",
+          "lr/pg2": "0.0005"
+        },
+        {
+          "epoch": "2",
+          "time": "12.187",
+          "train/box_loss": "0.94193",
+          "train/cls_loss": "14.294",
+          "train/dfl_loss": "0.00034",
+          "metrics/precision(B)": "0",
+          "metrics/recall(B)": "0",
+          "metrics/mAP50(B)": "0",
+          "metrics/mAP50-95(B)": "0",
+          "val/box_loss": "1.82324",
+          "val/cls_loss": "18.1735",
+          "val/dfl_loss": "0.00085",
+          "lr/pg0": "0.00037625",
+          "lr/pg1": "0.00037625",
+          "lr/pg2": "0.00037625"
+        },
+        {
+          "epoch": "3",
+          "time": "17.9624",
+          "train/box_loss": "0.77629",
+          "train/cls_loss": "8.58511",
+          "train/dfl_loss": "0.00048",
+          "metrics/precision(B)": "0",
+          "metrics/recall(B)": "0",
+          "metrics/mAP50(B)": "0",
+          "metrics/mAP50-95(B)": "0",
+          "val/box_loss": "2.16759",
+          "val/cls_loss": "8.93953",
+          "val/dfl_loss": "0.00122",
+          "lr/pg0": "0.0002525",
+          "lr/pg1": "0.0002525",
+          "lr/pg2": "0.0002525"
+        },
+        {
+          "epoch": "4",
+          "time": "24.7761",
+          "train/box_loss": "0.60654",
+          "train/cls_loss": "6.20415",
+          "train/dfl_loss": "0.00025",
+          "metrics/precision(B)": "0",
+          "metrics/recall(B)": "0",
+          "metrics/mAP50(B)": "0",
+          "metrics/mAP50-95(B)": "0",
+          "val/box_loss": "1.88406",
+          "val/cls_loss": "6.67987",
+          "val/dfl_loss": "0.00128",
+          "lr/pg0": "0.00012875",
+          "lr/pg1": "0.00012875",
+          "lr/pg2": "0.00012875"
+        }
+      ],
+      "qualification_evidence": false
+    },
+    {
+      "status": "RESOURCE_GUARD_BLOCKED_NOT_TRAINED",
+      "role": "ball",
+      "started_utc": "2026-10-09T10:38:27.484529+00:00",
+      "git_revision": "f854804f4f0d3766e70218d59f06cd6ebb8aaff1",
+      "training_script_sha256": "b743122dfbc926c6af6068fa230d76e21e8c337067bef2ed32c117ee54f5ce74",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "torch": "2.13.0+cu126",
+      "ultralytics": "8.4.36",
+      "cuda": "12.6",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "free_vram_bytes": 5326766080,
+      "free_ram_bytes": 848060416,
+      "free_disk_bytes": 52163383296,
+      "data_audit": {
+        "manifest_sha256": "23b41f0c1949d25cb2629799ce0dcc278f316a3ef919f5dfd233af5ad66e0061",
+        "split_image_counts": {
+          "train": 71,
+          "val": 10,
+          "test": 0
+        },
+        "labeled_instances": 81,
+        "source_count": 8,
+        "pilot": true,
+        "final_test_used": false,
+        "held_out_development_sources_available": true,
+        "independent_validation_available": false
+      },
+      "training_arguments": {
+        "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_broadcast_pilot_v1\\dataset.yaml",
+        "epochs": 4,
+        "imgsz": 1280,
+        "batch": 1,
+        "device": "0",
+        "seed": 709,
+        "deterministic": true,
+        "patience": 20,
+        "save_period": 1,
+        "amp": false,
+        "workers": 0,
+        "cache": false,
+        "optimizer": "AdamW",
+        "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_broadcast_pilot_v1",
+        "name": "training",
+        "mosaic": 0.0,
+        "close_mosaic": 0,
+        "mixup": 0.0,
+        "copy_paste": 0.0,
+        "scale": 0.1,
+        "translate": 0.03,
+        "fliplr": 0.0,
+        "flipud": 0.0,
+        "degrees": 0.0,
+        "perspective": 0.0,
+        "hsv_h": 0.015,
+        "hsv_s": 0.25,
+        "hsv_v": 0.25,
+        "nbs": 1,
+        "warmup_epochs": 0.0,
+        "lr0": 0.0005
+      },
+      "player_finetune_reason": null,
+      "selection_policy": "PILOT_CHECKPOINT_NEVER_PROMOTED",
+      "validation_policy": "HELD_OUT_DEVELOPMENT_LABEL_CHECK_NOT_QUALIFICATION",
+      "test_policy": "FINAL_TEST_IS_NOT_RUN_BY_TRAINING_SCRIPT",
+      "failure_type": "ValueError",
+      "failure_reason": "YOLO26m 1280 ball guard: at least 1.5 GiB available RAM required",
+      "failed_utc": "2026-10-09T10:38:29.196632+00:00",
+      "metadata_path": "outputs/yolo26_ball_broadcast_pilot_v1/run_metadata.json",
+      "metadata_sha256": "bd623f1c067e946fbdcff41410bf350b986b45c846a1620a1a57d04b5e3d23e8",
+      "qualification_evidence": false
+    },
+    {
+      "status": "TRAINED_UNQUALIFIED",
+      "role": "ball",
+      "started_utc": "2026-10-09T10:47:05.933798+00:00",
+      "git_revision": "f854804f4f0d3766e70218d59f06cd6ebb8aaff1",
+      "training_script_sha256": "798f286a320337a289759b2389683e22ca301cd005eeb218a3251b0957caf551",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "torch": "2.13.0+cu126",
+      "ultralytics": "8.4.36",
+      "cuda": "12.6",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "free_vram_bytes": 5326766080,
+      "free_ram_bytes": 2274807808,
+      "free_disk_bytes": 52046057472,
+      "data_audit": {
+        "manifest_sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6",
+        "split_image_counts": {
+          "train": 71,
+          "val": 10,
+          "test": 0
+        },
+        "labeled_instances": 81,
+        "source_count": 8,
+        "pilot": true,
+        "final_test_used": false,
+        "held_out_development_sources_available": true,
+        "independent_validation_available": false
+      },
+      "training_arguments": {
+        "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1\\dataset.yaml",
+        "epochs": 4,
+        "imgsz": 640,
+        "batch": 1,
+        "device": "0",
+        "seed": 709,
+        "deterministic": true,
+        "patience": 20,
+        "save_period": 1,
+        "amp": false,
+        "workers": 0,
+        "cache": false,
+        "optimizer": "AdamW",
+        "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1",
+        "name": "training",
+        "mosaic": 0.0,
+        "close_mosaic": 0,
+        "mixup": 0.0,
+        "copy_paste": 0.0,
+        "scale": 0.1,
+        "translate": 0.03,
+        "fliplr": 0.0,
+        "flipud": 0.0,
+        "degrees": 0.0,
+        "perspective": 0.0,
+        "hsv_h": 0.015,
+        "hsv_s": 0.25,
+        "hsv_v": 0.25,
+        "nbs": 1,
+        "warmup_epochs": 0.0,
+        "lr0": 0.0005
+      },
+      "player_finetune_reason": null,
+      "selection_policy": "PILOT_CHECKPOINT_NEVER_PROMOTED",
+      "validation_policy": "JITTERED_NATIVE_DEVELOPMENT_CROP_CHECK_NOT_FULL_FRAME_ACCURACY_OR_QUALIFICATION",
+      "test_policy": "FINAL_TEST_IS_NOT_RUN_BY_TRAINING_SCRIPT",
+      "training_transform": {
+        "kind": "NATIVE_640_JITTERED_DEVELOPMENT_CROPS",
+        "native_pixel_scale": 1.0,
+        "reason": "Measured full-frame YOLO26m1280 CUDA-initialized availableRAM848060416B rejected by1.5GiBguard; tiny full-frame balls shrink by2/3. One native crop experiment preserves pixels and reduces buffers/VRAM.",
+        "resource_rejection_receipt": "outputs\\yolo26_ball_broadcast_pilot_v1\\run_metadata.json",
+        "resource_rejection_sha256": "bd623f1c067e946fbdcff41410bf350b986b45c846a1620a1a57d04b5e3d23e8",
+        "seed": 709,
+        "crop_size_px": [
+          640,
+          640
+        ],
+        "random_target_interval_px": [
+          96,
+          544
+        ],
+        "target_center_min_xy_px": [
+          99.0,
+          21.499999992
+        ],
+        "target_center_max_xy_px": [
+          542.4999993600002,
+          535.4999994799999
+        ],
+        "validation_limitation": "Ground-truth-targeted jittered crops are easier than full-frame discovery. Do not report their scores as full-frame accuracy, independent qualification, or real crop-tracker performance."
+      },
+      "optimizer_update_receipts": [
+        {
+          "epoch": 1,
+          "optimizer_step_values": [
+            68.0,
+            70.0,
+            71.0
+          ],
+          "batches_per_epoch": 71,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        },
+        {
+          "epoch": 2,
+          "optimizer_step_values": [
+            135.0,
+            141.0,
+            142.0
+          ],
+          "batches_per_epoch": 71,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        },
+        {
+          "epoch": 3,
+          "optimizer_step_values": [
+            206.0,
+            212.0,
+            213.0
+          ],
+          "batches_per_epoch": 71,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        },
+        {
+          "epoch": 4,
+          "optimizer_step_values": [
+            276.0,
+            283.0,
+            284.0
+          ],
+          "batches_per_epoch": 71,
+          "accumulation": 1,
+          "warmup_epochs": 0.0
+        }
+      ],
+      "completed_utc": "2026-10-09T10:48:14.633302+00:00",
+      "training_elapsed_seconds": 64.98066099997959,
+      "peak_torch_cuda_allocated_bytes": 1461595136,
+      "peak_torch_cuda_reserved_bytes": 1751121920,
+      "checkpoints": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1\\training\\weights\\best.pt",
+          "sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1\\training\\weights\\epoch0.pt",
+          "sha256": "ff5625e49fc2d77279d4f385f812715057d4a4adca5e46bdc9148bae672ea9de"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1\\training\\weights\\epoch1.pt",
+          "sha256": "dc525303e7d2a8db917162cdfe0b9fef4f5b21e88615941e5824712b36ceebb7"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1\\training\\weights\\epoch2.pt",
+          "sha256": "76ddec3cdd5cfeb179bd98572205f8b23f48fb5f5eef51b8db097e871411fec0"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1\\training\\weights\\epoch3.pt",
+          "sha256": "5ad0d71372ce8c8185adffc34d5d2f83cddf977c48b23421fbd3953d6772dd38"
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_native_crop_pilot_v1\\training\\weights\\last.pt",
+          "sha256": "efd581c19fcad466a864999f1422dcc7488ac30d17619f3a9970c2599ed81153"
+        }
+      ],
+      "metadata_path": "outputs/yolo26_ball_native_crop_pilot_v1/run_metadata.json",
+      "metadata_sha256": "a924258db95b52ac01940f706228b73d7fb34a85cbeeaa23b8358407c92dabd2",
+      "results_path": "outputs/yolo26_ball_native_crop_pilot_v1/training/results.csv",
+      "results_sha256": "825303a6d5f8f3fb7a9439208cee129c7ec8f62b953afab270374f1d34878b1c",
+      "epoch_results": [
+        {
+          "epoch": "1",
+          "time": "14.2802",
+          "train/box_loss": "1.65952",
+          "train/cls_loss": "2.71073",
+          "train/dfl_loss": "0.00179",
+          "metrics/precision(B)": "0.05273",
+          "metrics/recall(B)": "0.1",
+          "metrics/mAP50(B)": "0.02038",
+          "metrics/mAP50-95(B)": "0.00249",
+          "val/box_loss": "2.85143",
+          "val/cls_loss": "6.22381",
+          "val/dfl_loss": "0.00264",
+          "lr/pg0": "0.0005",
+          "lr/pg1": "0.0005",
+          "lr/pg2": "0.0005"
+        },
+        {
+          "epoch": "2",
+          "time": "28.7646",
+          "train/box_loss": "1.6875",
+          "train/cls_loss": "1.05109",
+          "train/dfl_loss": "0.00176",
+          "metrics/precision(B)": "0.56197",
+          "metrics/recall(B)": "0.1",
+          "metrics/mAP50(B)": "0.14264",
+          "metrics/mAP50-95(B)": "0.02019",
+          "val/box_loss": "3.08234",
+          "val/cls_loss": "3.01979",
+          "val/dfl_loss": "0.00289",
+          "lr/pg0": "0.00037625",
+          "lr/pg1": "0.00037625",
+          "lr/pg2": "0.00037625"
+        },
+        {
+          "epoch": "3",
+          "time": "43.2172",
+          "train/box_loss": "1.64446",
+          "train/cls_loss": "0.84255",
+          "train/dfl_loss": "0.00163",
+          "metrics/precision(B)": "0.35333",
+          "metrics/recall(B)": "0.1",
+          "metrics/mAP50(B)": "0.11082",
+          "metrics/mAP50-95(B)": "0.03653",
+          "val/box_loss": "2.40829",
+          "val/cls_loss": "2.58674",
+          "val/dfl_loss": "0.00245",
+          "lr/pg0": "0.0002525",
+          "lr/pg1": "0.0002525",
+          "lr/pg2": "0.0002525"
+        },
+        {
+          "epoch": "4",
+          "time": "58.1984",
+          "train/box_loss": "1.69566",
+          "train/cls_loss": "0.76427",
+          "train/dfl_loss": "0.00165",
+          "metrics/precision(B)": "0.61564",
+          "metrics/recall(B)": "0.2",
+          "metrics/mAP50(B)": "0.1984",
+          "metrics/mAP50-95(B)": "0.0733",
+          "val/box_loss": "2.88263",
+          "val/cls_loss": "2.94348",
+          "val/dfl_loss": "0.00283",
+          "lr/pg0": "0.00012875",
+          "lr/pg1": "0.00012875",
+          "lr/pg2": "0.00012875"
+        }
+      ],
+      "qualification_evidence": false,
+      "fixed_threshold_development_diagnostic": {
+        "status": "FIXED_THRESHOLD_DEVELOPMENT_ERROR_DIAGNOSTIC_NOT_QUALIFICATION",
+        "qualification_evidence": false,
+        "final_test_used": false,
+        "confidence": 0.01,
+        "iou_match": 0.5,
+        "aggregates": {
+          "oracle_crop": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 3,
+            "missed_targets_conf001_iou05": 7,
+            "total_returned_candidates_conf001": 21,
+            "unmatched_or_duplicate_candidates": 18,
+            "median_nearest_candidate_center_error_native_px": 1.78935308164533
+          },
+          "full_native_frame": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 0,
+            "missed_targets_conf001_iou05": 10,
+            "total_returned_candidates_conf001": 43,
+            "unmatched_or_duplicate_candidates": 43,
+            "median_nearest_candidate_center_error_native_px": 400.7617116442058
+          }
+        },
+        "limitations": [
+          "Agent-expanded boxes, no independent human review",
+          "Only one development indoor broadcast context",
+          "Oracle crops selected using ground truth; crop scores do not show full-frame coverage",
+          "Nearest-center errors are conditional on a returned candidate and may describe false detections",
+          "Unmatched predictions on positive-only frames are diagnostic false/duplicate candidates, not negative-video false-alarm rate"
+        ],
+        "receipt_path": "outputs/yolo26_ball_native_crop_diagnostic_v1/diagnostic.json",
+        "receipt_sha256": "4133cbcff09b4339934b10ee1e8bf4bf413c6d8ae83823fa94366cb8df613275",
+        "script_sha256": "ee433657a3d178ca694e59ab73e5c14cc24d9636ffb08a94c1a208cded853e2b",
+        "review_sheets": [
+          {
+            "path": "outputs/yolo26_ball_native_crop_diagnostic_v1/review_00.jpg",
+            "sha256": "892b82ecd139fb35ec305b209cdc1ef3d9a2d1967837e2f7b179490731615d90",
+            "reviewer": "AGENT_VISUAL_REVIEW",
+            "independent_human_review": false
+          },
+          {
+            "path": "outputs/yolo26_ball_native_crop_diagnostic_v1/review_01.jpg",
+            "sha256": "f9f95d0b6180e97d988fe56d5569857585eb6c1bff930b923eeedd3f2d4184e3",
+            "reviewer": "AGENT_VISUAL_REVIEW",
+            "independent_human_review": false
+          }
+        ]
+      },
+      "fixed_native_tile_development_diagnostic": {
+        "status": "FIXED_NATIVE_TILE_DEVELOPMENT_DIAGNOSTIC_NOT_QUALIFICATION",
+        "qualification_evidence": false,
+        "final_test_used": false,
+        "training_performed": false,
+        "checkpoint_promoted": false,
+        "private_local_only": true,
+        "confidence": 0.01,
+        "iou_match": 0.5,
+        "checkpoint_sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78",
+        "manifest_sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6",
+        "protocol_sha256": "6ead01a0255af64b68dda683dd9fb2bd4b3b6bfca6bd09087fad3c11ddb6cee8",
+        "script_sha256": "b419c059a54db89b5cae744cc5a23f7971e95850355cc653dcf85b57888712cd",
+        "resource_guard": {
+          "free_disk_bytes": 50951757824,
+          "free_ram_bytes": 1984892928,
+          "free_vram_bytes": 5326766080
+        },
+        "limitations": [
+          "Ten positive development frames from one already-seen indoor broadcast context",
+          "Agent-selected boxes have no independent human box review",
+          "Nearest-center errors can describe false objects and exclude frames with no candidates",
+          "Unmatched proposals are positive-frame false/duplicate candidates, not a negative-video false-alarm rate",
+          "No final-test, reserved NKUST reference, speed, tracking or qualification evidence"
+        ],
+        "receipt_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/diagnostic.json",
+        "receipt_sha256": "237fae8f7a33aa64a3f03393e387099682e023c330ca8c73015fb5b92a2f56f2",
+        "protocol_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/protocol.json",
+        "script_path": "scripts/data/diagnose_yolo26_native_tiles.py",
+        "tiling": {
+          "tile_size_px": 640,
+          "nominal_overlap": 0.2,
+          "native_pixel_scale": 1.0,
+          "edge_anchored_regions_xyxy_px": [
+            [
+              0,
+              0,
+              640,
+              640
+            ],
+            [
+              512,
+              0,
+              1152,
+              640
+            ],
+            [
+              1024,
+              0,
+              1664,
+              640
+            ],
+            [
+              1280,
+              0,
+              1920,
+              640
+            ],
+            [
+              0,
+              440,
+              640,
+              1080
+            ],
+            [
+              512,
+              440,
+              1152,
+              1080
+            ],
+            [
+              1024,
+              440,
+              1664,
+              1080
+            ],
+            [
+              1280,
+              440,
+              1920,
+              1080
+            ]
+          ],
+          "selection": "ALL_EIGHT_FIXED_LABEL_INDEPENDENT_TILES_NO_FULL_FRAME_PASS"
+        },
+        "deduplication": {
+          "iou": 0.5,
+          "center_distance_px": 2.0,
+          "rule": "IOU_GE_0_5_OR_CENTER_DISTANCE_LE_2_NATIVE_PX",
+          "ordering": "STABLE_DESCENDING_CONFIDENCE_FIRST_ACCEPTED_REPRESENTATIVE"
+        },
+        "aggregates": {
+          "native_tiles": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": 9,
+            "total_returned_candidates_conf001": 2,
+            "unmatched_or_duplicate_candidates": 1,
+            "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+            "median_matched_candidate_center_error_native_px": 1.141992567712991
+          },
+          "raw_native_tiles_before_dedup": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": 9,
+            "total_returned_candidates_conf001": 2,
+            "unmatched_or_duplicate_candidates": 1,
+            "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+            "median_matched_candidate_center_error_native_px": 1.141992567712991
+          },
+          "total_raw_returned_candidates": 2,
+          "total_dedup_suppressed_candidates": 0
+        },
+        "before_after": {
+          "baseline_full_native_frame_imgsz1280": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 0,
+            "missed_targets_conf001_iou05": 10,
+            "total_returned_candidates_conf001": 43,
+            "unmatched_or_duplicate_candidates": 43,
+            "median_nearest_candidate_center_error_native_px": 400.7617116442058
+          },
+          "context_only_oracle_crop_imgsz640": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 3,
+            "missed_targets_conf001_iou05": 7,
+            "total_returned_candidates_conf001": 21,
+            "unmatched_or_duplicate_candidates": 18,
+            "median_nearest_candidate_center_error_native_px": 1.78935308164533
+          },
+          "native_tiles_imgsz640_after_dedup": {
+            "reviewed_targets": 10,
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": 9,
+            "total_returned_candidates_conf001": 2,
+            "unmatched_or_duplicate_candidates": 1,
+            "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+            "median_matched_candidate_center_error_native_px": 1.141992567712991
+          },
+          "native_tiles_minus_baseline_counts": {
+            "matched_targets_conf001_iou05": 1,
+            "missed_targets_conf001_iou05": -1,
+            "total_returned_candidates_conf001": -41,
+            "unmatched_or_duplicate_candidates": -42
+          },
+          "frame_match_transitions": [
+            {
+              "frame_index": 56,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 103,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 163,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 234,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 281,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 329,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 376,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 435,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 483,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": false
+            },
+            {
+              "frame_index": 530,
+              "before_full_native_frame_matched": false,
+              "after_native_tiles_matched": true
+            }
+          ],
+          "interpretation": "POSITIVE_ONLY_DEVELOPMENT_COMPARISON_NO_NEGATIVE_FALSE_ALARM_RATE_OR_QUALIFICATION"
+        },
+        "actual_network_tensor_shapes": [
+          [
+            1,
+            3,
+            640,
+            640
+          ]
+        ],
+        "resource_usage": {
+          "elapsed_seconds": 2.8693419999908656,
+          "torch_peak_allocated_bytes": 200986112,
+          "torch_peak_reserved_bytes": 257949696
+        }
+      },
+      "fixed_native_tile_development_diagnostic_attempts": [
+        {
+          "status": "RESOURCE_GUARD_BLOCKED_NOT_INFERRED",
+          "qualification_evidence": false,
+          "final_test_used": false,
+          "training_performed": false,
+          "checkpoint_promoted": false,
+          "private_local_only": true,
+          "confidence": 0.01,
+          "iou_match": 0.5,
+          "checkpoint_sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78",
+          "manifest_sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6",
+          "protocol_sha256": "6179d5c93331f54a71146b9d49292e4dcba5f5e114e9a59e68bed0ab1e3dbc1d",
+          "script_sha256": "7282a3c1cb742444d40b97c36ecad3a3b204611ffd5e955e1d32509fb2861309",
+          "resource_guard": {
+            "free_disk_bytes": 50987155456,
+            "free_ram_bytes": 956555264,
+            "free_vram_bytes": 5326766080
+          },
+          "limitations": [
+            "Ten positive development frames from one already-seen indoor broadcast context",
+            "Agent-selected boxes have no independent human box review",
+            "Nearest-center errors can describe false objects and exclude frames with no candidates",
+            "Unmatched proposals are positive-frame false/duplicate candidates, not a negative-video false-alarm rate",
+            "No final-test, reserved NKUST reference, speed, tracking or qualification evidence"
+          ],
+          "receipt_path": "outputs/yolo26_ball_native_tile_diagnostic_v1/diagnostic.json",
+          "receipt_sha256": "4e6036adbca52f11a636c23b9c6ee538b2d7dde747d97b36832f4e3aed689681",
+          "protocol_path": "outputs/yolo26_ball_native_tile_diagnostic_v1/protocol.json",
+          "script_path": "outputs/yolo26_ball_native_tile_diagnostic_v1/diagnostic_script.py",
+          "tiling": {
+            "tile_size_px": 640,
+            "nominal_overlap": 0.2,
+            "native_pixel_scale": 1.0,
+            "edge_anchored_regions_xyxy_px": [
+              [
+                0,
+                0,
+                640,
+                640
+              ],
+              [
+                512,
+                0,
+                1152,
+                640
+              ],
+              [
+                1024,
+                0,
+                1664,
+                640
+              ],
+              [
+                1280,
+                0,
+                1920,
+                640
+              ],
+              [
+                0,
+                440,
+                640,
+                1080
+              ],
+              [
+                512,
+                440,
+                1152,
+                1080
+              ],
+              [
+                1024,
+                440,
+                1664,
+                1080
+              ],
+              [
+                1280,
+                440,
+                1920,
+                1080
+              ]
+            ],
+            "selection": "ALL_EIGHT_FIXED_LABEL_INDEPENDENT_TILES_NO_FULL_FRAME_PASS"
+          },
+          "deduplication": {
+            "iou": 0.5,
+            "center_distance_px": 2.0,
+            "rule": "IOU_GE_0_5_OR_CENTER_DISTANCE_LE_2_NATIVE_PX",
+            "ordering": "STABLE_DESCENDING_CONFIDENCE_FIRST_ACCEPTED_REPRESENTATIVE"
+          },
+          "resource_guard_floors_bytes": {
+            "free_disk_bytes": 1073741824,
+            "free_ram_bytes": 1073741824,
+            "free_vram_bytes": 2147483648
+          },
+          "guard_error": "Native tile inference guard requires 1 GiB available RAM after CUDA initialization; no unrelated processes are stopped",
+          "model_constructed": false,
+          "inference_performed": false
+        },
+        {
+          "status": "FIXED_NATIVE_TILE_DEVELOPMENT_DIAGNOSTIC_NOT_QUALIFICATION",
+          "qualification_evidence": false,
+          "final_test_used": false,
+          "training_performed": false,
+          "checkpoint_promoted": false,
+          "private_local_only": true,
+          "confidence": 0.01,
+          "iou_match": 0.5,
+          "checkpoint_sha256": "3fbbadc1431ada8b1f7be9387d6b3ccfbc49120f5fa6979d14b84830dd5f8a78",
+          "manifest_sha256": "10184dd0ccea015484cb663d59438751430e1cd3a6d38cd741baf95d052c06b6",
+          "protocol_sha256": "6ead01a0255af64b68dda683dd9fb2bd4b3b6bfca6bd09087fad3c11ddb6cee8",
+          "script_sha256": "b419c059a54db89b5cae744cc5a23f7971e95850355cc653dcf85b57888712cd",
+          "resource_guard": {
+            "free_disk_bytes": 50951757824,
+            "free_ram_bytes": 1984892928,
+            "free_vram_bytes": 5326766080
+          },
+          "limitations": [
+            "Ten positive development frames from one already-seen indoor broadcast context",
+            "Agent-selected boxes have no independent human box review",
+            "Nearest-center errors can describe false objects and exclude frames with no candidates",
+            "Unmatched proposals are positive-frame false/duplicate candidates, not a negative-video false-alarm rate",
+            "No final-test, reserved NKUST reference, speed, tracking or qualification evidence"
+          ],
+          "receipt_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/diagnostic.json",
+          "receipt_sha256": "237fae8f7a33aa64a3f03393e387099682e023c330ca8c73015fb5b92a2f56f2",
+          "protocol_path": "outputs/yolo26_ball_native_tile_diagnostic_v2/protocol.json",
+          "script_path": "scripts/data/diagnose_yolo26_native_tiles.py",
+          "tiling": {
+            "tile_size_px": 640,
+            "nominal_overlap": 0.2,
+            "native_pixel_scale": 1.0,
+            "edge_anchored_regions_xyxy_px": [
+              [
+                0,
+                0,
+                640,
+                640
+              ],
+              [
+                512,
+                0,
+                1152,
+                640
+              ],
+              [
+                1024,
+                0,
+                1664,
+                640
+              ],
+              [
+                1280,
+                0,
+                1920,
+                640
+              ],
+              [
+                0,
+                440,
+                640,
+                1080
+              ],
+              [
+                512,
+                440,
+                1152,
+                1080
+              ],
+              [
+                1024,
+                440,
+                1664,
+                1080
+              ],
+              [
+                1280,
+                440,
+                1920,
+                1080
+              ]
+            ],
+            "selection": "ALL_EIGHT_FIXED_LABEL_INDEPENDENT_TILES_NO_FULL_FRAME_PASS"
+          },
+          "deduplication": {
+            "iou": 0.5,
+            "center_distance_px": 2.0,
+            "rule": "IOU_GE_0_5_OR_CENTER_DISTANCE_LE_2_NATIVE_PX",
+            "ordering": "STABLE_DESCENDING_CONFIDENCE_FIRST_ACCEPTED_REPRESENTATIVE"
+          },
+          "aggregates": {
+            "native_tiles": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": 9,
+              "total_returned_candidates_conf001": 2,
+              "unmatched_or_duplicate_candidates": 1,
+              "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+              "median_matched_candidate_center_error_native_px": 1.141992567712991
+            },
+            "raw_native_tiles_before_dedup": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": 9,
+              "total_returned_candidates_conf001": 2,
+              "unmatched_or_duplicate_candidates": 1,
+              "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+              "median_matched_candidate_center_error_native_px": 1.141992567712991
+            },
+            "total_raw_returned_candidates": 2,
+            "total_dedup_suppressed_candidates": 0
+          },
+          "before_after": {
+            "baseline_full_native_frame_imgsz1280": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 0,
+              "missed_targets_conf001_iou05": 10,
+              "total_returned_candidates_conf001": 43,
+              "unmatched_or_duplicate_candidates": 43,
+              "median_nearest_candidate_center_error_native_px": 400.7617116442058
+            },
+            "context_only_oracle_crop_imgsz640": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 3,
+              "missed_targets_conf001_iou05": 7,
+              "total_returned_candidates_conf001": 21,
+              "unmatched_or_duplicate_candidates": 18,
+              "median_nearest_candidate_center_error_native_px": 1.78935308164533
+            },
+            "native_tiles_imgsz640_after_dedup": {
+              "reviewed_targets": 10,
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": 9,
+              "total_returned_candidates_conf001": 2,
+              "unmatched_or_duplicate_candidates": 1,
+              "median_nearest_candidate_center_error_native_px": 245.9961841904798,
+              "median_matched_candidate_center_error_native_px": 1.141992567712991
+            },
+            "native_tiles_minus_baseline_counts": {
+              "matched_targets_conf001_iou05": 1,
+              "missed_targets_conf001_iou05": -1,
+              "total_returned_candidates_conf001": -41,
+              "unmatched_or_duplicate_candidates": -42
+            },
+            "frame_match_transitions": [
+              {
+                "frame_index": 56,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 103,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 163,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 234,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 281,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 329,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 376,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 435,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 483,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": false
+              },
+              {
+                "frame_index": 530,
+                "before_full_native_frame_matched": false,
+                "after_native_tiles_matched": true
+              }
+            ],
+            "interpretation": "POSITIVE_ONLY_DEVELOPMENT_COMPARISON_NO_NEGATIVE_FALSE_ALARM_RATE_OR_QUALIFICATION"
+          },
+          "actual_network_tensor_shapes": [
+            [
+              1,
+              3,
+              640,
+              640
+            ]
+          ],
+          "resource_usage": {
+            "elapsed_seconds": 2.8693419999908656,
+            "torch_peak_allocated_bytes": 200986112,
+            "torch_peak_reserved_bytes": 257949696
+          }
+        }
+      ]
+    }
+  ],
+  "post_training_adapter_smoke": [
+    {
+      "role": "ball",
+      "task": "detect",
+      "scale": "m",
+      "kpt_shape": null,
+      "names": {
+        "0": "tennis-ball"
+      },
+      "end2end": true,
+      "native_frame_shape": [
+        1080,
+        1920,
+        3
+      ],
+      "image_size": 1280,
+      "device": "cpu",
+      "cold_load_and_inference_seconds": 5.079449600016233,
+      "observations": 14,
+      "qualification_evidence": false,
+      "interpretation": "Only task/head/checkpoint/decoder compatibility; no accuracy or throughput claim"
+    },
+    {
+      "role": "court",
+      "task": "pose",
+      "scale": "s",
+      "kpt_shape": [
+        14,
+        3
+      ],
+      "names": {
+        "0": "court"
+      },
+      "end2end": true,
+      "native_frame_shape": [
+        1080,
+        1920,
+        3
+      ],
+      "image_size": 1280,
+      "device": "cpu",
+      "cold_load_and_inference_seconds": 0.475636699993629,
+      "qualification_evidence": false,
+      "interpretation": "Only task/head/checkpoint/decoder compatibility; no accuracy or throughput claim",
+      "output_slot_count": 14,
+      "observation_count": "NOT_RECORDED; fourteen output slots may be masked unknown; no accuracy interpretation"
+    }
+  ]
+}

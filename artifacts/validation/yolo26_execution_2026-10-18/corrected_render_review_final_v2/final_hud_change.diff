@@ -1,0 +1,17 @@
+--- settled-before-final-HUD-label
++++ current-final-HUD-label
+@@ -360,8 +360,12 @@
+                     if hud['score_confirmed'] else f'PLAYER {player}: Score requires review')
+             _text(image, text, (40, y), scale=.85,
+                   color=(0, 255, 255) if hud['server_id'] == player else (255, 255, 255))
+-        _text(image, f"SERVE {hud['serve_attempt']} ({hud['service_side']}) | STATE: {hud['point_state']}",
+-              (max(40, width-720), 55), scale=.70, color=(200, 200, 200))
++        state_label = str(hud['point_state']).replace('_', ' ').capitalize()
++        label = f"Serve {hud['serve_attempt']} ({hud['service_side'].lower()}) | {state_label}"
++        left, right = max(40, width-720), width-mini.width-15
++        text_width = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, .55, 2)[0][0]
++        scale = min(.55, .55*max(1, right-left)/max(1, text_width))
++        _text(image, label, (left, 55), scale=scale, color=(200, 200, 200))
+     else:
+         _text(image, 'Tennis analysis - score unavailable', (30, 38), scale=.8)
+         _text(image, 'Outside supported interval' if not allowed else 'Event authority unavailable', (30, 72))

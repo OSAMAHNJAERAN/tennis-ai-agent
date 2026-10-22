@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "qualification_evidence": false,
+  "scientific_split": "DIAGNOSTIC_PRODUCT_DEMO",
+  "purpose": "RAW_PERSON_MASK_OVERLAY_FEASIBILITY_NO_PRODUCTION_IDENTITIES",
+  "source": "artifacts\\demos\\sources\\dimitrov_tiafoe_2024_rally.mkv",
+  "source_sha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+  "source_fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "labels": "artifacts\\validation\\product_execution\\active_person_original_review\\labels.json",
+  "labels_sha256": "6a714c0967fbc53183bea15658dced5a1453a20adaf47ca75a0d69dea67cfa01",
+  "label_scope": "EIGHT_EXACT_ORIGINAL_FRAMES_REVIEWED_WITHOUT_MODEL_BOXES",
+  "negative_scope": "Four explicit nonparticipants per sampled frame; this does not exhaustively annotate the spectators. Unmatched all-person proposals must not be scored as detector false positives.",
+  "asset_manifest_sha256": "ed6f860fd06f925f5fcd965520342572c7d4bd5afcf90f9c6455a738217c90c3",
+  "checkpoint_sha256": "0bc32bc92e985b881141ef9bd2216e2a746f70519d0d24da9fc85decc4428cf4",
+  "rejected_pickle_checkpoint_executed": false,
+  "configuration": {
+    "method": "OFFICIAL_YOLO11N_SEG_ONNX",
+    "backend": "OPENCV_DNN_CPU",
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "confidence": 0.25,
+    "nms_iou": 0.7,
+    "max_det": 100,
+    "class_id": 0,
+    "mask_logit_threshold": 0.0,
+    "overlay_alpha": 0.22,
+    "opencv_threads": 2,
+    "numpy_blas_threads": 2,
+    "preprocessing": "BGR_TO_RGB_FLOAT32_DIV255_CENTER_LETTERBOX_114",
+    "postprocessing": "PERSON_MAX_CLASS_NMS_NATIVE_LOGIT_MASK_UNPAD_BILINEAR_ORIGINAL_BOX_CROP",
+    "interpolation": "OPENCV_INTER_LINEAR_NOT_CLAIMED_NUMERICALLY_IDENTICAL_TO_TORCH",
+    "identity_or_tracking_used_for_selection": false
+  },
+  "coverage_bbox_iou_threshold": 0.5,
+  "temporal_scope": "FOUR_ADJACENT_FRAMES_ONLY_UNLABELED_MUTUAL_BOX_MATCH_PROXY",
+  "mask_pixel_ground_truth_available": false,
+  "required_review": [
+    "both_visible_bodies",
+    "limbs_and_feet",
+    "false_background_masks",
+    "crew_spectator_masks",
+    "absent_near_body_at_frame300",
+    "adjacent_mask_area_and_shape_proxy"
+  ],
+  "protocol_note_sha256": "d85b3001c326531204e6b5b5e1960234ca35bbaece0dd2bf4bfe06f41b3c429a",
+  "script_sha256": "de4f3c5b97d192a54c1d35da6ebb92bd73aaab60fef7c16d0d181f88974f0434",
+  "frames": [
+    {
+      "frame_index": 0,
+      "source_frame_index": 390,
+      "timestamp_seconds": 0.0,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0000.png",
+      "sha256": "b45f75203f203b4b0da3ba479efd90249e123175eb1526ac620420ea901d22ad",
+      "review_labels_available": true
+    },
+    {
+      "frame_index": 120,
+      "source_frame_index": 510,
+      "timestamp_seconds": 2.0,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0120.png",
+      "sha256": "1d5fdc0f6d1ac854758153895b16850c95ce1f66c41cce07ab115dcee1702985",
+      "review_labels_available": true
+    },
+    {
+      "frame_index": 240,
+      "source_frame_index": 630,
+      "timestamp_seconds": 4.0,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0240.png",
+      "sha256": "c3dc89fb7037d2241e0d77717fdd76f7ab2935e7112ba8c57279e1e311a88ae8",
+      "review_labels_available": true
+    },
+    {
+      "frame_index": 270,
+      "source_frame_index": 660,
+      "timestamp_seconds": 4.5,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0270.png",
+      "sha256": "22a67668708099485d37177bf0d652634c8ab8424316e9196819d6bc0ed5f8b9",
+      "review_labels_available": true
+    },
+    {
+      "frame_index": 300,
+      "source_frame_index": 690,
+      "timestamp_seconds": 5.0,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0300.png",
+      "sha256": "fe973ff457a71153a4c7ef2bf14fe9a26265d287e5e70531640cb7f3d774ece7",
+      "review_labels_available": true
+    },
+    {
+      "frame_index": 309,
+      "source_frame_index": 699,
+      "timestamp_seconds": 5.15,
+      "path": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\inputs\\original_frame_0309.png",
+      "sha256": "d756ab4b3a26ca768c0157340078a8c38eda5a095ffd5761bc11c5b1ed32dbe3",
+      "review_labels_available": false
+    },
+    {
+      "frame_index": 310,
+      "source_frame_index": 700,
+      "timestamp_seconds": 5.166666666666667,
+      "path": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\inputs\\original_frame_0310.png",
+      "sha256": "15b83158aeef42491f9e532d1dde774ee46cd2ef379f9c198b4bddd5d6eb708c",
+      "review_labels_available": false
+    },
+    {
+      "frame_index": 311,
+      "source_frame_index": 701,
+      "timestamp_seconds": 5.183333333333334,
+      "path": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\inputs\\original_frame_0311.png",
+      "sha256": "9c99d11adea633e540844f85a9341504b5a8072eba9541ad52fdb962a29cd5a0",
+      "review_labels_available": false
+    },
+    {
+      "frame_index": 312,
+      "source_frame_index": 702,
+      "timestamp_seconds": 5.2,
+      "path": "artifacts\\validation\\product_execution\\person_mask_diagnostic02\\inputs\\original_frame_0312.png",
+      "sha256": "750fd1411ce4845fbf3f0fd39e2fa7fb6b63fb0b292569e270123f86a09d153e",
+      "review_labels_available": false
+    },
+    {
+      "frame_index": 360,
+      "source_frame_index": 750,
+      "timestamp_seconds": 6.0,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0360.png",
+      "sha256": "034963bbb1f851b34e94b82c9982c5d1a230ce9e374f83e226cd726a46bb93d7",
+      "review_labels_available": true
+    },
+    {
+      "frame_index": 480,
+      "source_frame_index": 870,
+      "timestamp_seconds": 8.0,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0480.png",
+      "sha256": "09c3d4590d6a49681731b1a8f02d4d6d29961c9287e60b65d8e1883022448b99",
+      "review_labels_available": true
+    },
+    {
+      "frame_index": 540,
+      "source_frame_index": 930,
+      "timestamp_seconds": 9.0,
+      "path": "artifacts/validation/product_execution/active_person_original_review/original_frame_0540.png",
+      "sha256": "d9ff6adff63358874b91dc472ae23fb94cc472f6e29aa0379d3e3e5b8d9b311f",
+      "review_labels_available": true
+    }
+  ]
+}

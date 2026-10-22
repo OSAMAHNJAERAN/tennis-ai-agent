@@ -1,0 +1,51 @@
+{
+  "declaredAt": "2026-10-05T04:38:52.676870+00:00",
+  "sourceBindingsBefore": {
+    "scripts/audit/measure_registration_storage.py": "b3fb11298aea3d742dbea859b8eabb46e6ce06ef7417056de3374c39e94a97c6",
+    "scripts/audit/measure_candidate_storage.py": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39",
+    "src/utils/frame_registration_sequence.py": "bcff4f7ea0146b16576e5209b436668603894672be07be1e14da397313d2e796",
+    "src/court/calibration.py": "64ebc0a0e3785fc98088ac347c2d999deaf91411f76c1a36191f03fd72f5262c",
+    "src/pipeline/phase6_pipeline.py": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec",
+    "src/court/camera_registration.py": "24793c60a8d3e1fac4c241b66b02d92f93fb982a1b7a90df652db462b0454fd7",
+    "src/tracking/court_player_tracker.py": "56497994399a3de17f3c8a5de951a8b8e41c0fa5fc4a7cfbef550298a1c896b3",
+    "requirements-product.txt": "2d35459dcb01d87f29250e4436fabbf24fef624f7483edc47d666788b3358e09",
+    "configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml": "84505e944f2650cbe0edc490e4123e52137dc0a5af5fd6013e47acdf4ba030b6",
+    "artifacts/validation/product_installation/clean_env/Scripts/python.exe": "935016795f3e6908e75acbc2040a01e2e4cdb494a57c42f63a0d6eedb2372256"
+  },
+  "cases": [
+    [
+      "dynamic",
+      600
+    ],
+    [
+      "dynamic",
+      18000
+    ],
+    [
+      "dynamic",
+      432000
+    ],
+    [
+      "dynamic",
+      864000
+    ],
+    [
+      "static",
+      864000
+    ]
+  ],
+  "modes": [
+    "old",
+    "new"
+  ],
+  "scope": "Synthetic registration records only; no video, models, training or accuracy qualification.",
+  "sampleSeconds": 0.25,
+  "preflightAvailableRamBytes": 2500000000,
+  "maximumOwnedTreeRssBytes": 1400000000,
+  "minimumAvailableRamBytes": 400000000,
+  "lowRamConsecutiveSamples": 5,
+  "maximumChildWallSeconds": 300,
+  "minimumFreeDiskBytes": 4000000000,
+  "retention": "Preserve all logs and partials; no retry or broad cleanup.",
+  "actualIdentitySamplingHandshake": "Child waits up to10seconds before heavy imports/work until parent acknowledges its exact sampled identity."
+}

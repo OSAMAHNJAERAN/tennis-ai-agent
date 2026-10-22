@@ -8,7 +8,8 @@ from src.scoring.match_state import (
     ServiceSide,
     PointState,
     BallPlayState,
-    CompletedSetScore
+    CompletedSetScore,
+    ServerCourtEnd
 )
 
 class TennisScoringRules:
@@ -24,7 +25,9 @@ class TennisScoringRules:
         Awards a scored point to winner_id (1 or 2), updating points, games,
         tiebreaks, sets, server rotation, and service sides.
         """
-        if state.match_complete:
+        if winner_id not in (state.player_1_id, state.player_2_id):
+            raise ValueError("Point winner must be a match participant.")
+        if state.match_complete or state.match_status in ("RETIRED", "SUSPENDED"):
             return state
 
         st = copy.deepcopy(state)
@@ -51,6 +54,10 @@ class TennisScoringRules:
         Returns: (updated_state, is_double_fault)
         """
         st = copy.deepcopy(state)
+        if server_id != st.server_id:
+            raise ValueError("A service fault must identify the current server.")
+        if st.match_complete or st.match_status in ("RETIRED", "SUSPENDED"):
+            return st, False
         
         if st.serve_attempt == 1:
             st.serve_attempt = 2
@@ -71,6 +78,8 @@ class TennisScoringRules:
         Records a service let. Same server replays the same service attempt with NO POINT AWARDED.
         """
         st = copy.deepcopy(state)
+        if st.match_complete or st.match_status in ("RETIRED", "SUSPENDED"):
+            return st
         st.ball_state = BallPlayState.LET_REPLAY
         st.point_state = PointState.WAITING_FOR_SERVE if st.serve_attempt == 1 else PointState.SECOND_SERVE_WAITING
         st.last_point_reason = "Service let: replay serve"
@@ -111,13 +120,16 @@ class TennisScoringRules:
         total_tb = tb1 + tb2
 
         # Check Tie-Break Win condition: >= 7 points AND lead >= 2 points
-        if tb1 >= 7 and tb1 >= tb2 + 2:
+        target = st.active_tie_break_target()
+        if tb1 >= target and tb1 >= tb2 + 2:
             st.games_p1 += 1
             cls._award_set(st, st.player_1_id, tb_p1=tb1, tb_p2=tb2)
-        elif tb2 >= 7 and tb2 >= tb1 + 2:
+        elif tb2 >= target and tb2 >= tb1 + 2:
             st.games_p2 += 1
             cls._award_set(st, st.player_2_id, tb_p1=tb1, tb_p2=tb2)
         else:
+            if total_tb % 6 == 0:
+                cls._change_ends(st)
             # Tie-break continues -> Update server and side rotation (Rule 5.b)
             # Service rotation: 1st point by initial server, then 2 points by opponent, then alternate every 2 points
             # Formula: (total_tb + 1) // 2 is the block index
@@ -148,9 +160,11 @@ class TennisScoringRules:
         g1 = st.games_p1
         g2 = st.games_p2
         st.current_game += 1
+        if (g1 + g2) % 2 == 1:
+            cls._change_ends(st)
 
         # Check Set Win condition (ITF Rule 6)
-        if st.set_format == SetFormat.TIE_BREAK_SET:
+        if st.active_set_format() == SetFormat.TIE_BREAK_SET:
             if g1 >= 6 and g1 >= g2 + 2:
                 cls._award_set(st, st.player_1_id)
             elif g2 >= 6 and g2 >= g1 + 2:
@@ -183,6 +197,12 @@ class TennisScoringRules:
         st.server_id, st.receiver_id = st.receiver_id, st.server_id
         st.service_side = ServiceSide.DEUCE
 
+    @staticmethod
+    def _change_ends(st: MatchState) -> None:
+        st.player_1_court_end = (ServerCourtEnd.FAR_COURT
+                                if st.player_1_court_end == ServerCourtEnd.NEAR_COURT
+                                else ServerCourtEnd.NEAR_COURT)
+
     @classmethod
     def _award_set(
         cls,
@@ -201,6 +221,9 @@ class TennisScoringRules:
             winner_id=set_winner_id
         )
         st.completed_sets.append(set_score)
+        was_tie_break = st.tie_break_active
+        if was_tie_break:
+            cls._change_ends(st)  # The tie-break is the thirteenth game.
 
         if set_winner_id == st.player_1_id:
             st.sets_won_p1 += 1
@@ -211,10 +234,12 @@ class TennisScoringRules:
 
         if st.sets_won_p1 >= required_sets:
             st.match_complete = True
-            st.winner_id = st.player_1_id
+            st.winner_id = st.player_1_id if st.initial_state_confirmed and st.score_confirmed else None
+            st.match_status = "COMPLETED" if st.winner_id is not None else "PARTIAL"
         elif st.sets_won_p2 >= required_sets:
             st.match_complete = True
-            st.winner_id = st.player_2_id
+            st.winner_id = st.player_2_id if st.initial_state_confirmed and st.score_confirmed else None
+            st.match_status = "COMPLETED" if st.winner_id is not None else "PARTIAL"
         else:
             # Match continues -> Initialize next set
             st.current_set += 1
@@ -226,12 +251,40 @@ class TennisScoringRules:
             st.tie_break_active = False
             st.tie_break_points_p1 = 0
             st.tie_break_points_p2 = 0
+            if was_tie_break:
+                # Rule 5(b): first tie-break server receives in the next set,
+                # regardless of who served the final tie-break point.
+                st.server_id = st.initial_server_id
+                st.receiver_id = st.player_2_id if st.server_id == st.player_1_id else st.player_1_id
             cls._rotate_standard_server(st)
 
     @classmethod
     def validate_invariants(cls, st: MatchState) -> List[str]:
         """Validates all mathematical and tennis rule invariants on MatchState."""
         violations = []
+        participants = (st.player_1_id, st.player_2_id)
+        if st.player_1_id == st.player_2_id:
+            violations.append("Match participants must be distinct.")
+        if st.server_id not in participants or st.receiver_id not in participants:
+            violations.append("Server and receiver must be match participants.")
+        if st.initial_server_id not in participants:
+            violations.append("Initial server must be a match participant.")
+        if st.tie_break_points_to_win not in (7, 10) or st.deciding_set_tie_break_points_to_win not in (None, 7, 10):
+            violations.append("Supported tie-break targets are 7 and 10.")
+        if st.tie_break_points_p1 < 0 or st.tie_break_points_p2 < 0:
+            violations.append("Negative tie-break score.")
+        if st.current_set < 1 or st.current_game < 1:
+            violations.append("Set and game numbers must be positive.")
+        if st.tie_break_active and (st.games_p1, st.games_p2) != (6, 6) and not st.match_complete:
+            violations.append("A set tie-break begins at six games all.")
+        if not st.match_complete and st.active_set_format() == SetFormat.TIE_BREAK_SET and max(st.games_p1, st.games_p2) > 6:
+            violations.append("A completed tie-break set cannot remain the active set.")
+        if not st.match_complete and max(st.points_p1, st.points_p2) >= 4 and abs(st.points_p1 - st.points_p2) >= 2:
+            violations.append("A completed standard game cannot remain active.")
+        if not st.match_complete and max(st.games_p1, st.games_p2) >= 6 and abs(st.games_p1 - st.games_p2) >= 2:
+            violations.append("A completed set cannot remain active.")
+        if st.match_complete and st.initial_state_confirmed and st.score_confirmed and st.winner_id not in participants:
+            violations.append("Confirmed match completion must identify a participant winner.")
         if st.games_p1 < 0 or st.games_p2 < 0:
             violations.append("Negative game score.")
         if st.points_p1 < 0 or st.points_p2 < 0:

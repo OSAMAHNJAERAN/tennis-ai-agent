@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "PARTIAL_OR_ACCESS_FAILURE",
+  "publisher_repository": "rozumden/fmo-deblurring-benchmark",
+  "pinned_commit": "6c9f277e15ff191f34067ad82811f94dabe16baf",
+  "records": [
+    {
+      "requested_url": "https://api.github.com/repos/rozumden/fmo-deblurring-benchmark/commits/master",
+      "final_url": "https://api.github.com/repos/rozumden/fmo-deblurring-benchmark/commits/master",
+      "status": 200,
+      "acquired_utc": "2026-10-22T06:08:51.910477+00:00",
+      "content_type": "application/json",
+      "bytes": 5757,
+      "sha256": "0779e7d2989479db9b829460c4de2616a900f58ce62faccfa508ad76cf6b3396",
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/independent_speed_source_followup_v2/benchmark_commit.json"
+    },
+    {
+      "requested_url": "https://api.github.com/repos/rozumden/fmo-deblurring-benchmark/git/trees/6c9f277e15ff191f34067ad82811f94dabe16baf?recursive=1",
+      "final_url": "https://api.github.com/repos/rozumden/fmo-deblurring-benchmark/git/trees/6c9f277e15ff191f34067ad82811f94dabe16baf?recursive=1",
+      "status": 200,
+      "acquired_utc": "2026-10-22T06:08:53.751151+00:00",
+      "content_type": "application/json",
+      "bytes": 4844,
+      "sha256": "f2ddbe49fc32ac74d5242516ff08f9490feeee034c6e28184a4d1b0d8ebee6ce",
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/independent_speed_source_followup_v2/benchmark_tree.json"
+    },
+    {
+      "requested_url": "https://raw.githubusercontent.com/rozumden/fmo-deblurring-benchmark/6c9f277e15ff191f34067ad82811f94dabe16baf/README.md",
+      "final_url": "https://raw.githubusercontent.com/rozumden/fmo-deblurring-benchmark/6c9f277e15ff191f34067ad82811f94dabe16baf/README.md",
+      "status": 200,
+      "acquired_utc": "2026-10-22T06:08:54.146545+00:00",
+      "content_type": "text/plain",
+      "bytes": 5408,
+      "sha256": "fc81023196f953069f4c4fdd2f0bab7e2dafb37ac723821106eb9c29bc2aa8f9",
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/independent_speed_source_followup_v2/README.md"
+    },
+    {
+      "requested_url": "https://raw.githubusercontent.com/rozumden/fmo-deblurring-benchmark/6c9f277e15ff191f34067ad82811f94dabe16baf/LICENSE",
+      "final_url": "https://raw.githubusercontent.com/rozumden/fmo-deblurring-benchmark/6c9f277e15ff191f34067ad82811f94dabe16baf/LICENSE",
+      "status": 200,
+      "acquired_utc": "2026-10-22T06:08:54.600998+00:00",
+      "content_type": "text/plain",
+      "bytes": 1071,
+      "sha256": "98ef150a87004030e93d5bfcdeacc91c13a2e9315bd8fe9da99b8312a5901ca5",
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/independent_speed_source_followup_v2/LICENSE"
+    },
+    {
+      "requested_url": "https://raw.githubusercontent.com/rozumden/fmo-deblurring-benchmark/6c9f277e15ff191f34067ad82811f94dabe16baf/download_datasets.sh",
+      "final_url": "https://raw.githubusercontent.com/rozumden/fmo-deblurring-benchmark/6c9f277e15ff191f34067ad82811f94dabe16baf/download_datasets.sh",
+      "status": 200,
+      "acquired_utc": "2026-10-22T06:08:54.977420+00:00",
+      "content_type": "text/plain",
+      "bytes": 780,
+      "sha256": "765ed7149414d96579722be5880a34ba2ff1dfb0449ec2d1500b77d061bc1250",
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/independent_speed_source_followup_v2/download_datasets.sh"
+    }
+  ],
+  "failures": [
+    {
+      "url": "https://cmp.felk.cvut.cz/fmo/",
+      "error_type": "URLError",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    }
+  ],
+  "limits": {
+    "max_response_bytes": 2097152,
+    "raw_media_archives_or_annotations_acquired": false,
+    "test_frames_or_targets_exposed": false,
+    "code_downloaded_but_never_executed": true,
+    "models_training_or_ram_gpu_probe": false,
+    "data_license_or_metric_speed_reference_verified": false
+  }
+}

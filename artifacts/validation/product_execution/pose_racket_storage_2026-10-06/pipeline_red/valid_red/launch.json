@@ -1,0 +1,51 @@
+{
+  "status": "PREPARED",
+  "scope": "Actual pipeline orchestration with deterministic inference/media substitutes; no real models/video jobs",
+  "command": [
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "tests/test_pipeline_pose_storage.py",
+    "-q",
+    "--junitxml=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_red\\valid_red\\junit.xml",
+    "--basetemp=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_red\\valid_red\\tmp"
+  ],
+  "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+  "sourceBefore": {
+    "src/pipeline/phase6_pipeline.py": {
+      "bytes": 60228,
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec"
+    },
+    "tests/test_pipeline_pose_storage.py": {
+      "bytes": 15543,
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "configs/phase6_analytics/pipeline.yaml": {
+      "bytes": 3490,
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed"
+    }
+  },
+  "baseInterpreter": {
+    "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "bytes": 105816,
+    "sha256": "5341746f92483a93e44c313de830f2fba2956f0759094404a16b2fed06c9a2ed"
+  },
+  "helper": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_red\\valid_red\\run_focused_red.py",
+    "bytes": 6817,
+    "sha256": "f108f968a0f48df418546956851a2f7ba2b70f7a27b8403dd9be3bb088bc4614"
+  },
+  "guards": {
+    "wallSeconds": 180,
+    "ownedTreeRssBytes": 1500000000,
+    "availableRamBytes": 300000000,
+    "lowRamSamples": 5,
+    "sampleSeconds": 0.25
+  },
+  "startedAtUtc": "2026-10-06T09:43:27.473902+00:00"
+}

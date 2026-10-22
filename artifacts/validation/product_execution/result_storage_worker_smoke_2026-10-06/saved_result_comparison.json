@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "scope": "One actual 30-frame, native-60-FPS worker/model and saved-result compatibility smoke. No independent labels, accuracy, full-match capacity or deployment qualification.",
+  "frozenModuleBindings": {
+    "src/api/results.py": {
+      "bytes": 34028,
+      "sha256": "d043172fa3674fc311176f97dc979e1660e1af8a17f8dec4f2dca34f6e33b5d7"
+    },
+    "src/api/reporting.py": {
+      "bytes": 16149,
+      "sha256": "c39639f8033fd68ee91b39f2e9a27332e570fd776fb00201cdd46283df7e1631"
+    }
+  },
+  "comparisons": {
+    "json": {
+      "exactBytes": true,
+      "parsedValuesExact": true,
+      "bytes": 81152,
+      "sha256": "2041dd645ef075f966e1def6a65e09b3f121a5dc6039c70bcb1676bf3e121473"
+    },
+    "csv": {
+      "exactBytes": true,
+      "bytes": 20239,
+      "sha256": "a0ce3b0a9d0b02f7ff23733fbfbeb385deb7a9b212f3486e24755dba19d7fedc"
+    },
+    "html": {
+      "exactBytes": true,
+      "bytes": 357044,
+      "sha256": "34607852cdd103368a03053552bcea9aab2c4176994200bfd5343aa8b42d0efa"
+    }
+  },
+  "normalizedSectionCounts": {
+    "detections": 30,
+    "ballTrajectory": 30,
+    "cameraFrames": 30,
+    "player_1Motion": 30,
+    "player_2Motion": 30,
+    "player1CourtPositions": 30,
+    "player2CourtPositions": 30,
+    "player1Speeds": 30,
+    "player2Speeds": 30,
+    "imagePeople": 30,
+    "poseTracking": 30,
+    "racketTracking": 30
+  },
+  "manifest": {
+    "schemaVersion": 1,
+    "database": "434364dd82e24909998d935f7ff65e7c.sqlite3",
+    "databaseBytes": 208896,
+    "databaseSha256": "63dd7b653886b3b2f1a6a1443bfd3b2e5cf5e6b30b2e780b9f3f070d70eee7c8",
+    "analysisId": "match_87fc9fd19f724ed2932f34dcac466de2",
+    "frames": 30
+  },
+  "databaseIntegrity": "ok",
+  "lazyDiskSeriesReader": true,
+  "closedOwnedReaderConnection": true,
+  "generationFiles": [
+    "434364dd82e24909998d935f7ff65e7c.sqlite3",
+    "current.store"
+  ],
+  "unpublishedScratchFiles": [],
+  "presentationApplied": false,
+  "comparisonUsesSameNewRawBytes": true,
+  "volatileRuntimeFieldsRemoved": [],
+  "qualificationEvidence": false,
+  "productionQualified": false
+}

@@ -1,0 +1,325 @@
+{
+  "startedAt": "2026-10-06T04:03:34.685043+00:00",
+  "passed": true,
+  "inferenceRun": true,
+  "scope": "Licensed 30-frame compatibility smoke only.",
+  "productionQualified": false,
+  "qualificationEvidence": false,
+  "productStatePublished": false,
+  "interpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "actualWorkloadIdentity": {
+    "pid": 11180,
+    "createTimeUnixSeconds": 1791259414.4345129
+  },
+  "modelInferenceHelperInvoked": true,
+  "comparison": {
+    "passed": true,
+    "volatilePaths": {
+      "metrics.json": [
+        "$.processing_fps",
+        "$.total_time_s"
+      ]
+    },
+    "volatileProof": "phase6_pipeline.py assigns total_time_s from time.time() minus start and processing_fps from frames / elapsed.",
+    "jsonFiles": {
+      "ball_metrics.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "368b2fbd904701c9effbe06816ad8706c0ff4f97a1cfea9f454e0f805110794a",
+        "newSha256": "368b2fbd904701c9effbe06816ad8706c0ff4f97a1cfea9f454e0f805110794a",
+        "ignoredPaths": []
+      },
+      "camera_registration.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "0a6951e0e598e7d092688b2c8e85a7878f800da3da59e511408443eb4072b267",
+        "newSha256": "f453131f1baa6b93c8fec5eac3068a297964226c1cb47e7ff10e4ea20637d4cc",
+        "ignoredPaths": []
+      },
+      "court_geometry.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "9a219213285046fdeb8096b76e93154db650a281af282172af411e3ec67c1af7",
+        "newSha256": "9a219213285046fdeb8096b76e93154db650a281af282172af411e3ec67c1af7",
+        "ignoredPaths": []
+      },
+      "detections.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "df5d38d89298ed9f6451de2f1598ca89f63e5ef24bbd9f92fbd953224083421e",
+        "newSha256": "1ba24c174901a10676341a524587987bc31efe9babcc0d9206558121984bb70c",
+        "ignoredPaths": []
+      },
+      "event_candidates.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "77584ae252701fb3b7603763bc6afa83d65b84fabecfca98285069a34bee6d10",
+        "newSha256": "77584ae252701fb3b7603763bc6afa83d65b84fabecfca98285069a34bee6d10",
+        "ignoredPaths": []
+      },
+      "event_verification_trace.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "07efb44c16830fd7801cecbbd8409d893f5c27cc2d545d6b6c5114807f3e71a0",
+        "newSha256": "07efb44c16830fd7801cecbbd8409d893f5c27cc2d545d6b6c5114807f3e71a0",
+        "ignoredPaths": []
+      },
+      "image_people.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "8f86fdfafb10293927c797890533e051f9cfe38413c59be6a5d8f1d72dc37d05",
+        "newSha256": "3aca82c26747d8a5db3010fa8ba749b4557ac0d7f1f7bf3e95871636504c099a",
+        "ignoredPaths": []
+      },
+      "line_calls.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "fa7d491d967112f87286c87044592c35c1788bd0631a723210d9bf50bf076b8b",
+        "newSha256": "fa7d491d967112f87286c87044592c35c1788bd0631a723210d9bf50bf076b8b",
+        "ignoredPaths": []
+      },
+      "match_analytics.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "c99b2f252698e173b82f688fc6b1ba289f77bf8e8bb52d56a2922840880b46a9",
+        "newSha256": "c99b2f252698e173b82f688fc6b1ba289f77bf8e8bb52d56a2922840880b46a9",
+        "ignoredPaths": []
+      },
+      "match_events.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "f69d880a3babc496f0eb6ae233044402708b28ed2f737305711e6df9634260ca",
+        "newSha256": "f69d880a3babc496f0eb6ae233044402708b28ed2f737305711e6df9634260ca",
+        "ignoredPaths": []
+      },
+      "match_state.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "c322ac3bcfcf3efe433253294d2724237ae3dfef0df2889ddacddc59c0650f5d",
+        "newSha256": "c322ac3bcfcf3efe433253294d2724237ae3dfef0df2889ddacddc59c0650f5d",
+        "ignoredPaths": []
+      },
+      "metrics.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "49341d17577ffb7b942ab28034de0c6be3f1c457de8f393b7ea1d1c8bbee924d",
+        "newSha256": "f253310321b687d10a01a20d541ce554e42e3baca0625c57dfc686acc0ffd236",
+        "ignoredPaths": [
+          "$.processing_fps",
+          "$.total_time_s"
+        ]
+      },
+      "patch_persistence_audit.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "36de8f451fd415129ab6fe64bbad7cd38ab4665a6e2dfa61955aa0fe4f496ff1",
+        "newSha256": "1168057cbede42af62afdfd245652e91f81780f5898e9b8d787c0b6363382891",
+        "ignoredPaths": []
+      },
+      "pixel_motion_audit.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "b4a8279fd08dba3c53608e49e7b226930775e3f24dd273a897cbba00d029d5f4",
+        "newSha256": "5d91a272921bf5680b1ca68a8cbfa3e1b096bc294c7f7d3b7e6b42b044fbe19b",
+        "ignoredPaths": []
+      },
+      "player_metrics.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "ef4720f7b43d3187cb156dfac817897db93455f2693083c133f3dcd48b632879",
+        "newSha256": "ef4720f7b43d3187cb156dfac817897db93455f2693083c133f3dcd48b632879",
+        "ignoredPaths": []
+      },
+      "player_motion.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "5b4585ec39d8aa08df41bf32654af7dc0fcec5c71e4754bc38e428272f117077",
+        "newSha256": "5b4585ec39d8aa08df41bf32654af7dc0fcec5c71e4754bc38e428272f117077",
+        "ignoredPaths": []
+      },
+      "point_analytics.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "0978cfbfa309c9e298cc3971484c4e123aa9c52937a08e1cdd8c68c2301d3ee3",
+        "newSha256": "0978cfbfa309c9e298cc3971484c4e123aa9c52937a08e1cdd8c68c2301d3ee3",
+        "ignoredPaths": []
+      },
+      "racket_tracking.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "0508bc867033c4fc2aa2cd1a6d237f2857438052557ac9cb5624759acb69249e",
+        "newSha256": "0508bc867033c4fc2aa2cd1a6d237f2857438052557ac9cb5624759acb69249e",
+        "ignoredPaths": []
+      },
+      "rallies.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "ec85fc43dede16711bb0144befec822d7ab9d46a7b199126865e110a84f54469",
+        "newSha256": "ec85fc43dede16711bb0144befec822d7ab9d46a7b199126865e110a84f54469",
+        "ignoredPaths": []
+      },
+      "score_history.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "d09c631239638299b7581ec71d0958f38764e75ca7d0e8ed641b2b95a0ba35a1",
+        "newSha256": "d09c631239638299b7581ec71d0958f38764e75ca7d0e8ed641b2b95a0ba35a1",
+        "ignoredPaths": []
+      },
+      "scoring_events.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "1b921dbe26f6cbc43c934fcc878167363cf532e42498a2bfc891100741a8c1dc",
+        "newSha256": "1b921dbe26f6cbc43c934fcc878167363cf532e42498a2bfc891100741a8c1dc",
+        "ignoredPaths": []
+      },
+      "shot_events.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "358874694b93c09a574a05eb3b208fa4dd1d0effe467c406a4fb83edebc94442",
+        "newSha256": "358874694b93c09a574a05eb3b208fa4dd1d0effe467c406a4fb83edebc94442",
+        "ignoredPaths": []
+      },
+      "stationary_candidate_audit.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "d74ed22dd2aa1c445388fc75911a50c551a8c555b13553a6f6f4825d93edfd75",
+        "newSha256": "d3a923a9e74ae9fcb1197313ee20b3b16d8746ed70527b4fe60a78a630c0dab0",
+        "ignoredPaths": []
+      },
+      "temporal_detour_audit.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "0cb4846fe9b3844a9b38d5a637ad13ed3e57fd441f534d598535b986c74be087",
+        "newSha256": "0cb4846fe9b3844a9b38d5a637ad13ed3e57fd441f534d598535b986c74be087",
+        "ignoredPaths": []
+      },
+      "temporal_spacing_audit.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "5557784ff362e48e0814d4858dc064eef575a6081b0044eb38ccf26818fc5fa8",
+        "newSha256": "5557784ff362e48e0814d4858dc064eef575a6081b0044eb38ccf26818fc5fa8",
+        "ignoredPaths": []
+      },
+      "trajectories.json": {
+        "exactParsedValuesEqual": true,
+        "firstDifference": null,
+        "oldSha256": "bfc4323acf1d3c6d1fde05be528325dc5824a9c4f2509269d6ce3b7d6c284c9d",
+        "newSha256": "5ceafc9fe98baba9e7e7c28ace3de5b5a3f05e29f419bcf97bc851dd092b8ae3",
+        "ignoredPaths": []
+      }
+    },
+    "expectedJsonFiles": 26,
+    "runConfigBytesEqual": true,
+    "runConfigSha256": "23223f1c4679b0e36634fa3a3ecc9e701365799474a9a65f6684076409eeff09",
+    "annotatedVideos": {
+      "old": {
+        "frames": 30,
+        "averageFrameRate": "60/1",
+        "sha256": "aa38e454920d77eff1cb4cc2665b1a96b3a5a8610a19450daf8a4bb6c22eff03",
+        "bytes": 2097362,
+        "width": 1920,
+        "height": 1080,
+        "timeBase": "1/15360",
+        "framePtsTicks": [
+          0,
+          256,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2304,
+          2560,
+          2816,
+          3072,
+          3328,
+          3584,
+          3840,
+          4096,
+          4352,
+          4608,
+          4864,
+          5120,
+          5376,
+          5632,
+          5888,
+          6144,
+          6400,
+          6656,
+          6912,
+          7168,
+          7424
+        ],
+        "exactNormalizedFramePtsEqualIndexOver60": true
+      },
+      "new": {
+        "frames": 30,
+        "averageFrameRate": "60/1",
+        "sha256": "aa38e454920d77eff1cb4cc2665b1a96b3a5a8610a19450daf8a4bb6c22eff03",
+        "bytes": 2097362,
+        "width": 1920,
+        "height": 1080,
+        "timeBase": "1/15360",
+        "framePtsTicks": [
+          0,
+          256,
+          512,
+          768,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048,
+          2304,
+          2560,
+          2816,
+          3072,
+          3328,
+          3584,
+          3840,
+          4096,
+          4352,
+          4608,
+          4864,
+          5120,
+          5376,
+          5632,
+          5888,
+          6144,
+          6400,
+          6656,
+          6912,
+          7168,
+          7424
+        ],
+        "exactNormalizedFramePtsEqualIndexOver60": true
+      }
+    },
+    "annotatedDecodedPixelsEqual": true,
+    "annotatedPixelComparisonScope": "Additional descriptive presentation evidence only; pixel equality is not required for the measurement JSON compatibility gate.",
+    "annotatedFramesCompared": 30,
+    "annotatedVideosFullyDecoded": true,
+    "unpublishedScratchFiles": []
+  },
+  "helperReceiptSha256": "397622748b41aa5028166dc3d3db922112c43c81afb13d241fcdfe029005d6ad",
+  "actualProcessMemoryBytes": {
+    "rss": 1562787840,
+    "vms": 3323260928,
+    "num_page_faults": 4415685,
+    "peak_wset": 1825730560,
+    "wset": 1562787840,
+    "peak_paged_pool": 9285512,
+    "paged_pool": 9066608,
+    "peak_nonpaged_pool": 135008,
+    "nonpaged_pool": 117296,
+    "pagefile": 3323260928,
+    "peak_pagefile": 3991187456,
+    "private": 3323260928
+  },
+  "windowsPeakWorkingSetBytes": 1825730560,
+  "windowsPeakPagefileBytes": 3991187456,
+  "peakMemoryScope": "OS peaks for the actual workload interpreter, separate from parent sampled aggregate RSS/private; pagefile peak is process commit.",
+  "completedAt": "2026-10-06T04:05:39.899917+00:00"
+}

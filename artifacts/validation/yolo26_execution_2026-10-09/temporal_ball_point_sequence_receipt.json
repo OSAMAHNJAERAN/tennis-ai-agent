@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "scope": "OWNED_TYPED_TEMPORAL_BALL_POINT_STORAGE_SOFTWARE_CONTRACT",
+  "sourceFiles": {
+    "src/utils/temporal_ball_point_sequence.py": "a2525411d165e1cbea51938ecc31787b62d67452f05f1e3a45b7c75901132342",
+    "tests/test_temporal_ball_point_sequence.py": "9d87809a512b024f24c11e922808fedb2a5711ff14031ae7108c4cbc1e37146f"
+  },
+  "tests": {
+    "tests": 25,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "junitArtifact": "artifacts/validation/yolo26_execution_2026-10-09/temporal_ball_point_sequence_junit.xml",
+  "junitSha256": "5abe78b102f3f8a5d369d7ca99f1596c88c30178feb0777c4e71a2f8efd1273a",
+  "maximumSQLiteCacheKiB": 2048,
+  "maximumTransactionMutations": 256,
+  "wholeMatchProducerMaterialized": false,
+  "sliceSemantics": "LAZY_RANGE_VIEW; INDEPENDENT_POINT_SNAPSHOTS; EXPLICIT_INDEXED_WRITEBACK",
+  "failureScratchRetained": true,
+  "pickleUsed": false,
+  "trackerModified": false,
+  "phase6Modified": false,
+  "trackingAccuracyQualified": false,
+  "nativeTimingQualificationEstablished": false,
+  "pipelineResumeSupported": false,
+  "integrationOutstanding": [
+    "Tracker result sink and explicit mutations in each pass",
+    "Streaming adjacent-valid-index interpolation instead of valid_indices list",
+    "Interval sink without overall/per-segment in-memory trajectory copies",
+    "Projection/speed explicit writeback in Phase6",
+    "Source-native dt and structured multi-pass checkpoint contract",
+    "Bounded event positions/features/activity/candidate/trace storage"
+  ]
+}

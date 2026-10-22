@@ -1,0 +1,51 @@
+Creating new Ultralytics Settings v0.0.6 file  
+View Ultralytics Settings with 'yolo settings' or at 'C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\product_execution\candidate_storage_real_smoke_2026-10-05\run\ultralytics_settings\Ultralytics\settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/quickstart/#ultralytics-settings.
+============================================================
+Starting Phase 6 Pipeline on: C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\product_installation\pipeline_smoke_30_frames\original_frames_0000_0029.mkv
+Output directory: C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\product_execution\candidate_storage_real_smoke_2026-10-05\run\analysis_offline_retry
+============================================================
+
+[Step 1/11] Ingesting video...
+  -> Opened 30 frames (1920x1080) at 60.00 native FPS with an 8-frame cache
+
+[Step 2/11] Detecting 14 Court Keypoints & Computing Canonical Homography...
+  -> Court calibration: valid=False, inliers=8/14, mean residual=None px, reason=INSUFFICIENT_INLIER_SUPPORT in 0.48s
+
+[Step 3/11] Running Player Tracking (ByteTrack)...
+  Player Tracking:   0%|          | 0/30 [00:00<?, ?it/s]  Player Tracking:   3%|3         | 1/30 [00:03<01:30,  3.12s/it]  Player Tracking:  23%|##3       | 7/30 [00:03<00:07,  2.93it/s]  Player Tracking:  43%|####3     | 13/30 [00:03<00:02,  6.26it/s]  Player Tracking:  63%|######3   | 19/30 [00:03<00:01, 10.39it/s]  Player Tracking:  87%|########6 | 26/30 [00:03<00:00, 16.16it/s]  Player Tracking: 100%|##########| 30/30 [00:03<00:00,  8.33it/s]
+  -> Player Tracking Coverage: P1: 0.0%, P2: 0.0% in 3.61s
+
+[Step 4/11] Running wasb Tennis Ball Detection...
+  Overlapping Temporal Ball Detection:   0%|          | 0/30 [00:00<?, ?it/s]  Overlapping Temporal Ball Detection:   3%|3         | 1/30 [00:00<00:07,  3.65it/s]  Overlapping Temporal Ball Detection:   7%|6         | 2/30 [00:00<00:06,  4.55it/s]  Overlapping Temporal Ball Detection:  10%|#         | 3/30 [00:00<00:05,  4.92it/s]  Overlapping Temporal Ball Detection:  13%|#3        | 4/30 [00:00<00:05,  5.10it/s]  Overlapping Temporal Ball Detection:  17%|#6        | 5/30 [00:01<00:04,  5.18it/s]  Overlapping Temporal Ball Detection:  20%|##        | 6/30 [00:01<00:04,  5.26it/s]  Overlapping Temporal Ball Detection:  23%|##3       | 7/30 [00:01<00:04,  5.35it/s]  Overlapping Temporal Ball Detection:  27%|##6       | 8/30 [00:01<00:04,  5.46it/s]  Overlapping Temporal Ball Detection:  30%|###       | 9/30 [00:01<00:03,  5.44it/s]  Overlapping Temporal Ball Detection:  33%|###3      | 10/30 [00:01<00:03,  5.44it/s]  Overlapping Temporal Ball Detection:  37%|###6      | 11/30 [00:02<00:03,  5.44it/s]  Overlapping Temporal Ball Detection:  40%|####      | 12/30 [00:02<00:03,  5.43it/s]  Overlapping Temporal Ball Detection:  43%|####3     | 13/30 [00:02<00:03,  5.51it/s]  Overlapping Temporal Ball Detection:  47%|####6     | 14/30 [00:02<00:02,  5.57it/s]  Overlapping Temporal Ball Detection:  50%|#####     | 15/30 [00:02<00:02,  5.47it/s]  Overlapping Temporal Ball Detection:  53%|#####3    | 16/30 [00:03<00:02,  5.46it/s]  Overlapping Temporal Ball Detection:  57%|#####6    | 17/30 [00:03<00:02,  5.39it/s]  Overlapping Temporal Ball Detection:  60%|######    | 18/30 [00:03<00:02,  5.36it/s]  Overlapping Temporal Ball Detection:  63%|######3   | 19/30 [00:03<00:02,  5.38it/s]  Overlapping Temporal Ball Detection:  67%|######6   | 20/30 [00:03<00:01,  5.40it/s]  Overlapping Temporal Ball Detection:  70%|#######   | 21/30 [00:03<00:01,  5.40it/s]  Overlapping Temporal Ball Detection:  73%|#######3  | 22/30 [00:04<00:01,  5.46it/s]  Overlapping Temporal Ball Detection:  77%|#######6  | 23/30 [00:04<00:01,  5.52it/s]  Overlapping Temporal Ball Detection:  80%|########  | 24/30 [00:04<00:01,  5.58it/s]  Overlapping Temporal Ball Detection:  83%|########3 | 25/30 [00:04<00:00,  5.61it/s]  Overlapping Temporal Ball Detection:  87%|########6 | 26/30 [00:04<00:00,  5.62it/s]  Overlapping Temporal Ball Detection:  90%|######### | 27/30 [00:05<00:00,  5.62it/s]  Overlapping Temporal Ball Detection:  93%|#########3| 28/30 [00:05<00:00,  5.63it/s]  Overlapping Temporal Ball Detection: 100%|##########| 30/30 [00:05<00:00,  5.78it/s]
+  -> Extracted raw ball candidates in 5.19s
+
+[Step 5/11] Running Temporal Kalman Ball Tracking...
+  -> Ball States: DETECTED: 30, TRACKED: 0, INTERPOLATED: 0, PREDICTED: 0, MISSING: 0 in 0.00s
+
+[Step 6/11] Detecting Tennis Match Events (Serves, Bounces, Hits)...
+  -> Event diagnostics complete; event/scoring authority withheld (0.00s)
+
+[Step 7/11] Running Line Calling & Scoring State Machine...
+  -> Scoring State Complete (0 dead-ball events suppressed) in 0.00s
+
+[Step 8/11] Estimating Player Locomotion; Physical Ball Speed Unavailable...
+  Continuous Player Pose:   0%|          | 0/30 [00:00<?, ?it/s]  Continuous Player Pose:  27%|##6       | 8/30 [00:00<00:00, 77.21it/s]  Continuous Player Pose: 100%|##########| 30/30 [00:00<00:00, 157.01it/s]
+
+[Step 9/11] Linking Shots & Running YOLO11-Pose / Geometry Classification...
+  -> Extracted & Linked 0 Shot Events in 0.00s
+
+[Step 10/11] Segmenting Rallies & Aggregating Match Analytics...
+  -> Generated 0 Rallies, 0 Points, and Full Match Summary in 0.00s
+
+[Step 11/11] Rendering Annotated Video & Broadcast HUD...
+  Rendering Video:   0%|          | 0/30 [00:00<?, ?it/s]  Rendering Video:   3%|3         | 1/30 [00:00<00:03,  9.36it/s]  Rendering Video:  23%|##3       | 7/30 [00:00<00:00, 36.53it/s]  Rendering Video:  47%|####6     | 14/30 [00:00<00:00, 48.70it/s]  Rendering Video:  70%|#######   | 21/30 [00:00<00:00, 55.60it/s]  Rendering Video:  93%|#########3| 28/30 [00:00<00:00, 58.65it/s]  Rendering Video: 100%|##########| 30/30 [00:00<00:00, 52.26it/s]
+  -> Rendered Phase 6 Video: C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\product_execution\candidate_storage_real_smoke_2026-10-05\run\analysis_offline_retry\annotated.mp4 in 0.90s
+
+Exporting Structured Phase 6 JSON Artifacts...
+============================================================
+Phase 6 Pipeline Completed Successfully in 10.90s (2.8 FPS)
+Shot, rally and observed score measurements unavailable: event authority withheld
+============================================================
+{"passed": true, "interpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe", "inferenceRun": true, "networkAttempts": [], "elapsedSeconds": 26.759907500003465, "detectionFrames": 30, "annotatedDecodedFrames": 30, "error": null}
+{"passed": true, "inferenceRun": true, "error": null}

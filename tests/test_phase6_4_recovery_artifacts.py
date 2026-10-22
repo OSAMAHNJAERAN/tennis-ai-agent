@@ -1,4 +1,4 @@
-"""Integrity checks for the measured Phase 6.4 recovery artifacts."""
+"""Integrity checks for the historical measured Phase 6.4 recovery artifacts."""
 
 import hashlib
 import json
@@ -76,14 +76,27 @@ def test_recovery_result_is_an_explicit_failed_diagnostic_gate():
     assert "video_10" in gate["primary_remaining_blocker"]
 
 
-def test_recovery_input_hashes_match_current_sources_and_exclude_pristine_media():
+def test_recovery_input_hashes_match_measured_sources_and_exclude_pristine_media():
     artifact = _load("phase6_4_event_recovery_results.json")
     provenance = artifact["input_provenance"]
+    # This saved diagnostic predates the timestamp lookup optimization. Its
+    # measured implementation remains recoverable; it is not current accuracy
+    # evidence and its recorded source hash must never be rewritten on upgrade.
+    preservation = _load("product_execution/event_timestamp_lookup_2026-10-06/baseline_receipt.json")
+    measured_implementation = provenance["event_detector_implementation"]
+    assert preservation["source"] == measured_implementation["path"]
+    assert preservation["sha256"] == measured_implementation["sha256"]
+    assert preservation["bytes"] == measured_implementation["size_bytes"]
+    measured_source = ROOT / preservation["preserved"]
+    assert measured_source.is_file()
+    assert measured_source.stat().st_size == measured_implementation["size_bytes"]
+    assert _sha256(measured_source) == measured_implementation["sha256"]
     flat_records = [
         provenance["ground_truth_events"],
         provenance["video_manifest"],
+        provenance["annotation_coverage"],
+        provenance["canonical_event_evaluator"],
         provenance["active_event_config"],
-        provenance["event_detector_implementation"],
         provenance["recovery_evaluator"],
     ]
     for video in provenance["preserved_video_inputs"].values():

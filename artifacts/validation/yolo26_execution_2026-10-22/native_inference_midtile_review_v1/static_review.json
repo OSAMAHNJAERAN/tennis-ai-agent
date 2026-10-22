@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T06:07:04.997942+00:00",
+  "reviewer": "AI_PEER_STATIC_REVIEW_NOT_HUMAN",
+  "status": "NO_CONCRETE_DEFECT_FOUND_STATIC_ONLY_PENDING_EXECUTION",
+  "reviewed_pins": [
+    {
+      "path": "tests/helpers/native_pipeline_resume_child.py",
+      "bytes": 14970,
+      "sha256": "a9c119e8824b45bb73ce4348613494d12a51028033dcd0fc8e6aac9e3fe7ae84"
+    },
+    {
+      "path": "tests/test_native_pipeline_process_resume.py",
+      "bytes": 15434,
+      "sha256": "cc7f31d3b5040afd925ee364f3efe48cd866d89260e2cc61a4f08102c435c5f2"
+    },
+    {
+      "path": "src/detection/yolo26_adapters.py",
+      "bytes": 19350,
+      "sha256": "1543506f26dfd4b57cd28bdd754b2d1b6610bf6229385e0d8d9da92068cbbb39"
+    },
+    {
+      "path": "src/pipeline/phase6_pipeline.py",
+      "bytes": 109731,
+      "sha256": "1086c25de98f9e5c8a11986ef94e00095ca5499c4b6d2c707422318351ac31ff"
+    },
+    {
+      "path": "src/utils/ball_inference_journal.py",
+      "bytes": 20245,
+      "sha256": "f8d75a15e53cdabdbdec0353d2feee220e14b4954a9ce332336e47d443907113"
+    },
+    {
+      "path": "src/api/worker.py",
+      "bytes": 23292,
+      "sha256": "5338aa08a599bfd54677f6abb5cff7153ed53fe9b4a4cff422834dcd85a91ce9"
+    },
+    {
+      "path": "tests/helpers/native_pipeline_source.py",
+      "bytes": 14437,
+      "sha256": "b4b99dcff081a22d2beda8315d3a14ff7d9405b17f20ed1cd7d42e808efc9c47"
+    }
+  ],
+  "checks": {
+    "ast_parse": "PASS_FOR_ALL_REVIEWED_FILES",
+    "actual_tile_regions": "Full320x240 then left/top160x160,right/top160x160,left/bottom160x160,right/bottom160x160; yorigins0/80,xorigins0/160 match unchanged tile_regions",
+    "content_frame_binding": "Fullframe marker decode establishes globalframe and consecutive order per modelinstance; each tile compared to actualslice of retained fullframe",
+    "partial_tile_boundary": "Actualextract_candidates already received fullframe2 result; callback inside firsttile2 result exits73 before return, so no allviews completion or journalappend forframe2",
+    "durable_frontier": "ActualBallInferenceJournal.append wrapper delegates first thenreadscommittedfrontier; parentindependently readsSQL rows0/1 and next2 afterOSexit, then rawrowimmutability afterresume",
+    "suffix_and_empty": "Resumeexpectsactualfullframes2..7,30viewcalls, exactfiveviewregions perframe, emptyrawframe4committed; continuousreferenceexpectsall8frames40viewcalls",
+    "worker": "RealFileLock/recover_interrupted/claim/process_job/resultbuilder/publication paths; samefixedanalysisowner id; attempt1then2",
+    "comparisons": "Retainednormalizedsource,sourceclock/config/seals/prefix/audit hashes; requiredsemanticexports except explicitlyexcludedinputmetadata,pathdetectionsandmetrics; detectionsmatchafteronlyvideopathremoval; decodednative/browserpixelsmatch",
+    "guards": "Childbuiltins+metapathrefuseTorch/Torchvision/Ultralytics beforeprojectimports, retainsattempts and checksloadedroots; source-loaderomissions explicitlysynthetic; nofake neuralmodules",
+    "command_audit": "Only normalizationwith-stats_enc_pre and browserencodewith-c:v classified; ffprobe-count_framesgetsown event"
+  },
+  "findings": [],
+  "limits": {
+    "actual_tests_or_codecs_executed_by_reviewer": false,
+    "project_or_model_imports_by_reviewer": false,
+    "hardware_or_ram_probes": false,
+    "source_edits": false,
+    "fixture": "Eight320x24025FPSsyntheticframes;selectedmodelresult/assetidentityadmissioninjected",
+    "qualification": "Noactuallearnedmodelinference,speed/visionaccuracy,longmatchcapacity,liveorWindows powerlossqualification",
+    "pending": "Rootguardedruntimeexecution needed; staticreviewcannotproveFFmpeg/envavailabilityoractualnumericalexports"
+  }
+}

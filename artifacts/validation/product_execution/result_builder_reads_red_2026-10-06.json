@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-10-06T06:00:07+00:00",
+  "status": "RED_PRESERVED_BEFORE_PRODUCTION_EDIT",
+  "command": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m pytest tests\\test_result_builder_reads.py -q -s --junitxml=artifacts\\validation\\product_execution\\result_builder_reads_red_2026-10-06.xml",
+  "shell": "cmd.exe",
+  "login": false,
+  "exitCode": 1,
+  "toolChunkId": "1b310e",
+  "toolWallSeconds": 4.6397933,
+  "pytestSummary": "2 failed in 4.13s",
+  "outputArtifact": "artifacts/validation/product_execution/result_builder_reads_red_2026-10-06.xml",
+  "outputArtifactSha256": "f168fc0ff377bbd8822598abd26b6c77312406e43c9a9aa83f6dd2b4878b8b92",
+  "outputArtifactContents": "Exact pytest failures, source assertion context and captured per-case stdout from this RED run are preserved in the JUnit artifact.",
+  "sourceBindings": {
+    "src/api/results.py": "30a64418e141d2ab5d847c33aa6fcc0386807ff7a04a5891b5172a904f9c1a55",
+    "tests/test_result_builder_reads.py": "373d7ec54f8b7d9246dd85b9891201955d4581970ce9affcc2388e2bc036eb5e",
+    "artifacts/validation/product_execution/result_storage_latency_baseline_2026-10-06/src/api/results.py": "30a64418e141d2ab5d847c33aa6fcc0386807ff7a04a5891b5172a904f9c1a55"
+  },
+  "cases": [
+    {"frames": 65, "normalizedFrameDecodesDuringBuild": 3441, "maximumAllowed": 650, "peakLiveNormalizedFrameSnapshots": 1, "liveAfterBuild": 0, "exactFrozenJsonBytes": true},
+    {"frames": 600, "normalizedFrameDecodesDuringBuild": 31948, "maximumAllowed": 6000, "peakLiveNormalizedFrameSnapshots": 1, "liveAfterBuild": 0, "exactFrozenJsonBytes": true}
+  ],
+  "failure": "The genuine full builder repeatedly decodes normalized frames for dense person proposals and both body roles; output bytes and lifetime already match, but normalized frame reads exceed the declared bound.",
+  "modelInference": false,
+  "benchmark": false,
+  "productionStateWrites": false
+}

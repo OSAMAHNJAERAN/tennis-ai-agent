@@ -1,0 +1,176 @@
+.........FFFF..............                                              [100%]
+================================== FAILURES ===================================
+_ test_final_authorization_callback_cannot_change_the_complete_candidate[metrics.json] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb0')
+name = 'metrics.json'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+>           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+>       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb0/analysis/.result/dfc474469462456db722bb4ac6f90617.files')])
+
+tests\test_corrected_publication.py:146: AssertionError
+_ test_final_authorization_callback_cannot_change_the_complete_candidate[result.json] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb1')
+name = 'result.json'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+>           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+>       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb1/analysis/.result/ce94f0eb0a3e444b851b75d334ec4cde.files')])
+
+tests\test_corrected_publication.py:146: AssertionError
+_ test_final_authorization_callback_cannot_change_the_complete_candidate[summary.json] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb2')
+name = 'summary.json'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+>           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+>       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb2/analysis/.result/f155640449954c50bfade55bc5e45667.files')])
+
+tests\test_corrected_publication.py:146: AssertionError
+_ test_final_authorization_callback_cannot_change_the_complete_candidate[DATABASE] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_publication_checks_v1/temp/pytest/test_final_authorization_callb3')
+name = 'DATABASE'
+
+    @pytest.mark.parametrize('name', ['metrics.json', 'result.json', 'summary.json', 'DATABASE'])
+    def test_final_authorization_callback_cannot_change_the_complete_candidate(tmp_path, name):
+        from src.scoring.corrected_publication import publish_corrected_result
+        fixture, descriptor = ready(tmp_path)
+        changed = []
+        def corrupt_candidate():
+            candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                          if path != fixture.snapshot.files_directory]
+            assert len(candidates) == 1
+            path = candidates[0].with_suffix('.sqlite3') if name == 'DATABASE' else candidates[0]/name
+            path.write_bytes(path.read_bytes()+b'SYNTHETIC_FINAL_AUTH_CALLBACK_MUTATION')
+            changed.append(path.name)
+        with pytest.raises(ValueError, match='candidate.*differs|candidate database changed'):
+>           publish_corrected_result(descriptor, fixture.directory,
+                authorization=authorization(fixture, descriptor), before_commit=corrupt_candidate)
+
+tests\test_corrected_publication.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\scoring\corrected_publication.py:416: in publish_corrected_result
+    return publish_result(storage, result, directory,
+src\api\result_document.py:36: in publish_result
+    return publish_analysis_generation(storage, result, directory, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\api\analysis_generation.py:488: in publish_analysis_generation
+    before_commit()
+src\scoring\corrected_publication.py:409: in final_check
+    before_commit()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def corrupt_candidate():
+        candidates = [path for path in (fixture.directory/'.result').glob('*.files')
+                      if path != fixture.snapshot.files_directory]
+>       assert len(candidates) == 1
+E       AssertionError: assert 3 == 1
+E        +  where 3 = len([WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_pub...cation_checks_v1/temp/pytest/test_final_authorization_callb3/analysis/.result/d541f644053249b79c7d542571318d69.files')])
+
+tests\test_corrected_publication.py:146: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_corrected_publication.py::test_final_authorization_callback_cannot_change_the_complete_candidate[metrics.json]
+FAILED tests/test_corrected_publication.py::test_final_authorization_callback_cannot_change_the_complete_candidate[result.json]
+FAILED tests/test_corrected_publication.py::test_final_authorization_callback_cannot_change_the_complete_candidate[summary.json]
+FAILED tests/test_corrected_publication.py::test_final_authorization_callback_cannot_change_the_complete_candidate[DATABASE]
+4 failed, 23 passed in 151.92s (0:02:31)

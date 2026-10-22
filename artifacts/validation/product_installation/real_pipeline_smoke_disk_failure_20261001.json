@@ -1,0 +1,48 @@
+{
+  "verifiedAt": "2026-10-01T14:20:12.331154+00:00",
+  "passed": false,
+  "scope": "30-frame, half-second software smoke only; no full-match, accuracy or public-deployment qualification.",
+  "interpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "isolatedEnvironment": true,
+  "configuration": "configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml",
+  "configurationSha256": "84505e944f2650cbe0edc490e4123e52137dc0a5af5fd6013e47acdf4ba030b6",
+  "ultralyticsOfflineSetting": "YOLO_OFFLINE=true",
+  "outputDirectory": "artifacts/validation/product_installation/pipeline_smoke_30_frames/analysis_offline",
+  "inputEvidence": "artifacts/validation/product_installation/pipeline_smoke_30_frames/input_excerpt.json",
+  "inputSha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552",
+  "inferenceRun": true,
+  "networkAttempts": [],
+  "productionQualified": false,
+  "publicDeploymentPermissionsVerified": false,
+  "productStatePublished": false,
+  "loadedAssets": {
+    "court": {
+      "parameters": 23565404,
+      "devices": [
+        "cuda"
+      ]
+    },
+    "personAndRacket": {
+      "parameters": 20114688,
+      "devices": [
+        "cpu"
+      ]
+    },
+    "ball": {
+      "parameters": 1481427,
+      "devices": [
+        "cuda"
+      ]
+    },
+    "pose": {
+      "parameters": 9918238,
+      "devices": [
+        "cpu"
+      ]
+    }
+  },
+  "cudaAvailable": true,
+  "modelLoadCompleted": true,
+  "error": "OSError: [Errno 28] No space left on device",
+  "elapsedSeconds": 12.897541800004547
+}

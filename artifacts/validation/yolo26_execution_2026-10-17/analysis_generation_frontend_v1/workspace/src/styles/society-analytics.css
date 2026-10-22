@@ -1,0 +1,239 @@
+.society-analytics {
+  --analytics-muted: #66645f;
+  --analytics-rule: #1e1e1e2e;
+  --analytics-player-two: #9b482b;
+  color: var(--society-ink, #1e1e1e);
+  background: var(--society-paper, #efeeec);
+  font-family: "Geist Variable", sans-serif;
+  padding: clamp(28px, 5vw, 78px) clamp(20px, 5vw, 76px) 72px;
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.society-analytics .analytics-kicker {
+  display: block;
+  font: 10px/1.5 "Geist Mono Variable", monospace;
+  letter-spacing: .025em;
+  color: var(--analytics-muted);
+}
+
+.society-analytics h1,
+.society-analytics h2 {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-weight: 400;
+  color: var(--society-ink, #1e1e1e);
+  letter-spacing: -.045em;
+}
+
+.society-analytics h1 {
+  font-size: clamp(60px, 8.6vw, 128px);
+  line-height: .94;
+  max-width: 1100px;
+  margin: 27px 0 34px;
+}
+
+.society-analytics h1 em,
+.society-analytics h2 em { font-weight: 400; font-style: italic; }
+
+.society-analytics .analytics-heading-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.society-analytics .analytics-heading-bottom > p {
+  max-width: 585px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--analytics-muted);
+}
+
+.society-analytics .analytics-replay-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 48px;
+  padding: 13px 0;
+  font-size: 11px;
+  border-bottom: 1px solid currentColor;
+  color: var(--society-blue, #350aff);
+  flex-shrink: 0;
+  transition: gap 180ms ease, color 180ms ease;
+}
+
+.society-analytics .analytics-replay-link > span { font-size: 20px; line-height: 1; }
+.society-analytics .analytics-replay-link:hover { gap: 32px; color: var(--society-ink, #1e1e1e); }
+.society-analytics .analytics-section { padding-top: clamp(54px, 6.5vw, 96px); }
+
+.society-analytics .analytics-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 36px;
+  margin-bottom: 34px;
+}
+
+.society-analytics .analytics-section-heading h2 { font-size: clamp(31px, 3.45vw, 49px); line-height: 1.04; }
+.society-analytics .analytics-section-heading .analytics-kicker { margin-bottom: 14px; }
+.society-analytics .analytics-section-heading > p { max-width: 350px; color: var(--analytics-muted); font-size: 11px; line-height: 1.75; }
+.society-analytics .analytics-player-rows { border-top: 1px solid var(--society-ink, #1e1e1e); }
+
+.society-analytics .analytics-player-row {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  column-gap: 28px;
+  padding: 32px 0 36px;
+  border-bottom: 1px solid var(--analytics-rule);
+}
+
+.society-analytics .analytics-player-identity {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-content: start;
+  align-items: center;
+  gap: 5px 9px;
+}
+
+.society-analytics .analytics-player-identity > i { font-size: 12px; font-style: normal; }
+.society-analytics .analytics-player-identity h3 { font: 500 16px/1.5 "Geist Variable", sans-serif; color: inherit; letter-spacing: -.04em; }
+.society-analytics .analytics-player-identity > span { grid-column: 2; font: 9px/1.5 "Geist Mono Variable", monospace; color: var(--analytics-muted); }
+.society-analytics .analytics-player-1 { color: var(--society-blue, #350aff); }
+.society-analytics .analytics-player-2 { color: var(--analytics-player-two); }
+.society-analytics .analytics-player-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+.society-analytics .analytics-player-metrics dt { font-size: 10px; line-height: 1.5; color: var(--analytics-muted); margin-bottom: 11px; }
+
+.society-analytics .analytics-player-metrics dd {
+  font-size: clamp(30px, 3vw, 46px);
+  font-weight: 450;
+  letter-spacing: -.06em;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.society-analytics .analytics-player-metrics dd small { margin-left: 7px; font: 10px/1.4 "Geist Mono Variable", monospace; letter-spacing: 0; color: var(--analytics-muted); }
+.society-analytics .analytics-player-unavailable { grid-column: 2; margin-top: 16px; font-size: 11px; color: var(--analytics-muted); }
+
+.society-analytics .analytics-chart-topline,
+.society-analytics .analytics-chart-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font: 10px/1.5 "Geist Mono Variable", monospace;
+}
+
+.society-analytics .analytics-chart-topline { border-top: 1px solid var(--society-ink, #1e1e1e); padding: 21px 0 10px; }
+.society-analytics .analytics-chart-topline small,
+.society-analytics .analytics-chart-footnote small { font-size: inherit; color: var(--analytics-muted); }
+.society-analytics .analytics-chart-key { display: flex; gap: 22px; }
+.society-analytics .analytics-chart-key > span { display: flex; align-items: center; gap: 9px; }
+.society-analytics .analytics-chart-key i,
+.society-analytics .analytics-tooltip-player i { display: block; width: 23px; border-top: 2px solid currentColor; }
+.society-analytics .analytics-player-2 i { border-top-style: dashed; }
+.society-analytics .analytics-player-identity > i { border: 0; }
+.society-analytics .analytics-speed-figure { margin: 0; }
+.society-analytics .analytics-chart-footnote { margin-top: 12px; padding: 14px 0 0 44px; color: var(--analytics-muted); }
+
+.society-analytics .analytics-tooltip {
+  min-width: 196px;
+  padding: 16px 18px;
+  background: var(--society-paper, #efeeec);
+  color: var(--society-ink, #1e1e1e);
+  border: 1px solid #1e1e1e;
+  font-variant-numeric: tabular-nums;
+}
+
+.society-analytics .analytics-tooltip > p {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--analytics-rule);
+  margin-bottom: 12px;
+  font: 11px/1.5 "Geist Mono Variable", monospace;
+}
+
+.society-analytics .analytics-tooltip > p > span { color: var(--analytics-muted); font-size: 9px; }
+.society-analytics .analytics-tooltip-player { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 10px; font-size: 10px; }
+.society-analytics .analytics-tooltip-player > span { display: flex; align-items: center; gap: 8px; }
+.society-analytics .analytics-tooltip-player i { width: 14px; }
+.society-analytics .analytics-tooltip-player strong { font-weight: 550; }
+.society-analytics .analytics-tooltip-player small { color: var(--analytics-muted); font-size: 9px; font-weight: 400; }
+
+.society-analytics .analytics-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 35px;
+  text-align: center;
+  border-block: 1px solid var(--analytics-rule);
+  color: var(--analytics-muted);
+  font-size: 12px;
+}
+
+.society-analytics .analytics-tracking-total { display: flex; align-items: flex-end; gap: 22px; padding: 30px 0; border-top: 1px solid var(--society-ink, #1e1e1e); }
+.society-analytics .analytics-tracking-total > strong { font-size: clamp(45px, 5.5vw, 78px); font-weight: 450; letter-spacing: -.06em; line-height: .94; font-variant-numeric: tabular-nums; }
+.society-analytics .analytics-tracking-total > span { font: 10px/1.6 "Geist Mono Variable", monospace; color: var(--analytics-muted); }
+.society-analytics .analytics-tracking-bar { display: flex; width: 100%; height: 16px; gap: 2px; overflow: hidden; }
+.society-analytics .analytics-tracking-bar > span { min-width: 1px; }
+.society-analytics .analytics-tracking-states { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 20px; padding-top: 23px; }
+.society-analytics .analytics-tracking-states dt { display: flex; align-items: center; gap: 7px; text-transform: capitalize; font-size: 10px; color: var(--analytics-muted); }
+.society-analytics .analytics-tracking-states dt > i { width: 6px; height: 6px; background: var(--tracking-color); }
+.society-analytics .analytics-tracking-states dd { margin-top: 9px; font-size: clamp(22px, 2.4vw, 34px); font-weight: 450; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.society-analytics .analytics-tracking-states dd > small { display: block; font: 9px/1.6 "Geist Mono Variable", monospace; letter-spacing: 0; color: var(--analytics-muted); }
+.society-analytics .analytics-availability-note { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--analytics-rule); color: var(--analytics-muted); font-size: 11px; line-height: 1.8; }
+.society-analytics .analytics-positioning > .astra-heatmap { height: auto; min-height: 500px; border-radius: 0; padding: 26px; }
+.society-analytics .analytics-positioning .heatmap-content { overflow: visible; }
+.society-analytics .analytics-positioning .heatmap-visual { min-height: 390px; }
+.society-analytics .analytics-notices { margin-top: 48px; border-block: 1px solid var(--analytics-rule); padding: 20px 0; color: var(--analytics-muted); font-size: 12px; line-height: 1.8; }
+.society-analytics .analytics-notices summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; color: var(--society-ink, #1e1e1e); }
+.society-analytics .analytics-notices summary::-webkit-details-marker { display: none; }
+.society-analytics .analytics-notices summary > span { font-size: 19px; transition: transform 180ms ease; }
+.society-analytics .analytics-notices[open] summary > span { transform: rotate(45deg); }
+.society-analytics .analytics-notices ul { margin: 20px 0 0; padding-left: 17px; }
+.society-analytics.analytics-unavailable > h1 { font-size: clamp(38px, 5vw, 70px); line-height: 1.05; max-width: 850px; }
+.society-analytics.analytics-unavailable > p { font-size: 13px; color: var(--analytics-muted); max-width: 570px; line-height: 1.8; margin-bottom: 20px; }
+
+@media (max-width: 1100px) {
+  .society-analytics .analytics-player-row { grid-template-columns: 116px minmax(0, 1fr); column-gap: 18px; }
+  .society-analytics .analytics-player-metrics { gap: 16px; }
+  .society-analytics .analytics-player-metrics dd small { display: block; margin-left: 0; margin-top: 6px; }
+}
+
+@media (max-width: 760px) {
+  .society-analytics { padding: 30px 20px 48px; }
+  .society-analytics h1 { font-size: clamp(58px, 13vw, 94px); margin-top: 24px; }
+  .society-analytics .analytics-heading-bottom,
+  .society-analytics .analytics-section-heading { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .society-analytics .analytics-heading-bottom > p,
+  .society-analytics .analytics-section-heading > p { max-width: 560px; font-size: 12px; }
+  .society-analytics .analytics-section { padding-top: 58px; }
+  .society-analytics .analytics-section-heading { margin-bottom: 28px; }
+  .society-analytics .analytics-player-row { grid-template-columns: 1fr; row-gap: 24px; padding: 27px 0; }
+  .society-analytics .analytics-player-identity { grid-template-columns: 16px auto 1fr; }
+  .society-analytics .analytics-player-identity > span { grid-column: 3; justify-self: end; }
+  .society-analytics .analytics-player-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 27px 20px; }
+  .society-analytics .analytics-player-metrics dt { font-size: 11px; }
+  .society-analytics .analytics-player-metrics dd { font-size: 39px; }
+  .society-analytics .analytics-player-metrics dd small { display: inline; margin-left: 7px; }
+  .society-analytics .analytics-player-unavailable { grid-column: 1; margin-top: 0; }
+  .society-analytics .analytics-chart-key { gap: 14px; }
+  .society-analytics .analytics-chart-key > span { gap: 6px; }
+  .society-analytics .analytics-chart-key i { width: 16px; }
+  .society-analytics .analytics-chart-footnote { padding-left: 44px; font-size: 9px; flex-wrap: wrap; gap: 8px; }
+  .society-analytics .analytics-tracking-states { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 23px; }
+  .society-analytics .analytics-tracking-states dd { font-size: 31px; }
+  .society-analytics .analytics-positioning > .astra-heatmap { padding: 20px 14px; }
+  .society-analytics .analytics-positioning .heatmap-visual { min-height: 350px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .society-analytics .analytics-replay-link,
+  .society-analytics .analytics-notices summary > span { transition: none; }
+}

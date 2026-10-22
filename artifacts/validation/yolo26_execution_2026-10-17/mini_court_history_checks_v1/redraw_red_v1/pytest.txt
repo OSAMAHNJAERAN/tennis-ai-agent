@@ -1,0 +1,10 @@
+...F                                                                     [100%]
+================================== FAILURES ===================================
+_____ test_native_cumulative_history_reads_each_source_event_at_most_once _____
+tests\test_mini_court_history.py:105: in test_native_cumulative_history_reads_each_source_event_at_most_once
+    assert all(row['source_event_decodes'] <= row['events'] for row in rows)
+E   assert False
+E    +  where False = all(<generator object test_native_cumulative_history_reads_each_source_event_at_most_once.<locals>.<genexpr> at 0x0000022A82A10380>)
+=========================== short test summary info ===========================
+FAILED tests/test_mini_court_history.py::test_native_cumulative_history_reads_each_source_event_at_most_once
+1 failed, 3 passed in 10.40s

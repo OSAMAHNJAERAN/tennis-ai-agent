@@ -10,6 +10,15 @@ const telemetry = normalizeTelemetry(run);
 afterEach(() => vi.unstubAllGlobals());
 
 describe("Astra coach connection", () => {
+  it("keeps the visible question labeled when replay coaching remains mounted", () => {
+    render(<><section hidden><CoachPanel run={run} telemetry={telemetry} range={[0, 213]} /></section><CoachPanel run={run} telemetry={telemetry} range={[30, 89]} /></>);
+    const visibleQuestion = screen.getByRole('textbox', { name: 'Question for Astra GPT' });
+    expect(visibleQuestion).toBeVisible();
+    const questions = screen.getAllByLabelText('Question for Astra GPT');
+    expect(questions).toHaveLength(2);
+    expect(questions[0]!.id).not.toBe(questions[1]!.id);
+  });
+
   it("keeps observations local until the user requests coaching, then sends only the selected evidence", async () => {
     const request = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ text: "Review recovery after contact.", model: "configured-model" }) });
     vi.stubGlobal("fetch", request);

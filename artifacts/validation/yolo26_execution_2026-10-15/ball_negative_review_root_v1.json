@@ -1,0 +1,594 @@
+{
+  "status": "ALL16_NATIVE_TILES_VISUALLY_REVIEWED_3_VISIBLE_ABSENCE_ACCEPTED_13_REJECTED_PENDING",
+  "created_utc": "2026-10-15T03:30:17.745675+00:00",
+  "review_aids_manifest": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\review_aids_manifest.json",
+    "sha256": "c6ec5bd28d0a36af85afb5f8018b136f9bc9afbbae65996bf9aa938ab2ab4a17"
+  },
+  "sampler_sha256": "920be9491390ef62327a19bf8c034a623ee14bd233c7801b93565af279eaf428",
+  "qualification_evidence": false,
+  "independent_human_reviewed": false,
+  "yolo_labels_written": 0,
+  "supervised_export_approved": false,
+  "accepted_visible_absence_tiles": 3,
+  "rejected_or_pending_tiles": 13,
+  "scope": "Single current native640tile only; no absence claim for its full frame, neighboring times or hidden balls. All accepted tiles still require final source grouping/export audit.",
+  "samples": [
+    {
+      "proposal_id": "tile_review_beijing_frame15_scoreboard",
+      "source_id": "match172",
+      "clip": "match172_000",
+      "frame_index": 15,
+      "source_pts": 7680,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "beijing",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        440
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_beijing_frame15_scoreboard_context1.png",
+        "sha256": "e0b5eaa1c4025d95e0ff9f916fd9d007cc9d1f1ab1f55dd3d5fd5898aa4f13f1",
+        "pixel_sha256": "e78d5d73f4330c987f7f4af5c05e73178d97bcde03c8433bf541e37c12e5bee6",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "ACCEPT_VISIBLE_ABSENCE",
+      "accepted_negative_for_development_review": true,
+      "note": "Entire native tile inspected: empty blue court, boundary lines and scoreboard; lime scoreboard dot/digits are graphics, no visible tennis ball.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0008",
+      "source_id": "match18",
+      "clip": "match18_000",
+      "frame_index": 55,
+      "source_pts": 28672,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "shanghai",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0008_context1.png",
+        "sha256": "1da34bfdbd153857d194fd942486238ed1e73432b9bf4f8fee295c065dce6e23",
+        "pixel_sha256": "6bc3d0a57e6d43b275708adc15486f868a7290873d0e0aa9ef07f90353497811",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Kneeling ball kid and sideline equipment; hand/object regions do not resolve sufficiently for conservative empty-tile acceptance.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0016",
+      "source_id": "match212",
+      "clip": "match212_000",
+      "frame_index": 182,
+      "source_pts": 93696,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "halle",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0016_context1.png",
+        "sha256": "3c07d50c2f869f9f674df1008411f2c6a3051cc8f8df907c8112dec22886e915",
+        "pixel_sha256": "dd3bcfe28c4ca07aac8915022fb13a8588622d104c296c4f1d538525bc1b7aa4",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Grass sideline with ball kids and equipment near umpire chair; visible-ball absence uncertain in small hand/equipment regions.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0024",
+      "source_id": "match177",
+      "clip": "match177_000",
+      "frame_index": 9,
+      "source_pts": 2304,
+      "source_time_base": "1/15360",
+      "frozen_event_alias": "washington",
+      "frozen_split": "development",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0024_context1.png",
+        "sha256": "2885509feb2ba2edd2de8a1d565841115fc20b782b52332f193808ba2b54e667",
+        "pixel_sha256": "c40010d9f0ae3ae286713019ae12a5aba1eb0df86b1cbfe6ef683f4f151662a7",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Miami sideline/chair/equipment at limited clarity; no empty label accepted without resolving small object regions.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0032",
+      "source_id": "match179",
+      "clip": "match179_000",
+      "frame_index": 9,
+      "source_pts": 4608,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "queens",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0032_context1.png",
+        "sha256": "e4b2c203444c15308b353e356bc4fc933884dcf3720d59c3fc8a5a826c539827",
+        "pixel_sha256": "4f40b061e50e435e7a27d6a560a9fdc978b72cefcd8ea9b6901b435c8e818fd9",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_VISIBLE_SPARE_BALLS",
+      "accepted_negative_for_development_review": false,
+      "note": "A row of many yellow tennis balls is clearly visible under the umpire chair at the lower left; not an empty tile.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0040",
+      "source_id": "match186",
+      "clip": "match186_000",
+      "frame_index": 103,
+      "source_pts": 26368,
+      "source_time_base": "1/15360",
+      "frozen_event_alias": "miami",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0040_context1.png",
+        "sha256": "d694284e668bccd9457c4f16c86fd334eb6efef8f3ae2e0b1a7ac6ad9b9e811c",
+        "pixel_sha256": "cfb7252c4648266be3da1f63910cb002fbd93e01723e6ef881590d274e57c187",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_SCOPE_REVIEW_PENDING",
+      "accepted_negative_for_development_review": false,
+      "note": "Tile is mostly elevated stadium/seating/camera area rather than the usual court view; complete source-frame view requires eligibility review.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0048",
+      "source_id": "match184",
+      "clip": "match184_000",
+      "frame_index": 92,
+      "source_pts": 23552,
+      "source_time_base": "1/15360",
+      "frozen_event_alias": "rome",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0048_context1.png",
+        "sha256": "bfbbd4573c5335a27f62002dc3931aff8e8c19dafdc06af7a785a7c2642500bb",
+        "pixel_sha256": "7276edaa06fd3a092298fbc6cb355d04fc7024d92c69b26b28a716b438f92179",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_BALL_LIKE_PROPS",
+      "accepted_negative_for_development_review": false,
+      "note": "Several large yellow tennis-ball-shaped decorative objects are visible beside the umpire chair; do not declare an empty tennis-ball tile.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0056",
+      "source_id": "match188",
+      "clip": "match188_000",
+      "frame_index": 20,
+      "source_pts": 20020,
+      "source_time_base": "1/30000",
+      "frozen_event_alias": "torino",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0056_context1.png",
+        "sha256": "91768d33df8cd176a77c9bc972a544828a277e26b428fcc79c78f979cb5b7972",
+        "pixel_sha256": "0b38cceff6f58874f03274ec7cdef5bc151786d7c7e6e5677f48264390a80384",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "ACCEPT_VISIBLE_ABSENCE",
+      "accepted_negative_for_development_review": true,
+      "note": "Entire dark Torino native tile inspected including blue court, line, net, personnel and equipment; no visible tennis ball resolved.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0064",
+      "source_id": "match191",
+      "clip": "match191_000",
+      "frame_index": 153,
+      "source_pts": 78336,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "sydney",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0064_context1.png",
+        "sha256": "e54dcf624acab0409724e2b28e05e45f38e27913976a22f1a5d17021e67d3648",
+        "pixel_sha256": "3e357d946f1678a9b8bf35610ef05f6832db590e90dc67b46422929c23137079",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Kneeling attendant hands near the ground need more detailed review; empty-tile status not accepted.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0071",
+      "source_id": "match192",
+      "clip": "match192_000",
+      "frame_index": 210,
+      "source_pts": 53760,
+      "source_time_base": "1/15360",
+      "frozen_event_alias": "monte_carlo",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0071_context1.png",
+        "sha256": "b666c73797a9885a4368237c3f3b246ba71e1a7c4e7f0451ee69f8f1db30417b",
+        "pixel_sha256": "0223ccacd0994518ec04fa3c9dfd8eed69c12f175fd5d9a059097960894595f8",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "ACCEPT_VISIBLE_ABSENCE",
+      "accepted_negative_for_development_review": true,
+      "note": "Entire clay native tile inspected, including court surface, net, camera operators and sideline equipment; no visible tennis ball observed.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0078",
+      "source_id": "match193",
+      "clip": "match193_000",
+      "frame_index": 27,
+      "source_pts": 13824,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "perth",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0078_context1.png",
+        "sha256": "53c8658102c82040c142d5414b424ac8e8909fb80a0c5e951b0508f8774f6b72",
+        "pixel_sha256": "5ddb788c361de077a792970424a2f3d0ce2ea1b5f243f3e22c16177d671b3f91",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Yellow objects at upper-left equipment area and cropped attendant hands remain ambiguous; not accepted empty.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0085",
+      "source_id": "match196",
+      "clip": "match196_000",
+      "frame_index": 97,
+      "source_pts": 24832,
+      "source_time_base": "1/15360",
+      "frozen_event_alias": "dubai",
+      "frozen_split": "development",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0085_context1.png",
+        "sha256": "b1692639e122d7ec454f6d691c7371c7988d58381499f61925fd43fd28c5b91c",
+        "pixel_sha256": "568c2d32b288fe3659bd66388ee1cb1ffb66892987500a350ea70f3287fc32c5",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Bright yellow-green equipment/bag regions and small distant hands remain ambiguous at native clarity; not accepted empty.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0092",
+      "source_id": "match198",
+      "clip": "match198_000",
+      "frame_index": 9,
+      "source_pts": 2304,
+      "source_time_base": "1/15360",
+      "frozen_event_alias": "melbourne",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0092_context1.png",
+        "sha256": "586a2686839066f4fc7b37511eb5bbe3f0c3fa81ecc9e8fd09335d9f323997ad",
+        "pixel_sha256": "d27f678f5a588c961c83b923c8b0a1f08127060118caefe9771103e784a5d455",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Two kneeling attendants have small ground/hand regions that need further detail before empty-tile acceptance.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0099",
+      "source_id": "match203",
+      "clip": "match203_000",
+      "frame_index": 117,
+      "source_pts": 59904,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "rotterdam",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0099_context1.png",
+        "sha256": "0751ac4df535a36b6490f6c656e5256bd6fd7092d57e52814ebdc075bb62789a",
+        "pixel_sha256": "197f4c0f53830c04d0ee7a39300ef6f30252f1c2aba66c7c4373a809bb52e69f",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_AMBIGUOUS_ABSENCE",
+      "accepted_negative_for_development_review": false,
+      "note": "Chair-side equipment includes small yellow regions that need detailed resolution; not accepted empty.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0106",
+      "source_id": "match208",
+      "clip": "match208_000",
+      "frame_index": 23,
+      "source_pts": 12288,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "madrid",
+      "frozen_split": "train",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0106_context1.png",
+        "sha256": "c81162848beb211528c6578c2c75cfc4376f54fa6ec0e7479ad516393a31fc83",
+        "pixel_sha256": "3fb6b1a7f79454f6d19b4efe509d1dde3fed6a0c35aea26097e3a7a55e1a3284",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_SOURCE_CONTEXT_PENDING",
+      "accepted_negative_for_development_review": false,
+      "note": "Court text visibly reads ESTORIL while frozen event alias is madrid; source-context grouping requires correction before export.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    },
+    {
+      "proposal_id": "tile_review_0113",
+      "source_id": "match219",
+      "clip": "match219_000",
+      "frame_index": 9,
+      "source_pts": 5120,
+      "source_time_base": "1/12800",
+      "frozen_event_alias": "stockholm",
+      "frozen_split": "development",
+      "tile_origin_xy_px": [
+        0,
+        0
+      ],
+      "tile_size_px": [
+        640,
+        640
+      ],
+      "actually_viewed_full_native_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0113_context1.png",
+        "sha256": "917f82e7e408d41d96a3e0d22c965a3ee82c5b9e803c1a6e360d47dfd26e41e9",
+        "pixel_sha256": "349d6895a1c75a77f2bd3e64deab94f657bb70d6b52e8e3e4f6e14436bc0cd47",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "actual_view_detail": "ORIGINAL_640X640_ALL_TILE",
+      "decision": "REJECT_SOURCE_CONTEXT_PENDING",
+      "accepted_negative_for_development_review": false,
+      "note": "Indoor green HYLO-branded court context has not been independently reconciled with frozen stockholm alias; leave event identity unresolved.",
+      "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW",
+      "independent_human_reviewed": false,
+      "context_neighbors_viewed": false,
+      "accepted_automatic_ground_truth": false
+    }
+  ]
+}

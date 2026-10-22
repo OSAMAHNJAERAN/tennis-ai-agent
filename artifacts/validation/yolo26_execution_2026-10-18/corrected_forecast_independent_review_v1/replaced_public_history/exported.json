@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0",
+  "analysis_id": "fixture",
+  "analysis_revision": 1,
+  "source_sha256": "a6aa608436f460bcaf4a76755033956a2dd4cc08d726c34d0ffefce471a9fc01",
+  "base_generation": "9e15b4e8527b66397ee5e8dcb8cd5f776d20221af472b20389c251ce9b1b59dc",
+  "current": {
+    "schema_version": "1.0",
+    "match_id": "fixture",
+    "revision": 1,
+    "score_state_version": 2,
+    "timestamp_seconds": 0.26666666666666666,
+    "source": "statistical_tennis_rules",
+    "calibration_status": "not_calibrated",
+    "sample_count": 12345,
+    "serve_estimates": [
+      {
+        "player_id": 1,
+        "probability": 0.4,
+        "points_won": 0,
+        "points_played": 1,
+        "alpha": 2.0,
+        "beta": 3.0
+      },
+      {
+        "player_id": 2,
+        "probability": 0.5,
+        "points_won": 0,
+        "points_played": 0,
+        "alpha": 2.0,
+        "beta": 2.0
+      }
+    ],
+    "prior": {
+      "alpha": 2.0,
+      "beta": 2.0,
+      "source": "explicit_neutral_engineering_prior"
+    },
+    "assumptions": "Independent stationary serve-point probabilities; beta posterior mean plug-in.",
+    "probabilities": {
+      "game": {
+        "player_1": 0.07286153846153848,
+        "player_2": 0.9271384615384615
+      },
+      "set": {
+        "player_1": 0.1506119696573172,
+        "player_2": 0.8493880303426828
+      },
+      "match": {
+        "player_1": 0.08096564348240654,
+        "player_2": 0.9190343565175935
+      }
+    },
+    "winner_id": null,
+    "status": "uncalibrated",
+    "reason": "Statistical estimate from previous confirmed points; independent calibration is pending."
+  },
+  "audit": {
+    "analysis_id": "fixture",
+    "analysis_revision": 1,
+    "source_sha256": "a6aa608436f460bcaf4a76755033956a2dd4cc08d726c34d0ffefce471a9fc01",
+    "base_generation": "9e15b4e8527b66397ee5e8dcb8cd5f776d20221af472b20389c251ce9b1b59dc",
+    "schema_version": 1,
+    "status": "PRIVATE_PENDING_EXPORTS_AND_RENDER",
+    "accepted_input_count": 3,
+    "history_count": 7,
+    "posterior_point_count": 1,
+    "withheld_reason_code": null,
+    "model_signature": "ae84a7801d6cd5cc006bca8c137825ed113c4cf3cd3e22a257c488dc9c24601e",
+    "model_spec": {
+      "model": "statistical_tennis_rules",
+      "protocol": "corrected_native_beta_prefix_v1",
+      "prior": {
+        "alpha": 2.0,
+        "beta": 2.0,
+        "source": "explicit_neutral_engineering_prior"
+      },
+      "calibration_status": "not_calibrated",
+      "calibration_artifact": null,
+      "code_sha256": {
+        "predictor": "e3a93c22c4866858468cbf9e19890015c550e109fc01139a08820337e3c780c1",
+        "rules": "490ac0c74367ed8dd9bd0c4da65a3645833923255e5decef04ccddd1b336b2b7",
+        "native_forecast_protocol": "30c7d374eaa10ddd6b68827910ce26d8f73874805156b422be0566b0c54a6a1c"
+      }
+    },
+    "calibration_status": "not_calibrated",
+    "old_forecasts_reused": false,
+    "history_policy": "INITIAL_AND_BEFORE_AFTER_EVERY_ACCEPTED_EVENT",
+    "point_update_policy": "NEW_ANCHORED_COMPLETED_POINT_AT_TERMINAL_EVENT_PRE_AWARD_SERVER",
+    "human_review_dependent": true,
+    "independent_accuracy_validated": false,
+    "published": false
+  },
+  "history": [
+    {
+      "analysis_id": "OTHER_OWNER_ANALYSIS",
+      "analysis_revision": 1,
+      "source_sha256": "a6aa608436f460bcaf4a76755033956a2dd4cc08d726c34d0ffefce471a9fc01",
+      "base_generation": "9e15b4e8527b66397ee5e8dcb8cd5f776d20221af472b20389c251ce9b1b59dc",
+      "schema_version": "1.0",
+      "model_signature": "ae84a7801d6cd5cc006bca8c137825ed113c4cf3cd3e22a257c488dc9c24601e",
+      "phase": "AFTER_EVENT",
+      "event_id": 3,
+      "event_uid": "event_d2b78d961922e79b2247d5cf8c84bcbc80f720326ae2e9d5617b114f16672994",
+      "point_uid": null,
+      "frame_index": 8,
+      "timestamp_seconds": 0.26666666666666666,
+      "source_pts": "1000000000000000800",
+      "source_time_base": "1/3000",
+      "source_frame_index": 8,
+      "uses_points_through_event_id": 3,
+      "raw_state_sha256": "000356690f910da4f63eddcee0e1895836a455f5c631a788dfaa64291187d93f",
+      "forecast": {
+        "schema_version": "1.0",
+        "match_id": "fixture",
+        "revision": 1,
+        "score_state_version": 2,
+        "timestamp_seconds": 0.26666666666666666,
+        "source": "statistical_tennis_rules",
+        "calibration_status": "not_calibrated",
+        "sample_count": 12345,
+        "serve_estimates": [
+          {
+            "player_id": 1,
+            "probability": 0.4,
+            "points_won": 0,
+            "points_played": 1,
+            "alpha": 2.0,
+            "beta": 3.0
+          },
+          {
+            "player_id": 2,
+            "probability": 0.5,
+            "points_won": 0,
+            "points_played": 0,
+            "alpha": 2.0,
+            "beta": 2.0
+          }
+        ],
+        "prior": {
+          "alpha": 2.0,
+          "beta": 2.0,
+          "source": "explicit_neutral_engineering_prior"
+        },
+        "assumptions": "Independent stationary serve-point probabilities; beta posterior mean plug-in.",
+        "probabilities": {
+          "game": {
+            "player_1": 0.07286153846153848,
+            "player_2": 0.9271384615384615
+          },
+          "set": {
+            "player_1": 0.1506119696573172,
+            "player_2": 0.8493880303426828
+          },
+          "match": {
+            "player_1": 0.08096564348240654,
+            "player_2": 0.9190343565175935
+          }
+        },
+        "winner_id": null,
+        "status": "uncalibrated",
+        "reason": "Statistical estimate from previous confirmed points; independent calibration is pending."
+      }
+    }
+  ]
+}

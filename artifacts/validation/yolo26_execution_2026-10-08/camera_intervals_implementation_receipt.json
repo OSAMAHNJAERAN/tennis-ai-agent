@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "executionDateAsiaSingapore": "2026-10-08",
+  "python": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "pythonVersion": "3.13.5",
+  "dependencyVersions": {
+    "opencv": "4.13.0",
+    "numpy": "2.3.1"
+  },
+  "sourceSha256": {
+    "src/court/camera_intervals.py": "8113ab925bae1f7fcae73ae2ae40bd6f12cf16fa3626a664a15e4e38cce34b90",
+    "tests/test_camera_intervals.py": "d79ca7cec8fffa586b7db1d897c8d2301de974ce4f4ae961dd3f1e980ab7f72c",
+    "docs/architecture/VISION_SYSTEM_ARCHITECTURE.md": "c833a068139e26dbfbd12e1cc7b177e15db247e60abbf9e8d23a53ec9ca8674b",
+    "src/court/camera_registration.py": "24793c60a8d3e1fac4c241b66b02d92f93fb982a1b7a90df652db462b0454fd7",
+    "src/court/returning_view_registration.py": "c31551dde99c2438f9557fd10d5a2c21f86c8729371bcc7aabc583e36b4278d5",
+    "src/api/media_timing.py": "a73b073aa164b0a92a6f3ded4966eb5f462ff0cb3630b75ecf14efc31d9fd8d9"
+  },
+  "tests": 75,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 1.148,
+  "junit": "camera_intervals_verified_junit.xml",
+  "consoleLog": "camera_intervals_verified_tests.log",
+  "scope": "Deterministic causal camera interval/registration/identity fixtures plus actual worker mapping format and FFmpeg synthetic timing tests. No independent court/cut/replay/slow-motion recognition accuracy measured.",
+  "retainedVisualStateBytes": {
+    "thumbnail": 6912,
+    "histogram": 2048
+  },
+  "integrationStatus": "Separate module seam ready; phase6 pipeline integration remains caller work. No camera checkpoint/worker frame resume implemented by this module.",
+  "gates": [
+    "original PTS and time-base preserved",
+    "provisional histogram/thumbnail cut and registration zoom suggestions",
+    "no inferred replay/advertisement/slow-motion/match-play labels",
+    "explicit supported-view review or qualified fourteen-landmark geometry",
+    "separate reviewed normal-speed match-play interval",
+    "fresh current observed court required after cut/zoom/gap/loss",
+    "unsupported-view review overrides retained qualification",
+    "measurement transitions reject source duplicates/skips/discontinuities"
+  ],
+  "qualification": {
+    "independentCutAccuracy": false,
+    "replayClassificationAccuracy": false,
+    "courtMetricAccuracy": false,
+    "longMatchCapacity": false,
+    "liveVideo": false,
+    "calibratedProbability": null
+  }
+}

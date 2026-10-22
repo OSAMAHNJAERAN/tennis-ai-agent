@@ -1,0 +1,113 @@
+{
+  "status": "ACTUAL_CPU_TRAIN_TRANSFORM_PREVIEW_NOT_TRAINED_NOT_QUALIFICATION",
+  "created_at_utc": "2026-10-15T14:43:37.618261+00:00",
+  "preview_script_sha256": "2a6b20015f1d7aecd476b58ba1ed89583f6a9a6f78309e855f1e0c991c47a314",
+  "selection": "SMALLEST_TRAIN_POSITIVE_AREA_THEN_LARGEST_THEN_FIRST_TRAIN_NEGATIVE; ID_TIES; NO_MODEL_OUTPUT_SELECTION",
+  "seed": 709,
+  "settings": {
+    "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_development_run1\\training_inputs\\dataset.yaml",
+    "epochs": 20,
+    "imgsz": 640,
+    "batch": 1,
+    "device": "0",
+    "seed": 709,
+    "deterministic": true,
+    "patience": 15,
+    "save": true,
+    "save_period": 5,
+    "amp": false,
+    "workers": 0,
+    "cache": false,
+    "optimizer": "AdamW",
+    "lr0": 0.0005,
+    "nbs": 1,
+    "warmup_epochs": 0.0,
+    "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball_reviewed_development_run1",
+    "name": "training",
+    "exist_ok": false,
+    "val": true,
+    "plots": false,
+    "mosaic": 0.0,
+    "close_mosaic": 0,
+    "mixup": 0.0,
+    "cutmix": 0.0,
+    "copy_paste": 0.0,
+    "scale": 0.0,
+    "translate": 0.0,
+    "degrees": 0.0,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "fliplr": 0.0,
+    "flipud": 0.0,
+    "bgr": 0.0,
+    "multi_scale": 0.0,
+    "rect": false,
+    "auto_augment": null,
+    "augmentations": [],
+    "erasing": 0.0,
+    "hsv_h": 0.01,
+    "hsv_s": 0.15,
+    "hsv_v": 0.15
+  },
+  "actual_transform_repr": "Compose(Compose(<ultralytics.data.augment.Mosaic object at 0x000001DE09A3C050>, <ultralytics.data.augment.CopyPaste object at 0x000001DE09A3C980>, <ultralytics.data.augment.RandomPerspective object at 0x000001DE09A3D550>), <ultralytics.data.augment.MixUp object at 0x000001DE09A3CC20>, <ultralytics.data.augment.CutMix object at 0x000001DE09A3C1A0>, <ultralytics.data.augment.Albumentations object at 0x000001DE09A3D400>, <ultralytics.data.augment.RandomHSV object at 0x000001DE09A3D2B0>, <ultralytics.data.augment.RandomFlip object at 0x000001DE09A3D160>, <ultralytics.data.augment.RandomFlip object at 0x000001DE09A1A0D0>, <ultralytics.data.augment.Format object at 0x000001DE09A3E120>)",
+  "resources": {
+    "free_ram_bytes": 1788350464,
+    "free_disk_bytes": 65897422848
+  },
+  "factory": "ultralytics.data.build.build_yolo_dataset(mode=train,batch1,rectFalse,stride32)",
+  "model_constructed": false,
+  "cuda_initialized": false,
+  "training_performed": false,
+  "qualification_evidence": false,
+  "samples": [
+    {
+      "id": "positive_0083",
+      "split": "train",
+      "negative": false,
+      "tensor_image": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_training_root_release_v1\\transform_preview_v2\\positive_0083_actual_train_tensor.png",
+      "tensor_image_sha256": "212677e052b75b2fbd85c97c6048ac9acc1ef8dd5a667a6cc7300694981197a4",
+      "overlay": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_training_root_release_v1\\transform_preview_v2\\positive_0083_actual_train_overlay.png",
+      "overlay_sha256": "bb43c54d372bccd9f3a4b58ef5273949b5d1fbc6cb33938300aaf4e330be5cb4",
+      "actual_boxes_xywh_normalized": [
+        [
+          0.6742187738418579,
+          0.46562498807907104,
+          0.02968754805624485,
+          0.04062499850988388
+        ]
+      ],
+      "coordinate_roundtrip_error_px": 0.0
+    },
+    {
+      "id": "positive_0308",
+      "split": "train",
+      "negative": false,
+      "tensor_image": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_training_root_release_v1\\transform_preview_v2\\positive_0308_actual_train_tensor.png",
+      "tensor_image_sha256": "ffce0313801fc258ed226bc82dac49430129864c294d76b1dd1c6959eae9c49d",
+      "overlay": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_training_root_release_v1\\transform_preview_v2\\positive_0308_actual_train_overlay.png",
+      "overlay_sha256": "6c3e9bc4d6b1cf6472bf1c21615443ac35862001957e4706ec35f32d8e52fccf",
+      "actual_boxes_xywh_normalized": [
+        [
+          0.17656250298023224,
+          0.23593750596046448,
+          0.00937500037252903,
+          0.00937500037252903
+        ]
+      ],
+      "coordinate_roundtrip_error_px": 0.0
+    },
+    {
+      "id": "tile_review_beijing_frame15_scoreboard",
+      "split": "train",
+      "negative": true,
+      "tensor_image": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_training_root_release_v1\\transform_preview_v2\\tile_review_beijing_frame15_scoreboard_actual_train_tensor.png",
+      "tensor_image_sha256": "0bbb30e458f45c3baa807fb44462b899480f5e83f5a52ee78524abe3f0262eba",
+      "overlay": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_training_root_release_v1\\transform_preview_v2\\tile_review_beijing_frame15_scoreboard_actual_train_overlay.png",
+      "overlay_sha256": "0bbb30e458f45c3baa807fb44462b899480f5e83f5a52ee78524abe3f0262eba",
+      "actual_boxes_xywh_normalized": [],
+      "coordinate_roundtrip_error_px": 0.0
+    }
+  ],
+  "input_changes": [],
+  "owned_rss_bytes_at_completion": 554754048
+}

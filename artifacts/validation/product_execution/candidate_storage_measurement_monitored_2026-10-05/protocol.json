@@ -1,0 +1,83 @@
+{
+  "declaredAt": "2026-10-05T03:53:38.724176+00:00",
+  "scope": "Synthetic candidate-only storage measurement plus actual frozen/current Kalman tracker equivalence and candidate lifetime, not inference, accuracy or full-pipeline memory qualification.",
+  "sourceFiles": {
+    "scripts/audit/measure_candidate_storage.py": "d2ed37345434828dc5e8d205dae9602022d96b7a058b4050eda0249e594d467b",
+    "src/utils/ball_candidate_sequence.py": "fc68571dfecb95ecb9896714ccfac16b0d47553ba33b111e5f5d1f549d8da3e5",
+    "src/utils/bbox_utils.py": "0dabfa8a8f8cf317ef5e571a88f1f4b412d411659b26ef4728338326d6445e59",
+    "src/tracking/temporal_ball_tracker.py": "c8045be1f24a7f93b5926e5ca4d2cedc6bfe7f2af6e6f2c05f0ad69be8efa650",
+    "artifacts/validation/product_execution/candidate_spool_baseline_2026-10-05/src/tracking/temporal_ball_tracker.py": "b79d7df5b459886bab595301fc3335430271b0f0f08faa5b9bc1af3bbd51fe99",
+    "artifacts/validation/product_execution/candidate_spool_baseline_2026-10-05/receipt.json": "578611f30c505f9b00641514e13471771afd1143ca314f9b10bccf5d1a6a493d"
+  },
+  "cleanInterpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "cleanInterpreterSha256": "935016795f3e6908e75acbc2040a01e2e4cdb494a57c42f63a0d6eedb2372256",
+  "launcherInterpreter": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "launcherPythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "launcherPid": 5676,
+  "launcherProcessCreationTimeUnixSeconds": 1791172418.6091623,
+  "host": {
+    "hostname": "Osamah",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "logicalCpuCount": 28,
+    "physicalCpuCount": 20,
+    "psutilVersion": "7.0.0",
+    "ramBeforeBytes": {
+      "total": 16869548032,
+      "available": 1236635648,
+      "percent": 92.7,
+      "used": 15632912384,
+      "free": 1236635648
+    },
+    "diskBeforeBytes": {
+      "total": 1022844989440,
+      "used": 947518275584,
+      "free": 75326713856
+    }
+  },
+  "storageFrames": [
+    600,
+    18000,
+    432000
+  ],
+  "trackerFrames": 5000,
+  "candidateCountPolicy": "Three independently constructed BallObservations per nonempty frame; initial, periodic and 13-frame gaps; moving/static/distractor coordinates, exact Python floats, optional BBox and track IDs, rejected coordinates and preserved nonfinite candidate coordinates.",
+  "storageOperations": [
+    "lazy append of all frames",
+    "bounded sparse indexed replacement",
+    "forward full-record JSONL export and incremental digest",
+    "full reverse record digest",
+    "bounded previous/current/next and negative/slice reads"
+  ],
+  "trackerInput": "Both actual tracker modules read the same type of disk-backed source through a weak-finalizer counter wrapper. Only tracking reads are observed; no registry retains candidates.",
+  "trackerSettings": {
+    "high_conf_thresh": 0.08,
+    "low_conf_thresh": 0.01,
+    "max_prediction_gap": 6,
+    "max_interpolation_gap": 6,
+    "max_valid_speed_px_per_frame": 90.0,
+    "base_gating_radius_px": 45.0,
+    "enable_multi_candidate_association": true,
+    "enable_adaptive_gate": true,
+    "enable_short_gap_reacquisition": true,
+    "enable_camera_motion_compensation": false,
+    "enable_scale_normalization": true,
+    "enable_frame_bounds_filter": true
+  },
+  "sampleIntervalSeconds": 0.25,
+  "maximumOwnedChildRssBytes": 1250000000,
+  "minimumAvailableRamBytes": 400000000,
+  "lowRamConsecutiveSamplesToStop": 5,
+  "maximumPerChildWallSeconds": 900,
+  "ownedProcessPolicy": "Track only the exact launched redirector and its discovered descendants by PID/createTime. Stream every per-process memory sample and aggregate owned-tree RSS/private; require the actual interpreter's early identity to have been sampled.",
+  "terminationPolicy": "Stop only exact remembered owned descendants, deepest first, then the redirector; recheck identity before signalling. Preserve every artifact; no retries, unrelated PID scan or external cleanup.",
+  "retention": "Retain every forward output, neighbor output, tracker point output, child log, streamed resource sample and receipt. A successful BallCandidateSequence context removes only its exclusively owned scratch database/sidecars; logical DB size is recorded beforehand. Exceptions retain owned partial databases.",
+  "limitations": [
+    "Synthetic candidates are not authorized match recordings or accuracy evidence.",
+    "Two-hour frame count is a scale reference, not a representative full-match workload.",
+    "Interpreter imports count toward process peaks; host background activity is uncontrolled.",
+    "Windows peak process commit does not mean resident RAM or paging-file disk use.",
+    "Weak finalizers add overhead and lifetime runs are separate from uninstrumented storage measurements.",
+    "The pipeline still retains player, calibration, trajectory and result records; these runs do not establish total pipeline bounds."
+  ]
+}

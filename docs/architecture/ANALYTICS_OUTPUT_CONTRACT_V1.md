@@ -5,6 +5,8 @@
 **Status:** FROZEN  
 **Target Consumer:** Phase 7 Dashboard & Product UX
 
+This frozen V1 document records the historical interface. The selected native YOLO26 path now emits version-2 point/rally/serve artifacts and an optional schemaVersion-1.0 `pointAnalysis` web extension; see [the current native timeline contract](../plans/POINT_ATTEMPT_TIMELINE_2026-10-16.md). Its qualified/unavailable semantics take precedence for that path. Physical ball speed remains withheld without independently qualified reconstruction and references.
+
 ---
 
 ## 1. Universal Contract Principles

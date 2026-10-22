@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="57" failures="0" errors="0" time="3.2679644">
+    <testsuite name="src/app/AnalysisContext.test.tsx" timestamp="2026-10-21T17:22:21.883Z" hostname="Osamah" tests="1" failures="0" errors="0" skipped="0" time="0.0630353">
+        <testcase classname="src/app/AnalysisContext.test.tsx" name="analysis generation refresh &gt; requests the exact completed generation and clears the stale event selection" time="0.0614935">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/correctionApi.test.ts" timestamp="2026-10-21T17:22:21.884Z" hostname="Osamah" tests="3" failures="0" errors="0" skipped="0" time="0.009377">
+        <testcase classname="src/data/correctionApi.test.ts" name="owner correction HTTP contracts &gt; pins a bounded review page to the requested saved generation" time="0.00653">
+        </testcase>
+        <testcase classname="src/data/correctionApi.test.ts" name="owner correction HTTP contracts &gt; submits the native body without client supplied reviewer identities and propagates owner denial" time="0.0012767">
+        </testcase>
+        <testcase classname="src/data/correctionApi.test.ts" name="owner correction HTTP contracts &gt; rejects another analysis status and inconsistent completed generation metadata" time="0.0005742">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/correctionDraft.test.ts" timestamp="2026-10-21T17:22:21.884Z" hostname="Osamah" tests="6" failures="0" errors="0" skipped="0" time="0.0105625">
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; preserves all 37 fields and derives side/receiver for reviewed standard scores" time="0.0057635">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; derives tie-break service rotation and rejects completed or invalid point scores" time="0.0008668">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; leaves active rallies and completed contexts read-only" time="0.0003653">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; clones complete event measurements including exact PTS and rejects cross-contract signals" time="0.0004583">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; rejects stale generations and requires explicit review evidence" time="0.0006149">
+        </testcase>
+        <testcase classname="src/data/correctionDraft.test.ts" name="reviewed correction drafts &gt; normalizes textarea line breaks and tabs to the native bounded plain-text contract" time="0.001516">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/nativeForecastRepository.test.ts" timestamp="2026-10-21T17:22:21.885Z" hostname="Osamah" tests="2" failures="0" errors="0" skipped="0" time="0.0212192">
+        <testcase classname="src/data/nativeForecastRepository.test.ts" name="native forecast result admission &gt; withholds a foreign causal history while preserving existing video evidence" time="0.0109911">
+        </testcase>
+        <testcase classname="src/data/nativeForecastRepository.test.ts" name="native forecast result admission &gt; requests only the exact saved generation and rejects substitution" time="0.0094196">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/data/repository.test.ts" timestamp="2026-10-21T17:22:21.886Z" hostname="Osamah" tests="11" failures="0" errors="0" skipped="0" time="0.0073642">
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; validates the versioned snapshot" time="0.0030248">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes baseline_run_1 to the current run contract" time="0.0003181">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase2_ball_1 to the current run contract" time="0.0001538">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase2_yolo11_final to the current run contract" time="0.000147">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase3_events_1 to the current run contract" time="0.0001811">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase4_1_line_calls to the current run contract" time="0.0002058">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase4_line_calls_1 to the current run contract" time="0.0001865">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; normalizes phase5_scoring_1 to the current run contract" time="0.001039">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; preserves every required scientific enum" time="0.0002516">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; keeps unavailable historical artifacts explicit" time="0.0004647">
+        </testcase>
+        <testcase classname="src/data/repository.test.ts" name="offline analysis repository &gt; rejects invalid run ids" time="0.0004939">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/AnalysisCorrection.test.tsx" timestamp="2026-10-21T17:22:21.887Z" hostname="Osamah" tests="11" failures="0" errors="0" skipped="0" time="0.3987068">
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; keeps guests and nonowners read-only without correction controls" time="0.0578835">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; requires explicit authorization, submits exact cloned evidence and keeps the replay usable" time="0.1420692">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; retries an ambiguous network response using the same retained command after remount" time="0.0945186">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; restores persisted active status, polls completion and reloads the exact generation once" time="0.008811">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; preserves a historical generation until the reviewer explicitly opens a completed successor" time="0.0321856">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; does not follow an active correction for another base generation (current source: false)" time="0.0055323">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; does not follow an active correction for another base generation (current source: true)" time="0.0045256">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; cancels the owned command and stops polling after unmount" time="0.028741">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; stops owned-command polling and removes controls when owner access is revoked" time="0.005712">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; supports explicit local-owner review and withholds stale-generation submission" time="0.0158501">
+        </testcase>
+        <testcase classname="src/components/AnalysisCorrection.test.tsx" name="owner analysis correction workflow &gt; keeps curated examples read-only even if the local owner is authenticated" time="0.0012699">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/NativeForecast.test.tsx" timestamp="2026-10-21T17:22:21.889Z" hostname="Osamah" tests="5" failures="0" errors="0" skipped="0" time="0.1113279">
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; displays the replay prefix, preserves withheld gaps and seeks the actual event frame" time="0.0944137">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; shows confirmed results without a forecast probability" time="0.003687">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; labels posterior samples as completed points and exposes one keyboard history control" time="0.0089498">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; rejects foreign sources/revisions, future point frontiers, phase and row clock changes" time="0.0012703">
+        </testcase>
+        <testcase classname="src/components/NativeForecast.test.tsx" name="native causal forecast replay &gt; bounds long histories to 600 columns while retaining gaps and real frame identities" time="0.0013807">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/SynchronizedTelemetryView.test.tsx" timestamp="2026-10-21T17:22:21.890Z" hostname="Osamah" tests="5" failures="0" errors="0" skipped="0" time="1.5926951">
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; preserves the video element and playback state host while switching tabs" time="0.182515">
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; supports arrow-key tab navigation" time="1.1167711">
+            <system-err>
+THREE.WARNING: Multiple instances of Three.js being imported.
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; seeks the same source video while stepping frames in an analytical view" time="0.1563725">
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; resets the playhead and analysis interval when switching runs" time="0.0509661">
+        </testcase>
+        <testcase classname="src/components/SynchronizedTelemetryView.test.tsx" name="synchronized telemetry view &gt; seeks reviewed signals missing from physical events using the same video clock" time="0.0836016">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/ProductFlows.test.tsx" timestamp="2026-10-21T17:22:21.890Z" hostname="Osamah" tests="8" failures="0" errors="0" skipped="0" time="0.6104397">
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; keeps a failed library request distinct from an empty library in function ProductHome() {
+	const resource = (0,__vite_ssr_import_3__.useProductResource)(&quot;/api/matches&quot;, 5e3);
+	const catalog = (0,__vite_ssr_import_5__.usePublicDemos)();
+	const publicAnalysisIds = new Set(catalog.demos.map((demo) =&gt; demo.analysisId));
+	const matches = (resource.data ?? []).filter((match) =&gt; match.source === &quot;upload&quot; &amp;&amp; !publicAnalysisIds.has(match.analysis_id ?? &quot;&quot;));
+	const active = matches.filter((match) =&gt; [&quot;PROCESSING&quot;, &quot;UPLOADED&quot;].includes(match.status));
+	const completed = matches.filter((match) =&gt; match.status === &quot;COMPLETED&quot; &amp;&amp; match.analysis_id);
+	const [graphicsPaused, setGraphicsPaused] = (0,__vite_ssr_import_1__.useState)(false);
+	const motionScope = (0,__vite_ssr_import_10__.useSocietyMotion)();
+	return /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+		ref: motionScope,
+		className: `page product-page product-home society-home${graphicsPaused ? &quot; motion-is-paused&quot; : &quot;&quot;}`,
+		children: [
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;header&quot;, {
+				className: &quot;society-entry-intro&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+					className: &quot;society-label&quot;,
+					children: &quot;[ AI TENNIS INTELLIGENCE ]&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 12
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h1&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+					className: &quot;society-reveal-line&quot;,
+					children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;See the game.&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 119
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 81
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+					className: &quot;society-reveal-line&quot;,
+					children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: [&quot;See it &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;em&quot;, { children: &quot;differently.&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 203
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 181,
+						columnNumber: 190
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 152
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 77
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 181,
+					columnNumber: 7
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;society-entry-copy&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, { children: [
+						&quot;Your footage. A new perspective.&quot;,
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;br&quot;, {}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 78
+						}, this),
+						&quot;Follow the ball, read the movement, and discover the evidence behind your game.&quot;
+					] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 182,
+						columnNumber: 43
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						className: &quot;society-cta&quot;,
+						to: &quot;/upload&quot;,
+						children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;Analyze your match&quot; }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 210
+						}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowUpRight), {
+							size: 22,
+							&quot;aria-hidden&quot;: &quot;true&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 182,
+							columnNumber: 241
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 182,
+						columnNumber: 167
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 182,
+					columnNumber: 7
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 180,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, {
+				id: &quot;match-intelligence&quot;,
+				className: &quot;society-media-section society-entry-media&quot;,
+				&quot;aria-label&quot;: &quot;Example analyses&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-preview-intro society-section-heading&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h2&quot;, { children: [&quot;Watch the analysis &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;em&quot;, { children: &quot;in action.&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 208
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 185
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: &quot;/examples&quot;,
+						children: [&quot;Explore examples &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowRight), {
+							size: 18,
+							&quot;aria-hidden&quot;: &quot;true&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 270
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 184,
+						columnNumber: 232
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 122
+				}, this), catalog.loading ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-preview-loading&quot;,
+					role: &quot;status&quot;,
+					children: &quot;Loading example videos…&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 345
+				}, this) : catalog.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-demo-unavailable&quot;,
+					role: &quot;status&quot;,
+					children: [
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, { children: &quot;Example videos could not be loaded. You can still upload and open your own analyses.&quot; }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 504
+						}, this),
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;button&quot;, {
+							className: &quot;button&quot;,
+							type: &quot;button&quot;,
+							onClick: catalog.refresh,
+							children: &quot;Retry examples&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 595
+						}, this),
+						/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+							className: &quot;button&quot;,
+							to: &quot;/upload&quot;,
+							children: &quot;Upload video&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 184,
+							columnNumber: 685
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 448
+				}, this) : catalog.demos.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_11__.Fragment), { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(PublicDemoGallery, { demos: catalog.demos }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 776
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+					className: &quot;product-demo-note&quot;,
+					children: &quot;Real processed clips shared under their source licenses. These examples demonstrate the workflow; their measurements have not been independently validated.&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 819
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 774
+				}, this) : /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(PreviewEmptyState, {}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 184,
+					columnNumber: 1017
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 184,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyMarquee), {
+				paused: graphicsPaused,
+				onToggle: () =&gt; setGraphicsPaused((paused) =&gt; !paused)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 185,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(ProductError, {
+				error: resource.error,
+				retry: resource.refresh
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 186,
+				columnNumber: 5
+			}, this),
+			!resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+				role: &quot;status&quot;,
+				children: &quot;Loading your analyses…&quot;
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 187,
+				columnNumber: 42
+			}, this) : completed.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, {
+				className: &quot;society-media-section society-local-section&quot;,
+				&quot;aria-label&quot;: &quot;Your recent analyses&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-preview-intro society-section-heading&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-label&quot;,
+						children: &quot;[ YOUR LOCAL LIBRARY ]&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 274
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h2&quot;, { children: catalog.loading || catalog.error ? &quot;Recent saved analyses&quot; : &quot;Your recent analyzed videos&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 335
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 269
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;Saved on this device · Local library&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 187,
+						columnNumber: 442
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 187,
+					columnNumber: 206
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(LocalAnalysisPreviews, {
+					matches,
+					label: catalog.loading || catalog.error ? &quot;Saved analysis&quot; : &quot;Your local analysis&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 187,
+					columnNumber: 497
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 187,
+				columnNumber: 107
+			}, this) : null,
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, {
+				className: &quot;society-manifesto&quot;,
+				children: [
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-label&quot;,
+						children: &quot;[ INTELLIGENCE WITH EVIDENCE ]&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 44
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, { children: &quot;Every movement tells a story. Every estimate needs evidence. Look beyond the score.&quot;.split(&quot; &quot;).map((word, index) =&gt; /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-manifesto-word&quot;,
+						children: [
+							index === 2 ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+								className: &quot;society-inline-court&quot;,
+								&quot;aria-hidden&quot;: &quot;true&quot;,
+								children: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.CourtEmblem), { compact: true }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 361
+								}, this)
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 303
+							}, this) : null,
+							word,
+							&quot; &quot;
+						]
+					}, index, true, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 235
+					}, this)) }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 113
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, {
+						className: &quot;society-manifesto-mark&quot;,
+						&quot;aria-hidden&quot;: &quot;true&quot;,
+						children: &quot;↗&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 419
+					}, this),
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+						className: &quot;society-hero-art society-entry-art&quot;,
+						children: [
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+								className: &quot;society-art-caption&quot;,
+								children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;COURT / COMPUTER VISION&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 576
+								}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;+&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 612
+								}, this)]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 539
+							}, this),
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.CourtEmblem), {}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 632
+							}, this),
+							/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+								className: &quot;society-art-footer&quot;,
+								children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;A different angle on every rally.&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 683
+								}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;span&quot;, { children: &quot;[ ASTRA ]&quot; }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 188,
+									columnNumber: 729
+								}, this)]
+							}, void 0, true, {
+								fileName: _jsxFileName,
+								lineNumber: 188,
+								columnNumber: 647
+							}, this)
+						]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 188,
+						columnNumber: 487
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 188,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyWorkflow), {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 189,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+				className: &quot;product-home-library&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;section&quot;, { children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+					className: &quot;product-section-title&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;h2&quot;, { children: active.length ? &quot;Processing your videos&quot; : &quot;Your analysis library&quot; }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 190,
+						columnNumber: 91
+					}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: &quot;/match-center&quot;,
+						children: [&quot;My analyses &quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.ArrowRight), {
+							size: 15,
+							&quot;aria-hidden&quot;: &quot;true&quot;
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 190,
+							columnNumber: 205
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 190,
+						columnNumber: 168
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 52
+				}, this), active.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(MatchList, { matches: active }, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 278
+				}, this) : resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+					className: &quot;product-empty&quot;,
+					children: matches.length ? &quot;Open My analyses to revisit saved results and downloads.&quot; : &quot;Your uploaded videos and completed results will appear here.&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 346
+				}, this) : null] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 43
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+					className: &quot;product-home-note&quot;,
+					children: &quot;Measurements depend on the camera view and visible evidence. Missing tracks and uncertain estimates stay visible in the analysis.&quot;
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 190,
+					columnNumber: 539
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 190,
+				columnNumber: 5
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_10__.SocietyAction), {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 191,
+				columnNumber: 5
+			}, this)
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 179,
+		columnNumber: 10
+	}, this);
+}" time="0.1776061">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; keeps a failed library request distinct from an empty library in function MatchCenter() {
+	const resource = (0,__vite_ssr_import_3__.useProductResource)(&quot;/api/matches&quot;, 5e3);
+	const catalog = (0,__vite_ssr_import_5__.usePublicDemos)();
+	const publicAnalysisIds = new Set(catalog.demos.map((demo) =&gt; demo.analysisId));
+	const [params, setParams] = (0,__vite_ssr_import_0__.useSearchParams)();
+	const [query, setQuery] = (0,__vite_ssr_import_1__.useState)(&quot;&quot;);
+	const filter = params.get(&quot;status&quot;) ?? &quot;all&quot;;
+	const matches = (resource.data ?? []).filter((match) =&gt; match.source === &quot;upload&quot; &amp;&amp; !publicAnalysisIds.has(match.analysis_id ?? &quot;&quot;) &amp;&amp; (filter === &quot;all&quot; || (filter === &quot;processing&quot; ? [&quot;UPLOADED&quot;, &quot;PROCESSING&quot;].includes(match.status) : match.status.toLowerCase() === filter)) &amp;&amp; `${(0,__vite_ssr_import_6__.matchTitle)(match)} ${match.filename ?? &quot;&quot;} ${match.metadata.tournament ?? &quot;&quot;}`.toLowerCase().includes(query.toLowerCase()));
+	return /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+		className: &quot;page product-page&quot;,
+		children: [
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_8__.PageHeader), {
+				eyebrow: &quot;YOUR VIDEO LIBRARY&quot;,
+				title: &quot;My analyses&quot;,
+				description: &quot;Follow processing, revisit a replay, and download your results.&quot;,
+				action: /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+					className: &quot;button button-primary&quot;,
+					to: &quot;/upload&quot;,
+					children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_2__.CloudArrowUp), {
+						size: 18,
+						&quot;aria-hidden&quot;: &quot;true&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 245
+					}, this), &quot;Upload video&quot;]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 192
+				}, this)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 45
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;div&quot;, {
+				className: &quot;product-filters&quot;,
+				children: [/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;label&quot;, { children: [&quot;Find an analysis&quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;input&quot;, {
+					type: &quot;search&quot;,
+					placeholder: &quot;Player, tournament or filename&quot;,
+					value: query,
+					onChange: (event) =&gt; setQuery(event.target.value)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 369
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 346
+				}, this), /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;label&quot;, { children: [&quot;Status&quot;, /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;select&quot;, {
+					value: filter,
+					onChange: (event) =&gt; setParams(event.target.value === &quot;all&quot; ? {} : { status: event.target.value }),
+					children: [
+						&quot;all&quot;,
+						&quot;processing&quot;,
+						&quot;completed&quot;,
+						&quot;failed&quot;
+					].map((value) =&gt; /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;option&quot;, {
+						value,
+						children: value[0].toUpperCase() + value.slice(1)
+					}, value, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 701
+					}, this))
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 521
+				}, this)] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 203,
+					columnNumber: 508
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 313
+			}, this),
+			/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(ProductError, {
+				error: resource.error,
+				retry: resource.refresh
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 811
+			}, this),
+			!resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+				role: &quot;status&quot;,
+				children: &quot;Loading analyses…&quot;
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 912
+			}, this) : matches.length ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(MatchList, { matches }, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 970
+			}, this) : resource.data &amp;&amp; !resource.error ? /* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)(&quot;p&quot;, {
+				className: &quot;product-empty&quot;,
+				children: [
+					&quot;No analyses match this view. Adjust your search or &quot;,
+					/* @__PURE__ */ (0,__vite_ssr_import_11__.jsxDEV)((0,__vite_ssr_import_0__.Link), {
+						to: &quot;/upload&quot;,
+						children: &quot;upload a video&quot;
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 203,
+						columnNumber: 1119
+					}, this),
+					&quot;.&quot;
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 203,
+				columnNumber: 1039
+			}, this) : null
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 203,
+		columnNumber: 10
+	}, this);
+}" time="0.0117702">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; focuses home on uploads and keeps manual records out of the video library" time="0.1119716">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; filters match records by names and status" time="0.0170633">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; requires an initial server and sends explicit manual match details" time="0.1544816">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; retries an uncertain point with exactly the same idempotency key" time="0.1180472">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; resolves an explicit legacy ID ahead of a conflicting query and preserves event" time="0.0152101">
+        </testcase>
+        <testcase classname="src/pages/ProductFlows.test.tsx" name="product journeys &gt; keeps explicit run selection independent of query parameters" time="0.0022288">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/SpatialAnalysis.test.tsx" timestamp="2026-10-21T17:22:21.892Z" hostname="Osamah" tests="4" failures="0" errors="0" skipped="0" time="0.1998192">
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; uses all five supplied export URLs with the same immutable generation" time="0.1396119">
+        </testcase>
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; keeps the historical download routes for a legacy or static result" time="0.0328784">
+        </testcase>
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; does not create current-generation routes when pinned exports are missing or unavailable" time="0.0111907">
+        </testcase>
+        <testcase classname="src/pages/SpatialAnalysis.test.tsx" name="analysis download generation binding &gt; honors an unavailable legacy export while retaining its other supplied URLs" time="0.0142633">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/TelemetryDashboard.test.tsx" timestamp="2026-10-21T17:22:21.892Z" hostname="Osamah" tests="1" failures="0" errors="0" skipped="0" time="0.2434175">
+        <testcase classname="src/components/spatial/TelemetryDashboard.test.tsx" name="decoded-frame replay integration &gt; holds shared evidence during seeks and commands the decoder on view and source changes" time="0.2418644">
+        </testcase>
+    </testsuite>
+</testsuites>

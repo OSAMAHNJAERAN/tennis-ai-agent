@@ -1,0 +1,36 @@
+{
+  "scope": "Actual browser keyboard commands on one public clip through a read-only held stream, followed by decoded acknowledgement and bounded fullscreen controls",
+  "analysisId": "match_9de7cb2d09eb46a0af0e34c3b0e6b818",
+  "url": "http://127.0.0.1:8010/examples/djokovic_2012",
+  "entry": "/assets/index-CoGO8rMF.js",
+  "entrySha256": "affa487d6396305436cce58300697fd54a7c4cae0bca1ae5eab8e7e1568e8483",
+  "playerSourceSha256": "be9e02fc29c09b0ccaf7e1ebc92a2dab3ac735a01a2c1c895eaa7f2bf99e9064",
+  "sourceSha256": "2143a4f12227ea0fd119610f124064968584676d43d0a847e5bf49b0cabb0bfb",
+  "observations": [
+    {"at":"2026-10-05T01:12:57.871Z","action":"playingHeld","videoCurrentTime":1.28191,"paused":false,"playerFrame":30,"sharedFrame":30,"readyState":2,"status":["Buffering video · analysis holds on the presented frame."]},
+    {"at":"2026-10-05T01:12:58.222Z","action":"pause","videoCurrentTime":1.28191,"paused":true,"playerFrame":30,"sharedFrame":30,"readyState":2,"status":[]},
+    {"at":"2026-10-05T01:13:17.731Z","action":"firstRight","videoCurrentTime":1.292959,"paused":true,"playerFrame":30,"sharedFrame":30,"readyState":1,"status":["Seeking video · analysis holds on the presented frame."]},
+    {"at":"2026-10-05T01:13:17.834Z","action":"secondRightBeforeDecoded","videoCurrentTime":1.334667,"paused":true,"playerFrame":30,"sharedFrame":30,"readyState":1,"status":["Seeking video · analysis holds on the presented frame."]},
+    {"at":"2026-10-05T01:14:11.125Z","action":"decoded32AfterRelease","videoCurrentTime":1.334667,"paused":true,"playerFrame":32,"sharedFrame":32,"readyState":4,"status":[]},
+    {"at":"2026-10-05T01:14:11.237Z","action":"leftAfterDecodedAck","videoCurrentTime":1.292959,"paused":true,"playerFrame":31,"sharedFrame":31,"readyState":4,"status":[]},
+    {"at":"2026-10-05T01:14:54.647Z","action":"enterFullscreenByEnter","exitButtonPresent":true,"playerFrame":31,"pressed":"true","nativeAXScope":"Video evidence player only"},
+    {"at":"2026-10-05T01:14:54.721Z","action":"fullscreenSpacePlay","videoCurrentTime":1.344758,"paused":false,"playerFrame":31,"sharedFrame":31,"readyState":4,"status":[]},
+    {"at":"2026-10-05T01:14:54.829Z","action":"fullscreenSpacePause","videoCurrentTime":1.371853,"paused":true,"playerFrame":33,"sharedFrame":33,"readyState":4,"status":[]},
+    {"at":"2026-10-05T01:15:37.745Z","action":"fullscreenArrowRightWithinActiveFullscreen","exitButtonPresent":true,"playerFrame":35,"pressed":"true","sharedFrame":35,"nativeAXScope":"Video evidence player only"},
+    {"at":"2026-10-05T01:15:37.880Z","action":"exitFullscreenByEnter","enterButtonPresent":true,"playerFrame":35,"pressed":"false","sharedFrame":35,"nativeAXScope":"Full example workspace"},
+    {"at":"2026-10-05T01:16:03.250Z","action":"restartAndRestore","videoCurrentTime":0,"fullscreen":"false","paused":true,"playerFrame":0,"sharedFrame":0,"rate":1,"readyState":4,"status":[]}
+  ],
+  "limitations": [
+    "This clip has unavailable court mapping and physical reconstruction; no spatial accuracy or model qualification is established.",
+    "The fullscreen session exited between two browser tool calls. A subsequent attempt to press Exit fullscreen found no matching control. Entry, paused ArrowRight from34 to35, and explicit Enter exit were then verified together while AX and aria-pressed confirmed fullscreen remained active.",
+    "October4 red and first green probes were interrupted by continuation session removal. Their journals and observed commands remain separate; neither has a graceful shutdown record or observed post-release decoded frame.",
+    "Screenshot output is not persisted to a local artifact by the exposed browser API. The evidence here consists of native AX state and read-only DOM observations."
+  ],
+  "temporaryTabClosed": true,
+  "probeSession": 26756,
+  "probeExitCode": 0,
+  "serverStoppedAt": "2026-10-05T01:16:19.335739+00:00",
+  "sourceUnchangedAtShutdown": true,
+  "screenshotArtifact": null,
+  "qualificationEvidence": false
+}

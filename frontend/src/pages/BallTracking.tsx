@@ -30,7 +30,7 @@ export default function BallTracking() {
         <Card><Metric primary label="Valid tracking coverage" value={formatPercent(coverage)} meta="Observed or reconstructed frames" /></Card>
         <Card><Metric label="Mean estimated speed" value={formatNumber(overview?.average_speed_kmh, " km/h")} meta={overview ? "2D court-plane estimate" : "Unavailable in this run"} /></Card>
         <Card><Metric label="Maximum estimate" value={formatNumber(overview?.maximum_speed_kmh, " km/h")} meta={overview ? `${overview.segments_count} flight segments` : "Unavailable in this run"} /></Card>
-        <Card><Metric label="Model" value="YOLO11s" meta={getConfigString(run.runConfig, "ball_detection", "model") ?? "Path unavailable"} /></Card>
+        <Card><Metric label="Model" value={getConfigString(run.runConfig, "ball_detection", "backend") ?? "Configured detector"} meta={getConfigString(run.runConfig, "ball_detection", "model") ?? "Path unavailable"} /></Card>
       </section>
       <div className="ball-chart-grid">
         <Card className="panel-padding chart-card-wide">

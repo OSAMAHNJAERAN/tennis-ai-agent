@@ -1,0 +1,11 @@
+--- full-v2/frontend/src/components/AnalysisCorrection.tsx
++++ current/frontend/src/components/AnalysisCorrection.tsx
+@@ -44,7 +44,7 @@
+       if (controller.signal.aborted) return;
+       if (nextSource.base_analysis_revision !== run.analysisRevision || (run.pointAnalysis && nextSource.source_sha256 !== run.pointAnalysis.sourceSha256)) throw new Error('Review evidence differs from the displayed analysis revision or source.');
+       setLocalOwner(!session.required); setSource(nextSource); setScore(initialScoreDraft(nextSource.initial_state)); setHistory(rows);
+-      setCurrent(rows.find(row => activeStatus(row)) ?? null); setAdmission('owner'); setError(null);
++      setCurrent(nextSource.is_current ? rows.find(row => activeStatus(row) && row.base_generation === generation) ?? null : null); setAdmission('owner'); setError(null);
+     })().catch(caught => { if (controller.signal.aborted) return;
+       if (accessDenied(caught)) setAdmission('readonly');
+       else { setAdmission('error'); setError(message(caught)); }

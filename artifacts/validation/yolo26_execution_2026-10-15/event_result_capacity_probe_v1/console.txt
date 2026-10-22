@@ -1,0 +1,86 @@
+{
+  "completed_utc": "2026-10-15T14:45:11.144258+00:00",
+  "status": "REPRODUCED_DURATION_DEPENDENT_EVENT_RESULT_MATERIALIZATION",
+  "scope": "AST_ISOLATED_ACTUAL_METHODS_AND_SQLITE_SYNTHETIC_SCALARS_ONLY",
+  "source_bindings": {
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\events\\event_detector.py": "2dc64c2484e17476fb90f3e97e49a8bcf680bb46623eacdac52dbab7ce45c0cb",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\tracking\\temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\utils\\temporal_ball_point_sequence.py": "a2525411d165e1cbea51938ecc31787b62d67452f05f1e3a45b7c75901132342"
+  },
+  "source_files_changed": [],
+  "results": [
+    {
+      "kind": "ACTUAL_SQLITE_FEATURE_SELECTOR_AND_CANDIDATE_FACTORY",
+      "input_features": 257,
+      "candidate_container_type": "list",
+      "retained_candidates": 257,
+      "live_candidates": 257,
+      "peak_live_candidates": 257,
+      "retained_tracemalloc_delta_bytes": 335901,
+      "rss_bytes": 28557312,
+      "peak_rss_bytes": 30347264
+    },
+    {
+      "kind": "ACTUAL_SQLITE_FEATURE_SELECTOR_AND_CANDIDATE_FACTORY",
+      "input_features": 1025,
+      "candidate_container_type": "list",
+      "retained_candidates": 1025,
+      "live_candidates": 1025,
+      "peak_live_candidates": 1025,
+      "retained_tracemalloc_delta_bytes": 1236133,
+      "rss_bytes": 31027200,
+      "peak_rss_bytes": 31031296
+    },
+    {
+      "kind": "ACTUAL_SQLITE_FEATURE_SELECTOR_AND_CANDIDATE_FACTORY",
+      "input_features": 4097,
+      "candidate_container_type": "list",
+      "retained_candidates": 4097,
+      "live_candidates": 4097,
+      "peak_live_candidates": 4097,
+      "retained_tracemalloc_delta_bytes": 4689525,
+      "rss_bytes": 39473152,
+      "peak_rss_bytes": 40230912
+    },
+    {
+      "kind": "ACTUAL_ANALYZE_CONTROL_FLOW_WITH_SYNTHETIC_VERIFICATION",
+      "input_features": 257,
+      "retained_candidates": 257,
+      "retained_events": 257,
+      "retained_traces": 257,
+      "container_types": [
+        "list",
+        "list",
+        "list"
+      ],
+      "rss_bytes": 29814784,
+      "peak_rss_bytes": 40230912
+    },
+    {
+      "kind": "ACTUAL_ANALYZE_CONTROL_FLOW_WITH_SYNTHETIC_VERIFICATION",
+      "input_features": 1025,
+      "retained_candidates": 1025,
+      "retained_events": 1025,
+      "retained_traces": 1025,
+      "container_types": [
+        "list",
+        "list",
+        "list"
+      ],
+      "rss_bytes": 32960512,
+      "peak_rss_bytes": 40230912
+    }
+  ],
+  "remaining_feature_scratch_files": [],
+  "heavy_modules_imported": [],
+  "video_or_model_used": false,
+  "qualification_evidence": false,
+  "full_match_capacity_proven": false,
+  "rss_bytes": 29560832,
+  "peak_rss_bytes": 40230912
+}
+Traceback (most recent call last):
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\yolo26_execution_2026-10-15\event_result_capacity_probe_v1\reproduce_current_event_materialization.py", line 164, in <module>
+    assert max(row['peak_live_candidates'] for row in results if 'peak_live_candidates' in row) <= 8, 'Current scratch selector still retains every selected EventCandidate in a list'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Current scratch selector still retains every selected EventCandidate in a list

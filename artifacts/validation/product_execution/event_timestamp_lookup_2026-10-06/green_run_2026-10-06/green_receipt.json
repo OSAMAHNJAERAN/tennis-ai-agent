@@ -1,0 +1,81 @@
+{
+  "startedAt": "2026-10-06T07:14:09.798855+00:00",
+  "completedAt": "2026-10-06T07:14:11.579485+00:00",
+  "elapsedSeconds": 1.780629399989266,
+  "command": [
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_event_timestamp_lookup.py",
+    "-q",
+    "-s",
+    "-o",
+    "junit_family=legacy",
+    "--junitxml=artifacts/validation/product_execution/event_timestamp_lookup_2026-10-06/green_run_2026-10-06/green.xml"
+  ],
+  "returncode": 0,
+  "status": "GREEN",
+  "tests": 38,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "bindings": {
+    "sourceSha256": "ccc00b450aa144d59a5fff13ede8a675749dc62fdc500143d3c114af715eff63",
+    "testSha256": "1651584fd65706d9981445866d8358f93655593e8df70da4151f9ee8c1b551f9",
+    "baselineSha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
+    "redTestSnapshotSha256": "e3558972f8f86788ac7d2289af9d3a72e4dffa4bbc99f41e6e4d18581a648841",
+    "runnerSha256": "d2af681b855d35f81127482db0435d1b67df93da0e95407bc4535f5fb2542f3a",
+    "redReceiptSha256": "da48a3913fdc23512187e9c170df5cbdfdfe754a45f321cbeaf08d1b0d9af3a6"
+  },
+  "nearestTimestampMeasurements": {
+    "measurements": [
+      {
+        "frames": 128,
+        "timestampReads": 5918,
+        "nearestQueries": 512,
+        "timestampReadBudget": 20480,
+        "exactFrozenFeatureBytes": true,
+        "featureBytes": 109119,
+        "featureSha256": "19561b8621d58ba5d4add6820b7d9fb49762c139090a9f1800a2df3f6c8797f3"
+      },
+      {
+        "frames": 256,
+        "timestampReads": 13348,
+        "nearestQueries": 1024,
+        "timestampReadBudget": 45056,
+        "exactFrozenFeatureBytes": true,
+        "featureBytes": 218934,
+        "featureSha256": "45fe6d75dd7153dbcffb08016c3a15aef1b8ca3cfeb3cc044ac3553238c2e9b1"
+      },
+      {
+        "frames": 512,
+        "timestampReads": 29738,
+        "nearestQueries": 2048,
+        "timestampReadBudget": 98304,
+        "exactFrozenFeatureBytes": true,
+        "featureBytes": 437042,
+        "featureSha256": "68a319a000f85740f744d372657a528a589525f219206a7f21aa5059268e91e1"
+      }
+    ],
+    "doublingReadRatios": [
+      2.255491720175735,
+      2.227899310758166
+    ]
+  },
+  "xmlSha256": "159ed149a9ae014fb898194c2bb91d70bbaed61a34582f093428ef6958279a79",
+  "outputSha256": "b8028c706a59e8f48618314d9cd5f674249f9bc220390017fcae5df9a22a213a",
+  "boundSourcesUnchangedDuringRun": true,
+  "agentEditedProduction": false,
+  "inferenceRun": false,
+  "modelsLoaded": false,
+  "compatibility": "Every serialized feature field plus complete analyze candidate/event/trace/settings/coordinate output against exact pre-change production source; finite sorted randomized nearest lookup and all old fallback/rejection cases.",
+  "workloadBound": {
+    "maximumDenseFrames": 512,
+    "featureRuns": 6,
+    "randomSeed": 20261006,
+    "randomFiniteTimelines": 120,
+    "maximumRandomTimelineFrames": 96,
+    "timeoutSeconds": 60,
+    "scope": "Deterministic numeric regression, not a speed benchmark, memory-capacity or accuracy qualification."
+  }
+}

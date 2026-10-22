@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-10-22T00:30:21.105828+00:00",
+  "reviewer": "Independent collaborating AI agent /root/native_pipeline_fixture",
+  "status": "STATIC_SCOPE_REVIEWED_DEFENSIVE_INVARIANT_RECOMMENDATION_OPEN",
+  "scope": "Current Phase6 native completed-player-prefix and raw-ball journal integration only; worker/session implementation not frozen or reviewed",
+  "reviewed_pipeline": {
+    "path": "src/pipeline/phase6_pipeline.py",
+    "sha256": "a839a9eae58c79cd43280893cee201091eb2d681c3e88e671ab7234a10b1a800",
+    "bytes": 109507
+  },
+  "checks": [
+    {
+      "area": "fresh_restored_variable_coverage",
+      "finding": "Restored branch supplies initial court landmarks/calibration/canonical points, homography flags, registration/calibration/transform views, candidate frames, role boxes, camera-enabled/recovery flags and crop provider required by later stages. Fresh-only intermediate variables have no later consumers."
+    },
+    {
+      "area": "no_repeated_player_or_court_inference",
+      "finding": "Restored branch opens sealed prefix and does not call initial court prediction, player pass, role selection or audit writer constructors. Source frame zero is decoded only for metadata/geometry validation."
+    },
+    {
+      "area": "crop_policy",
+      "finding": "Selected player checkpoint path and full clean crop execution record are compared to saved record. finish_tracking_for_crops receives saved resolved device as both admitted and expected device; active extractor is rebound to provider."
+    },
+    {
+      "area": "ball_device",
+      "finding": "Selected ball model is moved to saved crop device, observed device is checked and adapter device is set explicitly before journal opening and new candidate inference."
+    },
+    {
+      "area": "raw_frame_commit",
+      "finding": "extract_candidates completes its full fixed-tile call before journal.append(global index,candidates); empty frames are retained. Journal API commits row/frontier together. No filter receives the journal as mutable storage."
+    },
+    {
+      "area": "global_postprocessing",
+      "finding": "After suffix reaches declared total frames, all raw journal records extend fresh BallCandidateSequence scratch. Stationary/pixel/patch/detour filtering and temporal association then rerun globally rather than concatenating interpreted chunks."
+    },
+    {
+      "area": "source_cleanup",
+      "finding": "Fresh sequential suffix decoder closes on normal completion and BaseException. Concurrent close failure adds a note while original inference/storage exception is re-raised. Prefix and journal are owned by outer ExitStack."
+    },
+    {
+      "area": "metrics",
+      "finding": "metrics.json and returned inference_resume record are rebuilt from current branch/frontier counts and shared provider record. No previous whole-file metrics/result is loaded. Old artifacts can remain after an interrupted later stage; pipeline alone does not publish a completed generation."
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "authority_guard_branch_consistency",
+      "priority": "defensive_consistency",
+      "status": "OPEN_AT_REVIEWED_PIPELINE_HASH",
+      "finding": "The existing dynamic-registration/event-authority prohibition is enforced only in the fresh branch. Restored branch assumes the externally bound configuration preserves authority=False.",
+      "impact": "Worker identity binds effective config and protects the normal worker path. A direct trusted caller reusing an external identity with authority=True can bypass the preexisting fresh-run restriction; move/reapply guard outside the branch to preserve standalone pipeline contract.",
+      "suggested_fix": "Check native dynamic-registration event-authority restriction before fresh/restored branching or explicitly in restored branch; include a no-model-call resumed control."
+    }
+  ],
+  "limits": {
+    "tests_run": 0,
+    "project_modules_imported": false,
+    "torch_torchvision_ultralytics_imported": false,
+    "hardware_resource_probes": false,
+    "model_loads_or_forwards": 0,
+    "product_source_edits": false,
+    "full_worker_recovery_reviewed": false,
+    "within_inference_process_recovery_verified": false,
+    "actual_selected_checkpoint_or_long_match_qualification": false
+  },
+  "fixture_pending": {
+    "helper": "tests/helpers/native_pipeline_source.py",
+    "test": "tests/test_native_pipeline_model_free.py",
+    "not_executed_by_reviewer": true,
+    "scope": "Synthetic source and injected adapters; no model qualification"
+  }
+}

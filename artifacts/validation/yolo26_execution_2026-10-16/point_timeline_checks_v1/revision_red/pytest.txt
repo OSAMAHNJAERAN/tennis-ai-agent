@@ -1,0 +1,124 @@
+FFFFFFFFFFFFFFFFFF                                                       [100%]
+================================== FAILURES ===================================
+_ test_active_rally_requires_explicit_revision_when_current_proof_changes[identity_revision] _
+tests\test_point_timeline_revision_guards.py:39: in test_active_rally_requires_explicit_revision_when_current_proof_changes
+    assert returned['rule_event_type'] == 'CONSEQUENTIAL_GAP'
+E   AssertionError: assert 'PLAYER_2_HIT' == 'CONSEQUENTIAL_GAP'
+E     
+E     - CONSEQUENTIAL_GAP
+E     + PLAYER_2_HIT
+_ test_active_rally_requires_explicit_revision_when_current_proof_changes[calibration_revision] _
+tests\test_point_timeline_revision_guards.py:39: in test_active_rally_requires_explicit_revision_when_current_proof_changes
+    assert returned['rule_event_type'] == 'CONSEQUENTIAL_GAP'
+E   AssertionError: assert 'PLAYER_2_HIT' == 'CONSEQUENTIAL_GAP'
+E     
+E     - CONSEQUENTIAL_GAP
+E     + PLAYER_2_HIT
+_ test_active_rally_requires_explicit_revision_when_current_proof_changes[participant_mapping_ref] _
+tests\test_point_timeline_revision_guards.py:39: in test_active_rally_requires_explicit_revision_when_current_proof_changes
+    assert returned['rule_event_type'] == 'CONSEQUENTIAL_GAP'
+E   AssertionError: assert 'PLAYER_2_HIT' == 'CONSEQUENTIAL_GAP'
+E     
+E     - CONSEQUENTIAL_GAP
+E     + PLAYER_2_HIT
+_ test_active_rally_requires_explicit_revision_when_current_proof_changes[geometry_qualification_ref] _
+tests\test_point_timeline_revision_guards.py:39: in test_active_rally_requires_explicit_revision_when_current_proof_changes
+    assert returned['rule_event_type'] == 'CONSEQUENTIAL_GAP'
+E   AssertionError: assert 'PLAYER_2_HIT' == 'CONSEQUENTIAL_GAP'
+E     
+E     - CONSEQUENTIAL_GAP
+E     + PLAYER_2_HIT
+_ test_native_handoff_rejects_context_not_bound_to_its_owner[different-analysis-synthetic-source-v1] _
+tests\test_point_timeline_revision_guards.py:62: in test_native_handoff_rejects_context_not_bound_to_its_owner
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_native_handoff_rejects_context_not_bound_to_its_owner[fixture-different-source] _
+tests\test_point_timeline_revision_guards.py:62: in test_native_handoff_rejects_context_not_bound_to_its_owner
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_native_handoff_rejects_context_not_bound_to_its_owner[different-analysis-different-source] _
+tests\test_point_timeline_revision_guards.py:62: in test_native_handoff_rejects_context_not_bound_to_its_owner
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[player_id] _
+tests\test_point_timeline_revision_guards.py:89: in test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[timestamp_s] _
+tests\test_point_timeline_revision_guards.py:89: in test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[confidence] _
+tests\test_point_timeline_revision_guards.py:89: in test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[binding_evidence_ref] _
+tests\test_point_timeline_revision_guards.py:89: in test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[participant_mapping_ref] _
+tests\test_point_timeline_revision_guards.py:89: in test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[geometry_qualification_ref] _
+tests\test_point_timeline_revision_guards.py:89: in test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+____ test_duplicate_reviewed_rule_signal_requires_same_evidence_reference _____
+tests\test_point_timeline_revision_guards.py:112: in test_duplicate_reviewed_rule_signal_requires_same_evidence_reference
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_same_frame_reviewed_signal_merges_by_explicit_time_and_event_id[0.2-0.3] _
+tests\test_point_timeline_revision_guards.py:132: in test_same_frame_reviewed_signal_merges_by_explicit_time_and_event_id
+    assert [value.event_id for value in merged] == [1, 2, 3]
+E   assert [1, 3, 2] == [1, 2, 3]
+E     
+E     At index 1 diff: 3 != 2
+E     Use -v to get more diff
+_ test_same_frame_reviewed_signal_merges_by_explicit_time_and_event_id[0.2-0.2] _
+tests\test_point_timeline_revision_guards.py:132: in test_same_frame_reviewed_signal_merges_by_explicit_time_and_event_id
+    assert [value.event_id for value in merged] == [1, 2, 3]
+E   assert [1, 3, 2] == [1, 2, 3]
+E     
+E     At index 1 diff: 3 != 2
+E     Use -v to get more diff
+____ test_same_frame_same_time_same_id_different_rule_types_are_ambiguous _____
+tests\test_point_timeline_revision_guards.py:143: in test_same_frame_same_time_same_id_different_rule_types_are_ambiguous
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+_ test_later_frame_with_reversed_declared_time_is_rejected_before_that_event __
+tests\test_point_timeline_revision_guards.py:156: in test_later_frame_with_reversed_declared_time_is_rejected_before_that_event
+    with pytest.raises(ValueError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE <class 'ValueError'>
+=========================== short test summary info ===========================
+FAILED tests/test_point_timeline_revision_guards.py::test_active_rally_requires_explicit_revision_when_current_proof_changes[identity_revision]
+FAILED tests/test_point_timeline_revision_guards.py::test_active_rally_requires_explicit_revision_when_current_proof_changes[calibration_revision]
+FAILED tests/test_point_timeline_revision_guards.py::test_active_rally_requires_explicit_revision_when_current_proof_changes[participant_mapping_ref]
+FAILED tests/test_point_timeline_revision_guards.py::test_active_rally_requires_explicit_revision_when_current_proof_changes[geometry_qualification_ref]
+FAILED tests/test_point_timeline_revision_guards.py::test_native_handoff_rejects_context_not_bound_to_its_owner[different-analysis-synthetic-source-v1]
+FAILED tests/test_point_timeline_revision_guards.py::test_native_handoff_rejects_context_not_bound_to_its_owner[fixture-different-source]
+FAILED tests/test_point_timeline_revision_guards.py::test_native_handoff_rejects_context_not_bound_to_its_owner[different-analysis-different-source]
+FAILED tests/test_point_timeline_revision_guards.py::test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[player_id]
+FAILED tests/test_point_timeline_revision_guards.py::test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[timestamp_s]
+FAILED tests/test_point_timeline_revision_guards.py::test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[confidence]
+FAILED tests/test_point_timeline_revision_guards.py::test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[binding_evidence_ref]
+FAILED tests/test_point_timeline_revision_guards.py::test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[participant_mapping_ref]
+FAILED tests/test_point_timeline_revision_guards.py::test_duplicate_id_is_retry_only_when_raw_payload_and_full_context_match[geometry_qualification_ref]
+FAILED tests/test_point_timeline_revision_guards.py::test_duplicate_reviewed_rule_signal_requires_same_evidence_reference
+FAILED tests/test_point_timeline_revision_guards.py::test_same_frame_reviewed_signal_merges_by_explicit_time_and_event_id[0.2-0.3]
+FAILED tests/test_point_timeline_revision_guards.py::test_same_frame_reviewed_signal_merges_by_explicit_time_and_event_id[0.2-0.2]
+FAILED tests/test_point_timeline_revision_guards.py::test_same_frame_same_time_same_id_different_rule_types_are_ambiguous
+FAILED tests/test_point_timeline_revision_guards.py::test_later_frame_with_reversed_declared_time_is_rejected_before_that_event
+18 failed, 54 deselected in 0.75s

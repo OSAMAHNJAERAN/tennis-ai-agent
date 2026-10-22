@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T00:16:04.041837+00:00",
+  "reviewer": "AI_PEER_READ_ONLY_NOT_HUMAN",
+  "status": "CONCRETE_SCHEMA_FINDING_PENDING_OWNER_FIX_AND_FINAL_REVIEW",
+  "reviewed_bindings": [
+    {
+      "path": "src/utils/ball_inference_journal.py",
+      "reviewed_snapshot": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_checks_v2/sources/src/utils/ball_inference_journal.py",
+      "reviewed_sha256": "638f015ffeb6e3ee2481a9f9b658f1dc9a3a9f9ec67609d2397181ac3c331583",
+      "current_sha256_at_receipt": "638f015ffeb6e3ee2481a9f9b658f1dc9a3a9f9ec67609d2397181ac3c331583"
+    },
+    {
+      "path": "tests/test_ball_inference_journal.py",
+      "reviewed_snapshot": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_checks_v2/sources/tests/test_ball_inference_journal.py",
+      "reviewed_sha256": "09d866640ad3aa1c7659a763ba070fe6a712d9d5bb8255d9d32564d2ba0f7e2f",
+      "current_sha256_at_receipt": "09d866640ad3aa1c7659a763ba070fe6a712d9d5bb8255d9d32564d2ba0f7e2f"
+    },
+    {
+      "path": "src/utils/ball_candidate_sequence.py",
+      "reviewed_snapshot": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_checks_v2/sources/src/utils/ball_candidate_sequence.py",
+      "reviewed_sha256": "fc68571dfecb95ecb9896714ccfac16b0d47553ba33b111e5f5d1f549d8da3e5",
+      "current_sha256_at_receipt": "fc68571dfecb95ecb9896714ccfac16b0d47553ba33b111e5f5d1f549d8da3e5"
+    }
+  ],
+  "combined_test_receipt": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_checks_v2/receipt.json",
+    "sha256": "9c0e944ce3b1ffe9c21c2f5cdaf251a63a8c557787afae5d8df4f9947684f486",
+    "reported_tests": 264,
+    "executed_by_this_review": false
+  },
+  "findings": [
+    {
+      "id": "JOURNAL_SCHEMA_LIKE_UNDERSCORE_ALIAS",
+      "severity": "P1",
+      "status": "UNRESOLVED_IN_REVIEWED_SNAPSHOT",
+      "source": "src/utils/ball_inference_journal.py::_validate",
+      "problem": "Both schema inventory queries filter with name NOT LIKE 'sqlite_%'. LIKE treats underscore as a one-character wildcard, excluding extra objects named sqliteXextra even though their names do not start with the reserved literal sqlite_ prefix.",
+      "consequence": "An extra view/index/trigger can survive reopen schema admission. An ignored trigger may execute during a subsequent append, violating the two-table owned schema invariant.",
+      "requested_fix": "Use a literal case-insensitive prefix check in both queries, e.g. lower(substr(name,1,7)) != 'sqlite_', and add sqliteX view/index/trigger rejection controls.",
+      "reproduction_performed": false,
+      "evidence": "Direct language/SQL source inspection; tests cover ordinary extra tables, not the wildcard-alias object names.",
+      "coordination": "Root acknowledged the finding and asked the journal owner to fix it; final refreeze/test is pending."
+    }
+  ],
+  "reviewed_contracts": {
+    "atomic_frame_and_frontier": "Encoded complete candidate iterator precedes BEGIN IMMEDIATE; raw row and conditional next_frame update share one synchronous FULL transaction. Empty frames advance exactly once.",
+    "commit_acknowledgement_ambiguity": "Any transactional BaseException poisons/closes the owner, including interrupted COMMIT acknowledgement. Cached frontier cannot be reused; reopen reads the durable row/frontier pair.",
+    "bounded_retrieval": "Identity and raw payload type/byte-length predicates run in SQL before Python retrieval; record digest and canonical candidate round-trip are checked before returning a frame. SQLite cache is2MiB, temp storage is file-backed, mmap disabled.",
+    "strict_identity": "Finite plain canonical JSON,64KiB bound, exact serialized comparison preserves bool/int/float and list-order distinctions. Counts/indices reject boolean aliases and invalid boundaries.",
+    "paths": "Fixed owned name, exclusive O_EXCL creation, repeated directory/ancestor/sidecar checks, symlink/junction/reparse rejection and unaliased regular-file/inode checks.",
+    "cleanup": "Cursor/descriptor/rollback/connection cleanup retains primary BaseException and annotates secondary failures. Context exit rolls back unaccepted pending work and retains files."
+  },
+  "limits": {
+    "tests_run": 0,
+    "project_or_vision_runtime_imports": 0,
+    "host_ram_gpu_probes": 0,
+    "source_edits": 0,
+    "model_or_pipeline_resume_verified": false,
+    "actual_process_loss_evidence": "Existing separate-child SQL before/after-COMMIT controls are reported by the bound combined receipt; this review did not rerun them."
+  }
+}

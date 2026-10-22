@@ -1,0 +1,69 @@
+{
+  "preparedAt": "2026-10-06T06:55:00.190161+00:00",
+  "status": "PREPARED_NOT_EXECUTED",
+  "scope": "One actual 30-frame, native-60-FPS worker/model and saved-result compatibility smoke. No independent labels, accuracy, full-match capacity or deployment qualification.",
+  "script": "scripts/audit/verify_result_storage_latency_headroom_worker_smoke.py",
+  "scriptSha256": "99285464e48ed647a8886ee49a860c91ecc72d23f343381dbf5c3e67f288fee5",
+  "originReceiptSha256": "edd39e02ed06eb91bd16eedbb2f86ddcf73a281e4ad3e11e62db96b9b0e5b4a8",
+  "sourceAstParsed": true,
+  "helperImported": false,
+  "inferenceRun": false,
+  "workerInvoked": false,
+  "rootReviewRequiredBeforeRun": true,
+  "launchCommand": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe scripts\\audit\\verify_result_storage_latency_headroom_worker_smoke.py --run",
+  "frames": 30,
+  "nativeFps": 60,
+  "originalSourceFrames": [
+    390,
+    420
+  ],
+  "inputSha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552",
+  "preflightAvailableRamBytes": 2500000000,
+  "maximumSampledOwnedTreeRssBytes": 3000000000,
+  "minimumAvailableRamBytes": 400000000,
+  "lowRamConsecutiveSamplesToStop": 5,
+  "sampleIntervalSeconds": 0.25,
+  "maximumChildWallSeconds": 300,
+  "firstAttempt": {
+    "status": "NOT_STARTED",
+    "inferenceChildStarted": false,
+    "availableRamBytes": 2355306496,
+    "noRunDirectory": true
+  },
+  "headroomObservation": {
+    "authority": "Root message in this task; independently observed read-only 12-second probe. No probe or workload performed by this preparation.",
+    "reportedAvailableRamGB": [
+      2.27,
+      2.29,
+      2.27,
+      2.6645,
+      2.7498
+    ],
+    "lastTwoAboveUnchangedPreflightThreshold": true,
+    "unrelatedAppsChangedOrStopped": false,
+    "launchCondition": "Root explicitly dispatches only after other workloads finish; parent independently samples actual available RAM before bindings and immediately before launching the child, requiring >=2.5 GB each time. Recorded probe observations are not a substitute for either check."
+  },
+  "productionWrites": false,
+  "isolatedValidationJobPublication": true,
+  "comparison": "Frozen original resident results.py/reporting.py use byte-identical new raw artifacts and original claimed job; no volatile values removed; exact strict JSON/CSV/HTML bytes before presentation.",
+  "normalizationDimensions": "Actual native dimensions, scale1 and padding. Original input pixels verified; CRF18 normalized worker pixels independently decoded, not claimed lossless.",
+  "liveProductChecks": "Exactly ten live job states and complete live file/directory tree including SQLite sidecars before/after, read-only. Current API worker poll is active; any persistent file change fails the receipt rather than being ignored.",
+  "currentRuntimeReview": {
+    "receipt": "artifacts/validation/product_execution/result_storage_latency_runtime_verification_2026-10-06.json",
+    "passed": true,
+    "savedJobsAndAnalysisFilesUnchanged": true,
+    "liveJobs": 10,
+    "savedFiles": 319,
+    "catalogDemos": 3,
+    "demoExports": 12,
+    "frontendAssets": 7
+  },
+  "historicalChecks": "Both prior helpers and entire units, original resident baseline and retained media are preserved and bind before/after. firstLatencyAttemptHistoryUnchanged is separately required in the terminal receipt.",
+  "launchBindingPolicy": "All src Python, WASB implementation, model assets/config, source/excerpt, clean interpreter, exact monitor, original/new helpers and immutable preparation/origin receipts bind at launch. Child verifies before work; parent verifies after exact process retirement.",
+  "network": "YOLO_OFFLINE=true, YOLO_AUTOINSTALL=false; socket connect/connect_ex blocked and recorded.",
+  "modelEvidence": "Actual production worker and all configured models; passive construction observer disables profiling before inference. No stubs or model replacements.",
+  "ownedProcessGuard": "Exact actual-interpreter PID/createTime handshake, sampled owned tree, deepest-first stop with Popen fallback, all identities retired on success/error.",
+  "retention": "One exclusive marker consumes this fresh unit on any launch. Preserve all partial logs/artifacts; no automatic retry, guard relaxation or unrelated cleanup.",
+  "qualificationEvidence": false,
+  "productionQualified": false
+}

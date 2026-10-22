@@ -1,0 +1,617 @@
+"""
+camera_calibration.py
+Camera calibration from tennis court points
+Optimizes intrinsic (K) and extrinsic (R, T) parameters
+"""
+
+import numpy as np
+from scipy.optimize import least_squares
+from scipy.spatial.transform import Rotation
+import cv2
+import pdb
+
+class CameraCalibrator:
+    def __init__(self, points_2d, points_3d, image_shape, camera_model='pinhole', video_intrinsics=None):
+        """
+        Initialize camera calibrator.
+        
+        Args:
+            points_2d: Dictionary mapping point names to 2D pixel coordinates
+            points_3d: Dictionary mapping point names to 3D world coordinates
+            image_shape: Dictionary with 'height' and 'width' keys
+            camera_model: 'pinhole' or 'fisheye' (default: 'pinhole')
+        """
+        # Get corresponding points only (skip any points that don't have both 2D and 3D)
+        self.point_names = sorted(set(points_2d.keys()) & set(points_3d.keys()))
+        
+        # Convert to numpy arrays
+        self.points_2d = np.array([points_2d[name] for name in self.point_names], dtype=np.float32)
+        self.points_3d = np.array([points_3d[name] for name in self.point_names], dtype=np.float32)
+        
+        self.image_height = image_shape['height']
+        self.image_width = image_shape['width']
+        self.camera_model = camera_model.lower()
+
+        self.video_intrinsics = video_intrinsics
+        
+        if self.camera_model not in ['pinhole', 'fisheye']:
+            raise ValueError(f"camera_model must be 'pinhole' or 'fisheye', got '{camera_model}'")
+        
+        print(f"Calibrating with {len(self.point_names)} points: {', '.join(self.point_names)}")
+
+        # print("points_2d: ", self.points_2d)
+        # print("points_3d: ", self.points_3d)
+        
+    def check_collinearity(self, points_3d):
+        """
+        Checks if the provided 3D points are collinear (lie on a single line).
+        Returns True if collinear (BAD), False if spread out (GOOD).
+        """
+        if len(points_3d) < 3:
+            return True # 2 points are always a line
+            
+        # 1. Strip Z-axis (since Z is always 0 on tennis court)
+        # We only care about the geometric spread in X and Y
+        pts_planar = points_3d[:, :2] 
+        
+        # 2. Center the points (subtract mean)
+        centroid = np.mean(pts_planar, axis=0)
+        centered = pts_planar - centroid
+        
+        # 3. Compute Singular Value Decomposition
+        # S contains the "magnitude" of the spread in the two principal directions
+        U, S, Vt = np.linalg.svd(centered)
+        
+        # S[0] is the spread along the main axis (length of the line)
+        # S[1] is the spread PERPENDICULAR to the line (width of the shape)
+        
+        print(f"  > Geometry Spread (Singular Values): {S}")
+        
+        # 4. Check the ratio. 
+        # If the 'width' (S[1]) is tiny compared to 'length' (S[0]), it's a line.
+        if S[1] < 1e-4: # Floating point tolerance
+            print("  > WARNING: Points are COLLINEAR. Calibration will fail.")
+            return True
+            
+        return False
+    
+    def project_points(self, params, points_3d):
+        """
+        Project 3D points to 2D using camera parameters.
+        
+        Args:
+            params: [fx, fy, cx, cy, r1, r2, r3, tx, ty, tz]
+                    where (r1,r2,r3) are Rodrigues rotation parameters
+            points_3d: Nx3 array of 3D points
+            
+        Returns:
+            Nx2 array of projected 2D points
+        """
+        # Unpack parameters
+        fx, fy, cx, cy = params[:4]
+        rvec = params[4:7]
+        tvec = params[7:10]
+        
+        # Build intrinsic matrix
+        K = np.array([
+            [fx, 0, cx],
+            [0, fy, cy],
+            [0, 0, 1]
+        ])
+        
+        # Convert Rodrigues to rotation matrix
+        R = Rotation.from_rotvec(rvec).as_matrix()
+        
+        # Project points
+        # points_3d_hom = np.hstack([points_3d, np.ones((points_3d.shape[0], 1))])  # Nx4
+        # Rt = np.hstack([R, tvec.reshape(3, 1)])  # 3x4
+        # points_cam = (Rt @ points_3d_hom.T).T  # Nx3
+
+        points_cam = (R @ points_3d.T + tvec.reshape(3, 1)).T  # Nx3
+        points_2d_hom = (K @ points_cam.T).T  # Nx3
+        points_2d = points_2d_hom[:, :2] / points_2d_hom[:, 2:3]
+        
+        return points_2d
+    
+    def residuals(self, params):
+        """
+        Compute reprojection errors.
+        
+        Args:
+            params: Camera parameters [fx, fy, cx, cy, r1, r2, r3, tx, ty, tz]
+            
+        Returns:
+            1D array of residuals (flattened x and y errors)
+        """
+        
+        projected = self.project_points(params, self.points_3d)
+        errors = projected - self.points_2d
+        return errors.ravel()
+    
+    def initialize_params(self):
+        """
+        Initialize camera parameters with reasonable guesses.
+        
+        Returns:
+            Initial parameter vector [fx, fy, cx, cy, r1, r2, r3, tx, ty, tz]
+        """
+        # Initial intrinsics guess
+        # Assume field of view around 60 degrees
+        focal_length = self.image_width  # Rough estimate
+        cx = self.image_width / 2
+        cy = self.image_height / 2
+        
+        # Use OpenCV's solvePnP for initial extrinsics estimate
+        K_init = np.array([
+            [focal_length, 0, cx],
+            [0, focal_length, cy],
+            [0, 0, 1]
+        ])
+        
+        # Get initial pose estimate
+        success, rvec, tvec = cv2.solvePnP(
+            self.points_3d, 
+            self.points_2d, 
+            K_init, 
+            distCoeffs=None,
+            flags=cv2.SOLVEPNP_ITERATIVE
+        )
+        
+        if not success:
+            print("Warning: Initial pose estimation failed, using default values")
+            rvec = np.array([0, 0, 0])
+            tvec = np.array([0, 0, 10])
+        else:
+            rvec = rvec.ravel()
+            tvec = tvec.ravel()
+        
+        # Pack all parameters
+        params = np.array([
+            focal_length,  # fx
+            focal_length,  # fy (assume square pixels initially)
+            cx,            # cx
+            cy,            # cy
+            rvec[0],       # r1
+            rvec[1],       # r2
+            rvec[2],       # r3
+            tvec[0],       # tx
+            tvec[1],       # ty
+            tvec[2]        # tz
+        ])
+        
+        return params
+    
+    def calibrate(self, fix_principal_point=False, fix_aspect_ratio=False, results=None):
+        points_2d = self.points_2d
+        points_3d = self.points_3d
+
+        # for opencv compatibility
+        points_2d = np.asarray(points_2d, dtype=np.float64)
+        points_3d = np.asarray(points_3d, dtype=np.float64)
+
+        # --- SAFETY CHECK ---
+        is_degenerate = self.check_collinearity(points_3d)
+        
+        if is_degenerate:
+            print("CRITICAL ERROR: Selected points form a straight line.")
+            print("You must select points that form a TRIANGLE or BOX (e.g., add a net post or service line point).")
+            return None 
+        # --------------------
+
+        ########################### intrinsics ###########################
+        # if results is None:
+        #     print("No results provided, using default values")
+        #     fx = self.image_width  / 2.0
+        #     fy = self.image_height / 2.0
+        #     cx = self.image_width  * 0.5
+        #     cy = self.image_height * 0.5
+            
+        # else:
+
+        #     fx = fy = []
+            # # estimate fx and fy using the vfov and image height / width:
+            # for frame_idx in range(31):
+            #     vfov = results['spec_calib'][frame_idx]['vfov']
+            #     fx_i = self.image_height  / 2.0 / np.tan(vfov / 2.0)
+            #     fy_i = self.image_width / 2.0 / np.tan(vfov / 2.0)
+                
+            #     print("frame index: ", frame_idx)
+            #     print("fx_i: ", fx_i)
+            #     print("fy_i: ", fy_i)
+            #     fx.append(fx_i)
+            #     fy.append(fy_i)
+            
+            # # pdb.set_trace()
+            # fx = np.mean(fx)
+            # fy = np.mean(fy)
+            # cx = self.image_height  * 0.5
+            # cy = self.image_width * 0.5
+
+        if self.video_intrinsics is not None:
+            K = self.video_intrinsics
+            # Scale K if the annotation image size differs from the metadata's recorded size
+            # Most iPhone metadata tracks assume the recording resolution (e.g., 1920x1080)
+            old_width = 1920 # You may need to verify this from the container
+            old_height = 1080
+            
+            scale_w = self.image_width / old_width
+            scale_h = self.image_height / old_height
+            # scale_w = 1.2
+            # scale_h = 1.2
+            
+            K[0, 0] *= scale_w # fx
+            K[1, 1] *= scale_h # fy
+            K[0, 2] *= scale_w # cx
+            K[1, 2] *= scale_h # cy
+
+            print(K)
+
+        #     print("Results provided, using them")
+        #     # for fused file we created a longer list:
+        #     if isinstance(results['camera']['img_focal'], list):
+        #         fx = fy = results['camera']['img_focal'][0]
+        #         cx, cy = results['camera']['img_center'][0]
+        #     else:
+        #         fx = fy = results['camera']['img_focal']
+        #         cx, cy = results['camera']['img_center']
+
+        #     # hardcoding in camera params:
+        #     # fx = fy = 1395
+        #     # cx = 960
+        #     # cy = 540
+        #     pdb.set_trace()
+
+        #     old_width = cx * 2.0
+        #     old_height = cy * 2.0
+
+        #     scale_w = self.image_width / old_width
+        #     scale_h = self.image_height / old_height
+
+        #     fx = fx * scale_w
+        #     fy = fy * scale_h
+        #     cx = cx * scale_w
+        #     cy = cy * scale_h
+
+        #     # # TODO - verify that camera intrinsics loading is correct
+
+        # K = np.array([[fx, 0, cx],
+        #             [0, fy, cy],
+        #             [0,  0,  1]], dtype=np.float64)
+        # K = np.array([[1274, 0, 960],
+        #             [0, 1274, 540],
+        #             [0,  0,  1]], dtype=np.float64)
+
+        ########################### starting pose estimate ###########################
+
+        # --- Initial pose estimation
+        if self.camera_model == 'fisheye':
+
+            dist_coeffs = np.zeros(4, dtype=np.float64)
+
+            undistorted_points_2d = cv2.fisheye.undistortPoints(points_2d.reshape(-1, 1, 2), K, dist_coeffs)
+
+            I = np.eye(3, dtype=np.float64)
+            ok, rvec, tvec = cv2.solvePnP(points_3d, undistorted_points_2d, I, None, flags=cv2.SOLVEPNP_EPNP)
+            rvec, tvec     = cv2.solvePnPRefineLM(points_3d, undistorted_points_2d, I, None, rvec, tvec)
+
+        else:
+            # For pinhole, use standard solvePnP with IPPE
+            ok, rvec, tvec = cv2.solvePnP(points_3d, points_2d, K, None, flags=cv2.SOLVEPNP_IPPE)
+            
+            # Polish pose with LM (intrinsics fixed to K0)
+            rvec, tvec = cv2.solvePnPRefineLM(points_3d, points_2d, K, None, rvec, tvec)
+
+        ########################### bundle adjustment step ###########################
+        if self.camera_model == 'fisheye':
+            
+            # 1. Setup Initial Guesses
+            f_init = K[0, 0]
+            cx_fixed = K[0, 2]
+            cy_fixed = K[1, 2]
+            
+            # Initial distortion guess (start with 0 or small values)
+            # k1, k2, k3, k4
+            dist_init = np.array([0.0, 0.0, 0.0, 0.0], dtype=np.float64)
+
+            # 2. Define Residuals
+            def residuals(p):
+                # Unpack 11 parameters
+                f_curr = p[0]
+                r = p[1:4].reshape(3, 1)
+                t = p[4:7].reshape(3, 1)
+                k = p[7:11] # k1, k2, k3, k4
+                
+                # Construct K dynamically
+                K_curr = np.array([
+                    [f_curr, 0,      cx_fixed],
+                    [0,      f_curr, cy_fixed],
+                    [0,      0,      1       ]
+                ], dtype=np.float64)
+                
+                # Fisheye Project Points
+                # Note: OpenCV fisheye expects points_3d in shape (N, 1, 3)
+                try:
+                    proj, _ = cv2.fisheye.projectPoints(
+                        points_3d.reshape(-1, 1, 3), 
+                        r, t, K_curr, k
+                    )
+                    return (proj.reshape(-1, 2) - points_2d).ravel()
+                except cv2.error:
+                    # If optimizer pushes params to invalid state (behind camera), return huge error
+                    return np.ones(points_2d.size) * 1000.0
+
+            # 3. Pack Initial Vector
+            # [f, r1, r2, r3, tx, ty, tz, k1, k2, k3, k4]
+            p0 = np.concatenate([
+                [f_init],
+                rvec.ravel(), 
+                tvec.ravel(), 
+                dist_init
+            ])
+
+            # 4. Bounds
+            # f > 100
+            # k values bounded between -1 and 1 (usually sufficient for tennis cameras)
+            # to prevent "pretzel" distortion models
+            lower = np.array([100.0, -np.inf, -np.inf, -np.inf, -np.inf, -np.inf, -np.inf, -1.0, -1.0, -1.0, -1.0])
+            upper = np.array([np.inf,  np.inf,  np.inf,  np.inf,  np.inf,  np.inf,  np.inf,  1.0,  1.0,  1.0,  1.0])
+
+            res = least_squares(residuals, p0, method='trf', loss='soft_l1', 
+                                bounds=(lower, upper), max_nfev=500)
+
+            # 5. Extract Results
+            f_opt = res.x[0]
+            rvec_opt = res.x[1:4].reshape(3, 1)
+            tvec_opt = res.x[4:7].reshape(3, 1)
+            dist_coeffs_opt = res.x[7:11]
+
+            # Update K
+            K[0,0] = f_opt
+            K[1,1] = f_opt
+            
+            # Final projection for error
+            proj, _ = cv2.fisheye.projectPoints(
+                points_3d.reshape(-1, 1, 3), rvec_opt, tvec_opt, K, dist_coeffs_opt
+            )
+
+        else:
+            
+            # 1. Setup Initial Guesses
+            f_init = K[0, 0]          # Start with your loaded guess (1592)
+            cx_fixed = K[0, 2]        # Keep principal point fixed at center
+            cy_fixed = K[1, 2]
+
+            # 2. Define Residuals Function (Updates f dynamically)
+            def residuals(p):
+                # Unpack parameters: f, r1, r2, r3, tx, ty, tz
+                f_curr, r1, r2, r3, tx, ty, tz = p
+                
+                # Reconstruct Rotation and Translation
+                r = np.array([[r1],[r2],[r3]], dtype=np.float64)
+                t = np.array([[tx],[ty],[tz]], dtype=np.float64)
+                
+                # Reconstruct K with the NEW focal length
+                K_curr = np.array([
+                    [f_curr, 0,      cx_fixed],
+                    [0,      f_curr, cy_fixed],
+                    [0,      0,      1       ]
+                ], dtype=np.float64)
+                
+                # Project points
+                proj, _ = cv2.projectPoints(points_3d, r, t, K_curr, None)
+                return (proj.reshape(-1,2) - points_2d).ravel()
+
+            # 3. Pack Initial Vector (7 parameters)
+            p0 = np.array([
+                f_init,
+                rvec[0,0], rvec[1,0], rvec[2,0],
+                tvec[0,0], tvec[1,0], tvec[2,0]
+            ], dtype=np.float64)
+
+            # 4. Run Optimization
+            # Bound f > 100 to prevent mathematical collapse
+            lower = np.array([100.0, -np.inf, -np.inf, -np.inf, -np.inf, -np.inf, -np.inf])
+            upper = np.array([np.inf, np.inf,  np.inf,  np.inf,  np.inf,  np.inf,  np.inf])
+
+            res = least_squares(residuals, p0, method='trf', loss='soft_l1', bounds=(lower, upper))
+
+            # 5. Save Optimized Results
+            f_opt = res.x[0]
+
+            # Update K
+            K[0,0] = f_opt
+            K[1,1] = f_opt
+            
+            # Reconstruct final vectors
+            rvec_opt = res.x[1:4].reshape(3,1)
+            tvec_opt = res.x[4:7].reshape(3,1)
+            dist_coeffs_opt = None
+            
+            # Final projection for error metric
+            proj, _ = cv2.projectPoints(points_3d, rvec_opt, tvec_opt, K, None)
+
+
+        err = proj.reshape(-1,2) - points_2d
+        rmse_px = float(np.sqrt(np.mean(np.sum(err**2, axis=1))))
+
+        R_w2c, _ = cv2.Rodrigues(rvec_opt)  # cv2 gives world-to-camera rotation
+
+        # Camera center in world coordinates: C = -R^T @ t
+        C = (-R_w2c.T @ tvec_opt).reshape(3)
+
+        # Build 3x4 extrinsic matrices
+        R_c2w = R_w2c.T                                          # camera-to-world rotation
+        t_c2w = C                                                # camera-to-world translation (= camera center)
+        t_w2c = tvec_opt.reshape(3)                              # world-to-camera translation
+
+        Rt_c2w = np.column_stack((R_c2w, t_c2w.reshape(3,1)))    # [R_c2w | C]
+        Rt_w2c = np.column_stack((R_w2c, t_w2c.reshape(3,1)))    # [R_w2c | t_w2c]
+
+        result = {
+            "K": K,
+            "R_w2c": R_w2c,                  # 3x3 rotation matrix only
+            "R_c2w": R_c2w,                  # camera-to-world rotation
+            "t_w2c": t_w2c,                  # world-to-camera translation
+            "t_c2w": t_c2w,                  # camera-to-world translation (= camera center)
+            "rvec": rvec_opt.reshape(3),
+            "tvec": tvec_opt.reshape(3),
+            "C": C,                          # camera center in world coords (same as t_c2w)
+            "Rt_c2w": Rt_c2w,                # 3x4 camera-to-world extrinsic matrix
+            "Rt_w2c": Rt_w2c,                # 3x4 world-to-camera extrinsic matrix
+            "reprojection_error": rmse_px,
+            "camera_model": self.camera_model,
+            "success": bool(res.success),
+            "message": res.message
+        }
+        
+        # Add distortion coefficients if fisheye
+        if self.camera_model == 'fisheye':
+            result["dist_coeffs"] = dist_coeffs_opt
+        else:
+            result["dist_coeffs"] = None
+
+        return result
+
+
+    
+    def visualize_reprojection(self, calibration_result, image=None, camera_type='pinhole'):
+        """
+        Visualize the reprojection of 3D points using calibrated parameters.
+        
+        Args:
+            calibration_result: Output from calibrate()
+            image: Optional image to overlay on
+            
+        Returns:
+            Image with reprojections visualized
+        """
+        if image is None:
+            # Create blank image
+            image = np.ones((self.image_height, self.image_width, 3), dtype=np.uint8) * 255
+        
+        # Reproject all points using the appropriate model
+        K = calibration_result['K']
+        rvec = calibration_result['rvec'].reshape(3, 1)
+        tvec = calibration_result['tvec'].reshape(3, 1)
+        dist_coeffs = calibration_result.get('dist_coeffs', None)
+        
+        if self.camera_model == 'fisheye' and dist_coeffs is not None:
+            # Use fisheye projection
+            proj, _ = cv2.fisheye.projectPoints(
+                self.points_3d.reshape(-1, 1, 3), rvec, tvec, K, dist_coeffs
+            )
+            projected = proj.reshape(-1, 2)
+        else:
+            # Use standard pinhole projection
+            proj, _ = cv2.projectPoints(self.points_3d, rvec, tvec, K, None)
+            projected = proj.reshape(-1, 2)
+
+        # Draw original points in green, reprojected in red
+        for i, name in enumerate(self.point_names):
+            # Original annotation
+            orig_pt = tuple(self.points_2d[i].astype(int))
+            cv2.circle(image, orig_pt, 5, (0, 255, 0), -1)
+            cv2.circle(image, orig_pt, 7, (0, 0, 0), 2)
+            
+            # Reprojection
+            reproj_pt = tuple(projected[i].astype(int))
+            cv2.circle(image, reproj_pt, 5, (0, 0, 255), -1)
+            cv2.circle(image, reproj_pt, 7, (0, 0, 0), 2)
+            
+            # Connect with a line
+            cv2.line(image, orig_pt, reproj_pt, (255, 0, 0), 1)
+            
+            # Label
+            cv2.putText(image, name, 
+                        (orig_pt[0] + 10, orig_pt[1] - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
+        
+        # Prepare text for info box
+        error = calibration_result['reprojection_error']
+        C = calibration_result['C']
+        
+        # Create text lines
+        lines = [
+            f"{self.camera_model.upper()} Camera",
+            "Green: Original, Red: Reprojected",
+            f"Mean Reprojection Error: {error:.3f} px",
+            f"Camera Center (world):",
+            f"  X: {C[0]:.3f} m",
+            f"  Y: {C[1]:.3f} m",
+            f"  Z: {C[2]:.3f} m"
+        ]
+        
+        # Calculate text box dimensions
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        img_h, img_w = image.shape[:2]
+        font_scale = max(0.5, ((img_w + img_h) / 3500.0))
+        thickness = 2
+        padding = 10
+
+        # Determine per-line height from font (no overlap, minimal extra space)
+        text_sizes = [cv2.getTextSize(line, font, font_scale, thickness)[0] for line in lines]
+        line_height = max(cv2.getTextSize(line, font, font_scale, thickness)[0][1] for line in lines) + 6  # +6 for readability
+        
+        max_width = max(size[0] for size in text_sizes)
+        box_width = max_width + 2 * padding
+        box_height = len(lines) * line_height + 2 * padding
+        
+        # Draw semi-transparent background box
+        overlay = image.copy()
+        cv2.rectangle(overlay, (10, 10), (10 + box_width, 10 + box_height),
+                      (255, 255, 255), -1)  # White background
+        cv2.addWeighted(overlay, 0.8, image, 0.2, 0, image)
+        
+        # Draw border around box
+        cv2.rectangle(image, (10, 10), (10 + box_width, 10 + box_height),
+                      (0, 0, 0), 2)  # Black border
+        
+        # Draw text lines with proper even spacing
+        for i, line in enumerate(lines):
+            y = 10 + padding + (i + 1) * line_height - 2  # -2 for vertical alignment
+            cv2.putText(image, line,
+                        (10 + padding, y),
+                        font, font_scale, (0, 0, 0), thickness)
+
+        return image
+
+def calibrate_from_annotations(annotation_file, image_path=None, camera_model='pinhole'):
+    """
+    Convenience function to calibrate from annotation JSON file.
+    
+    Args:
+        annotation_file: Path to JSON file from annotate_court.py
+        image_path: Optional path to image for visualization
+        camera_model: 'pinhole' or 'fisheye' (default: 'pinhole')
+        
+    Returns:
+        Calibration results dictionary
+    """
+    import json
+    
+    # Load annotations
+    with open(annotation_file, 'r') as f:
+        data = json.load(f)
+    
+    # Create calibrator
+    calibrator = CameraCalibrator(
+        points_2d=data['points_2d'],
+        points_3d=data['points_3d'],
+        image_shape=data['image_shape'],
+        camera_model=camera_model
+    )
+    
+    # Run calibration
+    results = calibrator.calibrate(fix_principal_point=False)
+    
+    # Visualize if image provided
+    if image_path:
+        image = cv2.imread(image_path)
+        viz = calibrator.visualize_reprojection(results, image)
+        
+        # Save visualization
+        output_path = annotation_file.replace('.json', '_calibration_viz.jpg')
+        cv2.imwrite(output_path, viz)
+        print(f"\nVisualization saved to: {output_path}")
+    
+    return results, calibrator

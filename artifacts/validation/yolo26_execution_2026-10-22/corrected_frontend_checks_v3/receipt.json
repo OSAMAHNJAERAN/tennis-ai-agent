@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "scope": "current correction review/history/source-frame/forecast closure",
+  "checks": [
+    {
+      "name": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-b",
+        "--pretty",
+        "false"
+      ],
+      "returncode": 0,
+      "seconds": 14.695342600112781,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--max-warnings=0"
+      ],
+      "returncode": 0,
+      "seconds": 25.884411200066097,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/components/AnalysisCorrection.test.tsx",
+        "src/components/NativeForecast.test.tsx",
+        "src/components/SynchronizedTelemetryView.test.tsx",
+        "src/components/spatial/TelemetryDashboard.test.tsx",
+        "src/data/correctionDraft.test.ts",
+        "src/data/correctionApi.test.ts",
+        "src/data/nativeForecastRepository.test.ts",
+        "src/data/repository.test.ts",
+        "src/app/AnalysisContext.test.tsx",
+        "src/pages/ProductFlows.test.tsx",
+        "src/pages/SpatialAnalysis.test.tsx",
+        "--reporter=dot",
+        "--reporter=junit",
+        "--outputFile.junit=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\corrected_frontend_checks_v3\\junit.xml"
+      ],
+      "returncode": 0,
+      "seconds": 136.0028575999895,
+      "log_sha256": "63b8ef18e302974b572117bf5e3dfb0f015c6aa5edf352eb1de61c5373cbf8d3"
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/vite/bin/vite.js",
+        "build"
+      ],
+      "returncode": 0,
+      "seconds": 20.285571200074628,
+      "log_sha256": "4eef941f75eaba40396bf543d73a758be5b7f446f33a42feb2d8a8a272321937"
+    }
+  ],
+  "counts": {
+    "tests": 57,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "selected_test_files": [
+    "src/components/AnalysisCorrection.test.tsx",
+    "src/components/NativeForecast.test.tsx",
+    "src/components/SynchronizedTelemetryView.test.tsx",
+    "src/components/spatial/TelemetryDashboard.test.tsx",
+    "src/data/correctionDraft.test.ts",
+    "src/data/correctionApi.test.ts",
+    "src/data/nativeForecastRepository.test.ts",
+    "src/data/repository.test.ts",
+    "src/app/AnalysisContext.test.tsx",
+    "src/pages/ProductFlows.test.tsx",
+    "src/pages/SpatialAnalysis.test.tsx"
+  ],
+  "source_pin_count": 141,
+  "source_pins_stable": true,
+  "changed_pins_during_run": [],
+  "full_v2_receipt_sha256": "b6a6b04024261fd4a4c2c148e930016418970719935019bd457404c339ae8a09",
+  "delta_from_full_v2": [
+    "frontend/src/components/AnalysisCorrection.test.tsx",
+    "frontend/src/components/AnalysisCorrection.tsx",
+    "frontend/src/components/SynchronizedTelemetryView.test.tsx"
+  ],
+  "product_delta_exactly_reconstructed_against_baseline_hash": true,
+  "claims": [
+    "Full v2 has 264 passed and one incorrect decoder-expectation test; current focused closure includes that repaired actual decoder test and every changed source/test file. The sole product change is matching current-generation active restoration, as proven by exact baseline reconstruction. No browser visual inspection or independent prediction/CV accuracy claim."
+  ]
+}

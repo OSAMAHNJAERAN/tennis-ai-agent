@@ -1,0 +1,77 @@
+{
+  "status": "ROOT_REVIEWED_ACTUAL_CPU_TRAIN_TRANSFORMS_AND_COMPLETE_TRANSFER_NO_GPU_TRAINING_RELEASE",
+  "created_utc": "2026-10-16T06:52:09.682564+00:00",
+  "reviewer": "ROOT_AGENT",
+  "cpu_inspection": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\receipt.json",
+    "sha256": "d629771e232ec2db86c8f77f07d24d635663709aacc2ddb32046dbf4d934bcfd"
+  },
+  "actual_original_images_viewed": 6,
+  "rows": [
+    {
+      "id": "TcXqTFdDaTA_2250",
+      "unmarked_tensor": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\TcXqTFdDaTA_2250_actual_train_tensor.png",
+        "sha256": "daa11d4aa0cd93fc8b387380ae401d0e9b02ea16201938568ed713f73f77ac38"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\TcXqTFdDaTA_2250_actual_train_overlay.png",
+        "sha256": "7ca1b70b74c2f665862fd59e2f54e4b3ee2f7cf5bc0fc65eade677c4da8f2756"
+      },
+      "actually_viewed_both_full_original1280_images_locally": true,
+      "observation": "Halle grass: displayed visible slots align with court intersections after the actual square letterbox/affine; near-left doubles2/singles5 remain unknown under the score overlay.",
+      "maximum_visible_coordinate_error_px": 9.149312973022461e-05,
+      "maximum_bbox_coordinate_error_px": 3.2067298889160156e-05,
+      "unknown_slots": [
+        2,
+        5
+      ],
+      "independent_human_review": false
+    },
+    {
+      "id": "dEsWEIct7Fk_2550",
+      "unmarked_tensor": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\dEsWEIct7Fk_2550_actual_train_tensor.png",
+        "sha256": "2f8a1e27d2e76128ce356001475637e9929980b0d86c556270c1d693a2800fea"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\dEsWEIct7Fk_2550_actual_train_overlay.png",
+        "sha256": "311b39979c7f40efb7f76af397438c79186f598f9f78722b2d21b8bc66573d69"
+      },
+      "actually_viewed_both_full_original1280_images_locally": true,
+      "observation": "Rome clay: all fourteen displayed semantic points remain on their corresponding intersections after the actual moderate affine; hidden points were not inferred.",
+      "maximum_visible_coordinate_error_px": 4.315376281738281e-05,
+      "maximum_bbox_coordinate_error_px": 6.437301635742188e-05,
+      "unknown_slots": [],
+      "independent_human_review": false
+    },
+    {
+      "id": "t0WOL-1c9sQ_1550",
+      "unmarked_tensor": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\t0WOL-1c9sQ_1550_actual_train_tensor.png",
+        "sha256": "807419833cbd78b83fbceb07acdb4f5e7ed0394824d29be3e6c7dd4545451686"
+      },
+      "overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\t0WOL-1c9sQ_1550_actual_train_overlay.png",
+        "sha256": "95b07ffe5c6ad7aa8113fab23c0703c8497e8056a550e0dce2281fb38299fa8b"
+      },
+      "actually_viewed_both_full_original1280_images_locally": true,
+      "observation": "Shanghai hard: displayed semantic slots align; near service center13 remains unknown behind the near player.",
+      "maximum_visible_coordinate_error_px": 7.164478302001953e-05,
+      "maximum_bbox_coordinate_error_px": 6.73532485961914e-05,
+      "unknown_slots": [
+        13
+      ],
+      "independent_human_review": false
+    }
+  ],
+  "complete_transfer_tensor_count": 879,
+  "complete_transfer_keys_shapes_exact_fp32_verified": true,
+  "cuda_initialized": false,
+  "training_performed": false,
+  "qualification_evidence": false,
+  "end_available_ram_bytes": 1384501248,
+  "capacity_is_comfortable": false,
+  "resource_note": "CPU preview passed its pre/post Torch admission but ended with1,384,501,248B available RAM. A separate analytics test process imported heavy runtime concurrently; causation was not measured. Retain4.5GiB cheap preGPU plus1.5GiBpostCUDA/2GiBVRAM/1GiBdisk guards.",
+  "next_required": "Actual fixed26 baseline and root review before first2-of20 GPU learning approval."
+}

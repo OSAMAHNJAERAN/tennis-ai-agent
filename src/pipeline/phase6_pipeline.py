@@ -7,16 +7,45 @@ import cv2
 import numpy as np
 import torch
 import gc
+import hashlib
+from contextlib import ExitStack, contextmanager
+from collections.abc import Sequence
+from pathlib import Path
+from fractions import Fraction
 from tqdm import tqdm
 
 from src.utils.video_frame_sequence import VideoFrameSequence
+from src.utils.json_array_artifact import JsonArrayArtifact, write_json_array_artifact
+from src.utils.analytics_json_artifact import (write_membership_analytics, write_match_analytics,
+                                              native_match_analytics_summary)
+from src.utils.ball_candidate_sequence import BallCandidateSequence
+from src.utils.ball_inference_journal import BallInferenceJournal, JOURNAL_NAME
+from src.utils.native_inference_prefix import (NativePrefixFrame, SEAL_NAME as PREFIX_SEAL_NAME,
+    DATABASE_NAME as PREFIX_DATABASE_NAME, write_native_inference_prefix, open_native_inference_prefix)
+from src.utils.temporal_ball_point_sequence import TemporalBallPointSequence
+from src.utils.event_analysis_sequence import EventAnalysisSequence
+from src.utils.shot_evidence_sequence import ShotEvidenceSequence
+from src.utils.point_analysis_sequence import PointAnalysisSequence
+from src.utils.point_timeline_artifact import publish_point_timeline_manifest
+from src.scoring.rule_replay import write_rule_replay, RULE_REPLAY_NAME
+from src.utils.landing_zone_sequence import LandingZoneSequence
+from src.scoring.point_timeline import (PointTimeline, ReviewedRuleSignal, candidate_event_context,
+    merge_rule_inputs, process_timeline_event, native_match_analytics)
+from src.utils.frame_registration_sequence import FrameRegistration, FrameRegistrationSequence
+from src.utils.identity_frame_sequence import IdentityFrameSequence, write_identity_frame_json
+from src.utils.player_motion_artifact import (UnknownGroundPositions, FrameTimes,
+                                             accumulate_motion_frames, write_player_motion_json)
 from src.court.court_geometry import TennisCourtGeometry
 from src.court.court_keypoint_detector import CourtKeypointDetector
-from src.court.calibration import calibrate_court
-from src.court.camera_registration import CourtCameraRegistration
+from src.court.calibration import CourtCalibration, calibrate_court
+from src.court.camera_registration import CourtCameraRegistration, RegistrationResult
+from src.court.camera_intervals import CameraIntervals, CourtViewEvidence, IntervalReview
+from src.tracking.match_identity import MatchIdentity, IdentityObservation, IdentityAnchor, IdentitySettings
+from src.utils.bbox_utils import get_foot_position
 from src.court.returning_view_registration import ReturningViewRegistration
 from src.detection.player_detector import PlayerDetector
 from src.tracking.court_player_tracker import CourtPlayerTracker
+from src.detection.image_people import image_people_metadata, image_people_records
 from src.tracking.player_motion_tracking import PlayerMotionTracking, JOINT_NAMES, SKELETON_EDGES, summarize_motion
 from src.tracking.racket_tracking import RacketTracking
 from src.detection.yolo11_ball_detector import YOLO11BallDetector
@@ -43,6 +72,10 @@ from src.scoring.scoring_engine import TennisScoringEngine
 from src.scoring.point_outcome_resolver import PointOutcomeType
 from src.visualization.video_annotator import VideoAnnotator
 from src.visualization.mini_court import MiniCourt
+from src.visualization.bounce_history import MiniCourtBounceHistory
+from src.visualization.landing_zones import landing_record, draw_landing, project_polygon
+from src.utils.player_detection_sequence import PlayerDetectionSequence
+from src.tracking.player_identity import select_court_players_disk
 
 # Phase 6 Modules
 from src.shot_analysis.shot_types import (
@@ -79,25 +112,308 @@ def sanitize_json_value(obj: Any) -> Any:
         return obj.tolist()
     return obj
 
+
+def court_landmarks_for_json(points):
+    """Keep fourteen semantic slots and declare invisible court points null.
+
+    Raw pose/identity exports retain their strict nonfinite-array error behavior.
+    Court pose alone uses NaN internally for invisible landmarks.
+    """
+    values = np.asarray(points, dtype=float)
+    if values.shape != (14, 2):
+        raise ValueError('Court landmarks must retain fourteen semantic slots')
+    return [[float(value) if np.isfinite(value) else None for value in point] for point in values]
+
+
+@contextmanager
+def releasing_video_handle(handle):
+    """Always release an owned render handle without replacing a primary error."""
+    try:
+        yield handle
+    except BaseException as error:
+        try:
+            handle.release()
+        except BaseException as cleanup_error:
+            error.add_note(f"Render handle release also failed: {cleanup_error}")
+        raise
+    else:
+        handle.release()
+
+
+def detection_export_records(p1_boxes, p2_boxes, ball_points, frame_calibrations, candidate_frames=None):
+    """Produce the established detection contract without a redundant frame list."""
+    for i, point in enumerate(ball_points):
+        p1_b, p2_b = p1_boxes[i], p2_boxes[i]
+        record = {
+            "frame_index": i,
+            "court_registration_valid": frame_calibrations[i].is_valid,
+            "player_1": {"bbox": [float(p1_b.x1), float(p1_b.y1), float(p1_b.x2), float(p1_b.y2)],
+                         "source_track_id": int(p1_b.track_id) if p1_b.track_id is not None else None,
+                         "confidence": float(p1_b.confidence)} if p1_b else None,
+            "player_2": {"bbox": [float(p2_b.x1), float(p2_b.y1), float(p2_b.x2), float(p2_b.y2)],
+                         "source_track_id": int(p2_b.track_id) if p2_b.track_id is not None else None,
+                         "confidence": float(p2_b.confidence)} if p2_b else None,
+            "ball": {"position_px": [float(point.x_px), float(point.y_px)] if point.x_px is not None else None,
+                     "confidence": float(point.confidence) if point.confidence is not None else None,
+                     "state": point.state.value},
+        }
+        if candidate_frames is not None:
+            candidate = candidate_frames[i]
+            record['camera_interval'] = candidate[0]
+            record['match_identity'] = candidate[1]['observations']
+        yield record
+
+
+def candidate_source_mapping(output_dir, total_frames, fps):
+    """Stream exact worker provenance; a missing map never invents source PTS."""
+    path = Path(output_dir) / 'source_frame_mapping.jsonl'
+    if not path.is_file():
+        for index in range(total_frames):
+            yield {'frame_index': index, 'timestamp_seconds': index / fps,
+                   'source_pts': None, 'source_time_base': None, 'source_frame_index': None,
+                   'validMeasurementTransitionFromPrevious': False}
+        return
+    with path.open(encoding='utf-8') as stream:
+        for index in range(total_frames):
+            line = stream.readline()
+            if not line:
+                raise ValueError('Source frame mapping ended before decoded video')
+            record = json.loads(line)
+            if (record.get('frame_index') != index or isinstance(record.get('timestamp_seconds'), bool)
+                    or not isinstance(record.get('timestamp_seconds'), (int, float))
+                    or abs(record['timestamp_seconds'] - index / fps) > 1e-6):
+                raise ValueError('Source mapping must align with normalized decoded frames')
+            yield record
+        if stream.readline():
+            raise ValueError('Source mapping contains frames beyond decoded video')
+
+
+def _evidence_records(settings, key, stack):
+    """JSONL allows long review histories while retaining one upcoming record."""
+    path = settings.get(key + '_path')
+    inline = settings.get(key, [])
+    if path and inline:
+        raise ValueError(f'Use either {key} or {key}_path')
+    if path:
+        stream = stack.enter_context(open(path, encoding='utf-8'))
+        return (json.loads(line) for line in stream if line.strip())
+    if not isinstance(inline, list) or len(inline) > 128:
+        raise ValueError(f'Inline {key} is bounded to 128; use JSONL for a longer history')
+    return iter(inline)
+
+
+class _CandidateReviews:
+    def __init__(self, records):
+        self.records = iter(records)
+        self.previous_end = None
+        self.current = self._next()
+
+    def _next(self):
+        raw = next(self.records, None)
+        if raw is None:
+            return None
+        review = IntervalReview(**raw)
+        if self.previous_end is not None and review.start_source_seconds <= self.previous_end:
+            raise ValueError('Interval reviews must be source-ordered and nonoverlapping')
+        self.previous_end = review.end_source_seconds
+        return review
+
+    def at(self, source_time):
+        if source_time is None:
+            return None
+        while self.current is not None and source_time > self.current.end_source_seconds:
+            self.current = self._next()
+        return self.current
+
+
+class _CandidateAnchors:
+    """Frame-scoped manual commands retain explicit source time and segment ID."""
+    def __init__(self, records):
+        self.records = iter(records)
+        self.previous_frame = -1
+        self.current = next(self.records, None)
+
+    def at(self, frame_index):
+        result = []
+        while self.current is not None:
+            index = self.current.get('frame_index')
+            if type(index) is not int or index < self.previous_frame or index < frame_index:
+                raise ValueError('Identity anchors must be ordered by their exact frame_index')
+            if index > frame_index:
+                break
+            if len(result) == 128:
+                raise ValueError('A frame may contain at most 128 identity corrections')
+            result.append(IdentityAnchor(**{key: value for key, value in self.current.items() if key != 'frame_index'}))
+            self.previous_frame = index
+            self.current = next(self.records, None)
+        return result
+
+
+def _identity_observations(frame, detections, calibration, maximum):
+    """Classical colour is a hypothesis signal; anatomical feet remain unverified."""
+    all_detections, detections = detections, detections[:maximum]
+    counts = {}
+    for box in all_detections:
+        counts[box.track_id] = counts.get(box.track_id, 0) + 1
+    height, width = frame.shape[:2]
+    observations = []
+    for box in detections:
+        local_id = int(box.track_id) if box.track_id is not None and counts[box.track_id] == 1 else None
+        x1, x2 = max(0, int(box.x1)), min(width, int(box.x2))
+        y1, y2 = max(0, int(box.y1)), min(height, int(box.y1 + (box.y2-box.y1) * .55))
+        crop = frame[y1:y2, x1:x2]
+        colour = tuple(float(value) for value in np.median(crop, axis=(0, 1))[::-1] / 255) if crop.size else None
+        overlap = any(other is not box and min(box.x2, other.x2) > max(box.x1, other.x1)
+                      and min(box.y2, other.y2) > max(box.y1, other.y1) for other in all_detections)
+        observations.append(IdentityObservation(local_id, calibration.project_ground_point(get_foot_position(box)),
+                                                colour, participant=None, overlap=overlap,
+                                                ground_point_usable=False))
+    return observations
+
+
+class _CandidateWindow(Sequence):
+    def __init__(self, records, start, stop, step=1):
+        self.records, self.indices = records, range(start, stop, step)
+
+    def __len__(self):
+        return len(self.indices)
+
+    def __getitem__(self, index):
+        selected = self.indices[index]
+        return (_CandidateWindow(self.records, selected.start, selected.stop, selected.step)
+                if isinstance(selected, range) else self.records[selected])
+
+
+class _CandidateSourceTimingWindow(_CandidateWindow):
+    """Project existing source-clock rows without retaining another frame list."""
+
+    def __getitem__(self, index):
+        selected = self.indices[index]
+        return (_CandidateSourceTimingWindow(self.records, selected.start, selected.stop, selected.step)
+                if isinstance(selected, range) else self.records[selected][0])
+
+
+def track_candidate_intervals(tracker, candidates, candidate_frames, fps, frame_size, *, output=None,
+                              use_source_timing=False):
+    """Append interval results without copying segments; preserve replay clock.
+
+    Source timing is an explicit opt-in for native YOLO26 callers. Its exact
+    source PTS drives association math while output timestamps remain on the
+    normalized replay clock. Omitting it preserves the legacy nominal math and
+    tracker keyword contract. This sink does not checkpoint a filter for resume.
+    """
+    if type(use_source_timing) is not bool:
+        raise TypeError('use_source_timing must be an explicit boolean')
+    points, start = ([] if output is None else output), 0
+    for stop in range(1, len(candidates) + 1):
+        boundary = stop == len(candidates) or not candidate_frames[stop][0]['measurement_transition_allowed']
+        if not boundary:
+            continue
+        output_start = len(points)
+        timing_options = ({'source_timing': _CandidateSourceTimingWindow(candidate_frames, start, stop)}
+                          if use_source_timing else {})
+        result = tracker.track_video_candidates(_CandidateWindow(candidates, start, stop), fps=fps,
+                                               frame_size=frame_size, output=points, **timing_options)
+        if result is not points or len(points) != output_start + stop - start:
+            raise ValueError('Temporal tracker must append exactly one point per interval frame to its output sink')
+        for index in range(output_start, len(points)):
+            point = points[index]
+            point.frame_index += start
+            point.timestamp_seconds = candidate_frames[point.frame_index][0]['timestamp_seconds']
+            points[index] = point
+        start = stop
+    return points
+
+
+def trajectory_export_records(ball_points, candidate_frames=None):
+    """Preserve existing rounding and missing values while yielding one record."""
+    for point in ball_points:
+        record = {
+            "frame_index": int(point.frame_index),
+            "timestamp_seconds": float(round(point.timestamp_seconds, 4)),
+            "x_px": float(round(point.x_px, 2)) if point.x_px is not None else None,
+            "y_px": float(round(point.y_px, 2)) if point.y_px is not None else None,
+            "court_x_m": float(round(point.court_x_m, 2)) if point.court_x_m is not None else None,
+            "court_y_m": float(round(point.court_y_m, 2)) if point.court_y_m is not None else None,
+            "speed_kmh": float(round(point.speed_kmh, 1)) if point.speed_kmh is not None else None,
+            "confidence": float(round(point.confidence, 3)) if point.confidence is not None else None,
+            "state": point.state.value if point.state else "MISSING",
+        }
+        if candidate_frames is not None:
+            interval = candidate_frames[point.frame_index][0]
+            record.update({'source_pts': interval['source_pts'], 'source_time_base': interval['source_time_base'],
+                           'source_frame_index': interval['source_frame_index'],
+                           'source_timestamp_seconds': interval['source_timestamp_seconds'],
+                           'camera_segment_id': interval['segment_id'],
+                           'measurement_transition_allowed': interval['measurement_transition_allowed']})
+        yield record
+
+
+def event_export_records(events):
+    """Keep established event wire values without a whole-match dictionary list."""
+    for ev in events:
+        yield sanitize_json_value({
+            'event_id': ev.event_id, 'event_type': ev.event_type.value, 'frame': ev.frame_index,
+            'timestamp_s': ev.timestamp_s, 'player_id': ev.player_id,
+            'ball_position_px': [round(ev.ball_position_px[0], 2), round(ev.ball_position_px[1], 2)] if ev.ball_position_px else None,
+            'court_position_m': list(ev.court_position_m) if ev.court_position_m else None,
+            'confidence': round(ev.confidence, 3), 'trajectory_state': ev.trajectory_state, 'evidence': ev.evidence})
+
+
+def event_candidate_export_records(candidates):
+    for candidate in candidates:
+        yield sanitize_json_value({
+            'frame_index': candidate.frame_index, 'timestamp_s': candidate.timestamp_s,
+            'discovery_frame_index': candidate.discovery_frame_index,
+            'discovery_timestamp_s': candidate.discovery_timestamp_s, 'score': candidate.score,
+            'ball_position_px': list(candidate.ball_position_px),
+            'trajectory_state': candidate.trajectory_state, 'evidence': candidate.evidence})
+
+
 class Phase6Pipeline:
     """
     Phase 6 End-to-End Orchestrator.
     Executes Tennis Vision System through Shot Understanding & Advanced Match Analytics.
     """
 
-    def __init__(self, config_path: str = "configs/phase6_analytics/pipeline.yaml"):
+    def __init__(self, config_path: str = "configs/phase6_analytics/pipeline.yaml", *, evaluation_only=False,
+                 inference_identity=None):
+        if type(evaluation_only) is not bool:
+            raise TypeError('evaluation_only must be an explicit boolean')
+        self.evaluation_only = evaluation_only
         with open(config_path, "r") as f:
             self.config = yaml.safe_load(f)
         validate_spatial_candidate_config(self.config)
         validate_spaced_ball_config(self.config)
 
-        self.court_detector = CourtKeypointDetector(model_path=self.config['court_detection']['model_path'])
-        self.player_detector = PlayerDetector(
-            model_path=self.config['player_detection']['model']
-        )
         ball_cfg = self.config['ball_detection']
         self.ball_backend = ball_cfg.get('backend', 'yolo11')
-        if self.ball_backend == 'wasb':
+        self.yolo26 = self.config.get('model_system', {}).get('family') == 'yolo26'
+        if inference_identity is not None:
+            from src.utils.native_inference_prefix import _identity
+            if not self.yolo26 or self.ball_backend != 'yolo26':
+                raise ValueError('Partial inference requires the selected native YOLO26 ball path')
+            inference_identity = json.loads(_identity(inference_identity))
+        self.inference_identity = inference_identity
+        if evaluation_only and not self.yolo26:
+            raise ValueError('Private evaluation supports the selected three-model YOLO26 bundle only')
+        if self.yolo26:
+            from src.detection.yolo26_bundle import build_yolo26_bundle, build_evaluation_bundle
+            bundle = build_evaluation_bundle(self.config) if evaluation_only else build_yolo26_bundle(self.config)
+            self.artifact_manifest = getattr(bundle, 'artifact_manifest', {})
+            self.court_detector = bundle.court_detector
+            self.player_detector = bundle.player_detector
+            self.ball_detector = bundle.ball_detector
+        else:
+            self.court_detector = CourtKeypointDetector(model_path=self.config['court_detection']['model_path'])
+            self.player_detector = PlayerDetector(
+                model_path=self.config['player_detection']['model'],
+                confidence=self.config['player_detection'].get('confidence', .25),
+                tracker=self.config['player_detection'].get('tracker', 'bytetrack.yaml'),
+            )
+        if self.yolo26:
+            pass  # The strict bundle owns all three model constructions.
+        elif self.ball_backend == 'wasb':
             ensemble = ball_cfg.get('ensemble_checkpoint')
             detector_class = WASBEnsembleDetector if ensemble else WASBBallDetector
             ensemble_args = ({'second_checkpoint': ensemble, 'second_weight': ball_cfg['ensemble_weight']}
@@ -125,7 +441,7 @@ class Phase6Pipeline:
         self.event_detector = TennisEventDetector(
             config=event_settings
         )
-        
+
         model_name = self.config.get('line_calling', {}).get('contact_patch_model', 'EMPIRICAL_PATCH')
         try:
             patch_model = ContactPatchModelType(model_name)
@@ -156,17 +472,21 @@ class Phase6Pipeline:
         # Pose & Shot Classifier
         pose_cfg = self.config.get('pose_estimation', {})
         self.pose_extractor = None
-        if pose_cfg.get('enabled', True):
+        if pose_cfg.get('enabled', True) and self.config.get('event_detection', {}).get('authoritative_enabled', True):
             self.pose_extractor = PoseFeatureExtractor(
-                model_path=pose_cfg.get('model_path', 'yolo11n-pose.pt')
+                model_path=pose_cfg.get('model_path', 'yolo11n-pose.pt'),
+                **({'model': self.player_detector.model} if self.yolo26 else {}),
             )
         self.motion_tracker = None
         if self.config.get('player_motion', {}).get('enabled', False):
-            self.motion_tracker = PlayerMotionTracking(
-                model_path=pose_cfg.get('model_path', 'yolo11n-pose.pt'),
-                device='cuda' if torch.cuda.is_available() else 'cpu',
-                confidence=pose_cfg.get('min_pose_confidence', .35),
-            )
+            if self.yolo26:
+                self.motion_tracker = self.player_detector
+            else:
+                self.motion_tracker = PlayerMotionTracking(
+                    model_path=pose_cfg.get('model_path', 'yolo11n-pose.pt'),
+                    device='cuda' if torch.cuda.is_available() else 'cpu',
+                    confidence=pose_cfg.get('min_pose_confidence', .35),
+                )
         self.racket_tracker = None
         if self.config.get('racket_tracking', {}).get('enabled', False):
             self.racket_tracker = RacketTracking(
@@ -201,6 +521,112 @@ class Phase6Pipeline:
             return self._run_with_frames(input_video_path, output_dir, frames, frames.metadata)
 
     def _run_with_frames(self, input_video_path, output_dir, frames, metadata):
+        # Audit writers close on every failure. Completed player audits publish
+        # after their pass; other artifacts publish on clean whole-run exit.
+        with ExitStack() as export_stack:
+            return self._run_with_frame_exports(input_video_path, output_dir, frames, metadata, export_stack)
+
+    def _candidate_player_pass(self, frames, output_dir, fps, all_player_dets, frame_registrations,
+                               camera_audit, camera_settings, export_stack, *, audit_stack=None):
+        """Causal interval/identity evidence; checkpoints share each audit record."""
+        audit_stack = export_stack if audit_stack is None else audit_stack
+        analysis_id = self.config['match_configuration']['match_id']
+        interval_settings = dict(self.config.get('camera_intervals', {}))
+        reviews = _CandidateReviews(_evidence_records(interval_settings, 'reviews', export_stack))
+        for key in ('reviews', 'reviews_path'):
+            interval_settings.pop(key, None)
+        intervals = CameraIntervals(analysis_id, **interval_settings)
+        identity_settings = dict(self.config.get('match_identity', {}))
+        anchors = _CandidateAnchors(_evidence_records(identity_settings, 'anchors', export_stack))
+        for key in ('anchors', 'anchors_path'):
+            identity_settings.pop(key, None)
+        identity = MatchIdentity(analysis_id, IdentitySettings(**identity_settings))
+        candidate_frames = export_stack.enter_context(IdentityFrameSequence(output_dir))
+        interval_audit = audit_stack.enter_context(JsonArrayArtifact(
+            os.path.join(output_dir, 'camera_intervals.json'),
+            {'schemaVersion': 1, 'analysis_id': analysis_id, 'accuracy_validated': False,
+             'source_mapping': 'source_frame_mapping.jsonl', 'scope': 'REVIEW_GATES_AND_PROVISIONAL_DISCONTINUITIES'}, allow_nan=False))
+        identity_audit = audit_stack.enter_context(JsonArrayArtifact(
+            os.path.join(output_dir, 'match_identity.json'),
+            {'schemaVersion': 1, 'analysis_id': analysis_id, 'accuracy_validated': False,
+             'scope': 'REVIEWED_A_B_ANCHORS_AND_UNCONFIRMED_CLASSICAL_HYPOTHESES',
+             'timestamp_policy': 'ORIGINAL_SOURCE_SECONDS; NEGATIVE_INITIAL_SOURCE_TIME_REBASED_BY_RECORDED_ORIGIN',
+             'checkpoint_policy': 'FRAME_EVENTS_CORRECTIONS_AND_BOUNDED_CHECKPOINT_PUBLISHED_IN_ONE_ATOMIC_ARTIFACT',
+             'pipeline_resume_supported': False}, allow_nan=False))
+        registration_engine, identity_origin = None, None
+        mapping = candidate_source_mapping(output_dir, len(frames), fps)
+        export_stack.callback(mapping.close)
+        canonical = TennisCourtGeometry.get_canonical_keypoints()
+        self.player_detector.reset()
+        for index, frame in enumerate(tqdm(frames, desc='  Player Tracking')):
+            timing = next(mapping)
+            dets = self.player_detector.detect_and_track(frame, persist=True)
+            # Exact current observations, never transformed old landmarks.
+            points = np.asarray(self.court_detector.predict(frame), float)
+            observed = np.isfinite(points).all(axis=1)
+            current_calibration = calibrate_court(points[observed], canonical[observed])
+            court_evidence = CourtViewEvidence(index, points, tuple(bool(value) for value in observed), current_calibration)
+            registration = (registration_engine.update(frame, dets) if registration_engine is not None else
+                            RegistrationResult(CourtCalibration(None, rejection_reason='FRESH_COURT_CALIBRATION_REQUIRED'), None, {}))
+            try:
+                source_seconds = float(int(timing['source_pts']) * Fraction(timing['source_time_base']))
+            except (TypeError, ValueError, ZeroDivisionError, OverflowError):
+                source_seconds = None
+            interval = intervals.update(frame, timing, registration=registration,
+                                        court_observation=court_evidence, review=reviews.at(source_seconds))
+            source_seconds = interval['source_timestamp_seconds']
+            if source_seconds is not None and identity_origin is None:
+                identity_origin = min(0., source_seconds)
+            identity_time = source_seconds - identity_origin if source_seconds is not None else None
+            identity_gap = (identity_time is not None and identity.last_timestamp is not None
+                            and identity_time - identity.last_timestamp > identity.settings.max_gap_seconds)
+            if interval['local_reset'] or identity_gap:
+                self.player_detector.reset()
+                # Accept only IDs observed after the actual tracker reset.
+                dets = self.player_detector.detect_and_track(frame, persist=True)
+            if interval['needs_new_registration']:
+                registration_engine = CourtCameraRegistration(current_calibration, points, **camera_settings)
+                registration = registration_engine.update(frame, dets)
+            gated = intervals.gate_registration(interval, registration)
+            gated.audit = {**gated.audit, 'frame_index': index, 'camera_interval': interval}
+            frame_registrations.append(FrameRegistration(gated.calibration, gated.anchor_to_frame_px))
+            camera_audit.append(gated.audit)
+            all_player_dets.append(dets)
+            interval_audit.append(interval)
+
+            observations = _identity_observations(frame, dets, gated.calibration, identity.settings.max_observations)
+            commands = anchors.at(index)
+            if identity_time is None or (identity.last_timestamp is not None and identity_time < identity.last_timestamp):
+                if commands:
+                    raise ValueError('Identity correction requires current monotonic source timing')
+                if identity.segment_id is not None and identity.segment_id != interval['segment_id']:
+                    identity.update([], identity.last_timestamp, interval['segment_id'])
+                identity_result = {'analysis_id': analysis_id, 'epoch': identity.epoch, 'revision': identity.revision,
+                                   'local_reset': interval['local_reset'], 'reset_reason': 'source_timing_unavailable_or_reversed',
+                                   'observations': [{'track_id': item.track_id, 'track_key': None, 'player_id': None,
+                                                     'state': 'UNKNOWN', 'reason': 'source_timing_unavailable_or_reversed',
+                                                     'motion_continuity': False, 'hypotheses': []} for item in observations]}
+                corrections = []
+            else:
+                identity_result = identity.update(observations, identity_time, interval['segment_id'])
+                present_ids = {item.track_id for item in observations if item.track_id is not None and not item.overlap}
+                if any(command.track_id not in present_ids for command in commands):
+                    raise ValueError('Identity anchors require a unique visible nonoverlapping current local track')
+                corrections = [identity.correct(command) for command in commands]
+                if corrections:
+                    identity_result = identity.update(observations, identity_time, interval['segment_id'])
+            identity_record = {**identity_result, 'frame_index': index, 'source_timestamp_seconds': source_seconds,
+                               'identity_time_origin_seconds': identity_origin, 'corrections': corrections,
+                               'omitted_human_observations': max(0, len(dets) - identity.settings.max_observations),
+                               'checkpoint': identity.checkpoint()}
+            identity_audit.append(identity_record)
+            candidate_frames.append({0: interval, 1: identity_record, 2: points})
+        next(mapping, None)  # Verify the final mapping count and close its handle.
+        if anchors.current is not None:
+            raise ValueError('Identity anchors contain frames beyond decoded video')
+        return candidate_frames
+
+    def _run_with_frame_exports(self, input_video_path, output_dir, frames, metadata, export_stack):
         t_pipeline_start = time.time()
         os.makedirs(output_dir, exist_ok=True)
 
@@ -223,63 +649,195 @@ class Phase6Pipeline:
         )
         print(f"  -> Opened {total_frames} frames ({w}x{h}) at {fps:.2f} native FPS with an 8-frame cache")
 
-        # 2. Court Keypoints & Homography
-        print("\n[Step 2/11] Detecting 14 Court Keypoints & Computing Canonical Homography...")
-        t0 = time.time()
-        court_keypoints = self.court_detector.predict(frames[0])
-        canonical_keypoints = TennisCourtGeometry.get_canonical_keypoints()
-        calibration = calibrate_court(court_keypoints, canonical_keypoints)
-        homography_matrix = calibration.image_to_court
-        is_h_valid = calibration.is_valid
-        print(f"  -> Court calibration: valid={is_h_valid}, inliers={calibration.inlier_count}/14, "
-              f"mean residual={calibration.reprojection_error_px} px, "
-              f"reason={calibration.rejection_reason} in {time.time()-t0:.2f}s")
-
-        # 3. Player Tracking (ByteTrack)
-        print("\n[Step 3/11] Running Player Tracking (ByteTrack)...")
-        t0 = time.time()
-        all_player_dets = []
-        camera_settings = dict(self.config.get('court_detection', {}).get('camera_registration', {}))
-        camera_enabled = camera_settings.pop('enabled', False)
-        recovery_settings = dict(camera_settings.pop('returning_view', {}))
-        recovery_enabled = recovery_settings.pop('enabled', False)
-        if recovery_enabled and not camera_enabled:
-            raise ValueError('Returning-view recovery requires camera registration enabled')
-        if camera_enabled and self.config.get('event_detection', {}).get('authoritative_enabled', True):
+        disk_players = getattr(self, 'yolo26', False)
+        inference_identity = getattr(self, 'inference_identity', None)
+        if disk_players and self.config.get('event_detection', {}).get('authoritative_enabled', True):
             raise ValueError('Dynamic court registration requires event authority disabled until event geometry is upgraded')
-        if recovery_enabled:
-            camera_registration = ReturningViewRegistration(
-                calibration, court_keypoints, fps=fps, **recovery_settings, **camera_settings)
-        else:
-            camera_registration = CourtCameraRegistration(calibration, court_keypoints, **camera_settings) if camera_enabled else None
-        frame_calibrations, camera_audit, camera_transforms = [], [], []
-        for frame in tqdm(frames, desc="  Player Tracking"):
-            dets = self.player_detector.detect_and_track(frame, persist=True)
-            all_player_dets.append(dets)
-            if camera_registration is not None:
-                registration = camera_registration.update(frame, dets)
-                frame_calibrations.append(registration.calibration)
-                camera_audit.append(registration.audit)
-                camera_transforms.append(registration.anchor_to_frame_px)
+        prefix = None
+        video_identity = {'frame_count': total_frames, 'fps': fps, 'width': w, 'height': h}
+        if inference_identity is not None:
+            if not disk_players or self.ball_backend != 'yolo26':
+                raise ValueError('Partial inference requires the selected native ball path')
+            try:
+                (Path(output_dir) / PREFIX_SEAL_NAME).lstat()
+            except FileNotFoundError:
+                try:
+                    (Path(output_dir) / PREFIX_DATABASE_NAME).lstat()
+                except FileNotFoundError:
+                    pass
+                else:
+                    raise ValueError('An unsealed native player prefix cannot resume')
             else:
-                frame_calibrations.append(calibration)
-                camera_transforms.append(np.eye(3) if calibration.is_valid else None)
+                prefix = export_stack.enter_context(open_native_inference_prefix(
+                    output_dir, inference_identity, expected_metadata=video_identity))
+        if prefix is not None:
+            print('  -> Restoring the completed player/court/identity pass')
+            court_keypoints = prefix.initial_court_keypoints
+            calibration = prefix.initial_calibration
+            canonical_keypoints = TennisCourtGeometry.get_canonical_keypoints()
+            homography_matrix, is_h_valid = calibration.image_to_court, calibration.is_valid
+            frame_registrations = prefix.registrations
+            frame_calibrations, camera_transforms = frame_registrations.calibrations, frame_registrations.transforms
+            candidate_frames, player_dict = prefix.candidate_frames, prefix.players
+            p1_boxes, p2_boxes = player_dict[1], player_dict[2]
+            camera_enabled, recovery_enabled = True, False
+            saved_crop = prefix.crop_execution
+            if saved_crop['selected_model_path'] != self.player_detector.model_path:
+                raise ValueError('Restored player checkpoint path differs from the selected model')
+            player_crop_provider = self.player_detector.finish_tracking_for_crops(
+                admitted_device=saved_crop['resolved_device'], expected_device=saved_crop['resolved_device'])
+            if json.dumps(player_crop_provider.record(), sort_keys=True) != json.dumps(saved_crop, sort_keys=True):
+                raise ValueError('Restored player crop policy differs from the completed pass')
+            if self.pose_extractor is not None:
+                self.pose_extractor.model = player_crop_provider
+        else:
+            # 2. Court Keypoints & Homography
+            print("\n[Step 2/11] Locating Court Landmarks & Checking Calibration...")
+            t0 = time.time()
+            court_keypoints = self.court_detector.predict(frames[0])
+            canonical_keypoints = TennisCourtGeometry.get_canonical_keypoints()
+            if getattr(self, 'yolo26', False):
+                observed = np.isfinite(court_keypoints).all(axis=1)
+                calibration = calibrate_court(court_keypoints[observed], canonical_keypoints[observed])
+            else:
+                calibration = calibrate_court(court_keypoints, canonical_keypoints)
+            homography_matrix = calibration.image_to_court
+            is_h_valid = calibration.is_valid
+            print(f"  -> Court calibration: valid={is_h_valid}, inliers={calibration.inlier_count}/14, "
+                  f"mean residual={calibration.reprojection_error_px} px, "
+                  f"reason={calibration.rejection_reason} in {time.time()-t0:.2f}s")
 
-        player_dict = CourtPlayerTracker(calibration).select(all_player_dets, fps=fps, calibrations=frame_calibrations)
-        p1_boxes = player_dict[1]
-        p2_boxes = player_dict[2]
+            # 3. Player Tracking (ByteTrack)
+            print("\n[Step 3/11] Tracking Player Observations...")
+            t0 = time.time()
+            # The YOLO26 candidate retains raw human pose and selected role boxes on
+            # owned indexed storage; no match-long list of anatomical boxes.
+            # A finished player pass can publish its audit streams independently.
+            # The main stack still owns the indexed observations and selections.
+            player_audits = export_stack.enter_context(ExitStack()) if disk_players else export_stack
+            all_player_dets = (export_stack.enter_context(PlayerDetectionSequence(output_dir))
+                               if disk_players else [])
+            camera_settings = dict(self.config.get('court_detection', {}).get('camera_registration', {}))
+            camera_enabled = camera_settings.pop('enabled', False) or disk_players
+            recovery_settings = dict(camera_settings.pop('returning_view', {}))
+            recovery_enabled = recovery_settings.pop('enabled', False)
+            if recovery_enabled and not camera_enabled:
+                raise ValueError('Returning-view recovery requires camera registration enabled')
+            if camera_enabled and self.config.get('event_detection', {}).get('authoritative_enabled', True):
+                raise ValueError('Dynamic court registration requires event authority disabled until event geometry is upgraded')
+            if disk_players:
+                camera_registration = None
+                recovery_enabled = False
+            elif recovery_enabled:
+                camera_registration = ReturningViewRegistration(
+                    calibration, court_keypoints, fps=fps, **recovery_settings, **camera_settings)
+            else:
+                camera_registration = CourtCameraRegistration(calibration, court_keypoints, **camera_settings) if camera_enabled else None
+            camera_audit = player_audits.enter_context(JsonArrayArtifact(
+                os.path.join(output_dir, 'camera_registration.json'),
+                {'schema_version': '1.1' if recovery_enabled else '1.0',
+                 'enabled': camera_enabled, 'settings': camera_settings,
+                 'returning_view': {'enabled': recovery_enabled, **recovery_settings},
+                 'coordinate_semantics': 'COURT_PLANE_REGISTRATION_NOT_3D_BALL_GEOMETRY',
+                 'failure_behavior': ('WITHHOLD_UNTIL_CURRENT_14_LANDMARK_REANCHOR_AND_SUPPORTED_NORMAL_PLAY_REVIEW' if disk_players
+                                      else 'WITHHOLD_UNTIL_ORIGINAL_ANCHOR_VIEW_CONFIRMED' if recovery_enabled
+                                      else 'WITHHOLD_GROUND_POSITIONS_UNTIL_EXPLICIT_REINITIALIZATION'),
+                 'independent_accuracy_validated': False}, allow_nan=False))
+            # These observations are read-only after the player pass. Keep dynamic
+            # records on disk; a static camera needs only the original calibration.
+            frame_registrations = export_stack.enter_context(
+                FrameRegistrationSequence(output_dir) if camera_registration is not None or disk_players
+                else FrameRegistrationSequence.constant(calibration, total_frames))
+            frame_calibrations = frame_registrations.calibrations
+            camera_transforms = frame_registrations.transforms
+            candidate_frames = None
+            if disk_players:
+                candidate_frames = self._candidate_player_pass(frames, output_dir, fps, all_player_dets,
+                                                             frame_registrations, camera_audit, camera_settings, export_stack,
+                                                             audit_stack=player_audits)
+            else:
+                for frame in tqdm(frames, desc="  Player Tracking"):
+                    dets = self.player_detector.detect_and_track(frame, persist=True)
+                    all_player_dets.append(dets)
+                    if camera_registration is not None:
+                        registration = camera_registration.update(frame, dets)
+                        frame_registrations.append(FrameRegistration(registration.calibration, registration.anchor_to_frame_px))
+                        camera_audit.append(registration.audit)
 
-        p1_cov = (sum(1 for b in p1_boxes if b is not None) / total_frames) * 100.0
-        p2_cov = (sum(1 for b in p2_boxes if b is not None) / total_frames) * 100.0
-        print(f"  -> Player Tracking Coverage: P1: {p1_cov:.1f}%, P2: {p2_cov:.1f}% in {time.time()-t0:.2f}s")
+            if len(all_player_dets) != total_frames or len(frame_registrations) != total_frames:
+                raise ValueError('Player detection and registration frames did not align with normalized video frames')
+
+            role_tracker = CourtPlayerTracker(calibration)
+            player_dict = (export_stack.enter_context(select_court_players_disk(
+                role_tracker, all_player_dets, fps, output_dir, calibrations=frame_calibrations))
+                if disk_players else role_tracker.select(all_player_dets, fps=fps, calibrations=frame_calibrations))
+            p1_boxes = player_dict[1]
+            p2_boxes = player_dict[2]
+
+            # Exact BBox identity is still available immediately after whole-segment
+            # selection. Spool person evidence now, then release unselected proposals
+            # before the separate ball pass; never infer roles from tracker IDs.
+            people_audit = player_audits.enter_context(JsonArrayArtifact(
+                os.path.join(output_dir, 'image_people.json'), image_people_metadata(), allow_nan=False))
+            for person_record in image_people_records(all_player_dets, player_dict, fps=fps, width=w, height=h):
+                people_audit.append(person_record)
+            del all_player_dets
+            dets = registration = person_record = None
+
+            p1_cov = (sum(1 for b in p1_boxes if b is not None) / total_frames) * 100.0
+            p2_cov = (sum(1 for b in p2_boxes if b is not None) / total_frames) * 100.0
+            print(f"  -> Player Tracking Coverage: P1: {p1_cov:.1f}%, P2: {p2_cov:.1f}% in {time.time()-t0:.2f}s")
+            player_crop_provider = None
+            if disk_players:
+                # Tracking callbacks otherwise also run on later pose .predict()
+                # calls. Finish the complete player pass before releasing its
+                # predictor; preserve the selected weights and stored pose boxes.
+                player_crop_provider = self.player_detector.finish_tracking_for_crops(
+                    admitted_device=str(self.player_detector.model.device))
+                if self.pose_extractor is not None:
+                    self.pose_extractor.model = player_crop_provider
+            if disk_players:
+                # Closing this child stack publishes all four completed audits
+                # once. It does not dispose the player/identity/registration rows.
+                player_audits.close()
+        if inference_identity is not None and prefix is None:
+            write_native_inference_prefix(output_dir, inference_identity,
+                metadata=video_identity, initial_calibration=calibration,
+                initial_court_keypoints=court_keypoints, crop_execution=player_crop_provider.record(),
+                frames=(NativePrefixFrame(p1_boxes[index], p2_boxes[index],
+                    player_dict.selected_detection_indices[index], frame_registrations[index], candidate_frames[index])
+                    for index in range(total_frames)))
+        raw_journal = None
+        inference_resume_record = None
+        if inference_identity is not None:
+            from src.utils.native_inference_session import ball_journal_identity
+            from src.detection.yolo26_adapters import _resolved_crop_device
+            resolved_device = player_crop_provider.record()['resolved_device']
+            # A continuous run and its suffix share one explicit device.
+            self.ball_detector.model.to(resolved_device)
+            if _resolved_crop_device(str(self.ball_detector.model.device)) != resolved_device:
+                raise ValueError('Selected ball model differs from the saved admitted device')
+            self.ball_detector.device = resolved_device
+            journal_identity = ball_journal_identity(output_dir, inference_identity,
+                self.config['ball_detection'], resolved_device)
+            try:
+                (Path(output_dir) / JOURNAL_NAME).lstat()
+            except FileNotFoundError:
+                journal_owner = BallInferenceJournal.create(output_dir, journal_identity, total_frames)
+            else:
+                journal_owner = BallInferenceJournal.open(output_dir, journal_identity, total_frames)
+            raw_journal = export_stack.enter_context(journal_owner)
+            inference_resume_record = {'prefix_reused': prefix is not None,
+                'raw_frames_reused': len(raw_journal), 'raw_frames_inferred': total_frames - len(raw_journal),
+                'total_frames': total_frames}
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
         # 4. Ball Detection (YOLO11s)
-        print(f"\n[Step 4/11] Running {self.ball_backend} Tennis Ball Detection...")
+        print("\n[Step 4/11] Detecting Tennis Ball Candidates...")
         t0 = time.time()
         imgsz = self.config['ball_detection'].get('imgsz', 640)
-        raw_candidates_per_frame = []
+        raw_candidates_per_frame = export_stack.enter_context(BallCandidateSequence(output_dir))
         spatial_settings = dict(self.config['ball_detection'].get('spatial_crops', {}))
         spatial_enabled = spatial_settings.pop('enabled', False)
         spacing_enabled = self.config['ball_detection'].get('temporal_spacing', {}).get('enabled', False)
@@ -293,21 +851,65 @@ class Phase6Pipeline:
                 else:
                     candidates_stream = (predict_tiled_stream(self.ball_detector, frames, (w, h), **spatial_settings)
                                          if spatial_enabled else self.ball_detector.predict_stream(frames))
-                raw_candidates_per_frame = list(tqdm(candidates_stream, total=total_frames,
-                                                    desc="  Overlapping Temporal Ball Detection"))
+                try:
+                    raw_candidates_per_frame.extend(tqdm(candidates_stream, total=total_frames,
+                                                           desc="  Overlapping Temporal Ball Detection"))
+                except BaseException as error:
+                    # tqdm closes its progress iterator, not the detector
+                    # generator. Release its inference buffers deterministically.
+                    try:
+                        candidates_stream.close()
+                    except BaseException as close_error:
+                        error.add_note(f"Candidate producer cleanup also failed: {close_error}")
+                    raise
+                else:
+                    candidates_stream.close()
             elif temporal_step == 3:
                 for start in tqdm(range(0, total_frames, 3), desc="  Temporal Ball Detection"):
                     raw_candidates_per_frame.extend(self.ball_detector.predict_triplet(frames[start:start + 3]))
             else:
                 raise ValueError('WASB temporal_step must be 1 or 3')
         else:
-            for frame in tqdm(frames, desc="  Ball Detection"):
-                cands = self.ball_detector.extract_candidates(frame, imgsz=imgsz)
-                raw_candidates_per_frame.append(cands)
+            # The native candidate pass uses a fresh sequential decoder. A
+            # saved frontier can discard its prefix without approximate
+            # frame seeking or replaying any ball-model invocations.
+            raw_start = len(raw_journal) if raw_journal is not None else 0
+            ball_frames = frames.iter_decoded(raw_start) if disk_players else iter(frames)
+            try:
+                for index, frame in enumerate(tqdm(ball_frames, total=total_frames - raw_start,
+                                                   desc="  Ball Detection"), start=raw_start):
+                    cands = self.ball_detector.extract_candidates(frame, imgsz=imgsz)
+                    if raw_journal is not None:
+                        raw_journal.append(index, cands)
+                    else:
+                        raw_candidates_per_frame.append(cands)
+            except BaseException as error:
+                close = getattr(ball_frames, 'close', None)
+                if close is not None:
+                    try:
+                        close()
+                    except BaseException as cleanup_error:
+                        error.add_note('Ball decoder cleanup also failed: ' + str(cleanup_error))
+                raise
+            else:
+                close = getattr(ball_frames, 'close', None)
+                if close is not None:
+                    close()
+        if raw_journal is not None:
+            if len(raw_journal) != total_frames:
+                raise ValueError('Durable raw ball frontier did not reach the normalized frame count')
+            # Filters mutate only scratch rows, preserving immutable raw input.
+            raw_candidates_per_frame.extend(raw_journal)
+        if len(raw_candidates_per_frame) != total_frames:
+            raise ValueError('Ball candidate frames did not align with normalized video frames')
         print(f"  -> Extracted raw ball candidates in {time.time()-t0:.2f}s")
         stationary_settings = dict(self.config['ball_detection'].get('stationary_candidates', {}))
         stationary_enabled = stationary_settings.pop('enabled', False)
-        stationary_rejections = []
+        stationary_rejections = export_stack.enter_context(JsonArrayArtifact(
+            os.path.join(output_dir, 'stationary_candidate_audit.json'),
+            {'schema_version': '1.0', 'enabled': stationary_enabled,
+             'settings': stationary_settings, 'accuracy_validated': False,
+             'risk': 'PERSISTENT_IMAGE_STATIONARITY_CAN_INCLUDE_A_REAL_STATIONARY_BALL'}))
         if stationary_enabled:
             candidate_filter = StationaryCandidateFilter(**stationary_settings)
             for index, candidates in enumerate(raw_candidates_per_frame):
@@ -319,7 +921,13 @@ class Phase6Pipeline:
         pixel_settings = dict(self.config['ball_detection'].get('pixel_motion', {}))
         pixel_enabled = pixel_settings.pop('enabled', False)
         pixel_minimum = pixel_settings.pop('minimum_score', 12.)
-        pixel_evidence = []
+        pixel_evidence = export_stack.enter_context(JsonArrayArtifact(
+            os.path.join(output_dir, 'pixel_motion_audit.json'),
+            {'schema_version': '1.0', 'enabled': pixel_enabled,
+             'settings': {**pixel_settings, 'minimum_score': pixel_minimum},
+             'accuracy_validated': False,
+             'scope': 'CAUSAL_PIXEL_CHANGE; NOT_OBJECT_RECOGNITION_OR_PHYSICAL_SPEED',
+             'risk': 'MAY_REJECT_A_REAL_STATIONARY_OR_LOW_CONTRAST_BALL; CAMERA_MOTION_CAN_PASS_DISTRACTORS'}))
         if pixel_enabled:
             pixel_filter = CandidatePixelMotion(**pixel_settings)
             # Decode one bounded sequential pass; retain no full-video images.
@@ -330,7 +938,13 @@ class Phase6Pipeline:
                 pixel_evidence.append({'frame_index': index, 'candidates': evidence})
         patch_settings = dict(self.config['ball_detection'].get('patch_persistence', {}))
         patch_enabled = patch_settings.pop('enabled', False)
-        patch_evidence = []
+        patch_evidence = export_stack.enter_context(JsonArrayArtifact(
+            os.path.join(output_dir, 'patch_persistence_audit.json'),
+            {'schema_version': '1.0', 'enabled': patch_enabled, 'settings': patch_settings,
+             'spatial_crops': {'enabled': spatial_enabled, **spatial_settings},
+             'accuracy_validated': False,
+             'scope': 'SELECTED_OBSERVATION_REJECTION_ONLY; NO_RERANKING_OR_INTERPOLATION',
+             'risk': 'SIMILAR_PATCHES_CAN_INCLUDE_REAL_FAINT_OR_STATIONARY_BALLS'}))
         if patch_enabled:
             patch_filter = SelectedPatchPersistence(**patch_settings)
             for index, frame in enumerate(frames):
@@ -355,8 +969,12 @@ class Phase6Pipeline:
         # 5. Temporal Ball Tracking
         print("\n[Step 5/11] Running Temporal Kalman Ball Tracking...")
         t0 = time.time()
+        # Keep typed candidate results alive through rendering and every export.
+        # Legacy callers retain their list contract and unchanged nominal dt.
+        ball_output = (export_stack.enter_context(TemporalBallPointSequence(output_dir))
+                       if disk_players else None)
         if self.tracking_strategy == 'model_top1':
-            ball_points = []
+            ball_points = [] if ball_output is None else ball_output
             for index, candidates in enumerate(raw_candidates_per_frame):
                 # Full-frame WASB uses blob mass; optional spatial fusion uses peak confidence.
                 best = (candidates[0] if self.ball_backend == 'wasb'
@@ -368,15 +986,31 @@ class Phase6Pipeline:
                     source=f'{self.ball_backend}_visual_temporal' if best else 'none',
                 ))
         else:
-            ball_points = self.temporal_tracker.track_video_candidates(
-                raw_candidates_per_frame, fps=fps, frame_size=(w, h)
-            )
+            ball_points = (track_candidate_intervals(self.temporal_tracker, raw_candidates_per_frame,
+                                                    candidate_frames, fps, (w, h), output=ball_output,
+                                                    use_source_timing=self.yolo26) if disk_players else
+                           self.temporal_tracker.track_video_candidates(
+                               raw_candidates_per_frame, fps=fps, frame_size=(w, h)))
 
-        for p in ball_points:
+        # Tracking has copied the selected scalar measurements into ball_points.
+        # No downstream consumer reads candidate sets or the detour input array.
+        del raw_candidates_per_frame
+        if detours_enabled:
+            del selected_xy
+        candidates = kept = rejected = selected = best = cands = evidence = None
+        if stationary_enabled:
+            del candidate_filter
+        if pixel_enabled:
+            del pixel_filter
+        if patch_enabled:
+            del patch_filter
+
+        for index, p in enumerate(ball_points):
             if p.x_px is not None and p.y_px is not None:
                 court_pt = frame_calibrations[p.frame_index].project_ground_point((p.x_px, p.y_px))
                 if court_pt is not None:
                     p.court_x_m, p.court_y_m = court_pt
+                    ball_points[index] = p
 
         det_count = sum(1 for p in ball_points if p.state == BallState.DETECTED)
         track_count = sum(1 for p in ball_points if p.state == BallState.TRACKED)
@@ -388,6 +1022,7 @@ class Phase6Pipeline:
         # 6. Event Detection
         print("\n[Step 6/11] Detecting Tennis Match Events (Serves, Bounces, Hits)...")
         t0 = time.time()
+        event_output = export_stack.enter_context(EventAnalysisSequence(output_dir)) if disk_players else None
         event_analysis = self.event_detector.analyze(
             ball_trajectory=ball_points,
             player1_boxes=p1_boxes,
@@ -395,6 +1030,7 @@ class Phase6Pipeline:
             homography_matrix=None if camera_enabled else homography_matrix,
             fps=fps,
             frame_size=(w, h),
+            **({'scratch_directory': output_dir, 'result_output': event_output} if disk_players else {}),
         )
         authoritative_enabled = self.config.get('event_detection', {}).get('authoritative_enabled', True)
         detected_events = event_analysis.events if authoritative_enabled else []
@@ -413,9 +1049,43 @@ class Phase6Pipeline:
         dead_event_ids = set()
         line_call_map = {}
 
-        sorted_events = sorted(detected_events, key=lambda e: e.frame_index)
+        sorted_events = (event_output.events_by_frame() if disk_players and authoritative_enabled
+                         else sorted(detected_events, key=lambda e: e.frame_index))
+        point_owner = timeline = None
+        if disk_players:
+            # Every file gets its own empty rule journal and configured initial
+            # state, even if a caller reuses this pipeline object. Keep its
+            # lifetime through rendering/export and restore the prior engine.
+            prior_scoring_engine = self.scoring_engine
+            self.scoring_engine = export_stack.enter_context(
+                prior_scoring_engine.journal_context(output_dir))
+            export_stack.callback(setattr, self, 'scoring_engine', prior_scoring_engine)
+            with open(input_video_path, 'rb') as source_stream:
+                source_fingerprint = hashlib.file_digest(source_stream, 'sha256').hexdigest()
+            point_owner = export_stack.enter_context(PointAnalysisSequence(
+                output_dir, self.config['match_configuration']['match_id'],
+                self.config.get('analysis_revision', 0), source_fingerprint=source_fingerprint))
+            timeline = PointTimeline(point_owner, self.scoring_engine.get_current_state().to_dict(),
+                                     source_frames=candidate_frames)
+            line_call_evidences = self.scoring_engine.native_line_calls()
+            line_call_map = None
+            dead_event_ids = point_owner.dead_event_ids()
+            # Reviewed rule signals are explicitly provided evidence, never new
+            # detector event types. Authority-off must ignore them as well.
+            sorted_events = merge_rule_inputs(sorted_events,
+                getattr(self, 'reviewed_rule_signals', ()) if authoritative_enabled else ())
 
         for ev in sorted_events:
+            if disk_players:
+                provider = ((lambda event, interval, identity: event.context.binding)
+                            if isinstance(ev, ReviewedRuleSignal) else
+                            getattr(self, 'reviewed_participant_binding_provider', None))
+                context = candidate_event_context(ev, candidate_frames, provider,
+                    analysis_id=point_owner.analysis_id, source_fingerprint=source_fingerprint)
+                _, outcome, evidence = process_timeline_event(ev, context, self.scoring_engine,
+                    timeline, self.line_call_engine, ball_points=ball_points,
+                    homography_matrix=homography_matrix, frames=frames, geometry_available=is_h_valid)
+                continue
             event_id = ev.event_id
             ev_type = ev.event_type.value
             ev_frame = ev.frame_index
@@ -476,17 +1146,18 @@ class Phase6Pipeline:
             })
 
         print(f"  -> Scoring State Complete ({len(dead_event_ids)} dead-ball events suppressed) in {time.time()-t0:.2f}s")
+        if disk_players:
+            scoring_outcomes = point_owner.rows('transitions')
         # Physical events remain authoritative vision observations.  Scoring is
         # a downstream consumer and may flag an event as dead-ball for score/
         # shot consumers, but it must never delete the physical observation.
-        authoritative_events = list(detected_events)
+        authoritative_events = detected_events if disk_players else list(detected_events)
 
         # 8. Speed Estimation & Player Metrics
         print("\n[Step 8/11] Estimating Player Locomotion; Physical Ball Speed Unavailable...")
         t0 = time.time()
         # Single-view court calibration does not locate an airborne ball in 3D.
         # Do not publish ray/plane intersection rates as measured shot speeds.
-        per_frame_speeds = [None] * total_frames
         speed_segments = []
         speed_summary = {
             "available": False,
@@ -497,34 +1168,35 @@ class Phase6Pipeline:
             "segments_count": 0,
             "court_projection_semantics": "VIEWING_RAY_INTERSECTION_WITH_GROUND_PLANE",
         }
-        for i in range(total_frames):
-            ball_points[i].speed_kmh = per_frame_speeds[i]
+        for index, point in enumerate(ball_points):
+            point.speed_kmh = None
+            ball_points[index] = point
 
-        p1_positions = []
-        p2_positions = []
-        timestamps = [i / fps for i in range(total_frames)]
-        for i in range(total_frames):
-            p1_b = p1_boxes[i]
-            p2_b = p2_boxes[i]
-            if p1_b is not None and is_h_valid:
-                foot_px = ((p1_b.x1 + p1_b.x2)/2.0, p1_b.y2)
-                p1_positions.append(frame_calibrations[i].project_ground_point(foot_px))
-            else:
-                p1_positions.append(None)
-
-            if p2_b is not None and is_h_valid:
-                foot_px = ((p2_b.x1 + p2_b.x2)/2.0, p2_b.y2)
-                p2_positions.append(frame_calibrations[i].project_ground_point(foot_px))
-            else:
-                p2_positions.append(None)
-
-        p1_motion = summarize_motion(p1_positions, timestamps)
-        p2_motion = summarize_motion(p2_positions, timestamps)
+        if disk_players:
+            # Candidate ground contact remains unqualified. Preserve per-frame
+            # unknowns/source evidence on disk, not several match-long arrays.
+            p1_positions = p2_positions = UnknownGroundPositions(total_frames)
+            timestamps = FrameTimes(total_frames, fps)
+            motion_samples = export_stack.enter_context(IdentityFrameSequence(output_dir))
+            summaries = accumulate_motion_frames(p1_positions, p2_positions, timestamps, motion_samples,
+                                                   source_frames=candidate_frames)
+            p1_motion, p2_motion = summaries[1], summaries[2]
+        else:
+            p1_positions, p2_positions = [], []
+            timestamps = [i / fps for i in range(total_frames)]
+            for i in range(total_frames):
+                p1_b, p2_b = p1_boxes[i], p2_boxes[i]
+                p1_positions.append(frame_calibrations[i].project_ground_point(get_foot_position(p1_b))
+                                    if p1_b is not None and is_h_valid else None)
+                p2_positions.append(frame_calibrations[i].project_ground_point(get_foot_position(p2_b))
+                                    if p2_b is not None and is_h_valid else None)
+            p1_motion = summarize_motion(p1_positions, timestamps)
+            p2_motion = summarize_motion(p2_positions, timestamps)
         p1_dist, p2_dist = p1_motion['observed_distance_m'], p2_motion['observed_distance_m']
         p1_speed, p2_speed = p1_motion['mean_speed_kmh'], p2_motion['mean_speed_kmh']
 
-        pose_frames = []
-        racket_frames = []
+        pose_frames = export_stack.enter_context(IdentityFrameSequence(output_dir)) if self.motion_tracker is not None else []
+        racket_frames = export_stack.enter_context(IdentityFrameSequence(output_dir)) if self.racket_tracker is not None else []
         if self.motion_tracker is not None or self.racket_tracker is not None:
             for index, frame in enumerate(tqdm(frames, desc="  Continuous Player Pose")):
                 boxes = {1: p1_boxes[index], 2: p2_boxes[index]}
@@ -535,7 +1207,8 @@ class Phase6Pipeline:
         player_motion = {
             "schema_version": "2.0", "pose_enabled": self.motion_tracker is not None,
             "joint_names": list(JOINT_NAMES), "coordinate_system": "SOURCE_IMAGE_PIXELS",
-            "ground_position_source": "CALIBRATED_BBOX_BOTTOM_CENTER_PROXY",
+            "ground_position_source": ("POSE_ANKLE_MIDPOINT_OR_BBOX_ESTIMATE" if getattr(self, 'yolo26', False)
+                                       else "CALIBRATED_BBOX_BOTTOM_CENTER_PROXY"),
             "camera_registration_enabled": camera_enabled,
             "ground_projection_scope": ('PER_FRAME_REGISTERED_COURT_PLANE' if camera_enabled else 'STATIC_INITIAL_COURT_PLANE'),
             "foot_contact_validated": False, "pose_accuracy_validated": False,
@@ -543,20 +1216,32 @@ class Phase6Pipeline:
                                else 'NEAR_FAR_ROLE_WITHIN_STATIC_SINGLES_CAMERA_SEGMENT'),
             "player_1": p1_motion,
             "player_2": p2_motion,
-            "pose_frames": pose_frames,
         }
+        if disk_players:
+            player_motion.update({'identity_scope': 'NEAR_FAR_DIAGNOSTIC_ROLES; SEE_SEPARATE_MATCH_IDENTITY_A_B_AUDIT',
+                                  'metric_measurements_available': False,
+                                  'metric_unavailable_reason': 'INDEPENDENT_GROUND_CONTACT_AND_GEOMETRY_QUALIFICATION_UNAVAILABLE',
+                                  'match_identity_artifact': 'match_identity.json',
+                                  'camera_interval_artifact': 'camera_intervals.json'})
 
         # 9. Shot Linking & Pose Classification
-        print("\n[Step 9/11] Linking Shots & Running YOLO11-Pose / Geometry Classification...")
+        print("\n[Step 9/11] Linking Shots & Classifying Available Evidence...")
         t0 = time.time()
+        shot_output = export_stack.enter_context(ShotEvidenceSequence(output_dir)) if disk_players else None
         shot_evidences = self.shot_linker.link_shots(
             events=detected_events,
             ball_trajectory=ball_points,
             player1_boxes=p1_boxes,
             player2_boxes=p2_boxes,
             raw_frames=frames,
-            dead_event_ids=dead_event_ids
+            dead_event_ids=dead_event_ids,
+            **({'result_output': shot_output, 'event_output': event_output if authoritative_enabled else None}
+               if disk_players else {}),
         )
+        if player_crop_provider is not None:
+            # The legacy extractor catches ordinary inference errors. A failed
+            # selected-model crop must still fail this unpublished analysis.
+            player_crop_provider.assert_success()
         print(f"  -> Extracted & Linked {len(shot_evidences)} Shot Events in {time.time()-t0:.2f}s")
         for s in shot_evidences:
             print(f"     * Shot #{s.shot_id} (Frame {s.frame_index:3d}): {s.shot_type.value:10s} (Conf: {s.shot_confidence:.2f}, Src: {s.classification_source.value}) | Dir: {s.direction.value:15s} | Zone: {s.landing_zone.value if s.landing_zone else 'N/A':15s} | Dead: {s.is_dead_ball}")
@@ -565,44 +1250,62 @@ class Phase6Pipeline:
         print("\n[Step 10/11] Segmenting Rallies & Aggregating Match Analytics...")
         t0 = time.time()
         final_st = self.scoring_engine.get_current_state()
-        rallies = RallyAnalyzer.analyze_rallies(
-            shot_evidences=shot_evidences,
-            server_id=final_st.server_id,
-            receiver_id=final_st.receiver_id,
-            serve_attempt=final_st.serve_attempt,
-            winner_id=final_st.last_point_winner,
-            ending_reason=final_st.last_point_reason,
-            fps=fps,
-        )
+        if disk_players:
+            timeline.attach_shots(shot_evidences)
+            shot_output.seal()
+            timeline.finish()
+        if disk_players:
+            rallies = point_owner.rows('rallies')
+            point_analytics = point_owner.rows('points')
+            match_analytics = native_match_analytics(point_owner, shot_evidences, final_st,
+                                                      authoritative=authoritative_enabled)
+        else:
+            rallies = RallyAnalyzer.analyze_rallies(
+                shot_evidences=shot_evidences,
+                server_id=final_st.server_id,
+                receiver_id=final_st.receiver_id,
+                serve_attempt=final_st.serve_attempt,
+                winner_id=final_st.last_point_winner,
+                ending_reason=final_st.last_point_reason,
+                fps=fps,
+                **({'result_owner': shot_output} if disk_players else {}),
+            )
 
-        point_analytics = MatchAnalyticsAggregator.build_point_analytics(
-            match_state=final_st,
-            shots=shot_evidences,
-            rallies=rallies,
-            line_calls=line_call_evidences,
-            p1_distance_m=p1_dist,
-            p2_distance_m=p2_dist
-        )
+            point_analytics = MatchAnalyticsAggregator.build_point_analytics(
+                match_state=final_st,
+                shots=shot_evidences,
+                rallies=rallies,
+                line_calls=line_call_evidences,
+                p1_distance_m=p1_dist,
+                p2_distance_m=p2_dist,
+                **({'result_owner': shot_output} if disk_players else {}),
+            )
 
-        match_analytics = MatchAnalyticsAggregator.build_match_analytics(
-            match_state=final_st,
-            shots=shot_evidences,
-            rallies=rallies,
-            line_calls=line_call_evidences,
-            p1_positions=p1_positions,
-            p2_positions=p2_positions,
-            p1_distance_m=p1_dist,
-            p2_distance_m=p2_dist,
-            p1_speed_kmh=p1_speed,
-            p2_speed_kmh=p2_speed,
-            ball_speed_summary=speed_summary
-        )
+            match_analytics = MatchAnalyticsAggregator.build_match_analytics(
+                match_state=final_st,
+                shots=shot_evidences,
+                rallies=rallies,
+                line_calls=line_call_evidences,
+                p1_positions=p1_positions,
+                p2_positions=p2_positions,
+                p1_distance_m=p1_dist,
+                p2_distance_m=p2_dist,
+                p1_speed_kmh=p1_speed,
+                p2_speed_kmh=p2_speed,
+                ball_speed_summary=speed_summary,
+                **({'result_owner': shot_output} if disk_players else {}),
+            )
         match_analytics['authoritative_events_enabled'] = authoritative_enabled
         match_analytics['movement_measurement'] = {
             'source': 'CALIBRATED_BBOX_BOTTOM_CENTER_PROXY',
             'distance_estimator': p1_motion['distance_estimator'],
             'independent_speed_accuracy_validated': False,
         }
+        if disk_players:
+            match_analytics['movement_measurement'].update({
+                'available': False, 'reason': 'INDEPENDENT_GROUND_CONTACT_AND_GEOMETRY_QUALIFICATION_UNAVAILABLE',
+                'identity_scope': 'NEAR_FAR_DIAGNOSTIC_ROLES; REVIEWED_A_B_EXPORTED_SEPARATELY',
+                'camera_interval_artifact': 'camera_intervals.json', 'match_identity_artifact': 'match_identity.json'})
         if not authoritative_enabled:
             point_analytics = []
             match_analytics['overview']['total_points_played'] = None
@@ -617,157 +1320,259 @@ class Phase6Pipeline:
         t0 = time.time()
         output_video_path = os.path.join(output_dir, "annotated.mp4")
         mini_court = MiniCourt(width=250, height=500)
-
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        writer = cv2.VideoWriter(output_video_path, fourcc, fps, (w, h))
-        if not writer.isOpened():
-            raise RuntimeError(f"Unable to open output video writer: {output_video_path}")
-
-        recent_ball_positions = []
-
-        # Map shot frame to evidence
-        shot_frame_map = {s.frame_index: s for s in shot_evidences}
-
-        # Close the bounded frame cache before the independent render pass.
-        frames.close()
-        del frames
-        gc.collect()
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-
-        cap = cv2.VideoCapture(input_video_path)
-        for i in tqdm(range(total_frames), desc="  Rendering Video"):
-            ret, ann_frame = cap.read()
-            if not ret or ann_frame is None:
-                break
-
-            # 1. Player Boxes
-            player_bboxes = {}
-            if p1_boxes[i] is not None:
-                player_bboxes[1] = p1_boxes[i]
-            if p2_boxes[i] is not None:
-                player_bboxes[2] = p2_boxes[i]
-            ann_frame = VideoAnnotator.draw_player_boxes(ann_frame, player_bboxes, {1: (255, 0, 0), 2: (0, 0, 255)})
-            if pose_frames:
-                for identity, joints in pose_frames[i].items():
-                    if joints is None:
-                        continue
-                    color = (220, 210, 40) if identity == 1 else (40, 180, 255)
-                    for a, b in SKELETON_EDGES:
-                        first = joints[JOINT_NAMES[a]]["position_px"]
-                        second = joints[JOINT_NAMES[b]]["position_px"]
-                        if first is not None and second is not None:
-                            cv2.line(ann_frame, tuple(map(int, first)), tuple(map(int, second)), color, 2, cv2.LINE_AA)
-                    for joint in joints.values():
-                        if joint["position_px"] is not None:
-                            cv2.circle(ann_frame, tuple(map(int, joint["position_px"])), 3, color, -1, cv2.LINE_AA)
-            if racket_frames:
-                for identity, racket in racket_frames[i].items():
-                    if racket["bbox_xyxy"] is not None:
-                        x1, y1, x2, y2 = map(int, racket["bbox_xyxy"])
-                        cv2.rectangle(ann_frame, (x1, y1), (x2, y2), (80, 240, 160), 2, cv2.LINE_AA)
-                        cv2.putText(ann_frame, f"RACKET {identity}  {racket['confidence']:.2f}",
-                                    (x1, max(15, y1 - 7)), cv2.FONT_HERSHEY_SIMPLEX, .45, (80, 240, 160), 1, cv2.LINE_AA)
-
-            # 2. Court Keypoints
-            if camera_transforms[i] is not None:
-                frame_keypoints = cv2.perspectiveTransform(np.asarray(court_keypoints, np.float32)[None], camera_transforms[i])[0]
-                ann_frame = VideoAnnotator.draw_court_keypoints(ann_frame, frame_keypoints)
-
-            # 3. Ball Trajectory Trail
-            if i and frame_calibrations[i - 1].is_valid != frame_calibrations[i].is_valid:
-                recent_ball_positions.clear()
-            b_pt = ball_points[i]
-            if b_pt.x_px is not None and b_pt.y_px is not None:
-                recent_ball_positions.append((b_pt.x_px, b_pt.y_px))
-                ann_frame = VideoAnnotator.draw_ball(ann_frame, (b_pt.x_px, b_pt.y_px), b_pt.state)
+        landing_settings = self.config.get('visualization', {}).get('landing_zones', {})
+        landing_output = None
+        landing_records = []
+        landing_calibrations = {}
+        landing_partition = landing_settings.get('partition', 'tactical_3x3')
+        if landing_settings.get('enabled', False):
+            analysis_id = self.config['match_configuration']['match_id']
+            revision = self.config.get('analysis_revision', 0)
+            if disk_players:
+                landing_output = export_stack.enter_context(LandingZoneSequence(output_dir, analysis_id, revision))
+                landing_records = landing_output.records
+                landing_calibrations = landing_output.calibrations
+            for event_index, event in enumerate(authoritative_events):
+                contact_calibration = frame_calibrations[event.frame_index]
+                if not contact_calibration.is_valid or event.event_id in dead_event_ids:
+                    continue
+                calibration_id = f'frame_{event.frame_index}'
+                # Both presentations are derived from the same confirmed event.
+                # These bindings identify its artifact scope; they do not verify
+                # the event, contact measurement or calibration's accuracy.
+                for partition in dict.fromkeys(['service', landing_partition]):
+                    record = landing_record(
+                        {'event_id': event.event_id, 'event_type': event.event_type.value, 'timestamp_s': event.timestamp_s,
+                         'court_position_m': event.court_position_m, 'evidence': event.evidence},
+                        contact_calibration.image_to_court, analysis_id=analysis_id,
+                        revision=revision, calibration_id=calibration_id, partition=partition,
+                        duration_seconds=landing_settings.get('duration_seconds', .8))
+                    if record is not None:
+                        event.evidence = {**event.evidence, 'analysis_id': analysis_id,
+                                          'analysis_revision': revision, 'calibration_id': calibration_id,
+                                          'contact_position_px': record['contact_position_px']}
+                        if disk_players:
+                            event_output.events[event_index] = event
+                        calibration = {'analysis_id': analysis_id,
+                            'analysis_revision': revision, 'frame_index': event.frame_index,
+                            'image_to_court': contact_calibration.image_to_court.tolist()}
+                        if disk_players:
+                            landing_output.append(record, calibration)
+                        else:
+                            landing_records.append(record)
+                            landing_calibrations[calibration_id] = calibration
+            if disk_players:
+                landing_output.seal().write_json(os.path.join(output_dir, 'landing_zones.json'))
             else:
-                recent_ball_positions.clear()
-            recent_ball_positions = recent_ball_positions[-25:]
-            ann_frame = VideoAnnotator.draw_ball_trajectory(ann_frame, recent_ball_positions, max_trail=25)
+                with open(os.path.join(output_dir, 'landing_zones.json'), 'w', encoding='utf-8') as handle:
+                    json.dump({'schema_version': '1.0', 'analysis_id': analysis_id,
+                               'analysis_revision': revision, 'calibrations': landing_calibrations,
+                               'records': landing_records}, handle, allow_nan=False)
 
-            # 4. Physical Match Events Badge
-            for ev in authoritative_events:
-                if abs(ev.frame_index - i) <= 6:
-                    ann_frame = VideoAnnotator.draw_event_badge(ann_frame, ev.event_type.value, (0, 255, 255), i)
+        with ExitStack() as render_stack:
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            writer = render_stack.enter_context(releasing_video_handle(cv2.VideoWriter(output_video_path, fourcc, fps, (w, h))))
+            if not writer.isOpened():
+                raise RuntimeError(f"Unable to open output video writer: {output_video_path}")
 
-            # 5. Shot Classification Badge (Active for 20 frames around hit)
-            for s_frame, shot_ev in shot_frame_map.items():
-                if 0 <= (i - s_frame) <= 20 and not shot_ev.is_dead_ball:
-                    tag_text = f"SHOT: [{shot_ev.shot_type.value}] ({shot_ev.direction.value}, Conf: {shot_ev.shot_confidence:.2f})"
-                    cv2.rectangle(ann_frame, (40, 165), (750, 205), (180, 80, 0), -1)
-                    cv2.rectangle(ann_frame, (40, 165), (750, 205), (255, 255, 255), 2)
-                    cv2.putText(ann_frame, tag_text, (50, 193), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2, cv2.LINE_AA)
+            recent_ball_positions = []
 
-            # 6. Line Call Banner (Active for 18 frames after bounce)
-            for b_frame, evidence in line_call_map.items():
-                if 0 <= (i - b_frame) <= 18:
-                    call_text = f"LINE CALL: [{evidence.decision.value}] ({evidence.nearest_line.value} {evidence.ball_edge_margin_cm:+.1f}cm, Unc: +- {evidence.position_uncertainty_cm:.1f}cm)"
-                    bg_color = (0, 180, 0) if "IN" in evidence.decision.value else ((0, 0, 200) if "OUT" in evidence.decision.value or "FAULT" in evidence.decision.value else (0, 165, 255))
-                    cv2.rectangle(ann_frame, (40, 110), (1200, 155), bg_color, -1)
-                    cv2.rectangle(ann_frame, (40, 110), (1200, 155), (255, 255, 255), 2)
-                    cv2.putText(ann_frame, call_text, (55, 142), cv2.FONT_HERSHEY_SIMPLEX, 0.70, (255, 255, 255), 2, cv2.LINE_AA)
+            # Map shot frame to evidence
+            shot_frame_map = None if disk_players else {s.frame_index: s for s in shot_evidences}
+            mini_history = (MiniCourtBounceHistory(mini_court, event_output, EventType.BOUNCE)
+                            if disk_players and authoritative_enabled else None)
 
-            # 7. Dead-Ball Annotation
-            dead_event_frames = {
-                outcome["frame"] for outcome in scoring_outcomes
-                if outcome["outcome_type"] == PointOutcomeType.DEAD_BALL_IGNORED.value
-            }
-            if any(0 <= i - dead_frame <= max(1, round(0.5 * fps)) for dead_frame in dead_event_frames):
-                cv2.rectangle(ann_frame, (40, 215), (550, 255), (50, 50, 50), -1)
-                cv2.rectangle(ann_frame, (40, 215), (550, 255), (0, 165, 255), 2)
-                cv2.putText(ann_frame, "IGNORED — BALL NOT IN PLAY (DEAD BALL)", (50, 242),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 255), 2, cv2.LINE_AA)
+            # Close the bounded frame cache before the independent render pass.
+            frames.close()
+            del frames
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
 
-            # 8. Scoreboard HUD Banner
-            score_bar_h = 90
-            cv2.rectangle(ann_frame, (0, 0), (w, score_bar_h), (20, 20, 20), -1)
-            cv2.line(ann_frame, (0, score_bar_h), (w, score_bar_h), (0, 255, 255), 2)
+            cap = render_stack.enter_context(releasing_video_handle(cv2.VideoCapture(input_video_path)))
+            if disk_players and not cap.isOpened():
+                raise RuntimeError('Unable to open candidate render source video')
+            rendered_frames = 0
+            for i in tqdm(range(total_frames), desc="  Rendering Video"):
+                ret, ann_frame = cap.read()
+                if not ret or ann_frame is None:
+                    if disk_players:
+                        raise RuntimeError(f'Candidate render source ended at frame {i}; expected {total_frames} frames')
+                    break
 
-            srv_dot_p1 = " *" if final_st.server_id == 1 else ""
-            srv_dot_p2 = " *" if final_st.server_id == 2 else ""
+                # 1. Player Boxes
+                player_bboxes = {}
+                if p1_boxes[i] is not None:
+                    player_bboxes[1] = p1_boxes[i]
+                if p2_boxes[i] is not None:
+                    player_bboxes[2] = p2_boxes[i]
+                ann_frame = VideoAnnotator.draw_player_boxes(ann_frame, player_bboxes, {1: (255, 0, 0), 2: (0, 0, 255)})
+                if pose_frames:
+                    for identity, joints in pose_frames[i].items():
+                        if joints is None:
+                            continue
+                        color = (220, 210, 40) if identity == 1 else (40, 180, 255)
+                        for a, b in SKELETON_EDGES:
+                            first = joints[JOINT_NAMES[a]]["position_px"]
+                            second = joints[JOINT_NAMES[b]]["position_px"]
+                            if first is not None and second is not None:
+                                cv2.line(ann_frame, tuple(map(int, first)), tuple(map(int, second)), color, 2, cv2.LINE_AA)
+                        for joint in joints.values():
+                            if joint["position_px"] is not None:
+                                cv2.circle(ann_frame, tuple(map(int, joint["position_px"])), 3, color, -1, cv2.LINE_AA)
+                if racket_frames:
+                    for identity, racket in racket_frames[i].items():
+                        if racket["bbox_xyxy"] is not None:
+                            x1, y1, x2, y2 = map(int, racket["bbox_xyxy"])
+                            cv2.rectangle(ann_frame, (x1, y1), (x2, y2), (80, 240, 160), 2, cv2.LINE_AA)
+                            cv2.putText(ann_frame, f"RACKET {identity}  {racket['confidence']:.2f}",
+                                        (x1, max(15, y1 - 7)), cv2.FONT_HERSHEY_SIMPLEX, .45, (80, 240, 160), 1, cv2.LINE_AA)
 
-            p1_line = f"PLAYER 1{srv_dot_p1}: Set 1: {final_st.games_p1} | Points: {final_st.get_points_display_p1()}"
-            p2_line = f"PLAYER 2{srv_dot_p2}: Set 1: {final_st.games_p2} | Points: {final_st.get_points_display_p2()}"
-            cv2.putText(ann_frame, p1_line, (40, 38), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 255, 255) if final_st.server_id == 1 else (255, 255, 255), 2, cv2.LINE_AA)
-            cv2.putText(ann_frame, p2_line, (40, 75), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 255, 255) if final_st.server_id == 2 else (255, 255, 255), 2, cv2.LINE_AA)
+                # 2. Court Keypoints
+                if disk_players:
+                    ann_frame = VideoAnnotator.draw_court_keypoints(ann_frame, candidate_frames[i][2])
+                elif camera_transforms[i] is not None:
+                    frame_keypoints = cv2.perspectiveTransform(np.asarray(court_keypoints, np.float32)[None], camera_transforms[i])[0]
+                    ann_frame = VideoAnnotator.draw_court_keypoints(ann_frame, frame_keypoints)
 
-            state_info = f"SERVE {final_st.serve_attempt} ({final_st.service_side.value}) | STATE: {final_st.point_state.value}"
-            cv2.putText(ann_frame, state_info, (w - 720, 55), cv2.FONT_HERSHEY_SIMPLEX, 0.70, (200, 200, 200), 2, cv2.LINE_AA)
-            if not authoritative_enabled:
+                # 3. Ball Trajectory Trail
+                if i and frame_calibrations[i - 1].is_valid != frame_calibrations[i].is_valid:
+                    recent_ball_positions.clear()
+                if disk_players and not candidate_frames[i][0]['measurement_transition_allowed']:
+                    recent_ball_positions.clear()
+                b_pt = ball_points[i]
+                if b_pt.x_px is not None and b_pt.y_px is not None:
+                    recent_ball_positions.append((b_pt.x_px, b_pt.y_px))
+                    ann_frame = VideoAnnotator.draw_ball(ann_frame, (b_pt.x_px, b_pt.y_px), b_pt.state)
+                else:
+                    recent_ball_positions.clear()
+                recent_ball_positions = recent_ball_positions[-25:]
+                ann_frame = VideoAnnotator.draw_ball_trajectory(ann_frame, recent_ball_positions, max_trail=25)
+
+                # 4. Physical Match Events Badge
+                active_landings = (landing_output.active_records(landing_partition, i / fps)
+                                   if landing_output is not None else [record for record in landing_records
+                                   if record['partition'] == landing_partition
+                                   and record['timestamp_s'] <= i / fps < record['timestamp_s'] + record['duration_s']])
+                if frame_calibrations[i].is_valid:
+                    for record in active_landings:
+                        projected = {**record, 'contact_position_px': project_polygon(
+                            [record['contact_position_m']], frame_calibrations[i].image_to_court)[0],
+                            'zones': [{**zone, 'polygon_px': project_polygon(
+                            zone['polygon_m'], frame_calibrations[i].image_to_court)} for zone in record['zones']]}
+                        ann_frame = draw_landing(ann_frame, projected, timestamp_seconds=i / fps)
+                nearby_events = (event_output.events_by_frame(i - 6, i + 6) if disk_players and authoritative_enabled
+                                 else authoritative_events)
+                for ev in nearby_events:
+                    if abs(ev.frame_index - i) <= 6:
+                        ann_frame = VideoAnnotator.draw_event_badge(ann_frame, ev.event_type.value, (0, 255, 255), i)
+
+                # 5. Shot Classification Badge (Active for 20 frames around hit)
+                active_shots = (shot_output.badges_by_frame(i - 20, i) if disk_players else shot_frame_map.values())
+                for shot_ev in active_shots:
+                    s_frame = shot_ev.frame_index
+                    if 0 <= (i - s_frame) <= 20 and not shot_ev.is_dead_ball:
+                        tag_text = f"SHOT: [{shot_ev.shot_type.value}] ({shot_ev.direction.value}, Conf: {shot_ev.shot_confidence:.2f})"
+                        cv2.rectangle(ann_frame, (40, 165), (750, 205), (180, 80, 0), -1)
+                        cv2.rectangle(ann_frame, (40, 165), (750, 205), (255, 255, 255), 2)
+                        cv2.putText(ann_frame, tag_text, (50, 193), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2, cv2.LINE_AA)
+
+                # 6. Line Call Banner (Active for 18 frames after bounce)
+                active_line_calls = (line_call_evidences.by_frame(i - 18, i) if disk_players
+                                     else line_call_map.items())
+                for b_frame, evidence in active_line_calls:
+                    if 0 <= (i - b_frame) <= 18:
+                        call_text = evidence.overlay_text()
+                        bg_color = (0, 180, 0) if "IN" in evidence.decision.value else ((0, 0, 200) if "OUT" in evidence.decision.value or "FAULT" in evidence.decision.value else (0, 165, 255))
+                        cv2.rectangle(ann_frame, (40, 110), (1200, 155), bg_color, -1)
+                        cv2.rectangle(ann_frame, (40, 110), (1200, 155), (255, 255, 255), 2)
+                        cv2.putText(ann_frame, call_text, (55, 142), cv2.FONT_HERSHEY_SIMPLEX, 0.70, (255, 255, 255), 2, cv2.LINE_AA)
+
+                # 7. Dead-Ball Annotation
+                if disk_players:
+                    show_dead_ball = point_owner.execute(
+                        "SELECT 1 FROM records WHERE kind='transitions' AND frame BETWEEN ? AND ? "
+                        "AND json_extract(payload,'$.outcome_type')='DEAD_BALL_IGNORED' LIMIT 1",
+                        (i-max(1, round(.5*fps)), i), one=True) is not None
+                else:
+                    dead_event_frames = {outcome['frame'] for outcome in scoring_outcomes
+                        if outcome['outcome_type'] == PointOutcomeType.DEAD_BALL_IGNORED.value}
+                    show_dead_ball = any(0 <= i-frame <= max(1,round(.5*fps)) for frame in dead_event_frames)
+                if show_dead_ball:
+                    cv2.rectangle(ann_frame, (40, 215), (550, 255), (50, 50, 50), -1)
+                    cv2.rectangle(ann_frame, (40, 215), (550, 255), (0, 165, 255), 2)
+                    cv2.putText(ann_frame, "IGNORED â€” BALL NOT IN PLAY (DEAD BALL)", (50, 242),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 255), 2, cv2.LINE_AA)
+
+                # 8. Scoreboard HUD Banner
+                score_bar_h = 90
                 cv2.rectangle(ann_frame, (0, 0), (w, score_bar_h), (20, 20, 20), -1)
-                cv2.putText(ann_frame, f"TENNIS VISION | {self.ball_backend.upper()} TRACKING VALIDATION",
-                            (30, 38), cv2.FONT_HERSHEY_SIMPLEX, .8, (240, 240, 240), 2, cv2.LINE_AA)
-                cv2.putText(ann_frame, "Scoring and shot events withheld pending tracking validation",
-                            (30, 72), cv2.FONT_HERSHEY_SIMPLEX, .65, (0, 210, 255), 1, cv2.LINE_AA)
-                if camera_enabled and not frame_calibrations[i].is_valid:
-                    cv2.putText(ann_frame, 'COURT REGISTRATION LOST / METRIC POSITIONS WITHHELD',
-                                (30, 115), cv2.FONT_HERSHEY_SIMPLEX, .6, (0, 180, 255), 2, cv2.LINE_AA)
+                cv2.line(ann_frame, (0, score_bar_h), (w, score_bar_h), (0, 255, 255), 2)
 
-            # 9. Mini-court overlay
-            ball_court_pos = (b_pt.court_x_m, b_pt.court_y_m) if (b_pt and b_pt.court_x_m is not None) else None
-            p1_c_pos = p1_positions[i]
-            p2_c_pos = p2_positions[i]
+                if disk_players:
+                    hud = point_owner.frame_state(i, timeline.initial_state)
+                    for player, y in ((1, 38), (2, 75)):
+                        info = hud['player_'+str(player)]
+                        text = (f"PLAYER {player}: Games {info['games']} | Points {info['points_display']}"
+                                if hud['score_confirmed'] else f"PLAYER {player}: Score requires review")
+                        cv2.putText(ann_frame, text, (40, y), cv2.FONT_HERSHEY_SIMPLEX, .85,
+                                    (0, 255, 255) if hud['server_id'] == player else (255, 255, 255), 2, cv2.LINE_AA)
+                    state_info = f"SERVE {hud['serve_attempt']} ({hud['service_side']}) | STATE: {hud['point_state']}"
+                    cv2.putText(ann_frame, state_info, (w - 720, 55), cv2.FONT_HERSHEY_SIMPLEX, .70,
+                                (200, 200, 200), 2, cv2.LINE_AA)
+                else:
+                    srv_dot_p1 = " *" if final_st.server_id == 1 else ""
+                    srv_dot_p2 = " *" if final_st.server_id == 2 else ""
 
-            mc_canvas = mini_court.draw_court()
-            mc_img = mini_court.draw_positions(
-                court_image=mc_canvas,
-                player1_pos=p1_c_pos,
-                player2_pos=p2_c_pos,
-                ball_pos=ball_court_pos
-            )
-            visible_bounces = [ev.court_position_m for ev in authoritative_events
-                               if ev.event_type == EventType.BOUNCE and ev.court_position_m and ev.frame_index <= i]
-            for b_pos in visible_bounces:
-                bx, by = mini_court.court_to_mini_court(b_pos[0], b_pos[1])
-                cv2.circle(mc_img, (bx, by), 5, (0, 165, 255), -1)
-                cv2.circle(mc_img, (bx, by), 7, (255, 255, 255), 1)
+                    p1_line = f"PLAYER 1{srv_dot_p1}: Set 1: {final_st.games_p1} | Points: {final_st.get_points_display_p1()}"
+                    p2_line = f"PLAYER 2{srv_dot_p2}: Set 1: {final_st.games_p2} | Points: {final_st.get_points_display_p2()}"
+                    cv2.putText(ann_frame, p1_line, (40, 38), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 255, 255) if final_st.server_id == 1 else (255, 255, 255), 2, cv2.LINE_AA)
+                    cv2.putText(ann_frame, p2_line, (40, 75), cv2.FONT_HERSHEY_SIMPLEX, 0.85, (0, 255, 255) if final_st.server_id == 2 else (255, 255, 255), 2, cv2.LINE_AA)
 
-            ann_frame = VideoAnnotator.compose_frame(ann_frame, mc_img)
-            writer.write(ann_frame)
+                    state_info = f"SERVE {final_st.serve_attempt} ({final_st.service_side.value}) | STATE: {final_st.point_state.value}"
+                    cv2.putText(ann_frame, state_info, (w - 720, 55), cv2.FONT_HERSHEY_SIMPLEX, 0.70, (200, 200, 200), 2, cv2.LINE_AA)
+                if not authoritative_enabled:
+                    cv2.rectangle(ann_frame, (0, 0), (w, score_bar_h), (20, 20, 20), -1)
+                    cv2.putText(ann_frame, "Tennis analysis",
+                                (30, 38), cv2.FONT_HERSHEY_SIMPLEX, .8, (240, 240, 240), 2, cv2.LINE_AA)
+                    cv2.putText(ann_frame, "Shot and rally analysis unavailable",
+                                (30, 72), cv2.FONT_HERSHEY_SIMPLEX, .65, (0, 210, 255), 1, cv2.LINE_AA)
+                    if not frame_calibrations[i].is_valid:
+                        cv2.putText(ann_frame, 'Court positions unavailable',
+                                    (30, 115), cv2.FONT_HERSHEY_SIMPLEX, .6, (0, 180, 255), 2, cv2.LINE_AA)
 
-        cap.release()
-        writer.release()
+                # 9. Mini-court overlay
+                ball_court_pos = (b_pt.court_x_m, b_pt.court_y_m) if (b_pt and b_pt.court_x_m is not None) else None
+                p1_c_pos = p1_positions[i]
+                p2_c_pos = p2_positions[i]
+
+                if frame_calibrations[i].is_valid:
+                    mc_canvas = mini_court.draw_court()
+                    mc_img = mini_court.draw_positions(
+                        court_image=mc_canvas,
+                        player1_pos=p1_c_pos,
+                        player2_pos=p2_c_pos,
+                        ball_pos=ball_court_pos
+                    )
+                    for record in active_landings:
+                        mc_img = draw_landing(mc_img, record, timestamp_seconds=i / fps,
+                                              transform=mini_court.court_to_mini_court)
+                    if mini_history is not None:
+                        mc_img = mini_history.draw(mc_img, i)
+                    else:
+                        visible_bounces = (ev.court_position_m for ev in authoritative_events
+                                           if ev.event_type == EventType.BOUNCE and ev.court_position_m and ev.frame_index <= i)
+                        for b_pos in visible_bounces:
+                            bx, by = mini_court.court_to_mini_court(b_pos[0], b_pos[1])
+                            cv2.circle(mc_img, (bx, by), 5, (0, 165, 255), -1)
+                            cv2.circle(mc_img, (bx, by), 7, (255, 255, 255), 1)
+
+                    ann_frame = VideoAnnotator.compose_frame(ann_frame, mc_img)
+                writer.write(ann_frame)
+                rendered_frames += 1
+            if disk_players and rendered_frames != total_frames:
+                raise RuntimeError(f'Candidate rendered {rendered_frames} frames; expected {total_frames}')
+
         print(f"  -> Rendered Phase 6 Video: {output_video_path} in {time.time()-t0:.2f}s")
 
         # 12. Export Structured JSON Artifacts
@@ -776,29 +1581,32 @@ class Phase6Pipeline:
         fps_proc = total_frames / t_total
 
         _sanitize = sanitize_json_value
-        with open(os.path.join(output_dir, "player_motion.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize(player_motion), f, indent=2, allow_nan=False)
-        with open(os.path.join(output_dir, "racket_tracking.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"schema_version": "1.0", "enabled": self.racket_tracker is not None,
-                                 "coordinate_system": "SOURCE_IMAGE_PIXELS", "accuracy_validated": False,
-                                 "motion_semantics": "BBOX_CENTER_TRANSLATION_NOT_SWING_OR_CONTACT_CLASSIFICATION",
-                                 "frames": racket_frames}), f, indent=2, allow_nan=False)
+        if disk_players:
+            write_player_motion_json(os.path.join(output_dir, "player_motion.json"), player_motion,
+                                     pose_frames, _sanitize)
+        else:
+            write_identity_frame_json(os.path.join(output_dir, "player_motion.json"), player_motion,
+                                      "pose_frames", pose_frames, _sanitize)
+        write_identity_frame_json(os.path.join(output_dir, "racket_tracking.json"),
+                                  {"schema_version": "1.0", "enabled": self.racket_tracker is not None,
+                                   "coordinate_system": "SOURCE_IMAGE_PIXELS", "accuracy_validated": False,
+                                   "motion_semantics": "BBOX_CENTER_TRANSLATION_NOT_SWING_OR_CONTACT_CLASSIFICATION"},
+                                  "frames", racket_frames, _sanitize)
 
         # Save shot_events.json
-        with open(os.path.join(output_dir, "shot_events.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"schema_version": "1.0", "shot_events": [s.to_dict() for s in shot_evidences]}), f, indent=2)
+        write_json_array_artifact(os.path.join(output_dir, 'shot_events.json'), {'schema_version': '1.0'},
+                                  'shot_events', (_sanitize(shot.to_dict()) for shot in shot_evidences))
 
         # Save rallies.json
-        with open(os.path.join(output_dir, "rallies.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"schema_version": "1.0", "rallies": [r.to_dict() for r in rallies]}), f, indent=2)
+        write_membership_analytics(os.path.join(output_dir, 'rallies.json'), 'rallies', rallies, _sanitize,
+                                   schema_version='2.0' if disk_players else '1.0')
 
         # Save point_analytics.json
-        with open(os.path.join(output_dir, "point_analytics.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"schema_version": "1.0", "points": point_analytics}), f, indent=2)
+        write_membership_analytics(os.path.join(output_dir, 'point_analytics.json'), 'points', point_analytics, _sanitize,
+                                   schema_version='2.0' if disk_players else '1.0')
 
         # Save match_analytics.json
-        with open(os.path.join(output_dir, "match_analytics.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"schema_version": "1.0", **match_analytics}), f, indent=2)
+        write_match_analytics(os.path.join(output_dir, 'match_analytics.json'), match_analytics, _sanitize)
 
         # Save match_state.json
         with open(os.path.join(output_dir, "match_state.json"), "w", encoding="utf-8") as f:
@@ -808,68 +1616,46 @@ class Phase6Pipeline:
                                                     else 'CONFIGURED_INITIAL_STATE_NOT_OBSERVED_MATCH_SCORE')}), f, indent=2)
 
         # Save scoring_events.json
-        with open(os.path.join(output_dir, "scoring_events.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"schema_version": "1.0", "scoring_events": scoring_outcomes}), f, indent=2)
+        write_json_array_artifact(os.path.join(output_dir, 'scoring_events.json'),
+                                  {'schema_version': '2.0' if disk_players else '1.0'},
+                                  'scoring_events', (_sanitize(row) for row in scoring_outcomes))
+        if disk_players:
+            write_json_array_artifact(os.path.join(output_dir, 'serve_executions.json'),
+                {'schema_version': '2.0', 'analysis_revision': point_owner.revision},
+                'serve_executions', (_sanitize(row) for row in point_owner.rows('attempts')))
+            write_json_array_artifact(os.path.join(output_dir, 'shot_play_scope.json'),
+                {'schema_version': '2.0', 'analysis_revision': point_owner.revision},
+                'shots', (_sanitize(row) for row in point_owner.member_rows()))
 
         # Save score_history.json
         self.scoring_engine.save_history_json(os.path.join(output_dir, "score_history.json"))
 
         # Save line_calls.json
-        with open(os.path.join(output_dir, "line_calls.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({"schema_version": "1.0", "line_calls": [e.to_dict() for e in line_call_evidences]}), f, indent=2)
+        if disk_players:
+            write_json_array_artifact(os.path.join(output_dir, 'line_calls.json'),
+                {'schema_version': '1.0'}, 'line_calls',
+                (_sanitize(e.to_dict()) for e in line_call_evidences), allow_nan=False)
+        else:
+            with open(os.path.join(output_dir, "line_calls.json"), "w", encoding="utf-8") as f:
+                json.dump(_sanitize({"schema_version": "1.0", "line_calls": [e.to_dict() for e in line_call_evidences]}), f, indent=2)
 
-        # Save match_events.json
-        events_data = {
-            "schema_version": "1.0",
-            "events_count": len(authoritative_events),
-            "events": [
-                {
-                    "event_id": ev.event_id,
-                    "event_type": ev.event_type.value,
-                    "frame": ev.frame_index,
-                    "timestamp_s": round(ev.timestamp_s, 4),
-                    "player_id": ev.player_id,
-                    "ball_position_px": [round(ev.ball_position_px[0], 2), round(ev.ball_position_px[1], 2)] if ev.ball_position_px else None,
-                    "court_position_m": [round(ev.court_position_m[0], 2), round(ev.court_position_m[1], 2)] if ev.court_position_m else None,
-                    "confidence": round(ev.confidence, 3),
-                    "trajectory_state": ev.trajectory_state,
-                    "evidence": ev.evidence
-                }
-                for ev in authoritative_events
-            ]
-        }
-        with open(os.path.join(output_dir, "match_events.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize(events_data), f, indent=2)
+        # Event results may be disk snapshots. Sanitize and serialize one
+        # record at a time rather than reconstructing duration-long lists.
+        write_json_array_artifact(os.path.join(output_dir, 'match_events.json'), {
+            'schema_version': '1.0',
+            'analysis_id': self.config['match_configuration']['match_id'],
+            'analysis_revision': self.config.get('analysis_revision', 0),
+            'events_count': len(authoritative_events),
+        }, 'events', event_export_records(authoritative_events))
 
-        # Candidate evidence is intentionally separate from authoritative match
-        # events so diagnostics cannot silently affect scoring or analytics.
-        with open(os.path.join(output_dir, "event_candidates.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({
-                "schema_version": "1.0",
-                "semantic_role": "HIGH_RECALL_CANDIDATE_NOT_AUTHORITATIVE",
-                "candidates": [
-                    {
-                        "frame_index": c.frame_index,
-                        "timestamp_s": c.timestamp_s,
-                        "discovery_frame_index": c.discovery_frame_index,
-                        "discovery_timestamp_s": c.discovery_timestamp_s,
-                        "score": c.score,
-                        "ball_position_px": list(c.ball_position_px),
-                        "trajectory_state": c.trajectory_state,
-                        "evidence": c.evidence,
-                    }
-                    for c in event_candidates
-                ],
-            }), f, indent=2)
-
-        with open(os.path.join(output_dir, "event_verification_trace.json"), "w", encoding="utf-8") as f:
-            json.dump(_sanitize({
-                "schema_version": "1.0",
-                "semantic_role": "AUDIT_TRACE_NOT_AUTHORITATIVE",
-                "coordinate_system": event_analysis.coordinate_system,
-                "settings": event_analysis.settings,
-                "traces": event_verification_trace,
-            }), f, indent=2)
+        # Candidate/trace diagnostics remain separate from event authority.
+        write_json_array_artifact(os.path.join(output_dir, 'event_candidates.json'), {
+            'schema_version': '1.0', 'semantic_role': 'HIGH_RECALL_CANDIDATE_NOT_AUTHORITATIVE',
+        }, 'candidates', event_candidate_export_records(event_candidates))
+        write_json_array_artifact(os.path.join(output_dir, 'event_verification_trace.json'), {
+            'schema_version': '1.0', 'semantic_role': 'AUDIT_TRACE_NOT_AUTHORITATIVE',
+            'coordinate_system': event_analysis.coordinate_system, 'settings': event_analysis.settings,
+        }, 'traces', (sanitize_json_value(trace) for trace in event_verification_trace))
 
         # Save player_metrics.json
         with open(os.path.join(output_dir, "player_metrics.json"), "w", encoding="utf-8") as f:
@@ -878,6 +1664,9 @@ class Phase6Pipeline:
                 "measurement_scope": "OBSERVED_CONTIGUOUS_FOOT_PROXY_INTERVALS_ONLY",
                 "distance_estimator": p1_motion['distance_estimator'],
                 "independent_speed_accuracy_validated": False,
+                **({'available': False,
+                    'unavailable_reason': 'INDEPENDENT_GROUND_CONTACT_AND_GEOMETRY_QUALIFICATION_UNAVAILABLE',
+                    'identity_scope': 'NEAR_FAR_DIAGNOSTIC_ROLES; MATCH_A_B_IDENTITY_EXPORTED_SEPARATELY'} if disk_players else {}),
                 "player_1": {"total_distance_m": round(p1_dist, 2) if p1_dist is not None else None,
                              "mean_speed_kmh": round(p1_speed, 2) if p1_speed is not None else None},
                 "player_2": {"total_distance_m": round(p2_dist, 2) if p2_dist is not None else None,
@@ -890,67 +1679,25 @@ class Phase6Pipeline:
 
         # Save court_geometry.json
         with open(os.path.join(output_dir, "court_geometry.json"), "w", encoding="utf-8") as f:
-            json.dump(calibration.to_dict(), f, indent=2, allow_nan=False)
-        with open(os.path.join(output_dir, 'camera_registration.json'), 'w', encoding='utf-8') as f:
-            json.dump({'schema_version': '1.1' if recovery_enabled else '1.0',
-                       'enabled': camera_enabled, 'settings': camera_settings,
-                       'returning_view': {'enabled': recovery_enabled, **recovery_settings},
-                       'coordinate_semantics': 'COURT_PLANE_REGISTRATION_NOT_3D_BALL_GEOMETRY',
-                       'failure_behavior': ('WITHHOLD_UNTIL_ORIGINAL_ANCHOR_VIEW_CONFIRMED' if recovery_enabled
-                                            else 'WITHHOLD_GROUND_POSITIONS_UNTIL_EXPLICIT_REINITIALIZATION'),
-                       'independent_accuracy_validated': False, 'frames': camera_audit}, f, indent=2, allow_nan=False)
-
+            json.dump({**calibration.to_dict(),
+                       "court_keypoints_px": court_landmarks_for_json(court_keypoints),
+                       "canonical_keypoints_m": _sanitize(canonical_keypoints)}, f, indent=2, allow_nan=False)
         # Save detections.json
-        det_data = {
+        detection_metadata = {
             "schema_version": "1.0",
             "metadata": {"video": input_video_path, "frames": total_frames, "fps": fps,
                          "width": w, "height": h,
                          "player_identity_scope": ('NEAR_FAR_ROLE_WITHIN_REGISTERED_SINGLES_CAMERA_SEGMENT' if camera_enabled
                                                    else 'NEAR_FAR_ROLE_WITHIN_STATIC_SINGLES_CAMERA_SEGMENT'),
                          "source_track_id_semantics": "DETECTOR_TRACK_ID; NOT_GROUND_TRUTH_PLAYER_ID"},
-            "frames": []
         }
-        for i in range(total_frames):
-            p1_b = p1_boxes[i]
-            p2_b = p2_boxes[i]
-            det_data["frames"].append({
-                "frame_index": i,
-                "court_registration_valid": frame_calibrations[i].is_valid,
-                "player_1": {"bbox": [float(p1_b.x1), float(p1_b.y1), float(p1_b.x2), float(p1_b.y2)],
-                             "source_track_id": int(p1_b.track_id) if p1_b.track_id is not None else None,
-                             "confidence": float(p1_b.confidence)} if p1_b else None,
-                "player_2": {"bbox": [float(p2_b.x1), float(p2_b.y1), float(p2_b.x2), float(p2_b.y2)],
-                             "source_track_id": int(p2_b.track_id) if p2_b.track_id is not None else None,
-                             "confidence": float(p2_b.confidence)} if p2_b else None,
-                "ball": {
-                    "position_px": [float(ball_points[i].x_px), float(ball_points[i].y_px)] if ball_points[i].x_px is not None else None,
-                    "confidence": float(ball_points[i].confidence) if ball_points[i].confidence is not None else None,
-                    "state": ball_points[i].state.value
-                }
-            })
-        with open(os.path.join(output_dir, "detections.json"), "w", encoding="utf-8") as f:
-            json.dump(det_data, f, indent=2)
-        with open(os.path.join(output_dir, "stationary_candidate_audit.json"), "w", encoding="utf-8") as f:
-            json.dump({'schema_version': '1.0', 'enabled': stationary_enabled,
-                       'settings': stationary_settings, 'accuracy_validated': False,
-                       'risk': 'PERSISTENT_IMAGE_STATIONARITY_CAN_INCLUDE_A_REAL_STATIONARY_BALL',
-                       'frames': stationary_rejections}, f, indent=2)
-        with open(os.path.join(output_dir, "pixel_motion_audit.json"), "w", encoding="utf-8") as f:
-            json.dump({'schema_version': '1.0', 'enabled': pixel_enabled,
-                       'settings': {**pixel_settings, 'minimum_score': pixel_minimum},
-                       'accuracy_validated': False,
-                       'scope': 'CAUSAL_PIXEL_CHANGE; NOT_OBJECT_RECOGNITION_OR_PHYSICAL_SPEED',
-                       'risk': 'MAY_REJECT_A_REAL_STATIONARY_OR_LOW_CONTRAST_BALL; CAMERA_MOTION_CAN_PASS_DISTRACTORS',
-                       'frames': pixel_evidence}, f, indent=2)
-
-        with open(os.path.join(output_dir, "patch_persistence_audit.json"), "w", encoding="utf-8") as f:
-            json.dump({'schema_version': '1.0', 'enabled': patch_enabled, 'settings': patch_settings,
-                       'spatial_crops': {'enabled': spatial_enabled, **spatial_settings},
-                       'accuracy_validated': False,
-                       'scope': 'SELECTED_OBSERVATION_REJECTION_ONLY; NO_RERANKING_OR_INTERPOLATION',
-                       'risk': 'SIMILAR_PATCHES_CAN_INCLUDE_REAL_FAINT_OR_STATIONARY_BALLS',
-                       'frames': patch_evidence}, f, indent=2)
-
+        if disk_players:
+            detection_metadata['metadata'].update({
+                'player_identity_scope': 'NEAR_FAR_DIAGNOSTIC_ROLES; MATCH_IDENTITY_A_B_IN_SEPARATE_FIELDS',
+                'match_identity_artifact': 'match_identity.json', 'camera_interval_artifact': 'camera_intervals.json',
+                'metric_measurements_available': False})
+        write_json_array_artifact(os.path.join(output_dir, 'detections.json'), detection_metadata, 'frames',
+                                  detection_export_records(p1_boxes, p2_boxes, ball_points, frame_calibrations, candidate_frames))
         with open(os.path.join(output_dir, 'temporal_spacing_audit.json'), 'w', encoding='utf-8') as f:
             json.dump({'enabled': spacing_enabled, 'native_stride': native_stride,
                        'rule': 'max(1,floor(native_fps/30+.5))' if spacing_enabled else 'adjacent',
@@ -965,26 +1712,12 @@ class Phase6Pipeline:
                        'qualification_evidence': False}, f, indent=2)
 
         # Save trajectories.json
-        traj_data = {
+        trajectory_metadata = {
             "schema_version": "1.0",
             "court_coordinate_semantics": "VIEWING_RAY_INTERSECTION_WITH_GROUND_PLANE_NOT_3D_BALL_POSITION",
-            "ball_trajectory": [
-                {
-                    "frame_index": int(p.frame_index),
-                    "timestamp_seconds": float(round(p.timestamp_seconds, 4)),
-                    "x_px": float(round(p.x_px, 2)) if p.x_px is not None else None,
-                    "y_px": float(round(p.y_px, 2)) if p.y_px is not None else None,
-                    "court_x_m": float(round(p.court_x_m, 2)) if p.court_x_m is not None else None,
-                    "court_y_m": float(round(p.court_y_m, 2)) if p.court_y_m is not None else None,
-                    "speed_kmh": float(round(p.speed_kmh, 1)) if p.speed_kmh is not None else None,
-                    "confidence": float(round(p.confidence, 3)) if p.confidence is not None else None,
-                    "state": p.state.value if p.state else "MISSING"
-                }
-                for p in ball_points
-            ]
         }
-        with open(os.path.join(output_dir, "trajectories.json"), "w", encoding="utf-8") as f:
-            json.dump(traj_data, f, indent=2)
+        write_json_array_artifact(os.path.join(output_dir, 'trajectories.json'), trajectory_metadata, 'ball_trajectory',
+                                  trajectory_export_records(ball_points, candidate_frames))
 
         # Save metrics.json
         with open(os.path.join(output_dir, "metrics.json"), "w", encoding="utf-8") as f:
@@ -999,12 +1732,24 @@ class Phase6Pipeline:
                 "tracking_strategy": self.tracking_strategy,
                 "authoritative_events_enabled": authoritative_enabled,
                 "production_qualified": False,
-                "frame_storage": "8_FRAME_DECODE_CACHE"
+                "evaluation_only": getattr(self, 'evaluation_only', False),
+                "frame_storage": "8_FRAME_DECODE_CACHE",
+                **({'pose_crop_execution': player_crop_provider.record()} if player_crop_provider is not None else {}),
+                **({'inference_resume': dict(inference_resume_record)} if inference_resume_record is not None else {})
             }, f, indent=2)
 
         # Save run_config.yaml
         with open(os.path.join(output_dir, "run_config.yaml"), "w", encoding="utf-8") as f:
             yaml.dump(self.config, f)
+
+        if disk_players:
+            write_rule_replay(os.path.join(output_dir, RULE_REPLAY_NAME),
+                self.scoring_engine, point_owner, candidate_frames,
+                authoritative_events_enabled=authoritative_enabled)
+            publish_point_timeline_manifest(output_dir,
+                analysis_id=point_owner.analysis_id, analysis_revision=point_owner.revision,
+                source_sha256=source_fingerprint, scoring_revision=self.scoring_engine.revision,
+                authoritative_events_enabled=authoritative_enabled)
 
         print("="*60)
         print(f"Phase 6 Pipeline Completed Successfully in {t_total:.2f}s ({fps_proc:.1f} FPS)")
@@ -1020,5 +1765,7 @@ class Phase6Pipeline:
             "processing_fps": fps_proc,
             "total_time_seconds": t_total,
             "shots_linked": len(shot_evidences),
-            "match_analytics": match_analytics
+            **({'pose_crop_execution': player_crop_provider.record()} if player_crop_provider is not None else {}),
+            **({'inference_resume': dict(inference_resume_record)} if inference_resume_record is not None else {}),
+            "match_analytics": native_match_analytics_summary(match_analytics) if disk_players else match_analytics
         }

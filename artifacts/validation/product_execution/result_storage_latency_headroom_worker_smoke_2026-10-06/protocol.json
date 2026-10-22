@@ -1,0 +1,94 @@
+{
+  "declaredAt": "2026-10-06T06:55:21.858313+00:00",
+  "scope": "One actual 30-frame, native-60-FPS worker/model and saved-result compatibility smoke. No independent labels, accuracy, full-match capacity or deployment qualification.",
+  "launchToken": "c99207e24a8c4b24a4088fd7e1dfb52d",
+  "scriptSha256": "99285464e48ed647a8886ee49a860c91ecc72d23f343381dbf5c3e67f288fee5",
+  "originReceipt": {
+    "recordedAt": "2026-10-06T06:55:00.190161+00:00",
+    "helper": "scripts/audit/verify_result_storage_worker_smoke.py",
+    "helperSha256": "8874064cac5a27ae70a7b0784d5f8eca17b1388f1e80665ab304cd1cab112b82",
+    "historicalDirectory": "artifacts/validation/product_execution/result_storage_worker_smoke_2026-10-06",
+    "historicalPreparationSha256": "63791ac2a3b64c1fe3fcfe6ef62081348d41bea79e9ca68fc42a7b6197c43dfa",
+    "historicalObserverRevisionSha256": "135c77b9330213e23f36699d9a367c4b2431ff3fa086820bd6bdbcca1334f434",
+    "newHelper": "scripts/audit/verify_result_storage_latency_headroom_worker_smoke.py",
+    "reuse": "Clone of the exact consumed latency helper, preserving original worker/input/normalization/reporting checks. Fresh unit, initial hash gate, no historical observer revision rewrite.",
+    "firstLatencyAttemptBindings": {
+      "artifacts/validation/product_execution/result_storage_latency_worker_smoke_2026-10-06/launch_marker.json": {
+        "sha256": "310001a29ea694ca299572dd228eff189560bd1cdac25715bc1c7236ac958d8a",
+        "bytes": 126
+      },
+      "artifacts/validation/product_execution/result_storage_latency_worker_smoke_2026-10-06/origin.json": {
+        "sha256": "b6e7e49643efc1fdbb6e7d250a7b079df4bb72123c412a178c5f9f9c38979682",
+        "bytes": 823
+      },
+      "artifacts/validation/product_execution/result_storage_latency_worker_smoke_2026-10-06/preparation.json": {
+        "sha256": "f7ff46c2bf68329b1769b319996f996511d716cf5dab4694b49c828a6464c365",
+        "bytes": 3225
+      },
+      "artifacts/validation/product_execution/result_storage_latency_worker_smoke_2026-10-06/protocol.json": {
+        "sha256": "09bb76d42b65d650f672f2db7d5a3f651b43b23a52841f46cb01b7a4af7f9bfe",
+        "bytes": 3084
+      },
+      "artifacts/validation/product_execution/result_storage_latency_worker_smoke_2026-10-06/resource_receipt.json": {
+        "sha256": "d263b951883ac7a7759fc33b2092b35bc11b1cf0075e3c085e16b721296f0aeb",
+        "bytes": 1190
+      },
+      "artifacts/validation/product_execution/result_storage_latency_worker_smoke_2026-10-06/seal_preparation.py": {
+        "sha256": "c9170cf03ad242bab7555a4795b029aed03284c597ba8631e0035bec071b670a",
+        "bytes": 6081
+      },
+      "scripts/audit/verify_result_storage_latency_worker_smoke.py": {
+        "sha256": "279464db5328b87b0a524b9f669176f9498b609522718ddc4b2cab7873d7fefe",
+        "bytes": 48009
+      }
+    },
+    "firstLatencyAttemptStatus": "NOT_STARTED",
+    "firstLatencyAttemptInferenceChildStarted": false,
+    "firstLatencyAttemptAvailableRamBytes": 2355306496,
+    "retryPolicy": "Explicit root-reviewed fresh launch only after other workloads finish and independently observed headroom recovers. Both unchanged 2.5 GB preflight checks run again; no automatic retry.",
+    "status": "PREPARED_NOT_EXECUTED",
+    "inferenceRun": false
+  },
+  "conditionalFreshLaunch": "Manually reviewed after other workloads complete and headroom recovers; unchanged preflight rechecks. First consumed attempt is retained. No automatic retry.",
+  "cleanInterpreter": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\clean_env\\Scripts\\python.exe",
+  "readOnlyLiveProductDatabase": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\product\\analyses.sqlite3",
+  "isolatedProductRoot": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_latency_headroom_worker_smoke_2026-10-06\\run\\isolated_product",
+  "frames": 30,
+  "nativeFps": 60,
+  "sourceOriginalFrameRange": [
+    390,
+    420
+  ],
+  "sampleIntervalSeconds": 0.25,
+  "preflightAvailableRamBytes": 2500000000,
+  "maximumSampledOwnedTreeRssBytes": 3000000000,
+  "minimumAvailableRamBytes": 400000000,
+  "lowRamConsecutiveSamplesToStop": 5,
+  "maximumChildWallSeconds": 300,
+  "ownedTreeMonitor": "scripts\\audit\\measure_candidate_storage.py::OwnedProcessTree and stop_owned",
+  "ownedTreeMonitorSha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39",
+  "productionWrites": false,
+  "qualificationEvidence": false,
+  "productionQualified": false,
+  "retention": "Retain all owned logs, partial outputs and receipts. No retry or unrelated cleanup.",
+  "host": {
+    "hostname": "Osamah",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "baseInterpreter": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "psutilVersion": "7.0.0",
+    "ramBeforeBytes": {
+      "total": 16869548032,
+      "available": 2227232768,
+      "percent": 86.8,
+      "used": 14642315264,
+      "free": 2227232768
+    },
+    "diskBeforeBytes": {
+      "total": 1022844989440,
+      "used": 953499566080,
+      "free": 69345423360
+    }
+  }
+}

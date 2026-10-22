@@ -1,0 +1,1507 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-01T03:24:47.794520+00:00",
+  "scope": "Current selected unqualified upload/report bundle; no accuracy certification or public deployment permission claim.",
+  "productionQualified": false,
+  "configuration": "configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml",
+  "python": {
+    "observedVersion": "3.13.5",
+    "observedPlatform": "Windows-11-10.0.26200-SP0",
+    "validatedPlatform": "Windows x86_64, CPython 3.13.5",
+    "requirementsPath": "requirements-product.txt",
+    "requirementsSha256": "2d35459dcb01d87f29250e4436fabbf24fef624f7483edc47d666788b3358e09",
+    "directRequirements": [
+      "aiofiles==24.1.0",
+      "fastapi==0.139.2",
+      "filelock==3.20.3",
+      "httpx==0.28.1",
+      "numpy==2.3.1",
+      "opencv-python==4.13.0.92",
+      "pandas==2.3.1",
+      "pydantic==2.11.7",
+      "python-multipart==0.0.31",
+      "PyYAML==6.0.2",
+      "starlette==1.3.1",
+      "torch==2.13.0+cu126",
+      "torchvision==0.28.0+cu126",
+      "tqdm==4.67.1",
+      "ultralytics==8.4.36",
+      "lap==0.5.13",
+      "uvicorn==0.35.0"
+    ],
+    "runtimeDistributions": {
+      "aiofiles": {
+        "version": "24.1.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "fastapi": {
+        "version": "0.139.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "starlette>=0.46.0",
+          "pydantic>=2.9.0",
+          "typing-extensions>=4.8.0",
+          "typing-inspection>=0.4.2",
+          "annotated-doc>=0.0.2",
+          "fastapi-cli[standard]>=0.0.8; extra == \"standard\"",
+          "fastar>=0.9.0; extra == \"standard\"",
+          "httpx<1.0.0,>=0.23.0; extra == \"standard\"",
+          "jinja2>=3.1.5; extra == \"standard\"",
+          "python-multipart>=0.0.18; extra == \"standard\"",
+          "email-validator>=2.0.0; extra == \"standard\"",
+          "uvicorn[standard]>=0.12.0; extra == \"standard\"",
+          "pydantic-settings>=2.0.0; extra == \"standard\"",
+          "pydantic-extra-types>=2.0.0; extra == \"standard\"",
+          "fastapi-cli[standard-no-fastapi-cloud-cli]>=0.0.8; extra == \"standard-no-fastapi-cloud-cli\"",
+          "httpx<1.0.0,>=0.23.0; extra == \"standard-no-fastapi-cloud-cli\"",
+          "jinja2>=3.1.5; extra == \"standard-no-fastapi-cloud-cli\"",
+          "python-multipart>=0.0.18; extra == \"standard-no-fastapi-cloud-cli\"",
+          "email-validator>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+          "uvicorn[standard]>=0.12.0; extra == \"standard-no-fastapi-cloud-cli\"",
+          "pydantic-settings>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+          "pydantic-extra-types>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+          "fastapi-cli[standard]>=0.0.8; extra == \"all\"",
+          "httpx<1.0.0,>=0.23.0; extra == \"all\"",
+          "jinja2>=3.1.5; extra == \"all\"",
+          "python-multipart>=0.0.18; extra == \"all\"",
+          "itsdangerous>=1.1.0; extra == \"all\"",
+          "pyyaml>=5.3.1; extra == \"all\"",
+          "email-validator>=2.0.0; extra == \"all\"",
+          "uvicorn[standard]>=0.12.0; extra == \"all\"",
+          "pydantic-settings>=2.0.0; extra == \"all\"",
+          "pydantic-extra-types>=2.0.0; extra == \"all\""
+        ]
+      },
+      "filelock": {
+        "version": "3.20.3",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "httpx": {
+        "version": "0.28.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "anyio",
+          "certifi",
+          "httpcore==1.*",
+          "idna",
+          "brotli; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+          "brotlicffi; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+          "click==8.*; extra == 'cli'",
+          "pygments==2.*; extra == 'cli'",
+          "rich<14,>=10; extra == 'cli'",
+          "h2<5,>=3; extra == 'http2'",
+          "socksio==1.*; extra == 'socks'",
+          "zstandard>=0.18.0; extra == 'zstd'"
+        ]
+      },
+      "numpy": {
+        "version": "2.3.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "opencv-python": {
+        "version": "4.13.0.92",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy<2.0; python_version < \"3.9\"",
+          "numpy>=2; python_version >= \"3.9\""
+        ]
+      },
+      "pandas": {
+        "version": "2.3.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy>=1.22.4; python_version < \"3.11\"",
+          "numpy>=1.23.2; python_version == \"3.11\"",
+          "numpy>=1.26.0; python_version >= \"3.12\"",
+          "python-dateutil>=2.8.2",
+          "pytz>=2020.1",
+          "tzdata>=2022.7",
+          "hypothesis>=6.46.1; extra == \"test\"",
+          "pytest>=7.3.2; extra == \"test\"",
+          "pytest-xdist>=2.2.0; extra == \"test\"",
+          "pyarrow>=10.0.1; extra == \"pyarrow\"",
+          "bottleneck>=1.3.6; extra == \"performance\"",
+          "numba>=0.56.4; extra == \"performance\"",
+          "numexpr>=2.8.4; extra == \"performance\"",
+          "scipy>=1.10.0; extra == \"computation\"",
+          "xarray>=2022.12.0; extra == \"computation\"",
+          "fsspec>=2022.11.0; extra == \"fss\"",
+          "s3fs>=2022.11.0; extra == \"aws\"",
+          "gcsfs>=2022.11.0; extra == \"gcp\"",
+          "pandas-gbq>=0.19.0; extra == \"gcp\"",
+          "odfpy>=1.4.1; extra == \"excel\"",
+          "openpyxl>=3.1.0; extra == \"excel\"",
+          "python-calamine>=0.1.7; extra == \"excel\"",
+          "pyxlsb>=1.0.10; extra == \"excel\"",
+          "xlrd>=2.0.1; extra == \"excel\"",
+          "xlsxwriter>=3.0.5; extra == \"excel\"",
+          "pyarrow>=10.0.1; extra == \"parquet\"",
+          "pyarrow>=10.0.1; extra == \"feather\"",
+          "tables>=3.8.0; extra == \"hdf5\"",
+          "pyreadstat>=1.2.0; extra == \"spss\"",
+          "SQLAlchemy>=2.0.0; extra == \"postgresql\"",
+          "psycopg2>=2.9.6; extra == \"postgresql\"",
+          "adbc-driver-postgresql>=0.8.0; extra == \"postgresql\"",
+          "SQLAlchemy>=2.0.0; extra == \"mysql\"",
+          "pymysql>=1.0.2; extra == \"mysql\"",
+          "SQLAlchemy>=2.0.0; extra == \"sql-other\"",
+          "adbc-driver-postgresql>=0.8.0; extra == \"sql-other\"",
+          "adbc-driver-sqlite>=0.8.0; extra == \"sql-other\"",
+          "beautifulsoup4>=4.11.2; extra == \"html\"",
+          "html5lib>=1.1; extra == \"html\"",
+          "lxml>=4.9.2; extra == \"html\"",
+          "lxml>=4.9.2; extra == \"xml\"",
+          "matplotlib>=3.6.3; extra == \"plot\"",
+          "jinja2>=3.1.2; extra == \"output-formatting\"",
+          "tabulate>=0.9.0; extra == \"output-formatting\"",
+          "PyQt5>=5.15.9; extra == \"clipboard\"",
+          "qtpy>=2.3.0; extra == \"clipboard\"",
+          "zstandard>=0.19.0; extra == \"compression\"",
+          "dataframe-api-compat>=0.1.7; extra == \"consortium-standard\"",
+          "adbc-driver-postgresql>=0.8.0; extra == \"all\"",
+          "adbc-driver-sqlite>=0.8.0; extra == \"all\"",
+          "beautifulsoup4>=4.11.2; extra == \"all\"",
+          "bottleneck>=1.3.6; extra == \"all\"",
+          "dataframe-api-compat>=0.1.7; extra == \"all\"",
+          "fastparquet>=2022.12.0; extra == \"all\"",
+          "fsspec>=2022.11.0; extra == \"all\"",
+          "gcsfs>=2022.11.0; extra == \"all\"",
+          "html5lib>=1.1; extra == \"all\"",
+          "hypothesis>=6.46.1; extra == \"all\"",
+          "jinja2>=3.1.2; extra == \"all\"",
+          "lxml>=4.9.2; extra == \"all\"",
+          "matplotlib>=3.6.3; extra == \"all\"",
+          "numba>=0.56.4; extra == \"all\"",
+          "numexpr>=2.8.4; extra == \"all\"",
+          "odfpy>=1.4.1; extra == \"all\"",
+          "openpyxl>=3.1.0; extra == \"all\"",
+          "pandas-gbq>=0.19.0; extra == \"all\"",
+          "psycopg2>=2.9.6; extra == \"all\"",
+          "pyarrow>=10.0.1; extra == \"all\"",
+          "pymysql>=1.0.2; extra == \"all\"",
+          "PyQt5>=5.15.9; extra == \"all\"",
+          "pyreadstat>=1.2.0; extra == \"all\"",
+          "pytest>=7.3.2; extra == \"all\"",
+          "pytest-xdist>=2.2.0; extra == \"all\"",
+          "python-calamine>=0.1.7; extra == \"all\"",
+          "pyxlsb>=1.0.10; extra == \"all\"",
+          "qtpy>=2.3.0; extra == \"all\"",
+          "scipy>=1.10.0; extra == \"all\"",
+          "s3fs>=2022.11.0; extra == \"all\"",
+          "SQLAlchemy>=2.0.0; extra == \"all\"",
+          "tables>=3.8.0; extra == \"all\"",
+          "tabulate>=0.9.0; extra == \"all\"",
+          "xarray>=2022.12.0; extra == \"all\"",
+          "xlrd>=2.0.1; extra == \"all\"",
+          "xlsxwriter>=3.0.5; extra == \"all\"",
+          "zstandard>=0.19.0; extra == \"all\""
+        ]
+      },
+      "pydantic": {
+        "version": "2.11.7",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "annotated-types>=0.6.0",
+          "pydantic-core==2.33.2",
+          "typing-extensions>=4.12.2",
+          "typing-inspection>=0.4.0",
+          "email-validator>=2.0.0; extra == 'email'",
+          "tzdata; (python_version >= '3.9' and platform_system == 'Windows') and extra == 'timezone'"
+        ]
+      },
+      "python-multipart": {
+        "version": "0.0.31",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "PyYAML": {
+        "version": "6.0.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "starlette": {
+        "version": "1.3.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "anyio<5,>=3.6.2",
+          "typing-extensions>=4.10.0; python_version < '3.13'",
+          "httpx2>=2.0.0; extra == 'full'",
+          "httpx<0.29.0,>=0.27.0; extra == 'full'",
+          "itsdangerous; extra == 'full'",
+          "jinja2; extra == 'full'",
+          "python-multipart>=0.0.18; extra == 'full'",
+          "pyyaml; extra == 'full'"
+        ]
+      },
+      "torch": {
+        "version": "2.13.0+cu126",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "filelock",
+          "typing-extensions>=4.10.0",
+          "setuptools>=77.0.3",
+          "sympy>=1.13.3",
+          "networkx>=2.5.1",
+          "jinja2",
+          "fsspec>=0.8.5",
+          "optree>=0.13.0; extra == \"optree\"",
+          "opt-einsum>=3.3; extra == \"opt-einsum\"",
+          "pyyaml; extra == \"pyyaml\""
+        ]
+      },
+      "torchvision": {
+        "version": "0.28.0+cu126",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy",
+          "torch (==2.13.0)",
+          "pillow (!=8.3.*,>=5.3.0)",
+          "gdown (>=4.7.3) ; extra == 'gdown'",
+          "scipy ; extra == 'scipy'"
+        ]
+      },
+      "tqdm": {
+        "version": "4.67.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "colorama; platform_system == \"Windows\"",
+          "pytest>=6; extra == \"dev\"",
+          "pytest-cov; extra == \"dev\"",
+          "pytest-timeout; extra == \"dev\"",
+          "pytest-asyncio>=0.24; extra == \"dev\"",
+          "nbval; extra == \"dev\"",
+          "requests; extra == \"discord\"",
+          "slack-sdk; extra == \"slack\"",
+          "requests; extra == \"telegram\"",
+          "ipywidgets>=6; extra == \"notebook\""
+        ]
+      },
+      "ultralytics": {
+        "version": "8.4.36",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy>=1.23.0",
+          "matplotlib>=3.3.0",
+          "opencv-python>=4.6.0",
+          "pillow>=7.1.2",
+          "pyyaml>=5.3.1",
+          "requests>=2.23.0",
+          "scipy>=1.4.1",
+          "torch>=1.8.0",
+          "torch!=2.4.0,>=1.8.0; sys_platform == \"win32\"",
+          "torchvision>=0.9.0",
+          "psutil>=5.8.0",
+          "polars>=0.20.0",
+          "ultralytics-thop>=2.0.18",
+          "ipython; extra == \"dev\"",
+          "pytest; extra == \"dev\"",
+          "pytest-cov; extra == \"dev\"",
+          "coverage[toml]; extra == \"dev\"",
+          "zensical>=0.0.15; python_version >= \"3.10\" and extra == \"dev\"",
+          "mkdocs-ultralytics-plugin>=0.2.4; extra == \"dev\"",
+          "minijinja>=2.0.0; extra == \"dev\"",
+          "numpy<2.0.0; extra == \"export\"",
+          "onnx>=1.12.0; platform_system != \"Darwin\" and extra == \"export\"",
+          "onnx<1.18.0,>=1.12.0; platform_system == \"Darwin\" and extra == \"export\"",
+          "onnxslim>=0.1.82; extra == \"export\"",
+          "coremltools>=9.0; (platform_system != \"Windows\" and python_version <= \"3.13\") and extra == \"export\"",
+          "scikit-learn>=1.3.2; (platform_system != \"Windows\" and python_version <= \"3.13\") and extra == \"export\"",
+          "openvino>=2024.0.0; extra == \"export\"",
+          "tensorflow<=2.19.0,>=2.0.0; extra == \"export\"",
+          "tensorflowjs>=2.0.0; extra == \"export\"",
+          "ydf<0.13.0; platform_machine != \"aarch64\" and extra == \"export\"",
+          "tensorstore>=0.1.63; (platform_machine == \"aarch64\" and python_version >= \"3.9\") and extra == \"export\"",
+          "h5py!=3.11.0; platform_machine == \"aarch64\" and extra == \"export\"",
+          "setuptools<=81.0.0; extra == \"export\"",
+          "packaging>=26.0; (platform_machine == \"aarch64\" and platform_system == \"Linux\" and python_version >= \"3.9\") and extra == \"export\"",
+          "shapely>=2.0.0; extra == \"solutions\"",
+          "streamlit>=1.51.0; python_version >= \"3.10\" and extra == \"solutions\"",
+          "streamlit<1.51.0,>=1.29.0; (python_version < \"3.10\" and (python_version < \"3.9\" or platform_machine != \"aarch64\" or platform_system != \"Linux\")) and extra == \"solutions\"",
+          "flask>=3.0.1; extra == \"solutions\"",
+          "wandb; extra == \"logging\"",
+          "tensorboard; extra == \"logging\"",
+          "mlflow; extra == \"logging\"",
+          "ipython; extra == \"extra\"",
+          "albumentations>=1.4.6; extra == \"extra\"",
+          "faster-coco-eval>=1.6.7; extra == \"extra\"",
+          "scipy-stubs>=1.14.1.4; python_version >= \"3.10\" and extra == \"typing\"",
+          "types-pillow; extra == \"typing\"",
+          "types-psutil; extra == \"typing\"",
+          "types-pyyaml; extra == \"typing\"",
+          "types-requests; extra == \"typing\"",
+          "types-shapely; extra == \"typing\""
+        ]
+      },
+      "lap": {
+        "version": "0.5.13",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy>=1.21.6"
+        ]
+      },
+      "uvicorn": {
+        "version": "0.35.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "click>=7.0",
+          "h11>=0.8",
+          "typing-extensions>=4.0; python_version < '3.11'",
+          "colorama>=0.4; (sys_platform == 'win32') and extra == 'standard'",
+          "httptools>=0.6.3; extra == 'standard'",
+          "python-dotenv>=0.13; extra == 'standard'",
+          "pyyaml>=5.1; extra == 'standard'",
+          "uvloop>=0.15.1; (sys_platform != 'win32' and (sys_platform != 'cygwin' and platform_python_implementation != 'PyPy')) and extra == 'standard'",
+          "watchfiles>=0.13; extra == 'standard'",
+          "websockets>=10.4; extra == 'standard'"
+        ]
+      },
+      "pydantic_core": {
+        "version": "2.33.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "typing-extensions>=4.6.0,!=4.7.0"
+        ]
+      },
+      "anyio": {
+        "version": "4.9.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "exceptiongroup>=1.0.2; python_version < \"3.11\"",
+          "idna>=2.8",
+          "sniffio>=1.1",
+          "typing_extensions>=4.5; python_version < \"3.13\"",
+          "trio>=0.26.1; extra == \"trio\"",
+          "anyio[trio]; extra == \"test\"",
+          "blockbuster>=1.5.23; extra == \"test\"",
+          "coverage[toml]>=7; extra == \"test\"",
+          "exceptiongroup>=1.2.0; extra == \"test\"",
+          "hypothesis>=4.0; extra == \"test\"",
+          "psutil>=5.9; extra == \"test\"",
+          "pytest>=7.0; extra == \"test\"",
+          "trustme; extra == \"test\"",
+          "truststore>=0.9.1; python_version >= \"3.10\" and extra == \"test\"",
+          "uvloop>=0.21; (platform_python_implementation == \"CPython\" and platform_system != \"Windows\" and python_version < \"3.14\") and extra == \"test\"",
+          "packaging; extra == \"doc\"",
+          "Sphinx~=8.2; extra == \"doc\"",
+          "sphinx_rtd_theme; extra == \"doc\"",
+          "sphinx-autodoc-typehints>=1.2.0; extra == \"doc\""
+        ]
+      },
+      "httpcore": {
+        "version": "1.0.9",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "certifi",
+          "h11>=0.16",
+          "anyio<5.0,>=4.0; extra == 'asyncio'",
+          "h2<5,>=3; extra == 'http2'",
+          "socksio==1.*; extra == 'socks'",
+          "trio<1.0,>=0.22.0; extra == 'trio'"
+        ]
+      },
+      "annotated-doc": {
+        "version": "0.0.4",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "annotated-types": {
+        "version": "0.7.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "typing-extensions>=4.0.0; python_version < '3.9'"
+        ]
+      },
+      "click": {
+        "version": "8.2.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "colorama; platform_system == 'Windows'"
+        ]
+      },
+      "fsspec": {
+        "version": "2026.1.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "adlfs; extra == 'abfs'",
+          "adlfs; extra == 'adl'",
+          "pyarrow>=1; extra == 'arrow'",
+          "dask; extra == 'dask'",
+          "distributed; extra == 'dask'",
+          "pre-commit; extra == 'dev'",
+          "ruff>=0.5; extra == 'dev'",
+          "numpydoc; extra == 'doc'",
+          "sphinx; extra == 'doc'",
+          "sphinx-design; extra == 'doc'",
+          "sphinx-rtd-theme; extra == 'doc'",
+          "yarl; extra == 'doc'",
+          "dropbox; extra == 'dropbox'",
+          "dropboxdrivefs; extra == 'dropbox'",
+          "requests; extra == 'dropbox'",
+          "adlfs; extra == 'full'",
+          "aiohttp!=4.0.0a0,!=4.0.0a1; extra == 'full'",
+          "dask; extra == 'full'",
+          "distributed; extra == 'full'",
+          "dropbox; extra == 'full'",
+          "dropboxdrivefs; extra == 'full'",
+          "fusepy; extra == 'full'",
+          "gcsfs>2024.2.0; extra == 'full'",
+          "libarchive-c; extra == 'full'",
+          "ocifs; extra == 'full'",
+          "panel; extra == 'full'",
+          "paramiko; extra == 'full'",
+          "pyarrow>=1; extra == 'full'",
+          "pygit2; extra == 'full'",
+          "requests; extra == 'full'",
+          "s3fs>2024.2.0; extra == 'full'",
+          "smbprotocol; extra == 'full'",
+          "tqdm; extra == 'full'",
+          "fusepy; extra == 'fuse'",
+          "gcsfs; extra == 'gcs'",
+          "pygit2; extra == 'git'",
+          "requests; extra == 'github'",
+          "gcsfs; extra == 'gs'",
+          "panel; extra == 'gui'",
+          "pyarrow>=1; extra == 'hdfs'",
+          "aiohttp!=4.0.0a0,!=4.0.0a1; extra == 'http'",
+          "libarchive-c; extra == 'libarchive'",
+          "ocifs; extra == 'oci'",
+          "s3fs; extra == 's3'",
+          "paramiko; extra == 'sftp'",
+          "smbprotocol; extra == 'smb'",
+          "paramiko; extra == 'ssh'",
+          "aiohttp!=4.0.0a0,!=4.0.0a1; extra == 'test'",
+          "numpy; extra == 'test'",
+          "pytest; extra == 'test'",
+          "pytest-asyncio!=0.22.0; extra == 'test'",
+          "pytest-benchmark; extra == 'test'",
+          "pytest-cov; extra == 'test'",
+          "pytest-mock; extra == 'test'",
+          "pytest-recording; extra == 'test'",
+          "pytest-rerunfailures; extra == 'test'",
+          "requests; extra == 'test'",
+          "aiobotocore<3.0.0,>=2.5.4; extra == 'test-downstream'",
+          "dask[dataframe,test]; extra == 'test-downstream'",
+          "moto[server]<5,>4; extra == 'test-downstream'",
+          "pytest-timeout; extra == 'test-downstream'",
+          "xarray; extra == 'test-downstream'",
+          "adlfs; extra == 'test-full'",
+          "aiohttp!=4.0.0a0,!=4.0.0a1; extra == 'test-full'",
+          "backports-zstd; (python_version < '3.14') and extra == 'test-full'",
+          "cloudpickle; extra == 'test-full'",
+          "dask; extra == 'test-full'",
+          "distributed; extra == 'test-full'",
+          "dropbox; extra == 'test-full'",
+          "dropboxdrivefs; extra == 'test-full'",
+          "fastparquet; extra == 'test-full'",
+          "fusepy; extra == 'test-full'",
+          "gcsfs; extra == 'test-full'",
+          "jinja2; extra == 'test-full'",
+          "kerchunk; extra == 'test-full'",
+          "libarchive-c; extra == 'test-full'",
+          "lz4; extra == 'test-full'",
+          "notebook; extra == 'test-full'",
+          "numpy; extra == 'test-full'",
+          "ocifs; extra == 'test-full'",
+          "pandas; extra == 'test-full'",
+          "panel; extra == 'test-full'",
+          "paramiko; extra == 'test-full'",
+          "pyarrow; extra == 'test-full'",
+          "pyarrow>=1; extra == 'test-full'",
+          "pyftpdlib; extra == 'test-full'",
+          "pygit2; extra == 'test-full'",
+          "pytest; extra == 'test-full'",
+          "pytest-asyncio!=0.22.0; extra == 'test-full'",
+          "pytest-benchmark; extra == 'test-full'",
+          "pytest-cov; extra == 'test-full'",
+          "pytest-mock; extra == 'test-full'",
+          "pytest-recording; extra == 'test-full'",
+          "pytest-rerunfailures; extra == 'test-full'",
+          "python-snappy; extra == 'test-full'",
+          "requests; extra == 'test-full'",
+          "smbprotocol; extra == 'test-full'",
+          "tqdm; extra == 'test-full'",
+          "urllib3; extra == 'test-full'",
+          "zarr; extra == 'test-full'",
+          "tqdm; extra == 'tqdm'"
+        ]
+      },
+      "h11": {
+        "version": "0.16.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "idna": {
+        "version": "3.7",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "matplotlib": {
+        "version": "3.10.3",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "contourpy>=1.0.1",
+          "cycler>=0.10",
+          "fonttools>=4.22.0",
+          "kiwisolver>=1.3.1",
+          "numpy>=1.23",
+          "packaging>=20.0",
+          "pillow>=8",
+          "pyparsing>=2.3.1",
+          "python-dateutil>=2.7",
+          "meson-python<0.17.0,>=0.13.1; extra == \"dev\"",
+          "pybind11!=2.13.3,>=2.13.2; extra == \"dev\"",
+          "setuptools_scm>=7; extra == \"dev\"",
+          "setuptools>=64; extra == \"dev\""
+        ]
+      },
+      "contourpy": {
+        "version": "1.3.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy>=1.23",
+          "furo; extra == \"docs\"",
+          "sphinx>=7.2; extra == \"docs\"",
+          "sphinx-copybutton; extra == \"docs\"",
+          "bokeh; extra == \"bokeh\"",
+          "selenium; extra == \"bokeh\"",
+          "contourpy[bokeh,docs]; extra == \"mypy\"",
+          "bokeh; extra == \"mypy\"",
+          "docutils-stubs; extra == \"mypy\"",
+          "mypy==1.15.0; extra == \"mypy\"",
+          "types-Pillow; extra == \"mypy\"",
+          "contourpy[test-no-images]; extra == \"test\"",
+          "matplotlib; extra == \"test\"",
+          "Pillow; extra == \"test\"",
+          "pytest; extra == \"test-no-images\"",
+          "pytest-cov; extra == \"test-no-images\"",
+          "pytest-rerunfailures; extra == \"test-no-images\"",
+          "pytest-xdist; extra == \"test-no-images\"",
+          "wurlitzer; extra == \"test-no-images\""
+        ]
+      },
+      "cycler": {
+        "version": "0.12.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "ipython ; extra == 'docs'",
+          "matplotlib ; extra == 'docs'",
+          "numpydoc ; extra == 'docs'",
+          "sphinx ; extra == 'docs'",
+          "pytest ; extra == 'tests'",
+          "pytest-cov ; extra == 'tests'",
+          "pytest-xdist ; extra == 'tests'"
+        ]
+      },
+      "fonttools": {
+        "version": "4.59.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "lxml>=4.0; extra == \"lxml\"",
+          "brotli>=1.0.1; platform_python_implementation == \"CPython\" and extra == \"woff\"",
+          "brotlicffi>=0.8.0; platform_python_implementation != \"CPython\" and extra == \"woff\"",
+          "zopfli>=0.1.4; extra == \"woff\"",
+          "unicodedata2>=15.1.0; python_version <= \"3.12\" and extra == \"unicode\"",
+          "lz4>=1.7.4.2; extra == \"graphite\"",
+          "scipy; platform_python_implementation != \"PyPy\" and extra == \"interpolatable\"",
+          "munkres; platform_python_implementation == \"PyPy\" and extra == \"interpolatable\"",
+          "pycairo; extra == \"interpolatable\"",
+          "matplotlib; extra == \"plot\"",
+          "sympy; extra == \"symfont\"",
+          "xattr; sys_platform == \"darwin\" and extra == \"type1\"",
+          "skia-pathops>=0.5.0; extra == \"pathops\"",
+          "uharfbuzz>=0.23.0; extra == \"repacker\"",
+          "lxml>=4.0; extra == \"all\"",
+          "brotli>=1.0.1; platform_python_implementation == \"CPython\" and extra == \"all\"",
+          "brotlicffi>=0.8.0; platform_python_implementation != \"CPython\" and extra == \"all\"",
+          "zopfli>=0.1.4; extra == \"all\"",
+          "unicodedata2>=15.1.0; python_version <= \"3.12\" and extra == \"all\"",
+          "lz4>=1.7.4.2; extra == \"all\"",
+          "scipy; platform_python_implementation != \"PyPy\" and extra == \"all\"",
+          "munkres; platform_python_implementation == \"PyPy\" and extra == \"all\"",
+          "pycairo; extra == \"all\"",
+          "matplotlib; extra == \"all\"",
+          "sympy; extra == \"all\"",
+          "xattr; sys_platform == \"darwin\" and extra == \"all\"",
+          "skia-pathops>=0.5.0; extra == \"all\"",
+          "uharfbuzz>=0.23.0; extra == \"all\""
+        ]
+      },
+      "kiwisolver": {
+        "version": "1.4.8",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "networkx": {
+        "version": "3.6.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "asv; extra == \"benchmarking\"",
+          "virtualenv; extra == \"benchmarking\"",
+          "numpy>=1.25; extra == \"default\"",
+          "scipy>=1.11.2; extra == \"default\"",
+          "matplotlib>=3.8; extra == \"default\"",
+          "pandas>=2.0; extra == \"default\"",
+          "pre-commit>=4.1; extra == \"developer\"",
+          "mypy>=1.15; extra == \"developer\"",
+          "sphinx>=8.0; extra == \"doc\"",
+          "pydata-sphinx-theme>=0.16; extra == \"doc\"",
+          "sphinx-gallery>=0.18; extra == \"doc\"",
+          "numpydoc>=1.8.0; extra == \"doc\"",
+          "pillow>=10; extra == \"doc\"",
+          "texext>=0.6.7; extra == \"doc\"",
+          "myst-nb>=1.1; extra == \"doc\"",
+          "intersphinx-registry; extra == \"doc\"",
+          "osmnx>=2.0.0; extra == \"example\"",
+          "momepy>=0.7.2; extra == \"example\"",
+          "contextily>=1.6; extra == \"example\"",
+          "seaborn>=0.13; extra == \"example\"",
+          "cairocffi>=1.7; extra == \"example\"",
+          "igraph>=0.11; extra == \"example\"",
+          "scikit-learn>=1.5; extra == \"example\"",
+          "iplotx>=0.9.0; extra == \"example\"",
+          "lxml>=4.6; extra == \"extra\"",
+          "pygraphviz>=1.14; extra == \"extra\"",
+          "pydot>=3.0.1; extra == \"extra\"",
+          "sympy>=1.10; extra == \"extra\"",
+          "build>=0.10; extra == \"release\"",
+          "twine>=4.0; extra == \"release\"",
+          "wheel>=0.40; extra == \"release\"",
+          "changelist==0.5; extra == \"release\"",
+          "pytest>=7.2; extra == \"test\"",
+          "pytest-cov>=4.0; extra == \"test\"",
+          "pytest-xdist>=3.0; extra == \"test\"",
+          "pytest-mpl; extra == \"test-extras\"",
+          "pytest-randomly; extra == \"test-extras\""
+        ]
+      },
+      "packaging": {
+        "version": "25.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "pillow": {
+        "version": "11.2.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "furo; extra == \"docs\"",
+          "olefile; extra == \"docs\"",
+          "sphinx>=8.2; extra == \"docs\"",
+          "sphinx-copybutton; extra == \"docs\"",
+          "sphinx-inline-tabs; extra == \"docs\"",
+          "sphinxext-opengraph; extra == \"docs\"",
+          "olefile; extra == \"fpx\"",
+          "olefile; extra == \"mic\"",
+          "pyarrow; extra == \"test-arrow\"",
+          "check-manifest; extra == \"tests\"",
+          "coverage>=7.4.2; extra == \"tests\"",
+          "defusedxml; extra == \"tests\"",
+          "markdown2; extra == \"tests\"",
+          "olefile; extra == \"tests\"",
+          "packaging; extra == \"tests\"",
+          "pyroma; extra == \"tests\"",
+          "pytest; extra == \"tests\"",
+          "pytest-cov; extra == \"tests\"",
+          "pytest-timeout; extra == \"tests\"",
+          "trove-classifiers>=2024.10.12; extra == \"tests\"",
+          "typing-extensions; python_version < \"3.10\" and extra == \"typing\"",
+          "defusedxml; extra == \"xmp\""
+        ]
+      },
+      "polars": {
+        "version": "1.39.3",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "polars-runtime-32==1.39.3",
+          "polars-runtime-64==1.39.3; extra == \"rt64\"",
+          "polars-runtime-compat==1.39.3; extra == \"rtcompat\"",
+          "polars_cloud>=0.4.0; extra == \"polars-cloud\"",
+          "numpy>=1.16.0; extra == \"numpy\"",
+          "pandas; extra == \"pandas\"",
+          "polars[pyarrow]; extra == \"pandas\"",
+          "pyarrow>=7.0.0; extra == \"pyarrow\"",
+          "pydantic; extra == \"pydantic\"",
+          "fastexcel>=0.9; extra == \"calamine\"",
+          "openpyxl>=3.0.0; extra == \"openpyxl\"",
+          "xlsx2csv>=0.8.0; extra == \"xlsx2csv\"",
+          "xlsxwriter; extra == \"xlsxwriter\"",
+          "polars[calamine,openpyxl,xlsx2csv,xlsxwriter]; extra == \"excel\"",
+          "adbc-driver-manager[dbapi]; extra == \"adbc\"",
+          "adbc-driver-sqlite[dbapi]; extra == \"adbc\"",
+          "connectorx>=0.3.2; extra == \"connectorx\"",
+          "sqlalchemy; extra == \"sqlalchemy\"",
+          "polars[pandas]; extra == \"sqlalchemy\"",
+          "polars[adbc,connectorx,sqlalchemy]; extra == \"database\"",
+          "fsspec; extra == \"fsspec\"",
+          "deltalake>=1.0.0; extra == \"deltalake\"",
+          "pyiceberg>=0.7.1; extra == \"iceberg\"",
+          "gevent; extra == \"async\"",
+          "cloudpickle; extra == \"cloudpickle\"",
+          "matplotlib; extra == \"graph\"",
+          "altair>=5.4.0; extra == \"plot\"",
+          "great-tables>=0.8.0; extra == \"style\"",
+          "tzdata; platform_system == \"Windows\" and extra == \"timezone\"",
+          "cudf-polars-cu12; extra == \"gpu\"",
+          "polars[async,cloudpickle,database,deltalake,excel,fsspec,graph,iceberg,numpy,pandas,plot,pyarrow,pydantic,style,timezone]; extra == \"all\""
+        ]
+      },
+      "polars-runtime-32": {
+        "version": "1.39.3",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "psutil": {
+        "version": "7.0.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "pytest ; extra == 'dev'",
+          "pytest-xdist ; extra == 'dev'",
+          "setuptools ; extra == 'dev'",
+          "pywin32 ; extra == 'dev'",
+          "wheel ; extra == 'dev'",
+          "wmi ; extra == 'dev'",
+          "abi3audit ; extra == 'dev'",
+          "black ==24.10.0 ; extra == 'dev'",
+          "check-manifest ; extra == 'dev'",
+          "coverage ; extra == 'dev'",
+          "packaging ; extra == 'dev'",
+          "pylint ; extra == 'dev'",
+          "pyperf ; extra == 'dev'",
+          "pypinfo ; extra == 'dev'",
+          "pytest-cov ; extra == 'dev'",
+          "requests ; extra == 'dev'",
+          "rstcheck ; extra == 'dev'",
+          "ruff ; extra == 'dev'",
+          "sphinx ; extra == 'dev'",
+          "sphinx-rtd-theme ; extra == 'dev'",
+          "toml-sort ; extra == 'dev'",
+          "twine ; extra == 'dev'",
+          "virtualenv ; extra == 'dev'",
+          "vulture ; extra == 'dev'",
+          "pyreadline ; extra == 'dev'",
+          "pdbpp ; extra == 'dev'",
+          "pytest ; extra == 'test'",
+          "pytest-xdist ; extra == 'test'",
+          "setuptools ; extra == 'test'",
+          "pywin32 ; extra == 'test'",
+          "wheel ; extra == 'test'",
+          "wmi ; extra == 'test'"
+        ]
+      },
+      "pyparsing": {
+        "version": "3.2.3",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "railroad-diagrams ; extra == \"diagrams\"",
+          "jinja2 ; extra == \"diagrams\""
+        ]
+      },
+      "python-dateutil": {
+        "version": "2.9.0.post0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "six >=1.5"
+        ]
+      },
+      "pytz": {
+        "version": "2025.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "requests": {
+        "version": "2.32.4",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "charset_normalizer<4,>=2",
+          "idna<4,>=2.5",
+          "urllib3<3,>=1.21.1",
+          "certifi>=2017.4.17",
+          "PySocks!=1.5.7,>=1.5.6; extra == \"socks\"",
+          "chardet<6,>=3.0.2; extra == \"use-chardet-on-py3\""
+        ]
+      },
+      "charset-normalizer": {
+        "version": "3.4.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "urllib3": {
+        "version": "2.5.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "brotli>=1.0.9; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+          "brotlicffi>=0.8.0; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+          "h2<5,>=4; extra == 'h2'",
+          "pysocks!=1.5.7,<2.0,>=1.5.6; extra == 'socks'",
+          "zstandard>=0.18.0; extra == 'zstd'"
+        ]
+      },
+      "certifi": {
+        "version": "2025.6.15",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "scipy": {
+        "version": "1.17.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy<2.7,>=1.26.4",
+          "pytest>=8.0.0; extra == \"test\"",
+          "pytest-cov; extra == \"test\"",
+          "pytest-timeout; extra == \"test\"",
+          "pytest-xdist; extra == \"test\"",
+          "asv; extra == \"test\"",
+          "mpmath; extra == \"test\"",
+          "gmpy2; extra == \"test\"",
+          "threadpoolctl; extra == \"test\"",
+          "scikit-umfpack; extra == \"test\"",
+          "pooch; extra == \"test\"",
+          "hypothesis>=6.30; extra == \"test\"",
+          "array-api-strict>=2.3.1; extra == \"test\"",
+          "Cython; extra == \"test\"",
+          "meson; extra == \"test\"",
+          "ninja; sys_platform != \"emscripten\" and extra == \"test\"",
+          "sphinx<8.2.0,>=5.0.0; extra == \"doc\"",
+          "intersphinx_registry; extra == \"doc\"",
+          "pydata-sphinx-theme>=0.15.2; extra == \"doc\"",
+          "sphinx-copybutton; extra == \"doc\"",
+          "sphinx-design>=0.4.0; extra == \"doc\"",
+          "matplotlib>=3.5; extra == \"doc\"",
+          "numpydoc; extra == \"doc\"",
+          "jupytext; extra == \"doc\"",
+          "myst-nb>=1.2.0; extra == \"doc\"",
+          "pooch; extra == \"doc\"",
+          "jupyterlite-sphinx>=0.19.1; extra == \"doc\"",
+          "jupyterlite-pyodide-kernel; extra == \"doc\"",
+          "linkify-it-py; extra == \"doc\"",
+          "tabulate; extra == \"doc\"",
+          "click<8.3.0; extra == \"dev\"",
+          "spin; extra == \"dev\"",
+          "mypy==1.10.0; extra == \"dev\"",
+          "typing_extensions; extra == \"dev\"",
+          "types-psutil; extra == \"dev\"",
+          "pycodestyle; extra == \"dev\"",
+          "ruff>=0.12.0; extra == \"dev\"",
+          "cython-lint>=0.12.2; extra == \"dev\""
+        ]
+      },
+      "setuptools": {
+        "version": "80.9.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "pytest!=8.1.*,>=6; extra == \"test\"",
+          "virtualenv>=13.0.0; extra == \"test\"",
+          "wheel>=0.44.0; extra == \"test\"",
+          "pip>=19.1; extra == \"test\"",
+          "packaging>=24.2; extra == \"test\"",
+          "jaraco.envs>=2.2; extra == \"test\"",
+          "pytest-xdist>=3; extra == \"test\"",
+          "jaraco.path>=3.7.2; extra == \"test\"",
+          "build[virtualenv]>=1.0.3; extra == \"test\"",
+          "filelock>=3.4.0; extra == \"test\"",
+          "ini2toml[lite]>=0.14; extra == \"test\"",
+          "tomli-w>=1.0.0; extra == \"test\"",
+          "pytest-timeout; extra == \"test\"",
+          "pytest-perf; sys_platform != \"cygwin\" and extra == \"test\"",
+          "jaraco.develop>=7.21; (python_version >= \"3.9\" and sys_platform != \"cygwin\") and extra == \"test\"",
+          "pytest-home>=0.5; extra == \"test\"",
+          "pytest-subprocess; extra == \"test\"",
+          "pyproject-hooks!=1.1; extra == \"test\"",
+          "jaraco.test>=5.5; extra == \"test\"",
+          "sphinx>=3.5; extra == \"doc\"",
+          "jaraco.packaging>=9.3; extra == \"doc\"",
+          "rst.linker>=1.9; extra == \"doc\"",
+          "furo; extra == \"doc\"",
+          "sphinx-lint; extra == \"doc\"",
+          "jaraco.tidelift>=1.4; extra == \"doc\"",
+          "pygments-github-lexers==0.0.5; extra == \"doc\"",
+          "sphinx-favicon; extra == \"doc\"",
+          "sphinx-inline-tabs; extra == \"doc\"",
+          "sphinx-reredirects; extra == \"doc\"",
+          "sphinxcontrib-towncrier; extra == \"doc\"",
+          "sphinx-notfound-page<2,>=1; extra == \"doc\"",
+          "pyproject-hooks!=1.1; extra == \"doc\"",
+          "towncrier<24.7; extra == \"doc\"",
+          "packaging>=24.2; extra == \"core\"",
+          "more_itertools>=8.8; extra == \"core\"",
+          "jaraco.text>=3.7; extra == \"core\"",
+          "importlib_metadata>=6; python_version < \"3.10\" and extra == \"core\"",
+          "tomli>=2.0.1; python_version < \"3.11\" and extra == \"core\"",
+          "wheel>=0.43.0; extra == \"core\"",
+          "platformdirs>=4.2.2; extra == \"core\"",
+          "jaraco.functools>=4; extra == \"core\"",
+          "more_itertools; extra == \"core\"",
+          "pytest-checkdocs>=2.4; extra == \"check\"",
+          "pytest-ruff>=0.2.1; sys_platform != \"cygwin\" and extra == \"check\"",
+          "ruff>=0.8.0; sys_platform != \"cygwin\" and extra == \"check\"",
+          "pytest-cov; extra == \"cover\"",
+          "pytest-enabler>=2.2; extra == \"enabler\"",
+          "pytest-mypy; extra == \"type\"",
+          "mypy==1.14.*; extra == \"type\"",
+          "importlib_metadata>=7.0.2; python_version < \"3.10\" and extra == \"type\"",
+          "jaraco.develop>=7.21; sys_platform != \"cygwin\" and extra == \"type\""
+        ]
+      },
+      "six": {
+        "version": "1.17.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "sniffio": {
+        "version": "1.3.1",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "sympy": {
+        "version": "1.14.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "mpmath<1.4,>=1.1.0",
+          "pytest>=7.1.0; extra == \"dev\"",
+          "hypothesis>=6.70.0; extra == \"dev\""
+        ]
+      },
+      "mpmath": {
+        "version": "1.3.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "pytest (>=4.6) ; extra == 'develop'",
+          "pycodestyle ; extra == 'develop'",
+          "pytest-cov ; extra == 'develop'",
+          "codecov ; extra == 'develop'",
+          "wheel ; extra == 'develop'",
+          "sphinx ; extra == 'docs'",
+          "gmpy2 (>=2.1.0a4) ; (platform_python_implementation != \"PyPy\") and extra == 'gmpy'",
+          "pytest (>=4.6) ; extra == 'tests'"
+        ]
+      },
+      "typing_extensions": {
+        "version": "4.15.0",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "typing-inspection": {
+        "version": "0.4.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "typing-extensions>=4.12.0"
+        ]
+      },
+      "tzdata": {
+        "version": "2025.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "ultralytics-thop": {
+        "version": "2.0.18",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "numpy",
+          "torch"
+        ]
+      },
+      "colorama": {
+        "version": "0.4.6",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      },
+      "Jinja2": {
+        "version": "3.1.6",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": [
+          "MarkupSafe>=2.0",
+          "Babel>=2.7 ; extra == \"i18n\""
+        ]
+      },
+      "MarkupSafe": {
+        "version": "3.0.2",
+        "selection": "OBSERVED_WORKING_ENVIRONMENT",
+        "requires": null
+      }
+    },
+    "primaryIndex": "https://pypi.org/simple",
+    "torchIndex": "https://download.pytorch.org/whl/cu126",
+    "legacyRequirementsPreserved": "requirements.txt",
+    "opencvProvider": "opencv-python only; the working global environment contains multiple cv2 providers, which the isolated product environment avoids."
+  },
+  "frontend": {
+    "packageManifest": "frontend/package.json",
+    "lockFile": "frontend/pnpm-lock.yaml",
+    "packageManager": "pnpm@11.19.0",
+    "nodeRequirement": ">=22",
+    "installCommand": "pnpm --dir frontend install --frozen-lockfile",
+    "buildCommand": "pnpm --dir frontend build"
+  },
+  "sourceDependencies": [
+    {
+      "path": "artifacts/research/WASB-SBDT",
+      "origin": "https://github.com/nttcom/WASB-SBDT.git",
+      "commit": "923462cacdeb3353b84ddebdedb3f4b7a8553b0f",
+      "workingTreeCleanAtCapture": true,
+      "license": "MIT",
+      "licenseFile": "artifacts/research/WASB-SBDT/LICENSE.md",
+      "restoration": "Clone into an absent target, then git checkout --detach 923462cacdeb3353b84ddebdedb3f4b7a8553b0f. If the directory exists, verify it instead of replacing it.",
+      "windowsLineEndingPolicy": "core.autocrlf=true reproduces the pinned required-file bytes."
+    }
+  ],
+  "assets": [
+    {
+      "path": "configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml",
+      "bytes": 4040,
+      "sha256": "84505e944f2650cbe0edc490e4123e52137dc0a5af5fd6013e47acdf4ba030b6"
+    },
+    {
+      "path": "yolo11m.pt",
+      "bytes": 40684120,
+      "sha256": "d5ffc1a674953a08e11a8d21e022781b1b23a19b730afc309290bd9fb5305b95",
+      "role": "PERSON_RACKET_DETECTOR",
+      "upstream": "https://docs.ultralytics.com/models/yolo11/",
+      "license": "AGPL-3.0 or separately obtained Ultralytics Enterprise license",
+      "licenseSource": "https://www.ultralytics.com/license",
+      "publicDeploymentPermission": "NOT_VERIFIED_FOR_THIS_PROJECT",
+      "restoration": "Restore the retained exact bytes and verify this hash. Filename alone does not prove the publisher revision; do not silently substitute a newer asset.",
+      "originalAcquisitionProvenance": "NOT_RECORDED"
+    },
+    {
+      "path": "yolo11s-pose.pt",
+      "bytes": 20373161,
+      "sha256": "1060bda4a27012060eca246f9b2adeea22eabb045a1e58f8d229be29b7ebc2ba",
+      "role": "PLAYER_POSE_DETECTOR",
+      "upstream": "https://docs.ultralytics.com/models/yolo11/",
+      "license": "AGPL-3.0 or separately obtained Ultralytics Enterprise license",
+      "licenseSource": "https://www.ultralytics.com/license",
+      "publicDeploymentPermission": "NOT_VERIFIED_FOR_THIS_PROJECT",
+      "restoration": "Restore the retained exact bytes and verify this hash. Filename alone does not prove the publisher revision; do not silently substitute a newer asset.",
+      "originalAcquisitionProvenance": "NOT_RECORDED"
+    },
+    {
+      "path": "models/keypoints_model.pth",
+      "bytes": 94582426,
+      "sha256": "16ebb7e46dc88247440c86b388e4f07f0d4abb76ce0a01a22925d3163f7fb7f3",
+      "role": "FULL_COURT_KEYPOINT_STATE_DICT",
+      "upstream": null,
+      "license": null,
+      "publicDeploymentPermission": "UNKNOWN_SOURCE_AND_WEIGHT_LICENSE",
+      "restoration": "Required retained asset; no verified public acquisition URL is recorded. Ask the owner for this exact asset and its provenance if missing.",
+      "originalAcquisitionProvenance": "NOT_RECORDED"
+    },
+    {
+      "path": "artifacts/models/ball/wasb_tennis_best.pth.tar",
+      "bytes": 6102633,
+      "sha256": "9d391239ab10c733f8e5bfadf16ab72838e7a8ebc88e8ae2038501c03d42b4bb",
+      "role": "WASB_TENNIS_HRNET_CHECKPOINT",
+      "upstream": "https://drive.usercontent.google.com/download?id=14AeyIOCQ2UaQmbZLNQJa1H_eSwxUXk7z&export=download&confirm=t",
+      "sourceModelZoo": "https://github.com/nttcom/WASB-SBDT/blob/923462cacdeb3353b84ddebdedb3f4b7a8553b0f/MODEL_ZOO.md",
+      "license": null,
+      "publicDeploymentPermission": "WEIGHT_AND_TRAINING_FOOTAGE_TERMS_NOT_VERIFIED",
+      "codeLicense": "MIT applies to source code; a separate weight redistribution permission has not been established.",
+      "restoration": "Restore retained exact bytes, or acquire the publisher model-zoo asset after checking its terms and verify the recorded SHA-256/byte size."
+    },
+    {
+      "path": "artifacts/models/ball/wasb_tennis_best.pth.provenance.json",
+      "bytes": 360,
+      "sha256": "f346075b90b688fe1f51549c22c83b6e64a8ac42176a85adbb132bc0600c5ccb"
+    },
+    {
+      "path": "artifacts/research/WASB-SBDT/LICENSE.md",
+      "bytes": 1108,
+      "sha256": "92cdd65f99330008e488ccbf04ae83004e80ded375df2206b9db0ac5bd84caee"
+    },
+    {
+      "path": "artifacts/research/WASB-SBDT/src/models/hrnet.py",
+      "bytes": 20707,
+      "sha256": "656c03770e1d7c4442f6f7431ca1f50a674042ac75ff6ba3cd120a2316e74688"
+    },
+    {
+      "path": "artifacts/research/WASB-SBDT/src/utils/image.py",
+      "bytes": 8655,
+      "sha256": "2e35148b8ed519b786487191fb6184d4c931c8c2621f5ab7fea68d8503c9c33c"
+    },
+    {
+      "path": "artifacts/research/WASB-SBDT/src/configs/model/wasb.yaml",
+      "bytes": 1018,
+      "sha256": "547fd086f8f8fcff54bb960e01f67cac6e66088067b2159b3a6e6678c9ff3fdc"
+    },
+    {
+      "path": "frontend/package.json",
+      "bytes": 2128,
+      "sha256": "adf15b3a16a846f0039f46292d620ab2890e2916626b4c5e5e7a8be93e8556c6"
+    },
+    {
+      "path": "frontend/pnpm-lock.yaml",
+      "bytes": 161583,
+      "sha256": "5e9128e6b36c7b2701e78a3b6774da9359e2b2e3c33efee3ed89af5b74ab0a74"
+    }
+  ],
+  "externalTools": [
+    {
+      "name": "ffmpeg",
+      "observedPath": "C:\\Users\\ac-98\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+      "versionLine": "ffmpeg version 8.1.1-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "bytes": 101457920,
+      "sha256": "228d7a8556258de907fdb55f36850078ebc7680b84ec30d84ea02e99bec1d1eb",
+      "mustBeOnPathOrSetEnvironment": "TENNIS_FFMPEG",
+      "restoration": "Restore a matching trusted FFmpeg build with libx264, fps, pad, setpts, copyts and stats_enc_pre support; capability check is required."
+    },
+    {
+      "name": "ffprobe",
+      "observedPath": "C:\\Users\\ac-98\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffprobe.EXE",
+      "versionLine": "ffprobe version 8.1.1-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "bytes": 101251072,
+      "sha256": "0fde260f5abd35c9cafd96f594cc76365a780c1b73a90e35b6a3409ea1db1bf0",
+      "mustBeOnPathOrSetEnvironment": "TENNIS_FFPROBE",
+      "restoration": "Restore a matching trusted FFmpeg build with libx264, fps, pad, setpts, copyts and stats_enc_pre support; capability check is required."
+    }
+  ],
+  "bootstrap": {
+    "courtArchitectureWhenFullCheckpointIsPresent": "ResNet50 with weights=None, strict full-state loading; no ImageNet cache required.",
+    "checkpointDeserialization": "Existing local state dicts use weights_only=True. Only restore known trusted model assets.",
+    "modelImportsDuringManifestCapture": false
+  },
+  "persistentState": {
+    "root": "outputs/product",
+    "database": "outputs/product/analyses.sqlite3",
+    "preserve": [
+      "SQLite database and WAL/SHM files when present",
+      "uploads with their original video files",
+      "analyses with JSON, video, source timing and source credits",
+      "Complete hidden .result directories: current.store, its named immutable SQLite result database, prior generation files and retained failure diagnostics; never filter to JSON/video only"
+    ],
+    "backupPolicy": "Take a coherent SQLite backup and retain upload/analysis directories. Do not replace this state during setup. Preserve the coherent committed result generation with every complete analysis directory; a missing or changed new-generation manifest/database is unavailable."
+  },
+  "validation": {
+    "directDependencyResolution": "PASSED in isolated environment with no installed product packages; unconstrained transitive selection was inspected but not used as a working-environment lock.",
+    "observedTransitiveConstraintResolution": "PASSED: 57 exact recorded runtime distributions; see observed_dependency_resolution.json.",
+    "cleanInstall": "PASSED: 57 exact recorded runtime distributions; see clean_install.json.",
+    "apiSmokeWithoutWorker": "PASSED: 75 isolated installation/API checks; health 200, empty library, invalid upload 415, worker disabled, no model imports.",
+    "modelLoadAndInferenceInCleanEnvironment": "PASSED_SHORT_SOFTWARE_COMPATIBILITY_2026-10-06: isolated offline30-frame native60FPS licensed excerpt; exact26JSON values except2 runtime fields, run_config and annotated frame count/PTS/decode preserved. Pipeline20.916s/helper45.591s/fullchild127.178s; all10 saved analyses unchanged, all owned processes retired, candidate and registration scratch absent. Court/roles/pose/racket remain unavailable and physical speed/3D null; no accuracy/capacity/deployment qualification.",
+    "courtBootstrapTests": "4 passed, including offline full checkpoint and strict missing/shape rejection",
+    "frontendFrozenInstall": "PASSED: isolated frozen offline restore, 373 package-store directories; Node v26.7.0, effective pnpm 11.19.0 (launcher 10.28.0); original manifests unchanged.",
+    "frontendCurrentSourceRestore": "PASSED_SOFTWARE_2026-10-05: bounded trajectory source restored as 124 build inputs including both root stylesheets, frozen offline install of 373 packages, lint, TypeScript/Vite build, and all 161 tests across 23 files. All 37 production files match byte for byte. Node v26.7.0 and pnpm 11.19.0; input inventory and hashes rechecked. Accuracy, native blocked-autoplay/GPU-failure, full-match capacity and public deployment remain unqualified.",
+    "exportCapacityEngineering": "PASSED_SYNTHETIC_ONLY: paired isolated camera-audit and CSV exports at 600, 18000 and 432000 frames preserved parsed camera records and exact CSV bytes. At 432000 frames camera peak working set changed from 245805056 to 24416256 bytes, CSV from 1325469696 to 276389888 bytes. Full result, tracker and frontend arrays remain O(N); these are not real full-match inference measurements.",
+    "cleanDependencyHealth": "PASSED: pip check reports no broken requirements in the isolated environment.",
+    "offlineModelLoadInCleanEnvironment": "PASSED: all four retained model assets loaded on CPU in 18.17s, with zero network attempts; not an inference check.",
+    "wasbSourceRestore": "PASSED: exact commit and four required runtime/license file hashes restored independently.",
+    "cleanPipelineSmokeScope": "Half-second excerpt only; no full-match performance, independent accuracy, or public deployment qualification.",
+    "cleanPipelineSmokeLimitations": "Court calibration rejected this excerpt; selected player roles and meaningful pose/racket measurements were withheld. All four assets loaded, and the selected pipeline exported its unavailable states correctly.",
+    "repeatedSourceWorkerCapacity": "FAILED_SYSTEM_RAM_SAFEGUARD_2026-10-05: one isolated 18000-frame, 300-second, 1920x1080, 60 FPS repeated-source workload stopped during WASB detection after 1024.308 monitored seconds. Available system RAM was below 400000000 bytes for five consecutive samples; minimum 296972288 bytes, peak sampled owned-tree RSS 1854242816 bytes and private commit 4055429120 bytes. No completed result/annotation/CSV or child CUDA peak receipt was produced. Partial artifacts preserved, all 18000 synthetic N/60 normalization records checked, source/code/config hashes unchanged and live product states unchanged. Neither five-minute nor full-match processing capacity is qualified.",
+    "workerPublicationFailures": "PASSED_SOFTWARE_ONLY: full1272-test suite includes10 original worker tests and31 reader/publication/export regressions. Strict writes, close/encoder and result/summary/manifest replacement failures preserve completed generation gates and prior compatibility bytes; interrupted streams close owned readers and retain primary errors.",
+    "candidateStorageEngineering": "PASSED_SYNTHETIC_ONLY_2026-10-05: disk-backed candidate storage and early streamed person export preserve frame values/order. Eight sequential clean-environment children at 600/18000/432000 candidate frames and 5000 tracker frames passed exact comparisons. At 432000 frames old/new actual interpreter peak working set was 533958656/76079104 bytes; child elapsed seconds 18.339/32.803, owned database logical size 245608448 bytes before cleanup. Every actual interpreter identity was sampled and all remembered identities were retired at terminal audit. Tracker output preserved every field; peak live candidates changed 13682 to 16. The first wrapper-only monitoring run remains historical with an explicit guard limitation; corrected and hardened monitor proofs are separate. Full calibration, player, trajectory, result/API and frontend arrays remain O(N); no full-match or accuracy qualification.",
+    "backendCandidateStorageChecks": "PASSED: all1063 backend tests after production candidate/cleanup changes, plus4 later owned-process teardown tests; no frontend source changes.",
+    "registrationStorageEngineering": "SOFTWARE_COMPATIBILITY_PASSED_LARGE_SYNTHETIC_MEASUREMENT_FAILED_2026-10-06: exact dynamic registration snapshots with bounded SQLite and constant static camera views; 1102 backend tests and fresh 30-frame clean-runtime compatibility passed. Only 600/18000 synthetic pairs completed. New432000 child stopped at300.294s without final verification; 864000/static cases unlaunched. Closed failed database retained, exact processes retired. No full-match or accuracy qualification.",
+    "backendRegistrationStorageChecks": "PASSED: 1102 maintained backend tests in36.18s; production code unchanged since test/benchmark bindings.",
+    "backendResultStorageChecks": "PASSED: all1272 backend tests in78.895s; exact source bindings unchanged. Prior incomplete full run retained.",
+    "resultStorageEngineering": "PASSED_SYNTHETIC_SOFTWARE_ONLY_2026-10-06: four fresh600/18000frame children; all result/readJSON,summary,CSV,HTML bytes exact. At18000 actualinterpreter OSpeakworking set 281,812,992 \u2192 54,575,104 bytes; fullchildwall 16.412 \u2192 100.049 seconds; productionstage total 6.382 \u2192 76.218 seconds; database 118726656bytes. All exactownedprocesses retired. Memory improvement has substantial time/disk cost; no432000/densefullmatchpose/browser/inferencecapacity qualification.",
+    "resultStorageRealWorkerSmoke": "PASSED_30_FRAME_SOFTWARE_ONLY_2026-10-06: actual offline selectedmodels+worker+committedresult+lazyreader on licensednative60FPS originalframes390-419; inputpixels/PTSexact, normalizedlossypixelsdecoded separately. JSON/CSV/HTML exactagainst frozen code on samenewrawartifacts, no exclusions. Worker 18.923s/fullchild 64.134s; tenlivejobsunchanged,zero network, allownedretired. Court/player measurements unavailable,speed3D null,authorityoff; no accuracy/fullmatch/deployment qualification."
+  },
+  "unresolvedReleaseRequirements": [
+    "Court checkpoint source, authorship and weight license are unknown.",
+    "Existing YOLO asset acquisition revisions are not independently recorded; project public deployment licensing has not been verified.",
+    "WASB code is MIT, but separate checkpoint/training-footage redistribution terms are not certified.",
+    "Full-match operational validation, fresh independent labels, accuracy gates and supported-angle public demos remain required before claiming a qualified production release."
+  ],
+  "evidenceUpdatedAt": "2026-10-06T05:38:19.676284+00:00",
+  "validationEvidence": [
+    {
+      "path": "artifacts/validation/product_installation/observed_dependency_resolution.json",
+      "verifiedAt": null,
+      "scope": "Package resolution/install receipt; no model inference or accuracy qualification.",
+      "passed": null,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/clean_install.json",
+      "verifiedAt": null,
+      "scope": "Package resolution/install receipt; no model inference or accuracy qualification.",
+      "passed": null,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/clean_host_verification.json",
+      "verifiedAt": "2026-10-01T03:30:59.057815+00:00",
+      "scope": "Historical isolated host/API receipt; manifest metadata has since been updated. No inference.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/clean_dependency_health.json",
+      "verifiedAt": "2026-10-01T14:10:07.971126+00:00",
+      "scope": "Fresh isolated dependency consistency check; no inference.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/offline_model_asset_load.json",
+      "verifiedAt": "2026-10-01T03:31:04.131106+00:00",
+      "scope": "Historical real four-model CPU load; no inference or accuracy qualification.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/wasb_source_restore_check.json",
+      "verifiedAt": "2026-10-01T03:29:31.981999+00:00",
+      "scope": "Independent source checkout restore; Windows core.autocrlf=true byte policy.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_restore_check.json",
+      "verifiedAt": "2026-10-01T14:11:43.188239+00:00",
+      "scope": "Fresh cached frozen dependency restore; production build and UI tests are separate.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_replay_shared_2026-10-04/receipt.json",
+      "verifiedAt": "2026-10-04T07:12:22.219315+00:00",
+      "scope": "Historical October4 frontend plus two tracked root stylesheets restored into a fresh directory; frozen offline packages, lint, build and all130 tests across21 files. Later keyboard repairs have separate evidence.",
+      "sha256": "1e3278024a1e33c762deb1998fae717872d0286d276cbccd0548bf001bda0ff4",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_replay_shared_2026-10-04/verification_seal.json",
+      "verifiedAt": "2026-10-04T07:20:06.649999+00:00",
+      "scope": "Rechecked121 selected/copied inputs, exact verifier snapshot and test/log receipts; all37 selected/restored production files are byte-identical. Software restoration only.",
+      "sha256": "0fb634ad9c00937dfb273e9177d2316833777611a2a6124760053211083fe88b",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_keyboard_2026-10-05/receipt.json",
+      "verifiedAt": "2026-10-05T01:28:23.211792+00:00",
+      "scope": "Historical keyboard/replay source restored into a fresh directory as121 inputs; frozen offline373 packages, lint, TypeScript/Vite build and all138 tests across21 copied test files. Later playback/WebGL recovery repairs have separate evidence.",
+      "sha256": "f1f61eaea92ce85caf6db66c8488a15bb1b75d3f08d09765c5590cf65c123c28",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_keyboard_2026-10-05/verification_seal.json",
+      "verifiedAt": "2026-10-05T01:29:00.976235+00:00",
+      "scope": "Historical keyboard/replay seal rechecked121 then-selected/copied inputs and all37 byte-identical production files; binds28 source-restore, regression, build and bounded real-video evidence files. No accuracy, deployment or capacity qualification.",
+      "sha256": "33460db167f44fae76cadeb18d3ea7f5864c2afefa908f7b28927415d5e7ba32",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_failure_paths_2026-10-05/receipt.json",
+      "verifiedAt": "2026-10-05T02:04:49.234270+00:00",
+      "scope": "Final playback/WebGL recovery source restored as122 inputs; frozen offline373 packages, lint, TypeScript/Vite build and all155 tests across22 copied test files. Software restoration only.",
+      "sha256": "91b8cbe28cd673fcc5830e1be2d053dc56142b3479abb77bb6dd288e3f923bac",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_failure_paths_2026-10-05/verification_seal.json",
+      "verifiedAt": "2026-10-05T02:08:37.394186+00:00",
+      "scope": "Rechecked122 current/copied inputs and all37 byte-identical production files; binds31 restoration, regression, build and bounded browser evidence files. Real blocked muted autoplay, native GPU failure, accuracy, deployment and capacity remain unqualified.",
+      "sha256": "2b590c1e39f0af74c6d7be3c6e013213d7a61ad29ca51d296ae6cdece23a472d",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_capacity_2026-10-05/receipt.json",
+      "verifiedAt": "2026-10-05T02:41:04.054532+00:00",
+      "scope": "Fresh 124-input source restoration; frozen offline 373 packages, lint/build and all 161 tests across 23 copied files. Software restoration only.",
+      "sha256": "fe7d77e33f2e137a1d41882a8f6a9fc9ef36f6f308e9cc3dd23a11e4da5f9b12",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_source_restore_capacity_2026-10-05/verification_seal.json",
+      "verifiedAt": "2026-10-05T02:49:21.166966+00:00",
+      "scope": "124 current/copied inputs and 37 byte-identical production files; binds 32 completed restoration, test, synthetic-export and browser evidence files. Pending real-worker stress is excluded; full-match/accuracy qualification remains open.",
+      "sha256": "24f94f37643a1d98880a1d007380df6026be2f6ad38774cfa2bedf948061df11",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/real_pipeline_smoke_online_probe_20261001.json",
+      "verifiedAt": "2026-10-01T14:17:26.033345+00:00",
+      "scope": "Initial pipeline completed, but strict smoke failed because a network probe was blocked.",
+      "passed": false,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/real_pipeline_smoke_disk_failure_20261001.json",
+      "verifiedAt": "2026-10-01T14:20:12.331154+00:00",
+      "scope": "Offline inference/render completed with zero network attempts, but export failed when disk free space reached zero.",
+      "passed": false,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/frontend_restore_check_launcher_probe_20261001.json",
+      "verifiedAt": "2026-10-01T14:09:57.120403+00:00",
+      "scope": "Frozen install succeeded using project pnpm 11.19.0; initial version probe incorrectly inspected the external launcher.",
+      "passed": false,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_installation/real_pipeline_smoke.json",
+      "verifiedAt": "2026-10-01T14:26:30.283632+00:00",
+      "scope": "Half-second excerpt only; no full-match performance, independent accuracy, or public deployment qualification.",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/repeated_source_capacity_STOP_verified_2026-10-05.json",
+      "verifiedAt": "2026-10-05T03:05:00.840768+00:00",
+      "scope": "Terminal failure audit: evidence verified, workload failed at predeclared available-system-RAM safeguard; no capacity or accuracy qualification.",
+      "sha256": "4b13d66e23a936a9b3c1c3a9ea55555368fc8df6e755cf07eaf71ed36be7713e",
+      "passed": false,
+      "evidenceVerified": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/worker_publication_capacity_2026-10-05.xml",
+      "verifiedAt": "2026-10-05T03:08:17.408731+00:00",
+      "scope": "Ten inference-free worker publication regressions only; production sources unchanged.",
+      "sha256": "e70b98c5c6ff54324b55f73f2f3546de7c6f9aca7ca30d40657820c8b09a74b0",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_storage_backend_FINAL_2026-10-05.xml",
+      "verifiedAt": "2026-10-05T04:10:37.987503+00:00",
+      "scope": "All1063 maintained backend tests after production candidate and producer-cleanup changes.",
+      "sha256": "2a6bf7a09edc0612ed4b751fd2d14bdb73ef89f05460d9baaad30c836ff36f86",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_storage_measurement_monitored_2026-10-05/report.json",
+      "verifiedAt": "2026-10-05T03:54:52.479089+00:00",
+      "scope": "Eight synthetic candidate/tracker children with exact output equivalence; bounded scope.",
+      "sha256": "3141bf061e6746bb6b71d331d2fd68a5e88c6c8aa9cb856b5238ed99ad2a2ab7",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_storage_measurement_monitored_2026-10-05/terminal_receipt_audit.json",
+      "verifiedAt": "2026-10-05T04:10:37.987503+00:00",
+      "scope": "Actual interpreter sampling, exact remembered identity retirement and owned scratch cleanup; terminal audit only.",
+      "sha256": "fb4af968d3634978b94484604a9f8b2d8346d9c029883e9237a4feead8fb1ea2",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_monitor_hardening_2026-10-05/unit_regressions.xml",
+      "verifiedAt": "2026-10-05T04:10:37.987503+00:00",
+      "scope": "Four isolated teardown regressions after audit helper hardening; no inference.",
+      "sha256": "8b9ca66378e1dd9890c64b3c6b4237d3613c6cf5c299eb050cbbef266b271788",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_monitor_hardening_2026-10-05/redirector_monitor_regression/receipt.json",
+      "verifiedAt": "2026-10-05T04:06:09.416157+00:00",
+      "scope": "Controlled64MiB real child verifies actual descendant RSS stop and exact retirement with hardened helper.",
+      "sha256": "4038c9daf8973e3dae496b66ab87a06dc0d86fbb12d2448c978a26d69fa11ee2",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_storage_real_smoke_2026-10-05/real_pipeline_smoke.json",
+      "verifiedAt": "2026-10-05T04:10:37.987503+00:00",
+      "scope": "Fresh half-second offline clean-runtime pipeline execution; no accuracy/capacity qualification.",
+      "sha256": "93b8d992ff6c7a3fc3348b0d18a5c5e3256cd3f434c13e0aa205217734a2fbce",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_storage_real_smoke_2026-10-05/artifact_comparison.json",
+      "verifiedAt": "2026-10-05T04:10:37.987503+00:00",
+      "scope": "Exact26JSON compatibility with only2 measured runtime exclusions; unchanged run_config and annotated media.",
+      "sha256": "c6b4db3b13eeafd663594f16555f71be581db3ce0067b5ea5d698fe917a1f297",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/candidate_storage_real_smoke_2026-10-05/resource_receipt.json",
+      "verifiedAt": "2026-10-05T04:07:28.324757+00:00",
+      "scope": "Full owned tree sampled; source/history/product rows unchanged, all owned processes retired.",
+      "sha256": "acc14db953398e21faba66c94ff87f20eea9f6bf02b313ac174c8f900bb977bb",
+      "passed": true,
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/registration_storage_backend_FULL_2026-10-05.xml",
+      "verifiedAt": "2026-10-06T04:10:05.821277+00:00",
+      "scope": "1102 maintained backend tests; software only.",
+      "passed": true,
+      "sha256": "82f04462b34d8152ef2c586a4a584ac8c4f39a97db5189def839b2f765f1fae1",
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/registration_storage_measurement_2026-10-05/report.json",
+      "verifiedAt": "2026-10-06T04:10:05.821277+00:00",
+      "scope": "Large synthetic benchmark failed wall guard; only600/18000 paired comparisons complete.",
+      "passed": false,
+      "sha256": "b64fb802b719bbad106aeb2e7b388c994970db5edd59449d399a44d175f1a5df",
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/registration_storage_measurement_2026-10-05/terminal_receipt_audit_2026-10-06.json",
+      "verifiedAt": "2026-10-06T04:10:05.821277+00:00",
+      "scope": "Terminal identity/retained-file readback, not workload qualification.",
+      "passed": true,
+      "sha256": "216e600157058352b3da3fff5579ebbf8c31d58cb156396a38a92aea6cf5fa62",
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/registration_storage_real_smoke_2026-10-05/real_pipeline_smoke.json",
+      "verifiedAt": "2026-10-06T04:10:05.821277+00:00",
+      "scope": "Fresh isolated30-frame offline software execution.",
+      "passed": true,
+      "sha256": "397622748b41aa5028166dc3d3db922112c43c81afb13d241fcdfe029005d6ad",
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/registration_storage_real_smoke_2026-10-05/artifact_comparison.json",
+      "verifiedAt": "2026-10-06T04:10:05.821277+00:00",
+      "scope": "Exact26JSON values except2 runtime fields; run_config/decode checks.",
+      "passed": true,
+      "sha256": "e4134936e8b263ae89f153b0ac714cfc487790549944392f4d3bc43e1f996d26",
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/registration_storage_real_smoke_2026-10-05/registration_cleanup.json",
+      "verifiedAt": "2026-10-06T04:10:05.821277+00:00",
+      "scope": "Registration scratch and all prefixed sidecars absent after success.",
+      "passed": true,
+      "sha256": "759ef3ce3fedc8b38374610f379a12d8a48ae565346b7c85ab059e5c6db0bb6b",
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/registration_storage_real_smoke_2026-10-05/resource_receipt.json",
+      "verifiedAt": "2026-10-06T04:10:05.821277+00:00",
+      "scope": "Owned-process/source/history/product-row monitoring; bounded scope.",
+      "passed": true,
+      "sha256": "ea9d87235ac221e2a20e0f21999b3152dd0f54a2be016965f6cc647164e6b1c3",
+      "historicalReceiptPreserved": true
+    },
+    {
+      "path": "artifacts/validation/product_execution/run_result_storage_backend_resumed_2026-10-06.json",
+      "verifiedAt": "2026-10-06T05:38:19.676361+00:00",
+      "scope": "Backend regression receipt;1272passed; exact sources.",
+      "passed": true,
+      "sha256": "abe2e1ce29a78b52ce35221641a97f41fd23994ebde39dbf7ba4e906838369a7"
+    },
+    {
+      "path": "artifacts/validation/product_execution/result_storage_measurement_2026-10-06/terminal_audit_correction.json",
+      "verifiedAt": "2026-10-06T05:38:19.676531+00:00",
+      "scope": "Corrected synthetic result storage/export terminal audit; initial timestamp-assertion error preserved. No inference/accuracy/fullmatch qualification.",
+      "passed": true,
+      "sha256": "06b96f63cda5e7d813848aba974c46f8aa946b663164b4e24ddf2b4adc05a142"
+    },
+    {
+      "path": "artifacts/validation/product_execution/result_storage_worker_smoke_2026-10-06/resource_receipt.json",
+      "verifiedAt": "2026-10-06T05:38:19.676668+00:00",
+      "scope": "Actual30-frame isolated worker compatibility; no long-video/accuracy qualification.",
+      "passed": true,
+      "sha256": "fa278cc55ed0199cf97dafd82a01a98d093c2c69ee1dcfbeee5c5138e0fd77b2"
+    }
+  ]
+}

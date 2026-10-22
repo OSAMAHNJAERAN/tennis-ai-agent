@@ -1,0 +1,83 @@
+{
+  "status": "FOCUSED_SOFTWARE_CHECKS_PASS_NOT_MATCH_QUALIFICATION",
+  "created_utc": "2026-10-14T14:15:33.6244344Z",
+  "checks": [
+    {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-14\\event_ranking_v1_junit.xml",
+      "sha256": "d28553ca6fdda0a4521cca10ec8cbc0c3f2020898a0043066367c81da37ef3cc",
+      "tests": 67,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 16.945
+    },
+    {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-14\\event_ranking_v2_junit.xml",
+      "sha256": "b35061820b8eec82f425baca39246666b6bcaeb908f8ed61619d9c169e0e18ce",
+      "tests": 195,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 5.702
+    },
+    {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-14\\event_ranking_commit_junit.xml",
+      "sha256": "e0cc15985daf8aed57575f6e0f54eae98307d7eb83ab3a7a9277c65093a60db6",
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.378
+    }
+  ],
+  "source_bindings_after_checks": [
+    {
+      "path": "src/events/event_detector.py",
+      "sha256": "2dc64c2484e17476fb90f3e97e49a8bcf680bb46623eacdac52dbab7ce45c0cb"
+    },
+    {
+      "path": "src/utils/mapped_sequence_view.py",
+      "sha256": "5a407654eb4eb21db28effbd5d72c56c07c5c41401f861d492a3bd5e13a112d3"
+    },
+    {
+      "path": "src/utils/temporal_ball_point_sequence.py",
+      "sha256": "a2525411d165e1cbea51938ecc31787b62d67452f05f1e3a45b7c75901132342"
+    },
+    {
+      "path": "src/pipeline/phase6_pipeline.py",
+      "sha256": "e3b4d8d7232b232842ba9ccbd35fd564d9511ad647401489edcfbb4dbe7727cd"
+    },
+    {
+      "path": "tests/test_event_feature_storage.py",
+      "sha256": "513674b8398585cc88e78837dfc8831da4b68fcc7915973ca87c1d0f732e827c"
+    },
+    {
+      "path": "tests/test_event_feature_ranking.py",
+      "sha256": "47fa3c5c98012198a64570a2eef060b780bf6177469059cec1f7a3416f9426d0"
+    },
+    {
+      "path": "tests/test_event_departure_lookup.py",
+      "sha256": "b5fcdc3b2768cec28cbb4ab3ef875a7aa7511eed7daf9e7d8e9cdaf038c93db8"
+    },
+    {
+      "path": "tests/test_event_lazy_views.py",
+      "sha256": "58cd995b2506563e5684c309eeae69dd7cd96da8bd1f42bd72b255031061cade"
+    }
+  ],
+  "source_start_snapshot_captured": false,
+  "behavior": "Candidate per-frame features, rank order and accepted timestamps are on bounded owned SQLite; outward indexed ranges preserve exact subtraction suppression, stable ordinal ties and legacy defaults.",
+  "sqlite_cache_kib": 2048,
+  "max_transaction_size": 256,
+  "uses_mmap": false,
+  "checkpoint_resume_supported": false,
+  "final_candidate_and_event_lists_still_grow_with_event_count": true,
+  "native_kalman_timing_repaired": false,
+  "actual_match_capacity_qualified": false,
+  "model_inference_performed": false,
+  "qualification_evidence": false,
+  "limitations": [
+    "Focused test sets overlap and their counts are not additive",
+    "No full backend or video inference run for this source revision",
+    "Optional activity/detour buffers and final event/report lists remain duration-dependent"
+  ]
+}

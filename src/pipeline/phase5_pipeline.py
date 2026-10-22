@@ -340,7 +340,7 @@ class Phase5Pipeline:
             # 5. Line Call Banner (Active for 18 frames after bounce)
             for b_frame, evidence in line_call_map.items():
                 if 0 <= (i - b_frame) <= 18:
-                    call_text = f"LINE CALL: [{evidence.decision.value}] ({evidence.nearest_line.value} {evidence.ball_edge_margin_cm:+.1f}cm, Unc: +- {evidence.position_uncertainty_cm:.1f}cm)"
+                    call_text = evidence.overlay_text()
                     bg_color = (0, 180, 0) if "IN" in evidence.decision.value else ((0, 0, 200) if "OUT" in evidence.decision.value or "FAULT" in evidence.decision.value else (0, 165, 255))
 
                     cv2.rectangle(ann_frame, (40, 110), (1200, 155), bg_color, -1)

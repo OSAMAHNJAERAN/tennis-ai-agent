@@ -1,0 +1,39 @@
+{
+  "probe_executed": true,
+  "scope": "ACTUAL_NATIVE_SYNTHETIC_PREPARATION_AND_FILESYSTEM_CAS; DATABASE_MUTATED_AFTER_MANIFEST_HASH_BEFORE_FINAL_CHECK",
+  "publication_token": "298206947412a688af7ee908ea5b7b60e314d61095da35762e65eeb2f4a1bc0b",
+  "publication_error": null,
+  "current_pointer_changed": true,
+  "current_result_read_error": "ValueError: Analysis generation: generation database is missing or its size differs",
+  "mutations": [
+    "analysis\\.result\\6644a7c02ddc4687853f628395a51b8a.sqlite3"
+  ],
+  "issue_reproduced": true,
+  "source_before": {
+    "src/scoring/corrected_publication.py": "146c782fbed3dc8d116b792236e8a2914f6f78d5a71aa413ee467349932d4367",
+    "src/api/correction_worker.py": "a83f13f531494f2f0fd9bd55986ad2916574a59c696d04b3f08a2f352f74ed95",
+    "src/api/corrections.py": "a95feea1c83871dbfb9fa3c35bbe8d245af5a4b06ba3cdd4e3d67b8235e50184",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "tests/test_corrected_publication.py": "5c3475b1043bb7e208159eac432ac07805716581e76fd9a47928de3330543d73",
+    "tests/test_corrected_preparation.py": "44e5f526475e2036c710bd2cb94a83bd5d1500beba61357da59db8aa5d92fccf",
+    "src/scoring/corrected_preparation.py": "3acaebe4141b7e9eb17f43e131beef34293eda60b911fa440ce080b1380cf5a3"
+  },
+  "source_after": {
+    "src/scoring/corrected_publication.py": "146c782fbed3dc8d116b792236e8a2914f6f78d5a71aa413ee467349932d4367",
+    "src/api/correction_worker.py": "a83f13f531494f2f0fd9bd55986ad2916574a59c696d04b3f08a2f352f74ed95",
+    "src/api/corrections.py": "a95feea1c83871dbfb9fa3c35bbe8d245af5a4b06ba3cdd4e3d67b8235e50184",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "tests/test_corrected_publication.py": "5c3475b1043bb7e208159eac432ac07805716581e76fd9a47928de3330543d73",
+    "tests/test_corrected_preparation.py": "44e5f526475e2036c710bd2cb94a83bd5d1500beba61357da59db8aa5d92fccf",
+    "src/scoring/corrected_preparation.py": "3acaebe4141b7e9eb17f43e131beef34293eda60b911fa440ce080b1380cf5a3"
+  },
+  "source_unchanged": true,
+  "seconds": 9.419417499972042,
+  "forbidden_import_attempts": [],
+  "torch_imported": false,
+  "ultralytics_imported": false
+}

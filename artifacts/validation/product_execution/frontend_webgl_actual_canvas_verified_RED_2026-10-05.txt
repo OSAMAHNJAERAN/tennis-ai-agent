@@ -1,0 +1,397 @@
+
+ RUN  v4.1.11 C:/Semester 9/FYP2/tennis_ai_agent_bundle/frontend
+
+stderr | src/components/spatial/TennisCourt3D.test.tsx
+THREE.WARNING: Multiple instances of Three.js being imported.
+
+stderr | src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > catches actual-Canvas renderer construction before async configure can continue
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+stderr | src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > owns one renderer for the real Canvas across StrictMode reattachment and disposes on detachment
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+stderr | src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > removes the lost-context listener and recovers to 2D without changing the evidence frame
+THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+
+(node:35004) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/components/spatial/TennisCourt3D.test.tsx (5 tests | 4 failed) 201ms
+     × offers 2D recovery without camera controls when the WebGL API is absent 71ms
+     × catches actual-Canvas renderer construction before async configure can continue 34ms
+     × owns one renderer for the real Canvas across StrictMode reattachment and disposes on detachment 38ms
+     × removes the lost-context listener and recovers to 2D without changing the evidence frame 19ms
+     ✓ preserves invalid-court abstention instead of attempting a WebGL scene 37ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > offers 2D recovery without camera controls when the WebGL API is absent
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <div
+  aria-label="Camera angle"
+  class="court-camera-bar"
+  role="group"
+>
+  <button
+    aria-pressed="false"
+    type="button"
+  >
+    Tactical
+  </button>
+  <button
+    aria-pressed="false"
+    type="button"
+  >
+    Broadcast
+  </button>
+  <button
+    aria-pressed="false"
+    type="button"
+  >
+    Top
+  </button>
+  <button
+    aria-pressed="true"
+    type="button"
+  >
+    Cinematic
+  </button>
+</div> instead
+ ❯ src/components/spatial/TennisCourt3D.test.tsx:124:71
+    122|     expect(screen.getByRole('heading', { name: '3D rendering unavailab…
+    123|     expect(THREE.WebGLRenderer).not.toHaveBeenCalled();
+    124|     expect(screen.queryByRole('group', { name: 'Camera angle' })).not.…
+       |                                                                       ^
+    125|     expect(screen.queryByRole('group', { name: '3D camera controls' })…
+    126|     fireEvent.click(screen.getByRole('button', { name: 'Open 2D tactic…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > catches actual-Canvas renderer construction before async configure can continue
+TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "3D rendering unavailable"
+
+Here are the accessible roles:
+
+  group:
+
+  Name "Camera angle":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Camera angle"[39m
+    [33mclass[39m=[32m"court-camera-bar"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "3D camera controls":
+  [36m<div[39m
+    [33maria-label[39m=[32m"3D camera controls"[39m
+    [33mclass[39m=[32m"court-tools"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Tactical":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Broadcast":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Top":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Cinematic":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Zoom in":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Zoom in"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Zoom out":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Zoom out"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Reset camera":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Reset camera"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"court3d-host"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mstyle[39m=[32m"position: relative; width: 100%; height: 100%; overflow: hidden; pointer-events: auto;"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mstyle[39m=[32m"width: 100%; height: 100%;"[39m
+        [36m>[39m
+          [36m<canvas[39m
+            [33mstyle[39m=[32m"display: block;"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m/>[39m
+          [36m</canvas>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Camera angle"[39m
+        [33mclass[39m=[32m"court-camera-bar"[39m
+        [33mrole[39m=[32m"group"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mTactical[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mBroadcast[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mTop[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"true"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mCinematic[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"3D camera controls"[39m
+        [33mclass[39m=[32m"court-tools"[39m
+        [33mrole[39m=[32m"group"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Zoom in"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mfill[39m=[32m"currentColor"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mviewBox[39m=[32m"0 0 256 256"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Zoom out"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mfill[39m=[32m"currentColor"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mviewBox[39m=[32m"0 0 256 256"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Reset camera"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mfill[39m=[32m"currentColor"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mviewBox[39m=[32m"0 0 256 256"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M224,128a96,96,0,0,1-94.71,96H128A95.38,95.38,0,0,1,62.1,197.8a8,8,0,0,1,11-11.63A80,80,0,1,0,71.43,71.39a3.07,3.07,0,0,1-.26.25L44.59,96H72a8,8,0,0,1,0,16H24a8,8,0,0,1-8-8V56a8,8,0,0,1,16,0V85.8L60.25,60A96,96,0,0,1,224,128Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"court-interaction-hint"[39m
+      [36m>[39m
+        [0mDrag to orbit [0m
+        [36m<span>[39m
+          [0m·[0m
+        [36m</span>[39m
+        [0m Scroll to zoom[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"court-axis"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mZ[0m
+        [36m</span>[39m
+        [36m<i />[39m
+        [36m<b>[39m
+          [0mX[0m
+        [36m</b>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/spatial/TennisCourt3D.test.tsx:142:21
+    140|
+    141|       expect(THREE.WebGLRenderer).toHaveBeenCalled();
+    142|       expect(screen.getByRole('heading', { name: '3D rendering unavail…
+       |                     ^
+    143|       expect(screen.queryByRole('group', { name: 'Camera angle' })).no…
+    144|       expect(document.querySelector('.court3d-host canvas')).not.toBeI…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > owns one renderer for the real Canvas across StrictMode reattachment and disposes on detachment
+AssertionError: expected "vi.fn()" to be called once, but got 0 times
+ ❯ src/components/spatial/TennisCourt3D.test.tsx:176:30
+    174|     await settle();
+    175|     expect(canvas.isConnected).toBe(false);
+    176|     expect(renderer.dispose).toHaveBeenCalledOnce();
+       |                              ^
+    177|     await act(async () => { await vi.advanceTimersByTimeAsync(510); });
+    178|     expect(renderer.renderLists.dispose).toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/components/spatial/TennisCourt3D.test.tsx > WebGL court failure and renderer ownership > removes the lost-context listener and recovers to 2D without changing the evidence frame
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <div
+  aria-label="3D camera controls"
+  class="court-tools"
+  role="group"
+>
+  <button
+    aria-label="Zoom in"
+    type="button"
+  >
+    <svg
+      fill="currentColor"
+      height="17"
+      viewBox="0 0 256 256"
+      width="17"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"
+      />
+    </svg>
+  </button>
+  <button
+    aria-label="Zoom out"
+    type="button"
+  >
+    <svg
+      fill="currentColor"
+      height="17"
+      viewBox="0 0 256 256"
+      width="17"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z"
+      />
+    </svg>
+  </button>
+  <button
+    aria-label="Reset camera"
+    type="button"
+  >
+    <svg
+      fill="currentColor"
+      height="17"
+      viewBox="0 0 256 256"
+      width="17"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M224,128a96,96,0,0,1-94.71,96H128A95.38,95.38,0,0,1,62.1,197.8a8,8,0,0,1,11-11.63A80,80,0,1,0,71.43,71.39a3.07,3.07,0,0,1-.26.25L44.59,96H72a8,8,0,0,1,0,16H24a8,8,0,0,1-8-8V56a8,8,0,0,1,16,0V85.8L60.25,60A96,96,0,0,1,224,128Z"
+      />
+    </svg>
+  </button>
+</div> instead
+ ❯ src/components/spatial/TennisCourt3D.test.tsx:204:77
+    202|     expect(lost.defaultPrevented).toBe(true);
+    203|     expect(screen.getByRole('heading', { name: '3D rendering unavailab…
+    204|     expect(screen.queryByRole('group', { name: '3D camera controls' })…
+       |                                                                             ^
+    205|     expect(removed).toHaveBeenCalledWith('webglcontextlost', listener);
+    206|     fireEvent.click(screen.getByRole('button', { name: 'Open 2D tactic…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Test GPU context creation refused
+ ❯ new <anonymous> src/components/spatial/TennisCourt3D.test.tsx:39:37
+     37|     ...actual,
+     38|     WebGLRenderer: vi.fn(function (options: THREE.WebGLRendererParamet…
+     39|       if (rendererState.fail) throw new Error('Test GPU context creati…
+       |                                     ^
+     40|       const renderer: FakeRenderer = {
+     41|         domElement: options.canvas as HTMLCanvasElement,
+ ❯ new Mock ../../../../Semester%209/FYP2/tennis_ai_agent_bundle/frontend/node_modules/.pnpm/@vitest+spy@4.1.11/node_modules/@vitest/spy/dist/index.js:309:27
+ ❯ new <anonymous> src/components/spatial/TennisCourt3D.test.tsx:98:14
+ ❯ new WebGLRenderer ../../../../Semester%209/FYP2/tennis_ai_agent_bundle/frontend/node_modules/.pnpm/@vitest+spy@4.1.11/node_modules/@vitest/spy/dist/index.js:309:27
+ ❯ Object.configure node_modules/.pnpm/@react-three+fiber@9.7.0_@t_94c3af1eeaf2a63c207615e3a458be5d/node_modules/@react-three/fiber/dist/events-b1bdeb1a.cjs.dev.js:15761:16
+ ❯ run node_modules/.pnpm/@react-three+fiber@9.7.0_@t_94c3af1eeaf2a63c207615e3a458be5d/node_modules/@react-three/fiber/dist/react-three-fiber.cjs.dev.js:94:28
+ ❯ node_modules/.pnpm/@react-three+fiber@9.7.0_@t_94c3af1eeaf2a63c207615e3a458be5d/node_modules/@react-three/fiber/dist/react-three-fiber.cjs.dev.js:141:7
+ ❯ Object.react_stack_bottom_frame node_modules/.pnpm/react-dom@19.2.8_react@19.2.8/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20
+ ❯ runWithFiberInDEV node_modules/.pnpm/react-dom@19.2.8_react@19.2.8/node_modules/react-dom/cjs/react-dom-client.development.js:874:13
+ ❯ commitHookEffectListMount node_modules/.pnpm/react-dom@19.2.8_react@19.2.8/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29
+
+This error originated in "src/components/spatial/TennisCourt3D.test.tsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "catches actual-Canvas renderer construction before async configure can continue". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+     Errors  1 error
+   Start at  09:57:06
+   Duration  3.51s (transform 172ms, setup 130ms, import 2.53s, tests 201ms, environment 516ms)
+
+JSON report written to C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/frontend_webgl_actual_canvas_verified_RED_2026-10-05.json

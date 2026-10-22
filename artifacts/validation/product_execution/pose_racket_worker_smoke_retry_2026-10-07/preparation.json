@@ -1,0 +1,95 @@
+{
+  "preparedAt": "2026-10-07T04:49:44.674011+00:00",
+  "status": "PREPARED_NOT_EXECUTED",
+  "scope": "One actual 30-frame, native-60-FPS worker/model and saved-result compatibility smoke. No independent labels, accuracy, full-match capacity or deployment qualification.",
+  "script": "scripts/audit/verify_pose_racket_storage_worker_smoke_v4.py",
+  "scriptSha256": "6cad723439512a9feb309a42bf74d34f361e8d1749f3d7531df3fa0a9aab2015",
+  "originReceiptSha256": "6066fc8c9b0415829a88ad55fe5b58a225cf8e5bddc261de252dc185ef2dad13",
+  "inferenceRun": false,
+  "workerInvoked": false,
+  "rootReviewRequiredBeforeRun": true,
+  "launchCommand": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe scripts\\audit\\verify_pose_racket_storage_worker_smoke_v4.py --run",
+  "previousPoseRacketAttemptBindings": {
+    "scripts/audit/verify_pose_racket_storage_worker_smoke_v2.py": {
+      "sha256": "802963484bd482415a603f9ff1257a72412be137368cde6627ac05ad9185a28d",
+      "bytes": 53977
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/launch_marker.json": {
+      "sha256": "c0c938e2ec93aa9a61cf43ef27866026c143f98fa6c19b504a31cf9bb6c830b3",
+      "bytes": 126
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/origin.json": {
+      "sha256": "2d16fbc1cfdd56527f89cea8b928b2f7dfb18b65e53e2016b87c16e099f73f21",
+      "bytes": 4702
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/preparation.json": {
+      "sha256": "98c2fa13300f3398755ba562c805d87ace64214790aba0e69dffe2a70e73c9fc",
+      "bytes": 2179
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/protocol.json": {
+      "sha256": "2843905e61877239a766d5d711d1ce9ed155816824f75690f3f9be6023cdc520",
+      "bytes": 7293
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/resource_receipt.json": {
+      "sha256": "521e9c8335a93a69a09246d3ad98adce564057066a6144c0a8a75a3f333af0c0",
+      "bytes": 1190
+    }
+  },
+  "previousPoseRacketAttemptStatus": "NOT_STARTED",
+  "previousPoseRacketAttemptInferenceChildStarted": false,
+  "previousPoseRacketAttemptSamples": 0,
+  "previousPoseRacketAttemptAvailableRamBytes": 1514926080,
+  "previousV3AttemptBindings": {
+    "scripts/audit/verify_pose_racket_storage_worker_smoke_v3.py": {
+      "sha256": "967ddbd5ed2c28d4b64edb13508a6f5b7a81726b70f7d75bebcef398a3a35e11",
+      "bytes": 57748
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/launch_marker.json": {
+      "sha256": "5cbc93052dc3a0eb36212ab7f85b39a350e1632d2e8059ca3192cd2247b183bc",
+      "bytes": 126
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/origin.json": {
+      "sha256": "476afa82337f98b6ae52f320c2c261e18c1014312da6a338d160c9a9b06d433a",
+      "bytes": 6253
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/preparation.json": {
+      "sha256": "cc5961474806a2546aac0b1b8d53e17593a4af10fc6097226a1c389eef198845",
+      "bytes": 3730
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/protocol.json": {
+      "sha256": "ac51b264637e3c938be500f669f288969c408be4f4976c7e7273b869dde03339",
+      "bytes": 8892
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/resource_receipt.json": {
+      "sha256": "aaeb8bd61114f9d12240ec228f825e7298314bdf7a4bf062d6bf210a9a53abb6",
+      "bytes": 1190
+    },
+    "artifacts/validation/product_execution/pose_racket_worker_smoke_2026-10-07/terminal_review.json": {
+      "sha256": "3114660b0445ade1f7e440b018c31a06d025f743003bcf924fa83d288e61c67c",
+      "bytes": 4142
+    }
+  },
+  "previousV3AttemptStatus": "NOT_STARTED",
+  "previousV3AttemptInferenceChildStarted": false,
+  "previousV3AttemptSamples": 0,
+  "previousV3AttemptAvailableRamBytes": 2435448832,
+  "previousV3AttemptTerminalReviewSha256": "3114660b0445ade1f7e440b018c31a06d025f743003bcf924fa83d288e61c67c",
+  "frames": 30,
+  "nativeFps": 60,
+  "inputSha256": "12d8eaf3f668738d3082849db92f731a3d1c3bb8124c16ab8e11e80c0c182552",
+  "preflightAvailableRamBytes": 2500000000,
+  "maximumSampledOwnedTreeRssBytes": 3000000000,
+  "minimumAvailableRamBytes": 400000000,
+  "lowRamConsecutiveSamplesToStop": 5,
+  "sampleIntervalSeconds": 0.25,
+  "maximumChildWallSeconds": 300,
+  "productionWrites": false,
+  "isolatedValidationJobPublication": true,
+  "comparison": "Frozen results.py and reporting.py use byte-identical new raw artifacts and the original claimed job; no volatile values removed; exact strict JSON/CSV/HTML bytes before presentation.",
+  "normalizationDimensions": "Record actual worker source/annotation dimensions, scale and padding. The bound worker currently normalizes fps, PTS and padding without a resize filter.",
+  "network": "YOLO_OFFLINE=true, YOLO_AUTOINSTALL=false; socket connect/connect_ex fail and are recorded.",
+  "modelEvidence": "Passive return observer records real Phase6Pipeline construction and parameter/device counts, then disables profiling before inference. Actual completed worker and raw artifacts establish run completion. No model or worker functions replaced.",
+  "retention": "One exclusive launch marker. Retain every partial artifact, log and receipt on failure; no retry or unrelated cleanup.",
+  "qualificationEvidence": false,
+  "productionQualified": false
+}

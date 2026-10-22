@@ -1,0 +1,117 @@
+{
+  "status": "PASS_CURRENT_PRIVATE101_PURE_PREFLIGHT_PENDING_ROOT_CPU_REVIEW",
+  "started_utc": "2026-10-16T14:10:59.543761+00:00",
+  "ended_utc": "2026-10-16T14:11:06.837070+00:00",
+  "plan": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\ball101_trainer_preflight_v2\\plan.json",
+    "sha256": "3fa459b60ae14b616c67f4664e3ee8488c445f7b9c6c2be4a90c892edb3b9cd2"
+  },
+  "plan_canonical_sha256": "25993d6193aac6e12c8ab9c59501e086d42ce5f1debee5b387cbcebf4a8147ca",
+  "fixed_native_protocol": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\ball101_trainer_preflight_v2\\native20_protocol.json",
+    "sha256": "e0b53c112444270db6d2e020c108accde67aaaa4da5209b22bf9a17663be84fd"
+  },
+  "protocol_canonical_sha256": "fcf4ee5a150096fc61dcff392ba07dc571c652816b25bd439fdca2c9aa4a0b12",
+  "dataset_counts": {
+    "images": 101,
+    "positive_boxes": 97,
+    "negative_tiles": 4,
+    "train": 80,
+    "val": 21,
+    "test": 0,
+    "inherited_images": 79,
+    "new_positive_images": 22
+  },
+  "preview_selection_metadata": [
+    {
+      "sample_id": "author_France_Review_Red_Court_1_f000139",
+      "split": "train",
+      "inherited_from_old79": false,
+      "negative_visible_absence_only": false,
+      "box_xyxy_crop_px": [
+        318.9996800000001,
+        164.99988000000002,
+        322.0,
+        168.00012
+      ],
+      "image": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\ball\\images\\train\\author_France_Review_Red_Court_1_f000139.png",
+        "sha256": "666430b8710e5772a33ea429af67428effb5c6feb43dacf2411c8afaffaf83f4"
+      },
+      "label": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\ball\\labels\\train\\author_France_Review_Red_Court_1_f000139.txt",
+        "sha256": "f21b9d27c620bf925044ca256a07e1a33713903fa2ae2b779e1c6d9bcbb86b0e"
+      }
+    },
+    {
+      "sample_id": "author_America_Best_10_1_f000784",
+      "split": "train",
+      "inherited_from_old79": false,
+      "negative_visible_absence_only": false,
+      "box_xyxy_crop_px": [
+        312,
+        308,
+        328,
+        332
+      ],
+      "image": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\ball\\images\\train\\author_America_Best_10_1_f000784.png",
+        "sha256": "0be1cac265a707561e6680b91784e2855bbe333c087c13d612f87e9317f52866"
+      },
+      "label": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\ball\\labels\\train\\author_America_Best_10_1_f000784.txt",
+        "sha256": "0729069aba48e3afbd0429573eb65a643d450a13cb20c4a3f85610d06a108cff"
+      }
+    },
+    {
+      "sample_id": "tile_review_0056",
+      "split": "train",
+      "inherited_from_old79": true,
+      "negative_visible_absence_only": true,
+      "box_xyxy_crop_px": null,
+      "image": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\ball\\images\\train\\tile_review_0056.png",
+        "sha256": "91768d33df8cd176a77c9bc972a544828a277e26b428fcc79c78f979cb5b7972"
+      },
+      "label": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\ball_author_repair_development_v2\\ball\\labels\\train\\tile_review_0056.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "parameter_bindings_before": {
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_author_ball_repair.py": "a046c92639378c39cb2c7ca2ad86b2a18f5d759c8080feef2eb656389d7b5c6f",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_author_ball_repair.py": "60564d14ad16e49090fefc3fa741da4a71ea7322d1c64b6162fbf49e45f04917",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\export_yolo26_author_ball_repair_v2.py": "b4067e9cd0068628c5c0cf464c86ac78ab17f61cb6e0569690f9bcf198120ac0",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_reviewed_ball.py": "76896dab6d6287a7356fa9edfd74cd22073e7ed5604fec4eec35abed2e891945",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_tennis.py": "cd05fe4983bb9edac77d76ebc32f1b59a1aa0697392abb15ff096608a7d6d6b1",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\export_yolo26_reviewed_ball_wave.py": "39d7148702004dd6a5c27b544725ba3d07fbc80f2d9c612274e52ecdb1d9aa00",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\prepare_yolo26_reviewed_ball_wave.py": "d9d7a94acdb457fcfd43d18d72e839d17f95df6d2cae19adab1f1779786a16ff",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\prepare_yolo26_ball_review_wave.py": "64d45730ed36ff14357ab31ff5c21d80b942eb708c471ec7d75797a508d93cc7",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\acquire_yolo26_court_source_wave.py": "ac856236aaa6c81ab4f70fa479773da1a43c4759e760970db1fd3bf3766a1771",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\diagnose_yolo26_native_tiles.py": "b419c059a54db89b5cae744cc5a23f7971e95850355cc653dcf85b57888712cd",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_court_input_transform.py": "75790efd6ebe7ec878188352ec9060c31a87dfa1c10ac4b6c7ce9ae9ab694b66",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_reviewed_ball.py": "f8cedb210b160d6e21c4d028b045712ee4bbd5ad41b0de2e08275b6310446283"
+  },
+  "parameter_bindings_after": {
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_author_ball_repair.py": "a046c92639378c39cb2c7ca2ad86b2a18f5d759c8080feef2eb656389d7b5c6f",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_author_ball_repair.py": "60564d14ad16e49090fefc3fa741da4a71ea7322d1c64b6162fbf49e45f04917",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\export_yolo26_author_ball_repair_v2.py": "b4067e9cd0068628c5c0cf464c86ac78ab17f61cb6e0569690f9bcf198120ac0",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_reviewed_ball.py": "76896dab6d6287a7356fa9edfd74cd22073e7ed5604fec4eec35abed2e891945",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_tennis.py": "cd05fe4983bb9edac77d76ebc32f1b59a1aa0697392abb15ff096608a7d6d6b1",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\export_yolo26_reviewed_ball_wave.py": "39d7148702004dd6a5c27b544725ba3d07fbc80f2d9c612274e52ecdb1d9aa00",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\prepare_yolo26_reviewed_ball_wave.py": "d9d7a94acdb457fcfd43d18d72e839d17f95df6d2cae19adab1f1779786a16ff",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\prepare_yolo26_ball_review_wave.py": "64d45730ed36ff14357ab31ff5c21d80b942eb708c471ec7d75797a508d93cc7",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\acquire_yolo26_court_source_wave.py": "ac856236aaa6c81ab4f70fa479773da1a43c4759e760970db1fd3bf3766a1771",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\diagnose_yolo26_native_tiles.py": "b419c059a54db89b5cae744cc5a23f7971e95850355cc653dcf85b57888712cd",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_court_input_transform.py": "75790efd6ebe7ec878188352ec9060c31a87dfa1c10ac4b6c7ce9ae9ab694b66",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\evaluate\\diagnose_yolo26_reviewed_ball.py": "f8cedb210b160d6e21c4d028b045712ee4bbd5ad41b0de2e08275b6310446283"
+  },
+  "forbidden_runtime_modules_loaded": [],
+  "actual_cpu_transfer_executed": false,
+  "actual_factory_images_generated": false,
+  "actual_diagnostic_inference_executed": false,
+  "actual_cuda_or_training_executed": false,
+  "qualification_evidence": false,
+  "final_test_used": false
+}

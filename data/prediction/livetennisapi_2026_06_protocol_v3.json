@@ -1,0 +1,143 @@
+{
+  "schema_version": "tennis.publisher-snapshot-protocol.v1",
+  "protocol_id": "livetennisapi-june2026-direct-snapshot-v3",
+  "frozen_at": "2026-10-09T11:16:09.934679+00:00",
+  "freeze_stage": "after_field_and_official_rules_inventory_before_v3_import_or_any_dataset_forecast_metrics",
+  "parent_protocol_sha256": "10c3cf39bbc823607fb8b4718accbe9bcd77edf477ba80a85cf5520b2245459f",
+  "publisher_record": "https://zenodo.org/records/22048731",
+  "publisher_version": "1.0.0",
+  "usage": "private_noncommercial_academic_research",
+  "raw_redistribution": false,
+  "scope": "direct observed nonterminal BO3 singles score/server snapshots from a fixed known ATP/WTA regular grass-event family; engineering targets from same publisher rules-complete terminal scores",
+  "human_independent_review": false,
+  "publication_qualification": false,
+  "camera_qualification_evidence": false,
+  "splits": {
+    "development": {
+      "scheduled_start_utc_inclusive": "2026-06-01T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-06-15T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    },
+    "calibration": {
+      "scheduled_start_utc_inclusive": "2026-06-15T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-06-22T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    },
+    "test": {
+      "scheduled_start_utc_inclusive": "2026-06-22T00:00:00Z",
+      "scheduled_end_utc_exclusive": "2026-07-01T00:00:00Z",
+      "maximum_evaluation_matches": 60
+    }
+  },
+  "grouping": "publisher match_id appears in one scheduled UTC chronological split; all captures must stay in that split; no random row or point split",
+  "rules_family": {
+    "ATP": [
+      "Stuttgart",
+      "Hertogenbosch",
+      "Halle",
+      "London",
+      "Mallorca",
+      "Eastbourne"
+    ],
+    "WTA": [
+      "London",
+      "Hertogenbosch",
+      "Berlin",
+      "Nottingham",
+      "Bad Homburg",
+      "Eastbourne"
+    ],
+    "selector": "Exact tournament name in the declared tour allowlist and matching ATP/WTA round prefix, explicit best_of=BO3, distinct joined player IDs with nonempty unpaired player names. No numeric tier-key mapping or terminal-score-derived formats.",
+    "format": "standard advantage games, six-game sets, seven-point win-by-two set tiebreaks in every set including third",
+    "sources": [
+      {
+        "url": "https://www.itftennis.com/media/15604/atp-2026-rulebook.pdf",
+        "document": "2026 ATP Rulebook, I.1.02.B singles match format",
+        "published_before_observed_matches": true,
+        "summary": "ATP Tour singles use three standard tiebreak sets."
+      },
+      {
+        "url": "https://photoresources.wtatennis.com/wta/document/2025/12/24/b300b2a4-8d71-4346-969f-1f6b9399661f/2026-WTA-Rulebook-12-22-2025-.pdf",
+        "document": "2026 WTA Rulebook (22 December 2025), XVIII.39.a,d",
+        "published_before_observed_matches": true,
+        "summary": "Regular WTA singles, main draw and qualifying, use three standard tiebreak sets and ITF rules."
+      },
+      {
+        "url": "https://www.atptour.com/en/news/what-is-the-2026-atp-tour-calendar/",
+        "document": "official 2026 ATP calendar",
+        "summary": "The six declared ATP cities are regular June grass events."
+      },
+      {
+        "url": "https://wtafiles.wtatennis.com/pdf/calendar/calendar.pdf",
+        "document": "official 2026 WTA calendar, retrieved 2026-10-09 (mutable calendar now dated October 2)",
+        "summary": "The six declared WTA cities are regular June grass events; this identifies families only and is not a timestamped match-specific format declaration."
+      },
+      {
+        "url": "https://www.itftennis.com/media/15546/2026-wtt-regulations.pdf",
+        "document": "2026 ITF WTT regulations",
+        "summary": "ITF qualifying and exceptional formats vary; all ITF/unknown families excluded."
+      }
+    ],
+    "limitation": "Publisher metadata is a static released match index, not archived pre-match declaration; ordinary official format is attached from event identity without using outcomes. Match-specific alternative-format notices are absent; contradictory or unknown rules are excluded, and no independent rules audit is claimed."
+  },
+  "eligibility": [
+    "Complete publisher match index with empty retirement/walkover event_status; BO5, unknown formats, doubles including slash-paired player names, missing players and unknown rules family excluded.",
+    "All timestamps valid, nondecreasing and inside the original scheduled match split; interleaved groups or score-tape size over 8192 rows rejected as import errors.",
+    "End-of-tape sets and completed-game arrays must describe exactly one normal rules-complete BO3 winner, with no earlier set prefix already match-complete. Terminal display cleanup is not a forecast input.",
+    "Nonterminal rows independently map to valid standard MatchState using directly observed sets, completed/current games, point display, tiebreak flag and current server. Unknown server, malformed scores and ambiguous scores excluded at row level.",
+    "Completed set prefixes and in-set games must never reverse/change across valid captures. A conflicting score at the same timestamp rejects the group. Invalid rows cannot repair or authorize a transition.",
+    "Remove globally repeated identical score/server states within each match, retaining first causal occurrence; exclude terminal and postterminal rows.",
+    "Polling gaps accepted as unknown missing points. Never infer a point winner, serve count, historical first server outside a current tiebreak, or any hidden point sequence."
+  ],
+  "bounded_selection": "All 5380 groups audited; among eligible groups in each split select earliest scheduled UTC then lexicographic match_id, cap60 per split; publish per-group exclusions and all coverage counts.",
+  "features": "Only directly observed state and explicit prematch nominal BO3 plus externally documented event-family rules. Completed sets already observed at capture are valid score features. Future/final sets, terminal winner, ratings, future server and match aggregates excluded.",
+  "raw_model": "Existing src/prediction/tennis.py TennisWinProbability fresh explicit Beta(2,2) neutral serve prior, zero observed point updates for every snapshot. Same unmodified rules engine.",
+  "primary_baseline": "Same neutral score-only TennisWinProbability with Beta(2,2) and zero updates; raw model must be identical and its paired improvement exactly zero.",
+  "secondary_baseline": "Unconditional match-winner probability0.5, descriptive only; no quality or release gate.",
+  "calibration": {
+    "method": "logistic(a + b*logit(raw_probability)); a intercept, b slope",
+    "training_split": "development only; equal total weight per match divided among its unique snapshots",
+    "minimum_development_match_groups": 20,
+    "logit_probability_clip": 1e-06,
+    "regularization_lambda": 0.01,
+    "objective": "mean equally match-weighted Bernoulli log loss + lambda/2*(a*a+(b-1)*(b-1))",
+    "initial_parameters": [
+      0.0,
+      1.0
+    ],
+    "parameter_bounds": [
+      [
+        -5.0,
+        5.0
+      ],
+      [
+        0.1,
+        10.0
+      ]
+    ],
+    "optimizer": "scipy.optimize.minimize L-BFGS-B with analytic gradient; maxiter100, ftol1e-12, gtol1e-9; failed/nonfinite fit means no calibrated metrics",
+    "parameter_selection": "No tuning/threshold selection from development metrics, calibration or test. Fit once using declared objective. Calibration split only separately assessed; never refit after its metrics.",
+    "status": "Private publisher engineering calibration only; independent qualification remains absent."
+  },
+  "metric_weighting": "Each match equal total weight; unique snapshots divide that match weight.",
+  "metrics": [
+    "raw/calibrated/neutral-score-only/unconditional Brier score",
+    "log loss clipped at1e-12",
+    "fixed10-bin reliability with match and snapshot counts",
+    "paired deltas against same neutral score-only baseline",
+    "coverage/exclusions for all5380 match groups"
+  ],
+  "uncertainty": {
+    "grouping": "match",
+    "bootstrap_resamples": 1000,
+    "seed": 20261009,
+    "interval_quantiles": [
+      0.025,
+      0.975
+    ],
+    "rule": "No intervals with fewer than2 match groups; bootstrap freezes fitted development parameters and does not account for calibration training uncertainty."
+  },
+  "execution_order": "Freeze protocol; complete coverage import without forecasts; focused synthetic causal tests; development forecasts/fit and immutable fit receipt; calibration/test with unchanged imported selection and stored development parameters. Never edit protocol after metrics.",
+  "release_gate": "No promotion or public accuracy claim. Same-publisher terminal targets, sampling exclusions and static metadata cannot qualify human-reviewed independent outcomes, camera pipelines, calibration or production.",
+  "amendment_reason": "Conditional v2 suffix point transitions rejected polling gaps and did not join doubles names. V3 evaluates directly observed states without invented points, freezes a known event-family rule selector and development-only regularized calibration before metrics."
+}

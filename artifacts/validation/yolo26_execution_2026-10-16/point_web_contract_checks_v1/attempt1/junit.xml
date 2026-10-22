@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="28" time="1.634" timestamp="2026-10-16T22:33:12.196242+08:00" hostname="Osamah"><testcase classname="tests.test_point_timeline_web_contract" name="test_actual_phase6_native_bundle_preserves_nulls_and_denominators[True]" time="0.167"><failure message="ValueError: Invalid native point-timeline evidence">directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund0/analysis')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+&gt;           return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+
+src\api\point_timeline_contract.py:365: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund0/analysis')
+analysis_id = 'fixture'
+
+    def _load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        """Return None for historical output; reject a present inconsistent bundle."""
+        directory = Path(directory)
+        if not (directory / MANIFEST_NAME).exists():
+            _require(not any((directory / name).exists() for name in
+                            ('serve_executions.json', 'shot_play_scope.json')),
+                     'Native point-timeline manifest is missing')
+            return None
+        manifest, manifest_digest = _manifest(directory, analysis_id, authoritative)
+        def read(name):
+            return _object(storage.read_json(directory / name) if storage is not None else
+                           json.loads((directory / name).read_text(encoding='utf-8')))
+        documents = {name: read(name) for name in POINT_TIMELINE_FILES}
+        event_path = directory / 'match_events.json'
+        _require(not event_path.is_symlink() and event_path.is_file())
+        event_digest = artifact_sha256(event_path)
+        events = read('match_events.json')
+        _require(events.get('analysis_id') == analysis_id
+                 and type(events.get('analysis_revision')) is int
+                 and events['analysis_revision'] == manifest['analysis_revision'])
+        for name in POINT_TIMELINE_FILES:
+            expected = '1.0' if name == 'match_state.json' else '2.0'
+            _require(documents[name].get('schema_version') == expected)
+        for name in ('serve_executions.json', 'shot_play_scope.json'):
+            _require(type(documents[name].get('analysis_revision')) is int
+                     and documents[name]['analysis_revision'] == manifest['analysis_revision'])
+        history = documents['score_history.json']
+        _require(type(history.get('revision')) is int and history['revision'] == manifest['scoring_revision'])
+        _array(history.get('score_history'))
+        _array(history.get('corrections'))
+        state = documents['match_state.json']
+        match = documents['match_analytics.json']
+        _require(state.get('match_id') == analysis_id and match.get('match_id') == analysis_id
+                 and state.get('authoritative_events_enabled') is authoritative
+                 and match.get('authoritative_events_enabled') is authoritative
+                 and match.get('independent_accuracy_validated') is False)
+        overview = _object(match.get('overview'))
+        summary = {}
+        for native, field, nullable, numeric in (
+                ('total_points_played', 'totalPointsPlayed', True, False),
+                ('partial_or_review_points', 'partialOrReviewPoints', False, False),
+                ('total_rallies', 'totalRallies', False, False),
+                ('average_rally_length', 'averageRallyLength', True, True),
+                ('longest_rally_length', 'longestRallyLength', True, False),
+                ('effective_play_seconds', 'effectivePlaySeconds', True, True),
+                ('timed_completed_rallies', 'timedCompletedRallies', False, False),
+                ('completed_rallies_duration_denominator', 'completedRalliesDurationDenominator', False, False)):
+            summary[field] = (_number if numeric else _int)(overview.get(native), nullable=nullable)
+        summary.update(scoreSummary=_text(match.get('score_summary'), nullable=True),
+                       matchComplete=match.get('match_complete'), winnerId=_participant(match.get('winner_id'), nullable=True))
+        _require(summary['matchComplete'] is None or type(summary['matchComplete']) is bool)
+        _require(authoritative or all(summary[key] is None for key in
+                 ('totalPointsPlayed', 'averageRallyLength', 'longestRallyLength', 'scoreSummary', 'matchComplete', 'winnerId')))
+        series = storage.series if storage is not None else list
+        points, rallies, attempts = series(), series(), series()
+        serve_summary = _serve_summary(match)
+        serve_observed = {player: dict.fromkeys(('contactExecutions', 'serviceLets', 'firstServesAttempted',
+            'secondServesAttempted', 'firstServesIn', 'firstServesFaulted', 'secondServesIn',
+            'doubleFaults', 'unresolvedExecutions'), 0) for player in (1, 2)}
+        # sqlite's empty filename is a private temporary disk database, deleted on
+        # close. Indexes grow on disk; the page cache is capped independently of time.
+        with closing(sqlite3.connect('')) as index:
+            index.execute('PRAGMA cache_size=-2048')
+            index.execute('PRAGMA temp_store=FILE')
+            index.execute('PRAGMA mmap_size=0')
+            index.execute('CREATE TABLE proof(kind TEXT, uid TEXT PRIMARY KEY, point TEXT, attempt TEXT, rally TEXT, event INTEGER, anchor INTEGER)')
+            index.execute('CREATE UNIQUE INDEX event_ids ON proof(event) WHERE kind="event"')
+            def put(kind, uid, point=None, attempt=None, rally=None, event=None, anchor=None):
+                index.execute('INSERT INTO proof VALUES(?,?,?,?,?,?,?)', (kind, uid, point, attempt, rally, event, anchor))
+            completed_points = completed_rallies = timed = stroke_total = longest = 0
+            duration_total = 0.
+            for raw in _array(documents['point_analytics.json'].get('points')):
+                row = _point(raw)
+                _require(_object(raw.get('pre_point_state')).get('match_id') == analysis_id)
+                put('point', row['id'], anchor=_int(raw.get('first_observed_event_id')))
+                completed_points += row['status'] == 'COMPLETED'
+                points.append(row)
+            for raw in _array(documents['rallies.json'].get('rallies')):
+                row = _rally(raw, manifest, frame_count)
+                put('rally', row['id'], point=row['pointId'])
+                if row['status'] == 'COMPLETED':
+                    completed_rallies += 1
+                    stroke_total += row['totalStrokesIncludingServe']
+                    longest = max(longest, row['totalStrokesIncludingServe'])
+                    if row['durationSeconds'] is not None:
+                        timed += 1
+                        duration_total += row['durationSeconds']
+                rallies.append(row)
+            for raw in _array(documents['serve_executions.json'].get('serve_executions')):
+                row = _attempt(raw, manifest, frame_count)
+                put('attempt', row['id'], point=row['pointId'], rally=row['rallyId'], anchor=row['contactEventId'])
+                observed = serve_observed[row['serverId']]
+                observed['contactExecutions'] += 1
+                if row['replayIndex'] == 0:
+                    observed['firstServesAttempted' if row['officialAttempt'] == 1 else 'secondServesAttempted'] += 1
+                field = {'SERVICE_LET': 'serviceLets', 'FIRST_SERVE_FAULT': 'firstServesFaulted',
+                         'DOUBLE_FAULT': 'doubleFaults'}.get(row['status'])
+                if row['status'] == 'SERVE_IN_PLAY':
+                    field = 'firstServesIn' if row['officialAttempt'] == 1 else 'secondServesIn'
+                observed[field or 'unresolvedExecutions'] += 1
+                attempts.append(row)
+            for raw in _array(documents['scoring_events.json'].get('scoring_events')):
+                row = _object(raw)
+                context = _context(row.get('context'), manifest, frame_count)
+                event = _int(row.get('event_id'))
+                expected = _uid('event', [event, context.get('source_pts'), context.get('source_time_base'),
+                                         context.get('source_frame_index'), context['frame_index']], manifest)
+                _require(row.get('uid') == expected and row.get('frame') == context['frame_index'])
+                _require(_object(row.get('pre_state')).get('match_id') == analysis_id
+                         and _object(row.get('post_state')).get('match_id') == analysis_id)
+                put('event', expected, row.get('point_uid'), row.get('attempt_uid'), row.get('rally_uid'), event)
+            for kind, field in (('point', 'point'), ('attempt', 'attempt'), ('rally', 'rally')):
+                missing = index.execute(f'SELECT 1 FROM proof AS child LEFT JOIN proof AS parent '
+                    f'ON child.{field}=parent.uid AND parent.kind=? WHERE child.{field} IS NOT NULL AND parent.uid IS NULL LIMIT 1', (kind,)).fetchone()
+                _require(missing is None, 'Native point-timeline reference is missing')
+            for kind in ('point', 'attempt'):
+&gt;               cursor = index.execute('SELECT p.uid,e.uid FROM proof AS p LEFT JOIN proof AS e ON e.kind="event" AND e.event=p.anchor WHERE p.kind=?', (kind,))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               sqlite3.OperationalError: ambiguous column name: event
+
+src\api\point_timeline_contract.py:321: OperationalError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund0')
+authority = True
+
+    @pytest.mark.parametrize('authority', [True, False])
+    def test_actual_phase6_native_bundle_preserves_nulls_and_denominators(tmp_path, authority):
+        directory = fixture_bundle(tmp_path / 'analysis', authority)
+&gt;       value = load(directory, authority)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_point_timeline_web_contract.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_point_timeline_web_contract.py:57: in load
+    return contract.load_point_analysis(directory, 'fixture', frame_count=16, authoritative=authority, storage=storage)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund0/analysis')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+            return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+        except (TypeError, KeyError, OverflowError, ZeroDivisionError, sqlite3.Error) as error:
+&gt;           raise ValueError('Invalid native point-timeline evidence') from error
+E           ValueError: Invalid native point-timeline evidence
+
+src\api\point_timeline_contract.py:368: ValueError</failure></testcase><testcase classname="tests.test_point_timeline_web_contract" name="test_actual_phase6_native_bundle_preserves_nulls_and_denominators[False]" time="0.137"><failure message="ValueError: Invalid native point-timeline evidence">directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund1/analysis')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+&gt;           return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+
+src\api\point_timeline_contract.py:365: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund1/analysis')
+analysis_id = 'fixture'
+
+    def _load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        """Return None for historical output; reject a present inconsistent bundle."""
+        directory = Path(directory)
+        if not (directory / MANIFEST_NAME).exists():
+            _require(not any((directory / name).exists() for name in
+                            ('serve_executions.json', 'shot_play_scope.json')),
+                     'Native point-timeline manifest is missing')
+            return None
+        manifest, manifest_digest = _manifest(directory, analysis_id, authoritative)
+        def read(name):
+            return _object(storage.read_json(directory / name) if storage is not None else
+                           json.loads((directory / name).read_text(encoding='utf-8')))
+        documents = {name: read(name) for name in POINT_TIMELINE_FILES}
+        event_path = directory / 'match_events.json'
+        _require(not event_path.is_symlink() and event_path.is_file())
+        event_digest = artifact_sha256(event_path)
+        events = read('match_events.json')
+        _require(events.get('analysis_id') == analysis_id
+                 and type(events.get('analysis_revision')) is int
+                 and events['analysis_revision'] == manifest['analysis_revision'])
+        for name in POINT_TIMELINE_FILES:
+            expected = '1.0' if name == 'match_state.json' else '2.0'
+            _require(documents[name].get('schema_version') == expected)
+        for name in ('serve_executions.json', 'shot_play_scope.json'):
+            _require(type(documents[name].get('analysis_revision')) is int
+                     and documents[name]['analysis_revision'] == manifest['analysis_revision'])
+        history = documents['score_history.json']
+        _require(type(history.get('revision')) is int and history['revision'] == manifest['scoring_revision'])
+        _array(history.get('score_history'))
+        _array(history.get('corrections'))
+        state = documents['match_state.json']
+        match = documents['match_analytics.json']
+        _require(state.get('match_id') == analysis_id and match.get('match_id') == analysis_id
+                 and state.get('authoritative_events_enabled') is authoritative
+                 and match.get('authoritative_events_enabled') is authoritative
+                 and match.get('independent_accuracy_validated') is False)
+        overview = _object(match.get('overview'))
+        summary = {}
+        for native, field, nullable, numeric in (
+                ('total_points_played', 'totalPointsPlayed', True, False),
+                ('partial_or_review_points', 'partialOrReviewPoints', False, False),
+                ('total_rallies', 'totalRallies', False, False),
+                ('average_rally_length', 'averageRallyLength', True, True),
+                ('longest_rally_length', 'longestRallyLength', True, False),
+                ('effective_play_seconds', 'effectivePlaySeconds', True, True),
+                ('timed_completed_rallies', 'timedCompletedRallies', False, False),
+                ('completed_rallies_duration_denominator', 'completedRalliesDurationDenominator', False, False)):
+            summary[field] = (_number if numeric else _int)(overview.get(native), nullable=nullable)
+        summary.update(scoreSummary=_text(match.get('score_summary'), nullable=True),
+                       matchComplete=match.get('match_complete'), winnerId=_participant(match.get('winner_id'), nullable=True))
+        _require(summary['matchComplete'] is None or type(summary['matchComplete']) is bool)
+        _require(authoritative or all(summary[key] is None for key in
+                 ('totalPointsPlayed', 'averageRallyLength', 'longestRallyLength', 'scoreSummary', 'matchComplete', 'winnerId')))
+        series = storage.series if storage is not None else list
+        points, rallies, attempts = series(), series(), series()
+        serve_summary = _serve_summary(match)
+        serve_observed = {player: dict.fromkeys(('contactExecutions', 'serviceLets', 'firstServesAttempted',
+            'secondServesAttempted', 'firstServesIn', 'firstServesFaulted', 'secondServesIn',
+            'doubleFaults', 'unresolvedExecutions'), 0) for player in (1, 2)}
+        # sqlite's empty filename is a private temporary disk database, deleted on
+        # close. Indexes grow on disk; the page cache is capped independently of time.
+        with closing(sqlite3.connect('')) as index:
+            index.execute('PRAGMA cache_size=-2048')
+            index.execute('PRAGMA temp_store=FILE')
+            index.execute('PRAGMA mmap_size=0')
+            index.execute('CREATE TABLE proof(kind TEXT, uid TEXT PRIMARY KEY, point TEXT, attempt TEXT, rally TEXT, event INTEGER, anchor INTEGER)')
+            index.execute('CREATE UNIQUE INDEX event_ids ON proof(event) WHERE kind="event"')
+            def put(kind, uid, point=None, attempt=None, rally=None, event=None, anchor=None):
+                index.execute('INSERT INTO proof VALUES(?,?,?,?,?,?,?)', (kind, uid, point, attempt, rally, event, anchor))
+            completed_points = completed_rallies = timed = stroke_total = longest = 0
+            duration_total = 0.
+            for raw in _array(documents['point_analytics.json'].get('points')):
+                row = _point(raw)
+                _require(_object(raw.get('pre_point_state')).get('match_id') == analysis_id)
+                put('point', row['id'], anchor=_int(raw.get('first_observed_event_id')))
+                completed_points += row['status'] == 'COMPLETED'
+                points.append(row)
+            for raw in _array(documents['rallies.json'].get('rallies')):
+                row = _rally(raw, manifest, frame_count)
+                put('rally', row['id'], point=row['pointId'])
+                if row['status'] == 'COMPLETED':
+                    completed_rallies += 1
+                    stroke_total += row['totalStrokesIncludingServe']
+                    longest = max(longest, row['totalStrokesIncludingServe'])
+                    if row['durationSeconds'] is not None:
+                        timed += 1
+                        duration_total += row['durationSeconds']
+                rallies.append(row)
+            for raw in _array(documents['serve_executions.json'].get('serve_executions')):
+                row = _attempt(raw, manifest, frame_count)
+                put('attempt', row['id'], point=row['pointId'], rally=row['rallyId'], anchor=row['contactEventId'])
+                observed = serve_observed[row['serverId']]
+                observed['contactExecutions'] += 1
+                if row['replayIndex'] == 0:
+                    observed['firstServesAttempted' if row['officialAttempt'] == 1 else 'secondServesAttempted'] += 1
+                field = {'SERVICE_LET': 'serviceLets', 'FIRST_SERVE_FAULT': 'firstServesFaulted',
+                         'DOUBLE_FAULT': 'doubleFaults'}.get(row['status'])
+                if row['status'] == 'SERVE_IN_PLAY':
+                    field = 'firstServesIn' if row['officialAttempt'] == 1 else 'secondServesIn'
+                observed[field or 'unresolvedExecutions'] += 1
+                attempts.append(row)
+            for raw in _array(documents['scoring_events.json'].get('scoring_events')):
+                row = _object(raw)
+                context = _context(row.get('context'), manifest, frame_count)
+                event = _int(row.get('event_id'))
+                expected = _uid('event', [event, context.get('source_pts'), context.get('source_time_base'),
+                                         context.get('source_frame_index'), context['frame_index']], manifest)
+                _require(row.get('uid') == expected and row.get('frame') == context['frame_index'])
+                _require(_object(row.get('pre_state')).get('match_id') == analysis_id
+                         and _object(row.get('post_state')).get('match_id') == analysis_id)
+                put('event', expected, row.get('point_uid'), row.get('attempt_uid'), row.get('rally_uid'), event)
+            for kind, field in (('point', 'point'), ('attempt', 'attempt'), ('rally', 'rally')):
+                missing = index.execute(f'SELECT 1 FROM proof AS child LEFT JOIN proof AS parent '
+                    f'ON child.{field}=parent.uid AND parent.kind=? WHERE child.{field} IS NOT NULL AND parent.uid IS NULL LIMIT 1', (kind,)).fetchone()
+                _require(missing is None, 'Native point-timeline reference is missing')
+            for kind in ('point', 'attempt'):
+&gt;               cursor = index.execute('SELECT p.uid,e.uid FROM proof AS p LEFT JOIN proof AS e ON e.kind="event" AND e.event=p.anchor WHERE p.kind=?', (kind,))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               sqlite3.OperationalError: ambiguous column name: event
+
+src\api\point_timeline_contract.py:321: OperationalError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund1')
+authority = False
+
+    @pytest.mark.parametrize('authority', [True, False])
+    def test_actual_phase6_native_bundle_preserves_nulls_and_denominators(tmp_path, authority):
+        directory = fixture_bundle(tmp_path / 'analysis', authority)
+&gt;       value = load(directory, authority)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_point_timeline_web_contract.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_point_timeline_web_contract.py:57: in load
+    return contract.load_point_analysis(directory, 'fixture', frame_count=16, authoritative=authority, storage=storage)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_actual_phase6_native_bund1/analysis')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+            return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+        except (TypeError, KeyError, OverflowError, ZeroDivisionError, sqlite3.Error) as error:
+&gt;           raise ValueError('Invalid native point-timeline evidence') from error
+E           ValueError: Invalid native point-timeline evidence
+
+src\api\point_timeline_contract.py:368: ValueError</failure></testcase><testcase classname="tests.test_point_timeline_web_contract" name="test_bounded_parser_and_normalized_arrays_remain_owned_disk_series" time="0.071"><failure message="ValueError: Invalid native point-timeline evidence">directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_bounded_parser_and_normal0/analysis')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+&gt;           return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+
+src\api\point_timeline_contract.py:365: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_bounded_parser_and_normal0/analysis')
+analysis_id = 'fixture'
+
+    def _load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        """Return None for historical output; reject a present inconsistent bundle."""
+        directory = Path(directory)
+        if not (directory / MANIFEST_NAME).exists():
+            _require(not any((directory / name).exists() for name in
+                            ('serve_executions.json', 'shot_play_scope.json')),
+                     'Native point-timeline manifest is missing')
+            return None
+        manifest, manifest_digest = _manifest(directory, analysis_id, authoritative)
+        def read(name):
+            return _object(storage.read_json(directory / name) if storage is not None else
+                           json.loads((directory / name).read_text(encoding='utf-8')))
+        documents = {name: read(name) for name in POINT_TIMELINE_FILES}
+        event_path = directory / 'match_events.json'
+        _require(not event_path.is_symlink() and event_path.is_file())
+        event_digest = artifact_sha256(event_path)
+        events = read('match_events.json')
+        _require(events.get('analysis_id') == analysis_id
+                 and type(events.get('analysis_revision')) is int
+                 and events['analysis_revision'] == manifest['analysis_revision'])
+        for name in POINT_TIMELINE_FILES:
+            expected = '1.0' if name == 'match_state.json' else '2.0'
+            _require(documents[name].get('schema_version') == expected)
+        for name in ('serve_executions.json', 'shot_play_scope.json'):
+            _require(type(documents[name].get('analysis_revision')) is int
+                     and documents[name]['analysis_revision'] == manifest['analysis_revision'])
+        history = documents['score_history.json']
+        _require(type(history.get('revision')) is int and history['revision'] == manifest['scoring_revision'])
+        _array(history.get('score_history'))
+        _array(history.get('corrections'))
+        state = documents['match_state.json']
+        match = documents['match_analytics.json']
+        _require(state.get('match_id') == analysis_id and match.get('match_id') == analysis_id
+                 and state.get('authoritative_events_enabled') is authoritative
+                 and match.get('authoritative_events_enabled') is authoritative
+                 and match.get('independent_accuracy_validated') is False)
+        overview = _object(match.get('overview'))
+        summary = {}
+        for native, field, nullable, numeric in (
+                ('total_points_played', 'totalPointsPlayed', True, False),
+                ('partial_or_review_points', 'partialOrReviewPoints', False, False),
+                ('total_rallies', 'totalRallies', False, False),
+                ('average_rally_length', 'averageRallyLength', True, True),
+                ('longest_rally_length', 'longestRallyLength', True, False),
+                ('effective_play_seconds', 'effectivePlaySeconds', True, True),
+                ('timed_completed_rallies', 'timedCompletedRallies', False, False),
+                ('completed_rallies_duration_denominator', 'completedRalliesDurationDenominator', False, False)):
+            summary[field] = (_number if numeric else _int)(overview.get(native), nullable=nullable)
+        summary.update(scoreSummary=_text(match.get('score_summary'), nullable=True),
+                       matchComplete=match.get('match_complete'), winnerId=_participant(match.get('winner_id'), nullable=True))
+        _require(summary['matchComplete'] is None or type(summary['matchComplete']) is bool)
+        _require(authoritative or all(summary[key] is None for key in
+                 ('totalPointsPlayed', 'averageRallyLength', 'longestRallyLength', 'scoreSummary', 'matchComplete', 'winnerId')))
+        series = storage.series if storage is not None else list
+        points, rallies, attempts = series(), series(), series()
+        serve_summary = _serve_summary(match)
+        serve_observed = {player: dict.fromkeys(('contactExecutions', 'serviceLets', 'firstServesAttempted',
+            'secondServesAttempted', 'firstServesIn', 'firstServesFaulted', 'secondServesIn',
+            'doubleFaults', 'unresolvedExecutions'), 0) for player in (1, 2)}
+        # sqlite's empty filename is a private temporary disk database, deleted on
+        # close. Indexes grow on disk; the page cache is capped independently of time.
+        with closing(sqlite3.connect('')) as index:
+            index.execute('PRAGMA cache_size=-2048')
+            index.execute('PRAGMA temp_store=FILE')
+            index.execute('PRAGMA mmap_size=0')
+            index.execute('CREATE TABLE proof(kind TEXT, uid TEXT PRIMARY KEY, point TEXT, attempt TEXT, rally TEXT, event INTEGER, anchor INTEGER)')
+            index.execute('CREATE UNIQUE INDEX event_ids ON proof(event) WHERE kind="event"')
+            def put(kind, uid, point=None, attempt=None, rally=None, event=None, anchor=None):
+                index.execute('INSERT INTO proof VALUES(?,?,?,?,?,?,?)', (kind, uid, point, attempt, rally, event, anchor))
+            completed_points = completed_rallies = timed = stroke_total = longest = 0
+            duration_total = 0.
+            for raw in _array(documents['point_analytics.json'].get('points')):
+                row = _point(raw)
+                _require(_object(raw.get('pre_point_state')).get('match_id') == analysis_id)
+                put('point', row['id'], anchor=_int(raw.get('first_observed_event_id')))
+                completed_points += row['status'] == 'COMPLETED'
+                points.append(row)
+            for raw in _array(documents['rallies.json'].get('rallies')):
+                row = _rally(raw, manifest, frame_count)
+                put('rally', row['id'], point=row['pointId'])
+                if row['status'] == 'COMPLETED':
+                    completed_rallies += 1
+                    stroke_total += row['totalStrokesIncludingServe']
+                    longest = max(longest, row['totalStrokesIncludingServe'])
+                    if row['durationSeconds'] is not None:
+                        timed += 1
+                        duration_total += row['durationSeconds']
+                rallies.append(row)
+            for raw in _array(documents['serve_executions.json'].get('serve_executions')):
+                row = _attempt(raw, manifest, frame_count)
+                put('attempt', row['id'], point=row['pointId'], rally=row['rallyId'], anchor=row['contactEventId'])
+                observed = serve_observed[row['serverId']]
+                observed['contactExecutions'] += 1
+                if row['replayIndex'] == 0:
+                    observed['firstServesAttempted' if row['officialAttempt'] == 1 else 'secondServesAttempted'] += 1
+                field = {'SERVICE_LET': 'serviceLets', 'FIRST_SERVE_FAULT': 'firstServesFaulted',
+                         'DOUBLE_FAULT': 'doubleFaults'}.get(row['status'])
+                if row['status'] == 'SERVE_IN_PLAY':
+                    field = 'firstServesIn' if row['officialAttempt'] == 1 else 'secondServesIn'
+                observed[field or 'unresolvedExecutions'] += 1
+                attempts.append(row)
+            for raw in _array(documents['scoring_events.json'].get('scoring_events')):
+                row = _object(raw)
+                context = _context(row.get('context'), manifest, frame_count)
+                event = _int(row.get('event_id'))
+                expected = _uid('event', [event, context.get('source_pts'), context.get('source_time_base'),
+                                         context.get('source_frame_index'), context['frame_index']], manifest)
+                _require(row.get('uid') == expected and row.get('frame') == context['frame_index'])
+                _require(_object(row.get('pre_state')).get('match_id') == analysis_id
+                         and _object(row.get('post_state')).get('match_id') == analysis_id)
+                put('event', expected, row.get('point_uid'), row.get('attempt_uid'), row.get('rally_uid'), event)
+            for kind, field in (('point', 'point'), ('attempt', 'attempt'), ('rally', 'rally')):
+                missing = index.execute(f'SELECT 1 FROM proof AS child LEFT JOIN proof AS parent '
+                    f'ON child.{field}=parent.uid AND parent.kind=? WHERE child.{field} IS NOT NULL AND parent.uid IS NULL LIMIT 1', (kind,)).fetchone()
+                _require(missing is None, 'Native point-timeline reference is missing')
+            for kind in ('point', 'attempt'):
+&gt;               cursor = index.execute('SELECT p.uid,e.uid FROM proof AS p LEFT JOIN proof AS e ON e.kind="event" AND e.event=p.anchor WHERE p.kind=?', (kind,))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               sqlite3.OperationalError: ambiguous column name: event
+
+src\api\point_timeline_contract.py:321: OperationalError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_bounded_parser_and_normal0')
+
+    def test_bounded_parser_and_normalized_arrays_remain_owned_disk_series(tmp_path):
+        directory = fixture_bundle(tmp_path / 'analysis')
+        with ResultStorage(tmp_path) as storage:
+&gt;           value = load(directory, storage=storage)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_point_timeline_web_contract.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_point_timeline_web_contract.py:57: in load
+    return contract.load_point_analysis(directory, 'fixture', frame_count=16, authoritative=authority, storage=storage)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_bounded_parser_and_normal0/analysis')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+            return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+        except (TypeError, KeyError, OverflowError, ZeroDivisionError, sqlite3.Error) as error:
+&gt;           raise ValueError('Invalid native point-timeline evidence') from error
+E           ValueError: Invalid native point-timeline evidence
+
+src\api\point_timeline_contract.py:368: ValueError</failure></testcase><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[artifact]" time="0.009" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[source]" time="0.080" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[missing]" time="0.036" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[foreign_id]" time="0.030" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[revision]" time="0.082" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[accuracy]" time="0.028" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[scoring_revision]" time="0.027" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[authority]" time="0.014" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_source_and_revision_mismatch_are_rejected[extra_filename]" time="0.029" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[source_context]" time="0.109" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[match_id]" time="0.077" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[dangling_point]" time="0.036" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[duplicate_event]" time="0.035" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[rally_summary]" time="0.036" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[serve_summary]" time="0.033" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[first_percentage]" time="0.033" /><testcase classname="tests.test_point_timeline_web_contract" name="test_rehashed_mixed_or_malformed_native_records_are_rejected[negative_duration]" time="0.033" /><testcase classname="tests.test_point_timeline_web_contract" name="test_file_change_during_parse_is_rejected_even_when_header_revision_agrees[match_events.json]" time="0.024" /><testcase classname="tests.test_point_timeline_web_contract" name="test_file_change_during_parse_is_rejected_even_when_header_revision_agrees[point_timeline_manifest.json]" time="0.025" /><testcase classname="tests.test_point_timeline_web_contract" name="test_file_change_during_parse_is_rejected_even_when_header_revision_agrees[source.mp4]" time="0.024" /><testcase classname="tests.test_point_timeline_web_contract" name="test_file_change_during_parse_is_rejected_even_when_header_revision_agrees[rallies.json]" time="0.022" /><testcase classname="tests.test_point_timeline_web_contract" name="test_legacy_missing_bundle_and_partial_native_bundle_are_distinct" time="0.002" /><testcase classname="tests.test_point_timeline_web_contract" name="test_manifest_write_failure_preserves_previous_bundle_manifest" time="0.022" /><testcase classname="tests.test_point_timeline_web_contract" name="test_html_reports_provisional_timing_and_df_null_without_accuracy_claim" time="0.023"><failure message="ValueError: Invalid native point-timeline evidence">directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_html_reports_provisional_0/on')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+&gt;           return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+
+src\api\point_timeline_contract.py:365: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_html_reports_provisional_0/on')
+analysis_id = 'fixture'
+
+    def _load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        """Return None for historical output; reject a present inconsistent bundle."""
+        directory = Path(directory)
+        if not (directory / MANIFEST_NAME).exists():
+            _require(not any((directory / name).exists() for name in
+                            ('serve_executions.json', 'shot_play_scope.json')),
+                     'Native point-timeline manifest is missing')
+            return None
+        manifest, manifest_digest = _manifest(directory, analysis_id, authoritative)
+        def read(name):
+            return _object(storage.read_json(directory / name) if storage is not None else
+                           json.loads((directory / name).read_text(encoding='utf-8')))
+        documents = {name: read(name) for name in POINT_TIMELINE_FILES}
+        event_path = directory / 'match_events.json'
+        _require(not event_path.is_symlink() and event_path.is_file())
+        event_digest = artifact_sha256(event_path)
+        events = read('match_events.json')
+        _require(events.get('analysis_id') == analysis_id
+                 and type(events.get('analysis_revision')) is int
+                 and events['analysis_revision'] == manifest['analysis_revision'])
+        for name in POINT_TIMELINE_FILES:
+            expected = '1.0' if name == 'match_state.json' else '2.0'
+            _require(documents[name].get('schema_version') == expected)
+        for name in ('serve_executions.json', 'shot_play_scope.json'):
+            _require(type(documents[name].get('analysis_revision')) is int
+                     and documents[name]['analysis_revision'] == manifest['analysis_revision'])
+        history = documents['score_history.json']
+        _require(type(history.get('revision')) is int and history['revision'] == manifest['scoring_revision'])
+        _array(history.get('score_history'))
+        _array(history.get('corrections'))
+        state = documents['match_state.json']
+        match = documents['match_analytics.json']
+        _require(state.get('match_id') == analysis_id and match.get('match_id') == analysis_id
+                 and state.get('authoritative_events_enabled') is authoritative
+                 and match.get('authoritative_events_enabled') is authoritative
+                 and match.get('independent_accuracy_validated') is False)
+        overview = _object(match.get('overview'))
+        summary = {}
+        for native, field, nullable, numeric in (
+                ('total_points_played', 'totalPointsPlayed', True, False),
+                ('partial_or_review_points', 'partialOrReviewPoints', False, False),
+                ('total_rallies', 'totalRallies', False, False),
+                ('average_rally_length', 'averageRallyLength', True, True),
+                ('longest_rally_length', 'longestRallyLength', True, False),
+                ('effective_play_seconds', 'effectivePlaySeconds', True, True),
+                ('timed_completed_rallies', 'timedCompletedRallies', False, False),
+                ('completed_rallies_duration_denominator', 'completedRalliesDurationDenominator', False, False)):
+            summary[field] = (_number if numeric else _int)(overview.get(native), nullable=nullable)
+        summary.update(scoreSummary=_text(match.get('score_summary'), nullable=True),
+                       matchComplete=match.get('match_complete'), winnerId=_participant(match.get('winner_id'), nullable=True))
+        _require(summary['matchComplete'] is None or type(summary['matchComplete']) is bool)
+        _require(authoritative or all(summary[key] is None for key in
+                 ('totalPointsPlayed', 'averageRallyLength', 'longestRallyLength', 'scoreSummary', 'matchComplete', 'winnerId')))
+        series = storage.series if storage is not None else list
+        points, rallies, attempts = series(), series(), series()
+        serve_summary = _serve_summary(match)
+        serve_observed = {player: dict.fromkeys(('contactExecutions', 'serviceLets', 'firstServesAttempted',
+            'secondServesAttempted', 'firstServesIn', 'firstServesFaulted', 'secondServesIn',
+            'doubleFaults', 'unresolvedExecutions'), 0) for player in (1, 2)}
+        # sqlite's empty filename is a private temporary disk database, deleted on
+        # close. Indexes grow on disk; the page cache is capped independently of time.
+        with closing(sqlite3.connect('')) as index:
+            index.execute('PRAGMA cache_size=-2048')
+            index.execute('PRAGMA temp_store=FILE')
+            index.execute('PRAGMA mmap_size=0')
+            index.execute('CREATE TABLE proof(kind TEXT, uid TEXT PRIMARY KEY, point TEXT, attempt TEXT, rally TEXT, event INTEGER, anchor INTEGER)')
+            index.execute('CREATE UNIQUE INDEX event_ids ON proof(event) WHERE kind="event"')
+            def put(kind, uid, point=None, attempt=None, rally=None, event=None, anchor=None):
+                index.execute('INSERT INTO proof VALUES(?,?,?,?,?,?,?)', (kind, uid, point, attempt, rally, event, anchor))
+            completed_points = completed_rallies = timed = stroke_total = longest = 0
+            duration_total = 0.
+            for raw in _array(documents['point_analytics.json'].get('points')):
+                row = _point(raw)
+                _require(_object(raw.get('pre_point_state')).get('match_id') == analysis_id)
+                put('point', row['id'], anchor=_int(raw.get('first_observed_event_id')))
+                completed_points += row['status'] == 'COMPLETED'
+                points.append(row)
+            for raw in _array(documents['rallies.json'].get('rallies')):
+                row = _rally(raw, manifest, frame_count)
+                put('rally', row['id'], point=row['pointId'])
+                if row['status'] == 'COMPLETED':
+                    completed_rallies += 1
+                    stroke_total += row['totalStrokesIncludingServe']
+                    longest = max(longest, row['totalStrokesIncludingServe'])
+                    if row['durationSeconds'] is not None:
+                        timed += 1
+                        duration_total += row['durationSeconds']
+                rallies.append(row)
+            for raw in _array(documents['serve_executions.json'].get('serve_executions')):
+                row = _attempt(raw, manifest, frame_count)
+                put('attempt', row['id'], point=row['pointId'], rally=row['rallyId'], anchor=row['contactEventId'])
+                observed = serve_observed[row['serverId']]
+                observed['contactExecutions'] += 1
+                if row['replayIndex'] == 0:
+                    observed['firstServesAttempted' if row['officialAttempt'] == 1 else 'secondServesAttempted'] += 1
+                field = {'SERVICE_LET': 'serviceLets', 'FIRST_SERVE_FAULT': 'firstServesFaulted',
+                         'DOUBLE_FAULT': 'doubleFaults'}.get(row['status'])
+                if row['status'] == 'SERVE_IN_PLAY':
+                    field = 'firstServesIn' if row['officialAttempt'] == 1 else 'secondServesIn'
+                observed[field or 'unresolvedExecutions'] += 1
+                attempts.append(row)
+            for raw in _array(documents['scoring_events.json'].get('scoring_events')):
+                row = _object(raw)
+                context = _context(row.get('context'), manifest, frame_count)
+                event = _int(row.get('event_id'))
+                expected = _uid('event', [event, context.get('source_pts'), context.get('source_time_base'),
+                                         context.get('source_frame_index'), context['frame_index']], manifest)
+                _require(row.get('uid') == expected and row.get('frame') == context['frame_index'])
+                _require(_object(row.get('pre_state')).get('match_id') == analysis_id
+                         and _object(row.get('post_state')).get('match_id') == analysis_id)
+                put('event', expected, row.get('point_uid'), row.get('attempt_uid'), row.get('rally_uid'), event)
+            for kind, field in (('point', 'point'), ('attempt', 'attempt'), ('rally', 'rally')):
+                missing = index.execute(f'SELECT 1 FROM proof AS child LEFT JOIN proof AS parent '
+                    f'ON child.{field}=parent.uid AND parent.kind=? WHERE child.{field} IS NOT NULL AND parent.uid IS NULL LIMIT 1', (kind,)).fetchone()
+                _require(missing is None, 'Native point-timeline reference is missing')
+            for kind in ('point', 'attempt'):
+&gt;               cursor = index.execute('SELECT p.uid,e.uid FROM proof AS p LEFT JOIN proof AS e ON e.kind="event" AND e.event=p.anchor WHERE p.kind=?', (kind,))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               sqlite3.OperationalError: ambiguous column name: event
+
+src\api\point_timeline_contract.py:321: OperationalError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_html_reports_provisional_0')
+
+    def test_html_reports_provisional_timing_and_df_null_without_accuracy_claim(tmp_path):
+&gt;       value = load(fixture_bundle(tmp_path / 'on'))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_point_timeline_web_contract.py:187: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_point_timeline_web_contract.py:57: in load
+    return contract.load_point_analysis(directory, 'fixture', frame_count=16, authoritative=authority, storage=storage)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+directory = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_html_reports_provisional_0/on')
+analysis_id = 'fixture'
+
+    def load_point_analysis(directory, analysis_id, *, frame_count, authoritative, storage=None):
+        try:
+            return _load_point_analysis(directory, analysis_id, frame_count=frame_count,
+                                        authoritative=authoritative, storage=storage)
+        except (TypeError, KeyError, OverflowError, ZeroDivisionError, sqlite3.Error) as error:
+&gt;           raise ValueError('Invalid native point-timeline evidence') from error
+E           ValueError: Invalid native point-timeline evidence
+
+src\api\point_timeline_contract.py:368: ValueError</failure></testcase><testcase classname="tests.test_point_timeline_web_contract" name="test_exact_current_result_adapter_and_complete_html_use_same_saved_native_evidence" time="0.161"><failure message="TypeError: 'NoneType' object is not subscriptable">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt1/temp/pytest/test_exact_current_result_adap0')
+
+    def test_exact_current_result_adapter_and_complete_html_use_same_saved_native_evidence(tmp_path):
+        directory = fixture_bundle(tmp_path / 'analysis')
+        job = basic_artifacts(directory, True)
+        adapter = exact_result_module()
+        with ResultStorage(tmp_path) as storage:
+            result = adapter.build_result(directory, job, _storage=storage)
+&gt;           assert result['pointAnalysis']['summary']['totalPointsPlayed'] == 2
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: 'NoneType' object is not subscriptable
+
+tests\test_point_timeline_web_contract.py:234: TypeError</failure></testcase></testsuite></testsuites>

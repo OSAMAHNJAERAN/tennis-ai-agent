@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-21T18:02:01.0025694Z",
+  "status": "SCOPED_AGENT_VISUAL_REVIEW_ONLY_UNQUALIFIED",
+  "reviewer": {
+    "agent": "/root/frontend_finish",
+    "kind": "AI_AGENT_NOT_HUMAN",
+    "independent_of_root_visual_review": true,
+    "human_review": false
+  },
+  "scope": "Only retained indoor DEVELOPMENT anchors 0,104,138 from IST01.mp4 and ISS01.mp4 were viewed at original resolution with view_image.",
+  "native_inspection_receipt": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_inspection_receipt.json",
+    "sha256": "13639219f3d23cf74e517c25e3e0410c3cfc1173022be13574b0cdabef5125fa",
+    "pts_copied_from_receipt": true
+  },
+  "viewed_anchors": [
+    {
+      "source_filename": "IST01.mp4",
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_frame_0000.png",
+      "sha256": "bfae314929ce642e77e17b5782f95710483ccea19f0a6f563e74f110e10c954b",
+      "native_frame_index": 0,
+      "source_pts": "0",
+      "source_time_base": "1/60000",
+      "source_pts_time": "0.000000"
+    },
+    {
+      "source_filename": "IST01.mp4",
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_frame_0104.png",
+      "sha256": "1e1a926c9fd3d732ad097be5a952aae12310610c090a9da855c19e7bbd87d9a3",
+      "native_frame_index": 104,
+      "source_pts": "104104",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.735067"
+    },
+    {
+      "source_filename": "IST01.mp4",
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_frame_0138.png",
+      "sha256": "b97f0038050632105a15339906367f8c758485b09b86f4bb24e4e411cc1910ce",
+      "native_frame_index": 138,
+      "source_pts": "138138",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.302300"
+    },
+    {
+      "source_filename": "ISS01.mp4",
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\ISS01_frame_0000.png",
+      "sha256": "41083a4312f827c14f7c8e873cad317b2f99085f80895ab7a0591926fe62605a",
+      "native_frame_index": 0,
+      "source_pts": "0",
+      "source_time_base": "1/60000",
+      "source_pts_time": "0.000000"
+    },
+    {
+      "source_filename": "ISS01.mp4",
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\ISS01_frame_0104.png",
+      "sha256": "49689ede60ac1ba940ab4d0d1ff3e9d4eb0d03528cb27eb67070f84ca44b4a5d",
+      "native_frame_index": 104,
+      "source_pts": "104104",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.735067"
+    },
+    {
+      "source_filename": "ISS01.mp4",
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\ISS01_frame_0138.png",
+      "sha256": "902a9763176258e61c6ee6a8feb8582c7b272358f4967d8906300a32bae47b6f",
+      "native_frame_index": 138,
+      "source_pts": "138138",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.302300"
+    }
+  ],
+  "observations": [
+    {
+      "view": "IST01",
+      "frames_reviewed": [
+        0,
+        104,
+        138
+      ],
+      "finding": "Elevated view over the hitter and visible floor markings. White, red and green lines overlap; short tape-like floor marks are visible. These anchors do not establish the physical dimensions or identity of a complete regulation tennis court."
+    },
+    {
+      "view": "ISS01",
+      "frames_reviewed": [
+        0,
+        104,
+        138
+      ],
+      "finding": "Lateral indoor hall view, hitter at left and a portable net at right. Overlapping sports lines are visible. Hitter preparation and follow-through are visible in the selected anchors."
+    },
+    {
+      "view": "both",
+      "frames_reviewed": [
+        104
+      ],
+      "finding": "A ball is visible near the hitter in each view. These stills do not demonstrably identify the measured outgoing ball-ground contact or establish a frame-exact cross-camera correspondence."
+    },
+    {
+      "view": "both",
+      "frames_reviewed": [
+        0,
+        104,
+        138
+      ],
+      "finding": "No readable numbered landing marker or independently verified measured outgoing landing is established by these six inspected anchors. Colored or tape-like marks cannot be bound to a CSV Index from this review."
+    }
+  ],
+  "unresolved_prerequisites": [
+    "Evidence-backed correspondence between each CSV Index and its exact current-v4 clip pair.",
+    "Actual measured outgoing landing/contact evidence with native source PTS and an uncertainty interval.",
+    "Identified reference baseline and line-edge convention, plus measured constructed-field dimensions.",
+    "Independent court-plane calibration and verification references; regulation dimensions cannot be assumed from the inspected floor lines.",
+    "Reference measurement uncertainty and any independently established cross-camera timing."
+  ],
+  "limits": {
+    "reviewed_anchor_count": 6,
+    "all_139_frames_reviewed": false,
+    "whole_dataset_reviewed": false,
+    "whole_clip_or_dataset_landing_absence_claim": false,
+    "calibration_or_contact_annotations_created": false,
+    "csv_target_values_inspected": false,
+    "outdoor_test_frames_or_target_values_inspected": false,
+    "model_import_or_inference_performed": false,
+    "source_video_reextracted_by_this_agent": false,
+    "accuracy_computed": false,
+    "qualification_evidence": false
+  }
+}

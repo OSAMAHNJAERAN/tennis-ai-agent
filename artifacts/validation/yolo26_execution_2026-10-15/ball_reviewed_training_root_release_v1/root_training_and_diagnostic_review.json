@@ -1,0 +1,101 @@
+{
+  "status": "REVIEWED_ACTUAL_TWENTY_EPOCH_RUN_AND_FIXED_NATIVE_TILE_DIAGNOSTIC_NOT_QUALIFIED",
+  "created_at_utc": "2026-10-16T00:50:40.3476944Z",
+  "artifact_bindings": {
+    "outputs\\yolo26_ball_reviewed_native_tile_diagnostic_v1\\diagnostic.json": "a180ee2f713c6cb8e342216e8e9454740a6f9032fc59f471cedd89b05da3b38e",
+    "artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_native_tile_visual_review_tail_v1\\review.json": "1addf967f9181cfe46bd8cee51f7a48c34d2910daa0b1823e31dfeefd4f8199c",
+    "artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_native_tile_visual_review_head_root_v1\\visual_review.json": "16bdfb2577140250f37e41eec10abca06eac134127c5aa94c303cecd578b31a5",
+    "outputs\\yolo26_ball_reviewed_development_run1\\run_metadata.json": "8bd1a064a5379f0730d743da3c2bd0209679c65240ea967d2b92febf3f7fc5a3",
+    "outputs\\yolo26_ball_reviewed_development_run1\\training\\weights\\best.pt": "90a141489dc7198789043466d7ab3c0245b86cb0135122f7b78d62115a8a9fcc"
+  },
+  "training": {
+    "train_images": 58,
+    "max_optimizer_steps_epoch20": 1160,
+    "callback_resources": {
+      "peak_owned_rss_bytes": 2298499072,
+      "minimum_available_ram_bytes": 56193024
+    },
+    "post_cuda_free_vram_bytes": 5326766080,
+    "elapsed_seconds": 274.62425860000076,
+    "test_images": 0,
+    "peak_cuda_reserved_bytes": 1751121920,
+    "peak_cuda_allocated_bytes": 1461595136,
+    "post_cuda_available_ram_bytes": 1223561216,
+    "monitor_peak_owned_tree_rss_bytes": 2306035712,
+    "dev_images": 21,
+    "epochs": 20,
+    "monitor_min_available_ram_bytes": 134447104,
+    "epoch20_crop_metrics": {
+      "map50": 0.44781,
+      "precision": 0.72603,
+      "map50_95": 0.11838,
+      "recall": 0.39772
+    },
+    "source_and_runtime_changes_during_run": {
+      "source": {
+        "changed": [],
+        "added": [],
+        "removed": []
+      },
+      "runtime": {
+        "changed": [],
+        "added": [],
+        "removed": []
+      },
+      "inputs": []
+    },
+    "root_release_bindings_unchanged_count": 465
+  },
+  "actual_transform_preview": {
+    "cuda_initialized": false,
+    "geometric_transform_roundtrip_error_pixels": 0,
+    "receipt": "artifacts/validation/yolo26_execution_2026-10-15/ball_reviewed_training_root_release_v1/transform_preview_v2/receipt.json",
+    "root_actually_viewed_unmarked_native_tensors": 3
+  },
+  "native_tile_diagnostic": {
+    "actual_image_forwards": 161,
+    "negative_video_false_alarms_per_minute": null,
+    "elapsed_seconds": 7.739261800001259,
+    "full_frame_precision": null,
+    "input_hashes_changed": [],
+    "metrics": {
+      "reviewed_targets": 20,
+      "matched_targets_conf001_iou05": 7,
+      "missed_targets_conf001_iou05": 13,
+      "total_returned_candidates_conf001": 24,
+      "median_nearest_candidate_center_error_native_px": 3.2635830997069943,
+      "median_matched_candidate_center_error_native_px": 1.4145970465774578,
+      "conditional_matched_center_error_p95_native_px": 2.043604160619101,
+      "matched_center_error_sample_count": 7,
+      "unmatched_full_frame_candidates_unadjudicated": 17
+    },
+    "fixed_protocol_sha256": "21a40651572f6666153b28fc6656502e2b12b8f9f0a27b856c13e64fda5d7abe",
+    "negative_crop_returned_proposals": 0,
+    "reviewed_absence_crop_count": 1
+  },
+  "visual_review": {
+    "agent_last10": true,
+    "independent_human_review": false,
+    "agent_last10_matches": 3,
+    "patterns": [
+      "Tiny far-player balls are repeatedly missed.",
+      "Scoreboard server dots and some bright sideline graphics receive proposals.",
+      "Blur extent can fail fixed IoU even when a proposal center is close."
+    ],
+    "full_frame_other_objects": "UNADJUDICATED_FOR_PRECISION",
+    "root_first10_matches": 4,
+    "root_first10": true
+  },
+  "decision": "DATA_REPAIR_BEFORE_FURTHER_OPTIMIZATION",
+  "decision_reason": "Fixed native-frame target coverage7/20 and crop recall0.39772 are far below the requested gate; training success and low conditional center error do not qualify detection. System available RAM became critically low during training, so a longer run also lacks comfortable resource headroom.",
+  "recommended_actions": [
+    "Review and expand visible ball boxes across source contexts, emphasizing tiny far targets and blur.",
+    "Add explicitly reviewed training-only graphics/spare-ball negatives without moving DEV contexts into training.",
+    "Retain the frozen diagnostic and thresholds; declare any next controlled training protocol separately."
+  ],
+  "automatic_extension_authorized": false,
+  "checkpoint_promoted": false,
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "master_goal_completed": false
+}

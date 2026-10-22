@@ -1,0 +1,114 @@
+{
+  "analysis_id": "match_ca65db557684431890bbf3826229e084",
+  "job": {
+    "id": "match_ca65db557684431890bbf3826229e084",
+    "filename": "schiavone_2012.webm",
+    "status": "COMPLETED",
+    "stage": "Analysis complete",
+    "step": 11,
+    "created_at": "2026-09-30T14:38:37.095864+00:00",
+    "started_at": "2026-09-30T14:41:19.105390+00:00",
+    "completed_at": "2026-09-30T14:42:45.945399+00:00",
+    "error": null,
+    "size_bytes": 11937043
+  },
+  "observed_states": [
+    [
+      "COMPLETED",
+      "Analysis complete"
+    ]
+  ],
+  "summary": {
+    "id": "match_ca65db557684431890bbf3826229e084",
+    "label": "schiavone_2012.webm",
+    "phase": "Match analysis",
+    "status": "COMPLETED",
+    "analyzedAt": "2026-09-30T14:41:19.105390+00:00",
+    "sourceVideoPath": "schiavone_2012.webm",
+    "frames": 408,
+    "fps": 23.976023976023978,
+    "durationSeconds": 17.017,
+    "eventCount": 0,
+    "lineCallCount": 0,
+    "artifacts": [
+      "annotated.mp4",
+      "annotated_web.mp4",
+      "ball_metrics.json",
+      "camera_registration.json",
+      "court_geometry.json",
+      "detections.json",
+      "event_candidates.json",
+      "event_verification_trace.json",
+      "inference_config.yaml",
+      "line_calls.json",
+      "match_analytics.json",
+      "match_events.json",
+      "match_state.json",
+      "media_metadata.json",
+      "media_source.json",
+      "metrics.json",
+      "patch_persistence_audit.json",
+      "pixel_motion_audit.json",
+      "player_metrics.json",
+      "player_motion.json",
+      "point_analytics.json",
+      "racket_tracking.json",
+      "rallies.json",
+      "run_config.yaml",
+      "score_history.json",
+      "scoring_events.json",
+      "shot_events.json",
+      "source.mp4",
+      "stationary_candidate_audit.json",
+      "temporal_detour_audit.json",
+      "temporal_spacing_audit.json",
+      "trajectories.json"
+    ],
+    "capabilities": {
+      "detections": true,
+      "trajectories": true,
+      "court": false,
+      "players": false,
+      "ballMetrics": false,
+      "events": false,
+      "lineCalls": false,
+      "scoring": false,
+      "video": true,
+      "pose": false,
+      "racket": false,
+      "masks": false,
+      "world3d": false,
+      "report": true,
+      "csv": true
+    }
+  },
+  "original_sha256": "964059dfa99763aab2da785185315d6dfd36c0d3f02a5f65f15fe3b17a8ec738",
+  "media_ranges": {
+    "source": "bytes 0-1023/11437100",
+    "annotated": "bytes 0-1023/6853433"
+  },
+  "player_metrics": null,
+  "pipeline_metrics": {
+    "pipelineFps": 5.058793645487967,
+    "eventCount": 0,
+    "lineCallCount": 0,
+    "courtReprojectionErrorPx": null,
+    "raw": {
+      "production_qualified": false,
+      "authoritative_events_enabled": false
+    }
+  },
+  "warnings": [
+    "Court mapping unavailable: calibration was not reliable enough for metric positions.",
+    "Analysis unavailable for this section: player distance and average speed.",
+    "Ball speed is unavailable: single-camera court projection does not measure airborne speed.",
+    "Bounce, shot placement, rally and scoring analysis unavailable: event measurements are not qualified."
+  ],
+  "result_sha256": "ea0aa15350cf255c6aee0994dcf259740c08751a2060784c1c79ee29c7010376",
+  "export_checks": {
+    "readable_report_bytes": 240971,
+    "csv_rows": 408,
+    "contract_version": "2.0"
+  },
+  "verification": "HTTP_ARTIFACT_AND_CONTRACT_CHECK; NOT_MODEL_ACCURACY"
+}

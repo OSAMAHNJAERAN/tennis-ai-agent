@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "correction_id": "EXPLICIT-FRONTEND-REVIEW",
+  "base_generation": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "base_analysis_revision": 0,
+  "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "base_rule_replay_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "reason": "First reviewed line. Second reviewed line.",
+  "evidence_ref": "Original source frame 10",
+  "initial_state_amendment": {
+    "expected_initial_state_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "replacement_initial_state": {
+      "schema_version": 1,
+      "type": "MatchState",
+      "fields": {
+        "match_id": "match_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "format": {
+          "enum": "MatchFormat",
+          "value": "BEST_OF_3"
+        },
+        "set_format": {
+          "enum": "SetFormat",
+          "value": "TIE_BREAK_SET"
+        },
+        "player_1_id": 1,
+        "player_2_id": 2,
+        "server_id": 1,
+        "receiver_id": 2,
+        "initial_server_id": 1,
+        "current_set": 1,
+        "current_game": 1,
+        "sets_won_p1": 0,
+        "sets_won_p2": 0,
+        "games_p1": 0,
+        "games_p2": 0,
+        "points_p1": 0,
+        "points_p2": 1,
+        "serve_attempt": 1,
+        "service_side": {
+          "enum": "ServiceSide",
+          "value": "AD"
+        },
+        "tie_break_active": false,
+        "tie_break_points_p1": 0,
+        "tie_break_points_p2": 0,
+        "point_state": {
+          "enum": "PointState",
+          "value": "WAITING_FOR_SERVE"
+        },
+        "ball_state": {
+          "enum": "BallPlayState",
+          "value": "NOT_STARTED"
+        },
+        "completed_sets": [],
+        "match_complete": false,
+        "winner_id": null,
+        "last_point_winner": null,
+        "last_point_reason": "",
+        "state_version": 0,
+        "tie_break_points_to_win": 7,
+        "deciding_set_tie_break_points_to_win": null,
+        "deciding_set_format": null,
+        "player_1_court_end": {
+          "enum": "ServerCourtEnd",
+          "value": "NEAR_COURT"
+        },
+        "initial_state_confirmed": true,
+        "score_confirmed": true,
+        "score_source": "human_reviewed_initial_state",
+        "match_status": "IN_PROGRESS"
+      }
+    }
+  },
+  "input_amendments": [],
+  "analysis_id": "match_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "reviewer_id": "account_EXPLICIT_REVIEW_SOFTWARE_FIXTURE"
+}

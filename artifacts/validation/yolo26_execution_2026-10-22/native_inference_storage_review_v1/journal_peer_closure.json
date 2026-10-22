@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T00:25:15.576534+00:00",
+  "reviewer": "AI_PEER_READ_ONLY_NOT_HUMAN",
+  "status": "IDENTIFIED_JOURNAL_SCHEMA_FINDING_CLOSED_IN_CURRENT_SOURCE",
+  "prior_immutable_review": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_review_v1/journal_peer_review.json",
+    "sha256": "ebc5896c8f5a7b0bc97c8e8184ede3945040da5ddfdbb9ad6daaf0a0d0ad81e1",
+    "bytes": 4686
+  },
+  "current_reviewed_bindings": [
+    {
+      "path": "src/utils/ball_inference_journal.py",
+      "sha256": "f8d75a15e53cdabdbdec0353d2feee220e14b4954a9ce332336e47d443907113",
+      "bytes": 20245
+    },
+    {
+      "path": "tests/test_ball_inference_journal.py",
+      "sha256": "89797fbcf60f87b30e7e405505ba5890ad99e99d6e4ef1d8b334d63d462ef81f",
+      "bytes": 25962
+    }
+  ],
+  "finding_closure": {
+    "id": "JOURNAL_SCHEMA_LIKE_UNDERSCORE_ALIAS",
+    "status": "CLOSED_BY_LITERAL_SCHEMA_INVENTORY_AND_PREWRITE_SCHEMA_COOKIE_GUARD",
+    "exact_fix": "Both schema count and enumeration use a shared literal lower(substr(name,1,7)) != sqlite_ prefix predicate. sqliteX lookalikes now remain visible and violate the exact two-table inventory.",
+    "late_schema_guard": "Validated schema_version is captured during the same read transaction as opening validation. Every append begins IMMEDIATE, then compares the schema cookie before INSERT or frontier UPDATE; a changed schema poisons/closes this owner before any new trigger can execute.",
+    "regressions_reviewed": [
+      "sqliteX view rejection",
+      "sqliteX index rejection",
+      "sqliteX trigger rejection",
+      "Trigger installed by a second connection after admission: append rejected; no trigger-marker row, raw row, frontier or identity mutation."
+    ],
+    "review_conclusion": "Exact fix is sound for the reported schema-inventory and late-schema-change cases; no new concrete defect found in this read-only scope."
+  },
+  "final_combined_receipt_observed": {
+    "binding": {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_storage_checks_v3/receipt.json",
+      "sha256": "f422dc6de5578a98d220b2307902a079da80b0fc108b3e19e611949bb081e4df",
+      "bytes": 43887
+    },
+    "status": "PASS",
+    "counts": {
+      "tests": 270,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "source_stable": true,
+    "tests_executed_by_this_review": false
+  },
+  "limits": {
+    "tests_run": 0,
+    "project_or_vision_runtime_imports": 0,
+    "host_ram_gpu_probes": 0,
+    "source_edits": 0,
+    "pipeline_worker_resume_proven": false,
+    "independent_model_accuracy_proven": false
+  }
+}

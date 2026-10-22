@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="7" skipped="0" tests="17" time="7.395" timestamp="2026-10-06T17:43:27.983466+08:00" hostname="Osamah"><testcase classname="tests.test_pipeline_pose_storage" name="test_pose_and_racket_original_records_are_bounded_before_shot_linking[64]" time="0.049"><failure message="AssertionError: {'pose_live': 64, 'pose_produced': 64, 'racket_live': 64, 'racket_produced': 64}&#10;assert 64 &lt;= 2">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/tmp/test_pose_and_racket_original_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C82800C3E0&gt;
+count = 64
+
+    @pytest.mark.parametrize('count', [64, 512])
+    def test_pose_and_racket_original_records_are_bounded_before_shot_linking(tmp_path, monkeypatch, count):
+        pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, count,
+                                                      stop_before_shots=True)
+        with pytest.raises(BeforeShotLinkStopped):
+            pipeline.run('generated-frames-only.mp4', str(output))
+        assert state.before_shots['pose_produced'] == count
+        assert state.before_shots['racket_produced'] == count
+&gt;       assert state.before_shots['pose_live'] &lt;= 2, state.before_shots
+E       AssertionError: {'pose_live': 64, 'pose_produced': 64, 'racket_live': 64, 'racket_produced': 64}
+E       assert 64 &lt;= 2
+
+tests\test_pipeline_pose_storage.py:250: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_pose_and_racket_original_records_are_bounded_before_shot_linking[512]" time="0.087"><failure message="AssertionError: {'pose_live': 512, 'pose_produced': 512, 'racket_live': 512, 'racket_produced': 512}&#10;assert 512 &lt;= 2">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/tmp/test_pose_and_racket_original_1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C82800C510&gt;
+count = 512
+
+    @pytest.mark.parametrize('count', [64, 512])
+    def test_pose_and_racket_original_records_are_bounded_before_shot_linking(tmp_path, monkeypatch, count):
+        pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, count,
+                                                      stop_before_shots=True)
+        with pytest.raises(BeforeShotLinkStopped):
+            pipeline.run('generated-frames-only.mp4', str(output))
+        assert state.before_shots['pose_produced'] == count
+        assert state.before_shots['racket_produced'] == count
+&gt;       assert state.before_shots['pose_live'] &lt;= 2, state.before_shots
+E       AssertionError: {'pose_live': 512, 'pose_produced': 512, 'racket_live': 512, 'racket_produced': 512}
+E       assert 512 &lt;= 2
+
+tests\test_pipeline_pose_storage.py:250: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[writer_open]" time="0.019"><failure message="assert (1 == 1 and False)&#10; +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;])&#10; +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;]).writers&#10; +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;.released">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/tmp/test_render_handles_release_on0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C82C7B3890&gt;
+failure = 'writer_open'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+        pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+        error = RuntimeError if failure == 'writer_open' else OSError
+        with pytest.raises(error, match='Unable to open output video writer' if failure == 'writer_open' else f'Injected {failure} failure') as caught:
+            pipeline.run('generated-frames-only.mp4', str(output))
+        # Retain the exception and its frames. Release must be explicit, before GC.
+        assert caught.value.__traceback__ is not None
+&gt;       assert len(state.writers) == 1 and state.writers[0].released
+E       assert (1 == 1 and False)
+E        +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;])
+E        +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;]).writers
+E        +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73620&gt;.released
+
+tests\test_pipeline_pose_storage.py:263: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[read]" time="0.102"><failure message="assert (1 == 1 and False)&#10; +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;])&#10; +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[&lt;tests.test_pip...1C832D738C0&gt;], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;]).writers&#10; +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;.released">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/tmp/test_render_handles_release_on1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C82C7D9040&gt;
+failure = 'read'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+        pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+        error = RuntimeError if failure == 'writer_open' else OSError
+        with pytest.raises(error, match='Unable to open output video writer' if failure == 'writer_open' else f'Injected {failure} failure') as caught:
+            pipeline.run('generated-frames-only.mp4', str(output))
+        # Retain the exception and its frames. Release must be explicit, before GC.
+        assert caught.value.__traceback__ is not None
+&gt;       assert len(state.writers) == 1 and state.writers[0].released
+E       assert (1 == 1 and False)
+E        +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;])
+E        +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[&lt;tests.test_pip...1C832D738C0&gt;], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;]).writers
+E        +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72F90&gt;.released
+
+tests\test_pipeline_pose_storage.py:263: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[draw]" time="0.102"><failure message="assert (1 == 1 and False)&#10; +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;])&#10; +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[&lt;tests.test_pip...1C832D73620&gt;], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;]).writers&#10; +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;.released">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/tmp/test_render_handles_release_on2')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C82C7D9480&gt;
+failure = 'draw'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+        pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+        error = RuntimeError if failure == 'writer_open' else OSError
+        with pytest.raises(error, match='Unable to open output video writer' if failure == 'writer_open' else f'Injected {failure} failure') as caught:
+            pipeline.run('generated-frames-only.mp4', str(output))
+        # Retain the exception and its frames. Release must be explicit, before GC.
+        assert caught.value.__traceback__ is not None
+&gt;       assert len(state.writers) == 1 and state.writers[0].released
+E       assert (1 == 1 and False)
+E        +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;])
+E        +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[&lt;tests.test_pip...1C832D73620&gt;], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;]).writers
+E        +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D73B60&gt;.released
+
+tests\test_pipeline_pose_storage.py:263: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[write]" time="0.104"><failure message="assert (1 == 1 and False)&#10; +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;])&#10; +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[&lt;tests.test_pip...1C832D72F90&gt;], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;]).writers&#10; +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;.released">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/tmp/test_render_handles_release_on3')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C832DE6C50&gt;
+failure = 'write'
+
+    @pytest.mark.parametrize('failure', ['writer_open', 'read', 'draw', 'write'])
+    def test_render_handles_release_on_failure_before_traceback_or_gc_cleanup(tmp_path, monkeypatch, failure):
+        pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch, failure=failure)
+        error = RuntimeError if failure == 'writer_open' else OSError
+        with pytest.raises(error, match='Unable to open output video writer' if failure == 'writer_open' else f'Injected {failure} failure') as caught:
+            pipeline.run('generated-frames-only.mp4', str(output))
+        # Retain the exception and its frames. Release must be explicit, before GC.
+        assert caught.value.__traceback__ is not None
+&gt;       assert len(state.writers) == 1 and state.writers[0].released
+E       assert (1 == 1 and False)
+E        +  where 1 = len([&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;])
+E        +    where [&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[&lt;tests.test_pip...1C832D72F90&gt;], writers=[&lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;]).writers
+E        +  and   False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Writer object at 0x000001C832D72CF0&gt;.released
+
+tests\test_pipeline_pose_storage.py:263: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_render_cleanup_failure_preserves_primary_and_releases_other_handle" time="0.098"><failure message="assert (False)&#10; +  where False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Capture object at 0x000001C832D73B60&gt;.released">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/tmp/test_render_cleanup_failure_pr0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C832DE6550&gt;
+
+    def test_render_cleanup_failure_preserves_primary_and_releases_other_handle(tmp_path, monkeypatch):
+        pipeline, frames, state, output = build_harness(current, tmp_path / 'run', monkeypatch,
+                                                      failure='write', release_failure=True)
+        with pytest.raises(OSError, match='Injected write failure') as caught:
+            pipeline.run('generated-frames-only.mp4', str(output))
+&gt;       assert state.captures[0].released and state.writers[0].released
+E       assert (False)
+E        +  where False = &lt;tests.test_pipeline_pose_storage.build_harness.&lt;locals&gt;.Capture object at 0x000001C832D73B60&gt;.released
+
+tests\test_pipeline_pose_storage.py:274: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled0]" time="0.291" /><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled1]" time="0.277" /><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled2]" time="0.259" /><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[False-enabled3]" time="0.259" /><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled0]" time="0.291" /><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled1]" time="0.305" /><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled2]" time="0.245" /><testcase classname="tests.test_pipeline_pose_storage" name="test_complete_pose_racket_raw_bytes_and_render_frames_match_frozen_pipeline[True-enabled3]" time="0.258" /><testcase classname="tests.test_pipeline_pose_storage" name="test_integer_pose_identities_keep_distinct_render_colors_and_detected_rackets" time="0.133" /><testcase classname="tests.test_pipeline_pose_storage" name="test_nonfinite_numpy_array_export_failure_matches_frozen_pipeline" time="0.225" /></testsuite></testsuites>

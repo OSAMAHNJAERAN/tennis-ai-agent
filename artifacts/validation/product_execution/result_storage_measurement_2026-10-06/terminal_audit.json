@@ -1,0 +1,1263 @@
+{
+  "auditStartedAt": "2026-10-06T05:33:34.689580+00:00",
+  "passed": false,
+  "errors": [
+    "600_old actual not sampled before acknowledgment",
+    "600_new actual not sampled before acknowledgment",
+    "18000_old actual not sampled before acknowledgment",
+    "18000_new actual not sampled before acknowledgment"
+  ],
+  "runs": [
+    {
+      "frames": 600,
+      "mode": "old",
+      "passedTerminalExit": true,
+      "actualWorkloadIdentity": {
+        "pid": 38544,
+        "createTimeUnixSeconds": 1791264485.2888937
+      },
+      "actualSampledBeforeAcknowledgment": false,
+      "ownedIdentitiesNow": [
+        {
+          "pid": 32248,
+          "recordedCreateTimeUnixSeconds": 1791264485.2454972,
+          "checkedAt": "2026-10-06T05:33:34.715972+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 25624,
+          "recordedCreateTimeUnixSeconds": 1791264485.2696967,
+          "checkedAt": "2026-10-06T05:33:34.716025+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 38544,
+          "recordedCreateTimeUnixSeconds": 1791264485.2888937,
+          "checkedAt": "2026-10-06T05:33:34.716038+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ],
+      "allOwnedOriginalIdentitiesRetiredNow": true,
+      "sampleCount": 10,
+      "recomputedOwnedTreeRssPeakBytes": 61571072,
+      "recomputedOwnedTreePrivatePeakBytes": 811474944,
+      "actualSampledRssPeakBytes": 49369088,
+      "actualOsPeakWorkingSetBytes": 52551680,
+      "actualOsPeakPrivateCommitBytes": 812933120,
+      "minimumSampledAvailableRamBytes": 3605794816,
+      "allPrivateSamplesAvailable": true,
+      "wallSecondsIncludingStartup": 2.915266200026963,
+      "stagesSeconds": {
+        "inputGenerationSeconds": 0.30241409997688606,
+        "constructionSeconds": 0.038012700038962066,
+        "publicationSeconds": 0.06197410001186654,
+        "readerOpenSeconds": 0.011233400029595941,
+        "presentationSeconds": 0.0003934000269509852,
+        "strictReadJsonSeconds": 0.09502359997713938,
+        "csvExportSeconds": 0.03183370002079755,
+        "htmlExportSeconds": 0.03270039998460561,
+        "independentSemanticCheckSeconds": 0.008215999987442046
+      },
+      "productionStagesTotalSeconds": 0.2711713000899181,
+      "diskBoundarySnapshots": {
+        "afterInputGeneration": {
+          "files": 18,
+          "logicalFileBytes": 1368677,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterConstruction": {
+          "files": 18,
+          "logicalFileBytes": 1368677,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterPublicationAndConstructionRelease": {
+          "files": 20,
+          "logicalFileBytes": 3164841,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderOpen": {
+          "files": 20,
+          "logicalFileBytes": 3164841,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReadAndExport": {
+          "files": 23,
+          "logicalFileBytes": 5299747,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderCloseAndRelease": {
+          "files": 23,
+          "logicalFileBytes": 5299747,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        }
+      },
+      "publishedDatabaseBytes": null,
+      "retainedOutputCsvRowsIndependentlyChecked": 600,
+      "exports": {
+        "readJson": {
+          "chunks": 339094,
+          "maximumChunkCharacters": 156,
+          "bytes": 1795219,
+          "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05",
+          "firstChunkAvailableSeconds": 0.00018939998699352145,
+          "allChunksWrittenAndClosedSeconds": 0.07548249996034428,
+          "verificationHashFullFileReadSeconds": 0.019523599999956787
+        },
+        "csv": {
+          "chunks": 6,
+          "maximumChunkCharacters": 65536,
+          "bytes": 314926,
+          "sha256": "94087083a7681754233ec696a4e24d762ab2fc4cc2acacc59428186314718a1f",
+          "firstChunkAvailableSeconds": 0.0002970000496134162,
+          "allChunksWrittenAndClosedSeconds": 0.004718500014860183,
+          "verificationHashFullFileReadSeconds": 0.027093000011518598
+        },
+        "html": {
+          "chunks": 1,
+          "maximumChunkCharacters": 23335,
+          "bytes": 23404,
+          "sha256": "f0196d6b6f9a23c5ff032654facf543d9b5c9373ac98d00e983432a4cb91c615",
+          "firstChunkAvailableSeconds": 0.001403000031132251,
+          "allChunksWrittenAndClosedSeconds": 0.0016003000200726092,
+          "verificationHashFullFileReadSeconds": 0.02905000001192093
+        }
+      },
+      "recordedIndependentContractChecks": {
+        "allFrameTimestampsAndGapSemanticsChecked": true,
+        "physicalBallSpeedAndXyzAlwaysNull": true,
+        "authoritativeFalsePreserved": true,
+        "sourcePtsStringEndpointsPreserved": true,
+        "unknownPeople": 854,
+        "unavailablePeopleFrames": 47,
+        "emptyPeopleFrames": 47,
+        "withheldSpeedSamples": 135,
+        "measuredZeroSpeedSamples": 9
+      },
+      "modelsImported": []
+    },
+    {
+      "frames": 600,
+      "mode": "new",
+      "passedTerminalExit": true,
+      "actualWorkloadIdentity": {
+        "pid": 12620,
+        "createTimeUnixSeconds": 1791264488.1019251
+      },
+      "actualSampledBeforeAcknowledgment": false,
+      "ownedIdentitiesNow": [
+        {
+          "pid": 23176,
+          "recordedCreateTimeUnixSeconds": 1791264488.0725408,
+          "checkedAt": "2026-10-06T05:33:34.749745+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 12620,
+          "recordedCreateTimeUnixSeconds": 1791264488.1019251,
+          "checkedAt": "2026-10-06T05:33:34.749780+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 67572,
+          "recordedCreateTimeUnixSeconds": 1791264488.0834177,
+          "checkedAt": "2026-10-06T05:33:34.749788+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ],
+      "allOwnedOriginalIdentitiesRetiredNow": true,
+      "sampleCount": 16,
+      "recomputedOwnedTreeRssPeakBytes": 63279104,
+      "recomputedOwnedTreePrivatePeakBytes": 812904448,
+      "actualSampledRssPeakBytes": 51077120,
+      "actualOsPeakWorkingSetBytes": 52633600,
+      "actualOsPeakPrivateCommitBytes": 811778048,
+      "minimumSampledAvailableRamBytes": 3566903296,
+      "allPrivateSamplesAvailable": true,
+      "wallSecondsIncludingStartup": 4.543564299994614,
+      "stagesSeconds": {
+        "inputGenerationSeconds": 0.3012000999879092,
+        "constructionSeconds": 1.057093099982012,
+        "publicationSeconds": 0.3537783000501804,
+        "readerOpenSeconds": 0.004619800020009279,
+        "presentationSeconds": 0.0002552999649196863,
+        "strictReadJsonSeconds": 0.6765948999673128,
+        "csvExportSeconds": 0.2807774000102654,
+        "htmlExportSeconds": 0.3069552999804728,
+        "independentSemanticCheckSeconds": 0.529826799989678
+      },
+      "productionStagesTotalSeconds": 2.6800740999751724,
+      "diskBoundarySnapshots": {
+        "afterInputGeneration": {
+          "files": 18,
+          "logicalFileBytes": 1361917,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterConstruction": {
+          "files": 20,
+          "logicalFileBytes": 8908653,
+          "sqliteDatabaseBytes": 7512064,
+          "sqliteSidecarBytes": 29240,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterPublicationAndConstructionRelease": {
+          "files": 22,
+          "logicalFileBytes": 7642058,
+          "sqliteDatabaseBytes": 4476928,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderOpen": {
+          "files": 22,
+          "logicalFileBytes": 7642058,
+          "sqliteDatabaseBytes": 4476928,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReadAndExport": {
+          "files": 25,
+          "logicalFileBytes": 9783754,
+          "sqliteDatabaseBytes": 4476928,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderCloseAndRelease": {
+          "files": 25,
+          "logicalFileBytes": 9783754,
+          "sqliteDatabaseBytes": 4476928,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        }
+      },
+      "publishedDatabaseBytes": 4476928,
+      "retainedOutputCsvRowsIndependentlyChecked": 600,
+      "exports": {
+        "readJson": {
+          "chunks": 28,
+          "maximumChunkCharacters": 65536,
+          "bytes": 1795219,
+          "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05",
+          "firstChunkAvailableSeconds": 0.011304200044833124,
+          "allChunksWrittenAndClosedSeconds": 0.6677527000429109,
+          "verificationHashFullFileReadSeconds": 0.00882600003387779
+        },
+        "csv": {
+          "chunks": 6,
+          "maximumChunkCharacters": 65536,
+          "bytes": 314926,
+          "sha256": "94087083a7681754233ec696a4e24d762ab2fc4cc2acacc59428186314718a1f",
+          "firstChunkAvailableSeconds": 0.00042719999328255653,
+          "allChunksWrittenAndClosedSeconds": 0.2574614000041038,
+          "verificationHashFullFileReadSeconds": 0.02328919997671619
+        },
+        "html": {
+          "chunks": 13,
+          "maximumChunkCharacters": 9244,
+          "bytes": 23404,
+          "sha256": "f0196d6b6f9a23c5ff032654facf543d9b5c9373ac98d00e983432a4cb91c615",
+          "firstChunkAvailableSeconds": 0.00025069998810067773,
+          "allChunksWrittenAndClosedSeconds": 0.2804935000021942,
+          "verificationHashFullFileReadSeconds": 0.026440299989189953
+        }
+      },
+      "recordedIndependentContractChecks": {
+        "allFrameTimestampsAndGapSemanticsChecked": true,
+        "physicalBallSpeedAndXyzAlwaysNull": true,
+        "authoritativeFalsePreserved": true,
+        "sourcePtsStringEndpointsPreserved": true,
+        "unknownPeople": 854,
+        "unavailablePeopleFrames": 47,
+        "emptyPeopleFrames": 47,
+        "withheldSpeedSamples": 135,
+        "measuredZeroSpeedSamples": 9
+      },
+      "modelsImported": []
+    },
+    {
+      "frames": 18000,
+      "mode": "old",
+      "passedTerminalExit": true,
+      "actualWorkloadIdentity": {
+        "pid": 64988,
+        "createTimeUnixSeconds": 1791264492.6745288
+      },
+      "actualSampledBeforeAcknowledgment": false,
+      "ownedIdentitiesNow": [
+        {
+          "pid": 64412,
+          "recordedCreateTimeUnixSeconds": 1791264492.6384313,
+          "checkedAt": "2026-10-06T05:33:34.811857+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 64988,
+          "recordedCreateTimeUnixSeconds": 1791264492.6745288,
+          "checkedAt": "2026-10-06T05:33:34.811889+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 65104,
+          "recordedCreateTimeUnixSeconds": 1791264492.65509,
+          "checkedAt": "2026-10-06T05:33:34.811896+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ],
+      "allOwnedOriginalIdentitiesRetiredNow": true,
+      "sampleCount": 58,
+      "recomputedOwnedTreeRssPeakBytes": 268775424,
+      "recomputedOwnedTreePrivatePeakBytes": 1019244544,
+      "actualSampledRssPeakBytes": 256561152,
+      "actualOsPeakWorkingSetBytes": 281812992,
+      "actualOsPeakPrivateCommitBytes": 1042669568,
+      "minimumSampledAvailableRamBytes": 3084783616,
+      "allPrivateSamplesAvailable": true,
+      "wallSecondsIncludingStartup": 16.411970900022425,
+      "stagesSeconds": {
+        "inputGenerationSeconds": 8.704088700003922,
+        "constructionSeconds": 1.4675338999950327,
+        "publicationSeconds": 1.861061699979473,
+        "readerOpenSeconds": 0.4327804999775253,
+        "presentationSeconds": 0.00043049996020272374,
+        "strictReadJsonSeconds": 2.3923044000403024,
+        "csvExportSeconds": 0.1595069999457337,
+        "htmlExportSeconds": 0.06856500002322719,
+        "independentSemanticCheckSeconds": 0.26364389999071136
+      },
+      "productionStagesTotalSeconds": 6.382182999921497,
+      "diskBoundarySnapshots": {
+        "afterInputGeneration": {
+          "files": 18,
+          "logicalFileBytes": 40736994,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterConstruction": {
+          "files": 18,
+          "logicalFileBytes": 40743800,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterPublicationAndConstructionRelease": {
+          "files": 20,
+          "logicalFileBytes": 89145984,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderOpen": {
+          "files": 20,
+          "logicalFileBytes": 89147346,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReadAndExport": {
+          "files": 23,
+          "logicalFileBytes": 147072046,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderCloseAndRelease": {
+          "files": 23,
+          "logicalFileBytes": 147072046,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        }
+      },
+      "publishedDatabaseBytes": null,
+      "retainedOutputCsvRowsIndependentlyChecked": 18000,
+      "exports": {
+        "readJson": {
+          "chunks": 8771872,
+          "maximumChunkCharacters": 156,
+          "bytes": 48391681,
+          "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070",
+          "firstChunkAvailableSeconds": 0.0001947000273503363,
+          "allChunksWrittenAndClosedSeconds": 2.3499504000064917,
+          "verificationHashFullFileReadSeconds": 0.04233249998651445
+        },
+        "csv": {
+          "chunks": 147,
+          "maximumChunkCharacters": 65536,
+          "bytes": 9483428,
+          "sha256": "d77461456d4a3da7fd7452c8ba87d5df789782572021d84a3cdc479a701b4034",
+          "firstChunkAvailableSeconds": 0.00029150000773370266,
+          "allChunksWrittenAndClosedSeconds": 0.12247010000282899,
+          "verificationHashFullFileReadSeconds": 0.03701050003292039
+        },
+        "html": {
+          "chunks": 1,
+          "maximumChunkCharacters": 34462,
+          "bytes": 34611,
+          "sha256": "39cd31c6f276b90e7387edd2eb55f056fd1e1b3511b0527914e28b06b5049d29",
+          "firstChunkAvailableSeconds": 0.0005778999766334891,
+          "allChunksWrittenAndClosedSeconds": 0.0007517999620176852,
+          "verificationHashFullFileReadSeconds": 0.02929869998479262
+        }
+      },
+      "recordedIndependentContractChecks": {
+        "allFrameTimestampsAndGapSemanticsChecked": true,
+        "physicalBallSpeedAndXyzAlwaysNull": true,
+        "authoritativeFalsePreserved": true,
+        "sourcePtsStringEndpointsPreserved": true,
+        "unknownPeople": 26077,
+        "unavailablePeopleFrames": 1385,
+        "emptyPeopleFrames": 1385,
+        "withheldSpeedSamples": 3650,
+        "measuredZeroSpeedSamples": 324
+      },
+      "modelsImported": []
+    },
+    {
+      "frames": 18000,
+      "mode": "new",
+      "passedTerminalExit": true,
+      "actualWorkloadIdentity": {
+        "pid": 62660,
+        "createTimeUnixSeconds": 1791264509.084803
+      },
+      "actualSampledBeforeAcknowledgment": false,
+      "ownedIdentitiesNow": [
+        {
+          "pid": 17704,
+          "recordedCreateTimeUnixSeconds": 1791264509.0549593,
+          "checkedAt": "2026-10-06T05:33:35.135916+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 62660,
+          "recordedCreateTimeUnixSeconds": 1791264509.084803,
+          "checkedAt": "2026-10-06T05:33:35.135954+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 63504,
+          "recordedCreateTimeUnixSeconds": 1791264509.0705037,
+          "checkedAt": "2026-10-06T05:33:35.135964+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ],
+      "allOwnedOriginalIdentitiesRetiredNow": true,
+      "sampleCount": 357,
+      "recomputedOwnedTreeRssPeakBytes": 66752512,
+      "recomputedOwnedTreePrivatePeakBytes": 815648768,
+      "actualSampledRssPeakBytes": 54575104,
+      "actualOsPeakWorkingSetBytes": 54575104,
+      "actualOsPeakPrivateCommitBytes": 813506560,
+      "minimumSampledAvailableRamBytes": 3035914240,
+      "allPrivateSamplesAvailable": true,
+      "wallSecondsIncludingStartup": 100.04867529997136,
+      "stagesSeconds": {
+        "inputGenerationSeconds": 8.628693200007547,
+        "constructionSeconds": 32.82160779996775,
+        "publicationSeconds": 9.721253400028218,
+        "readerOpenSeconds": 0.009529099974315614,
+        "presentationSeconds": 0.00035419996129348874,
+        "strictReadJsonSeconds": 19.025916399958078,
+        "csvExportSeconds": 6.933053700020537,
+        "htmlExportSeconds": 7.705933499964885,
+        "independentSemanticCheckSeconds": 14.26237290003337
+      },
+      "productionStagesTotalSeconds": 76.21764809987508,
+      "diskBoundarySnapshots": {
+        "afterInputGeneration": {
+          "files": 18,
+          "logicalFileBytes": 40735670,
+          "sqliteDatabaseBytes": 0,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterConstruction": {
+          "files": 20,
+          "logicalFileBytes": 251523593,
+          "sqliteDatabaseBytes": 210583552,
+          "sqliteSidecarBytes": 45656,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterPublicationAndConstructionRelease": {
+          "files": 22,
+          "logicalFileBytes": 208060040,
+          "sqliteDatabaseBytes": 118726656,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderOpen": {
+          "files": 22,
+          "logicalFileBytes": 208061396,
+          "sqliteDatabaseBytes": 118726656,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReadAndExport": {
+          "files": 25,
+          "logicalFileBytes": 266204335,
+          "sqliteDatabaseBytes": 118726656,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        },
+        "afterReaderCloseAndRelease": {
+          "files": 25,
+          "logicalFileBytes": 266204335,
+          "sqliteDatabaseBytes": 118726656,
+          "sqliteSidecarBytes": 0,
+          "allocatedDiskBlocksMeasured": false
+        }
+      },
+      "publishedDatabaseBytes": 118726656,
+      "retainedOutputCsvRowsIndependentlyChecked": 18000,
+      "exports": {
+        "readJson": {
+          "chunks": 739,
+          "maximumChunkCharacters": 65536,
+          "bytes": 48391681,
+          "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070",
+          "firstChunkAvailableSeconds": 0.01621929998509586,
+          "allChunksWrittenAndClosedSeconds": 18.98130039998796,
+          "verificationHashFullFileReadSeconds": 0.04460210003890097
+        },
+        "csv": {
+          "chunks": 147,
+          "maximumChunkCharacters": 65536,
+          "bytes": 9483428,
+          "sha256": "d77461456d4a3da7fd7452c8ba87d5df789782572021d84a3cdc479a701b4034",
+          "firstChunkAvailableSeconds": 0.0002476999652571976,
+          "allChunksWrittenAndClosedSeconds": 6.905449599958956,
+          "verificationHashFullFileReadSeconds": 0.027585600037127733
+        },
+        "html": {
+          "chunks": 13,
+          "maximumChunkCharacters": 14807,
+          "bytes": 34611,
+          "sha256": "39cd31c6f276b90e7387edd2eb55f056fd1e1b3511b0527914e28b06b5049d29",
+          "firstChunkAvailableSeconds": 0.00028410000959411263,
+          "allChunksWrittenAndClosedSeconds": 7.6867807999951765,
+          "verificationHashFullFileReadSeconds": 0.019132400047965348
+        }
+      },
+      "recordedIndependentContractChecks": {
+        "allFrameTimestampsAndGapSemanticsChecked": true,
+        "physicalBallSpeedAndXyzAlwaysNull": true,
+        "authoritativeFalsePreserved": true,
+        "sourcePtsStringEndpointsPreserved": true,
+        "unknownPeople": 26077,
+        "unavailablePeopleFrames": 1385,
+        "emptyPeopleFrames": 1385,
+        "withheldSpeedSamples": 3650,
+        "measuredZeroSpeedSamples": 324
+      },
+      "modelsImported": []
+    }
+  ],
+  "comparisons": [
+    {
+      "frames": 600,
+      "fiveOutputByteComparisonsPassed": true,
+      "outputs": {
+        "analysis/result.json": {
+          "exactBytesEqualNow": true,
+          "bytes": 1795219,
+          "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+        },
+        "analysis/summary.json": {
+          "exactBytesEqualNow": true,
+          "bytes": 945,
+          "sha256": "52e3fb824f002a17ace160eb6ccc01699cfa70c8d0d077c50525a93a97734d27"
+        },
+        "read_result.json": {
+          "exactBytesEqualNow": true,
+          "bytes": 1795219,
+          "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+        },
+        "telemetry.csv": {
+          "exactBytesEqualNow": true,
+          "bytes": 314926,
+          "sha256": "94087083a7681754233ec696a4e24d762ab2fc4cc2acacc59428186314718a1f"
+        },
+        "report.html": {
+          "exactBytesEqualNow": true,
+          "bytes": 23404,
+          "sha256": "f0196d6b6f9a23c5ff032654facf543d9b5c9373ac98d00e983432a4cb91c615"
+        }
+      },
+      "sameStreamingInputsAndRecordedSemantics": true,
+      "volatileFieldsExcluded": [],
+      "oldActualOsPeakWorkingSetBytes": 52551680,
+      "newActualOsPeakWorkingSetBytes": 52633600,
+      "newToOldActualOsPeakWorkingSetRatio": 1.0015588464536243,
+      "oldProductionStageTotalSeconds": 0.2711713000899181,
+      "newProductionStageTotalSeconds": 2.6800740999751724,
+      "newToOldProductionStageWallRatio": 9.883325038772476,
+      "observedTradeoff": "Current path lowers whole-child working-set peak at 18000 but adds database storage and substantial construction/read/export time; not a throughput/full-match qualification."
+    },
+    {
+      "frames": 18000,
+      "fiveOutputByteComparisonsPassed": true,
+      "outputs": {
+        "analysis/result.json": {
+          "exactBytesEqualNow": true,
+          "bytes": 48391681,
+          "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+        },
+        "analysis/summary.json": {
+          "exactBytesEqualNow": true,
+          "bytes": 948,
+          "sha256": "d9073b2163d911afae49c9baf2b22b9b0a9656b6a4907955d290cbfe68025479"
+        },
+        "read_result.json": {
+          "exactBytesEqualNow": true,
+          "bytes": 48391681,
+          "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+        },
+        "telemetry.csv": {
+          "exactBytesEqualNow": true,
+          "bytes": 9483428,
+          "sha256": "d77461456d4a3da7fd7452c8ba87d5df789782572021d84a3cdc479a701b4034"
+        },
+        "report.html": {
+          "exactBytesEqualNow": true,
+          "bytes": 34611,
+          "sha256": "39cd31c6f276b90e7387edd2eb55f056fd1e1b3511b0527914e28b06b5049d29"
+        }
+      },
+      "sameStreamingInputsAndRecordedSemantics": true,
+      "volatileFieldsExcluded": [],
+      "oldActualOsPeakWorkingSetBytes": 281812992,
+      "newActualOsPeakWorkingSetBytes": 54575104,
+      "newToOldActualOsPeakWorkingSetRatio": 0.19365716112903694,
+      "oldProductionStageTotalSeconds": 6.382182999921497,
+      "newProductionStageTotalSeconds": 76.21764809987508,
+      "newToOldProductionStageWallRatio": 11.942253630272367,
+      "observedTradeoff": "Current path lowers whole-child working-set peak at 18000 but adds database storage and substantial construction/read/export time; not a throughput/full-match qualification."
+    }
+  ],
+  "qualificationEvidence": false,
+  "inferenceRun": false,
+  "harnessOrModelsImported": false,
+  "scope": "Independent read-only terminal audit of four previously completed synthetic result-storage children; no video, worker smoke, model, inference, benchmark rerun or production edit.",
+  "memoryMeaning": "Actual child Windows OS peak working set and peak process commit cover startup, imports, generated inputs, stages and checks. Owned-tree 0.25-second sums may miss short peaks and double-count shared pages. Private commit is not resident RAM or paging-file disk occupancy.",
+  "elapsedMeaning": "Stage times are previously recorded one-shot child observations, not an independent remeasurement. Reader-open includes production full-database hash verification; exports include explicitly recorded full-output hash costs. No variance or full-match latency qualification.",
+  "diskMeaning": "Logical retained file sizes and recorded boundary snapshots only; no peak allocated disk or write amplification claim.",
+  "limits": [
+    "Counts 600 and 18000 only; no 432000 or full-video claim.",
+    "Pose is a 65-frame prefix followed by missing observations.",
+    "Generated timestamps/PTS are index/60 synthetic clock values, not decoded media evidence.",
+    "Synthetic attribution is an escaping fixture, not a rights certification.",
+    "Browser whole-result memory is outside this server measurement.",
+    "Production integration/real worker smoke state is not read or changed by this audit."
+  ],
+  "sourceBindingsNow": {
+    "src/api/results.py": {
+      "bytes": 35337,
+      "sha256": "30a64418e141d2ab5d847c33aa6fcc0386807ff7a04a5891b5172a904f9c1a55"
+    },
+    "src/api/result_storage.py": {
+      "bytes": 22807,
+      "sha256": "6c553e36e55bbf54888819162b6207297686fd050cd62e085821d04fedee5fc2"
+    },
+    "src/api/result_document.py": {
+      "bytes": 8158,
+      "sha256": "d30e7abe74d5228bae6bfea14ec9ae07bca317d5032cd3aeda6bf92f811d1cdc"
+    },
+    "src/api/reporting.py": {
+      "bytes": 17376,
+      "sha256": "7854e4952e840d43e495b36cfced57b69a3f38107b1a2849e53dd99705880f17"
+    },
+    "src/api/worker.py": {
+      "bytes": 11967,
+      "sha256": "02e9e14ce2a8857bd65fdfdfa8f8b3d43baaf2612521d0659bec1258b490aedb"
+    },
+    "src/api/app.py": {
+      "bytes": 11742,
+      "sha256": "0639b614f8f1ed3b00ee9abd3aee6fa6eab7498f5b7e1c27232d2348fb747253"
+    },
+    "src/api/product.py": {
+      "bytes": 16609,
+      "sha256": "0e3c03dc07987b3d0f40f4dd0c1743bf8b168276be7573846a4eaef09bcadacb"
+    },
+    "src/api/media_source.py": {
+      "bytes": 3474,
+      "sha256": "89c1177118c00dbfff1bfe9789cd1ac7710db1e0784d52d60df0c9afc9b3fd14"
+    },
+    "src/api/media_revision.py": {
+      "bytes": 3637,
+      "sha256": "62a09e3634b77ed70b6356fbf01124c9d4e55affbb243330f27a4c4adb6feb74"
+    },
+    "src/api/jobs.py": {
+      "bytes": 5017,
+      "sha256": "a60acd43f8a990a5975850848fc823fd9403401469fdf268fff55195eff55b3a"
+    },
+    "src/detection/image_people.py": {
+      "bytes": 3407,
+      "sha256": "3259d982f9a718d52e6152ae825d01570a9e76c2f108c45445817bb96cacb58c"
+    },
+    "src/tracking/player_motion_tracking.py": {
+      "bytes": 7820,
+      "sha256": "4b7835932b6e7646507fd223ee4df8c8f4650caba440dce843da88bfbf9d07ef"
+    },
+    "src/utils/bbox_utils.py": {
+      "bytes": 1232,
+      "sha256": "0dabfa8a8f8cf317ef5e571a88f1f4b412d411659b26ef4728338326d6445e59"
+    },
+    "requirements-product.txt": {
+      "bytes": 715,
+      "sha256": "2d35459dcb01d87f29250e4436fabbf24fef624f7483edc47d666788b3358e09"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "artifacts/validation/product_installation/clean_env/Scripts/python.exe": {
+      "bytes": 254800,
+      "sha256": "935016795f3e6908e75acbc2040a01e2e4cdb494a57c42f63a0d6eedb2372256"
+    },
+    "artifacts/validation/product_installation/clean_env/pyvenv.cfg": {
+      "bytes": 378,
+      "sha256": "0b0232d7993a8dbae356760a48139df91f3ad9978c8671cce7db49648012f278"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/results.py": {
+      "bytes": 34028,
+      "sha256": "d043172fa3674fc311176f97dc979e1660e1af8a17f8dec4f2dca34f6e33b5d7"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/reporting.py": {
+      "bytes": 16149,
+      "sha256": "c39639f8033fd68ee91b39f2e9a27332e570fd776fb00201cdd46283df7e1631"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/worker.py": {
+      "bytes": 11965,
+      "sha256": "5c6784d408604c764ff7e0dd7a08f95068bfd012c54b83e707822451e4eb1aba"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/app.py": {
+      "bytes": 11269,
+      "sha256": "0c3bcb7691ca24cd00a6f33dadcf1630e5e09cc7063ec43e60fd92f4379bcfdc"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/media_revision.py": {
+      "bytes": 3637,
+      "sha256": "62a09e3634b77ed70b6356fbf01124c9d4e55affbb243330f27a4c4adb6feb74"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/receipt.json": {
+      "bytes": 1855,
+      "sha256": "d75dfff071a187922b5972e5781c54d12ab861aa2e076c16316dd84f7f5e1738"
+    },
+    "artifacts/validation/product_execution/result_storage_measurement_2026-10-06/helper.py": {
+      "bytes": 44418,
+      "sha256": "8a1585543a904826fca354f5fa727debfd7b5071f330cae9cfe8c41eb0f446dc"
+    },
+    "artifacts/validation/product_execution/result_storage_measurement_2026-10-06/protocol.json": {
+      "bytes": 5606,
+      "sha256": "c982c5fd1dbd6e7cd33917bdf46886ca4d4ef9a43ce88066d974d605bcfab097"
+    },
+    "artifacts/validation/product_execution/result_storage_measurement_2026-10-06/PROTOCOL.md": {
+      "bytes": 3981,
+      "sha256": "a46f402bd63eaa9012c10974438339a0679cbc2fd37415c51a119ff599e314f5"
+    }
+  },
+  "monitorInterpreter": {
+    "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "sha256": "5341746f92483a93e44c313de830f2fba2956f0759094404a16b2fed06c9a2ed",
+    "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]"
+  },
+  "fileBindings": {
+    "helper.py": {
+      "bytes": 44418,
+      "sha256": "8a1585543a904826fca354f5fa727debfd7b5071f330cae9cfe8c41eb0f446dc"
+    },
+    "prepared_source_bindings.json": {
+      "bytes": 4256,
+      "sha256": "80120590ebf17ae9e7648e069651d1e4ff0ede935ea5bd849d849eb60ebae713"
+    },
+    "protocol.json": {
+      "bytes": 5606,
+      "sha256": "c982c5fd1dbd6e7cd33917bdf46886ca4d4ef9a43ce88066d974d605bcfab097"
+    },
+    "PROTOCOL.md": {
+      "bytes": 3981,
+      "sha256": "a46f402bd63eaa9012c10974438339a0679cbc2fd37415c51a119ff599e314f5"
+    },
+    "run/18000_new/actual_identity.json": {
+      "bytes": 65,
+      "sha256": "889c346c728fb6fbd55cd0135eeb82abb781d21d5bc3ac4207b7d7acd7c58eaa"
+    },
+    "run/18000_new/actual_identity_sampled.json": {
+      "bytes": 167,
+      "sha256": "4136d96e12014b4e520be118b838d8ead264b45dccedd3cab50780f916e64b38"
+    },
+    "run/18000_new/analysis/.result/3daca2a06c1c45b5be9fd12fcf1ed8eb.sqlite3": {
+      "bytes": 118726656,
+      "sha256": "7de2498f905e5525f20a471662158695976abcbff42defef8732ae55fa0f7d74"
+    },
+    "run/18000_new/analysis/.result/current.store": {
+      "bytes": 263,
+      "sha256": "7d2ea306582af2f15ed476b20e9c87d427828170058e2207ecf8334334494772"
+    },
+    "run/18000_new/analysis/camera_registration.json": {
+      "bytes": 5748402,
+      "sha256": "2ed3c9b1cbfb13c29df5ca5db9e7a54849ca4636f68ec017b436de521f403dcc"
+    },
+    "run/18000_new/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/18000_new/analysis/detections.json": {
+      "bytes": 4170800,
+      "sha256": "08dac997012ac4315c8e9efd6fddcf8ef964fc60ca7022625b0092af3f8bbdce"
+    },
+    "run/18000_new/analysis/image_people.json": {
+      "bytes": 8668941,
+      "sha256": "05f8604bd10b69f313f86113176c635da931a7c0d35dbde437832822e103b0e9"
+    },
+    "run/18000_new/analysis/line_calls.json": {
+      "bytes": 834906,
+      "sha256": "ee56ed2700b9b5ae2039926ae4605bb08937ea08455d04e9b5130c31b2c3c946"
+    },
+    "run/18000_new/analysis/match_events.json": {
+      "bytes": 1107645,
+      "sha256": "05c6f1c89246552a473d841595cc9d53e0fd4532e85fd7c15f804f900cb411fe"
+    },
+    "run/18000_new/analysis/media_metadata.json": {
+      "bytes": 4130,
+      "sha256": "d47e77ef2f32eb1d436fed0688e32990ff0cb50380eaecc121dabcb33676d24b"
+    },
+    "run/18000_new/analysis/media_source.json": {
+      "bytes": 738,
+      "sha256": "e9052a804ceef2a22ce539665a01131647cd6d798882bd852483fdc092587fe6"
+    },
+    "run/18000_new/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/18000_new/analysis/player_motion.json": {
+      "bytes": 6080679,
+      "sha256": "ee9daa780929e1c5dd47718e58cf3df66303ef1a831492aa51c47649b1eac231"
+    },
+    "run/18000_new/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/18000_new/analysis/racket_tracking.json": {
+      "bytes": 4068189,
+      "sha256": "b80768ac18971b6fad7ccc0a0f0bc8814e46c0560da887461a890192b9b544b8"
+    },
+    "run/18000_new/analysis/result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_new/analysis/source_frame_mapping.jsonl": {
+      "bytes": 2579413,
+      "sha256": "e225d83288e1a4b4991a5919fbd49857ec4b63ca6be693dbd5aef06eabbccd07"
+    },
+    "run/18000_new/analysis/summary.json": {
+      "bytes": 948,
+      "sha256": "d9073b2163d911afae49c9baf2b22b9b0a9656b6a4907955d290cbfe68025479"
+    },
+    "run/18000_new/analysis/trajectories.json": {
+      "bytes": 7413430,
+      "sha256": "880748ce486470aad5a3b13c9534ff2caa83cb39d0cee9993265a84c3db6eb87"
+    },
+    "run/18000_new/child_receipt.json": {
+      "bytes": 20009,
+      "sha256": "2d4aa0f914b7ba16aa0aba080ce2a613a44c50fdda859728393dd55504dfb184"
+    },
+    "run/18000_new/read_result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_new/report.html": {
+      "bytes": 34611,
+      "sha256": "39cd31c6f276b90e7387edd2eb55f056fd1e1b3511b0527914e28b06b5049d29"
+    },
+    "run/18000_new/resource_receipt.json": {
+      "bytes": 1679,
+      "sha256": "09ea251938fdb1bce50c668f1258142b9335b4a2aa636a8a67ba063b73fa71a5"
+    },
+    "run/18000_new/samples.jsonl": {
+      "bytes": 483758,
+      "sha256": "b78a32ef815a0bf7b86a3701fd9b8e5700e9a507a60ebd63712cb41286f2d918"
+    },
+    "run/18000_new/stdout.txt": {
+      "bytes": 65,
+      "sha256": "d36ca9d2127a604bcd30933c02d5f7b9cbc5241b348bd48200883c1357d52752"
+    },
+    "run/18000_new/telemetry.csv": {
+      "bytes": 9483428,
+      "sha256": "d77461456d4a3da7fd7452c8ba87d5df789782572021d84a3cdc479a701b4034"
+    },
+    "run/18000_old/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "6db698bd728d6878256b9cdf09f5e0f84affa9c28eb58c68956de813b8122c3c"
+    },
+    "run/18000_old/actual_identity_sampled.json": {
+      "bytes": 168,
+      "sha256": "f1aa7ab5a91cde2c56beb31254deb9c91cda14bb50ad3ab097723604650db6d6"
+    },
+    "run/18000_old/analysis/camera_registration.json": {
+      "bytes": 5748402,
+      "sha256": "2ed3c9b1cbfb13c29df5ca5db9e7a54849ca4636f68ec017b436de521f403dcc"
+    },
+    "run/18000_old/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/18000_old/analysis/detections.json": {
+      "bytes": 4170800,
+      "sha256": "08dac997012ac4315c8e9efd6fddcf8ef964fc60ca7022625b0092af3f8bbdce"
+    },
+    "run/18000_old/analysis/image_people.json": {
+      "bytes": 8668941,
+      "sha256": "05f8604bd10b69f313f86113176c635da931a7c0d35dbde437832822e103b0e9"
+    },
+    "run/18000_old/analysis/line_calls.json": {
+      "bytes": 834906,
+      "sha256": "ee56ed2700b9b5ae2039926ae4605bb08937ea08455d04e9b5130c31b2c3c946"
+    },
+    "run/18000_old/analysis/match_events.json": {
+      "bytes": 1107645,
+      "sha256": "05c6f1c89246552a473d841595cc9d53e0fd4532e85fd7c15f804f900cb411fe"
+    },
+    "run/18000_old/analysis/media_metadata.json": {
+      "bytes": 4130,
+      "sha256": "d47e77ef2f32eb1d436fed0688e32990ff0cb50380eaecc121dabcb33676d24b"
+    },
+    "run/18000_old/analysis/media_source.json": {
+      "bytes": 738,
+      "sha256": "e9052a804ceef2a22ce539665a01131647cd6d798882bd852483fdc092587fe6"
+    },
+    "run/18000_old/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/18000_old/analysis/player_motion.json": {
+      "bytes": 6080679,
+      "sha256": "ee9daa780929e1c5dd47718e58cf3df66303ef1a831492aa51c47649b1eac231"
+    },
+    "run/18000_old/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/18000_old/analysis/racket_tracking.json": {
+      "bytes": 4068189,
+      "sha256": "b80768ac18971b6fad7ccc0a0f0bc8814e46c0560da887461a890192b9b544b8"
+    },
+    "run/18000_old/analysis/result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_old/analysis/source_frame_mapping.jsonl": {
+      "bytes": 2579413,
+      "sha256": "e225d83288e1a4b4991a5919fbd49857ec4b63ca6be693dbd5aef06eabbccd07"
+    },
+    "run/18000_old/analysis/summary.json": {
+      "bytes": 948,
+      "sha256": "d9073b2163d911afae49c9baf2b22b9b0a9656b6a4907955d290cbfe68025479"
+    },
+    "run/18000_old/analysis/trajectories.json": {
+      "bytes": 7413430,
+      "sha256": "880748ce486470aad5a3b13c9534ff2caa83cb39d0cee9993265a84c3db6eb87"
+    },
+    "run/18000_old/child_receipt.json": {
+      "bytes": 19522,
+      "sha256": "7d0527f62e007aa28e1ad00be44952f5c99edec1eb0b92ca2063ab52ca4c05cb"
+    },
+    "run/18000_old/read_result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_old/report.html": {
+      "bytes": 34611,
+      "sha256": "39cd31c6f276b90e7387edd2eb55f056fd1e1b3511b0527914e28b06b5049d29"
+    },
+    "run/18000_old/resource_receipt.json": {
+      "bytes": 1670,
+      "sha256": "582b677c7284da2e3b8f0339aead7de6bc84557e3de103029b472814be836f58"
+    },
+    "run/18000_old/samples.jsonl": {
+      "bytes": 78386,
+      "sha256": "e59423444718c948e7b6bab6024fac9e2dbf28a7827991d09053069c84c28be6"
+    },
+    "run/18000_old/stdout.txt": {
+      "bytes": 65,
+      "sha256": "2bd2ff19de9ad338f6e6cd6fb4cbd25d1d497afc54921d9d4da916a2930bddb2"
+    },
+    "run/18000_old/telemetry.csv": {
+      "bytes": 9483428,
+      "sha256": "d77461456d4a3da7fd7452c8ba87d5df789782572021d84a3cdc479a701b4034"
+    },
+    "run/600_new/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "ef8d7ada3f6b37b388aaee9c75a65f49a7e715a5ccb5569d410dacb8a8842a60"
+    },
+    "run/600_new/actual_identity_sampled.json": {
+      "bytes": 168,
+      "sha256": "429a48e39605ec2e7d3870beee9700090925f5700ad3381330e46678138ec1e6"
+    },
+    "run/600_new/analysis/.result/84eda7395409485b9a0a3f7a235d5e66.sqlite3": {
+      "bytes": 4476928,
+      "sha256": "6c8b54df57cb1e5c3fb2312d78c91aaf4f27b8638167999416f5ca378c97f33c"
+    },
+    "run/600_new/analysis/.result/current.store": {
+      "bytes": 259,
+      "sha256": "e2f53f0520318df0e5a6c2070a2358726b54cb8fe8e5a11cb018a622c46cad66"
+    },
+    "run/600_new/analysis/camera_registration.json": {
+      "bytes": 190129,
+      "sha256": "88a495fd24811db74384e24cf115eded44b6935540477b7b8ad479c23d7d8198"
+    },
+    "run/600_new/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/600_new/analysis/detections.json": {
+      "bytes": 138137,
+      "sha256": "c405252086016fc99981118ec1e7c0abf242cdc36bc52b2463d84f97dce4f98a"
+    },
+    "run/600_new/analysis/image_people.json": {
+      "bytes": 284805,
+      "sha256": "c539e42aa07d5a4982faa7e4afc91569f55b251624e9dfeaf0186cceab1716bc"
+    },
+    "run/600_new/analysis/line_calls.json": {
+      "bytes": 26906,
+      "sha256": "3d392e3ac4f957c64d9cf584d22355676613c30efe8d67f5a10241cfdd485281"
+    },
+    "run/600_new/analysis/match_events.json": {
+      "bytes": 36457,
+      "sha256": "08fae2ae86867faa25c2323db1ed680389766dc1a3ffb3517992f24498739677"
+    },
+    "run/600_new/analysis/media_metadata.json": {
+      "bytes": 730,
+      "sha256": "9bb39e21415a8f38af47e11a977dccacfad93cda0642c4c64ceac5fad14abf3a"
+    },
+    "run/600_new/analysis/media_source.json": {
+      "bytes": 733,
+      "sha256": "52513b343be05ce85bf994455443fbf7b7cc843ab732799a2c8de287070dd73e"
+    },
+    "run/600_new/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/600_new/analysis/player_motion.json": {
+      "bytes": 199973,
+      "sha256": "1eb5f735f411d106c524ca5a90763bfce85398544dec42563fb6798ac9f0d0f8"
+    },
+    "run/600_new/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/600_new/analysis/racket_tracking.json": {
+      "bytes": 135635,
+      "sha256": "3d0b9a12b3b3c7f76ca030e61559ffca0b1d08fab3ef41db330aa0c5a3ba1206"
+    },
+    "run/600_new/analysis/result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_new/analysis/source_frame_mapping.jsonl": {
+      "bytes": 83625,
+      "sha256": "226231adcd18e9af0f8195424a342d898c861d06b5f42693ea0af1ba483da82f"
+    },
+    "run/600_new/analysis/summary.json": {
+      "bytes": 945,
+      "sha256": "52e3fb824f002a17ace160eb6ccc01699cfa70c8d0d077c50525a93a97734d27"
+    },
+    "run/600_new/analysis/trajectories.json": {
+      "bytes": 245710,
+      "sha256": "9000f392a5951bd4244f38ddbbc688f52071ab516010811be4b58686694a1acb"
+    },
+    "run/600_new/child_receipt.json": {
+      "bytes": 19950,
+      "sha256": "afd0ba1194f44997d1c7c2dc59711693ea76b0590f2ff74b89a24e7b2edf5660"
+    },
+    "run/600_new/read_result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_new/report.html": {
+      "bytes": 23404,
+      "sha256": "f0196d6b6f9a23c5ff032654facf543d9b5c9373ac98d00e983432a4cb91c615"
+    },
+    "run/600_new/resource_receipt.json": {
+      "bytes": 1669,
+      "sha256": "027c0616d5aa0a2ac19be8396ff6d353c2638774ed9ec55991f15b7e3059d4c1"
+    },
+    "run/600_new/samples.jsonl": {
+      "bytes": 21333,
+      "sha256": "bbfeea2499db2f58f7e4d0a34198830ee7eff9d106e673ac93b2dd83f95a77d6"
+    },
+    "run/600_new/stdout.txt": {
+      "bytes": 63,
+      "sha256": "bb7a701d22d04e383375dd1a96c03ffef1239036b1144f3cdea03e115d625e73"
+    },
+    "run/600_new/telemetry.csv": {
+      "bytes": 314926,
+      "sha256": "94087083a7681754233ec696a4e24d762ab2fc4cc2acacc59428186314718a1f"
+    },
+    "run/600_old/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "820d33cb6dedf275ff7e089700943297f1ccb1809f92b1bff82803c62c305ed0"
+    },
+    "run/600_old/actual_identity_sampled.json": {
+      "bytes": 168,
+      "sha256": "d288ed06f4d4940b0556426107b9fb675c3667914825036f2b72375f4e54f451"
+    },
+    "run/600_old/analysis/camera_registration.json": {
+      "bytes": 190129,
+      "sha256": "88a495fd24811db74384e24cf115eded44b6935540477b7b8ad479c23d7d8198"
+    },
+    "run/600_old/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/600_old/analysis/detections.json": {
+      "bytes": 138137,
+      "sha256": "c405252086016fc99981118ec1e7c0abf242cdc36bc52b2463d84f97dce4f98a"
+    },
+    "run/600_old/analysis/image_people.json": {
+      "bytes": 284805,
+      "sha256": "c539e42aa07d5a4982faa7e4afc91569f55b251624e9dfeaf0186cceab1716bc"
+    },
+    "run/600_old/analysis/line_calls.json": {
+      "bytes": 26906,
+      "sha256": "3d392e3ac4f957c64d9cf584d22355676613c30efe8d67f5a10241cfdd485281"
+    },
+    "run/600_old/analysis/match_events.json": {
+      "bytes": 36457,
+      "sha256": "08fae2ae86867faa25c2323db1ed680389766dc1a3ffb3517992f24498739677"
+    },
+    "run/600_old/analysis/media_metadata.json": {
+      "bytes": 730,
+      "sha256": "9bb39e21415a8f38af47e11a977dccacfad93cda0642c4c64ceac5fad14abf3a"
+    },
+    "run/600_old/analysis/media_source.json": {
+      "bytes": 733,
+      "sha256": "52513b343be05ce85bf994455443fbf7b7cc843ab732799a2c8de287070dd73e"
+    },
+    "run/600_old/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/600_old/analysis/player_motion.json": {
+      "bytes": 199973,
+      "sha256": "1eb5f735f411d106c524ca5a90763bfce85398544dec42563fb6798ac9f0d0f8"
+    },
+    "run/600_old/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/600_old/analysis/racket_tracking.json": {
+      "bytes": 135635,
+      "sha256": "3d0b9a12b3b3c7f76ca030e61559ffca0b1d08fab3ef41db330aa0c5a3ba1206"
+    },
+    "run/600_old/analysis/result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_old/analysis/source_frame_mapping.jsonl": {
+      "bytes": 83625,
+      "sha256": "226231adcd18e9af0f8195424a342d898c861d06b5f42693ea0af1ba483da82f"
+    },
+    "run/600_old/analysis/summary.json": {
+      "bytes": 945,
+      "sha256": "52e3fb824f002a17ace160eb6ccc01699cfa70c8d0d077c50525a93a97734d27"
+    },
+    "run/600_old/analysis/trajectories.json": {
+      "bytes": 245710,
+      "sha256": "9000f392a5951bd4244f38ddbbc688f52071ab516010811be4b58686694a1acb"
+    },
+    "run/600_old/child_receipt.json": {
+      "bytes": 19465,
+      "sha256": "355babac32007ab9109ac9a9c9b36043cbc9d068cb9e19b82144b662c6738b49"
+    },
+    "run/600_old/read_result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_old/report.html": {
+      "bytes": 23404,
+      "sha256": "f0196d6b6f9a23c5ff032654facf543d9b5c9373ac98d00e983432a4cb91c615"
+    },
+    "run/600_old/resource_receipt.json": {
+      "bytes": 1662,
+      "sha256": "e97c7a5913d9ad35d7a121271e2532f46176d12ca23de29642094faaf1fbd95d"
+    },
+    "run/600_old/samples.jsonl": {
+      "bytes": 13156,
+      "sha256": "717aa35e8f91cb01ae1f4f0509a7ab61956fb66bd23d1a2a792bc7705d3847d3"
+    },
+    "run/600_old/stdout.txt": {
+      "bytes": 63,
+      "sha256": "0dc86ea44f0ca8c6cd69ec57d78ee3042d08b7f34de60d34b94cd7b19c9b615a"
+    },
+    "run/600_old/telemetry.csv": {
+      "bytes": 314926,
+      "sha256": "94087083a7681754233ec696a4e24d762ab2fc4cc2acacc59428186314718a1f"
+    },
+    "run/comparison_18000.json": {
+      "bytes": 2620,
+      "sha256": "e0201cf5098d8ca4f369d5c416fa9278f42237bc7f958f74c1b72905bc529467"
+    },
+    "run/comparison_600.json": {
+      "bytes": 2623,
+      "sha256": "d11e9e4aeac67be83d1736580a39a6c7d2c9b5446b009074c7e05906aaadbe65"
+    },
+    "run/executed_helper.py": {
+      "bytes": 44418,
+      "sha256": "8a1585543a904826fca354f5fa727debfd7b5071f330cae9cfe8c41eb0f446dc"
+    },
+    "run/report.json": {
+      "bytes": 23166,
+      "sha256": "a8021b212064a84a7403fe92442422779366cf58ac1083d9f5d76749d8916c35"
+    },
+    "run/source_bindings.json": {
+      "bytes": 4256,
+      "sha256": "80120590ebf17ae9e7648e069651d1e4ff0ede935ea5bd849d849eb60ebae713"
+    },
+    "static_sanity_receipt.json": {
+      "bytes": 680,
+      "sha256": "079502e4416df9e2415d99cce1141e2006982d363ee9d6ea4e950236e2f5f137"
+    }
+  },
+  "boundFileCount": 114,
+  "retainedMeasurementFileBytesExcludingAudit": 428583145,
+  "allMeasurementFilesStableDuringAudit": false,
+  "completedAt": "2026-10-06T05:33:36.225058+00:00",
+  "auditElapsedSeconds": 1.5354893000330776
+}

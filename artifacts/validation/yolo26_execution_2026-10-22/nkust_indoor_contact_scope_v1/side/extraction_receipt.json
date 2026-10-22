@@ -1,0 +1,62 @@
+{
+  "created_utc": "2026-10-21T18:06:38.339398+00:00",
+  "scope": "NEW EXACT NATIVE SIDE-VIEW DEV ANCHORS ONLY; no model or TEST access",
+  "source_sha256": "ebf721e1502143a5df207383ddd4649bc86ef7cf252d650f9f0e7e9f93a940fe",
+  "prior_probe_sha256": "a1bc06bddceba148b89c735307c3058d43b67d4ccdd678552621d2e6d12bb626",
+  "frame_count": 139,
+  "anchors": [
+    {
+      "native_frame_index": 110,
+      "source_pts": "110110",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.835167",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\side\\ISS01_frame_0110.png",
+      "sha256": "db3075a3238769b3367e4f2e3fd4d4fca28077a5f520009bc5848d2a2921ee9f"
+    },
+    {
+      "native_frame_index": 118,
+      "source_pts": "118118",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.968633",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\side\\ISS01_frame_0118.png",
+      "sha256": "5f1a8fadd62f9f56436db1cf3ed1091c0167983d3871e15e62c3a1b08e7c3bd1"
+    },
+    {
+      "native_frame_index": 126,
+      "source_pts": "126126",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.102100",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\side\\ISS01_frame_0126.png",
+      "sha256": "34cd8ab304158a9e26a4d3c53179a2ffc0f2ce15f18624ecd7e1120d25238445"
+    },
+    {
+      "native_frame_index": 134,
+      "source_pts": "134134",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.235567",
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\side\\ISS01_frame_0134.png",
+      "sha256": "70a71f5588d8126e0bab52ad68a959102b38962c4e5a2a27d83306973d03dd5a"
+    }
+  ],
+  "contact_annotation_status": "PENDING_VISUAL_REVIEW",
+  "extraction_recipe": {
+    "ffmpeg_executable": "C:\\Users\\ac-98\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+    "argv_per_anchor": [
+      "C:\\Users\\ac-98\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-i",
+      "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\nkust_landing_reference_indoor_development_v4\\ISS01.mp4",
+      "-vf",
+      "select=eq(n\\,NATIVE_FRAME_INDEX)",
+      "-frames:v",
+      "1",
+      "-fps_mode",
+      "vfr",
+      "OUTPUT_PNG"
+    ],
+    "frame_index_origin": 0,
+    "output_is_unmodified_decoded_frame": true
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "status": "ACTUAL_SERVICE_PHASE_REGRESSION_RED",
+  "exit_code": 1,
+  "elapsed_seconds": 0.5343738000083249,
+  "source_sha256": "46e3345062a7e756f440df0f76152dc93c9dca95fe8c07464493121316165d9d",
+  "tests_sha256": "4c97854f29ff76e7c9f3ae3153eadd39b3eb83521bb4ad57d9fe75694b5dae5f",
+  "reports": [
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_actual_contact_keeps_serve_started_and_native_first_bounce_requests_serve",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_first_fault_second_contact_in_then_rally_uses_exact_native_context",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_first_and_second_serve_lets_replay_same_attempt_without_live_phase[1]",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_first_and_second_serve_lets_replay_same_attempt_without_live_phase[2]",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_second_fault_awards_receiver_once_dead_ball_and_next_attempt_reset_preserved",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_duplicate_contact_and_bounce_ids_cannot_advance_phase_or_history_twice",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally[AD_BREAK]",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_unknown_or_unverified_service_bounce_cannot_turn_contact_into_live_rally[BOUNCE]",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority[CONSEQUENTIAL_GAP]",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_review_gap_freezes_score_and_later_in_bounce_cannot_resume_authority[POINT_OUTCOME_UNKNOWN]",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_unknown_line_decision_and_premature_return_withhold_live_phase",
+      "outcome": "failed"
+    },
+    {
+      "nodeid": "tests/test_scoring_service_phase.py::test_narrow_fix_keeps_all_rule_outcomes_scores_attempts_winners_versions_and_history",
+      "outcome": "passed"
+    }
+  ],
+  "heavy_imported": [],
+  "qualification_evidence": false,
+  "media_used": false,
+  "model_used": false
+}

@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "PURE_PINNED_RUNTIME_ARGUMENT_DISPATCH_WITH_FAKE_PREDICTOR_NOT_MODEL_INFERENCE",
+  "checkpoint_sha256": "a083adb42303728ae14c4bd6bd56d80da46f82fb2564dbd6f31dcc92ea321646",
+  "inert_checkpoint_opcode": {
+    "archive_entry": "best/data.pkl",
+    "key_offset": 224051,
+    "integer_offset": 224066,
+    "imgsz": 640
+  },
+  "original_crop_args": {
+    "imgsz": 640,
+    "conf": 0.25,
+    "batch": 1,
+    "rect": true,
+    "half": false,
+    "max_det": 300,
+    "iou": 0.7,
+    "augment": false,
+    "agnostic_nms": false,
+    "classes": null,
+    "end2end": null,
+    "nms": false,
+    "device": "cuda:0",
+    "mode": "predict"
+  },
+  "current_correction_args": {
+    "imgsz": 960,
+    "conf": 0.4,
+    "batch": 1,
+    "rect": true,
+    "half": false,
+    "max_det": 300,
+    "iou": 0.7,
+    "augment": false,
+    "agnostic_nms": false,
+    "classes": null,
+    "end2end": true,
+    "nms": false,
+    "device": 0,
+    "mode": "predict"
+  },
+  "effective_original_end2end": true,
+  "end2end_explanation": "Original crop args inherit default None; the already selected model head remains end2end=True.",
+  "tracking_callback_limit": "Argument dispatch only. Original .track callbacks persist on crop .predict and may reorder/filter its Results. Fresh correction model has no tracker callbacks.",
+  "source_pins": {
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\engine\\model.py": "b4a798faae21c390bc1fe24080127ce435cb13e528595082fe79485f99ec53a3",
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\cfg\\default.yaml": "3ef9fcf96280ba18b761a6165f7d77e14630b6759d5b32b28cd9d31025734dca",
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\engine\\predictor.py": "423c11df2c1853aa97cf756b9b571367422b9749f9bbf42de03896ff6c57ed72",
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\trackers\\track.py": "c6d7b99645416ce9eb67fb552ec1d49b3bed3636dd92c4d5792150b4b08bb7f3",
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\nn\\tasks.py": "25fe4100198480dc7d3fa89e103aff249c5022f762aeaae342201d34ead36b8f",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\api\\correction_worker.py": "3aa34708aec6c18f826aeab86fc954a1d87d3c7ac45f40a2d4c261317389ff14",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\shot_analysis\\pose_feature_extractor.py": "717ae1799011d5ce69c6ef2d6fe43c66d443917463e9cf53172d70c1203e48d5",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\pipeline\\phase6_pipeline.py": "06ac4d401e42efb2805798a02ab5010098f8d6541b3ac8786af8d3307f0a6955",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\detection\\yolo26_adapters.py": "d0d3344ee67747382c7b25f17bc9feec25f226e3b731f4a3b7136ea47481cd96"
+  },
+  "source_unchanged": true,
+  "torch_imported": false,
+  "ultralytics_imported": false
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "status": "METADATA_ONLY_BOUNDED_OVERLAP_SCREEN_NOT_INDEPENDENCE_PROOF",
+  "publisher_rows": 43,
+  "unique_source_ids": 43,
+  "coarse_tournament_year_participant_groups": 41,
+  "duplicate_source_groups": [
+    {
+      "coarse_group": [
+        "Wimbledon",
+        "2015",
+        "Brown",
+        "Nadal"
+      ],
+      "source_ids": [
+        "3FrNVOfQVfU",
+        "g2-CAWnLa1Y"
+      ]
+    },
+    {
+      "coarse_group": [
+        "Roland Garros",
+        "2015",
+        "Djokovic",
+        "Wawrinka"
+      ],
+      "source_ids": [
+        "_7RwWoY_vSw",
+        "v2MhLx9wk9M"
+      ]
+    }
+  ],
+  "search_command": [
+    "rg",
+    "-n",
+    "--no-heading",
+    "--color",
+    "never",
+    "-F",
+    "-f",
+    "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\independent_match_source_followup_v1\\source_ids.txt",
+    "data/yolo26",
+    "data/external",
+    "docs",
+    "-g",
+    "*.json",
+    "-g",
+    "*.jsonl",
+    "-g",
+    "*.md",
+    "-g",
+    "*.txt",
+    "-g",
+    "*.csv",
+    "--max-count",
+    "4"
+  ],
+  "search_exit_code": 1,
+  "scope": "Existing text metadata underdata/yolo26,data/external,docs; no frames/modeloutputs ornewtargets inspected. Perfilemax4hits; absenthitsnotproof ofnooriginalmatchreuse.",
+  "matched_ids": {},
+  "unmatched_ids": [
+    "MG-RjlqyaJI",
+    "V96sSCV03ng",
+    "3FrNVOfQVfU",
+    "zD162uH4i8U",
+    "g2-CAWnLa1Y",
+    "AGW3o-7Hx50",
+    "uEDXMRYe0zo",
+    "9gUvgm23qMU",
+    "SLSa-62hgRA",
+    "xNbXf4-BSSA",
+    "zv1g9Pk69F0",
+    "JSkPBR5p-3A",
+    "S5LVbZUgM48",
+    "Oz17uwgNmYU",
+    "mLGcEqse4H4",
+    "634UMLDrVzc",
+    "KfhlYB6eL4c",
+    "y9fqjhGooKk",
+    "qg4wqo02gfc",
+    "e3Wdzdc8Jn8",
+    "5aULPfGnSSA",
+    "VbVfqI2cLWo",
+    "94NzWYO2y0I",
+    "3UE8YEvh3AE",
+    "rQoZcYOJVOU",
+    "gtf75eXuDwo",
+    "_7RwWoY_vSw",
+    "wjr9muuJE0Q",
+    "vzw96_dWtwE",
+    "_yY1pQHMb4Y",
+    "5yqtnhGkOHY",
+    "03KFTHgVu7E",
+    "ywmjmAkWAvQ",
+    "v2MhLx9wk9M",
+    "T4S5YmO0KOU",
+    "tbbpFZT4HG4",
+    "jqq-X4dmfJA",
+    "r3MhHmnIkNQ",
+    "2KLHG2edXm8",
+    "3E8nRaS89kg",
+    "CsyDS_QbuA8",
+    "TUikJi0Qhhw",
+    "wZnCcqm_g-E"
+  ],
+  "conservative_known_original_match_overlap": [
+    {
+      "publisher_source_id": "TUikJi0Qhhw",
+      "original_group": "Wimbledon2019DjokovicFedererfinal",
+      "existing_source_ids": [
+        "aIPCfLKF1LI",
+        "6UAPY52TU9g",
+        "iKTX1GPwiPk"
+      ],
+      "evidence": "docs/data/INDEPENDENT_SOURCE_ACQUISITION.md originalmatchtable and data/external/uvy_tennis_videos historicaldevelopment"
+    }
+  ],
+  "limits": "CoarseCSVlacksround/date; duplicateBrownNadal2015andDjokovicWawrinka2015mustunion; unknowncompilationcontentprevents certifyingothers independent",
+  "sha256_source_csv": "94108ecc353ccc67321ac6c3dfd8dc84f7afa8e9f97b9aedcedbabe271d682b9"
+}

@@ -1,0 +1,88 @@
+...........................F............................................ [ 32%]
+........................................................................ [ 65%]
+........................................................................ [ 98%]
+....                                                                     [100%]
+================================== FAILURES ===================================
+_ test_exact_phase6_shot_owner_render_query_and_json_consume_nonempty_native_results[True] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v3/pytest_tmp/test_exact_phase6_shot_owner_r1')
+authority = True
+
+    @pytest.mark.parametrize('authority', [False, True])
+    def test_exact_phase6_shot_owner_render_query_and_json_consume_nonempty_native_results(tmp_path, authority):
+        """Execute exact changed source blocks, not a duplicate orchestration."""
+        from contextlib import ExitStack
+        import os
+        import time
+        from src.utils.json_array_artifact import write_json_array_artifact
+        root = Path(__file__).resolve().parents[1]
+        path = root / 'src/pipeline/phase6_pipeline.py'
+        tree = ast.parse(path.read_text())
+        pipeline = next(node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == 'Phase6Pipeline')
+        run = next(node for node in pipeline.body if isinstance(node, ast.FunctionDef) and node.name == '_run_with_frame_exports')
+        start = next(index for index, node in enumerate(run.body) if isinstance(node, ast.Assign)
+                     and any(isinstance(target, ast.Name) and target.id == 'shot_output' for target in node.targets))
+        assignments = run.body[start:start+2]
+        assert ast.unparse(assignments[1]).startswith('shot_evidences = self.shot_linker.link_shots(')
+        render = next(node for node in run.body if isinstance(node, ast.With)
+                      and any(isinstance(item.optional_vars, ast.Name) and item.optional_vars.id == 'render_stack'
+                              for item in node.items))
+        frame_map = next(node for node in render.body if isinstance(node, ast.Assign)
+                         and any(isinstance(target, ast.Name) and target.id == 'shot_frame_map' for target in node.targets))
+        loop = next(node for node in render.body if isinstance(node, ast.For)
+                    and isinstance(node.target, ast.Name) and node.target.id == 'i')
+        active = next(index for index, node in enumerate(loop.body) if isinstance(node, ast.Assign)
+                      and any(isinstance(target, ast.Name) and target.id == 'active_shots' for target in node.targets))
+        badges = loop.body[active:active+2]
+        destination = next(node for node in run.body if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
+            and isinstance(node.value.func, ast.Name) and node.value.func.id == 'write_json_array_artifact'
+            and 'shot_events.json' in ast.unparse(node.value.args[0]))
+        sanitize = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == 'sanitize_json_value')
+        Linker, Classifier = actual_classes()
+        values = [event(1, 2, events_module.EventType.SERVE_CONTACT, 1), event(2, 2),
+                  event(3, 6, events_module.EventType.BOUNCE, None), event(4, 9, events_module.EventType.PLAYER_2_HIT, 2)]
+        expected = Linker(Classifier()).link_shots(values if authority else [], [], [], [], dead_event_ids={4})
+        badges_seen = []
+        class Annotator:
+            @staticmethod
+            def rectangle(*args):
+                return None
+            @staticmethod
+            def putText(_frame, text, *args):
+                badges_seen.append(text)
+            FONT_HERSHEY_SIMPLEX = LINE_AA = 0
+        with ExitStack() as stack:
+            source = stack.enter_context(EventAnalysisSequence(tmp_path))
+            for value in values:
+                source.events.append(value)
+            namespace = dict(np=np, Any=object, os=os, time=time, ShotEvidenceSequence=ShotEvidenceSequence,
+                write_json_array_artifact=write_json_array_artifact,
+                self=SimpleNamespace(shot_linker=Linker(Classifier())), export_stack=stack,
+                output_dir=str(tmp_path), disk_players=True, event_output=source, authoritative_enabled=authority,
+                detected_events=source.events if authority else [], ball_points=[], p1_boxes=[], p2_boxes=[], frames=[],
+                dead_event_ids={4}, cv2=Annotator, i=10, ann_frame=object())
+            exec(compile(ast.Module(body=[sanitize]+assignments+[frame_map]+badges, type_ignores=[]), str(path), 'exec'), namespace)
+            output = namespace['shot_output']
+            assert namespace['shot_evidences'] is output
+            assert namespace['shot_frame_map'] is None
+            namespace['_sanitize'] = namespace['sanitize_json_value']
+            exec(compile(ast.Module(body=[destination], type_ignores=[]), str(path), 'exec'), namespace)
+            loaded = json.loads((tmp_path / 'shot_events.json').read_text())
+>           assert loaded == {'schema_version': '1.0', 'shot_events': [value.to_dict() for value in expected]}
+E           AssertionError: assert {'schema_vers...: 0.0}, ...}]} == {'schema_vers...: 0.0}, ...}]}
+E             
+E             Omitting 1 identical items, use -vv to show
+E             Differing items:
+E             {'shot_events': [{'bounce_event_id': 3, 'bounce_frame': 6, 'classification_source': 'EVENT_PASSTHROUGH', 'confidence_c...classification_source': 'ABSTENTION_UNKNOWN', 'confidence_components': {'ball': 0.0, 'event': 1.0, 'pose': 0.0}, ...}]} != {'shot_events': [{'bounce_event_id': 3, 'bounce_frame': 6, 'classification_source': 'EVENT_PASSTHROUGH', 'confidence_c...classification_source': 'ABSTENTION_UNKNOWN', 'confidence_components': {'ball': 0.0, 'event': 1.0, 'pose': 0.0}, ...}]}
+E             Use -v to get more diff
+
+tests\test_shot_evidence_sequence.py:329: AssertionError
+============================== warnings summary ===============================
+tests/test_event_timestamp_lookup.py::test_actual_features_nearest_timestamp_reads_are_subquadratic
+  tests\test_event_timestamp_lookup.py:96: PytestWarning: record_property is incompatible with junit_family 'xunit2' (use 'legacy' or 'xunit1')
+    def test_actual_features_nearest_timestamp_reads_are_subquadratic(monkeypatch, frozen, record_property):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_shot_evidence_sequence.py::test_exact_phase6_shot_owner_render_query_and_json_consume_nonempty_native_results[True]
+1 failed, 219 passed, 1 warning in 11.62s

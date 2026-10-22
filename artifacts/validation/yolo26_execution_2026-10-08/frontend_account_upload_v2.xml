@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="16" failures="0" errors="0" time="2.5982114">
+    <testsuite name="src/components/AccountAccess.test.tsx" timestamp="2026-10-08T04:02:17.141Z" hostname="Osamah" tests="2" failures="0" errors="0" skipped="0" time="1.2004862">
+        <testcase classname="src/components/AccountAccess.test.tsx" name="account access &gt; signs in, rechecks the server session and clears the password" time="0.6193978">
+        </testcase>
+        <testcase classname="src/components/AccountAccess.test.tsx" name="account access &gt; announces a failed sign-in and keeps recovery controls" time="0.5793346">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/BatchUpload.test.tsx" timestamp="2026-10-08T04:02:17.142Z" hostname="Osamah" tests="2" failures="0" errors="0" skipped="0" time="0.5123308">
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; keeps the second upload usable when the first fails" time="0.3348507">
+        </testcase>
+        <testcase classname="src/pages/BatchUpload.test.tsx" name="independent file progress &gt; requires explicit same-match order and keeps grouping unverified" time="0.1745706">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/Upload.test.tsx" timestamp="2026-10-08T04:02:17.143Z" hostname="Osamah" tests="12" failures="0" errors="0" skipped="0" time="0.8853944">
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; accepts a selected video and opens persistent processing status" time="0.2739982">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; rejects an unsupported dropped file without uploading" time="0.0411754">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows actual upload progress while keeping cancellation available" time="0.1080857">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; restores completion and a deep result link from job history" time="0.0695123">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows a recoverable connection error rather than losing a job" time="0.0282741">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; excludes public examples from history without removing the active job" time="0.0359347">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; shows the private archive empty state when only public examples exist" time="0.0247309">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is loading" time="0.0852147">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved completion and queued details available while public example filtering is unavailable" time="0.0742886">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; keeps saved analyses accessible and restores public filtering when the catalog recovers" time="0.0917263">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is unavailable" time="0.0247534">
+        </testcase>
+        <testcase classname="src/pages/Upload.test.tsx" name="video upload workflow &gt; retains verified public filtering when a later catalog is malformed" time="0.0247954">
+        </testcase>
+    </testsuite>
+</testsuites>

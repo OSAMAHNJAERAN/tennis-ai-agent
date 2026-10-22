@@ -1,0 +1,17 @@
+{
+  "scope": "Two actual ArrowRight inputs on one paused public clip while future source bytes were withheld; software reproduction only",
+  "analysisId": "match_9de7cb2d09eb46a0af0e34c3b0e6b818",
+  "url": "http://127.0.0.1:8010/examples/djokovic_2012",
+  "playerSourceSha256BeforeFix": "9ec4b06796cbe1f6ac61829e4e1c4533dbc8a3a31f4a485ab05a0b50226a5dd3",
+  "sourceSha256AtProbeStart": "2143a4f12227ea0fd119610f124064968584676d43d0a847e5bf49b0cabb0bfb",
+  "observations": [
+    {"at": "2026-10-04T08:01:07.897Z", "action": "Held stream while playing", "playerFrame": 30, "sharedFrame": 30, "videoCurrentTime": 1.278635, "paused": false, "readyState": 2, "status": ["Buffering video · analysis holds on the presented frame."]},
+    {"at": "2026-10-04T08:01:08.244Z", "action": "Pause replay", "playerFrame": 30, "sharedFrame": 30, "videoCurrentTime": 1.278635, "paused": true, "readyState": 2, "status": []},
+    {"at": "2026-10-04T08:01:22.698Z", "action": "First ArrowRight on player root", "playerFrame": 30, "sharedFrame": 30, "videoCurrentTime": 1.292959, "paused": true, "readyState": 1, "status": ["Seeking video · analysis holds on the presented frame."]},
+    {"at": "2026-10-04T08:01:22.799Z", "action": "Second ArrowRight before any new presentation", "playerFrame": 30, "sharedFrame": 30, "videoCurrentTime": 1.292959, "paused": true, "readyState": 1, "status": ["Seeking video · analysis holds on the presented frame."]}
+  ],
+  "finding": "Both relative inputs commanded frame31 instead of accumulating to frame32; displayed evidence correctly held at frame30.",
+  "interruption": "After release.flag creation, continuation reset removed tool session82792 and both localhost listeners. Existing probe tab then showed Analysis data could not be loaded / Failed to fetch. No post-release decoded-frame result or graceful server_stopped journal entry was observed.",
+  "screenshotArtifact": null,
+  "qualificationEvidence": false
+}

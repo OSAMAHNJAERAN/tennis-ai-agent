@@ -1,0 +1,1817 @@
+{
+  "schema_version": 1,
+  "status": "READ_ONLY_IMPLEMENTATION_MAPPING_RETAINED",
+  "created_at": "2026-10-17T17:00:59.727926+00:00",
+  "implementation_complete": false,
+  "independent_accuracy_validated": false,
+  "source_edits": false,
+  "model_inference": false,
+  "published": false,
+  "source_pins_before": {
+    "src/prediction/tennis.py": "327a453d5043463676ff810f5509fad0a65f80ef96ddab448ab44e5e05026107",
+    "src/prediction/evaluation.py": "fbc8415efe235a88d1b8dc1ea8cc947bc4605348972c7db8fee2fe69798769af",
+    "src/scoring/match_state.py": "3bb09eda6eb26814c247044861e7ffab93571fa05a9474dbb6d9c12d98edc2ca",
+    "src/scoring/match_state_codec.py": "24f94385f76362b5fe6ccf900f46b39bf176ca7a0052184998fbbbee6cb65abc",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src/scoring/scoring_engine.py": "70eab632c1d623023bc63f1217e6f8e8c028dd69be47d512ae5e5b03fc7af03d",
+    "src/utils/point_analysis_sequence.py": "14d2b27c53d54ebc34d134c55287882ba784d31d6f793d8f7d4832336563e950",
+    "src/utils/scoring_journal.py": "e3e4975e6d624f9089041b67a940072077a2e0dde7ab3a9d0f8c42dabf7253c9",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/utils/json_array_artifact.py": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194",
+    "src/utils/point_timeline_artifact.py": "c4af979a3586b06c87ab7f9a7d04ce960ac7d126a2f4e6a5ec8f0f255887b591",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "d1301c9d3467e202693ff93d8041121e6a7b68d09724a50d274fe406630412e5",
+    "src/scoring/corrected_shot_rebuild.py": "e19605d359e86b5c39185ad8b1ec931041a38855c4b4006783aec19bc5b46f1f",
+    "src/api/product.py": "9f0216fdbcba2f685e53d7abcd55642e874bfbe6a0b985ca93900bf99a709750",
+    "frontend/src/data/productApi.ts": "4b2358bc697ee045ef8aa1e40fc5eb288c44a848325c8abe184e6349b28d4e2a",
+    "frontend/src/components/WinProbability.tsx": "257b721486cca6f8c691ed97bdf0275e7cfe9f2262e4290299ab7c5a73262327",
+    "tests/test_scoring_prediction.py": "5cb01bbb17a67d6c97b3db30c352239523a59e6c8d3dd47f1d932230b073f6fb",
+    "tests/test_prediction_evaluation.py": "8ba7d82bdabf73c2faed882c273088cd3d1e7c0da0c7d7ffc08c41cf74761415",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "scripts/evaluate/evaluate_publisher_snapshots.py": "aacd530860af121c798271dcac50e504949d8b808e841abf458ce2083beafff3",
+    "configs/production/yolo26.yaml": "8106e134eea5a520c10747a12921d2352643e7df7d3cdb1d30ef29ae94cee9fb"
+  },
+  "source_pins_after": {
+    "src/prediction/tennis.py": "327a453d5043463676ff810f5509fad0a65f80ef96ddab448ab44e5e05026107",
+    "src/prediction/evaluation.py": "fbc8415efe235a88d1b8dc1ea8cc947bc4605348972c7db8fee2fe69798769af",
+    "src/scoring/match_state.py": "3bb09eda6eb26814c247044861e7ffab93571fa05a9474dbb6d9c12d98edc2ca",
+    "src/scoring/match_state_codec.py": "24f94385f76362b5fe6ccf900f46b39bf176ca7a0052184998fbbbee6cb65abc",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src/scoring/scoring_engine.py": "70eab632c1d623023bc63f1217e6f8e8c028dd69be47d512ae5e5b03fc7af03d",
+    "src/utils/point_analysis_sequence.py": "14d2b27c53d54ebc34d134c55287882ba784d31d6f793d8f7d4832336563e950",
+    "src/utils/scoring_journal.py": "e3e4975e6d624f9089041b67a940072077a2e0dde7ab3a9d0f8c42dabf7253c9",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/utils/json_array_artifact.py": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194",
+    "src/utils/point_timeline_artifact.py": "c4af979a3586b06c87ab7f9a7d04ce960ac7d126a2f4e6a5ec8f0f255887b591",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/scoring/corrected_rule_rebuild.py": "d1301c9d3467e202693ff93d8041121e6a7b68d09724a50d274fe406630412e5",
+    "src/scoring/corrected_shot_rebuild.py": "e19605d359e86b5c39185ad8b1ec931041a38855c4b4006783aec19bc5b46f1f",
+    "src/api/product.py": "9f0216fdbcba2f685e53d7abcd55642e874bfbe6a0b985ca93900bf99a709750",
+    "frontend/src/data/productApi.ts": "4b2358bc697ee045ef8aa1e40fc5eb288c44a848325c8abe184e6349b28d4e2a",
+    "frontend/src/components/WinProbability.tsx": "257b721486cca6f8c691ed97bdf0275e7cfe9f2262e4290299ab7c5a73262327",
+    "tests/test_scoring_prediction.py": "5cb01bbb17a67d6c97b3db30c352239523a59e6c8d3dd47f1d932230b073f6fb",
+    "tests/test_prediction_evaluation.py": "8ba7d82bdabf73c2faed882c273088cd3d1e7c0da0c7d7ffc08c41cf74761415",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "scripts/evaluate/evaluate_publisher_snapshots.py": "aacd530860af121c798271dcac50e504949d8b808e841abf458ce2083beafff3",
+    "configs/production/yolo26.yaml": "8106e134eea5a520c10747a12921d2352643e7df7d3cdb1d30ef29ae94cee9fb"
+  },
+  "pins_unchanged": true,
+  "reviewed_symbol_lines": {
+    "src/prediction/tennis.py": [
+      {
+        "line": 21,
+        "symbol": "class ServePointPrior:"
+      },
+      {
+        "line": 26,
+        "symbol": "def __post_init__(self):"
+      },
+      {
+        "line": 31,
+        "symbol": "def game_probability(p: float, points_p1: int = 0, points_p2: int = 0) -> float:"
+      },
+      {
+        "line": 40,
+        "symbol": "def solve(a, b):"
+      },
+      {
+        "line": 54,
+        "symbol": "def tiebreak_probability(p1_serve: float, p2_serve: float, *, first_server: int = 1,"
+      },
+      {
+        "line": 67,
+        "symbol": "def point_p(total):"
+      },
+      {
+        "line": 72,
+        "symbol": "def solve(a, b):"
+      },
+      {
+        "line": 87,
+        "symbol": "class _RuleProbabilities:"
+      },
+      {
+        "line": 88,
+        "symbol": "def __init__(self, state: MatchState, p1_serve: float, p2_serve: float):"
+      },
+      {
+        "line": 99,
+        "symbol": "def set_rules(self, set_number):"
+      },
+      {
+        "line": 107,
+        "symbol": "def set_distribution(self, a: int, b: int, server: int, set_number: int):"
+      },
+      {
+        "line": 132,
+        "symbol": "def _terminal(winner, next_server):"
+      },
+      {
+        "line": 137,
+        "symbol": "def _blend(p, win, lose):"
+      },
+      {
+        "line": 140,
+        "symbol": "def future_match(self, sets1, sets2, server):"
+      },
+      {
+        "line": 149,
+        "symbol": "def current(self):"
+      },
+      {
+        "line": 171,
+        "symbol": "class TennisWinProbability:"
+      },
+      {
+        "line": 173,
+        "symbol": "def __init__(self, player_ids=(1, 2), prior: ServePointPrior | None = None):"
+      },
+      {
+        "line": 182,
+        "symbol": "def observe_point(self, *, point_id: str, server_id: int, winner_id: int, timestamp_seconds: float):"
+      },
+      {
+        "line": 199,
+        "symbol": "def snapshot(self, state: MatchState, *, revision: int = 0, timestamp_seconds: float | None = None):"
+      },
+      {
+        "line": 237,
+        "symbol": "def replay_predictions(initial_state: MatchState, points: Iterable[dict[str, Any]], *, revision: int = 0,"
+      }
+    ],
+    "src/prediction/evaluation.py": [
+      {
+        "line": 17,
+        "symbol": "def validate_manifest(manifest: dict[str, Any]) -> list[dict[str, Any]]:"
+      },
+      {
+        "line": 58,
+        "symbol": "def initial_state(match):"
+      },
+      {
+        "line": 81,
+        "symbol": "def _loss(p, y):"
+      },
+      {
+        "line": 86,
+        "symbol": "def _summarize(matches, bins):"
+      },
+      {
+        "line": 110,
+        "symbol": "def _quantile(values, fraction):"
+      },
+      {
+        "line": 117,
+        "symbol": "def evaluate_manifest(manifest: dict[str, Any], *, bins=10, bootstrap_samples=1000, seed=20261008):"
+      },
+      {
+        "line": 196,
+        "symbol": "def evaluate_file(manifest_path: Path, output_path: Path, **kwargs):"
+      }
+    ],
+    "src/scoring/match_state.py": [
+      {
+        "line": 7,
+        "symbol": "class MatchFormat(str, Enum):"
+      },
+      {
+        "line": 11,
+        "symbol": "class SetFormat(str, Enum):"
+      },
+      {
+        "line": 15,
+        "symbol": "class ServiceSide(str, Enum):"
+      },
+      {
+        "line": 19,
+        "symbol": "class PointState(str, Enum):"
+      },
+      {
+        "line": 28,
+        "symbol": "class BallPlayState(str, Enum):"
+      },
+      {
+        "line": 36,
+        "symbol": "class ServerCourtEnd(str, Enum):"
+      },
+      {
+        "line": 41,
+        "symbol": "class CompletedSetScore:"
+      },
+      {
+        "line": 49,
+        "symbol": "def to_dict(self) -> Dict[str, Any]:"
+      },
+      {
+        "line": 53,
+        "symbol": "class MatchState:"
+      },
+      {
+        "line": 106,
+        "symbol": "def active_set_format(self) -> SetFormat:"
+      },
+      {
+        "line": 112,
+        "symbol": "def active_tie_break_target(self) -> int:"
+      },
+      {
+        "line": 118,
+        "symbol": "def get_points_display_p1(self) -> str:"
+      },
+      {
+        "line": 124,
+        "symbol": "def get_points_display_p2(self) -> str:"
+      },
+      {
+        "line": 131,
+        "symbol": "def _format_standard_points(p_self: int, p_opp: int) -> str:"
+      },
+      {
+        "line": 150,
+        "symbol": "def get_score_summary_str(self) -> str:"
+      },
+      {
+        "line": 161,
+        "symbol": "def get_expected_service_box(self, server_end: Optional[ServerCourtEnd] = None) -> ServiceBoxType:"
+      },
+      {
+        "line": 183,
+        "symbol": "def to_dict(self) -> Dict[str, Any]:"
+      }
+    ],
+    "src/scoring/match_state_codec.py": [
+      {
+        "line": 48,
+        "symbol": "def _require(condition, message):"
+      },
+      {
+        "line": 53,
+        "symbol": "def _schema():"
+      },
+      {
+        "line": 73,
+        "symbol": "def _object(value, names, label):"
+      },
+      {
+        "line": 79,
+        "symbol": "def _integer(value, label, minimum=0):"
+      },
+      {
+        "line": 84,
+        "symbol": "def _enum(value, kind, *, encode):"
+      },
+      {
+        "line": 97,
+        "symbol": "def _validate(record):"
+      },
+      {
+        "line": 134,
+        "symbol": "def encode_match_state(state):"
+      },
+      {
+        "line": 157,
+        "symbol": "def decode_match_state(document):"
+      }
+    ],
+    "src/scoring/point_timeline.py": [
+      {
+        "line": 17,
+        "symbol": "def exact_source_time(pts, time_base):"
+      },
+      {
+        "line": 29,
+        "symbol": "class ReviewedParticipantBinding:"
+      },
+      {
+        "line": 50,
+        "symbol": "def __post_init__(self):"
+      },
+      {
+        "line": 62,
+        "symbol": "class EventContext:"
+      },
+      {
+        "line": 74,
+        "symbol": "def source_time(self):"
+      },
+      {
+        "line": 83,
+        "symbol": "def binding_current(self):"
+      },
+      {
+        "line": 89,
+        "symbol": "def continuity_key(self):"
+      },
+      {
+        "line": 98,
+        "symbol": "def candidate_event_context(event, source_frames, provider=None, *, analysis_id=None, source_fingerprint=None):"
+      },
+      {
+        "line": 125,
+        "symbol": "class ReviewedRuleSignal:"
+      },
+      {
+        "line": 133,
+        "symbol": "def __post_init__(self):"
+      },
+      {
+        "line": 142,
+        "symbol": "def merge_rule_inputs(events, signals):"
+      },
+      {
+        "line": 177,
+        "symbol": "def source_duration(start, end, source_frames):"
+      },
+      {
+        "line": 208,
+        "symbol": "class PointTimeline:"
+      },
+      {
+        "line": 210,
+        "symbol": "def __init__(self, owner, initial_state, *, source_frames=None):"
+      },
+      {
+        "line": 218,
+        "symbol": "def uid(self, kind, anchor):"
+      },
+      {
+        "line": 222,
+        "symbol": "def _save(self, kind, record, *, parent=None):"
+      },
+      {
+        "line": 225,
+        "symbol": "def scoring_input(self, event, context, pre):"
+      },
+      {
+        "line": 249,
+        "symbol": "def service_target(self, context, state):"
+      },
+      {
+        "line": 265,
+        "symbol": "def observe(self, event, context, pre, outcome, post, *, rule_type, rule_player, input_fingerprint=None):"
+      },
+      {
+        "line": 352,
+        "symbol": "def attach_shots(self, shots):"
+      },
+      {
+        "line": 391,
+        "symbol": "def finish(self):"
+      },
+      {
+        "line": 410,
+        "symbol": "def process_timeline_event(event, context, engine, timeline, line_call_engine, *, ball_points,"
+      },
+      {
+        "line": 473,
+        "symbol": "def context_record(context):"
+      },
+      {
+        "line": 479,
+        "symbol": "def event_input_fingerprint(event, context):"
+      },
+      {
+        "line": 485,
+        "symbol": "def event_input_record(event, context):"
+      },
+      {
+        "line": 493,
+        "symbol": "def numeric(value):"
+      },
+      {
+        "line": 502,
+        "symbol": "class EligibleShots(Sequence):"
+      },
+      {
+        "line": 503,
+        "symbol": "def __init__(self, ledger, shots, *, landings=False):"
+      },
+      {
+        "line": 506,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 509,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 516,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 525,
+        "symbol": "def native_match_analytics(ledger, shots, final_state, *, authoritative):"
+      },
+      {
+        "line": 574,
+        "symbol": "def landing(shot, position):"
+      }
+    ],
+    "src/scoring/scoring_engine.py": [
+      {
+        "line": 21,
+        "symbol": "class TennisScoringEngine:"
+      },
+      {
+        "line": 28,
+        "symbol": "def __init__("
+      },
+      {
+        "line": 72,
+        "symbol": "def journal_context(self, directory):"
+      },
+      {
+        "line": 82,
+        "symbol": "def native_line_calls(self):"
+      },
+      {
+        "line": 88,
+        "symbol": "def iter_rule_inputs(self):"
+      },
+      {
+        "line": 102,
+        "symbol": "def accepted_rule_input(self, event_id):"
+      },
+      {
+        "line": 113,
+        "symbol": "def _encode_input(record):"
+      },
+      {
+        "line": 122,
+        "symbol": "def _decode_input(record):"
+      },
+      {
+        "line": 136,
+        "symbol": "def process_match_event("
+      },
+      {
+        "line": 162,
+        "symbol": "def _process_match_event("
+      },
+      {
+        "line": 284,
+        "symbol": "def correct_event(self, event_id: int, *, reason: str, expected_revision: int,"
+      },
+      {
+        "line": 312,
+        "symbol": "def _correct_journal_event(self, event_id, reason, replacement):"
+      },
+      {
+        "line": 334,
+        "symbol": "def get_current_state(self) -> MatchState:"
+      },
+      {
+        "line": 340,
+        "symbol": "def save_state_json(self, filepath: str) -> None:"
+      },
+      {
+        "line": 347,
+        "symbol": "def save_history_json(self, filepath: str) -> None:"
+      }
+    ],
+    "src/utils/point_analysis_sequence.py": [
+      {
+        "line": 12,
+        "symbol": "class PointAnalysisSequence:"
+      },
+      {
+        "line": 13,
+        "symbol": "def __init__(self, directory, analysis_id, revision=0, *, source_fingerprint=''):"
+      },
+      {
+        "line": 23,
+        "symbol": "def _open(self):"
+      },
+      {
+        "line": 28,
+        "symbol": "def execute(self, sql, args=(), *, one=False):"
+      },
+      {
+        "line": 35,
+        "symbol": "def __enter__(self):"
+      },
+      {
+        "line": 59,
+        "symbol": "def flush(self):"
+      },
+      {
+        "line": 63,
+        "symbol": "def _write(self):"
+      },
+      {
+        "line": 68,
+        "symbol": "def _changed(self):"
+      },
+      {
+        "line": 73,
+        "symbol": "def put(self, kind, uid, record, *, parent=None, status=None, event_id=None, frame=None):"
+      },
+      {
+        "line": 82,
+        "symbol": "def get(self, kind, uid):"
+      },
+      {
+        "line": 86,
+        "symbol": "def event(self, event_id):"
+      },
+      {
+        "line": 90,
+        "symbol": "def dead_event_ids(self):"
+      },
+      {
+        "line": 95,
+        "symbol": "def add_member(self, position, shot, transition, scope, participant):"
+      },
+      {
+        "line": 102,
+        "symbol": "def rows(self, kind, *, parent=None, status=None):"
+      },
+      {
+        "line": 110,
+        "symbol": "def member_ids(self, key, uid):"
+      },
+      {
+        "line": 115,
+        "symbol": "def eligible_positions(self, *, landings=False):"
+      },
+      {
+        "line": 119,
+        "symbol": "def participant(self, position):"
+      },
+      {
+        "line": 123,
+        "symbol": "def frame_state(self, frame, initial):"
+      },
+      {
+        "line": 127,
+        "symbol": "def member_rows(self):"
+      },
+      {
+        "line": 130,
+        "symbol": "def seal(self):"
+      },
+      {
+        "line": 135,
+        "symbol": "def _dispose(self, primary=None):"
+      },
+      {
+        "line": 165,
+        "symbol": "def __exit__(self, kind, error, traceback):"
+      },
+      {
+        "line": 170,
+        "symbol": "class DeadEventIds(Set):"
+      },
+      {
+        "line": 173,
+        "symbol": "def __init__(self, owner):"
+      },
+      {
+        "line": 176,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 179,
+        "symbol": "def __contains__(self, value):"
+      },
+      {
+        "line": 188,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 193,
+        "symbol": "class SQLValues(Sequence):"
+      },
+      {
+        "line": 194,
+        "symbol": "def __init__(self, owner, sql, args):"
+      },
+      {
+        "line": 197,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 200,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 210,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 221,
+        "symbol": "class PointRows(SQLValues):"
+      },
+      {
+        "line": 222,
+        "symbol": "def __init__(self, owner, where, args, kind):"
+      },
+      {
+        "line": 226,
+        "symbol": "def _decode(self, payload):"
+      },
+      {
+        "line": 234,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 239,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 248,
+        "symbol": "class MembershipRows(SQLValues):"
+      },
+      {
+        "line": 250,
+        "symbol": "def _decode(row):"
+      },
+      {
+        "line": 254,
+        "symbol": "def __getitem__(self,index):"
+      },
+      {
+        "line": 263,
+        "symbol": "def __iter__(self):"
+      }
+    ],
+    "src/utils/scoring_journal.py": [
+      {
+        "line": 23,
+        "symbol": "def _json(value):"
+      },
+      {
+        "line": 27,
+        "symbol": "class ScoringJournal:"
+      },
+      {
+        "line": 30,
+        "symbol": "def __init__(self, directory):"
+      },
+      {
+        "line": 38,
+        "symbol": "def _open(self):"
+      },
+      {
+        "line": 46,
+        "symbol": "def _invalidate(self, primary):"
+      },
+      {
+        "line": 60,
+        "symbol": "def _execute(self, sql, args=(), *, one=False):"
+      },
+      {
+        "line": 67,
+        "symbol": "def __enter__(self):"
+      },
+      {
+        "line": 91,
+        "symbol": "def revision(self, number=0):"
+      },
+      {
+        "line": 98,
+        "symbol": "def flush(self):"
+      },
+      {
+        "line": 109,
+        "symbol": "def _active_number(self):"
+      },
+      {
+        "line": 112,
+        "symbol": "def _dispose(self, primary=None):"
+      },
+      {
+        "line": 145,
+        "symbol": "def __exit__(self, kind, error, traceback):"
+      },
+      {
+        "line": 150,
+        "symbol": "class RevisionView:"
+      },
+      {
+        "line": 151,
+        "symbol": "def __init__(self, owner, number):"
+      },
+      {
+        "line": 159,
+        "symbol": "def _read(self):"
+      },
+      {
+        "line": 164,
+        "symbol": "def _write(self):"
+      },
+      {
+        "line": 172,
+        "symbol": "def line_calls(self, decode_input):"
+      },
+      {
+        "line": 177,
+        "symbol": "def append_transition(self, history_record, input_record, completed_point_id=None):"
+      },
+      {
+        "line": 227,
+        "symbol": "def staged_correction(self, event_id, reason):"
+      },
+      {
+        "line": 269,
+        "symbol": "def publish(self):"
+      },
+      {
+        "line": 284,
+        "symbol": "def save_history_json(self, filepath):"
+      },
+      {
+        "line": 321,
+        "symbol": "def _iterating(records):"
+      },
+      {
+        "line": 340,
+        "symbol": "def _write_array(stream, records):"
+      },
+      {
+        "line": 352,
+        "symbol": "class JournalLineCalls(Sequence):"
+      },
+      {
+        "line": 361,
+        "symbol": "def __init__(self, revision, decode_input):"
+      },
+      {
+        "line": 364,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 369,
+        "symbol": "def _decode(self, payload):"
+      },
+      {
+        "line": 372,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 384,
+        "symbol": "def _records(self, sql, args, *, framed=False):"
+      },
+      {
+        "line": 401,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 405,
+        "symbol": "def by_frame(self, lower, upper):"
+      },
+      {
+        "line": 416,
+        "symbol": "class JournalRows(Sequence):"
+      },
+      {
+        "line": 417,
+        "symbol": "def __init__(self, revision, column, *, dictionaries=False):"
+      },
+      {
+        "line": 422,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 427,
+        "symbol": "def _decode(self, payload):"
+      },
+      {
+        "line": 432,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 444,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 463,
+        "symbol": "class JournalSet(Set):"
+      },
+      {
+        "line": 464,
+        "symbol": "def __init__(self, revision, *, completed=False):"
+      },
+      {
+        "line": 468,
+        "symbol": "def _table(self):"
+      },
+      {
+        "line": 472,
+        "symbol": "def _column(self):"
+      },
+      {
+        "line": 475,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 480,
+        "symbol": "def __contains__(self, value):"
+      },
+      {
+        "line": 486,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 505,
+        "symbol": "class JournalHistory:"
+      },
+      {
+        "line": 506,
+        "symbol": "def __init__(self, revision):"
+      },
+      {
+        "line": 510,
+        "symbol": "def is_processed(self, event_id):"
+      },
+      {
+        "line": 513,
+        "symbol": "def to_list(self):"
+      },
+      {
+        "line": 518,
+        "symbol": "class CorrectionRows(Sequence):"
+      },
+      {
+        "line": 519,
+        "symbol": "def __init__(self, revision):"
+      },
+      {
+        "line": 522,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 527,
+        "symbol": "def _decode(self, row):"
+      },
+      {
+        "line": 534,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 546,
+        "symbol": "def __iter__(self):"
+      }
+    ],
+    "src/api/result_storage.py": [
+      {
+        "line": 17,
+        "symbol": "class DiskSeries(Sequence):"
+      },
+      {
+        "line": 20,
+        "symbol": "def __init__(self, storage, series_id):"
+      },
+      {
+        "line": 23,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 29,
+        "symbol": "def _index(self, index):"
+      },
+      {
+        "line": 38,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 48,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 54,
+        "symbol": "def append(self, value):"
+      },
+      {
+        "line": 57,
+        "symbol": "def __setitem__(self, index, value):"
+      },
+      {
+        "line": 63,
+        "symbol": "class ResultStorage:"
+      },
+      {
+        "line": 72,
+        "symbol": "def __init__(self, directory):"
+      },
+      {
+        "line": 79,
+        "symbol": "def open(cls, path):"
+      },
+      {
+        "line": 86,
+        "symbol": "def path(self):"
+      },
+      {
+        "line": 89,
+        "symbol": "def _require_open(self, *, write=False):"
+      },
+      {
+        "line": 96,
+        "symbol": "def _execute(self, sql, parameters=()):"
+      },
+      {
+        "line": 103,
+        "symbol": "def _one(self, sql, parameters=()):"
+      },
+      {
+        "line": 110,
+        "symbol": "def __enter__(self):"
+      },
+      {
+        "line": 158,
+        "symbol": "def _encode(self, value, active=None):"
+      },
+      {
+        "line": 181,
+        "symbol": "def _decode(self, value):"
+      },
+      {
+        "line": 200,
+        "symbol": "def _references(self, encoded):"
+      },
+      {
+        "line": 212,
+        "symbol": "def _begin(self):"
+      },
+      {
+        "line": 218,
+        "symbol": "def _changed(self):"
+      },
+      {
+        "line": 224,
+        "symbol": "def series(self, iterable=()):"
+      },
+      {
+        "line": 247,
+        "symbol": "def _write_item(self, series_id, position, value, *, append):"
+      },
+      {
+        "line": 269,
+        "symbol": "def read_json(self, path, *, parse_constant=None, indexed_root_objects=()):"
+      },
+      {
+        "line": 284,
+        "symbol": "def set_root(self, value):"
+      },
+      {
+        "line": 304,
+        "symbol": "def root(self):"
+      },
+      {
+        "line": 310,
+        "symbol": "def json_chunks(self, value):"
+      },
+      {
+        "line": 358,
+        "symbol": "def dump(self, value, stream):"
+      },
+      {
+        "line": 362,
+        "symbol": "def _compact(self):"
+      },
+      {
+        "line": 377,
+        "symbol": "def publish(self, destination):"
+      },
+      {
+        "line": 394,
+        "symbol": "def close(self):"
+      },
+      {
+        "line": 410,
+        "symbol": "def _close_preserving(self, error):"
+      },
+      {
+        "line": 416,
+        "symbol": "def _remove_scratch(self):"
+      },
+      {
+        "line": 425,
+        "symbol": "def __exit__(self, error_type, error, _traceback):"
+      },
+      {
+        "line": 436,
+        "symbol": "class IndexedJsonObject(Mapping):"
+      },
+      {
+        "line": 443,
+        "symbol": "def __init__(self, storage):"
+      },
+      {
+        "line": 451,
+        "symbol": "def _set(self, key, value):"
+      },
+      {
+        "line": 464,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 467,
+        "symbol": "def __getitem__(self, key):"
+      },
+      {
+        "line": 477,
+        "symbol": "def __iter__(self):"
+      },
+      {
+        "line": 482,
+        "symbol": "def items(self):"
+      },
+      {
+        "line": 487,
+        "symbol": "class _JsonReader:"
+      },
+      {
+        "line": 492,
+        "symbol": "def __init__(self, storage, stream, parse_constant, indexed_root_objects=()):"
+      },
+      {
+        "line": 501,
+        "symbol": "def _fill(self):"
+      },
+      {
+        "line": 509,
+        "symbol": "def _peek(self):"
+      },
+      {
+        "line": 514,
+        "symbol": "def _space(self):"
+      },
+      {
+        "line": 518,
+        "symbol": "def _string(self):"
+      },
+      {
+        "line": 550,
+        "symbol": "def _scalar(self):"
+      },
+      {
+        "line": 561,
+        "symbol": "def _value(self, *, root=False, indexed_object=False):"
+      },
+      {
+        "line": 623,
+        "symbol": "def read(self):"
+      }
+    ],
+    "src/utils/json_array_artifact.py": [
+      {
+        "line": 9,
+        "symbol": "class JsonArrayArtifact:"
+      },
+      {
+        "line": 18,
+        "symbol": "def __init__(self, destination, metadata, array_key=\"frames\", *, allow_nan=True):"
+      },
+      {
+        "line": 29,
+        "symbol": "def __enter__(self):"
+      },
+      {
+        "line": 51,
+        "symbol": "def append(self, record):"
+      },
+      {
+        "line": 63,
+        "symbol": "def _discard_preserving(self, error):"
+      },
+      {
+        "line": 74,
+        "symbol": "def __exit__(self, error_type, error, _traceback):"
+      },
+      {
+        "line": 92,
+        "symbol": "def write_json_array_artifact(destination, metadata, array_key, records, *, allow_nan=True):"
+      }
+    ],
+    "src/utils/point_timeline_artifact.py": [
+      {
+        "line": 23,
+        "symbol": "def artifact_sha256(path):"
+      },
+      {
+        "line": 28,
+        "symbol": "def publish_point_timeline_manifest(output_dir, *, analysis_id, analysis_revision,"
+      }
+    ],
+    "src/api/analysis_generation.py": [
+      {
+        "line": 32,
+        "symbol": "def _require(condition, message):"
+      },
+      {
+        "line": 37,
+        "symbol": "def _name(value):"
+      },
+      {
+        "line": 43,
+        "symbol": "def _safe_path(path):"
+      },
+      {
+        "line": 53,
+        "symbol": "def _directory(path):"
+      },
+      {
+        "line": 59,
+        "symbol": "def _core(details):"
+      },
+      {
+        "line": 63,
+        "symbol": "def _signature(details):"
+      },
+      {
+        "line": 67,
+        "symbol": "def _path_stat(path):"
+      },
+      {
+        "line": 74,
+        "symbol": "def _opened_signature(path):"
+      },
+      {
+        "line": 86,
+        "symbol": "def _cached_hash(path_text, signature):"
+      },
+      {
+        "line": 101,
+        "symbol": "def _file_record(path):"
+      },
+      {
+        "line": 108,
+        "symbol": "def _validate_file(path, expected):"
+      },
+      {
+        "line": 113,
+        "symbol": "def _fsync_directory(path):"
+      },
+      {
+        "line": 122,
+        "symbol": "def _copy(source, destination, *, temporary=False):"
+      },
+      {
+        "line": 155,
+        "symbol": "def _pairs(values):"
+      },
+      {
+        "line": 163,
+        "symbol": "def _constant(value):"
+      },
+      {
+        "line": 167,
+        "symbol": "def _json(payload):"
+      },
+      {
+        "line": 174,
+        "symbol": "def _read_small(path):"
+      },
+      {
+        "line": 186,
+        "symbol": "def _metadata(value):"
+      },
+      {
+        "line": 194,
+        "symbol": "def _current(generations):"
+      },
+      {
+        "line": 221,
+        "symbol": "class GenerationSnapshot:"
+      },
+      {
+        "line": 233,
+        "symbol": "def database(self):"
+      },
+      {
+        "line": 237,
+        "symbol": "def files_directory(self):"
+      },
+      {
+        "line": 240,
+        "symbol": "def resolve_file(self, name):"
+      },
+      {
+        "line": 247,
+        "symbol": "def file_sha256(self, name):"
+      },
+      {
+        "line": 252,
+        "symbol": "def _snapshot(generations, token):"
+      },
+      {
+        "line": 283,
+        "symbol": "def _receipt_bytes(token):"
+      },
+      {
+        "line": 287,
+        "symbol": "def _has_committed_receipt(generations, token):"
+      },
+      {
+        "line": 297,
+        "symbol": "def _retain_current_receipt(generations, token, identifier):"
+      },
+      {
+        "line": 319,
+        "symbol": "def resolve_generation(directory, generation=None):"
+      },
+      {
+        "line": 342,
+        "symbol": "def _write_bytes(path, payload, *, temporary=False):"
+      },
+      {
+        "line": 359,
+        "symbol": "def _cleanup(paths, primary):"
+      },
+      {
+        "line": 370,
+        "symbol": "def publish_analysis_generation(storage, result, directory, *, files, analysis_revision=0,"
+      }
+    ],
+    "src/scoring/corrected_rule_rebuild.py": [
+      {
+        "line": 28,
+        "symbol": "def _require(condition, message):"
+      },
+      {
+        "line": 33,
+        "symbol": "def _plain(value):"
+      },
+      {
+        "line": 41,
+        "symbol": "def _canonical(value):"
+      },
+      {
+        "line": 45,
+        "symbol": "def _digest(value):"
+      },
+      {
+        "line": 49,
+        "symbol": "def _text(value, maximum):"
+      },
+      {
+        "line": 54,
+        "symbol": "def _request(value):"
+      },
+      {
+        "line": 97,
+        "symbol": "def _scratch(directory, analysis_directory):"
+      },
+      {
+        "line": 111,
+        "symbol": "def _replacement(original, item):"
+      },
+      {
+        "line": 135,
+        "symbol": "def _initial_state(source, amendment, analysis_id):"
+      },
+      {
+        "line": 155,
+        "symbol": "def _line_engine(snapshot, fps):"
+      },
+      {
+        "line": 185,
+        "symbol": "def rebuild_corrected_rule_timeline(analysis_directory, scratch, *, request):"
+      }
+    ],
+    "src/scoring/corrected_shot_rebuild.py": [
+      {
+        "line": 19,
+        "symbol": "def _require(condition, message):"
+      },
+      {
+        "line": 24,
+        "symbol": "def _current(rebuilt):"
+      },
+      {
+        "line": 36,
+        "symbol": "def _settings(snapshot):"
+      },
+      {
+        "line": 83,
+        "symbol": "class _LazyFrames(Sequence):"
+      },
+      {
+        "line": 85,
+        "symbol": "def __init__(self, rebuilt, stack, *, image_size):"
+      },
+      {
+        "line": 91,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 96,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 115,
+        "symbol": "class _WindowBoxes(Sequence):"
+      },
+      {
+        "line": 117,
+        "symbol": "def __init__(self, boxes, source_frames, hit, radius):"
+      },
+      {
+        "line": 161,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 164,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 173,
+        "symbol": "class _CropFrames(Sequence):"
+      },
+      {
+        "line": 174,
+        "symbol": "def __init__(self, frames, boxes):"
+      },
+      {
+        "line": 177,
+        "symbol": "def __len__(self):"
+      },
+      {
+        "line": 180,
+        "symbol": "def __getitem__(self, index):"
+      },
+      {
+        "line": 187,
+        "symbol": "class CorrectedPoseRequest:"
+      },
+      {
+        "line": 205,
+        "symbol": "class _RequiredCropFeatures:"
+      },
+      {
+        "line": 206,
+        "symbol": "def __init__(self, rebuilt, frames, sections, provider):"
+      },
+      {
+        "line": 211,
+        "symbol": "def extract_hit_window_features(self, *, frames, player_boxes, hit_frame, player_id,"
+      },
+      {
+        "line": 249,
+        "symbol": "def relink_corrected_shots(rebuilt, scratch, *, pose_provider=None):"
+      }
+    ],
+    "src/api/product.py": [
+      {
+        "line": 18,
+        "symbol": "def migrate_product(conn):"
+      },
+      {
+        "line": 39,
+        "symbol": "def attach_analysis(conn, analysis_id, match_id=None, owner_id=LOCAL_OWNER):"
+      },
+      {
+        "line": 51,
+        "symbol": "class StrictModel(BaseModel):"
+      },
+      {
+        "line": 55,
+        "symbol": "class Participant(StrictModel):"
+      },
+      {
+        "line": 60,
+        "symbol": "class MatchMetadata(StrictModel):"
+      },
+      {
+        "line": 69,
+        "symbol": "class CreateMatch(StrictModel):"
+      },
+      {
+        "line": 76,
+        "symbol": "def manual_server(self):"
+      },
+      {
+        "line": 82,
+        "symbol": "class MetadataEdit(StrictModel):"
+      },
+      {
+        "line": 87,
+        "symbol": "class NoteEdit(StrictModel):"
+      },
+      {
+        "line": 92,
+        "symbol": "class CreatePlayer(StrictModel):"
+      },
+      {
+        "line": 96,
+        "symbol": "class ScoreCommand(StrictModel):"
+      },
+      {
+        "line": 104,
+        "symbol": "def replay_score(row, points=None):"
+      },
+      {
+        "line": 132,
+        "symbol": "class ProductStore:"
+      },
+      {
+        "line": 133,
+        "symbol": "def __init__(self, jobs):"
+      },
+      {
+        "line": 136,
+        "symbol": "def raw(self, conn, match_id, owner_id=LOCAL_OWNER):"
+      },
+      {
+        "line": 142,
+        "symbol": "def serialize(self, row, detail=True):"
+      },
+      {
+        "line": 170,
+        "symbol": "def get(self, match_id, owner_id=LOCAL_OWNER):"
+      },
+      {
+        "line": 174,
+        "symbol": "def validate_metadata(self, conn, metadata, owner_id=LOCAL_OWNER):"
+      },
+      {
+        "line": 189,
+        "symbol": "def list(self, owner_id=LOCAL_OWNER):"
+      },
+      {
+        "line": 194,
+        "symbol": "def edit(self, match_id, payload, owner_id=LOCAL_OWNER):"
+      },
+      {
+        "line": 211,
+        "symbol": "def command(self, match_id, command, owner_id=LOCAL_OWNER):"
+      },
+      {
+        "line": 256,
+        "symbol": "def product_router(jobs):"
+      },
+      {
+        "line": 261,
+        "symbol": "def matches(owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 265,
+        "symbol": "def create_match(payload: CreateMatch, owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 275,
+        "symbol": "def by_analysis(analysis_id: str, owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 283,
+        "symbol": "def match(match_id: str, owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 287,
+        "symbol": "def metadata(match_id: str, payload: MetadataEdit, owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 291,
+        "symbol": "def notes(match_id: str, payload: NoteEdit, owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 295,
+        "symbol": "def scoring(match_id: str, payload: ScoreCommand, owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 299,
+        "symbol": "def players(owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 304,
+        "symbol": "def create_player(payload: CreatePlayer, owner_id: str = Depends(current_owner)):"
+      },
+      {
+        "line": 311,
+        "symbol": "def player_detail(player_id: str, owner_id: str = Depends(current_owner)):"
+      }
+    ],
+    "frontend/src/data/productApi.ts": [],
+    "frontend/src/components/WinProbability.tsx": [],
+    "tests/test_scoring_prediction.py": [
+      {
+        "line": 20,
+        "symbol": "def call(event, decision):"
+      },
+      {
+        "line": 24,
+        "symbol": "def test_second_serve_starts_after_fault_and_dead_ball_hit_is_ignored():"
+      },
+      {
+        "line": 41,
+        "symbol": "def test_second_serve_let_replays_second_attempt():"
+      },
+      {
+        "line": 53,
+        "symbol": "def test_review_freeze_persists_and_correction_replays_dependent_events():"
+      },
+      {
+        "line": 69,
+        "symbol": "def test_consequential_gap_freezes_later_match_evidence():"
+      },
+      {
+        "line": 77,
+        "symbol": "def test_stable_point_id_prevents_different_events_awarding_twice():"
+      },
+      {
+        "line": 91,
+        "symbol": "def test_scoring_rejects_invalid_timing(timestamp):"
+      },
+      {
+        "line": 96,
+        "symbol": "def test_scoring_rejects_out_of_order_events_and_wrong_serve():"
+      },
+      {
+        "line": 112,
+        "symbol": "def test_next_set_server_is_opponent_of_first_tiebreak_server(first, loser_points):"
+      },
+      {
+        "line": 123,
+        "symbol": "def test_tiebreak_server_side_and_end_order():"
+      },
+      {
+        "line": 134,
+        "symbol": "def test_deciding_set_ten_point_tiebreak(match_format, final_set, sets):"
+      },
+      {
+        "line": 146,
+        "symbol": "def test_advantage_set_extended_score_and_end_changes():"
+      },
+      {
+        "line": 155,
+        "symbol": "def test_midmatch_initial_state_is_preserved_and_unknown_initial_state_has_no_match_winner():"
+      },
+      {
+        "line": 166,
+        "symbol": "def test_game_probability_matches_independent_closed_expression(p):"
+      },
+      {
+        "line": 174,
+        "symbol": "def enumerate_tiebreak(p1, p2, first, target, a=0, b=0, steps=100):"
+      },
+      {
+        "line": 193,
+        "symbol": "def test_tiebreak_math_inside_forward_enumeration_bounds(first, target, a, b):"
+      },
+      {
+        "line": 203,
+        "symbol": "def test_match_probability_obeys_point_transition_identity(kind, format, server):"
+      },
+      {
+        "line": 215,
+        "symbol": "def test_prior_shrinkage_idempotency_future_rejection_and_session_isolation():"
+      },
+      {
+        "line": 236,
+        "symbol": "def test_predictions_are_prefix_causal_and_recompute_after_correction():"
+      },
+      {
+        "line": 248,
+        "symbol": "def test_ledger_gap_freezes_and_human_correction_rebuilds_score_and_predictions():"
+      },
+      {
+        "line": 267,
+        "symbol": "def test_unknown_initial_score_and_match_completion_are_distinct_from_forecast():"
+      }
+    ],
+    "tests/test_prediction_evaluation.py": [
+      {
+        "line": 10,
+        "symbol": "def manifest():"
+      },
+      {
+        "line": 28,
+        "symbol": "def test_chronological_evaluation_match_weighting_baseline_bootstrap_and_no_final_prediction():"
+      },
+      {
+        "line": 53,
+        "symbol": "def test_manifest_rejects_leakage_and_unreviewed_ground_truth(mutation, reason):"
+      },
+      {
+        "line": 60,
+        "symbol": "def test_evaluator_rejects_future_inputs_and_mismatch_with_actual_result():"
+      },
+      {
+        "line": 71,
+        "symbol": "def test_file_report_binds_input_and_implementation_without_qualification(tmp_path):"
+      }
+    ],
+    "tests/test_corrected_shot_rebuild.py": [
+      {
+        "line": 27,
+        "symbol": "def no_model_imports(monkeypatch):"
+      },
+      {
+        "line": 31,
+        "symbol": "def observed_init(self, *args, **kwargs):"
+      },
+      {
+        "line": 36,
+        "symbol": "def guarded(name, *args, **kwargs):"
+      },
+      {
+        "line": 45,
+        "symbol": "def assert_only_parser_diagnostics(scratch):"
+      },
+      {
+        "line": 56,
+        "symbol": "def advance_equivalent_generation(fixture):"
+      },
+      {
+        "line": 69,
+        "symbol": "def build_shot_base(tmp_path, *, frame_count=12, pose_enabled=True, configured_players=False,"
+      },
+      {
+        "line": 223,
+        "symbol": "def test_corrected_double_fault_rebuilds_native_shots_memberships_and_analytics(tmp_path):"
+      },
+      {
+        "line": 272,
+        "symbol": "def test_disabled_pose_keeps_configured_native_geometry_classifier(tmp_path):"
+      },
+      {
+        "line": 288,
+        "symbol": "def test_missing_required_pose_provider_refuses_without_silent_geometry_fallback(tmp_path):"
+      },
+      {
+        "line": 303,
+        "symbol": "def test_configured_pose_is_not_requested_for_dead_receiver_or_semantic_serve(tmp_path):"
+      },
+      {
+        "line": 307,
+        "symbol": "def forbidden(request):"
+      },
+      {
+        "line": 316,
+        "symbol": "def test_downstream_failure_closes_fresh_shots_and_preserves_sealed_base(tmp_path):"
+      },
+      {
+        "line": 336,
+        "symbol": "def test_live_pose_callback_receives_bound_sealed_inputs_and_actual_crop_defaults(tmp_path):"
+      },
+      {
+        "line": 344,
+        "symbol": "def measured_synthetic_features(request):"
+      },
+      {
+        "line": 383,
+        "symbol": "def test_pose_crop_window_does_not_bridge_a_transient_intermediate_discontinuity(transient):"
+      },
+      {
+        "line": 405,
+        "symbol": "def test_pose_crop_window_does_not_mix_selected_local_tracks(track_change):"
+      },
+      {
+        "line": 437,
+        "symbol": "def test_invalid_pose_callback_response_is_rejected_before_attaching_shots(tmp_path, response):"
+      },
+      {
+        "line": 453,
+        "symbol": "def test_mutable_root_configuration_and_detections_do_not_change_the_sealed_rebuild(tmp_path):"
+      },
+      {
+        "line": 468,
+        "symbol": "def test_corrected_shot_pipeline_keeps_owned_buffers_bounded_as_frames_and_shots_grow(tmp_path):"
+      },
+      {
+        "line": 510,
+        "symbol": "def test_current_generation_advance_rejects_obsolete_fresh_shot_work(tmp_path, advance_at):"
+      },
+      {
+        "line": 517,
+        "symbol": "def advancing_provider(pose_request):"
+      },
+      {
+        "line": 538,
+        "symbol": "def test_live_pose_callback_decodes_actual_sealed_frames_with_bounded_cache_and_cleanup(tmp_path):"
+      },
+      {
+        "line": 544,
+        "symbol": "def read_actual_synthetic_frames(request):"
+      },
+      {
+        "line": 576,
+        "symbol": "def test_actual_crop_decode_rejects_detection_pixel_dimensions_from_another_source(tmp_path, monkeypatch):"
+      },
+      {
+        "line": 584,
+        "symbol": "def observed_decoder(self, *args, **kwargs):"
+      },
+      {
+        "line": 588,
+        "symbol": "def mismatched_source_crop(request):"
+      }
+    ],
+    "scripts/evaluate/evaluate_publisher_snapshots.py": [
+      {
+        "line": 29,
+        "symbol": "def load_protocol(path):"
+      },
+      {
+        "line": 39,
+        "symbol": "def metadata_reason(metadata, players, protocol):"
+      },
+      {
+        "line": 58,
+        "symbol": "def _completed(first, second):"
+      },
+      {
+        "line": 71,
+        "symbol": "def terminal_identity(row):"
+      },
+      {
+        "line": 84,
+        "symbol": "def observed_state(row, *, match_id=\"direct-state\"):"
+      },
+      {
+        "line": 133,
+        "symbol": "def _progress_signature(state):"
+      },
+      {
+        "line": 137,
+        "symbol": "def progress_valid(previous, current):"
+      },
+      {
+        "line": 148,
+        "symbol": "def parse_snapshots(metadata, rows, protocol):"
+      },
+      {
+        "line": 216,
+        "symbol": "def import_snapshots(directory, protocol_path):"
+      },
+      {
+        "line": 282,
+        "symbol": "def _raw_probability(feature_values):"
+      },
+      {
+        "line": 292,
+        "symbol": "def forecast_match(match):"
+      },
+      {
+        "line": 306,
+        "symbol": "def fit_calibration(records, settings):"
+      },
+      {
+        "line": 325,
+        "symbol": "def objective(theta):"
+      },
+      {
+        "line": 343,
+        "symbol": "def add_calibrated(records, fit, settings):"
+      },
+      {
+        "line": 355,
+        "symbol": "def summarize(records, *, bootstrap=1000, seed=20261009):"
+      },
+      {
+        "line": 400,
+        "symbol": "def write_receipt(path, value):"
+      },
+      {
+        "line": 408,
+        "symbol": "def read_receipt(path):"
+      },
+      {
+        "line": 414,
+        "symbol": "def main():"
+      }
+    ],
+    "configs/production/yolo26.yaml": []
+  },
+  "retained_prediction_artifacts": {
+    "data\\prediction\\livetennisapi_2026_06_protocol_v3.json": {
+      "sha256": "d44cd3e316f67c9b16922e3678f36bcedd83a4f471f528c838deff8feca2a391",
+      "sidecar_sha256": "761d96b545536552abae0602766c37f3213489918b4be1c33c5eb47f693ba57f",
+      "sidecar_verified": true
+    },
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3_development_fit.json": {
+      "sha256": "4eb7512e3b173b9c646c399915632cb4e85837f58255816d0b77142f9804ac59",
+      "sidecar_sha256": "5c569a88aa6dca174dd0f5cc5bcb61b4d5370a0753d6a35d2db8aa8663581211",
+      "sidecar_verified": true
+    },
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3_calibration_evaluation.json": {
+      "sha256": "1208b12b34df544b6d5ce079ad10421e8325f14fefd116935c02cbb2d0746722",
+      "sidecar_sha256": "8278b264eccbc506298ede751aa0e3f551d396cc4f5cc04a93b90d6c1ad57177",
+      "sidecar_verified": true
+    },
+    "data\\prediction\\livetennisapi_2026_06_snapshot_import_v3_test_evaluation.json": {
+      "sha256": "97d3516769139195c1df994666d63f42447b7cc94d0d285645f73ad193d985cd",
+      "sidecar_sha256": "d9fb3d236d6c7e189045aa8d84a2131f0eaac101c1e5bd12f07731c5e2889b32",
+      "sidecar_verified": true
+    }
+  },
+  "available_fit": {
+    "parameters": [
+      0.15629601140499222,
+      1.34932608812652
+    ],
+    "status": "fitted_development_only",
+    "calibration_status": "unqualified_same_publisher_engineering_only",
+    "match_count": 57,
+    "snapshot_count": 6330,
+    "can_qualify_posterior_updating_video_forecasts": false,
+    "protocol_raw_model": "Existing src/prediction/tennis.py TennisWinProbability fresh explicit Beta(2,2) neutral serve prior, zero observed point updates for every snapshot. Same unmodified rules engine.",
+    "protocol_scope": "direct observed nonterminal BO3 singles score/server snapshots from a fixed known ATP/WTA regular grass-event family; engineering targets from same publisher rules-complete terminal scores",
+    "publication_qualification": false
+  },
+  "mapping_sha256": "a3861bb13bfa847fb45282642da5f3726cc76c110e179c53c79bf8c04064df4a",
+  "mapping_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_forecast_next_seam_v1\\mapping.md",
+  "next_action": "Implement fresh corrected causal forecasts with exact raw-state accepted-rule replay, SQLite dedup/history ownership, explicit uncalibrated neutral prior and coupled double-fault/prefix-causality tests."
+}

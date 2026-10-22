@@ -183,7 +183,7 @@ class Phase4Pipeline:
                     raw_frames=frames
                 )
                 line_call_evidences.append(evidence)
-                print(f"  -> Bounce Frame {ev.frame_index:3d} ({ctx.value:5s}): Decision={evidence.decision.value:15s} | Margin={evidence.ball_edge_margin_cm:+6.1f}cm | Unc=±{evidence.position_uncertainty_cm:4.1f}cm | Conf={evidence.confidence:.2f} | Reason: {evidence.reason}")
+                print(f"  -> Bounce Frame {ev.frame_index:3d} ({ctx.value:5s}): {evidence.overlay_text()} | Conf={evidence.confidence:.2f} | Reason: {evidence.reason}")
         print(f"  -> Completed Line Calling for {len(line_call_evidences)} Bounces in {time.time()-t0:.2f}s")
 
         # 8. Ball Speed & Player Analytics
@@ -234,7 +234,7 @@ class Phase4Pipeline:
         
         # Map bounce frame to line call evidence for banner rendering
         line_call_map = {e.bounce_frame: e for e in line_call_evidences}
-        bounces_court_points = [(e.bounce_position_m[0], e.bounce_position_m[1]) for e in line_call_evidences]
+        bounces_court_points = [e.bounce_position_m for e in line_call_evidences if e.bounce_position_m is not None]
 
         for i, frame in enumerate(frames):
             ann_frame = frame.copy()
@@ -266,7 +266,7 @@ class Phase4Pipeline:
             # 5. Phase 4 Line Call Banner (Active for 18 frames after bounce)
             for b_frame, evidence in line_call_map.items():
                 if 0 <= (i - b_frame) <= 18:
-                    call_text = f"LINE CALL: [{evidence.decision.value}] ({evidence.nearest_line.value} {evidence.ball_edge_margin_cm:+.1f}cm, Unc: +- {evidence.position_uncertainty_cm:.1f}cm)"
+                    call_text = evidence.overlay_text()
                     bg_color = (0, 180, 0) if "IN" in evidence.decision.value else ((0, 0, 200) if "OUT" in evidence.decision.value or "FAULT" in evidence.decision.value else (0, 165, 255))
                     
                     cv2.rectangle(ann_frame, (40, 110), (1200, 160), bg_color, -1)

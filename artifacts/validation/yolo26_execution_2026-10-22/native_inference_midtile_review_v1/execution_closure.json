@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T06:10:16.353294+00:00",
+  "reviewer": "AI_PEER_RETAINED_EXECUTION_REVIEW_NOT_HUMAN",
+  "status": "EXECUTED_MID_TILE_RECOVERY_SOFTWARE_SCOPE_VERIFIED",
+  "prior_static_review": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_review_v1/static_review.json",
+    "bytes": 3791,
+    "sha256": "8f21796c6ebe632b6ccc2a404b04ebb89a4ebdda7796ac7cce6cbe733d886e3b"
+  },
+  "final_receipt": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/receipt.json",
+    "bytes": 53139,
+    "sha256": "c31a78e7085e999eb151c4098f469c1429f61a01593b30eb766ffd29d8b2861b"
+  },
+  "junit": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/junit.xml",
+    "bytes": 73377,
+    "sha256": "85ebbbcd2b3b78d9a33cd46f60f49ef53f2c029d54b1a92aca8f3c8a8edc3808"
+  },
+  "counts": {
+    "tests": 485,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "source_test_config_runner_pins_verified": 193,
+  "production_python_pins": 168,
+  "all_current_pins_match_frozen_run": true,
+  "scope": "Actual worker processes,FFmpeg normalization/browserencode,native software/render/resultbuilder/generationpublication; selected modelresults andassetadmissionexplicitlysynthetic",
+  "actual_cases_verified": [
+    {
+      "case": "after_two_complete_frames",
+      "child_exit_codes": [
+        73,
+        0
+      ],
+      "process_ids": [
+        78864,
+        50112,
+        79792
+      ],
+      "attempts": [
+        1,
+        2
+      ],
+      "one_normalization_across_recovery": true,
+      "completed_job_sql_read_only_verified": true,
+      "final_raw_frontier": 8,
+      "raw_frame_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "raw_recovered_vs_continuous_rows_equal": true,
+      "first_two_raw_payload_hashes": [
+        "6c88c5b71c19f83cb5496cb46bd759982ae01f1796628b6efee51c4ec7b3e78b",
+        "879da37b82941bb79ed3ca013c6f82fcfb4c0621e03bacc046d832825490942a"
+      ],
+      "original_first_two_rows_unchanged_during_resume": "Actual frozen test assertion passed; reviewer additionally matches retained rows to continuous reference and verifies exactly-once commit log",
+      "empty_frame4": false,
+      "views_before_exit": 2,
+      "views_after_resume": 6,
+      "five_regions_verified": false,
+      "partial_frame2_fullview_returned_firsttile_not_returned": false,
+      "source_prefix_audit_bindings_rehashed": 20,
+      "semantic_files_byte_equal": [
+        "ball_metrics.json",
+        "camera_intervals.json",
+        "camera_registration.json",
+        "court_geometry.json",
+        "event_candidates.json",
+        "event_verification_trace.json",
+        "image_people.json",
+        "line_calls.json",
+        "match_analytics.json",
+        "match_events.json",
+        "match_identity.json",
+        "match_state.json",
+        "native_rule_replay.json",
+        "patch_persistence_audit.json",
+        "pixel_motion_audit.json",
+        "player_metrics.json",
+        "player_motion.json",
+        "point_analytics.json",
+        "point_timeline_manifest.json",
+        "racket_tracking.json",
+        "rallies.json",
+        "run_config.yaml",
+        "score_history.json",
+        "scoring_events.json",
+        "serve_executions.json",
+        "shot_events.json",
+        "shot_play_scope.json",
+        "stationary_candidate_audit.json",
+        "temporal_detour_audit.json",
+        "temporal_spacing_audit.json",
+        "trajectories.json"
+      ],
+      "detections_equal_ignoring_only_video_path": true,
+      "decoded_pixel_equality": "Verified passing actual test assertions and source pins; no reviewer decoder rerun",
+      "encoded_media_hashes": {
+        "source.mp4": {
+          "recovered_sha256": "ce13c9314f053495b3282371057c6ba3690c983c59b602d0d0be789cc7ed6721",
+          "continuous_sha256": "ce13c9314f053495b3282371057c6ba3690c983c59b602d0d0be789cc7ed6721",
+          "encoded_bytes_equal": true
+        },
+        "annotated.mp4": {
+          "recovered_sha256": "a77afb2a83eeacdc5fcd929afd8efa2fed07d1bc2498d7256155923968811f2b",
+          "continuous_sha256": "a77afb2a83eeacdc5fcd929afd8efa2fed07d1bc2498d7256155923968811f2b",
+          "encoded_bytes_equal": true
+        },
+        "annotated_web.mp4": {
+          "recovered_sha256": "152a5b54bbbf16282167d68ae882f03e8891ca9782877fc3e89f43c578a1b432",
+          "continuous_sha256": "152a5b54bbbf16282167d68ae882f03e8891ca9782877fc3e89f43c578a1b432",
+          "encoded_bytes_equal": true
+        }
+      },
+      "committed_generation": "877cf24d6442fb367192d00d22680ebd92b90257cc7f6954b0b379cf09ddbf4e"
+    },
+    {
+      "case": "during_first_tile_of_frame_2",
+      "child_exit_codes": [
+        73,
+        0
+      ],
+      "process_ids": [
+        6368,
+        53832,
+        72748
+      ],
+      "attempts": [
+        1,
+        2
+      ],
+      "one_normalization_across_recovery": true,
+      "completed_job_sql_read_only_verified": true,
+      "final_raw_frontier": 8,
+      "raw_frame_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "raw_recovered_vs_continuous_rows_equal": true,
+      "first_two_raw_payload_hashes": [
+        "6c88c5b71c19f83cb5496cb46bd759982ae01f1796628b6efee51c4ec7b3e78b",
+        "879da37b82941bb79ed3ca013c6f82fcfb4c0621e03bacc046d832825490942a"
+      ],
+      "original_first_two_rows_unchanged_during_resume": "Actual frozen test assertion passed; reviewer additionally matches retained rows to continuous reference and verifies exactly-once commit log",
+      "empty_frame4": true,
+      "views_before_exit": 12,
+      "views_after_resume": 30,
+      "five_regions_verified": true,
+      "partial_frame2_fullview_returned_firsttile_not_returned": true,
+      "source_prefix_audit_bindings_rehashed": 20,
+      "semantic_files_byte_equal": [
+        "ball_metrics.json",
+        "camera_intervals.json",
+        "camera_registration.json",
+        "court_geometry.json",
+        "event_candidates.json",
+        "event_verification_trace.json",
+        "image_people.json",
+        "line_calls.json",
+        "match_analytics.json",
+        "match_events.json",
+        "match_identity.json",
+        "match_state.json",
+        "native_rule_replay.json",
+        "patch_persistence_audit.json",
+        "pixel_motion_audit.json",
+        "player_metrics.json",
+        "player_motion.json",
+        "point_analytics.json",
+        "point_timeline_manifest.json",
+        "racket_tracking.json",
+        "rallies.json",
+        "run_config.yaml",
+        "score_history.json",
+        "scoring_events.json",
+        "serve_executions.json",
+        "shot_events.json",
+        "shot_play_scope.json",
+        "stationary_candidate_audit.json",
+        "temporal_detour_audit.json",
+        "temporal_spacing_audit.json",
+        "trajectories.json"
+      ],
+      "detections_equal_ignoring_only_video_path": true,
+      "decoded_pixel_equality": "Verified passing actual test assertions and source pins; no reviewer decoder rerun",
+      "encoded_media_hashes": {
+        "source.mp4": {
+          "recovered_sha256": "ce13c9314f053495b3282371057c6ba3690c983c59b602d0d0be789cc7ed6721",
+          "continuous_sha256": "ce13c9314f053495b3282371057c6ba3690c983c59b602d0d0be789cc7ed6721",
+          "encoded_bytes_equal": true
+        },
+        "annotated.mp4": {
+          "recovered_sha256": "40846d2ea788109100dc514fc24ce35de0a06108d325741a33cf10fc0931243f",
+          "continuous_sha256": "40846d2ea788109100dc514fc24ce35de0a06108d325741a33cf10fc0931243f",
+          "encoded_bytes_equal": true
+        },
+        "annotated_web.mp4": {
+          "recovered_sha256": "352ad9e8f1c4f7b429531ffc86eb6dc93e271819c74456356cb3d934a484737b",
+          "continuous_sha256": "352ad9e8f1c4f7b429531ffc86eb6dc93e271819c74456356cb3d934a484737b",
+          "encoded_bytes_equal": true
+        }
+      },
+      "committed_generation": "237e5916f67ae357c77478294414d8ae8a44264252698e40b38ad368801700ce"
+    }
+  ],
+  "evidence_bindings": [
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/junit.xml",
+      "bytes": 73377,
+      "sha256": "85ebbbcd2b3b78d9a33cd46f60f49ef53f2c029d54b1a92aca8f3c8a8edc3808"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/receipt.json",
+      "bytes": 53139,
+      "sha256": "c31a78e7085e999eb151c4098f469c1429f61a01593b30eb766ffd29d8b2861b"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/run_checks.py",
+      "bytes": 13934,
+      "sha256": "9916aae581eb72c1f3ec7d11685dc3b99aab94eedec9c76958cb7618567452b9"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/continuous/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_prefix.json",
+      "bytes": 5827,
+      "sha256": "61e7ee23a5086a2b9d8a59fcdd86bfd611c9e209dfe7fd1aa5a7f29ab9b22ea9"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/continuous/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_source.json",
+      "bytes": 5035,
+      "sha256": "c8cf2cc962c3d66c6c8669d8978807f03dd26a03935b046fb3968b0e9ad2a12e"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/continuous/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.result/current.store",
+      "bytes": 100,
+      "sha256": "3abf9529535f30e9b697a7bb127b47e51fd7b78697455a1842285849db1ee7b6"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/continuous/native_worker_observations.jsonl",
+      "bytes": 10840,
+      "sha256": "c66945e4ab40255feb0434bed38aebdf33ddb329a6fd8d309adf87f0365a0516"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/native_worker_process_recovery_evidence.json",
+      "bytes": 2345,
+      "sha256": "947432f9ad0d2a978e151d429bc703b55d24013906ab287894588131bf8e56d7"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/recovered/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_prefix.json",
+      "bytes": 5827,
+      "sha256": "61e7ee23a5086a2b9d8a59fcdd86bfd611c9e209dfe7fd1aa5a7f29ab9b22ea9"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/recovered/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_source.json",
+      "bytes": 5035,
+      "sha256": "c8cf2cc962c3d66c6c8669d8978807f03dd26a03935b046fb3968b0e9ad2a12e"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/recovered/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.result/current.store",
+      "bytes": 100,
+      "sha256": "40368b22525f73f193dc5908872fd0b9d3d2fa0f44e84a86604af2b171a43788"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_during_0/recovered/native_worker_observations.jsonl",
+      "bytes": 12341,
+      "sha256": "9bb41fe23fe997c63d1da57f2256698e60de74963e3628b01e3a44ba6ea77848"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/continuous/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_prefix.json",
+      "bytes": 5830,
+      "sha256": "88747203048e6b53ca5fb2bbfdabe74a5874f3dfa1014502180ff033cf61542b"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/continuous/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_source.json",
+      "bytes": 5038,
+      "sha256": "c3b8912f80bdf5cbf89af89036d5a2cf17797ff31556bae5dd8a4d0bb2e058a0"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/continuous/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.result/current.store",
+      "bytes": 100,
+      "sha256": "e1705e496f22938f62f551988ed3b40e6d6add534974119d3f016bdc76347d99"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/continuous/native_worker_observations.jsonl",
+      "bytes": 4467,
+      "sha256": "8194df2ed82ac12b538801c065d66d53a53f764d29703d018744001cff571bac"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/native_worker_process_recovery_evidence.json",
+      "bytes": 1896,
+      "sha256": "34a72a3a340ea6ad1c5af342229bbc74830b1b08a90fcf3b099e956a9fdcb005"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/recovered/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_prefix.json",
+      "bytes": 5830,
+      "sha256": "88747203048e6b53ca5fb2bbfdabe74a5874f3dfa1014502180ff033cf61542b"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/recovered/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.native_inference_source.json",
+      "bytes": 5038,
+      "sha256": "c3b8912f80bdf5cbf89af89036d5a2cf17797ff31556bae5dd8a4d0bb2e058a0"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/recovered/analyses/match_26ba1126ba1126ba1126ba1126ba1126/.result/current.store",
+      "bytes": 100,
+      "sha256": "be9e2c23c3e25ef2f0aa1c48c968a0cfb5de11e266ccb7e7ebabc7a2232a0a73"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_checks_v1/temp/pytest/test_hard_process_loss_resumes0/recovered/native_worker_observations.jsonl",
+      "bytes": 5473,
+      "sha256": "16234aa1bbf2426e3374ef34054dff901bd458f47efa671402201f906d7905c7"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_midtile_review_v1/static_review.json",
+      "bytes": 3791,
+      "sha256": "8f21796c6ebe632b6ccc2a404b04ebb89a4ebdda7796ac7cce6cbe733d886e3b"
+    }
+  ],
+  "limits": {
+    "reviewer_reran_tests_codecs_or_models": false,
+    "reviewer_imported_project_or_neural_runtime": false,
+    "reviewer_probed_host_ram_or_gpu": false,
+    "reviewer_edited_source": false,
+    "fixture_frames_per_case": 8,
+    "fixture_dimensions": [
+      320,
+      240
+    ],
+    "fixture_fps": 25,
+    "actual_learned_model_inference": false,
+    "independent_speed_or_cv_accuracy_qualification": false,
+    "real_long_match_or_capacity_qualification": false,
+    "live_or_windows_power_loss_qualification": false
+  }
+}

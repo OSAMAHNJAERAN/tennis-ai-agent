@@ -1,0 +1,1272 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-16T02:01:27.944346+00:00",
+  "status": "TWELVE_ASSIGNED_FRANCE_ROWS_ACTUALLY_REVIEWED_LOCALLY_EIGHT_VISIBLE_BOX_PROPOSALS_FOUR_REJECTED_NO_EXPORT",
+  "review_aids_manifest": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_yolo_author_native_audit32_v1\\review_aids_manifest.json",
+    "sha256": "bab9ae8e201574ec443172f9607fd2e2bec796facc2f0d0c01f183127b8a924a"
+  },
+  "reviewer": "AGENT:/root/ball_bbox_inventory",
+  "reviewed_frame_indices": [
+    138,
+    139,
+    305,
+    480,
+    706,
+    875,
+    1041,
+    1182,
+    1347,
+    1520,
+    1709,
+    1878
+  ],
+  "actual_local_view_image_calls": 24,
+  "actual_native_overlays_viewed": 12,
+  "actual_unmarked_native96_triplet_boards_viewed": 12,
+  "native_temporal_patches_viewed": 36,
+  "visible_box_proposals_accepted_for_development_review": 8,
+  "publisher_boxes_retained": 4,
+  "manual_visible_extent_corrections": 4,
+  "rejected_unresolved_proposals": 4,
+  "independent_human_review": false,
+  "training_performed": false,
+  "model_or_gpu_runs": 0,
+  "training_export_or_split_assignment": false,
+  "reserved_test_data_used": false,
+  "external_frame_transmission": false,
+  "network_requests_in_this_visual_review": 0,
+  "manual_boundary_uncertainty_is_not_measured_calibration": true,
+  "context_and_leakage_limit": "Every reviewed sample is from one multi-rally RolandGarros compilation. The source title/caption is a lead only; retain the complete compilation and source aliases in a common conservative context before any split. This receipt does not establish independent matches or absence of overlap with cached sources.",
+  "background_and_training_limit": "These eight are visible-box review proposals, not supervised exports. Every eventual native training crop still needs full background closure to avoid missing spare-ball or equipment targets. Rejected proposals are unknown, never empty-negative labels.",
+  "rows": [
+    {
+      "id": "France_Review_Red_Court_1_f000138",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 138,
+      "source_pts": "137275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "5491/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_138.txt",
+      "label_sha256": "b1cded39cb52ade9a02bba925468e46c4d16335aad139cfebfac43096074cacd",
+      "label_git_blob_sha1": "7ad501a8ba0681910ee6a46e7b72a3ddf7952ec1",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        137,
+        138,
+        139
+      ],
+      "native_neighbor_pts": [
+        "136275",
+        "137275",
+        "138275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000138.png",
+        "sha256": "30be5e9a37b1a89f2d82915a63f9b2d94a97a0cb40c99caa6514b01cafb9a062"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000138.png",
+        "sha256": "29c75bbcab7e713773a746e253050d492069449eb5627fa4d68f873654f40bc4"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0011.png",
+          "sha256": "c9cbca9de1dd25a7ac5d943d8a39b3f56a1822e75d88f444dfe949eb2059a977",
+          "frame_index": 137,
+          "source_pts": "136275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0012.png",
+          "sha256": "35d56a59ce5b7759dd9915fbea4012f3d80411358a25e8ef0dea00bcc8938e8c",
+          "frame_index": 138,
+          "source_pts": "137275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0013.png",
+          "sha256": "e93625ff4cf0c1a793a4fa75554e852cf01def1156b99b79060e2dddd962fd34",
+          "frame_index": 139,
+          "source_pts": "138275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_VISIBLE_PUBLISHER_BOX_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_SMALL_BALL",
+      "near_far_region": "FAR_COURT",
+      "blur_observation": "LOW",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.585547,
+            0.224306,
+            0.003906,
+            0.006944
+          ],
+          "publisher_box_xyxy_native_px": [
+            747.0003200000001,
+            159.00048,
+            752.0,
+            164.00016
+          ],
+          "center_native_px": [
+            749.50016,
+            161.50032000000002
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        747.0003200000001,
+        159.00048,
+        752.0,
+        164.00016
+      ],
+      "selected_box_source": "PUBLISHER_BOX_VISUALLY_REVIEWED_RETAINED",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "Small pale ball separates from the green rear wall and moves left/down across native frames137-139. The approximately5x5px proposal is centered on the visible blob with at most a small compression halo.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000139",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 139,
+      "source_pts": "138275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "5531/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_139.txt",
+      "label_sha256": "b40e0faa09c6e7219fc5b79b250784cb587553e5680c6f97fcbdffc7a18d4d7e",
+      "label_git_blob_sha1": "f4d291241eda30a27fe1df8cd0fe6cbcdf1b79e2",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        138,
+        139,
+        140
+      ],
+      "native_neighbor_pts": [
+        "137275",
+        "138275",
+        "139275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000139.png",
+        "sha256": "ef105769f25ba8abffefd02ce8f6a31e076107aca8cd4f885031ca74841bd07b"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000139.png",
+        "sha256": "f584021d70f0b522a632695706f8761bf8a24d93980de053a09fe6012ae74aa7"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0012.png",
+          "sha256": "35d56a59ce5b7759dd9915fbea4012f3d80411358a25e8ef0dea00bcc8938e8c",
+          "frame_index": 138,
+          "source_pts": "137275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0013.png",
+          "sha256": "e93625ff4cf0c1a793a4fa75554e852cf01def1156b99b79060e2dddd962fd34",
+          "frame_index": 139,
+          "source_pts": "138275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0014.png",
+          "sha256": "c64fd7af0ce924f666395e9fcf83ec7a051080970db35b2888e68c47d9b738f9",
+          "frame_index": 140,
+          "source_pts": "139275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_VISIBLE_PUBLISHER_BOX_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_SMALL_BALL",
+      "near_far_region": "FAR_COURT",
+      "blur_observation": "LOW",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.583203,
+            0.23125,
+            0.002344,
+            0.004167
+          ],
+          "publisher_box_xyxy_native_px": [
+            744.9996800000001,
+            164.99988000000002,
+            748.0,
+            168.00012
+          ],
+          "center_native_px": [
+            746.4998400000001,
+            166.5
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        744.9996800000001,
+        164.99988000000002,
+        748.0,
+        168.00012
+      ],
+      "selected_box_source": "PUBLISHER_BOX_VISUALLY_REVIEWED_RETAINED",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "The small pale ball continues below the green rear wall in frames138-140. The approximately3x3px proposal follows the visible tiny blob. Adjacentframe138 is the same flight, not an independent source.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000305",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 305,
+      "source_pts": "304275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "12171/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_305.txt",
+      "label_sha256": "4110955ebd0fe68d7c2cb1e19936f88eea976c69c1f6e183598b03afcdebe7bb",
+      "label_git_blob_sha1": "ecfdf99fae62230e2bb01a131010d6e8667130db",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        304,
+        305,
+        306
+      ],
+      "native_neighbor_pts": [
+        "303275",
+        "304275",
+        "305275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000305.png",
+        "sha256": "ad095c2e359435b50287c3dd7cfdc6529fd64861f923f36e6730b6ba0f2c496c"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000305.png",
+        "sha256": "496b7dea1f8b14b8b773e74552ed1cee0e7889e80d51b3f2e4cc551d01cb0fb5"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0015.png",
+          "sha256": "d22d35517d1d4f0ae84b8388c18291be9d8bd810f5e56af092f989d25736c72c",
+          "frame_index": 304,
+          "source_pts": "303275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0016.png",
+          "sha256": "ce547c2e06642e35af25e15a95a62fdb0cb63a3ab9dc5bb88873c2ea0a588a99",
+          "frame_index": 305,
+          "source_pts": "304275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0017.png",
+          "sha256": "c40df33a01a7714a9017ecec1855e177404e87dc19bf710671418e5ebf935913",
+          "frame_index": 306,
+          "source_pts": "305275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "REJECT_UNRESOLVED_PLAYER_OVERLAP",
+      "observed_state": "AMBIGUOUS_OR_OCCLUDED",
+      "near_far_region": "NEAR_COURT",
+      "blur_observation": "UNRESOLVED",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.4625,
+            0.5875,
+            0.004687,
+            0.019444
+          ],
+          "publisher_box_xyxy_native_px": [
+            589.00032,
+            416.00016,
+            594.99968,
+            429.99984
+          ],
+          "center_native_px": [
+            592.0,
+            423.0
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": null,
+      "selected_box_source": null,
+      "native_boundary_uncertainty_px_uncalibrated": null,
+      "center_definition": null,
+      "observations": "The proposal is on the near player's black dress/torso. The unmarked neighbors contain the player's pale limbs and racket, but do not resolve a separate visible ball-only extent at the proposed center. Do not infer the hidden ball or accept a black-dress box.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": false,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000480",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 480,
+      "source_pts": "479275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "19171/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_480.txt",
+      "label_sha256": "86388066c3dbb4c2214437852709f0c5f4071db90f19c1d1952941708c7ff739",
+      "label_git_blob_sha1": "acb5d8b5a62ca3cf40023a395339cdf465c85a16",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        479,
+        480,
+        481
+      ],
+      "native_neighbor_pts": [
+        "478275",
+        "479275",
+        "480275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000480.png",
+        "sha256": "37bc662f9b304fa9325e3125ca5c82f2925a7b7dea7492e8047e5b5603c50bf1"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000480.png",
+        "sha256": "0688f1edf83e8ac8c6e3d107e709cad9fe557b12dd22c8badeb7a58f0f2b16fb"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0018.png",
+          "sha256": "f5dd478820d2bf1dc2e00aea4a6873fce61e9869661d14f5b2332f307ea21aa5",
+          "frame_index": 479,
+          "source_pts": "478275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0019.png",
+          "sha256": "74f5cff7a02fe93049b4519500cc63923d5be254d23175f1b95105fd9c6e1658",
+          "frame_index": 480,
+          "source_pts": "479275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0020.png",
+          "sha256": "ec534952a4572189e679611af1c78f8e5fae9780632de88ef330f6a092383ce4",
+          "frame_index": 481,
+          "source_pts": "480275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "REJECT_UNRESOLVED_OFFCOURT_COLLECTION_OBJECT",
+      "observed_state": "AMBIGUOUS_OFFCOURT_BLUR",
+      "near_far_region": "OUTSIDE_LEFT_REAR_COURT",
+      "blur_observation": "UNRESOLVED",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.228125,
+            0.250694,
+            0.007812,
+            0.0125
+          ],
+          "publisher_box_xyxy_native_px": [
+            287.00032,
+            175.99967999999998,
+            296.99968,
+            184.99967999999996
+          ],
+          "center_native_px": [
+            292.0,
+            180.49967999999998
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": null,
+      "selected_box_source": null,
+      "native_boundary_uncertainty_px_uncalibrated": null,
+      "center_definition": null,
+      "observations": "The pale proposal is beside the far-left ballkid's feet during a collection/dead-ball-looking interval, while other ballkids are moving. Native temporal patches show a pale streak but do not resolve a tight ball-only extent or an active-ball interpretation reliably. Exclusion is not an absence label.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": false,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000706",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 706,
+      "source_pts": "705275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "28211/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_706.txt",
+      "label_sha256": "95bc62b9a7532d3ae2ad68cc2c624109dd780f17b3d2e31a211fef14ce604561",
+      "label_git_blob_sha1": "31c62730f1d02f166706c757814a85dd8262c80a",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        705,
+        706,
+        707
+      ],
+      "native_neighbor_pts": [
+        "704275",
+        "705275",
+        "706275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000706.png",
+        "sha256": "cff2a58a6304353e99fe7289028fbd91636753700785ab9ccec9b4fdfa4dd8cd"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000706.png",
+        "sha256": "520ddaea4ef8b045617ab9968ac147173a363396446856d4bb919a31383c058e"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0021.png",
+          "sha256": "182716edda5fb23b206cfce299c7eccc7f0351ae4139137c1ff353bd938db988",
+          "frame_index": 705,
+          "source_pts": "704275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0022.png",
+          "sha256": "1cb7d7f9ce33e9113f9bdf308d34ab4ce96502a2888bf6f950830731a9ac51c5",
+          "frame_index": 706,
+          "source_pts": "705275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0023.png",
+          "sha256": "67958d2743d3064ac2ef7bc5e73d115e4617989190923e2de0b1b81c7f5a3d26",
+          "frame_index": 707,
+          "source_pts": "706275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_VISIBLE_PUBLISHER_BOX_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_SMALL_BALL",
+      "near_far_region": "FAR_COURT_NEAR_NET",
+      "blur_observation": "MODERATE",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.392578,
+            0.407639,
+            0.002344,
+            0.006944
+          ],
+          "publisher_box_xyxy_native_px": [
+            500.99967999999996,
+            291.00024,
+            504.0,
+            295.99992
+          ],
+          "center_native_px": [
+            502.49983999999995,
+            293.50007999999997
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        500.99967999999996,
+        291.00024,
+        504.0,
+        295.99992
+      ],
+      "selected_box_source": "PUBLISHER_BOX_VISUALLY_REVIEWED_RETAINED",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "A tiny pale vertical ball streak is distinct from the horizontal net tape in all three unmarked native patches and moves upward in image coordinates. The approximately3x5px publisher bounds align with the visible streak.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000875",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 875,
+      "source_pts": "874275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "34971/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_875.txt",
+      "label_sha256": "c9ffee965f48c4a543d5c1a30ed9eac2a496ba6887bbd6770160dd1fa972e34b",
+      "label_git_blob_sha1": "8412011b4f273c25868ae3ac4061b45d0cec0e93",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        874,
+        875,
+        876
+      ],
+      "native_neighbor_pts": [
+        "873275",
+        "874275",
+        "875275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000875.png",
+        "sha256": "7c6315d322d9bc8bb4a1323fc9bca2e98af4f380c50a05acd20bb43e2b99abf7"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000875.png",
+        "sha256": "f21a57a161160e6e6e1cd844b603c41e93a45e3e7020b3d28232c1ffc7063801"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0024.png",
+          "sha256": "b72c573da1dcbcc1c7839294b4b6631b2aab95203e6314f4517c729fb59db44a",
+          "frame_index": 874,
+          "source_pts": "873275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0025.png",
+          "sha256": "68d4dc74ce497bf677d93960ae012a65854f6e62f1a569892cdb8a0487f5c279",
+          "frame_index": 875,
+          "source_pts": "874275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0026.png",
+          "sha256": "e8a4a9aa4eb746542b8a293c0893afc6871357ce723ac91412be4270090fe8e7",
+          "frame_index": 876,
+          "source_pts": "875275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_REVIEWED_VISIBLE_EXTENT_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_VERTICAL_MOTION_BLUR",
+      "near_far_region": "NEAR_COURT",
+      "blur_observation": "HIGH",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.565625,
+            0.511806,
+            0.007812,
+            0.023611
+          ],
+          "publisher_box_xyxy_native_px": [
+            719.0003200000001,
+            360.00035999999994,
+            728.99968,
+            377.00028000000003
+          ],
+          "center_native_px": [
+            724.0,
+            368.50032
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        721,
+        362,
+        728,
+        376
+      ],
+      "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_CORRECTION",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "A detached pale vertical ball streak moves upward across frames874-876 against clay below the net. Tightened the publisher approximately10x17px bounds to a7x14px visible streak envelope; this excludes surrounding clay while retaining the visible blur, not a guessed spherical or physical center.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f001041",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 1041,
+      "source_pts": "1040275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "41611/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_1041.txt",
+      "label_sha256": "5d6381425b2fc0de6ab06fc10f8c7b9e091c954167d19330bdc338f145cfaa06",
+      "label_git_blob_sha1": "c2cb4eda48fdac1485e1ccf6040461c11019225b",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        1040,
+        1041,
+        1042
+      ],
+      "native_neighbor_pts": [
+        "1039275",
+        "1040275",
+        "1041275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f001041.png",
+        "sha256": "516c3e35bebb6f2df2102de3e29cc95954cb675a3b65334b5c007d2288e5876a"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f001041.png",
+        "sha256": "c70ea34e2898e74ee831e078d5965024e59161e569179b2bd1e5adfcd5f15827"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0027.png",
+          "sha256": "79bfca1fe7b801520c931628b21c1a01038dc7d54264711ef751fa14ba5e03a4",
+          "frame_index": 1040,
+          "source_pts": "1039275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0028.png",
+          "sha256": "72f0ed823540c51a33398ab52870416a57554be6039ff0315f84efb142da0b6b",
+          "frame_index": 1041,
+          "source_pts": "1040275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0029.png",
+          "sha256": "adaac6e96a14b0cca149b0473c26d04cfc1c5af8b2eb949c35fe2cc6733dda2d",
+          "frame_index": 1042,
+          "source_pts": "1041275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_REVIEWED_VISIBLE_EXTENT_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_SMALL_BLURRED_BALL",
+      "near_far_region": "FAR_COURT",
+      "blur_observation": "MODERATE",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.546484,
+            0.2875,
+            0.007031,
+            0.011111
+          ],
+          "publisher_box_xyxy_native_px": [
+            694.9996799999999,
+            203.00003999999998,
+            703.99936,
+            210.99996
+          ],
+          "center_native_px": [
+            699.49952,
+            206.99999999999997
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        696,
+        204,
+        703,
+        210
+      ],
+      "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_CORRECTION",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "A compact pale ball is isolated against clay, moving right/up across frames1040-1042. Tightened approximately9x8px publisher bounds to a7x6px visible blob envelope. The far player's racket is spatially separate.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f001182",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 1182,
+      "source_pts": "1181275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "47251/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_1182.txt",
+      "label_sha256": "f42c382fa835d1b38920deea99b1cbba17a83b98b8324357e812b7200d78ef6b",
+      "label_git_blob_sha1": "84155908367892ee01605b31b72cb93d47e56b12",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        1181,
+        1182,
+        1183
+      ],
+      "native_neighbor_pts": [
+        "1180275",
+        "1181275",
+        "1182275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f001182.png",
+        "sha256": "37bfebb73283ad608921f12c31d96e01f96b1952be5237ce98781acf9b1898cd"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f001182.png",
+        "sha256": "537bff147181197c6156a9e2c70f69dc8844c13e08c482324dc6903315fb5e90"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0030.png",
+          "sha256": "87590c03c228e9f3f1eb2bfef3f1ccb9fc02ae9f55c784f3485a4e7d43d43470",
+          "frame_index": 1181,
+          "source_pts": "1180275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0031.png",
+          "sha256": "90e73f965704be1e781e52284c8b7e42fe719cc3ae7f6f5a5682628116a9b2a6",
+          "frame_index": 1182,
+          "source_pts": "1181275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0032.png",
+          "sha256": "529f4cfb15a9418e460ee95962a75e2ba290ff8cccf51115e658761eabe88631",
+          "frame_index": 1183,
+          "source_pts": "1182275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "REJECT_UNRESOLVED_BALL_LINE_EXTENT",
+      "observed_state": "AMBIGUOUS_LINE_OVERLAP",
+      "near_far_region": "FAR_COURT",
+      "blur_observation": "UNRESOLVED",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.366406,
+            0.346528,
+            0.004687,
+            0.006944
+          ],
+          "publisher_box_xyxy_native_px": [
+            466.0,
+            247.00032000000002,
+            471.99936,
+            251.99999999999997
+          ],
+          "center_native_px": [
+            468.99968,
+            249.50016
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": null,
+      "selected_box_source": null,
+      "native_boundary_uncertainty_px_uncalibrated": null,
+      "center_definition": null,
+      "observations": "The proposed center lies on the slanted bright singles/service line. Neighbor patches show a bright spot along that line, but the current ball-only outline cannot be separated from the line at native resolution. Do not turn the line into a ball box or use temporal expectation as hidden ground truth.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": false,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f001347",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 1347,
+      "source_pts": "1346275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "53851/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_1347.txt",
+      "label_sha256": "93ba360dba1d6e2fec2006754e90e4448f3a0903a51766c42e54b81697c8797c",
+      "label_git_blob_sha1": "1b500acefcd8bfa97a2e1ea981e6df376df3c12b",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        1346,
+        1347,
+        1348
+      ],
+      "native_neighbor_pts": [
+        "1345275",
+        "1346275",
+        "1347275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f001347.png",
+        "sha256": "7e0927baab5eced57010193634446297aecbdb065b959b2223d17b9a7ea3321a"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f001347.png",
+        "sha256": "9c02d4d89aaeac800f4ccff09ee12361ce4c7e35de38e05db66ec0a1de737760"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0033.png",
+          "sha256": "8ecbc6ebc7efe6515f90461324708f48e367dd43c3d3a6cd129e47e9b8d5bf00",
+          "frame_index": 1346,
+          "source_pts": "1345275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0034.png",
+          "sha256": "e6fcb549d41d97ce99c028485ee646cde09999d26175939e62ba3cdd3d82d408",
+          "frame_index": 1347,
+          "source_pts": "1346275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0035.png",
+          "sha256": "add17fb5965948512c331aedabe01727ab918b4badf624f258a65175540d55c5",
+          "frame_index": 1348,
+          "source_pts": "1347275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_VISIBLE_PUBLISHER_BOX_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_COMPACT_BALL_BLUR",
+      "near_far_region": "FAR_COURT",
+      "blur_observation": "MODERATE",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.545703,
+            0.282639,
+            0.007031,
+            0.009722
+          ],
+          "publisher_box_xyxy_native_px": [
+            694.0,
+            200.00015999999997,
+            702.9996800000001,
+            206.99999999999997
+          ],
+          "center_native_px": [
+            698.4998400000001,
+            203.50007999999997
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        694.0,
+        200.00015999999997,
+        702.9996800000001,
+        206.99999999999997
+      ],
+      "selected_box_source": "PUBLISHER_BOX_VISUALLY_REVIEWED_RETAINED",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "The pale ball is clearly detached from the far player/racket and travels right/up over clay in frames1346-1348. The approximately9x7px publisher proposal encloses its compact blur and small visible halo within manual boundary uncertainty.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f001520",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 1520,
+      "source_pts": "1519275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "60771/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_1520.txt",
+      "label_sha256": "3281107cb995e497ab14cf088239088c67c1d6f99b0deb19d490287e03c5337c",
+      "label_git_blob_sha1": "a383dbc5f3a9aea79be12097af3d2b58a0282b9f",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        1519,
+        1520,
+        1521
+      ],
+      "native_neighbor_pts": [
+        "1518275",
+        "1519275",
+        "1520275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f001520.png",
+        "sha256": "c9cda755c8c9bbcc1676980a8874636fff44c5a9cf482c8cb64098b164cd87f3"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f001520.png",
+        "sha256": "56881c2d7796bb39aa43271078ae1205fa0a7169020e7f6b4eb2ec85d134abcc"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0036.png",
+          "sha256": "64b4993f7d699042727d1b911dd365cf5c34afbaff0624ad58bc75a0e70ed43b",
+          "frame_index": 1519,
+          "source_pts": "1518275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0037.png",
+          "sha256": "a2227d31a702716f5ce257dc369045598bbbec377c6e70a781dd2f06147f1705",
+          "frame_index": 1520,
+          "source_pts": "1519275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0038.png",
+          "sha256": "683ad5d91c810b79e10e942bba76082438e617464fd61736f073131b83650f49",
+          "frame_index": 1521,
+          "source_pts": "1520275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_REVIEWED_VISIBLE_EXTENT_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_SMALL_BLURRED_BALL",
+      "near_far_region": "FAR_COURT_NEAR_SERVICE_LINE",
+      "blur_observation": "MODERATE",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.591406,
+            0.384722,
+            0.00625,
+            0.011111
+          ],
+          "publisher_box_xyxy_native_px": [
+            752.9996799999999,
+            272.99988,
+            760.99968,
+            280.9998
+          ],
+          "center_native_px": [
+            756.99968,
+            276.99984
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        754,
+        274,
+        760,
+        280
+      ],
+      "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_CORRECTION",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "A compact pale moving ball is distinct from the farther horizontal line/net tape across frames1519-1521. Tightened approximately8x8px publisher bounds to a6x6px visible blob envelope; a nearby dark line/shadow is excluded.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f001709",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 1709,
+      "source_pts": "1708275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "68331/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_1709.txt",
+      "label_sha256": "3db6274537cee4d618f4f1e2666eab76e1d0ac4fb37ac50b43dba112afe9255f",
+      "label_git_blob_sha1": "891f4c419c82bea8df9d58facab2529c8bf3105f",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        1708,
+        1709,
+        1710
+      ],
+      "native_neighbor_pts": [
+        "1707275",
+        "1708275",
+        "1709275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f001709.png",
+        "sha256": "0b42399382a71593bdff11c51ae3d82d4677a4ea48535cf5247a03900ea13b37"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f001709.png",
+        "sha256": "e5ca5589168d182b6800d89546db2a121f684d7f43658b2121441ceb8e37eb29"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0039.png",
+          "sha256": "a0269c238dedf69409dbecae06782193d58899ffc3a59093c418e6e59ef32871",
+          "frame_index": 1708,
+          "source_pts": "1707275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0040.png",
+          "sha256": "89ccec3ed9d0e1bd691a127d6f5d47df06bb4bd7d758d988e2b5f5046f3d144c",
+          "frame_index": 1709,
+          "source_pts": "1708275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0041.png",
+          "sha256": "f2411dc81da8b31b62b4212ee1621bb3d737d1398aa6490f40fa932dd8debbf4",
+          "frame_index": 1710,
+          "source_pts": "1709275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "ACCEPT_REVIEWED_VISIBLE_EXTENT_PENDING_CROP_CLOSURE",
+      "observed_state": "VISIBLE_COMPACT_BALL_BLUR",
+      "near_far_region": "FAR_COURT",
+      "blur_observation": "MODERATE",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.496875,
+            0.265278,
+            0.007812,
+            0.011111
+          ],
+          "publisher_box_xyxy_native_px": [
+            631.00032,
+            187.0002,
+            640.99968,
+            195.00012
+          ],
+          "center_native_px": [
+            636.0,
+            191.00016000000002
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": [
+        632,
+        188,
+        640,
+        194
+      ],
+      "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_CORRECTION",
+      "native_boundary_uncertainty_px_uncalibrated": 2,
+      "center_definition": "midpoint_of_reviewed_visible_box_not_physical_3d_center",
+      "observations": "A pale compact ball moves left/down over clay, clearly separated from the central Lacoste sign and far player. Tightened approximately10x8px publisher bounds to an8x6px visible blur envelope.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": true,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    },
+    {
+      "id": "France_Review_Red_Court_1_f001878",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 1878,
+      "source_pts": "1877275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "75091/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_1878.txt",
+      "label_sha256": "ffad6f3039a8312540fbedfa1520b6ba0420c8474431ff4445b1b0ff1d603c08",
+      "label_git_blob_sha1": "efd0c1249f29308307e662866e02d19d001aa190",
+      "native_width": 1280,
+      "native_height": 720,
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "root_personally_viewed_by_this_receipt": false,
+      "independent_human_review": false,
+      "vision_model_or_model_predictions_used": false,
+      "actually_viewed_native_overlay_locally": true,
+      "actually_viewed_all_unmarked_native96_temporal_patches_locally": true,
+      "native_neighbor_indices": [
+        1877,
+        1878,
+        1879
+      ],
+      "native_neighbor_pts": [
+        "1876275",
+        "1877275",
+        "1878275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f001878.png",
+        "sha256": "801ba7d5528998fc58893125c51610dfa95d01947ae9419af086a31ce4be837c"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f001878.png",
+        "sha256": "6f2612030ced69c945e69f4f7c098a7cb309ffbe377d1b1c94478449fd0f19d7"
+      },
+      "native_frames_hash_verified_not_separate_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0042.png",
+          "sha256": "feff02d28b847811d9dfdaf0653baf071cd6306f9613412cb67a168e23f8a795",
+          "frame_index": 1877,
+          "source_pts": "1876275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0043.png",
+          "sha256": "500e971b2bb97407d9946b3aa3251aebb0eedaa9c4a125c374b40a95ce34d7d2",
+          "frame_index": 1878,
+          "source_pts": "1877275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0044.png",
+          "sha256": "1f8892d61aaec653343b359c159c7c5a5a50f4962386a6aa19ec02ccad18f1c8",
+          "frame_index": 1879,
+          "source_pts": "1878275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari",
+      "review_decision": "REJECT_UNRESOLVED_OFFICIAL_SIGN_BACKGROUND",
+      "observed_state": "AMBIGUOUS_SIGN_OR_BALL",
+      "near_far_region": "FAR_COURT_REAR_BOUNDARY",
+      "blur_observation": "UNRESOLVED",
+      "publisher_proposals_preserved": [
+        {
+          "publisher_xywh_normalized": [
+            0.498047,
+            0.202778,
+            0.003906,
+            0.008333
+          ],
+          "publisher_box_xyxy_native_px": [
+            635.0003200000001,
+            143.00028,
+            640.0,
+            149.00004
+          ],
+          "center_native_px": [
+            637.50016,
+            146.00016000000002
+          ],
+          "extends_beyond_unit_image": false
+        }
+      ],
+      "selected_manual_box_xyxy_native_px": null,
+      "selected_box_source": null,
+      "native_boundary_uncertainty_px_uncalibrated": null,
+      "center_definition": null,
+      "observations": "The tiny proposal is against the central official/Lacoste sign. The unmarked temporal triplet does not show a distinct ball silhouette or displacement separable from the sign/official details. Preserve the proposal and reject rather than labeling a background feature or guessed hidden ball.",
+      "full_frame_background_observation": "Source contains very bright yellow headline text, green score and speed displays, white court/net lines, people, rackets, towels and courtside equipment. These are potential distractors; no exhaustive negative annotation or spare-ball absence is established.",
+      "visible_box_proposal_accepted_for_development_review": false,
+      "training_admitted": false,
+      "full_training_crop_background_closure_required": true,
+      "accepted_training_labels_exported": 0,
+      "accepted_evaluation_labels": 0,
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null
+    }
+  ]
+}

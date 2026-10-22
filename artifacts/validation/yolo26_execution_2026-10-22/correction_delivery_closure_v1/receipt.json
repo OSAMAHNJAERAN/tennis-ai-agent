@@ -1,0 +1,189 @@
+{
+  "observed_utc": "2026-10-21T17:48:10.153850+00:00",
+  "status": "PASS_SCOPED_CORRECTION_DELIVERY",
+  "previous_goal_turn_classification": "PROGRESS",
+  "broad_snapshot": {
+    "counts": {
+      "tests": 1002,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "stable_pins": 400,
+    "elapsed_seconds": 917.6586686000228
+  },
+  "current_wire_scope": {
+    "counts": {
+      "tests": 193,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "stable_pins": 400,
+    "selected_modules": [
+      "tests/test_analysis_corrections.py",
+      "tests/test_correction_worker.py",
+      "tests/test_corrected_rule_rebuild.py",
+      "tests/test_rule_reproduction.py",
+      "tests/test_corrected_preparation.py"
+    ],
+    "elapsed_seconds": 256.1963357999921
+  },
+  "post_broad_source_test_delta": [
+    {
+      "path": "src\\scoring\\corrected_rule_rebuild.py",
+      "broad_sha256": "7801e15a5538406b1e21c7944046920626ae71ad03b4cbbe055cc8df65eb1dd2",
+      "current_sha256": "812693a82c010e212ca9a446256b07b74d2f016768285d145786f3a41714e364"
+    },
+    {
+      "path": "tests\\test_analysis_corrections.py",
+      "broad_sha256": "a0d5000d91346f4b134a6cac37401643f7c09bca8443c361efc08d149a4b8c49",
+      "current_sha256": "2880905a3b4b4d9b19a8131cf2eaf6e323ea3b0d84e32b4fabf913b9bcd70dcb"
+    },
+    {
+      "path": "tests\\test_corrected_rule_rebuild.py",
+      "broad_sha256": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+      "current_sha256": "5f16a16b59182bf671579e5df5a877b95821bb05bccebd442cd661d6f88e09ad"
+    },
+    {
+      "path": "tests\\test_correction_worker.py",
+      "broad_sha256": "6b5cbd6cc85d1ec8763006e52d4076ebc0e7c17316644fd19818cfb8ac50aacf",
+      "current_sha256": "a194435ef66b4731603265b36e65af317fa3c8742a60e3522f0a2d9f71c798fd"
+    }
+  ],
+  "delta_patch_sha256": "7051ce8394bdde101ca6075ae1ba38dae44093944073b5311084bd1d8328e3e3",
+  "receipt_bindings": {
+    "broad": {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\authenticated_correction_final_v2\\receipt.json",
+      "sha256": "d0c249c51fdc3f39e3b847d28b78d030eb2b80cb87c0c9a68630fc44de38c280"
+    },
+    "wire": {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\correction_json_wire_checks_v1\\receipt.json",
+      "sha256": "d050ec455b45cac4b3ce0305280cf3a7d2f1bc071d16127a0728bcdc08f4bcc7"
+    },
+    "independent_numeric": {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\correction_json_numeric_review_v1\\receipt.json",
+      "sha256": "e4ed5c2ad5051d40f291a09d8c10d3e013718cdd617aa06a02b29f6f500d0355"
+    },
+    "http_worker": {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\correction_http_worker_closure_v1\\receipt.json",
+      "sha256": "c01a6bbccafa4869d8ef161dede3dbe7958b6992f4962cad64de68a7a7101c85"
+    },
+    "frontend": {
+      "path": "artifacts\\validation\\yolo26_execution_2026-10-22\\corrected_frontend_checks_v3\\receipt.json",
+      "sha256": "1c0d92e955dc05f40d0a08d3b2c2d5b46275e2361149d49593fab6b75e89f16e"
+    }
+  },
+  "http_worker_observations": [
+    {
+      "mode": "initial_and_binding",
+      "correction_id": "correction_c9e4fd2171bf4ef8a1be147092b1a450",
+      "generation": "06f16ad9672bd69dfe716a85f772bd515cb005457b7e30349fffa5f6a73a3826",
+      "revision": 1,
+      "states": [
+        {
+          "status": "QUEUED",
+          "step": 0,
+          "attempt": 0
+        },
+        {
+          "status": "PROCESSING",
+          "step": 0,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 1,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 4,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 5,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 6,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 7,
+          "attempt": 1
+        },
+        {
+          "status": "COMPLETED",
+          "step": 11,
+          "attempt": 1
+        }
+      ],
+      "source_measurements_exactly_preserved": true,
+      "immutable_history_readable": true,
+      "matching_json_html_csv_video_and_range": true,
+      "guest_downloads_rejected": true,
+      "idempotent_command_retry": true,
+      "native_forecast_sample_count": 1,
+      "report_json_sha256": "90f229e9657494626324631912f47cc242cb63b00610b43349ed8e3c13454d8c",
+      "video_sha256": "52feeb700b5d9d53a255c3b5a006fdb36804a75bac82a4fc74de07a3d98826d7"
+    },
+    {
+      "mode": "semantic_unknown",
+      "correction_id": "correction_15ec71cf570048b3bbbf1cb851798372",
+      "generation": "7a3e518bfe9b968a28c8788e0881fb3c09132f3f0a8ecca4711aba1eded89db2",
+      "revision": 2,
+      "states": [
+        {
+          "status": "QUEUED",
+          "step": 0,
+          "attempt": 0
+        },
+        {
+          "status": "PROCESSING",
+          "step": 4,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 5,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 6,
+          "attempt": 1
+        },
+        {
+          "status": "PROCESSING",
+          "step": 7,
+          "attempt": 1
+        },
+        {
+          "status": "COMPLETED",
+          "step": 11,
+          "attempt": 1
+        }
+      ],
+      "source_measurements_exactly_preserved": true,
+      "immutable_history_readable": true,
+      "matching_json_html_csv_video_and_range": true,
+      "guest_downloads_rejected": true,
+      "idempotent_command_retry": true,
+      "native_forecast_sample_count": 0,
+      "report_json_sha256": "849cfa077fb22ad0e7c7e4b7b078f0e5db6f7e9bce138977a5e89d878c89aa4c",
+      "video_sha256": "6a39c259eef86176944d292880d390be445cd8d2f752d5bc4534307043872dac"
+    }
+  ],
+  "test_counts_are_overlapping_not_summed": true,
+  "browser_journey": "Login, source/annotated video loading, decoded event frame seek and safe resource-refused command observed; post-repair visual journey unavailable because local browser control is disabled",
+  "scope": "Owner correction software integrity and actual isolated synthetic HTTP/background-worker/complete report/video delivery only",
+  "model_inference_qualified": false,
+  "independent_accuracy_validated": false,
+  "actual_long_match_qualified": false,
+  "live_qualified": false,
+  "master_goal_complete": false
+}

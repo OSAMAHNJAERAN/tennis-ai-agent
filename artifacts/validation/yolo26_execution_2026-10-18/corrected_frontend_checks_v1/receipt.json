@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "scope": "frontend correction owner review and native forecast shared clock",
+  "checks": [
+    {
+      "name": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-b",
+        "--pretty",
+        "false"
+      ],
+      "returncode": 0,
+      "seconds": 9.306377700006124,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--max-warnings=0"
+      ],
+      "returncode": 0,
+      "seconds": 6.217283900012262,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--reporter=dot",
+        "--reporter=junit",
+        "--outputFile.junit=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_frontend_checks_v1\\junit.xml"
+      ],
+      "returncode": 1,
+      "seconds": 187.20115470001474,
+      "log_sha256": "d225d248ab4302632112526e9356ef83cea0a87154b64008a5f59f1571192539"
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/vite/bin/vite.js",
+        "build"
+      ],
+      "returncode": 0,
+      "seconds": 12.76540400000522,
+      "log_sha256": "eab3d6f6d229c0eb386dffde79a2bae196eb2feb4a43dc0f71349109338ed9ba"
+    }
+  ],
+  "source_pin_count": 141,
+  "source_pins_stable": true,
+  "changed_pins": [],
+  "tests_junit_sha256": "555ab8690006a05e74bb900a2bc9cf94c7d13b4601ffe64c385b3aab8662959f",
+  "claims": [
+    "Synthetic frontend contract/workflow regression only; no independent accuracy qualification."
+  ]
+}

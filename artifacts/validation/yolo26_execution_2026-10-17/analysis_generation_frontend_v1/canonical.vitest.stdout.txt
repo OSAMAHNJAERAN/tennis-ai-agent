@@ -1,0 +1,66 @@
+
+ RUN  v4.1.11 C:/Semester 9/FYP2/tennis_ai_agent_bundle/frontend
+
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > loads secondary analyses only on viewport entry and pauses off-screen media 74ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > stops automatic playback when reduced motion changes without creating a manual override 72ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > provides a visible play fallback if the browser rejects autoplay 53ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > keeps a newer playing preview when an earlier manual request rejects 16ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > keeps a paused preview after its canceled manual request rejects 21ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > shows a fallback when the current manual start rejects after its play event 14ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > waits for explicit playback when reduced motion is already enabled 13ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > cancels an outstanding play request when a buffering preview leaves the viewport 17ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > pauses a hidden tab and preserves a native-control pause on viewport return 22ms
+ ✓ src/pages/ProductHome.test.tsx > local homepage previews > does not play a result returned for a different analysis ID 9ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > replaces the catalog loading preview with the fetched result generation 12ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > can display a fetched generation after the catalog loading media fails 5ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > removes the catalog fallback after an invalid fetched analysis 14ms
+Not implemented: Window's scrollTo() method
+Not implemented: Window's scrollTo() method
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > links every credited example to its own curated identity and matching media 135ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > rejects a preview bound to another analysis and repeated catalog identities 2ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > accepts media revisions only on the matching analysis route 1ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > accepts exactly one immutable generation only on the matching analysis route 1ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > renders unsafe credit links as text while keeping license attribution 2ms
+Not implemented: Window's scrollTo() method
+Not implemented: Window's scrollTo() method
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > keeps public examples out of the private recent-analysis gallery 116ms
+ ✓ src/pages/ProductHome.test.tsx > licensed public example previews > keeps a catalog failure distinct from an unavailable example collection 108ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves immutable generation metadata and all supplied media and export pins 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata null 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata  2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 5ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects malformed immutable generation metadata gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > keeps legacy and static results available without a generation 1ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > loads the requested analysis and never substitutes a demo on failure 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > isolates malformed optional sections and preserves the video 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects a valid result that belongs to a different session 1ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > rejects invalid video metadata rather than inventing a time base 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > keeps replay available when optional frame evidence is malformed 4ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > preserves generic person observations independently of court calibration and active-player roles 6ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > retains one player's valid movement when the other player has no measurements 2ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > accepts ISO timestamps from the Python API including an explicit UTC offset 1ms
+ ✓ src/data/liveRepository.test.ts > live analysis repository > loads only lightweight run summaries for the session picker 0ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > uses all five supplied export URLs with the same immutable generation 124ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > keeps the historical download routes for a legacy or static result 28ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > does not create current-generation routes when pinned exports are missing or unavailable 9ms
+ ✓ src/pages/SpatialAnalysis.test.tsx > analysis download generation binding > honors an unavailable legacy export while retaining its other supplied URLs 11ms
+ ✓ src/data/repository.test.ts > offline analysis repository > validates the versioned snapshot 3ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes baseline_run_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase2_ball_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase2_yolo11_final to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase3_events_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase4_1_line_calls to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase4_line_calls_1 to the current run contract 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > normalizes phase5_scoring_1 to the current run contract 1ms
+ ✓ src/data/repository.test.ts > offline analysis repository > preserves every required scientific enum 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > keeps unavailable historical artifacts explicit 0ms
+ ✓ src/data/repository.test.ts > offline analysis repository > rejects invalid run ids 0ms
+
+ Test Files  4 passed (4)
+      Tests  52 passed (52)
+   Start at  14:29:54
+   Duration  17.76s (transform 562ms, setup 612ms, import 13.28s, tests 936ms, environment 2.39s)
+
+JSON report written to C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-17/analysis_generation_frontend_v1/canonical.vitest.json

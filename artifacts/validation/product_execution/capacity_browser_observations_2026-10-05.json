@@ -1,0 +1,17 @@
+{
+  "scope": "Bounded native browser observation of the rebuilt saved Djokovic example; no synthetic browser state injection.",
+  "url": "http://127.0.0.1:8000/examples/djokovic_2012",
+  "entry": "/assets/index-BWMRwJe_.js",
+  "observations": [
+    {"at": "2026-10-05T02:44:23.512Z", "action": "Native Play video button", "paused": false, "readyState": 4, "mediaTime": 0.800969, "presentedFrame": 19, "sharedFrame": null, "status": []},
+    {"at": "2026-10-05T02:44:35.013Z", "action": "Native Pause video button", "paused": true, "readyState": 4, "mediaTime": 11.858528, "presentedFrame": 284, "sharedFrame": 284, "status": []},
+    {"at": "2026-10-05T02:44:44.571Z", "action": "Native Next replay frame button", "paused": true, "readyState": 4, "mediaTime": 11.886876, "presentedFrame": 285, "sharedFrame": 285, "status": []}
+  ],
+  "retainedPreview": {"tab": "3", "paused": true, "presentedFrame": 285, "sharedFrame": 285, "readyState": 4},
+  "visualObservation": "At retained frame 285, the source video, ball marker and recent trail were visible; court positions remained unavailable and participant/pose/racket controls remained disabled.",
+  "browserWarningsOrErrors": [],
+  "csvDownloadReceipt": "artifacts/validation/product_execution/capacity_browser_csv_verified_2026-10-05.json",
+  "screenshotArtifact": null,
+  "qualificationEvidence": false,
+  "limitations": "The running observation did not capture the shared slider value. Paused and stepped observations matched. This short existing example does not establish full-match playback capacity, valid spatial reconstruction or detection accuracy. The screenshot API displayed an image but returned no saved local screenshot artifact."
+}

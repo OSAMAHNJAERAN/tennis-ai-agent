@@ -1,0 +1,132 @@
+{
+  "status": "GENUINE_RED",
+  "scope": "Actual pipeline orchestration with deterministic inference/media substitutes; no real models/video jobs",
+  "command": [
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "tests/test_pipeline_pose_storage.py",
+    "-q",
+    "--junitxml=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_red\\valid_red\\junit.xml",
+    "--basetemp=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_red\\valid_red\\tmp"
+  ],
+  "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+  "sourceBefore": {
+    "src/pipeline/phase6_pipeline.py": {
+      "bytes": 60228,
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec"
+    },
+    "tests/test_pipeline_pose_storage.py": {
+      "bytes": 15543,
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "configs/phase6_analytics/pipeline.yaml": {
+      "bytes": 3490,
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed"
+    }
+  },
+  "baseInterpreter": {
+    "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "bytes": 105816,
+    "sha256": "5341746f92483a93e44c313de830f2fba2956f0759094404a16b2fed06c9a2ed"
+  },
+  "helper": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_red\\valid_red\\run_focused_red.py",
+    "bytes": 6817,
+    "sha256": "f108f968a0f48df418546956851a2f7ba2b70f7a27b8403dd9be3bb088bc4614"
+  },
+  "guards": {
+    "wallSeconds": 180,
+    "ownedTreeRssBytes": 1500000000,
+    "availableRamBytes": 300000000,
+    "lowRamSamples": 5,
+    "sampleSeconds": 0.25
+  },
+  "startedAtUtc": "2026-10-06T09:43:27.473902+00:00",
+  "launchedIdentity": {
+    "pid": 65684,
+    "createTimeUnixSeconds": 1791279807.4757884
+  },
+  "exitCode": 1,
+  "allOwnedIdentitiesRetired": true,
+  "suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "7",
+      "skipped": "0",
+      "tests": "17",
+      "time": "7.395",
+      "timestamp": "2026-10-06T17:43:27.983466+08:00",
+      "hostname": "Osamah"
+    }
+  ],
+  "failureCases": [
+    {
+      "name": "test_pose_and_racket_original_records_are_bounded_before_shot_linking[64]",
+      "message": "AssertionError: {'pose_live': 64, 'pose_produced': 64, 'racket_live': 64, 'racket_produced': 64}\nassert 64 <= 2"
+    },
+    {
+      "name": "test_pose_and_racket_original_records_are_bounded_before_shot_linking[512]",
+      "message": "AssertionError: {'pose_live': 512, 'pose_produced': 512, 'racket_live': 512, 'racket_produced': 512}\nassert 512 <= 2"
+    },
+    {
+      "name": "test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[writer_open]",
+      "message": "assert (1 == 1 and False)\n +  where 1 = len([<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73620>])\n +    where [<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73620>] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[], writers=[<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73620>]).writers\n +  and   False = <tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73620>.released"
+    },
+    {
+      "name": "test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[read]",
+      "message": "assert (1 == 1 and False)\n +  where 1 = len([<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72F90>])\n +    where [<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72F90>] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[<tests.test_pip...1C832D738C0>], writers=[<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72F90>]).writers\n +  and   False = <tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72F90>.released"
+    },
+    {
+      "name": "test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[draw]",
+      "message": "assert (1 == 1 and False)\n +  where 1 = len([<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73B60>])\n +    where [<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73B60>] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[<tests.test_pip...1C832D73620>], writers=[<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73B60>]).writers\n +  and   False = <tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D73B60>.released"
+    },
+    {
+      "name": "test_render_handles_release_on_failure_before_traceback_or_gc_cleanup[write]",
+      "message": "assert (1 == 1 and False)\n +  where 1 = len([<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72CF0>])\n +    where [<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72CF0>] = namespace(pose_live=5, racket_live=5, pose_produced=5, racket_produced=5, before_shots=None, captures=[<tests.test_pip...1C832D72F90>], writers=[<tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72CF0>]).writers\n +  and   False = <tests.test_pipeline_pose_storage.build_harness.<locals>.Writer object at 0x000001C832D72CF0>.released"
+    },
+    {
+      "name": "test_render_cleanup_failure_preserves_primary_and_releases_other_handle",
+      "message": "assert (False)\n +  where False = <tests.test_pipeline_pose_storage.build_harness.<locals>.Capture object at 0x000001C832D73B60>.released"
+    }
+  ],
+  "ownedIdentities": [
+    {
+      "pid": 65684,
+      "createTimeUnixSeconds": 1791279807.4757884,
+      "parentPid": null,
+      "depth": 0,
+      "firstObservedAt": "2026-10-06T09:43:27.487707+00:00",
+      "sampleCount": 34,
+      "peakSampledRssBytes": 692453376,
+      "peakSampledPrivateBytes": 1775628288
+    }
+  ],
+  "sourceAfter": {
+    "src/pipeline/phase6_pipeline.py": {
+      "bytes": 60228,
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec"
+    },
+    "tests/test_pipeline_pose_storage.py": {
+      "bytes": 15543,
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "configs/phase6_analytics/pipeline.yaml": {
+      "bytes": 3490,
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed"
+    }
+  },
+  "sourceBindingsUnchanged": true,
+  "elapsedSeconds": 8.962639600038528,
+  "completedAtUtc": "2026-10-06T09:43:36.436967+00:00"
+}

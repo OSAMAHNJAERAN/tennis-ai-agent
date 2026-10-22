@@ -1,0 +1,964 @@
+{
+  "purpose": "PREDICTION_BLIND_LABEL_PROTOCOL_PILOT; REUSED_DEVELOPMENT; NOT_QUALIFICATION",
+  "seed": 20261001,
+  "sampling": "12 equal decoded-frame strata per source; one seeded uniform center per stratum; context at center\u00b13 frames.",
+  "samplePerSource": 12,
+  "sourceCount": 3,
+  "labels": {
+    "visibility": [
+      "VISIBLE",
+      "CONFIRMED_ABSENT",
+      "UNCERTAIN"
+    ],
+    "center_px": "Native image ball center/streak midpoint only when VISIBLE; null otherwise.",
+    "uncertainty_radius_px": "Rough annotation estimate; not a statistical confidence interval.",
+    "absence": "Only positive visual evidence of outside view/fully absent; failure to find a tiny ball is UNCERTAIN.",
+    "context": "Read both adjacent originals; do not turn uncertainty into absence.",
+    "non_ball_features": "Optional bounded regions/centers of clearly visible distracting objects; descriptive only, not a ball-exclusion mask."
+  },
+  "comparison": {
+    "centerTolerancePx": 8,
+    "visibleLabelEligibility": "Only visible centers with estimated uncertainty <=4 native pixels; others reviewed but excluded from numeric metrics.",
+    "wrongVisibleDetection": "Both FP and FN; abstention on visible label is FN; confirmed absent detection FP.",
+    "unresolved": "Excluded, counted and individually retained; no extrapolation to full-clip precision.",
+    "candidate": "No training, threshold selection or production mutation. Existing frozen detour replay only after labels contain clear negative and true-ball controls."
+  },
+  "manifestSha256": "9a3d4cfa05bc29f161f796afac6ff4c24d4ddf602295a3d4b81f4e08b5c45105",
+  "preparationScriptSha256": "fec5e0d73be79ddef3b30640a59b6688ec3512203c6506ff3b774f59bc55e74f",
+  "predictionsReadDuringPreparation": false,
+  "sources": [
+    {
+      "id": "djokovic_2012",
+      "inputPath": "artifacts/demos/sources/djokovic_2012.webm",
+      "inputSha256": "0258d7c06fb175e52beb0a2238da3984a45bffc39454aa04d4c814da3779d999",
+      "decodedFrames": 469,
+      "fpsRational": "24000/1001",
+      "centers": [
+        15,
+        59,
+        101,
+        150,
+        193,
+        220,
+        241,
+        311,
+        321,
+        363,
+        394,
+        437
+      ],
+      "frames": [
+        {
+          "frame_index": 12,
+          "relative_timestamp_seconds": 0.5005,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0012.png",
+          "sha256": "bb648f9c81cba89d765f94a4ff524ce42421e6a9816d2b0d9baeb747ab890c71",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 15,
+          "relative_timestamp_seconds": 0.625625,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0015.png",
+          "sha256": "e14086279133b0b53dcc346229b9b447b5887622b90f8b5a117d25c0c9ee6b10",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 18,
+          "relative_timestamp_seconds": 0.75075,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0018.png",
+          "sha256": "f931f7d2459f7a0ecb4ddd70a26c428f9865eefbd9a9f7ab53b1e408d6039574",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 56,
+          "relative_timestamp_seconds": 2.3356666666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0056.png",
+          "sha256": "28689047f106cdfdefd8c066efd46ced665f69d2813e30f9b79aac9d19c0b759",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 59,
+          "relative_timestamp_seconds": 2.4607916666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0059.png",
+          "sha256": "0005fa26e85fb6fb1a2e684c10830f031c78d347e83a455afe56d6dc293fbbfd",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 62,
+          "relative_timestamp_seconds": 2.585916666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0062.png",
+          "sha256": "4e0779b8f24523e5b36bcff53dc50dd4ae49dec6474fcf2099e63df1ed2d3be0",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 98,
+          "relative_timestamp_seconds": 4.087416666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0098.png",
+          "sha256": "c38bf07b3a8235bc94461959fa3c29c3ca67344ee3622abd0fcb33532fb26ff9",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 101,
+          "relative_timestamp_seconds": 4.212541666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0101.png",
+          "sha256": "e7ea99c4b157c385bb9d7ce8ee29f3c2de9dd9795257f6a69c8e9082e4497c8e",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 104,
+          "relative_timestamp_seconds": 4.337666666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0104.png",
+          "sha256": "6bd5398bf3e192d73230ba90af798e6c9997d49aa3ee4f516b4f3c0caf437188",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 147,
+          "relative_timestamp_seconds": 6.131125,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0147.png",
+          "sha256": "89c3115502f088794319d87698ef6dc9724136b1608281699f47d90c7168482c",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 150,
+          "relative_timestamp_seconds": 6.25625,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0150.png",
+          "sha256": "383fd0caf8a6e7c9c2ae1c1be66bedcaf5a4ab49dc057a43851615b431e9f7ee",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 153,
+          "relative_timestamp_seconds": 6.381375,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0153.png",
+          "sha256": "cc217ffbaa8e0e4f8e98f2c3a731f97956835657f13f9190de3b3edb2eb5a207",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 190,
+          "relative_timestamp_seconds": 7.9245833333333335,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0190.png",
+          "sha256": "df2276331c3244a3b26af9553cd4d2cf41a3d8201945932e7468ea2bfd26d8ca",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 193,
+          "relative_timestamp_seconds": 8.049708333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0193.png",
+          "sha256": "0af6e1c47a82e36917eaae79fddd2041a884e6685ea1babf559e62d26dc16286",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 196,
+          "relative_timestamp_seconds": 8.174833333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0196.png",
+          "sha256": "6546ae8cf35bb9f1514640b9650c92a309298002b22da5486629624e8d604cea",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 217,
+          "relative_timestamp_seconds": 9.050708333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0217.png",
+          "sha256": "d4ddcaf9504a1a2bd6a1e71ba459d2c79aa8841d6b1e3da82d35463fdff3655a",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 220,
+          "relative_timestamp_seconds": 9.175833333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0220.png",
+          "sha256": "53612a9edfc628756d1432438186c10b1cabcba44337eafdce95ad873431c8aa",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 223,
+          "relative_timestamp_seconds": 9.300958333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0223.png",
+          "sha256": "7c1c59162a56994ec0074ee7b8d2b504048050559da9792ed845111455ae0a67",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 238,
+          "relative_timestamp_seconds": 9.926583333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0238.png",
+          "sha256": "1f92fa1691c8537e5de516df6343a2013ed7fe1dcc2d42094eee3f0e00ef1712",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 241,
+          "relative_timestamp_seconds": 10.051708333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0241.png",
+          "sha256": "5ed51bb1f478c6a64dc8fb37c554afcf1bdba5d957b4d86a4285342d7668a741",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 244,
+          "relative_timestamp_seconds": 10.176833333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0244.png",
+          "sha256": "beffb90c13cf4d59bfe5f0ee34ca752a638b0a02a788c9d8cfdf067b076f1556",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 308,
+          "relative_timestamp_seconds": 12.846166666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0308.png",
+          "sha256": "9aec4a84dfa653cdbe542b0b6d427c02bb9c69c6504602001b9511884b7da0c8",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 311,
+          "relative_timestamp_seconds": 12.971291666666668,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0311.png",
+          "sha256": "2612aa5992cc0e1cbf4c23d0e5a322463d67583a1c9b8bca2e3b59fba9beccce",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 314,
+          "relative_timestamp_seconds": 13.096416666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0314.png",
+          "sha256": "3b45b9426c021bd6f2bb57ac601597a522da3409211efddd098ad8f96ada6d88",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 318,
+          "relative_timestamp_seconds": 13.26325,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0318.png",
+          "sha256": "963a3ceae946f7c7dad3c7b319abb2db85140889eaf76e66de0176f2b7dfd68a",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 321,
+          "relative_timestamp_seconds": 13.388375,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0321.png",
+          "sha256": "94f8e45d7600dcb6745b224ac4485eb2b2e17fa745a38a834809511fcbad4681",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 324,
+          "relative_timestamp_seconds": 13.5135,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0324.png",
+          "sha256": "faf4f9cd3770bdb4ec435581c17b4f857b14e08b30e120951c7965bb654f4745",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 360,
+          "relative_timestamp_seconds": 15.015,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0360.png",
+          "sha256": "798d3871f38fbc64bada97e900d0989f75110aa7acb66f1a10c08b831d760c30",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 363,
+          "relative_timestamp_seconds": 15.140125,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0363.png",
+          "sha256": "7f20f15e556147aff76478954b1053e717e1198a39507fe681fdf0aec231d8c0",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 366,
+          "relative_timestamp_seconds": 15.26525,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0366.png",
+          "sha256": "d76b15f1c2126e4022fa8e997d69b9652486c0c3108bf88262817acd4719d3ff",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 391,
+          "relative_timestamp_seconds": 16.307958333333332,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0391.png",
+          "sha256": "da4252b8a347ed67beee754453caffb5571b101284f7a6483bde0b0bf8d2dd52",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 394,
+          "relative_timestamp_seconds": 16.433083333333332,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0394.png",
+          "sha256": "0fe7f070f9809f6f0142445627a59ad351cc66b5dd55faa74be21585869e23af",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 397,
+          "relative_timestamp_seconds": 16.558208333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0397.png",
+          "sha256": "c10bfe7ea36c9843e1249d4b5770ffed3d641a98a03aa0e9ee71d073d4cb475a",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 434,
+          "relative_timestamp_seconds": 18.101416666666665,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0434.png",
+          "sha256": "bafa2dc4ca493531d2f2a092383f81ba0401ad463cef4c548a4ea7d01d020a37",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 437,
+          "relative_timestamp_seconds": 18.226541666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0437.png",
+          "sha256": "400238ebbdf9718e450eba6aef91e8adc4b2fd263b083dd5ab80ad5b0ef8b95a",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 440,
+          "relative_timestamp_seconds": 18.351666666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/djokovic_2012/original_0440.png",
+          "sha256": "4fab260b9b25307128318ce3209decd871266adf182b915f94c0f55263bb6722",
+          "width": 1280,
+          "height": 720
+        }
+      ]
+    },
+    {
+      "id": "schiavone_2012",
+      "inputPath": "artifacts/demos/sources/schiavone_2012.webm",
+      "inputSha256": "964059dfa99763aab2da785185315d6dfd36c0d3f02a5f65f15fe3b17a8ec738",
+      "decodedFrames": 408,
+      "fpsRational": "24000/1001",
+      "centers": [
+        2,
+        45,
+        97,
+        126,
+        149,
+        191,
+        216,
+        255,
+        288,
+        331,
+        353,
+        394
+      ],
+      "frames": [
+        {
+          "frame_index": 0,
+          "relative_timestamp_seconds": 0.0,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0000.png",
+          "sha256": "800a695a9fe5d5e9140f6cae7b6f8b2bf8cc24e4a2abe4b75f3a12e3d428bf26",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 2,
+          "relative_timestamp_seconds": 0.08341666666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0002.png",
+          "sha256": "b0289fadfc0f36f636ca27069207b98fd1c9671774ea971da26b72ad747d5e5f",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 5,
+          "relative_timestamp_seconds": 0.20854166666666665,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0005.png",
+          "sha256": "88604dcb0d3f9b30e783efc5c46d12d5f80a0849d9b63e9503ae024a9ca253fa",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 42,
+          "relative_timestamp_seconds": 1.75175,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0042.png",
+          "sha256": "5fc0ce2e735d2d9add805d573dc467400ec4c7e6f0b7f31756ab42f32c8be709",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 45,
+          "relative_timestamp_seconds": 1.876875,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0045.png",
+          "sha256": "bd54e952ed91a82d9c40bb78afed29d7dff47d8503e2be2377fd24c3286fcfe6",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 48,
+          "relative_timestamp_seconds": 2.002,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0048.png",
+          "sha256": "d0f8f0b7cfe6b1debc42f3cd1eeda8d2ebf9088f1c9516511481d0cf9e2dfaf8",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 94,
+          "relative_timestamp_seconds": 3.9205833333333335,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0094.png",
+          "sha256": "aaf8ca0321847cdee8b98f623542a9a995b51c0037c9a5762f3a52e66ce2f501",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 97,
+          "relative_timestamp_seconds": 4.045708333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0097.png",
+          "sha256": "9e8229ef0fc4987e4e3992a5be4dd50a37136f0109954672a90eeeb2ca022eaa",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 100,
+          "relative_timestamp_seconds": 4.170833333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0100.png",
+          "sha256": "60dc9f140fa993c9650b5f7ec7eed0ccb1ae801485e87a44981022a347ad0145",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 123,
+          "relative_timestamp_seconds": 5.130125,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0123.png",
+          "sha256": "79e462b9155de86c298f0b0989acabdf97c607a41318a8bbbe1d5646f6d939b7",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 126,
+          "relative_timestamp_seconds": 5.25525,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0126.png",
+          "sha256": "357e9b33620d48b4149119a355a9d9e6b8a7f1af012cd3b9f584eddd9ff490e9",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 129,
+          "relative_timestamp_seconds": 5.380375,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0129.png",
+          "sha256": "516caf0b8b289d933254c2cd099be5869e46678bc6419dd4b25b8de394cd12ee",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 146,
+          "relative_timestamp_seconds": 6.089416666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0146.png",
+          "sha256": "165b2ba802e1536255cbdcd8def3865a3b0940a4f5f87bc68a452d2966035a2d",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 149,
+          "relative_timestamp_seconds": 6.214541666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0149.png",
+          "sha256": "29a19e887242a22059be3950c7cac25a799f0abaab9e74d894d03faf7f437f2a",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 152,
+          "relative_timestamp_seconds": 6.339666666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0152.png",
+          "sha256": "db03283d80bb747ff5886002c455c7dd724419090eb54ecea9c714caab836f47",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 188,
+          "relative_timestamp_seconds": 7.841166666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0188.png",
+          "sha256": "6dfc75d0cd3292b50ae1f46c50d7fd2b6f967ed31ad0fa28a64271e1bcb43932",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 191,
+          "relative_timestamp_seconds": 7.966291666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0191.png",
+          "sha256": "e777391e363a42ac8b08204a973ead57aeae506d32372d151b70085aff6c02f7",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 194,
+          "relative_timestamp_seconds": 8.091416666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0194.png",
+          "sha256": "a33514743cdb3c15ed08ac4b2f3424b5bb7ed06356d3a114b8500b579e4bae63",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 213,
+          "relative_timestamp_seconds": 8.883875,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0213.png",
+          "sha256": "866a51eb8ba17cfdad403824b2319e03f5d74a7185aba940e722ffdeaf95eb05",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 216,
+          "relative_timestamp_seconds": 9.009,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0216.png",
+          "sha256": "760f6e5baabff6402df6cb255d25cb18244589bb437b298a6e5f5bd0a6af6910",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 219,
+          "relative_timestamp_seconds": 9.134125,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0219.png",
+          "sha256": "36038263cdc1c3ea54e75e71cba3d954ab0959208895013c6ef638cca1692bd5",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 252,
+          "relative_timestamp_seconds": 10.5105,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0252.png",
+          "sha256": "82b5bac35b27dcc754700ca6faaa46c354cbb83511b503f1b8d7bf46373a47c9",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 255,
+          "relative_timestamp_seconds": 10.635625,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0255.png",
+          "sha256": "bb97a6b87028e23fc3932cceb56f37c799e149b5942399252cec235089a6c8f6",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 258,
+          "relative_timestamp_seconds": 10.76075,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0258.png",
+          "sha256": "0a999574269834ddafb7dabaa83600d051f3a5b3e7adc6b5d14731259d013a5e",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 285,
+          "relative_timestamp_seconds": 11.886875,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0285.png",
+          "sha256": "7d1f259d502a922728a2b7e1bcd83a5b4f3d3365f4815c3c4030044b007c570d",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 288,
+          "relative_timestamp_seconds": 12.012,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0288.png",
+          "sha256": "cc5d4ba805103608cfe1013b87c9cf772a0d7eddf4ef856ace2b4f5b444cdc54",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 291,
+          "relative_timestamp_seconds": 12.137125,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0291.png",
+          "sha256": "0442010a0dcdd27d502b32517b2208f5b6223d666cdec6dfd20334e8613a4825",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 328,
+          "relative_timestamp_seconds": 13.680333333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0328.png",
+          "sha256": "aa084cb8b7a26eb4d7aac9d96d92dc74019f6db8de5f31330e9c110f00b661e5",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 331,
+          "relative_timestamp_seconds": 13.805458333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0331.png",
+          "sha256": "481e20edb608bbce78aa28dca8099acf347b6e5915c0a440cd41e6ea0e8b3053",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 334,
+          "relative_timestamp_seconds": 13.930583333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0334.png",
+          "sha256": "00f74dba3233cf803ee61a3cf2dc6ff15b514dfb9728c5bc950e965ef452e482",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 350,
+          "relative_timestamp_seconds": 14.597916666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0350.png",
+          "sha256": "d7c18957efce376c19be073417fc3b1b5fbe5f8a5c4b28c6b87fd7cecc5c7d55",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 353,
+          "relative_timestamp_seconds": 14.723041666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0353.png",
+          "sha256": "cb344e9b7af8b575eab50e8c97f6bd0a3a4e1dbea700b6e07147690e02763cb8",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 356,
+          "relative_timestamp_seconds": 14.848166666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0356.png",
+          "sha256": "8b48f90c9bb8bf164ca45a8ad5277a5da2f22db7ebcaf1854215eabb674a1de2",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 391,
+          "relative_timestamp_seconds": 16.307958333333332,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0391.png",
+          "sha256": "fa933bf98310065f7f779fa43427e3651c151158231ca1218a5e02c340e12568",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 394,
+          "relative_timestamp_seconds": 16.433083333333332,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0394.png",
+          "sha256": "34296710c2a85186479dfad722a7ba28f4912c3eec6006c6f193bea3dd439c4a",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "frame_index": 397,
+          "relative_timestamp_seconds": 16.558208333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/schiavone_2012/original_0397.png",
+          "sha256": "09c3e89002b4a1f09e6987f556f9067a0cacd0ec58218ceac19b8ed5f9d2ce78",
+          "width": 1280,
+          "height": 720
+        }
+      ]
+    },
+    {
+      "id": "dimitrov_tiafoe_2024",
+      "inputPath": "artifacts/demos/sources/dimitrov_tiafoe_2024_rally.mkv",
+      "inputSha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+      "decodedFrames": 600,
+      "fpsRational": "60",
+      "centers": [
+        1,
+        64,
+        135,
+        165,
+        247,
+        266,
+        330,
+        378,
+        411,
+        473,
+        524,
+        582
+      ],
+      "frames": [
+        {
+          "frame_index": 0,
+          "relative_timestamp_seconds": 0.0,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0000.png",
+          "sha256": "b45f75203f203b4b0da3ba479efd90249e123175eb1526ac620420ea901d22ad",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 1,
+          "relative_timestamp_seconds": 0.016666666666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0001.png",
+          "sha256": "65526dc5c732e58323ad3cc94ee8a0b749528e20f80f92c9787faaa5f3ea6359",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 4,
+          "relative_timestamp_seconds": 0.06666666666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0004.png",
+          "sha256": "199e6473594c24580cd8d6a6f0ecd9506be925247e2394f62740f5e426f2a8af",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 61,
+          "relative_timestamp_seconds": 1.0166666666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0061.png",
+          "sha256": "f89b5c2575bed77487a47be31aa8dc045cb89e9ee47223ce14fdac370e112f79",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 64,
+          "relative_timestamp_seconds": 1.0666666666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0064.png",
+          "sha256": "0302ade9dc0d5a563cba0d9a66b4371db7f5eb19a6c18d3cec7a6b790f9c0a1a",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 67,
+          "relative_timestamp_seconds": 1.1166666666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0067.png",
+          "sha256": "8e54a3f29d786c0d6f393588f3515a7008f4732f0bbed9130d1d9558a15d111e",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 132,
+          "relative_timestamp_seconds": 2.2,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0132.png",
+          "sha256": "396f6ebbb6296d9b3990fa0a76ef157d8c20d51191303c1dc73a1294ad95a9ea",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 135,
+          "relative_timestamp_seconds": 2.25,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0135.png",
+          "sha256": "e5daf13ad4d72ba38dac72309229dd65f0e75aaca856a2dc7484788592eb9b3b",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 138,
+          "relative_timestamp_seconds": 2.3,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0138.png",
+          "sha256": "617890fc9f5d6255c74c662a1a2367ffb42cdb9e51a16f701804bfd168e67c80",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 162,
+          "relative_timestamp_seconds": 2.7,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0162.png",
+          "sha256": "7c6ffaf6723fe2def4902e91f926613588a790594421ed982696c05bc777b69d",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 165,
+          "relative_timestamp_seconds": 2.75,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0165.png",
+          "sha256": "c71d6513728cd4a336e5cf92d329ccedc3015c317b8b2645ae388282bc65895f",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 168,
+          "relative_timestamp_seconds": 2.8,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0168.png",
+          "sha256": "eac8d1fd762d422c2a87a7d0565f5e53d2278d8766c4211ca4599edd6dd44eca",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 244,
+          "relative_timestamp_seconds": 4.066666666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0244.png",
+          "sha256": "92269139407291e2131e7277ad8190335b5613f0fe3a40d6c5fe19c32e40bf51",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 247,
+          "relative_timestamp_seconds": 4.116666666666666,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0247.png",
+          "sha256": "2e7ebea51266d7e58e6bc2d16169dbb1caa8893f7ffc68ba88e0593a338c2aa7",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 250,
+          "relative_timestamp_seconds": 4.166666666666667,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0250.png",
+          "sha256": "033edc8ac95abe23abc59a0cad861cd90390b47fc4d50e8b3db1d04393226280",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 263,
+          "relative_timestamp_seconds": 4.383333333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0263.png",
+          "sha256": "27611b7d6554f3bcc4fb0e5e2c28976b496877253be476021cbf3314c628ca51",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 266,
+          "relative_timestamp_seconds": 4.433333333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0266.png",
+          "sha256": "0786e00a9e4301497b1a66cf8945c94f2798ee38c2685dd93e1f88c2539ead45",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 269,
+          "relative_timestamp_seconds": 4.483333333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0269.png",
+          "sha256": "f84ea6adcaa3ca8727c478b04684497ca387c6a7c50ee862dce3fa4205f17a7e",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 327,
+          "relative_timestamp_seconds": 5.45,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0327.png",
+          "sha256": "4f012f4ca9b9b54703e5494ee60428e7f0ef51ed8c8a3a840c42486ccab4893c",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 330,
+          "relative_timestamp_seconds": 5.5,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0330.png",
+          "sha256": "7010888b46f0f3709fd8a08d7e883a6f27511b573f16cef6319e00c54f5585b6",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 333,
+          "relative_timestamp_seconds": 5.55,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0333.png",
+          "sha256": "301bb9bf4c1266022f2d38c0f049288c8e4ed6a0f0e9e428e90a4042b2e370e3",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 375,
+          "relative_timestamp_seconds": 6.25,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0375.png",
+          "sha256": "96e3de918e34cffad71d2393d461cbc7bc7ab021fe868ac00374354fdcae69d6",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 378,
+          "relative_timestamp_seconds": 6.3,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0378.png",
+          "sha256": "503c3827d4952f1d9a8f2c2d91575ac09a72774c6afa2cae8554eb0627794cf0",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 381,
+          "relative_timestamp_seconds": 6.35,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0381.png",
+          "sha256": "7b363f1881bd85f96ebf176d9323c3067a7d45f5b358578f0cd34754ed6d671d",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 408,
+          "relative_timestamp_seconds": 6.8,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0408.png",
+          "sha256": "bbe354b0d690a75eec5559922a2a596ca989a798ccef196e0f325aa7a5c916aa",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 411,
+          "relative_timestamp_seconds": 6.85,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0411.png",
+          "sha256": "853b61c837684ecb9b359efa0e2a0311594448d77a4d56a44a5243ffb3732328",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 414,
+          "relative_timestamp_seconds": 6.9,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0414.png",
+          "sha256": "325811f765c2d234c1ff25cc5db7fcb29f7262255dff298f6bbcb7363d9ba49d",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 470,
+          "relative_timestamp_seconds": 7.833333333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0470.png",
+          "sha256": "c9955a68cb6ee97e1d5132157d4f827cd35f4f68b111710f2b2d53dba998c7f8",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 473,
+          "relative_timestamp_seconds": 7.883333333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0473.png",
+          "sha256": "088d62f59c576761da958022d21cadd4814cdccd0fdbe74f3c3c93d5217b57b8",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 476,
+          "relative_timestamp_seconds": 7.933333333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0476.png",
+          "sha256": "f69640b4cdfb71499b25a34fd29ab751d8487e72ff6852d20d3728debcd7e73b",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 521,
+          "relative_timestamp_seconds": 8.683333333333334,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0521.png",
+          "sha256": "3c8ae40c9d6301515c640c536ebc0367f11f5c777a8aad6213a72ea48d347593",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 524,
+          "relative_timestamp_seconds": 8.733333333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0524.png",
+          "sha256": "5694ffddaa3ce23979e100212533e502c0668a1cc6748cccb0926f879597649a",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 527,
+          "relative_timestamp_seconds": 8.783333333333333,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0527.png",
+          "sha256": "7134651bb86ddd1e7cbc0ab5a28a141b940b0aafdaa828f2effc2c2ecda58012",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 579,
+          "relative_timestamp_seconds": 9.65,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0579.png",
+          "sha256": "de360940a6dcd4bbf24310b6b1345f9ee632ce4cf9670e21a7bb52af947861db",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 582,
+          "relative_timestamp_seconds": 9.7,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0582.png",
+          "sha256": "b0fe600ccaaddd9be1dece8dcb89dcbd88a207796706200d910ae58605dae124",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "frame_index": 585,
+          "relative_timestamp_seconds": 9.75,
+          "path": "artifacts/validation/product_execution/public_ball_blind_review01/dimitrov_tiafoe_2024/original_0585.png",
+          "sha256": "2a96e9532a4f4a8f3ad5288d4409f04fbd49ddbe2e198135df023a5f918e4d60",
+          "width": 1920,
+          "height": 1080
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "reviewedAt": "2026-10-06T06:08:44.057193+00:00",
+  "passed": true,
+  "validationScope": "Static AST/compile and exact hashes only; helper and production modules never imported or executed.",
+  "astParseAndCompilePassed": true,
+  "helper": {
+    "bytes": 48212,
+    "sha256": "b33cc0a93fa3ce3b6069b2cd297a29ffbb8d47797e41be0139c08095fee771cc"
+  },
+  "protocol": {
+    "bytes": 6703,
+    "sha256": "d424993140e4d5cb8d14905154cda024837af89e535d44b22fe42302a55ae0b3"
+  },
+  "baselineReceipt": {
+    "bytes": 2780,
+    "sha256": "ee8ebdb6e4723bf608a8eb0daf0684efd49de9c3af32d31aab64cac1e2607a85"
+  },
+  "frozenBaselineFilesVerified": 17,
+  "inheritedFixtureOracleGuardFunctionASTsExact": true,
+  "guardValuesExact": {
+    "counts": [
+      600,
+      18000
+    ],
+    "modes": [
+      "old",
+      "new"
+    ],
+    "caseOrder": [
+      "600_old",
+      "600_new",
+      "18000_old",
+      "18000_new"
+    ],
+    "maximumChildWallSeconds": 180,
+    "sampleSeconds": 0.25,
+    "minimumAvailableRamBytes": 419430400,
+    "lowRamConsecutiveSamples": 5,
+    "maximumOwnedTreeRssBytes": 1250000000,
+    "preflightAvailableRamBytes": 2500000000,
+    "minimumFreeDiskBytes": 4000000000,
+    "automaticRetry": false
+  },
+  "currentApi": {
+    "result_storage": {
+      "bytes": 23080,
+      "sha256": "ac2dd55e91435562cf031aae47b0107cab13eb6a57f2f1acb62405817f97b343"
+    },
+    "results": {
+      "bytes": 35538,
+      "sha256": "01d8fb7d04edb0c0d5d980d0c79f71b54c8cc3acea8200c9a486d2b2952f02a2"
+    },
+    "result_document": {
+      "bytes": 8158,
+      "sha256": "d30e7abe74d5228bae6bfea14ec9ae07bca317d5032cd3aeda6bf92f811d1cdc"
+    },
+    "reporting": {
+      "bytes": 17376,
+      "sha256": "7854e4952e840d43e495b36cfced57b69a3f38107b1a2849e53dd99705880f17"
+    }
+  },
+  "changedApiFromPreservedDiskBaseline": [
+    "result_storage",
+    "results"
+  ],
+  "currentDependencyPaths": 19,
+  "historicalEvidencePaths": 9,
+  "preparedBindingFileCount": 49,
+  "sourceBindingsStableDuringReview": true,
+  "failedReadbackRetained": {
+    "executedToolChunkId": "d3d9cd",
+    "exitCode": 1,
+    "wallTimeSeconds": 0.3437471,
+    "executedVerifier": "static_readback_failure_2026-10-06.py",
+    "observedOutputExcerpt": "AssertionError: src/api/result_storage.py",
+    "failureCause": "The independent readback verifier compared preserved FROZEN relative paths under the current workspace root, instead of under the latency baseline directory. The current result_storage.py was intentionally changed by root. The prepared helper's validate_baseline already resolves the correct baseline directory.",
+    "classification": "Preparation verifier path defect; not a production or benchmark execution failure.",
+    "helperChanged": false,
+    "protocolChanged": false,
+    "helperImportedOrExecuted": false,
+    "benchmarkOrInferenceLaunched": false,
+    "preservedBeforeCorrectedVerifier": true
+  },
+  "rootFinalSourceEditAuthorizationReceived": true,
+  "preparedBindingsWillBeWrittenExclusivelyAfterThisReceipt": true,
+  "runExists": false,
+  "helperImportedOrExecuted": false,
+  "workloadsOrInferenceLaunched": false
+}

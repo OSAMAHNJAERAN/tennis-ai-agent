@@ -18,8 +18,6 @@ class ServeAnalyzer:
         """
         Aggregates serve statistics for the specified server.
         """
-        serves = [s for s in shot_evidences if s.shot_type == ShotType.SERVE and s.player_id == server_id]
-        
         first_attempts = 0
         first_in = 0
         first_faults = 0
@@ -29,7 +27,9 @@ class ServeAnalyzer:
         
         placement_counts = {"WIDE": 0, "BODY": 0, "T": 0, "UNKNOWN": 0}
 
-        for s in serves:
+        for s in shot_evidences:
+            if s.shot_type != ShotType.SERVE or s.player_id != server_id:
+                continue
             first_attempts += 1
             # Check associated bounce line call
             matched_call = next((lc for lc in line_calls if lc.bounce_frame == s.bounce_frame), None)

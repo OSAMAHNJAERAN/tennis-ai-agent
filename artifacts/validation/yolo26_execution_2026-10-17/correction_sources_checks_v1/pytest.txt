@@ -1,0 +1,29 @@
+F......................................                                  [100%]
+================================== FAILURES ===================================
+_________ test_actual_typed_unrounded_points_and_two_distinct_clocks __________
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-17/correction_sources_checks_v1/pytest_tmp/test_actual_typed_unrounded_po0')
+
+    def test_actual_typed_unrounded_points_and_two_distinct_clocks(tmp_path):
+        fixture = sealed_fixture(tmp_path / 'run')
+        with opened(fixture) as sources:
+            from src.tracking.temporal_ball_tracker import BallState, TemporalBallPoint
+            point = sources.ball_points[5]
+            assert isinstance(point, TemporalBallPoint) and point.state is BallState.DETECTED
+            assert point.x_px == 300.1234567890123 and point.y_px == 800.9876543210987
+            assert point.confidence == .98765432101234 and point.timestamp_seconds == 5 / 30.
+            assert point.timestamp_seconds != float(Fraction(fixture[1][5][0]['source_pts']) / 90000)
+            assert point.court_x_m is point.court_y_m is point.speed_kmh is point.velocity_px_per_sec is None
+            assert sources.fps == 30.
+            assert sources.ball_points[-1].frame_index == 10
+            point.x_px = -100.
+            assert sources.ball_points[5].x_px == 300.1234567890123
+            retained = sources.ball_points[:]
+>           assert isinstance(sources._detections['frames'], DiskSeries)
+E           AssertionError: assert False
+E            +  where False = isinstance([{'ball': {'confidence': 0.98765432101234, 'position_px': [300.1234567890123, 800.9876543210987], 'state': 'DETECTED'}...xture', 'anchor_frame_index': 0, 'frame_index': 5, ...}, 'court_registration_valid': True, 'frame_index': 5, ...}, ...], DiskSeries)
+
+tests\test_correction_sources.py:168: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_correction_sources.py::test_actual_typed_unrounded_points_and_two_distinct_clocks
+1 failed, 38 passed in 5.21s

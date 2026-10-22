@@ -1,0 +1,14 @@
+model_system:
+  family: yolo26
+  vision_model_count: 3
+player_detection:
+  model: explicit-synthetic-selected-player-yolo26s-pose.pt
+line_calling:
+  contact_refinement_window: 3
+pose_estimation:
+  enabled: true
+  source: player_model
+  min_pose_confidence: 0.35
+  model_path: explicit-synthetic-selected-player-yolo26s-pose.pt
+shot_classification:
+  ambiguity_threshold: 0.15

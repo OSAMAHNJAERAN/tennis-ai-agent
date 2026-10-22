@@ -53,7 +53,7 @@ export default function Events() {
           <label><span>Minimum confidence</span><select value={minimumConfidence} onChange={(event) => setMinimumConfidence(Number(event.target.value))}><option value={0}>Any confidence</option><option value={0.8}>80% and above</option><option value={0.9}>90% and above</option><option value={0.95}>95% and above</option></select></label>
           <span className="filter-result"><Funnel size={15} /> {filteredEvents.length} of {run.events.length}</span>
         </Card>
-        {!run.events.length ? <EmptyState title="No semantic events" detail="This generation predates match_events.json. Select Phase 3 or later." /> : !filteredEvents.length ? <EmptyState title="No events match" detail="Reduce the confidence threshold or select another event type." /> : <>
+        {!run.events.length ? <EmptyState title="No semantic events" detail="This match does not provide qualified event measurements. Replay and movement analysis remain available." /> : !filteredEvents.length ? <EmptyState title="No events match" detail="Reduce the confidence threshold or select another event type." /> : <>
           <Card className="event-table-card desktop-events-table">
             <table className="data-table">
               <caption className="sr-only">Semantic match events for {run.summary.label}</caption>

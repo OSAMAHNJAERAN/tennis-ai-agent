@@ -1,0 +1,18 @@
+..F....................                                                  [100%]
+================================== FAILURES ===================================
+______ test_cache_no_mmap_file_temporaries_and_bounded_ordinary_commits _______
+tests\test_scoring_journal.py:79: in test_cache_no_mmap_file_temporaries_and_bounded_ordinary_commits
+    with ScoringJournal(tmp_path) as owner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+src\utils\scoring_journal.py:145: in __exit__
+    self._dispose(error)
+src\utils\scoring_journal.py:142: in _dispose
+    raise failures[0]
+src\utils\scoring_journal.py:135: in _dispose
+    path.unlink(missing_ok=True)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:746: in unlink
+    os.unlink(self)
+E   PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\scoring_journal_owner_v1\\temp\\pytest\\test_cache_no_mmap_file_tempor0\\scoring_journal_mfyg2fwj.sqlite3'
+=========================== short test summary info ===========================
+FAILED tests/test_scoring_journal.py::test_cache_no_mmap_file_temporaries_and_bounded_ordinary_commits
+1 failed, 22 passed in 0.46s

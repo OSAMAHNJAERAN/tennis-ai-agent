@@ -1,0 +1,95 @@
+{
+  "unit": "participant_motion_uvy_2026-10-07",
+  "scope": "Frozen development measurement of unchanged camera-compensated moving source-track fragments on three reused UVY clips",
+  "qualificationEvidence": false,
+  "productionPromoted": false,
+  "modelInferenceRun": false,
+  "selector": {
+    "source": "src/tracking/motion_supported_people.py",
+    "sha256": "d9d01ae9b34e68b82ca963f03fbb0af4961ffaf3a27fe259f32b1c9424e9b247",
+    "minimum_observed_seconds": 0.5,
+    "minimum_motion_extent_heights": 0.6,
+    "minimum_camera_samples": 4,
+    "minimum_motion_span_seconds": 0.5
+  },
+  "camera": {
+    "referenceWidth": 960,
+    "referenceHeight": "round(nativeHeight * 960 / nativeWidth)",
+    "samples": "Zero-based range(0, nativeFrameCount, 12) union {nativeFrameCount - 1}; independent of labels",
+    "sampleFrameStride": 12,
+    "orbFeatures": 4000,
+    "descriptorRatio": 0.75,
+    "minimumInliers": 20,
+    "minimumInlierFraction": 0.5,
+    "maximumMeanInlierResidualReferencePx": 2.0,
+    "minimumCurrentInlierSpanFraction": [0.4, 0.3],
+    "ransacThresholdReferencePx": 2.0,
+    "ransacMaximumIterations": 2000,
+    "ransacConfidence": 0.99,
+    "method": "estimateAffinePartial2D current-to-first-anchor, RANSAC, default refinement; ORB seed 0 and one OpenCV thread",
+    "personMask": "All cached proposal boxes expanded by 10 percent of each box width and height, clipped to reference image",
+    "anchor": "First frame identity retained as in previous Dimitrov motion diagnostic; does not independently satisfy distributed-match gates",
+    "nativeConjugation": "S @ reduced3x3 @ inverse(S), S = diag(nativeWidth/referenceWidth, nativeHeight/referenceHeight, 1)",
+    "noInterpolation": true,
+    "noReanchoring": true,
+    "noVerifiedCutOrOcclusionClaims": true
+  },
+  "observations": {
+    "source": "outputs/vision_upgrade_audit/uvy_person_tracked640/*_proposals.json",
+    "requireMode": "tracked640",
+    "identityScope": "Cached ByteTrack temporal source fragment, not verified person identity",
+    "raw640AndRaw1024Forbidden": "Their IDs restart by row on every frame and cannot support motion tracks",
+    "adaptation": "Preserve id, box and confidence exactly as sourceTrackId, bbox and confidence; courtRole null; participantStatus UNKNOWN",
+    "selection": "Actual observed eligible moving fragments only; unchanged selector abstains when more than two cooccur",
+    "identityMerging": false,
+    "gapFilling": false,
+    "courtRolesAssigned": false,
+    "worldCoordinatesAssigned": false,
+    "physicalSpeedComputed": false
+  },
+  "scoring": {
+    "iouThreshold": 0.5,
+    "matcher": "Unchanged src/evaluation/detection_metrics.py::match_detections; maximum valid cardinality then IoU",
+    "matcherSha256": "c217440fc6108a73a0922338bfb3396ca1ef1f4ad23248f32d8d253a957f76ca",
+    "publisherParserSha256": "5ae6de862603bb245e9edbc82fea00780ca32157859ddc87aaeb422ddefe4b18",
+    "groundTruthOrder": "Byte-integrity binding before launch; semantic publisher annotations parsed only after all three unchanged-selector outputs are persisted",
+    "proposalReplay": "Require exact historical matched, missed and unmatched_proposals counts for every cached frame, plus all report totals",
+    "publisherPlayerClass": 1,
+    "publisherRefereeClass": 4,
+    "unmatchedSelectedMeaning": "Publisher-unmatched diagnostic; not validated participant false positives or detector precision",
+    "refereeOverlapMeaning": "Separate IoU agreement with publisher referee boxes; not exhaustive moving-official negatives",
+    "knownLabelDefectsRetained": [
+      {"sequence": "tennis_V01", "frameIndexZeroBased": 604, "defect": "Original player annotation omission"},
+      {"sequence": "tennis_V03", "frameIndexZeroBased": 140, "defect": "Original class1 identity9 is an umpire"}
+    ]
+  },
+  "dataGrouping": {
+    "tennis_V01": "Federer-Nishikori Wimbledon 2019 quarterfinal potential shared match group",
+    "tennis_V02": "Same potential shared match group as tennis_V01",
+    "tennis_V03": "Federer-Djokovic Wimbledon 2019 final group",
+    "maximumAdditionalMatchGroups": 2,
+    "allThreeClipsPreviouslyExposed": true,
+    "untouchedHoldout": false
+  },
+  "reviews": "Exact native PNGs and separate native overlays for first/mid/last, known flawed-label frames, first publisher-unmatched selection, first lost matched proposal, and first ambiguity; indices chosen only after selections are persisted",
+  "guards": {
+    "preflightAvailableBytes": 750000000,
+    "maximumOwnedRssBytes": 1000000000,
+    "minimumAvailableBytes": 400000000,
+    "lowSamples": 5,
+    "sampleSeconds": 0.25,
+    "wallSeconds": 300,
+    "ownedTreeMonitor": "scripts/audit/measure_candidate_storage.py::OwnedProcessTree and stop_owned",
+    "monitorSha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39",
+    "exclusiveFreshRunDirectory": true,
+    "exactActualInterpreterSamplingAcknowledgementBeforeHeavyImports": true,
+    "oneShotNoResumeOrRetry": true
+  },
+  "limitations": [
+    "Motion supports image observations but does not prove active tennis participation; moving officials or spectators can qualify and stationary players can be missed.",
+    "Sparse background registrations and reused flawed publisher labels cannot qualify camera, participant identity, precision, physical speed, court geometry or 3D accuracy.",
+    "The original tracked proposal ceiling includes localization misses and fragmented identities; observations are neither regenerated nor filled.",
+    "This bounded whole-clip prototype is not a full-match storage or inference benchmark.",
+    "Old court-role outputs used different inference inputs and are context, not a controlled comparison using these exact cached observations."
+  ]
+}

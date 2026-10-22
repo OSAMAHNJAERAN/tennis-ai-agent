@@ -1,0 +1,566 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-16T02:15:03.670310+00:00",
+  "status": "CONCRETE_COURT175_FINITE_WARMSTART_PROPOSAL_AWAITING_ROOT_REVIEW_NO_CPU_PREVIEW_OR_GPU_RUN",
+  "data": {
+    "manifest": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\source_manifest.json",
+      "sha256": "4029e043f0fd67ac1b7458543cef4e12d73b6dcb01a88c7570fc66a79ba3be28",
+      "bytes": 593669
+    },
+    "counts": {
+      "train": 149,
+      "val": 26,
+      "test": 0
+    },
+    "keypoint_slots": {
+      "visible": 2421,
+      "unknown_null": 29
+    },
+    "usage": "PRIVATE_LOCAL_NONCOMMERCIAL_ACADEMIC_DEVELOPMENT_ONLY",
+    "raw_public_redistribution_cleared": false,
+    "final_test_used": false,
+    "independent_human_review": false
+  },
+  "initialization": {
+    "kind": "FRESH_FINE_TUNE_FROM_REGISTERED_PRIOR_COURT14_BEST_NOT_RESUME_OF_OLD_DATA",
+    "checkpoint": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1\\training\\weights\\best.pt",
+      "sha256": "e47db3784adb39b82be6df7fca73ed0206f67f4f5d1bb029f0f862a34a4feefa",
+      "bytes": 23409006
+    },
+    "prior_run_metadata": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1\\run_metadata.json",
+      "sha256": "d5b35180e9399a30412cb486296d2590efadbdfbcc40516237fd8d6c0266c7f4",
+      "bytes": 48373
+    },
+    "prior_results_csv": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1\\training\\results.csv",
+      "sha256": "160fb329e0c707c04a04b405473c2baeaa357142f6bc5b72d1344fbaab16ab18",
+      "bytes": 3994
+    },
+    "official_ancestor": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\models\\yolo26\\yolo26s-pose.pt",
+      "sha256": "a083adb42303728ae14c4bd6bd56d80da46f82fb2564dbd6f31dcc92ea321646"
+    },
+    "prior_architecture": {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1\\yolo26s-court-pose.yaml",
+      "sha256": "5c6aa3d5f9199fbec6612a4317578e52194e121550d17f3342369cc4bc5a5e45",
+      "bytes": 1612
+    },
+    "historical_state_dict_key_denominator_only": 879,
+    "actual_new_transfer_not_yet_run": true
+  },
+  "fixed_training_arguments": {
+    "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_repair_development_run1\\training_inputs\\dataset.yaml",
+    "epochs": 20,
+    "imgsz": 1280,
+    "batch": 1,
+    "device": "0",
+    "seed": 709,
+    "deterministic": true,
+    "patience": 20,
+    "save_period": 5,
+    "amp": false,
+    "workers": 0,
+    "cache": false,
+    "optimizer": "AdamW",
+    "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_repair_development_run1",
+    "name": "training",
+    "mosaic": 0.0,
+    "close_mosaic": 0,
+    "mixup": 0.0,
+    "copy_paste": 0.0,
+    "scale": 0.05,
+    "translate": 0.0,
+    "fliplr": 0.0,
+    "flipud": 0.0,
+    "degrees": 0.0,
+    "perspective": 0.0,
+    "hsv_h": 0.01,
+    "hsv_s": 0.15,
+    "hsv_v": 0.15,
+    "nbs": 1,
+    "warmup_epochs": 0.0,
+    "lr0": 0.0005,
+    "auto_augment": null,
+    "augmentations": [],
+    "cutmix": 0.0,
+    "erasing": 0.0,
+    "bgr": 0.0,
+    "multi_scale": 0.0,
+    "rect": false,
+    "shear": 0.0,
+    "save": true,
+    "exist_ok": false,
+    "val": true,
+    "plots": false
+  },
+  "maximum_total_new_epochs": 20,
+  "automatic_extension_allowed": false,
+  "automatic_checkpoint_promotion_allowed": false,
+  "unchanged_gpu_admission": {
+    "measurement_point": "AFTER_TORCH_AND_CUDA_INITIALIZATION_BEFORE_CHECKPOINT_MODEL_ALLOCATION",
+    "minimum_available_ram_bytes": 1610612736,
+    "minimum_free_vram_bytes": 2147483648,
+    "minimum_free_disk_bytes": 1073741824,
+    "batch": 1,
+    "amp": false,
+    "workers": 0,
+    "cache": false,
+    "fallback_or_unrelated_process_stopping": false
+  },
+  "cpu_transform_preview": {
+    "actual_execution_pending": true,
+    "cuda_initialization_allowed": false,
+    "minimum_available_ram_after_torch_bytes": 1610612736,
+    "factory": "PINNED_ULTRALYTICS_BUILD_YOLO_DATASET_TRAIN_RECT_FALSE_STRIDE32_BATCH1",
+    "seed": 709,
+    "network_shape": [
+      1,
+      3,
+      1280,
+      1280
+    ],
+    "samples": [
+      {
+        "id": "TcXqTFdDaTA_2250",
+        "split": "train",
+        "source_video_id": "TcXqTFdDaTA",
+        "context_group": "context_76a4117f88d73e13",
+        "surface": "grass",
+        "native_image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\train\\TcXqTFdDaTA_2250.png",
+          "sha256": "7620b7bb52fc46cc7a9bf6d56e5c954e9601c7c6dad466f48f817bbecb3cab9c",
+          "bytes": 1177807
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\train\\TcXqTFdDaTA_2250.txt",
+          "sha256": "095f402a3b967eb815c9552b36f08d2d82c3beddc6ae071b04681a8e75f68da2",
+          "bytes": 371
+        },
+        "reviewed_keypoints_px": [
+          [
+            393,
+            174,
+            2
+          ],
+          [
+            901,
+            177,
+            2
+          ],
+          null,
+          [
+            1150,
+            611,
+            2
+          ],
+          [
+            457,
+            175,
+            2
+          ],
+          null,
+          [
+            837,
+            177,
+            2
+          ],
+          [
+            1026,
+            611,
+            2
+          ],
+          [
+            433,
+            232,
+            2
+          ],
+          [
+            862,
+            235,
+            2
+          ],
+          [
+            344,
+            448,
+            2
+          ],
+          [
+            956,
+            450,
+            2
+          ],
+          [
+            648,
+            234,
+            2
+          ],
+          [
+            650,
+            449,
+            2
+          ]
+        ],
+        "bbox_xyxy_px": [
+          152,
+          174,
+          1150,
+          611
+        ]
+      },
+      {
+        "id": "dEsWEIct7Fk_2550",
+        "split": "train",
+        "source_video_id": "dEsWEIct7Fk",
+        "context_group": "context_7bcead74a1327574",
+        "surface": "clay",
+        "native_image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\train\\dEsWEIct7Fk_2550.png",
+          "sha256": "d4caa22d7f0448da6adb3c3f94b9da0edc7d705a904a2fbf29998a7f0da8d29a",
+          "bytes": 1476488
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\train\\dEsWEIct7Fk_2550.txt",
+          "sha256": "75456eec75cc346cb17433443f762e1462a896b95831340ead10f8cbcae0c65d",
+          "bytes": 440
+        },
+        "reviewed_keypoints_px": [
+          [
+            400,
+            161,
+            2
+          ],
+          [
+            853,
+            161,
+            2
+          ],
+          [
+            211,
+            516,
+            2
+          ],
+          [
+            1046,
+            516,
+            2
+          ],
+          [
+            457,
+            161,
+            2
+          ],
+          [
+            315,
+            516,
+            2
+          ],
+          [
+            797,
+            161,
+            2
+          ],
+          [
+            941,
+            516,
+            2
+          ],
+          [
+            437,
+            211,
+            2
+          ],
+          [
+            817,
+            211,
+            2
+          ],
+          [
+            366,
+            389,
+            2
+          ],
+          [
+            890,
+            389,
+            2
+          ],
+          [
+            627,
+            211,
+            2
+          ],
+          [
+            627,
+            389,
+            2
+          ]
+        ],
+        "bbox_xyxy_px": [
+          211,
+          161,
+          1046,
+          516
+        ]
+      },
+      {
+        "id": "t0WOL-1c9sQ_1550",
+        "split": "train",
+        "source_video_id": "t0WOL-1c9sQ",
+        "context_group": "context_2637f1b1db13b349",
+        "surface": "hard",
+        "native_image": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\images\\train\\t0WOL-1c9sQ_1550.png",
+          "sha256": "f3957235e131698ce8dd1a492a08224abbcd94ea664736abc14c90dee4917b06",
+          "bytes": 666628
+        },
+        "label": {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\yolo26\\court_reviewed_development_v2\\court\\labels\\train\\t0WOL-1c9sQ_1550.txt",
+          "sha256": "588cabd37d9f431fdae51f35f8eca4b700d044a67454fc8e3d6050216efadfae",
+          "bytes": 407
+        },
+        "reviewed_keypoints_px": [
+          [
+            413,
+            158,
+            2
+          ],
+          [
+            862,
+            156,
+            2
+          ],
+          [
+            191,
+            529,
+            2
+          ],
+          [
+            1083,
+            528,
+            2
+          ],
+          [
+            469,
+            158,
+            2
+          ],
+          [
+            302,
+            529,
+            2
+          ],
+          [
+            805,
+            156,
+            2
+          ],
+          [
+            970,
+            528,
+            2
+          ],
+          [
+            447,
+            207,
+            2
+          ],
+          [
+            827,
+            205,
+            2
+          ],
+          [
+            364,
+            390,
+            2
+          ],
+          [
+            909,
+            389,
+            2
+          ],
+          [
+            636,
+            206,
+            2
+          ],
+          null
+        ],
+        "bbox_xyxy_px": [
+          191,
+          156,
+          1083,
+          529
+        ]
+      }
+    ],
+    "checks": [
+      "Original1280x720 pixel geometry mapped into actual square padded training tensor; scale0.05 affine preserved exactly as prior run.",
+      "Check actual all14 visible/null slots and normalized bbox against measured transform before training; no inferred hidden labels.",
+      "Render unmarked actual training tensors and separate transformed-proposal overlays for actual reviewer inspection.",
+      "All source image/label/export/code hashes unchanged; no CUDA, model training, random threshold or geometric settings changes."
+    ]
+  },
+  "complete_transfer_checks": {
+    "required_task": "pose",
+    "required_model_family": "YOLO26",
+    "required_scale": "s",
+    "required_nc": 1,
+    "required_names": {
+      "0": "court"
+    },
+    "required_kpt_shape": [
+      14,
+      3
+    ],
+    "required_end2end": true,
+    "required_yaml_file": "yolo26s-court-pose.yaml",
+    "required_final_pose_head_keypoints": 14,
+    "required_missing_keys": [],
+    "required_unexpected_keys": [],
+    "required_shape_mismatches": [],
+    "required_randomly_initialized_keys": [],
+    "required_exact_fp32_values_before_optimizer": true,
+    "required_check_both_loader_and_actual_PoseTrainer_get_model": true,
+    "pending_actual_tensor_count": true,
+    "explanation": "Pinned PoseTrainer.get_model rebuilds from the saved custom architecture then BaseModel.load uses intersect_dicts with strict=False. A dedicated subclass must compare complete source/target keys, shapes and exact FP32 values and fail before training on any partial transfer. Do not call official-only build_training_model because that initializes a new14-point head."
+  },
+  "small_learning_gate": {
+    "planned_total_epochs": 20,
+    "initial_review_boundary_epoch": 2,
+    "initial_max_updates": 298,
+    "mechanism": "Set trainer.stop at on_train_epoch_end when epoch+1==2; pinned trainer validates/saves afterward and retains stop. on_model_save writes an exclusive unstripped review_epoch2.pt before final_eval strips best/last. Keep original train_args.epochs20.",
+    "required_root_observations": [
+      "Actual149batches/epoch and accumulation1, finite supervised pose/keypoint-objectness/box/class losses and finite DEV validation on26 rows.",
+      "Recorded optimizer update values grow and at least one trained court-head tensor changes from the exact warmstart state.",
+      "Actual transformed TRAIN tensors retain visible/null correspondence; no accidental human17head or tensor mismatch.",
+      "Resource samples, exported data, working copies and all source/runtime pins unchanged."
+    ],
+    "continue_policy": "Only after concrete root review of actual first2epoch receipt, resume matching unstripped epoch2 registered state into a fresh output for remaining18 epochs of the same20total; no changed data, settings or totalepochs. If useful learning is absent stop the experiment and repair cause."
+  },
+  "resume_policy": {
+    "accepted_mode": "EXACT_SAME_COURT175_EXPORT_SETTINGS_CODE_RUNTIME_TOTAL20_REGISTERED_UNSTRIPPED_OPTIMIZER_EMA_STATE",
+    "initial_prior_best_is_not_resume": true,
+    "required_epoch": "0<=epoch+1<20",
+    "required_optimizer": true,
+    "required_ema": true,
+    "required_update_counter": true,
+    "registered_checkpoint_hash_required": true,
+    "fresh_output_directory_required": true,
+    "prior_stripped_best_last_not_resumable": true,
+    "source_runtime_and_input_membership_diffs_must_be_empty": true,
+    "limits": "Pinned Ultralytics stores EMA-derived FP16 model and FP16-converted optimizer state; RNG stream/data cursor/stopper history are not all checkpointed, so this is stateful continuation but not bitwise reproducibility."
+  },
+  "new_code_scope": [
+    "scripts/train/train_yolo26_court_repair.py",
+    "tests/test_yolo26_court_repair_training.py",
+    "scripts/evaluate/diagnose_yolo26_court_repair.py",
+    "tests/test_yolo26_court_repair_diagnostic.py"
+  ],
+  "reuse_without_modification": {
+    "train_yolo26_tennis.py": [
+      "prepare_dataset(records,court,working_copy,development=True) only after deep exact175 export audit",
+      "check_resource_guard(role=court,image_size=1280,development=True) after CUDA initialization"
+    ],
+    "train_yolo26_reviewed_ball.py": [
+      "Use reviewed pattern for pure preflight, exclusive training working copies, strict source/runtime snapshots and registered unfinished resume; do not alter or import heavy paths during pure preflight."
+    ],
+    "export_yolo26_court_repair_v2.py": [
+      "verify_export exactmanifestSHA before and after; immutable dataset remains cache-free"
+    ],
+    "diagnose_yolo26_reviewed_court.py": [
+      "Reuse observed preprocessing/native pixel inverse and exact confidence/IoU/visiblepoint definitions with new175manifest adapter; no old script changes."
+    ]
+  },
+  "pre_gpu_freeze_requirements": [
+    "Dedicated wrapper and meaningful pure tests complete; no heavy imports during preflight.",
+    "Bind all local src/*.py and exact trainer/export/helper files; bind every installed Ultralytics.py/.yaml and Python/Torch/Ultralytics/CUDA versions.",
+    "Exclusive byte-identical175working input copies; bind images/labels/train-val lists/YAML/checkpoint as training inputs; no immutableexport .cache mutation.",
+    "Actual CPU transform preview and strictCPU checkpoint transfer receipt inspected.",
+    "Freeze before-training full26DEV native-pixel protocol and baseline prior-checkpoint26diagnostic; evaluate all visible references including misses, per14landmark and context; no finalTEST.",
+    "Record first2epoch review checkpoint protocol and same20total resume metadata with pending rootGPU release."
+  ],
+  "fixed_diagnostic": {
+    "all_dev_images": 26,
+    "conf": 0.05,
+    "bbox_iou_min": 0.5,
+    "keypoint_conf_min": 0.25,
+    "imgsz": 1280,
+    "half": false,
+    "augment": false,
+    "end2end": true,
+    "rect": true,
+    "visible_thresholds_native_px": [
+      10,
+      20
+    ],
+    "selection": "Highest class0 confidence stable returned-index tie; all visible landmarks in coverage/threshold denominator including misses",
+    "unknown_reference_slots": "Excluded from localization target denominator and reported separately",
+    "posttraining_checkpoint": "Pinned library engineering DEV-fitness best.pt only; no threshold/checkpoint sweep or promotion",
+    "baseline_before_training_required": true
+  },
+  "resource_budget": {
+    "prior_actual100train20epoch_training_seconds": 1326.0434412999966,
+    "simple149over100_duration_projection_seconds": 1975.804727536995,
+    "projection_is_measured_guarantee": false,
+    "proposed_owned_job_wall_ceiling_seconds": 2700,
+    "proposed_initial2epoch_owned_job_wall_ceiling_seconds": 600,
+    "poll_interval_seconds": 2,
+    "training_and_phase_timing_memory_vram_receipts_required": true
+  },
+  "current_relevant_file_bindings": [
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_tennis.py",
+      "sha256": "cd05fe4983bb9edac77d76ebc32f1b59a1aa0697392abb15ff096608a7d6d6b1",
+      "bytes": 48124
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\train\\train_yolo26_reviewed_ball.py",
+      "sha256": "76896dab6d6287a7356fa9edfd74cd22073e7ed5604fec4eec35abed2e891945",
+      "bytes": 25102
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\export_yolo26_court_repair_v2.py",
+      "sha256": "4094ad486825eb73b415b0305029adf04064ae374ce6b0908ec97df13ef5d345",
+      "bytes": 32725
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\scripts\\data\\consolidate_yolo26_court_source_wave.py",
+      "sha256": "9b1e8d5035ebc70be84a576c274b48bbd444e9ce56ccd0ca676fa05d09f57803",
+      "bytes": 11823
+    },
+    {
+      "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\engine\\model.py",
+      "sha256": "b4a798faae21c390bc1fe24080127ce435cb13e528595082fe79485f99ec53a3",
+      "bytes": 54045
+    },
+    {
+      "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\models\\yolo\\pose\\train.py",
+      "sha256": "8a60639e0766d9ddb4819703c87daab257c2704f13efebfabef78e46c600bccd",
+      "bytes": 4837
+    },
+    {
+      "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\nn\\tasks.py",
+      "sha256": "25fe4100198480dc7d3fa89e103aff249c5022f762aeaae342201d34ead36b8f",
+      "bytes": 73132
+    },
+    {
+      "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\engine\\trainer.py",
+      "sha256": "00869278053815beed0d659afa3084ea7e29b005326560fe216499eb53a4c8ed",
+      "bytes": 50648
+    }
+  ],
+  "pinned_versions": {
+    "torch": "2.13.0+cu126",
+    "ultralytics": "8.4.36"
+  },
+  "python_executable": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "python_version": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "installed_ultralytics_source_root": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics",
+  "gpu_or_torch_runtime_imported": false,
+  "training_performed": false,
+  "qualification_evidence": false
+}

@@ -1,0 +1,59 @@
+{
+  "status": "FROZEN_BEFORE_CANDIDATE_EXECUTION",
+  "scope": "A single development-only image-evidence intervention. No model inference, new checkpoint, production integration, independent accuracy qualification, geometry admission relaxation or live job changes.",
+  "problem": "The existing bilateral bright-ridge rule discards outer paint between differently bright court/runoff surfaces. Unconditional similar-side removal was already evaluated and caused selection regressions; do not repeat or select it.",
+  "rankedHypotheses": [
+    {"rank": 1, "cause": "Existing similar-side rejection loses real court/runoff boundary paint", "prediction": "Conditional surface boundary evidence recovers compatible outer paint while strict bilateral ridge, whiteness and geometry conditions remain."},
+    {"rank": 2, "cause": "Automatic color hull is displaced or identifies runoff/background rather than the playing court", "prediction": "Conditional paint recovery will still fail semantic-line admission or rough source-mark checks on those frames; preserve rejection."},
+    {"rank": 3, "cause": "Fragments or distractors cannot support a complete consistent court", "prediction": "The unchanged optimizer/support gates reject fit even with extra proposals; extra segments alone are not success."}
+  ],
+  "candidate": {
+    "count": 1,
+    "referenceWidthPx": 960,
+    "surfaceSelection": "Reuse unchanged surface_candidates; first largest component whose hull simplifies to four corners at 1 percent perimeter epsilon. No source marks, saved predicted points or metadata-based court identity enter this selection.",
+    "surfaceFallback": "No eligible four-corner component means no conditional additions and no automatic seed.",
+    "lineSamples": "Reuse exact existing LSD and minimum30-pixel segment length; 80 interior samples, center shifts -3,-1.5,0,1.5,3; brightness/saturation sample offsets -8,-6,-1,0,1,6,8.",
+    "preservedPhotometry": "Every passing sample still requires ridge above100, ridge minus brighter side greater than10, central minimum HSV saturation below110. Existing similar-side difference below45 remains the default.",
+    "newEvidence": "For a given shifted segment, query the actual selected component mask at -8,-6,+6,+8 by nearest-neighbor. A boundary sample requires both samples on exactly one side inside and both opposite samples outside. At least80 percent of valid samples must satisfy that boundary pattern with the same inside side. Only those per-sample boundary locations may replace the similar-side condition; brightness and whiteness remain mandatory.",
+    "baselineRecordPreservation": "If the original baseline row already has support>=0.5, retain that exact row/center/segment without recomputing or replacing it. Conditional evidence can add only previously rejected LSD records; it cannot alter a passing original record.",
+    "noFullHullMask": true,
+    "noPerCaseTuning": true,
+    "proposalHalfSupportThreshold": 0.5,
+    "refinement": "Reuse unchanged boundary-preserving refine, including semantic identities, 6 compatible lines, orientation-family conditions, 20-reference-pixel displacement cap, optimizer and support-improvement gates.",
+    "automaticSeed": "Reuse unchanged canonical14 landmarks, shorter opposite hull edges as baselines, mean-y far/near sorting and mean-x left/right order. This is an unqualified hypothesis, not physical court calibration.",
+    "automaticImageAdmission": "Returned court must pass unchanged support diagnostic, at least6 semantic lines each support>=0.5, and refinement accepted. A rejected refinement/seed never becomes an accepted automatic court.",
+    "noMissingLineHardConstraintRelaxation": true
+  },
+  "cases": {
+    "regressionReplay": "All64 existing case/model observations from court_refinement_selection01, court_refinement_raw_labels01 and court_line_refinement01. Reproduce original baseline coordinates/decisions first on every valid initialization. Same source bytes/labels/canonical identities/inclusive7-native-pixel scorer/out-of-image exclusion. Invalid original initialization remains unavailable in this existing-seed comparison.",
+    "automaticInitialization": "One exact first frame from each of the3 licensed Commons inputs, plus each of the3 existing UVY and3 existing CalTennis diagnostic clips. Same frozen candidate and gates. These9 reused source views are development controls, not an independent qualification split.",
+    "DimitrovMarks": "Use only corrected source marks in existing dimitrov_court_image01/review.json after candidate computation, with null occludedidentity8 and approximate8-native-pixel uncertainty. Original invalidated marks are excluded. Compare full13 visible landmark distances; no accuracy threshold promotion from a single AI review.",
+    "negativeControls": "UVY tennis_V02 spectator-fit failure and all other previously rejected initializations remain visible in the report. False automatic admission is assessed by source-only/context review, not absence of model errors. No claim of exhaustive false-acceptance rate.",
+    "repeatedFramesAndModelsAreNotIndependent": true
+  },
+  "decision": "Report every gain/loss, acceptance/rejection and source-context changed panel. Do not promote based on pooled improvement alone. Any regressions or newly suspicious admission remain explicit. This turn must yield actual measured candidate results, even if the sole candidate fails.",
+  "safety": {
+    "minimumAvailableRamBeforeChildBytes": 750000000,
+    "maximumSampledOwnedTreeRssBytes": 1000000000,
+    "minimumAvailableRamDuringChildBytes": 400000000,
+    "lowRamConsecutiveSamples": 5,
+    "sampleIntervalSeconds": 0.25,
+    "maximumChildWallSeconds": 600,
+    "oneShotOwnedDirectory": true,
+    "retention": "Retain every partial result and log on failure; no automatic retry or guard relaxation. Sequential image decode only, no stored whole-video array, no Torch or Ultralytics import.",
+    "sourcesAndSavedProductFilesReadOnly": true,
+    "networkOrModelDownloads": false
+  },
+  "requiredEvidence": [
+    "Immutable protocol/source/input/label/previous-report bindings before and after",
+    "Meaningful synthetic tests preserving baseline parity and rejecting step/no-mask/ambiguous-surface distractors",
+    "Complete64-case replay with every metric/gained/lost identity retained",
+    "Complete9-source automatic initialization outcomes and exact decoded first-frame pixels",
+    "Independent terminal source/metric/geometry/process retirement verification",
+    "Source-context visual review of every changed or newly admitted court",
+    "Explicit unqualified decision with remaining independent footage/reference gaps"
+  ],
+  "qualificationEvidence": false,
+  "productionPromoted": false,
+  "physicalSpeedOr3DEnabled": false
+}

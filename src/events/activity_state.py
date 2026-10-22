@@ -142,21 +142,73 @@ class VisualActivityStateClassifier:
         self.fps = fps
         self.diagonal = math.hypot(*frame_size)
         self.settings = settings or ActivityStateSettings()
-        self._frame_states: List[VisualActivityState] = []
-        self._frame_evidence: List[Dict[str, Any]] = []
+        self._frame_states: Sequence[VisualActivityState] = []
+        self._frame_evidence: Sequence[Dict[str, Any]] = []
 
     def classify_trajectory(
         self,
         trajectory: Sequence[TemporalBallPoint],
-    ) -> List[VisualActivityState]:
-        n = len(trajectory)
-        states: List[VisualActivityState] = [VisualActivityState.UNKNOWN] * n
-        evidence: List[Dict[str, Any]] = [{} for _ in range(n)]
-        if n == 0:
-            self._frame_states = states
-            self._frame_evidence = evidence
-            return states
+        *, output=None,
+    ) -> Sequence[VisualActivityState]:
+        """Classify offline windows; optional owned output retains no frame arrays.
 
+        The caller must keep its output context open through all state/evidence
+        reads. This preserves the existing look-ahead and pre-serve backfill;
+        it does not establish causal live-play evidence or enable the gate.
+        """
+        if output is not None:
+            from src.utils.activity_state_sequence import ActivityStateSequence
+            if not isinstance(output, ActivityStateSequence):
+                raise TypeError('Activity output requires caller-owned ActivityStateSequence')
+            output.require_empty()
+        n = len(trajectory)
+        states, evidence = [], []
+        if n == 0:
+            if output is not None:
+                output.seal()
+                states, evidence = output.states, output.evidence
+            self._frame_states, self._frame_evidence = states, evidence
+            return states
+        first_active_frame = n
+        for i, (state, local_evidence) in enumerate(self._classified_frames(trajectory)):
+            if state == VisualActivityState.ACTIVE_PLAY and first_active_frame == n:
+                first_active_frame = i
+            if output is None:
+                states.append(state)
+                evidence.append(local_evidence)
+            else:
+                output.append(state, local_evidence)
+
+        preplay_before = 0
+        s = self.settings
+        if first_active_frame > s.pre_serve_min_frames:
+            # statistics.variance accepts repeatable scalar generators and
+            # preserves the original arithmetic without retaining the prefix.
+            def prefix():
+                for i in range(first_active_frame):
+                    point = trajectory[i]
+                    if point.x_px is not None:
+                        yield point
+            count = sum(1 for _ in prefix())
+            if count:
+                spread = (0.0 if count < 2 else math.sqrt(
+                    statistics.variance(point.x_px for point in prefix())
+                    + statistics.variance(point.y_px for point in prefix() if point.y_px is not None)))
+                if spread <= s.pre_serve_max_spread_normalised * self.diagonal:
+                    preplay_before = first_active_frame
+        if output is None:
+            for i in range(preplay_before):
+                if states[i] == VisualActivityState.UNKNOWN:
+                    states[i] = VisualActivityState.PRE_PLAY
+        else:
+            output.seal(preplay_before=preplay_before)
+            states, evidence = output.states, output.evidence
+        self._frame_states, self._frame_evidence = states, evidence
+        return states
+
+    def _classified_frames(self, trajectory):
+        """Local signals and forward hysteresis with only bounded windows."""
+        n = len(trajectory)
         s = self.settings
         diag = self.diagonal
 
@@ -164,13 +216,9 @@ class VisualActivityStateClassifier:
             half = max(1, round(half_s * self.fps))
             return list(trajectory[max(0, center - half): min(n, center + half + 1)])
 
-        # ------------------------------------------------------------------
-        # Pass 1: per-frame local signals
-        # ------------------------------------------------------------------
-        local_is_active: List[bool] = [False] * n
-        local_is_dead: List[bool] = [False] * n
-        local_ev: List[Dict[str, Any]] = [{}] * n
-
+        cur = VisualActivityState.UNKNOWN
+        point_end_start: Optional[int] = None
+        point_end_min_frames = max(1, round(s.point_end_min_duration_s * self.fps))
         for i in range(n):
             win_a = _win(i, s.active_window_s / 2)
             win_d = _win(i, s.dead_ball_window_s / 2)
@@ -205,9 +253,7 @@ class VisualActivityStateClassifier:
                 and max_conf < s.active_min_detection_confidence
             )
 
-            local_is_active[i] = is_active
-            local_is_dead[i] = is_dead
-            local_ev[i] = {
+            local_evidence = {
                 "max_detection_confidence": round(max_conf, 4),
                 "grounded_speed": round(gr_speed, 5),
                 "grounded_ratio": round(gr_ratio, 3),
@@ -221,17 +267,7 @@ class VisualActivityStateClassifier:
                 "static_cluster_score": round(max(0.0, 1.0 - spread / max(s.static_lock_max_spread_px, 1.0)), 3),
             }
 
-        # ------------------------------------------------------------------
-        # Pass 2: forward hysteresis state machine
-        # ------------------------------------------------------------------
-        cur = VisualActivityState.UNKNOWN
-        point_end_start: Optional[int] = None
-        point_end_min_frames = max(1, round(s.point_end_min_duration_s * self.fps))
-
-        for i in range(n):
-            is_a = local_is_active[i]
-            is_d = local_is_dead[i]
-
+            is_a, is_d = is_active, is_dead
             if cur == VisualActivityState.UNKNOWN:
                 if is_a:
                     cur = VisualActivityState.ACTIVE_PLAY
@@ -263,27 +299,7 @@ class VisualActivityStateClassifier:
                     cur = VisualActivityState.ACTIVE_PLAY
                     point_end_start = None
 
-            states[i] = cur
-            evidence[i] = local_ev[i]
-
-        # ------------------------------------------------------------------
-        # Pass 3: pre-serve back-fill
-        # ------------------------------------------------------------------
-        first_active_frame = next(
-            (i for i, sv in enumerate(states) if sv == VisualActivityState.ACTIVE_PLAY), n
-        )
-        if first_active_frame > s.pre_serve_min_frames:
-            pre_pts = [p for p in trajectory[:first_active_frame] if p.x_px is not None]
-            if pre_pts:
-                spread = _position_spread_px(pre_pts)
-                if spread <= s.pre_serve_max_spread_normalised * diag:
-                    for i in range(first_active_frame):
-                        if states[i] == VisualActivityState.UNKNOWN:
-                            states[i] = VisualActivityState.PRE_PLAY
-
-        self._frame_states = states
-        self._frame_evidence = evidence
-        return states
+            yield cur, local_evidence
 
     def state_at_frame(self, frame_index: int) -> VisualActivityState:
         return self._frame_states[frame_index]

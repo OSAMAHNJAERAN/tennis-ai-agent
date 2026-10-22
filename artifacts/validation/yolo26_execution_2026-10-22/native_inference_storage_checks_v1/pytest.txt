@@ -1,0 +1,232 @@
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+..........................................................F..FFFFFFFFFF. [ 81%]
+.....................FFFFFFFFFFFFF.F............                         [100%]
+================================== FAILURES ===================================
+______ test_hardlinked_database_is_rejected_when_filesystem_supports_it _______
+tests\test_ball_inference_journal.py:471: in test_hardlinked_database_is_rejected_when_filesystem_supports_it
+    os.link(path, alias)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_hardlinked_database_is_re0\\.ball_inference.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_hardlinked_database_is_re0\\another-name.sqlite3'
+_ test_exact_completed_prefix_round_trip_all_views_and_source_proposal_indices _
+tests\test_native_inference_prefix.py:120: in test_exact_completed_prefix_round_trip_all_views_and_source_proposal_indices
+    saved = write(tmp_path)
+            ^^^^^^^^^^^^^^^
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_exact_completed_prefix_ro0\\.native_prefix.26jsghuu.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_exact_completed_prefix_ro0\\.native_inference_prefix.sqlite3'
+_ test_detached_rows_arrays_headers_and_crop_policy_cannot_mutate_retained_state _
+tests\test_native_inference_prefix.py:154: in test_detached_rows_arrays_headers_and_crop_policy_cannot_mutate_retained_state
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_detached_rows_arrays_head0\\.native_prefix.1h1rsj5f.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_detached_rows_arrays_head0\\.native_inference_prefix.sqlite3'
+____ test_changed_identity_is_rejected_with_strict_number_types[identity0] ____
+tests\test_native_inference_prefix.py:179: in test_changed_identity_is_rejected_with_strict_number_types
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_identity_is_rejec0\\.native_prefix.phuszcnr.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_identity_is_rejec0\\.native_inference_prefix.sqlite3'
+____ test_changed_identity_is_rejected_with_strict_number_types[identity1] ____
+tests\test_native_inference_prefix.py:179: in test_changed_identity_is_rejected_with_strict_number_types
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_identity_is_rejec1\\.native_prefix.9mvcuhur.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_identity_is_rejec1\\.native_inference_prefix.sqlite3'
+____ test_changed_identity_is_rejected_with_strict_number_types[identity2] ____
+tests\test_native_inference_prefix.py:179: in test_changed_identity_is_rejected_with_strict_number_types
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_identity_is_rejec2\\.native_prefix.pms16mih.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_identity_is_rejec2\\.native_inference_prefix.sqlite3'
+_______ test_changed_video_metadata_and_duplicate_creation_are_rejected _______
+tests\test_native_inference_prefix.py:187: in test_changed_video_metadata_and_duplicate_creation_are_rejected
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_video_metadata_an0\\.native_prefix.zv4_rpoe.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_video_metadata_an0\\.native_inference_prefix.sqlite3'
+_______ test_changed_audit_cannot_be_reopened[camera_registration.json] _______
+tests\test_native_inference_prefix.py:202: in test_changed_audit_cannot_be_reopened
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r0\\.native_prefix.d2002t4_.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r0\\.native_inference_prefix.sqlite3'
+________ test_changed_audit_cannot_be_reopened[camera_intervals.json] _________
+tests\test_native_inference_prefix.py:202: in test_changed_audit_cannot_be_reopened
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r1\\.native_prefix.0ocgnn_m.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r1\\.native_inference_prefix.sqlite3'
+_________ test_changed_audit_cannot_be_reopened[match_identity.json] __________
+tests\test_native_inference_prefix.py:202: in test_changed_audit_cannot_be_reopened
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r2\\.native_prefix.bqy4zefa.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r2\\.native_inference_prefix.sqlite3'
+__________ test_changed_audit_cannot_be_reopened[image_people.json] ___________
+tests\test_native_inference_prefix.py:202: in test_changed_audit_cannot_be_reopened
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r3\\.native_prefix.uq0cljs0.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_changed_audit_cannot_be_r3\\.native_inference_prefix.sqlite3'
+___________ test_missing_marker_or_changed_database_cannot_be_read ____________
+tests\test_native_inference_prefix.py:278: in test_missing_marker_or_changed_database_cannot_be_read
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_missing_marker_or_changed0\\.native_prefix.fwk5l49o.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_missing_marker_or_changed0\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[DELETE FROM frames WHERE frame_index=1] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_0\\.native_prefix.s39cj2nm.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_0\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[ALTER TABLE frames ADD COLUMN unexpected TEXT] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_1\\.native_prefix.tz_dh4um.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_1\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[DELETE FROM initial] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_2\\.native_prefix.8m661vlq.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_2\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[UPDATE header SET payload='{}'] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_3\\.native_prefix.il9cm7ae.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_3\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[UPDATE frames SET candidate='corrupt' WHERE frame_index=0] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_4\\.native_prefix.y3e8b2_1.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_4\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[CREATE VIEW extra_view AS SELECT frame_index FROM frames] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_5\\.native_prefix.oz6glc2e.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_5\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[CREATE INDEX extra_index ON frames(role_1)] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_6\\.native_prefix.n0qhr2u0.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_6\\.native_inference_prefix.sqlite3'
+_ test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[CREATE TRIGGER extra_trigger AFTER INSERT ON frames BEGIN SELECT 1; END] _
+tests\test_native_inference_prefix.py:301: in test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_7\\.native_prefix.3b2w5hac.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_schema_gaps_and_row_hash_7\\.native_inference_prefix.sqlite3'
+____________ test_oversized_row_is_rejected_before_full_row_fetch _____________
+tests\test_native_inference_prefix.py:312: in test_oversized_row_is_rejected_before_full_row_fetch
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_oversized_row_is_rejected0\\.native_prefix.w7_kkmy8.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_oversized_row_is_rejected0\\.native_inference_prefix.sqlite3'
+_____ test_unsafe_candidate_array_shape_is_rejected_before_buffer_decode ______
+tests\test_native_inference_prefix.py:333: in test_unsafe_candidate_array_shape_is_rejected_before_buffer_decode
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_unsafe_candidate_array_sh0\\.native_prefix.er7c3vnz.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_unsafe_candidate_array_sh0\\.native_inference_prefix.sqlite3'
+___________ test_marker_audit_count_boolean_cannot_alias_an_integer ___________
+tests\test_native_inference_prefix.py:353: in test_marker_audit_count_boolean_cannot_alias_an_integer
+    write(tmp_path, count=1)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_marker_audit_count_boolea0\\.native_prefix.4knsdcc4.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_marker_audit_count_boolea0\\.native_inference_prefix.sqlite3'
+_ test_interruption_before_marker_retains_unsealed_database_and_never_overwrites _
+tests\test_native_inference_prefix.py:376: in test_interruption_before_marker_retains_unsealed_database_and_never_overwrites
+    write(tmp_path)
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+tests\test_native_inference_prefix.py:372: in interrupt
+    return native_link(source, destination)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_interruption_before_marke0\\.native_prefix.h4wney8p.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_interruption_before_marke0\\.native_inference_prefix.sqlite3'
+____ test_typed_rows_are_consumed_lazily_and_reads_keep_no_snapshot_cache _____
+tests\test_native_inference_prefix.py:437: in test_typed_rows_are_consumed_lazily_and_reads_keep_no_snapshot_cache
+    write(tmp_path, count=count, records=producer())
+tests\test_native_inference_prefix.py:80: in write
+    return write_native_inference_prefix(directory, identity,
+src\utils\native_inference_prefix.py:496: in write_native_inference_prefix
+    os.link(staging, directory / DATABASE_NAME)
+E   PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_typed_rows_are_consumed_l0\\.native_prefix.62uf1rga.sqlite3' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\native_inference_storage_checks_v1\\temp\\pytest\\test_typed_rows_are_consumed_l0\\.native_inference_prefix.sqlite3'
+=========================== short test summary info ===========================
+FAILED tests/test_ball_inference_journal.py::test_hardlinked_database_is_rejected_when_filesystem_supports_it
+FAILED tests/test_native_inference_prefix.py::test_exact_completed_prefix_round_trip_all_views_and_source_proposal_indices
+FAILED tests/test_native_inference_prefix.py::test_detached_rows_arrays_headers_and_crop_policy_cannot_mutate_retained_state
+FAILED tests/test_native_inference_prefix.py::test_changed_identity_is_rejected_with_strict_number_types[identity0]
+FAILED tests/test_native_inference_prefix.py::test_changed_identity_is_rejected_with_strict_number_types[identity1]
+FAILED tests/test_native_inference_prefix.py::test_changed_identity_is_rejected_with_strict_number_types[identity2]
+FAILED tests/test_native_inference_prefix.py::test_changed_video_metadata_and_duplicate_creation_are_rejected
+FAILED tests/test_native_inference_prefix.py::test_changed_audit_cannot_be_reopened[camera_registration.json]
+FAILED tests/test_native_inference_prefix.py::test_changed_audit_cannot_be_reopened[camera_intervals.json]
+FAILED tests/test_native_inference_prefix.py::test_changed_audit_cannot_be_reopened[match_identity.json]
+FAILED tests/test_native_inference_prefix.py::test_changed_audit_cannot_be_reopened[image_people.json]
+FAILED tests/test_native_inference_prefix.py::test_missing_marker_or_changed_database_cannot_be_read
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[DELETE FROM frames WHERE frame_index=1]
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[ALTER TABLE frames ADD COLUMN unexpected TEXT]
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[DELETE FROM initial]
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[UPDATE header SET payload='{}']
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[UPDATE frames SET candidate='corrupt' WHERE frame_index=0]
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[CREATE VIEW extra_view AS SELECT frame_index FROM frames]
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[CREATE INDEX extra_index ON frames(role_1)]
+FAILED tests/test_native_inference_prefix.py::test_schema_gaps_and_row_hash_corruption_are_rejected_beyond_outer_hash[CREATE TRIGGER extra_trigger AFTER INSERT ON frames BEGIN SELECT 1; END]
+FAILED tests/test_native_inference_prefix.py::test_oversized_row_is_rejected_before_full_row_fetch
+FAILED tests/test_native_inference_prefix.py::test_unsafe_candidate_array_shape_is_rejected_before_buffer_decode
+FAILED tests/test_native_inference_prefix.py::test_marker_audit_count_boolean_cannot_alias_an_integer
+FAILED tests/test_native_inference_prefix.py::test_interruption_before_marker_retains_unsealed_database_and_never_overwrites
+FAILED tests/test_native_inference_prefix.py::test_typed_rows_are_consumed_lazily_and_reads_keep_no_snapshot_cache
+25 failed, 239 passed, 4 deselected in 11.67s

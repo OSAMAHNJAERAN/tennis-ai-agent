@@ -24,9 +24,12 @@ class CourtKeypointDetector:
         else:
             self.device = torch.device(device)
             
-        self.model = self.build_model()
+        # A saved full state dict supplies every parameter. Building the matching
+        # architecture does not require downloading unrelated ImageNet weights.
+        self.model = self.build_model(pretrained=not bool(model_path))
         if model_path:
-            self.model.load_state_dict(torch.load(model_path, map_location=self.device, weights_only=True))
+            self.model.load_state_dict(
+                torch.load(model_path, map_location=self.device, weights_only=True), strict=True)
         
         self.model.to(self.device)
         self.model.eval()
@@ -35,11 +38,11 @@ class CourtKeypointDetector:
         self.mean = np.array([0.485, 0.456, 0.406])
         self.std = np.array([0.229, 0.224, 0.225])
 
-    def build_model(self) -> nn.Module:
+    def build_model(self, pretrained: bool = True) -> nn.Module:
         """
         Create a ResNet-50 model with a modified final FC layer for 14 keypoints (28 outputs).
         """
-        model = resnet50(weights=ResNet50_Weights.DEFAULT)
+        model = resnet50(weights=ResNet50_Weights.DEFAULT if pretrained else None)
         # 14 keypoints, each has (x, y) = 28 outputs
         model.fc = nn.Linear(model.fc.in_features, 14 * 2)
         return model

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "scope": "REUSED_DEVELOPMENT_FOOT_PIXEL_CONTEXT_DIAGNOSTIC_ONLY",
+  "qualificationEvidence": false,
+  "productionPromoted": false,
+  "sourceFrames": "All thirteen exact native original PNGs enumerated by participant_motion_uvy_2026-10-07/visual_review.json, in its unchanged order",
+  "candidateCount": 1,
+  "referenceWidth": 960,
+  "surface": {
+    "source": "scripts/evaluate/probe_court_surface_support.py",
+    "sha256": "73c8c8695c06377f3b498e3fc6be4669c08721c659aff8dacc0abc15a0f2c4bc",
+    "function": "surface_candidates",
+    "selection": "First candidate in unchanged descending-area order; no quadrilateral requirement",
+    "pixelSemantics": "Actual connected-component mask after original 15x15 morphological closing; no hull filling or new mask morphology",
+    "noCandidateBehavior": "UNKNOWN_NO_ELIGIBLE_SURFACE",
+    "settingsChanged": false
+  },
+  "footPatch": {
+    "xOffsetsBoxWidths": [-0.2, -0.1, 0, 0.1, 0.2],
+    "yOffsetsBoxHeights": [-0.03, 0, 0.03],
+    "center": "[(x1+x2)/2, y2] of original finite ordered box",
+    "sampleCount": 15,
+    "mapping": "Native floating locations scaled independently by reducedWidth/nativeWidth and reducedHeight/nativeHeight, nearest integer with numpy.rint",
+    "inBounds": "All fifteen native floating locations and reduced integer locations must be in bounds; otherwise UNKNOWN_OUT_OF_BOUNDS",
+    "minimumInsideFraction": 0.5,
+    "unknownRole": null,
+    "participantStatus": "UNKNOWN",
+    "interpretation": "Chromatic smooth component support around a detector box bottom, not verified feet, active participation or physical court position"
+  },
+  "groundTruth": {
+    "publisherParser": "scripts/evaluate/audit_uvy_videos.py",
+    "publisherParserSha256": "5ae6de862603bb245e9edbc82fea00780ca32157859ddc87aaeb422ddefe4b18",
+    "originalClasses": [1, 4],
+    "readOnlyAfterAllThirteenPixelDecisionsPersisted": true,
+    "knownDefectsRetained": [
+      {"sequence": "tennis_V01", "frameIndexZeroBased": 604, "defect": "Original class1 player annotation omission"},
+      {"sequence": "tennis_V03", "frameIndexZeroBased": 140, "defect": "Original class1 identity9 is a chair umpire"}
+    ],
+    "matcher": "src/evaluation/detection_metrics.py",
+    "matcherSha256": "c217440fc6108a73a0922338bfb3396ca1ef1f4ad23248f32d8d253a957f76ca",
+    "iouThreshold": 0.5,
+    "participantPrecision": null,
+    "independentGeneralizationAccuracy": null
+  },
+  "comparisons": ["Cached tracked proposals", "Cached motion-only selected fragments", "Pixel-supported raw proposals", "Cached motion fragments with pixel support as a diagnostic intersection"],
+  "identitySemantics": "Exact cached source fragment IDs only; no merging, gap filling, top-two choice or near/far roles",
+  "sourceReview": "Retain original native images, unchanged component metadata, exact reduced binary masks and source overlays for all thirteen frames",
+  "guards": {
+    "preflightAvailableBytes": 750000000,
+    "maximumOwnedRssBytes": 1000000000,
+    "minimumAvailableBytes": 400000000,
+    "lowSamples": 5,
+    "sampleSeconds": 0.25,
+    "wallSeconds": 180,
+    "monitor": "scripts/audit/measure_candidate_storage.py",
+    "monitorSha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39",
+    "actualInterpreterAcknowledgementBeforeCvImports": true,
+    "exclusiveAttempt": true
+  },
+  "forbidden": ["Video decode", "Model inference", "Training", "Manual court coordinates", "Threshold fitting", "Changing HSV/area/solidity/closing parameters", "Convex hull rasterization", "Mask union", "Production selector integration", "Scientific qualification claims"],
+  "limits": ["Thirteen already reviewed images selected after motion failure, at most two source match groups", "Pixel context cannot establish actual participant identity", "Grass/color splits, clothing occlusion and on-surface officials can defeat this diagnostic", "Original publisher labels are incomplete and include retained known errors", "Candidate proposal recall remains bounded by cached detector observations"]
+}

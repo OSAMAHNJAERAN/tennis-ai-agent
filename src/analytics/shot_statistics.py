@@ -2,6 +2,19 @@ from typing import List, Dict, Any, Optional, Tuple
 import numpy as np
 
 from src.shot_analysis.shot_types import ShotEventEvidence, ShotType, ShotDirection, CourtZone3x3
+from src.utils.shot_evidence_sequence import require_shot_result_owner
+
+
+def _landing_record(shot):
+    return {
+        'shot_id': shot.shot_id,
+        'player_id': shot.player_id,
+        'shot_type': shot.shot_type.value,
+        'x_m': round(shot.landing_court_position_m[0], 2),
+        'y_m': round(shot.landing_court_position_m[1], 2),
+        'landing_zone': shot.landing_zone.value if shot.landing_zone else None,
+        'is_dead_ball': shot.is_dead_ball,
+    }
 
 class ShotStatisticsAnalyzer:
     """
@@ -15,27 +28,23 @@ class ShotStatisticsAnalyzer:
         player_id: int
     ) -> Dict[str, Any]:
         """Aggregates stroke types, directions, and landing zones for a specific player."""
-        p_shots = [s for s in shots if s.player_id == player_id and not s.is_dead_ball]
-        
-        type_counts = {
-            "total": len(p_shots),
-            "forehand": sum(1 for s in p_shots if s.shot_type == ShotType.FOREHAND),
-            "backhand": sum(1 for s in p_shots if s.shot_type == ShotType.BACKHAND),
-            "serve": sum(1 for s in p_shots if s.shot_type == ShotType.SERVE),
-            "unknown": sum(1 for s in p_shots if s.shot_type == ShotType.UNKNOWN)
-        }
-
-        dir_counts = {
-            "cross_court": sum(1 for s in p_shots if s.direction == ShotDirection.CROSS_COURT),
-            "down_the_line": sum(1 for s in p_shots if s.direction == ShotDirection.DOWN_THE_LINE),
-            "middle": sum(1 for s in p_shots if s.direction == ShotDirection.MIDDLE),
-            "unknown": sum(1 for s in p_shots if s.direction == ShotDirection.UNKNOWN)
-        }
-
-        # 3x3 Landing Zone Breakdown
-        zone_counts = {}
-        for z in CourtZone3x3:
-            zone_counts[z.value] = sum(1 for s in p_shots if s.landing_zone == z)
+        type_counts = dict.fromkeys(('total', 'forehand', 'backhand', 'serve', 'unknown'), 0)
+        dir_counts = dict.fromkeys(('cross_court', 'down_the_line', 'middle', 'unknown'), 0)
+        zone_counts = {zone.value: 0 for zone in CourtZone3x3}
+        types = {ShotType.FOREHAND: 'forehand', ShotType.BACKHAND: 'backhand',
+                 ShotType.SERVE: 'serve', ShotType.UNKNOWN: 'unknown'}
+        directions = {ShotDirection.CROSS_COURT: 'cross_court', ShotDirection.DOWN_THE_LINE: 'down_the_line',
+                      ShotDirection.MIDDLE: 'middle', ShotDirection.UNKNOWN: 'unknown'}
+        for shot in shots:
+            if shot.player_id != player_id or shot.is_dead_ball:
+                continue
+            type_counts['total'] += 1
+            if shot.shot_type in types:
+                type_counts[types[shot.shot_type]] += 1
+            if shot.direction in directions:
+                dir_counts[directions[shot.direction]] += 1
+            if shot.landing_zone is not None and isinstance(shot.landing_zone, CourtZone3x3):
+                zone_counts[shot.landing_zone.value] += 1
 
         return {
             "player_id": player_id,
@@ -86,19 +95,12 @@ class ShotStatisticsAnalyzer:
     @classmethod
     def compute_bounce_landing_heatmap(
         cls,
-        shots: List[ShotEventEvidence]
+        shots: List[ShotEventEvidence],
+        *,
+        result_owner=None,
     ) -> List[Dict[str, Any]]:
         """Extracts structured list of verified bounce landings for heatmap visualization."""
-        bounces = []
-        for s in shots:
-            if s.landing_court_position_m is not None:
-                bounces.append({
-                    "shot_id": s.shot_id,
-                    "player_id": s.player_id,
-                    "shot_type": s.shot_type.value,
-                    "x_m": round(s.landing_court_position_m[0], 2),
-                    "y_m": round(s.landing_court_position_m[1], 2),
-                    "landing_zone": s.landing_zone.value if s.landing_zone else None,
-                    "is_dead_ball": s.is_dead_ball
-                })
-        return bounces
+        if result_owner is not None:
+            owner = require_shot_result_owner(shots, result_owner)
+            return owner.select(has_landing=True).project(_landing_record)
+        return [_landing_record(shot) for shot in shots if shot.landing_court_position_m is not None]

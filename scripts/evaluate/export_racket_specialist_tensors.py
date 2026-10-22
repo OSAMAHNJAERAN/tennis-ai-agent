@@ -10,7 +10,6 @@ import os
 from pathlib import Path
 import sys
 
-os.environ['TORCH_FORCE_WEIGHTS_ONLY_LOAD'] = '1'
 ROOT = Path(__file__).resolve().parents[2]
 CHECKPOINT_SHA = 'e6ad74371259d844b11529a64b09052edaec4277ce9ebeeca64d77b9131a19cd'
 HISTORY_SHA = 'a1cca4a5ba106caa37782877ca70f66d3e760be6a155cd6b4ea8411d0ecbfca1'
@@ -51,6 +50,9 @@ def history_method_resolver(history_class):
 
 
 def main():
+    # Scope this CLI's loader policy to CLI execution. Importing the pure
+    # resolver in the test suite must not change unrelated model loading.
+    os.environ['TORCH_FORCE_WEIGHTS_ONLY_LOAD'] = '1'
     raise RuntimeError('Real checkpoint loading is blocked by automatic approval review pending explicit user approval; do not remove this gate without that approval.')
     import numpy as np
     import torch
@@ -76,7 +78,7 @@ def main():
     previous_globals = torch.serialization.get_safe_globals()
     with torch.serialization.safe_globals(allowed):
         loaded = torch.load(checkpoint, map_location='cpu', weights_only=True)
-    if torch.serialization.get_safe_globals() != previous_globals:
+    if set(torch.serialization.get_safe_globals()) != set(previous_globals):
         raise RuntimeError('Scoped safe globals were not restored')
     if not isinstance(loaded, dict) or not isinstance(loaded.get('state_dict'), dict):
         raise ValueError('Expected author state_dict is absent')

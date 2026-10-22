@@ -1,0 +1,65 @@
+........................................................................ [ 58%]
+......................................F............                      [100%]
+================================== FAILURES ===================================
+_ test_exact_post_cuda_floor_refuses_one_byte_short_before_copy_or_model[vram] _
+
+resources = {'best_checkpoint_policy': 'PINNED_ULTRALYTICS_DEV_MAP50_95_FITNESS_FOR_ENGINEERING_REVIEW_ONLY', 'checkpoints': [], '...\synthetic_manifest.json', 'manifest_sha256': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, ...}
+kwargs = {'gpu_requested': True, 'image_size': 640, 'role': 'ball'}
+
+    def guard(resources, **kwargs):
+        events.append('resource_guard')
+>       namespace['check_resource_guard'](resources, **kwargs)
+
+tests\test_yolo26_reviewed_ball_training.py:548: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+resources = {'best_checkpoint_policy': 'PINNED_ULTRALYTICS_DEV_MAP50_95_FITNESS_FOR_ENGINEERING_REVIEW_ONLY', 'checkpoints': [], '...\synthetic_manifest.json', 'manifest_sha256': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, ...}
+
+    def check_resource_guard(resources, *, gpu_requested, role=None, image_size=1280, development=False):
+        """Bounded pilot floor, not a promise that the chosen architecture fits."""
+        if resources["free_disk_bytes"] < 1024 ** 3:
+            raise ValueError("Training resource guard: at least 1 GiB free disk required")
+        if resources["free_ram_bytes"] < 512 * 1024 ** 2:
+            raise ValueError("Training resource guard: at least 512 MiB available RAM required")
+        if gpu_requested and (resources["free_vram_bytes"] is None or resources["free_vram_bytes"] < 2 * 1024 ** 3):
+>           raise ValueError("Training resource guard: at least 2 GiB free VRAM required; no unrelated processes are stopped")
+E           ValueError: Training resource guard: at least 2 GiB free VRAM required; no unrelated processes are stopped
+
+scripts\train\train_yolo26_tennis.py:56: ValueError
+
+During handling of the above exception, another exception occurred:
+
+synthetic_execution = namespace(root=WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15...n.<locals>.run at 0x000001C9A9D8DF80>, metadata=<function synthetic_execution.<locals>.<lambda> at 0x000001C9A9D8DE40>)
+resource = 'vram'
+
+    @pytest.mark.parametrize('resource', ['ram', 'vram'])
+    def test_exact_post_cuda_floor_refuses_one_byte_short_before_copy_or_model(synthetic_execution, resource):
+        case = synthetic_execution
+        if resource == 'ram':
+            case.state.available -= 1
+        else:
+            case.state.vram -= 1
+        with pytest.raises(ValueError, match='(1 GiB|2 GiB)'):
+>           case.run()
+
+tests\test_yolo26_reviewed_ball_training.py:622: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_yolo26_reviewed_ball_training.py:586: in run
+    return training.execute_training(samples, data, output, training.training_settings(output, epochs=1),
+scripts\train\train_yolo26_reviewed_ball.py:358: in execute_training
+    _write_metadata(metadata_path, metadata)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/ball_reviewed_trainer_checks_v3/pytest_tmp/test_exact_post_cuda_floor_ref1/workspace/outputs/synthetic_run/run_metadata.json')
+value = {'best_checkpoint_policy': 'PINNED_ULTRALYTICS_DEV_MAP50_95_FITNESS_FOR_ENGINEERING_REVIEW_ONLY', 'checkpoints': [], '...\synthetic_manifest.json', 'manifest_sha256': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}, ...}
+
+    def _write_metadata(path, value):
+        temporary = Path(str(path) + '.tmp')
+        temporary.write_text(json.dumps(value, indent=2, allow_nan=False) + '\n', encoding='utf-8')
+>       os.replace(temporary, path)
+E       PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_trainer_checks_v3\\pytest_tmp\\test_exact_post_cuda_floor_ref1\\workspace\\outputs\\synthetic_run\\run_metadata.json.tmp' -> 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_trainer_checks_v3\\pytest_tmp\\test_exact_post_cuda_floor_ref1\\workspace\\outputs\\synthetic_run\\run_metadata.json'
+
+scripts\train\train_yolo26_reviewed_ball.py:176: PermissionError
+=========================== short test summary info ===========================
+FAILED tests/test_yolo26_reviewed_ball_training.py::test_exact_post_cuda_floor_refuses_one_byte_short_before_copy_or_model[vram]
+1 failed, 122 passed in 8.11s

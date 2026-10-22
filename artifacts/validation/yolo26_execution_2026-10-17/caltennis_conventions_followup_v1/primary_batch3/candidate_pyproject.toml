@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "caltech-tennis-benchmark"
+version = "0.1.0"
+description = "Caltech Tennis Benchmark"
+requires-python = ">=3.8"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["prompthmr*", "camera_pose_recovery*", "ball_detection*", "anonymize_data*", "mocap_stuff*", "utils*"]

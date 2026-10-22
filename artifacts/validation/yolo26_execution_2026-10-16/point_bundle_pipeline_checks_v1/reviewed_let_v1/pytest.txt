@@ -1,0 +1,14 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________ test_exact_native_phase6_reviewed_service_let_exports ____________
+tests\test_point_timeline.py:217: in test_exact_native_phase6_reviewed_service_let_exports
+    _native_phase6_export_fixture(api,tmp_path,True,reviewed_let=True)
+tests\test_point_timeline.py:310: in _native_phase6_export_fixture
+    transitions=json.loads((tmp_path/'scoring_events.json').read_text())['events']
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'events'
+---------------------------- Captured stdout call -----------------------------
+  -> Scoring State Complete (0 dead-ball events suppressed) in 0.08s
+=========================== short test summary info ===========================
+FAILED tests/test_point_timeline.py::test_exact_native_phase6_reviewed_service_let_exports
+1 failed, 55 deselected in 1.35s

@@ -1,0 +1,10 @@
+.........F                                                               [100%]
+================================== FAILURES ===================================
+____________ test_classifier_has_no_duration_sized_resident_state _____________
+tests\test_activity_retention.py:89: in test_classifier_has_no_duration_sized_resident_state
+    assert max(row['retained_traced_bytes'] for row in rows) < 512 * 1024
+E   assert 1781656 < (512 * 1024)
+E    +  where 1781656 = max(<generator object test_classifier_has_no_duration_sized_resident_state.<locals>.<genexpr> at 0x000001617EE158A0>)
+=========================== short test summary info ===========================
+FAILED tests/test_activity_retention.py::test_classifier_has_no_duration_sized_resident_state
+1 failed, 9 passed in 2.26s

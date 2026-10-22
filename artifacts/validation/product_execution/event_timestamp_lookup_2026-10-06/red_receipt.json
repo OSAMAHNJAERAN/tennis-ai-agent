@@ -1,0 +1,74 @@
+{
+  "startedAt": "2026-10-06T07:10:33.602682+00:00",
+  "completedAt": "2026-10-06T07:10:39.834668+00:00",
+  "elapsedSeconds": 6.232009400031529,
+  "command": [
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_event_timestamp_lookup.py",
+    "-q",
+    "-s",
+    "-o",
+    "junit_family=legacy",
+    "--junitxml=artifacts/validation/product_execution/event_timestamp_lookup_2026-10-06/red.xml"
+  ],
+  "returncode": 1,
+  "status": "RED",
+  "tests": 33,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "bindings": {
+    "sourceSha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
+    "testSha256": "e3558972f8f86788ac7d2289af9d3a72e4dffa4bbc99f41e6e4d18581a648841",
+    "baselineSha256": "078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552",
+    "runnerSha256": "a9ab8499049a37224fca0a9b1158db5a97dcab952f80a69ad878f8757a01936c"
+  },
+  "nearestTimestampMeasurements": {
+    "measurements": [
+      {
+        "frames": 128,
+        "timestampReads": 65536,
+        "nearestQueries": 512,
+        "timestampReadBudget": 20480,
+        "exactFrozenFeatureBytes": true,
+        "featureBytes": 109119,
+        "featureSha256": "19561b8621d58ba5d4add6820b7d9fb49762c139090a9f1800a2df3f6c8797f3"
+      },
+      {
+        "frames": 256,
+        "timestampReads": 262144,
+        "nearestQueries": 1024,
+        "timestampReadBudget": 45056,
+        "exactFrozenFeatureBytes": true,
+        "featureBytes": 218934,
+        "featureSha256": "45fe6d75dd7153dbcffb08016c3a15aef1b8ca3cfeb3cc044ac3553238c2e9b1"
+      },
+      {
+        "frames": 512,
+        "timestampReads": 1048576,
+        "nearestQueries": 2048,
+        "timestampReadBudget": 98304,
+        "exactFrozenFeatureBytes": true,
+        "featureBytes": 437042,
+        "featureSha256": "68a319a000f85740f744d372657a528a589525f219206a7f21aa5059268e91e1"
+      }
+    ],
+    "doublingReadRatios": [
+      4.0,
+      4.0
+    ]
+  },
+  "xmlSha256": "83c61a1722c85b2c8343d0a808e223d60634d8b0ad2fd04e22fccd8a62400197",
+  "outputSha256": "618a7486dc9b4b996de932cb84f82892a0a406b617c19562cac657fb7f6c60f1",
+  "productionSourceUnchanged": true,
+  "inferenceRun": false,
+  "modelsLoaded": false,
+  "workloadBound": {
+    "maximumFrames": 512,
+    "featureRuns": 6,
+    "timeoutSeconds": 60,
+    "scope": "Deterministic numeric regression, not a speed benchmark, memory-capacity or accuracy qualification."
+  }
+}

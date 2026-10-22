@@ -1,0 +1,23 @@
+{
+  "scope": "OBSERVED_NORMALIZED_JSON_BYTE_COMPARISON_ONLY",
+  "checked_utc": "2026-10-16T17:07:01.7923443Z",
+  "earlier_path": "artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/attempt2/pointAnalysis.json",
+  "final_path": "artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/physical_binding_final_v1/pointAnalysis.json",
+  "earlier_bytes": 5254,
+  "final_bytes": 5254,
+  "earlier_sha256": "530e23d02edff255d06786f0189eb2e77cb7b3728b3a43fc270e460c824986a1",
+  "final_sha256": "530e23d02edff255d06786f0189eb2e77cb7b3728b3a43fc270e460c824986a1",
+  "bytes_identical": true,
+  "normalized_semantic_values_identical": true,
+  "browser_scope": "The previously rendered attempt2 normalized fixture is byte-identical to the final normalized result from stricter physical binding. This comparison does not rerun the browser against the repaired backend or establish vision/accuracy qualification.",
+  "independent_accuracy_qualified": false,
+  "remaining_limits": [
+    "Physical binding checks source event ID/frame/type/exact normalized timestamp. It does not recompute a canonical digest of all raw player/confidence/position/evidence payload fields.",
+    "Corrected scoring revisions and whole-analysis correction publication are not yet jointly supported; the reader rejects nonzero scoring revisions.",
+    "Artifacts and HTTP routes are validated with supplied synthetic rule decisions and source-identity bytes. No video decode, model accuracy, source continuity qualification, long-match or live operation is proven."
+  ],
+  "receipts": [
+    "artifacts/validation/yolo26_execution_2026-10-16/point_web_contract_checks_v1/physical_binding_final_v1/receipt.json",
+    "artifacts/validation/yolo26_execution_2026-10-17/point_http_contract_checks_v1/physical_binding_final_v1/receipt.json"
+  ]
+}

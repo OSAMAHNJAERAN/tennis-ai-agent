@@ -1,0 +1,111 @@
+{
+  "status": "GREEN",
+  "scope": "Actual pipeline orchestration with deterministic inference/media substitutes; no real models/video jobs",
+  "command": [
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "tests/test_pipeline_pose_storage.py",
+    "-q",
+    "--junitxml=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_green\\junit.xml",
+    "--basetemp=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_green\\tmp"
+  ],
+  "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+  "sourceBefore": {
+    "src/pipeline/phase6_pipeline.py": {
+      "bytes": 61515,
+      "sha256": "ce88b62b44613509d5f4217d0d11fe8c13d9136c9f32c8bf97813d3bdc922811"
+    },
+    "tests/test_pipeline_pose_storage.py": {
+      "bytes": 15543,
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "configs/phase6_analytics/pipeline.yaml": {
+      "bytes": 3490,
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed"
+    },
+    "src/utils/identity_frame_sequence.py": {
+      "bytes": 10709,
+      "sha256": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04"
+    }
+  },
+  "baseInterpreter": {
+    "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "bytes": 105816,
+    "sha256": "5341746f92483a93e44c313de830f2fba2956f0759094404a16b2fed06c9a2ed"
+  },
+  "helper": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\pipeline_green\\run_focused_green.py",
+    "bytes": 6818,
+    "sha256": "e163f7ca2780533282d32446dda18189563a572569c9c9e0793f54a33e7ffd55"
+  },
+  "guards": {
+    "wallSeconds": 180,
+    "ownedTreeRssBytes": 1500000000,
+    "availableRamBytes": 300000000,
+    "lowRamSamples": 5,
+    "sampleSeconds": 0.25
+  },
+  "startedAtUtc": "2026-10-06T09:45:52.147166+00:00",
+  "launchedIdentity": {
+    "pid": 16968,
+    "createTimeUnixSeconds": 1791279952.1489043
+  },
+  "exitCode": 0,
+  "allOwnedIdentitiesRetired": true,
+  "suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "17",
+      "time": "6.931",
+      "timestamp": "2026-10-06T17:45:52.622417+08:00",
+      "hostname": "Osamah"
+    }
+  ],
+  "failureCases": [],
+  "ownedIdentities": [
+    {
+      "pid": 16968,
+      "createTimeUnixSeconds": 1791279952.1489043,
+      "parentPid": null,
+      "depth": 0,
+      "firstObservedAt": "2026-10-06T09:45:52.157485+00:00",
+      "sampleCount": 32,
+      "peakSampledRssBytes": 687226880,
+      "peakSampledPrivateBytes": 1769644032
+    }
+  ],
+  "sourceAfter": {
+    "src/pipeline/phase6_pipeline.py": {
+      "bytes": 61515,
+      "sha256": "ce88b62b44613509d5f4217d0d11fe8c13d9136c9f32c8bf97813d3bdc922811"
+    },
+    "tests/test_pipeline_pose_storage.py": {
+      "bytes": 15543,
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "configs/phase6_analytics/pipeline.yaml": {
+      "bytes": 3490,
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed"
+    },
+    "src/utils/identity_frame_sequence.py": {
+      "bytes": 10709,
+      "sha256": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04"
+    }
+  },
+  "sourceBindingsUnchanged": true,
+  "elapsedSeconds": 8.456547799985856,
+  "completedAtUtc": "2026-10-06T09:46:00.604035+00:00"
+}

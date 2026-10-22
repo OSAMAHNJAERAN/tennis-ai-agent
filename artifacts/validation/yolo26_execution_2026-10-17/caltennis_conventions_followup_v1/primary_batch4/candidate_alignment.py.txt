@@ -1,0 +1,3025 @@
+import argparse
+import json
+import joblib
+import numpy as np
+import sys
+import os
+import gc
+from tqdm import tqdm
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.rcParams['figure.max_open_warning'] = 100
+import pdb
+import subprocess
+import torch
+
+from camera_pose_recovery.viz_camera_on_court_fast import FastTennisVisualizer
+from prompthmr.data_config import SMPLX_PATH
+from prompt_hmr.smpl_family import SMPLX as SMPLX_Layer
+from prompt_hmr.utils.rotation_conversions import axis_angle_to_matrix
+from utils.world4d_utils import (
+    match_pid_ids,
+    extract_matched_joints_by_pid_single,
+    combine_world4ds_with_time_offset,
+    compute_frame_errors,
+    compute_all_frame_errors,
+    spatial_fusion_mle,
+    optimize_chunk_offset,
+    get_best_worst_frames,
+    compute_camera_person_angles,
+    compute_per_camera_sternum_angles,
+    compute_fused_errors,
+    compute_camera_vs_fused_error_dict_two_cam,
+    identify_pose_drift,
+    get_drift_segments,
+    compute_foot_skating_metric,
+    compute_stability_metric,
+    compute_cross_view_consistency_metrics,
+    add_paths_to_world4d_dict,
+    extract_time_range_subset,
+    compute_naive_switch_count,
+    compute_cvtss,
+    apply_cvtss_stitching,
+    fill_empty_frames,
+    sweep_integer_frame_offsets,
+)
+from utils.plots_and_pdf_analysis import (
+    plot_camera_person_angles,
+    plot_angle_vs_error_scatter,
+    plot_error_comparison,
+    plot_l2_errors_combined,
+    plot_error_comparison_per_pid,
+    plot_calibration_comparison_summary,
+    plot_stacked_errors,
+    plot_optimal_offsets_vs_chunk,
+    plot_chunk_optimization_grid,
+    visualize_frame_comparison_grid_zoomed,
+    visualize_frame_comparison_grid_court,
+    visualize_frame_comparison_grid_rgb,
+    visualize_frame_fused_pose_comparison_grid_rgb,
+    plot_per_joint_histograms_overlaid,
+    plot_pose_l2_vs_time,
+    plot_pose_l2_vs_time_with_drift,
+    create_text_figure,
+    analyze_joint_error_correlations,
+    generate_summary_pdf_vector,
+    plot_depth_vs_frame,
+    plot_pose_distribution_heatmap,
+    plot_pose_error_heatmap,
+    plot_per_pid_l2_errors,
+    plot_pose_drift_speed,
+    plot_error_dict_timeseries,
+    create_metrics_table_figure,
+    plot_raw_camera_depth_jitter,
+    plot_foot_skating_comparison,
+    plot_stability_unified,
+    visualize_footwork_analysis,
+    extract_frame_from_video,
+    plot_timestamp_alignment_grid,
+    create_calibration_verification_video,
+    plot_naive_switch_frames,
+    plot_cvtss_switch_frames,
+    create_switching_metrics_table_figure,
+    gonzalez_sample_frames,
+    plot_error_histogram_worst_frames,
+    visualize_bad_frame_cross_projection,
+    visualize_worst_frames_rgb_strip,
+    visualize_worst_frames_rgb_strip_cam2centered,
+    fit_additive_angle_model,
+    plot_f_theta,
+    plot_integer_frame_offset_sweep,
+    generate_raw_rgb_grid_pages,
+)
+
+# Standard 16:9 figure size for presentations/screens
+FIGURE_WIDTH = 16
+FIGURE_HEIGHT = 9
+FIGURE_SIZE = (FIGURE_WIDTH, FIGURE_HEIGHT)
+
+
+"""
+
+for testing:
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_10_09_000_court3_E_1_08_16_04_526/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250/world_fuse.pkl \
+    --output_dir temp_frames/jan_19/time_calibration_test3 \
+    --start_offset -250 \
+    --end_offset 0 \
+    --offset_step 150 \
+    --chunk_size 1000 \
+    --max_num_frames 3000 \
+    --max_render_frames 500 \
+    --force
+
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_16_10_000_court3_E_2_08_18_32_513/world_fuse.pkl \
+    --output_dir temp_frames/jan_19/multicam_fusion/10_02_2025_08_00_court5/10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250__10_02_2025_08_16_10_000_court3_E_2_08_18_32_513 \
+    --start_offset -150 \
+    --end_offset 350 \
+    --offset_step 100 \
+    --chunk_size 1000 \
+    --max_render_frames 5000
+
+09_18_2025_17_22_41_000_court5_W_01_17_24_57_243
+09_18_2025_17_22_37_000_court5_E_01_17_25_04_395
+
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/09_18_2025_16_15_court5/09_18_2025_17_22_41_000_court5_W_01_17_24_57_243/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/09_18_2025_16_15_court5/09_18_2025_17_22_37_000_court5_E_01_17_25_04_395/world_fuse.pkl \
+    --output_dir temp_frames/feb_17/testing/09_18_2025_16_15_court5/09_18_2025_17_22_41_000_court5_W_01_17_24_57_243__09_18_2025_17_22_37_000_court5_E_01_17_25_04_395 \
+    --start_offset -300 \
+    --end_offset 350 \
+    --offset_step 100 \
+    --chunk_size 1000 \
+    --calibrate_frame_subset 4 \
+    --max_render_frames 5000 \
+    --generate_videos
+
+09_18_2025_17_25_43_000_court5_NE_01_17_27_11_168
+09_18_2025_17_25_35_000_court5_NW_01_17_26_16_546
+
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/09_18_2025_16_15_court5/09_18_2025_17_25_43_000_court5_NE_01_17_27_11_168/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/09_18_2025_16_15_court5/09_18_2025_17_25_35_000_court5_NW_01_17_26_16_546/world_fuse.pkl \
+    --output_dir temp_frames/feb_17/testing/09_18_2025_16_15_court5/09_18_2025_17_25_43_000_court5_NE_01_17_27_11_168__09_18_2025_17_25_35_000_court5_NW_01_17_26_16_546 \
+    --start_offset -300 \
+    --end_offset 350 \
+    --offset_step 100 \
+    --chunk_size 1000 \
+    --calibrate_frame_subset 4 \
+    --max_render_frames 5000 \
+    --generate_videos
+
+11_19_2025_17_09_23_000_court1_WNW_01_18_17_40_070
+11_19_2025_17_09_58_000_court1_ENE_02_18_20_43_248
+
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/11_19_2025_16_30_court1/11_19_2025_17_09_23_000_court1_WNW_01_18_17_40_070/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/11_19_2025_16_30_court1/11_19_2025_17_09_58_000_court1_ENE_02_18_20_43_248/world_fuse.pkl \
+    --output_dir temp_frames/feb_17/testing/11_19_2025_16_30_court1/11_19_2025_17_09_23_000_court1_WNW_01_18_17_40_070__11_19_2025_17_09_58_000_court1_ENE_02_18_20_43_248 \
+    --start_offset -300 \
+    --end_offset 350 \
+    --offset_step 100 \
+    --chunk_size 1000 \
+    --calibrate_frame_subset 4
+
+10_02_2025_08_00_court5
+
+10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250
+10_02_2025_08_10_09_000_court3_E_1_08_16_04_526
+
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_10_09_000_court3_E_1_08_16_04_526/world_fuse.pkl \
+    --output_dir temp_frames/feb_17/testing/10_02_2025_08_00_court5/10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250__10_02_2025_08_10_09_000_court3_E_1_08_16_04_526 \
+    --start_offset -300 \
+    --end_offset 350 \
+    --offset_step 100 \
+    --chunk_size 1000 \
+    --calibrate_frame_subset 4
+
+10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250
+10_02_2025_08_14_59_000_court5_N_2_08_30_22_535
+
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_02_2025_08_00_court5/10_02_2025_08_14_59_000_court5_N_2_08_30_22_535/world_fuse.pkl \
+    --output_dir temp_frames/feb_17/testing/10_02_2025_08_00_court5/10_02_2025_08_10_35_000_court5_WSW_1_08_16_39_250__10_02_2025_08_14_59_000_court5_N_2_08_30_22_535 \
+    --start_offset -300 \
+    --end_offset 350 \
+    --offset_step 100 \
+    --chunk_size 1000 \
+    --calibrate_frame_subset 4
+
+10_16_2025_16_48_47_000_court5_E_1_17_24_36_021
+10_16_2025_16_48_33_000_court5_E_1_17_38_10_583
+
+python visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py \
+    --world4d_path_1 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_16_2025_16_51_court2/10_16_2025_16_48_47_000_court5_E_1_17_24_36_021/world_fuse.pkl \
+    --world4d_path_2 /Volumes/ilona_seagate/tennis_dataset/prompthmr_results/results/10_16_2025_16_51_court2/10_16_2025_16_48_33_000_court5_E_1_17_38_10_583/world_fuse.pkl \
+    --output_dir temp_frames/feb_28/calibration_video_fusion/10_16_2025_16_51_court2/10_16_2025_16_48_47_000_court5_E_1_17_24_36_021__10_16_2025_16_48_33_000_court5_E_1_17_38_10_583 \
+    --max_num_frames 1800
+
+"""
+
+# Maximum translation distance to consider two detections as the same person
+MAX_TRANSLATION_DISTANCE_FOR_MATCH = 2.0  # meters
+
+JOINT_NAMES = [
+    'nose', 'neck', 'right_shoulder', 'right_elbow', 'right_wrist', 'left_shoulder',
+    'left_elbow', 'left_wrist', 'pelvis', 'right_hip', 'right_knee', 'right_ankle',
+    'left_hip', 'left_knee', 'left_ankle', 'right_eye', 'left_eye', 'right_ear',
+    'left_ear', 'left_big_toe', 'left_pinky', 'left_heel', 'right_big_toe', 'right_pinky',
+    "right_heel"
+]
+
+def generate_fused_rgb_grid_visualizations(
+        world4d_fused,
+        best_pose_idx,
+        worst_pose_idx,
+        cam1_name,
+        cam2_name,
+        output_dir,
+        video_base_path,
+):
+
+    post_figures = []
+
+    fig_rgb_best = visualize_frame_comparison_grid_rgb(
+        world4d_fused, best_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Best Aligned Poses - RGB View (Projected Joints)",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4,
+    )
+    post_figures.append(("Best Aligned Poses RGB", fig_rgb_best))
+
+    fig_rgb_worst = visualize_frame_comparison_grid_rgb(
+        world4d_fused, worst_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Worst Aligned Poses - RGB View (Projected Joints)",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4
+    )
+    post_figures.append(("Worst Aligned Poses RGB", fig_rgb_worst))
+
+    # Zoomed RGB grids (cropped around pose) — one page per selected frame, ±2 neighbor frames
+    zoom_pages_best = visualize_frame_comparison_grid_rgb(
+        world4d_fused, best_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Best Aligned Poses - RGB Zoomed (Projected Joints)",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4,
+        zoom_in=True,
+        expand_with_neighbors=True,
+    )
+    for i, fig in enumerate(zoom_pages_best or []):
+        post_figures.append((f"Best Aligned Poses RGB Zoomed ({i+1}/{len(zoom_pages_best)})", fig))
+
+    zoom_pages_worst = visualize_frame_comparison_grid_rgb(
+        world4d_fused, worst_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Worst Aligned Poses - RGB Zoomed (Projected Joints)",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4,
+        zoom_in=True,
+        expand_with_neighbors=True,
+    )
+    for i, fig in enumerate(zoom_pages_worst or []):
+        post_figures.append((f"Worst Aligned Poses RGB Zoomed ({i+1}/{len(zoom_pages_worst)})", fig))
+
+    # Fused pose only on RGB
+    fig_fused_best = visualize_frame_fused_pose_comparison_grid_rgb(
+        world4d_fused, best_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Best Aligned Fused Pose - RGB View",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4
+    )
+    post_figures.append(("Best Aligned Fused Pose RGB", fig_fused_best))
+
+    fig_fused_worst = visualize_frame_fused_pose_comparison_grid_rgb(
+        world4d_fused, worst_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Worst Aligned Fused Pose - RGB View",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4
+    )
+    post_figures.append(("Worst Aligned Fused Pose RGB", fig_fused_worst))
+
+    # Fused pose zoomed on RGB
+    fig_fused_best_zoom = visualize_frame_fused_pose_comparison_grid_rgb(
+        world4d_fused, best_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Best Aligned Fused Pose - RGB Zoomed",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4,
+        zoom_in=True
+    )
+    post_figures.append(("Best Aligned Fused Pose RGB Zoomed", fig_fused_best_zoom))
+
+    fig_fused_worst_zoom = visualize_frame_fused_pose_comparison_grid_rgb(
+        world4d_fused, worst_pose_idx,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Worst Aligned Fused Pose - RGB Zoomed",
+        video_base_path=video_base_path,
+        output_dir=output_dir,
+        alpha=0.4,
+        zoom_in=True
+    )
+    post_figures.append(("Worst Aligned Fused Pose RGB Zoomed", fig_fused_worst_zoom))
+
+    return post_figures
+
+
+def _get_consecutive_frames(world4d, center_frame, n=10, step=1):
+    """Return up to n frame keys from world4d centered on center_frame, with stride step."""
+    sorted_keys = sorted(world4d.keys())
+    if center_frame not in sorted_keys:
+        return [center_frame]
+    ci = sorted_keys.index(center_frame)
+    half = (n * step) // 2
+    start = max(0, ci - half)
+    end = min(len(sorted_keys), start + n * step)
+    start = max(0, end - n * step)
+    return sorted_keys[start:end:step]
+
+
+def generate_worst_frames_pdf(
+    world4d_fused,
+    final_w1,
+    final_w2,
+    err_fused,
+    cam1_name,
+    cam2_name,
+    output_dir,
+    video_base_path,
+    output_folder_name,
+    top_percentile=10,
+    m=10,
+    seq_len=10,
+    n_subsample=10,
+):
+    """
+    Build a separate PDF for the M worst-error frames, selected via Gonzalez
+    greedy max-spread sampling from the top-percentile error pool.
+
+    For each selected frame the PDF contains three pages showing seq_len consecutive
+    frames centred on the selected frame:
+      1. 4×seq_len RGB cross-projection strip
+           row 1: cam1 own pose (cyan)
+           row 2: cam2 own pose (orange)
+           row 3: cam1 frame + cam2 cross-projected (magenta)
+           row 4: cam2 frame + cam1 cross-projected (magenta)
+      2. 2×seq_len 3D zoomed-in skeleton comparison (no align / procrustes)
+      3. 2×seq_len 3D full-court view (no align / procrustes)
+
+    The PDF also opens with an error histogram showing the selection threshold.
+
+    Args:
+        world4d_fused: fused world4d dict (contains per-camera RGB and joint data)
+        final_w1, final_w2: per-view world4d dicts (used for 3D views)
+        err_fused: error dict from compute_fused_errors
+        cam1_name, cam2_name: display labels
+        output_dir: directory to save the PDF
+        video_base_path: root path for original video files
+        output_folder_name: base name for the PDF file
+        top_percentile: pool = frames in the top N% by PA-MPJPE error
+        m: number of frames to select via Gonzalez sampling
+        seq_len: number of consecutive frames to show per selected pose
+    """
+    metric = 'pose_l2_procrustes_mean'
+    valid_mask = err_fused['has_match'] & ~np.isnan(err_fused[metric])
+    valid_indices = err_fused['frame_idx'][valid_mask]
+    valid_errors = err_fused[metric][valid_mask]
+
+    if len(valid_indices) == 0:
+        print("[Worst Frames PDF] No valid frames, skipping.")
+        return
+
+    # --- page 1: histogram ---
+    fig_hist = plot_error_histogram_worst_frames(
+        err_fused, metric=metric, top_percentile=top_percentile,
+        title=f"PA-MPJPE Distribution — top {top_percentile}% threshold (red)"
+    )
+
+    # --- pool B: top-percentile frames ---
+    threshold = np.percentile(valid_errors, 100 - top_percentile)
+    bad_mask = valid_errors >= threshold
+    bad_indices = valid_indices[bad_mask].tolist()
+    bad_errors = valid_errors[bad_mask].tolist()
+    frame_to_error = dict(zip(bad_indices, bad_errors))
+
+    if not bad_indices:
+        print("[Worst Frames PDF] Pool B is empty, skipping.")
+        plt.close(fig_hist)
+        return
+
+    # --- extract pose features for Gonzalez (flattened world joints of first person) ---
+    feat_list, idx_list, err_list = [], [], []
+    for f, e in zip(bad_indices, bad_errors):
+        fd = world4d_fused.get(f, {})
+        cam1_data = fd.get('camera_1_data') or fd.get('camera_2_data')
+        if cam1_data:
+            jw = np.array(cam1_data[0]['joints_world'])
+            feat_list.append(jw.flatten())
+            idx_list.append(f)
+            err_list.append(e)
+
+    if not feat_list:
+        feat_list = [[e] for e in bad_errors]
+        idx_list = bad_indices
+        err_list = bad_errors
+
+    features = np.array(feat_list)
+    sort_order = np.argsort(err_list)[::-1]
+    sorted_indices = [idx_list[i] for i in sort_order]
+    sorted_features = features[sort_order]
+
+    selected_frames = gonzalez_sample_frames(sorted_indices, sorted_features, m)
+    print(f"[Worst Frames PDF] Selected {len(selected_frames)} frames: {selected_frames}")
+
+    # --- build figure list ---
+    figures = [(f"Error Distribution (top {top_percentile}% shaded red)", fig_hist)]
+
+    for i, f in enumerate(selected_frames):
+        err_val = frame_to_error.get(f, float('nan'))
+        seq_label = f"Frame {f} | PA-MPJPE = {err_val:.4f} m"
+        prefix = f"Bad Frame {i+1}/{len(selected_frames)}"
+
+        # Get seq_len frames centred on f, subsampled by n_subsample
+        seq_fused = _get_consecutive_frames(world4d_fused, f, seq_len, step=n_subsample)
+        seq_w1    = _get_consecutive_frames(final_w1,       f, seq_len, step=n_subsample)
+        seq_w2    = _get_consecutive_frames(final_w2,       f, seq_len, step=n_subsample)
+
+        # 4 rows × seq_len RGB cross-projection strip
+        fig_rgb = visualize_worst_frames_rgb_strip(
+            world4d_fused, seq_fused,
+            cam1_name=cam1_name, cam2_name=cam2_name,
+            video_base_path=video_base_path,
+            title=f"{prefix} — RGB Strip | {seq_label}",
+        )
+        if fig_rgb is not None:
+            figures.append((f"{prefix} RGB Strip", fig_rgb))
+
+        # 4 rows × seq_len RGB strip cropped around joint projections
+        fig_rgb_crop = visualize_worst_frames_rgb_strip(
+            world4d_fused, seq_fused,
+            cam1_name=cam1_name, cam2_name=cam2_name,
+            video_base_path=video_base_path,
+            title=f"{prefix} — RGB Strip Cropped | {seq_label}",
+            zoom_in=True,
+        )
+        if fig_rgb_crop is not None:
+            figures.append((f"{prefix} RGB Strip Cropped", fig_rgb_crop))
+
+        # 4 rows × seq_len RGB strip cropped, cam2-centered cross-projection
+        fig_rgb_crop_c2 = visualize_worst_frames_rgb_strip_cam2centered(
+            world4d_fused, seq_fused,
+            cam1_name=cam1_name, cam2_name=cam2_name,
+            video_base_path=video_base_path,
+            title=f"{prefix} — RGB Strip Cropped Cam2-Centered | {seq_label}",
+            zoom_in=True,
+        )
+        if fig_rgb_crop_c2 is not None:
+            figures.append((f"{prefix} RGB Strip Cropped Cam2-Centered", fig_rgb_crop_c2))
+
+        # 2 rows × seq_len zoomed 3D skeletons
+        fig_zoom = visualize_frame_comparison_grid_zoomed(
+            final_w1, final_w2, seq_w1,
+            cam1_name=cam1_name, cam2_name=cam2_name,
+            title=f"{prefix} — 3D Zoomed | {seq_label}",
+            max_frames=seq_len,
+        )
+        if fig_zoom is not None:
+            figures.append((f"{prefix} 3D Zoomed", fig_zoom))
+
+        # 2 rows × seq_len court views
+        fig_court = visualize_frame_comparison_grid_court(
+            final_w1, final_w2, seq_w1,
+            cam1_name=cam1_name, cam2_name=cam2_name,
+            title=f"{prefix} — 3D Court | {seq_label}",
+            max_frames=seq_len,
+        )
+        if fig_court is not None:
+            figures.append((f"{prefix} 3D Court", fig_court))
+
+    pdf_path = os.path.join(output_dir, f"{output_folder_name}_worst_frames.pdf")
+    generate_summary_pdf_vector(pdf_path, figures)
+    print(f"  Worst-frames PDF saved to: {pdf_path}")
+
+
+# ============================================================
+# Chunk-level and beta-consistency analysis helpers
+# ============================================================
+
+def _to_numpy_shape(shape_tensor, idx):
+    """Extract shape row idx as a (10,) float32 numpy array."""
+    s = shape_tensor[idx]
+    if hasattr(s, 'cpu'):
+        return s.detach().cpu().float().numpy().flatten()
+    return np.asarray(s, dtype=np.float32).flatten()
+
+
+def _get_chunk_start_for_frame(frame, chunk_size, chunk_step):
+    """Return the owning PromptHMR chunk's start frame index for a world4d frame.
+
+    Uses the stored 'chunk_start' key when available (set by fuse_results.py).
+    Falls back to inferring from 'og_rgb_frame' for pkl files created before
+    that key was added. Returns None if neither field is available.
+    """
+    import math
+    cs = frame.get('chunk_start', None)
+    if cs is not None:
+        return int(cs)
+    og = frame.get('og_rgb_frame', None)
+    if og is None:
+        return None
+    n = max(0, math.ceil((og - chunk_size + 1) / chunk_step))
+    return n * chunk_step
+
+
+def compute_beta_consistency(final_w1, final_w2):
+    """Compute L2 distance between the shape (beta) estimates from each camera for each PID.
+
+    After match_pid_ids has aligned PIDs across cameras, the first frame where
+    a PID appears in both cameras gives us both cameras' beta estimate for that
+    person.  Shape is (roughly) constant within a video so one sample suffices.
+
+    Returns:
+        dict {int pid: float l2}
+    """
+    beta_l2_by_pid = {}
+    for global_idx in sorted(final_w1.keys()):
+        if global_idx not in final_w2:
+            continue
+        frame1 = final_w1[global_idx]
+        frame2 = final_w2[global_idx]
+        if len(frame1.get('track_id', [])) == 0 or len(frame2.get('track_id', [])) == 0:
+            continue
+        pids1 = frame1['track_id'].numpy().astype(int) if isinstance(frame1['track_id'], torch.Tensor) else np.array(frame1['track_id']).astype(int)
+        pids2 = frame2['track_id'].numpy().astype(int) if isinstance(frame2['track_id'], torch.Tensor) else np.array(frame2['track_id']).astype(int)
+        for pid in sorted(set(pids1) & set(pids2)):
+            if pid in beta_l2_by_pid:
+                continue
+            i1 = int(np.where(pids1 == pid)[0][0])
+            i2 = int(np.where(pids2 == pid)[0][0])
+            s1 = _to_numpy_shape(frame1['shape'], i1)
+            s2 = _to_numpy_shape(frame2['shape'], i2)
+            beta_l2_by_pid[int(pid)] = float(np.linalg.norm(s1 - s2))
+        if len(beta_l2_by_pid) > 0 and all(p in beta_l2_by_pid for p in sorted(set(pids1) & set(pids2))):
+            # early exit once all currently-seen PIDs are recorded
+            pass
+    return beta_l2_by_pid
+
+
+def collect_chunk_shapes(world4d, chunk_size=500, chunk_step=250):
+    """For each PID in world4d, collect the shape (beta) estimate per PromptHMR chunk.
+
+    Returns:
+        dict {int pid: {int chunk_start: np.ndarray shape (10,)}}
+    """
+    chunk_shapes = {}
+    for frame_data in world4d.values():
+        cs = _get_chunk_start_for_frame(frame_data, chunk_size, chunk_step)
+        if cs is None:
+            continue
+        if len(frame_data.get('track_id', [])) == 0:
+            continue
+        pids = frame_data['track_id'].numpy().astype(int) if isinstance(frame_data['track_id'], torch.Tensor) else np.array(frame_data['track_id']).astype(int)
+        for i, pid in enumerate(pids):
+            pid = int(pid)
+            if pid not in chunk_shapes:
+                chunk_shapes[pid] = {}
+            if cs not in chunk_shapes[pid]:
+                chunk_shapes[pid][cs] = _to_numpy_shape(frame_data['shape'], i)
+    return chunk_shapes
+
+
+def compute_chunk_degradation(final_w1, final_w2, fps, chunk_size=500, chunk_step=250):
+    """Compute pairwise cross-camera error as a function of position within a PromptHMR chunk.
+
+    For each frame pair in (final_w1, final_w2) where og_rgb_frame is available,
+    records the position within the owning chunk and the pairwise error.  Averages
+    across all chunks at each position.
+
+    Returns:
+        dict with keys t_sec, trans_l2_mean, trans_l2_std,
+                       pose_l2_mean, pose_l2_std,
+                       mpjpe_mean, mpjpe_std, n_samples
+        (all values are np.ndarrays of the same length)
+    """
+    from collections import defaultdict
+    errors_by_pos = defaultdict(list)
+
+    for global_idx in sorted(final_w1.keys()):
+        if global_idx not in final_w2:
+            continue
+        frame1 = final_w1[global_idx]
+        frame2 = final_w2[global_idx]
+
+        og_frame = frame1.get('og_rgb_frame', None)
+        if og_frame is None:
+            continue
+        cs = _get_chunk_start_for_frame(frame1, chunk_size, chunk_step)
+        if cs is None:
+            continue
+        pos = int(og_frame) - int(cs)
+        if pos < 0 or pos >= chunk_size:
+            continue
+
+        m = extract_matched_joints_by_pid_single(frame1, frame2)
+        if m is None:
+            continue
+        e = compute_frame_errors(*m)
+        errors_by_pos[pos].append({
+            'trans_l2': e.get('trans_l2', np.nan),
+            'pose_l2': e.get('pose_l2_procrustes', np.nan),
+            'mpjpe': e.get('mpjpe', np.nan),
+        })
+
+    if not errors_by_pos:
+        return {}
+
+    positions = sorted(errors_by_pos.keys())
+    result = {
+        't_sec': np.array([p / fps for p in positions]),
+        'trans_l2_mean': np.array([np.nanmean([x['trans_l2'] for x in errors_by_pos[p]]) for p in positions]),
+        'trans_l2_std':  np.array([np.nanstd( [x['trans_l2'] for x in errors_by_pos[p]]) for p in positions]),
+        'pose_l2_mean':  np.array([np.nanmean([x['pose_l2']   for x in errors_by_pos[p]]) for p in positions]),
+        'pose_l2_std':   np.array([np.nanstd( [x['pose_l2']   for x in errors_by_pos[p]]) for p in positions]),
+        'mpjpe_mean':    np.array([np.nanmean([x['mpjpe']      for x in errors_by_pos[p]]) for p in positions]),
+        'mpjpe_std':     np.array([np.nanstd( [x['mpjpe']      for x in errors_by_pos[p]]) for p in positions]),
+        'n_samples':     np.array([len(errors_by_pos[p]) for p in positions]),
+    }
+    return result
+
+
+# ---- SMPLX zero-pose shape rendering ----
+
+def extract_per_pid_shapes(final_w1, final_w2):
+    """Return {pid: {'cam1': np.array(10,), 'cam2': np.array(10,)}} for matched PIDs."""
+    shapes = {}
+    for global_idx in sorted(final_w1.keys()):
+        if global_idx not in final_w2:
+            continue
+        frame1 = final_w1[global_idx]
+        frame2 = final_w2[global_idx]
+        if len(frame1.get('track_id', [])) == 0 or len(frame2.get('track_id', [])) == 0:
+            continue
+        pids1 = frame1['track_id'].numpy().astype(int) if isinstance(frame1['track_id'], torch.Tensor) else np.array(frame1['track_id']).astype(int)
+        pids2 = frame2['track_id'].numpy().astype(int) if isinstance(frame2['track_id'], torch.Tensor) else np.array(frame2['track_id']).astype(int)
+        for pid in sorted(set(pids1) & set(pids2)):
+            if pid not in shapes:
+                i1 = int(np.where(pids1 == pid)[0][0])
+                i2 = int(np.where(pids2 == pid)[0][0])
+                shapes[int(pid)] = {
+                    'cam1': _to_numpy_shape(frame1['shape'], i1),
+                    'cam2': _to_numpy_shape(frame2['shape'], i2),
+                }
+    return shapes
+
+
+def compute_per_pid_scale_factors(per_pid_shapes, final_w1, final_w2, smplx_model, device):
+    """Compute the scale factor (world metres / model units) per PID per camera.
+
+    World height  : median Z-extent of joints_world across frames (Z is up in court coords).
+    Model height  : Y-extent of the SMPLX T-pose vertices computed from the PID's own betas
+                    (Y is up in SMPLX canonical space).
+
+    Using T-pose vertices from actual betas avoids the 'joints' field, which may have a
+    different row count than 'track_id' in interpolated frames produced by
+    combine_world4ds_with_time_offset (joints_world IS properly handled; joints is not).
+
+    Returns:
+        dict {pid: {'cam1': float|None, 'cam2': float|None}}
+    """
+    from collections import defaultdict
+
+    world_heights = [defaultdict(list), defaultdict(list)]
+
+    for cam_idx, world4d in enumerate([final_w1, final_w2]):
+        for frame_data in world4d.values():
+            if len(frame_data.get('track_id', [])) == 0:
+                continue
+            if 'joints_world' not in frame_data:
+                continue
+            pids = (frame_data['track_id'].numpy().astype(int)
+                    if isinstance(frame_data['track_id'], torch.Tensor)
+                    else np.array(frame_data['track_id']).astype(int))
+            joints_w = frame_data['joints_world']
+            if hasattr(joints_w, 'cpu'):
+                joints_w = joints_w.detach().cpu().numpy()
+            for i, pid in enumerate(pids):
+                if i >= len(joints_w):
+                    continue
+                j_w = joints_w[i]  # (25, 3), Z-up in court coords
+                world_height = float(np.nanmax(j_w[:, 2]) - np.nanmin(j_w[:, 2]))
+                if world_height > 0.1:
+                    world_heights[cam_idx][int(pid)].append(world_height)
+
+    result = {}
+    for pid, shapes in per_pid_shapes.items():
+        # Model height: Y-extent of T-pose verts from actual per-camera betas
+        verts1 = compute_smplx_zero_pose_verts(shapes['cam1'], smplx_model, device)
+        verts2 = compute_smplx_zero_pose_verts(shapes['cam2'], smplx_model, device)
+        model_h1 = float(verts1[:, 1].max() - verts1[:, 1].min())
+        model_h2 = float(verts2[:, 1].max() - verts2[:, 1].min())
+
+        wh1 = float(np.median(world_heights[0][pid])) if world_heights[0][pid] else None
+        wh2 = float(np.median(world_heights[1][pid])) if world_heights[1][pid] else None
+
+        s1 = (wh1 / model_h1) if (wh1 is not None and model_h1 > 1e-6) else None
+        s2 = (wh2 / model_h2) if (wh2 is not None and model_h2 > 1e-6) else None
+        result[int(pid)] = {'cam1': s1, 'cam2': s2}
+    return result
+
+
+def compute_smplx_zero_pose_verts(betas, smplx_model, device):
+    """Run SMPLX forward pass with zero pose (T-pose) and given betas.
+
+    Returns vertices as np.ndarray of shape (V, 3).
+    """
+    zero_aa = torch.zeros(1, 55, 3, device=device)
+    rotmat = axis_angle_to_matrix(zero_aa)  # (1, 55, 3, 3)
+    betas_t = torch.tensor(betas, dtype=torch.float32, device=device).reshape(1, -1)
+    transl = torch.zeros(1, 3, device=device)
+    with torch.no_grad():
+        output = smplx_model(
+            global_orient=rotmat[:, :1],
+            body_pose=rotmat[:, 1:22],
+            betas=betas_t,
+            transl=transl,
+        )
+    return output.vertices[0].cpu().numpy()  # (V, 3)
+
+
+def _render_shape_panels(verts1, verts2, per_vertex_l2, cam1_name, cam2_name,
+                          horiz_axis, vert_axis, horiz_label, vert_label, colorbar_label,
+                          shift_to_origin=False):
+    """Create a 2-row shape comparison figure and return it.
+
+    Row 0: cam1 front | cam2 front | overlay (front) | per-vertex error (front)
+    Row 1: cam1 side  | cam2 side  | per-vertex error (side)
+    """
+    depth_axis = next(a for a in range(3) if a not in (horiz_axis, vert_axis))
+    unit = horiz_label.split('(')[-1].rstrip(')')
+    depth_label_str = {0: 'x', 1: 'y', 2: 'z'}[depth_axis]
+    side_horiz_label = f'{depth_label_str} ({unit})'
+
+    if shift_to_origin:
+        # Shift both meshes consistently so (0,0) is the bottom-left corner.
+        verts1 = verts1.copy()
+        verts2 = verts2.copy()
+        for ax_idx in (horiz_axis, vert_axis, depth_axis):
+            ax_min = min(verts1[:, ax_idx].min(), verts2[:, ax_idx].min())
+            verts1[:, ax_idx] -= ax_min
+            verts2[:, ax_idx] -= ax_min
+
+    vmax = float(np.percentile(per_vertex_l2, 95)) if per_vertex_l2.max() > 0 else 1e-6
+    dot_size = 0.5
+    # Axis limits derived from actual vertex extents (wingspan / depth) with 5% padding
+    x_max_front = max(verts1[:, horiz_axis].max(), verts2[:, horiz_axis].max()) * 1.05
+    x_max_side  = max(verts1[:, depth_axis].max(),  verts2[:, depth_axis].max())  * 1.05
+
+    mosaic = [
+        ['c1f', 'c2f', 'ovf', 'errf'],
+        ['c1s', 'c2s', 'errs',  '.'  ],
+    ]
+    fig, axd = plt.subplot_mosaic(mosaic, figsize=(24, 12))
+
+    _FS_TITLE = 14
+    _FS_LABEL = 13
+    _FS_TICK  = 12
+
+    def _style(a, title, xlabel, ylabel):
+        a.set_title(title, fontsize=_FS_TITLE)
+        a.set_xlabel(xlabel, fontsize=_FS_LABEL)
+        a.set_ylabel(ylabel, fontsize=_FS_LABEL)
+        a.tick_params(labelsize=_FS_TICK)
+        a.set_aspect('equal')
+        a.grid(True, alpha=0.2)
+
+    # --- Row 0: front views ---
+    ax = axd['c1f']
+    ax.scatter(verts1[:, horiz_axis], verts1[:, vert_axis], c='steelblue', s=dot_size, alpha=0.6)
+    _style(ax, cam1_name, horiz_label, vert_label)
+    ax.set_xlim(0, x_max_front); ax.set_ylim(0, 2)
+
+    ax = axd['c2f']
+    ax.scatter(verts2[:, horiz_axis], verts2[:, vert_axis], c='darkorange', s=dot_size, alpha=0.6)
+    _style(ax, cam2_name, horiz_label, vert_label)
+    ax.set_xlim(0, x_max_front); ax.set_ylim(0, 2)
+
+    ax = axd['ovf']
+    ax.scatter(verts1[:, horiz_axis], verts1[:, vert_axis],
+               c='steelblue', s=dot_size, alpha=0.5)
+    ax.scatter(verts2[:, horiz_axis], verts2[:, vert_axis],
+               c='darkorange', s=dot_size, alpha=0.5)
+    _style(ax, 'Overlay (front)', horiz_label, vert_label)
+    ax.set_xlim(0, x_max_front); ax.set_ylim(0, 2)
+
+    ax = axd['errf']
+    sc = ax.scatter(verts1[:, horiz_axis], verts1[:, vert_axis],
+                    c=per_vertex_l2, cmap='hot', s=dot_size, vmin=0, vmax=vmax, alpha=0.8)
+    plt.colorbar(sc, ax=ax, label=colorbar_label, fraction=0.046, pad=0.04).ax.tick_params(labelsize=_FS_TICK)
+    _style(ax, 'Per-vertex error (front)', horiz_label, vert_label)
+    ax.set_xlim(0, x_max_front); ax.set_ylim(0, 2)
+
+    # --- Row 1: side views ---
+    ax = axd['c1s']
+    ax.scatter(verts1[:, depth_axis], verts1[:, vert_axis], c='steelblue', s=dot_size, alpha=0.6)
+    _style(ax, f'{cam1_name} (side)', side_horiz_label, vert_label)
+    ax.set_xlim(0, x_max_side); ax.set_ylim(0, 2)
+
+    ax = axd['c2s']
+    ax.scatter(verts2[:, depth_axis], verts2[:, vert_axis], c='darkorange', s=dot_size, alpha=0.6)
+    _style(ax, f'{cam2_name} (side)', side_horiz_label, vert_label)
+    ax.set_xlim(0, x_max_side); ax.set_ylim(0, 2)
+
+    ax = axd['errs']
+    sc2 = ax.scatter(verts1[:, depth_axis], verts1[:, vert_axis],
+                     c=per_vertex_l2, cmap='hot', s=dot_size, vmin=0, vmax=vmax, alpha=0.8)
+    plt.colorbar(sc2, ax=ax, label=colorbar_label, fraction=0.046, pad=0.04).ax.tick_params(labelsize=_FS_TICK)
+    _style(ax, 'Per-vertex error (side)', side_horiz_label, vert_label)
+    ax.set_xlim(0, x_max_side); ax.set_ylim(0, 2)
+
+    return fig
+
+def save_pid_rgb_crops(per_pid_shapes, final_w1, final_w2, output_dir,
+                       video_base_path_1, video_base_path_2):
+    """Save a cropped RGB image for each PID so it's easy to identify who is who
+    in the SMPLX visualizations.
+
+    For each PID, searches final_w1 then final_w2 for the first frame where the
+    person is visible with a valid video frame. Projects the person's world-space
+    joints into the image, crops around them, and saves as
+    ``smplx_pid{pid}_rgb_crop.png`` in output_dir.
+    """
+    import cv2
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    for pid in sorted(per_pid_shapes.keys()):
+        saved = False
+        for world4d, vbp in [(final_w1, video_base_path_1),
+                             (final_w2, video_base_path_2)]:
+            for frame_idx in sorted(world4d.keys()):
+                fd = world4d[frame_idx]
+                og_frame = fd.get('og_rgb_frame')
+                og_vpath = fd.get('og_video_path')
+                if og_frame is None or og_vpath is None:
+                    continue
+
+                track_ids = fd.get('track_id', [])
+                if hasattr(track_ids, 'numpy'):
+                    track_ids = track_ids.numpy().astype(int).tolist()
+                else:
+                    track_ids = [int(t) for t in track_ids]
+                if pid not in track_ids:
+                    continue
+
+                frame_bgr = extract_frame_from_video(og_vpath, og_frame, vbp)
+                if frame_bgr is None:
+                    continue
+
+                frame_rgb = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2RGB)
+                person_idx = track_ids.index(pid)
+                joints = fd['joints_world'][person_idx]
+                if hasattr(joints, 'numpy'):
+                    joints = joints.numpy()
+
+                cam = fd.get('camera')
+                K = fd.get('K_calib')
+                if cam is not None and K is not None:
+                    R_c2w = cam[:3, :3]
+                    T_c2w = cam[:3, 3]
+                    R_w2c = R_c2w.T
+                    t_w2c = -R_w2c @ T_c2w
+                    pts_2d = []
+                    for joint in joints:
+                        P_cam = R_w2c @ joint + t_w2c
+                        if P_cam[2] <= 0:
+                            continue
+                        uvw = K @ P_cam
+                        pts_2d.append((uvw[0] / uvw[2], uvw[1] / uvw[2]))
+
+                    if pts_2d:
+                        H, W = frame_rgb.shape[:2]
+                        us = [p[0] for p in pts_2d]
+                        vs = [p[1] for p in pts_2d]
+                        bw = max(us) - min(us)
+                        bh = max(vs) - min(vs)
+                        pad = max(bw, bh) * 0.4
+                        x1 = max(0, int(min(us) - pad))
+                        y1 = max(0, int(min(vs) - pad))
+                        x2 = min(W, int(max(us) + pad))
+                        y2 = min(H, int(max(vs) + pad))
+                        if x2 > x1 and y2 > y1:
+                            frame_rgb = frame_rgb[y1:y2, x1:x2]
+
+                out_path = os.path.join(output_dir, f'smplx_pid{pid}_rgb_crop.png')
+                plt.imsave(out_path, frame_rgb)
+                print(f"  Saved RGB crop: {out_path}")
+                saved = True
+                break  # Found a good frame for this camera
+
+            if saved:
+                break  # Move on to the next PID
+
+        if not saved:
+            print(f"  Warning: no valid RGB frame found for PID {pid}")
+
+
+def plot_smplx_shape_comparison(per_pid_shapes, smplx_model, cam1_name, cam2_name,
+                                 device, output_dir, scale_by_pid=None):
+    """Render SMPLX T-pose for each PID from each camera, showing per-vertex L2 error.
+
+    Produces two figures per PID:
+      Figure 1 (model units): vertices in the SMPLX canonical coordinate system.
+          Front view x vs y, side view z vs y, all axes in 'model units'.
+      Figure 2 (world scale): vertices scaled to metric height using
+          scale_by_pid[pid] derived from world-space vs model-space joint extents.
+          Shown only when scale_by_pid is provided.
+
+    Also saves each figure as a PNG in output_dir.
+
+    Returns:
+        figs: list of (name, figure)
+        vertex_errors: {pid: {'per_vertex_l2_model': list, 'mean_l2_model': float,
+                               'per_vertex_l2_world': list, 'mean_l2_world': float,  (if scaled)
+                               'scale_cam1': float, 'scale_cam2': float}}
+    """
+    figs = []
+    vertex_errors = {}
+
+    for pid, shapes in sorted(per_pid_shapes.items()):
+        betas1 = shapes['cam1']
+        betas2 = shapes['cam2']
+
+        verts1 = compute_smplx_zero_pose_verts(betas1, smplx_model, device)  # (V,3) model units
+        verts2 = compute_smplx_zero_pose_verts(betas2, smplx_model, device)  # (V,3) model units
+
+        per_vertex_l2_model = np.linalg.norm(verts1 - verts2, axis=1)
+        beta_l2 = float(np.linalg.norm(betas1 - betas2))
+
+        pid_scales = (scale_by_pid or {}).get(pid, {})
+        s1 = pid_scales.get('cam1', None)
+        s2 = pid_scales.get('cam2', None)
+
+        # ---- Figure 1: model units ----
+        fig1 = _render_shape_panels(
+            verts1, verts2, per_vertex_l2_model,
+            cam1_name, cam2_name,
+            horiz_axis=0, vert_axis=1,
+            horiz_label='x (model units)', vert_label='y (model units)',
+            colorbar_label='L2 (model units)',
+            shift_to_origin=True,
+        )
+        fig1.suptitle(
+            f'SMPLX T-Pose Shape Comparison [model units]  |  PID {pid}  |  '
+            f'{cam1_name} vs {cam2_name}\n'
+            f'Beta L2: {beta_l2:.4f}   '
+            f'Mean vertex L2: {float(np.mean(per_vertex_l2_model)):.4f}   '
+            f'Max vertex L2: {float(np.max(per_vertex_l2_model)):.4f}',
+            fontsize=15,
+        )
+        fig1.tight_layout()
+        if output_dir:
+            p = os.path.join(output_dir, f'smplx_shape_pid{pid}_model_units.png')
+            fig1.savefig(p, dpi=120, bbox_inches='tight')
+            print(f"  Saved: {p}")
+        figs.append((f'SMPLX Shape PID {pid} (model units)', fig1))
+
+        # Record model-unit errors
+        entry = {
+            'per_vertex_l2_model': per_vertex_l2_model.tolist(),
+            'mean_l2_model': float(np.mean(per_vertex_l2_model)),
+            'max_l2_model': float(np.max(per_vertex_l2_model)),
+            'scale_cam1': s1,
+            'scale_cam2': s2,
+        }
+
+        # ---- Figure 2: world scale (only when scale is available) ----
+        if s1 is not None and s2 is not None:
+            verts1_w = verts1 * s1   # (V,3) metres
+            verts2_w = verts2 * s2   # (V,3) metres
+            per_vertex_l2_world = np.linalg.norm(verts1_w - verts2_w, axis=1)
+
+            fig2 = _render_shape_panels(
+                verts1_w, verts2_w, per_vertex_l2_world,
+                cam1_name, cam2_name,
+                horiz_axis=0, vert_axis=1,
+                horiz_label='x (m)', vert_label='y (m)',
+                colorbar_label='L2 (m)',
+                shift_to_origin=True,
+            )
+            mean_s = (s1 + s2) / 2
+            fig2.suptitle(
+                f'SMPLX T-Pose Shape Comparison [world scale]  |  PID {pid}  |  '
+                f'{cam1_name} vs {cam2_name}\n'
+                f'Scale: cam1={s1:.3f}, cam2={s2:.3f}   '
+                f'Mean vertex L2: {float(np.mean(per_vertex_l2_world)):.4f} m   '
+                f'Max vertex L2: {float(np.max(per_vertex_l2_world)):.4f} m',
+                fontsize=15,
+            )
+            fig2.tight_layout()
+            if output_dir:
+                p = os.path.join(output_dir, f'smplx_shape_pid{pid}_world_scale.png')
+                fig2.savefig(p, dpi=120, bbox_inches='tight')
+                print(f"  Saved: {p}")
+            figs.append((f'SMPLX Shape PID {pid} (world scale)', fig2))
+
+            entry['per_vertex_l2_world'] = per_vertex_l2_world.tolist()
+            entry['mean_l2_world'] = float(np.mean(per_vertex_l2_world))
+            entry['max_l2_world'] = float(np.max(per_vertex_l2_world))
+
+        vertex_errors[int(pid)] = entry
+
+    return figs, vertex_errors
+
+
+# ---- Plot functions ----
+
+def plot_beta_consistency(beta_l2_by_pid, cam1_name, cam2_name):
+    """Bar chart of cross-camera beta L2 per PID."""
+    fig, ax = plt.subplots(figsize=(max(6, len(beta_l2_by_pid) * 1.5), 5))
+    if not beta_l2_by_pid:
+        ax.text(0.5, 0.5, 'No matched PIDs found', ha='center', va='center',
+                transform=ax.transAxes)
+    else:
+        pids = sorted(beta_l2_by_pid.keys())
+        vals = [beta_l2_by_pid[p] for p in pids]
+        bars = ax.bar([f'PID {p}' for p in pids], vals, color='steelblue', edgecolor='black')
+        for bar, v in zip(bars, vals):
+            ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.002,
+                    f'{v:.4f}', ha='center', va='bottom', fontsize=9)
+        ax.set_ylabel('L2 (betas)')
+        ax.set_ylim(bottom=0)
+    ax.set_title(f'Cross-Camera Beta (Shape) Consistency\n{cam1_name} vs {cam2_name}')
+    fig.tight_layout()
+    return fig
+
+
+def plot_shape_chunk_consistency(chunk_shapes_1, chunk_shapes_2, cam1_name, cam2_name):
+    """Two figures for shape consistency across PromptHMR chunks.
+
+    Figure 1: L2 drift vs chunk index (one line per PID, one subplot per camera).
+    Figure 2: 2-D scatter of beta[0] vs beta[1], colored by PID,
+              markers differentiated by camera.
+
+    Returns list of (name, figure) tuples.
+    """
+    COLORS = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple',
+              'tab:brown', 'tab:pink', 'tab:gray']
+
+    all_pids = sorted(set(chunk_shapes_1.keys()) | set(chunk_shapes_2.keys()))
+    pid_color = {pid: COLORS[i % len(COLORS)] for i, pid in enumerate(all_pids)}
+
+    # ---- Figure 1: L2 drift vs chunk start frame ----
+    fig1, axes = plt.subplots(1, 2, figsize=(14, 5), sharey=True)
+    for ax, cam_shapes, cam_name in [(axes[0], chunk_shapes_1, cam1_name),
+                                      (axes[1], chunk_shapes_2, cam2_name)]:
+        for pid, chunk_dict in cam_shapes.items():
+            chunk_starts = sorted(chunk_dict.keys())
+            if len(chunk_starts) < 2:
+                continue
+            ref_shape = chunk_dict[chunk_starts[0]]
+            l2s = [float(np.linalg.norm(chunk_dict[cs] - ref_shape)) for cs in chunk_starts]
+            ax.plot(chunk_starts, l2s, marker='o',
+                    color=pid_color[pid], label=f'PID {pid}')
+        ax.set_title(f'{cam_name}')
+        ax.set_xlabel('Chunk start frame')
+        ax.set_ylabel('Beta L2 vs first chunk')
+        ax.legend(fontsize=8)
+        ax.grid(True, alpha=0.3)
+    fig1.suptitle('Shape (Beta) L2 Drift Across PromptHMR Chunks', fontsize=13)
+    fig1.subplots_adjust(top=0.88, bottom=0.12, left=0.08, right=0.97, wspace=0.15)
+
+    # ---- Figure 2: beta[0] vs beta[1] scatter ----
+    fig2, ax2 = plt.subplots(figsize=(8, 6))
+    for pid in all_pids:
+        color = pid_color[pid]
+        if pid in chunk_shapes_1:
+            pts = np.array(list(chunk_shapes_1[pid].values()))  # (K, 10)
+            ax2.scatter(pts[:, 0], pts[:, 1], color=color, marker='o', s=60,
+                        label=f'PID {pid} ({cam1_name})', alpha=0.8)
+        if pid in chunk_shapes_2:
+            pts = np.array(list(chunk_shapes_2[pid].values()))  # (K, 10)
+            ax2.scatter(pts[:, 0], pts[:, 1], color=color, marker='^', s=60,
+                        label=f'PID {pid} ({cam2_name})', alpha=0.8, edgecolors='black',
+                        linewidths=0.5)
+    ax2.set_xlabel('Beta[0]')
+    ax2.set_ylabel('Beta[1]')
+    ax2.set_title('Shape Parameter Scatter Across Chunks\n(circles = cam1, triangles = cam2)')
+    ax2.legend(fontsize=8)
+    ax2.grid(True, alpha=0.3)
+    fig2.subplots_adjust(top=0.88, bottom=0.12, left=0.10, right=0.97)
+
+    return [("Shape Chunk L2 Drift", fig1), ("Shape Beta Scatter", fig2)]
+
+
+def plot_chunk_degradation(degradation_data):
+    """Plot average pairwise error vs time-within-chunk with ±1 std band."""
+    fig, ax = plt.subplots(figsize=(10, 5))
+    if not degradation_data:
+        ax.text(0.5, 0.5, 'No data available', ha='center', va='center',
+                transform=ax.transAxes)
+        ax.set_title('Cross-Camera Error vs Position Within PromptHMR Chunk')
+        fig.tight_layout()
+        return fig
+
+    t = degradation_data['t_sec']
+    metrics = [
+        ('trans_l2_mean', 'trans_l2_std', 'Translation L2', 'blue'),
+        ('pose_l2_mean',  'pose_l2_std',  'Procrustes Pose L2', 'orange'),
+        ('mpjpe_mean',    'mpjpe_std',    'MPJPE', 'red'),
+    ]
+    for mean_key, std_key, label, color in metrics:
+        if mean_key not in degradation_data:
+            continue
+        mean = degradation_data[mean_key]
+        std = degradation_data[std_key]
+        ax.plot(t, mean, label=label, color=color, linewidth=1.5)
+        ax.fill_between(t, mean - std, mean + std, color=color, alpha=0.15)
+
+    ax.set_xlabel('Time within chunk (s)')
+    ax.set_ylabel('Pairwise L2 (m)')
+    ax.set_title('Cross-Camera Error vs Position Within PromptHMR Chunk\n(shaded = ±1 std across chunks)')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    fig.tight_layout()
+    return fig
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--world4d_path_1", type=str, required=True)
+    parser.add_argument("--world4d_path_2", type=str, required=True)
+    parser.add_argument("--output_dir", type=str, default="temp_frames/time_calibration")
+    parser.add_argument("--start_offset", type=float, default=-200)
+    parser.add_argument("--end_offset", type=float, default=200)
+    parser.add_argument("--offset_step", type=float, default=20)
+    parser.add_argument("--chunk_size", type=int, default=1000) 
+    parser.add_argument("--fps", type=int, default=60)
+    parser.add_argument("--max_num_frames", type=int, default=None,
+                        help="Maximum number of frames to process (crops world4d data). If None, process all frames.")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Overwrite existing output files.",
+    )
+    parser.add_argument("--max_render_frames", type=int, default=None,
+                        help="Maximum number of frames to render for the temporally aligned (raw) video. If None, render all frames.")
+    parser.add_argument("--max_fused_frames", type=int, default=None,
+                        help="Maximum number of frames to render for the fused pose video. If None, render all frames.")
+    parser.add_argument("--generate_videos", action="store_true",
+                        help="Generate visualization videos. Disabled by default as it takes a long time.")
+    parser.add_argument("--video_base_path", type=str,
+                        default="/Volumes/ilona_seagate/tennis_dataset/full_dataset",
+                        help="Base path where original videos are stored (for RGB frame extraction).")
+    parser.add_argument("--calibrate_frame_subset", type=int, default=4,
+                        help="Number of chunk_size segments to run temporal calibration on. "
+                             "Only chunks with valid data are considered. Non-calibrated chunks "
+                             "use the median offset from calibrated ones. If None, use all chunks.")
+    parser.add_argument("--num_footwork_frames_for_vis", type=int, default=200,
+                        help="Number of frames to use for footwork analysis visualization.")
+    parser.add_argument("--video_base_path_1", type=str,
+                        default="/Volumes/ilona_seagate/tennis_dataset/full_dataset")
+    parser.add_argument("--video_base_path_2", type=str,
+                        default="/Volumes/ilona_seagate/tennis_dataset/full_dataset")
+    parser.add_argument("--calib_json_path_1", type=str, default=None,
+                        help="Path to the camera calibration JSON for camera 1 "
+                             "(frame_first_court_annotations_calibration.json). "
+                             "Used to supply K_calib when it is missing from the world4d pkl.")
+    parser.add_argument("--calib_json_path_2", type=str, default=None,
+                        help="Path to the camera calibration JSON for camera 2.")
+    parser.add_argument("--timestamps_path_1", type=str, default=None,
+                        help="Path to timestamps.npy for camera 1. When provided, overwrites "
+                             "'relative_timestamp' and 'global_timestamp' in each frame.")
+    parser.add_argument("--timestamps_path_2", type=str, default=None,
+                        help="Path to timestamps.npy for camera 2.")
+    parser.add_argument("--global_time_start_1", type=float, default=None,
+                        help="Global wallclock start time (ms) for camera 1. Used to compute "
+                             "global_timestamp = relative_timestamp + global_time_start. "
+                             "Falls back to the value already stored in the world4d dict.")
+    parser.add_argument("--global_time_start_2", type=float, default=None,
+                        help="Global wallclock start time (ms) for camera 2.")
+    parser.add_argument("--smpl_model", type=str, default="smplx", choices=["smpl", "smplx"],
+                        help="SMPL model type. When 'smpl', excludes head and extra feet joints "
+                             "from joint correlation analysis.")
+    parser.add_argument("--phmr_chunk_size", type=int, default=500,
+                        help="Size of each PromptHMR result chunk in frames. Default=500.")
+    parser.add_argument("--phmr_chunk_step", type=int, default=250,
+                        help="Step between consecutive PromptHMR chunks in frames "
+                             "(= chunk_size - overlap). Default=250.")
+    parser.add_argument("--n_jobs", type=int, default=1,
+                        help="Number of parallel workers for offset optimization. "
+                             "Use -1 for all CPU cores (default=1, serial).")
+
+    args = parser.parse_args()
+
+    # Joints absent in SMPL (vs SMPLX): head landmarks + extra toe/heel joints
+    SMPL_EXCLUDED_JOINTS = (
+        ['nose', 'neck', 'right_eye', 'left_eye', 'right_ear', 'left_ear',
+         'left_pinky', 'left_heel', 'right_pinky', 'right_heel']
+        if args.smpl_model == 'smpl' else None
+    )
+
+    output_folder_name = os.path.basename(os.path.normpath(args.output_dir))
+    cam1_name = os.path.basename(os.path.dirname(args.world4d_path_1))
+    cam2_name = os.path.basename(os.path.dirname(args.world4d_path_2))
+
+    error_analysis_dict = {
+        "metadata": {
+            "cam1_name": cam1_name,
+            "cam2_name": cam2_name,
+            "chunk_size": args.chunk_size
+        },
+        "errors_before_alignment": None
+    }
+
+    w1_aligned_path = os.path.join(args.output_dir, "w1_aligned.pkl")
+    w2_aligned_path = os.path.join(args.output_dir, "w2_aligned.pkl")
+    # Sentinel written after match_pid_ids; absent in caches built by older code.
+    _pid_matched_flag = os.path.join(args.output_dir, "w_aligned_pid_matched.flag")
+
+    # Default fragmentation results — populated in the calibration branch below.
+    # If calibration is skipped (aligned files already exist), they are recomputed
+    # in the POST-PROCESSING section on the final aligned world4ds.
+    _empty_cvtss = {
+        'cvtss': float('nan'), 'num_candidates': 0, 'num_confirmed': 0,
+        'confirmed_events': [], 'candidate_events_per_cam': [],
+    }
+    naive_switch_w1 = {'count': 0, 'events': []}
+    naive_switch_w2 = {'count': 0, 'events': []}
+    cvtss_dict = _empty_cvtss
+    w4d1 = None   # set in calibration branch; used for fragmentation plots
+    w4d2 = None
+
+    # load old analysis to avoid redundant calculations
+    # The pid_matched flag is absent in caches built before match_pid_ids was added;
+    # those stale caches must be regenerated so consistency metrics work correctly.
+    _cache_usable = (
+        os.path.exists(w1_aligned_path) and
+        os.path.exists(w2_aligned_path) and
+        os.path.exists(_pid_matched_flag) and
+        not args.force
+    )
+    if _cache_usable:
+        w1_aligned = joblib.load(w1_aligned_path)
+        w2_aligned = joblib.load(w2_aligned_path)
+
+    else:
+        if (not args.force and
+                os.path.exists(w1_aligned_path) and
+                os.path.exists(w2_aligned_path) and
+                not os.path.exists(_pid_matched_flag)):
+            print("  Warning: cached aligned pkl files predate PID matching. Regenerating...")
+        print(f"Loading data...")
+        print(f"  Camera 1: {cam1_name}")
+        print(f"  Camera 2: {cam2_name}")
+
+        w4d1 = joblib.load(args.world4d_path_1)
+        w4d2 = joblib.load(args.world4d_path_2)
+
+        # Load K_calib from calibration JSONs if provided
+        def _load_and_validate_K(calib_json_path, label):
+            """Load K from calib JSON and warn if its centre doesn't match image_shape.
+            Uses 'image_shape' stored in the JSON as the reference calibration resolution.
+            A mismatch indicates the K was calibrated at a different resolution than the
+            video — important for TRAM/GVHMR which use K_calib directly for projection."""
+            with open(calib_json_path) as _f:
+                _meta = json.load(_f)
+            _K = np.array(_meta['K'], dtype=np.float64)
+            if 'image_shape' in _meta:
+                _cw = _meta['image_shape']['width']
+                _ch = _meta['image_shape']['height']
+                _cx, _cy = _K[0, 2], _K[1, 2]
+                if abs(_cx - _cw / 2) > 5 or abs(_cy - _ch / 2) > 5:
+                    print(f"  [K_calib {label}] WARNING: K centre ({_cx:.1f},{_cy:.1f}) "
+                          f"does not match calib image_shape ({_cw}×{_ch}).  "
+                          f"RGB projection may be mis-aligned for TRAM/GVHMR.")
+                else:
+                    print(f"  [K_calib {label}] centre ({_cx:.1f},{_cy:.1f}) matches "
+                          f"image_shape ({_cw}×{_ch}) — OK.")
+            return _K
+
+        K_calib_1 = None
+        K_calib_2 = None
+        if args.calib_json_path_1 and os.path.exists(args.calib_json_path_1):
+            K_calib_1 = _load_and_validate_K(args.calib_json_path_1, "cam1")
+            print(f"  Loaded K_calib_1 from {args.calib_json_path_1}")
+        if args.calib_json_path_2 and os.path.exists(args.calib_json_path_2):
+            K_calib_2 = _load_and_validate_K(args.calib_json_path_2, "cam2")
+            print(f"  Loaded K_calib_2 from {args.calib_json_path_2}")
+
+        sample_frame_1 = next(iter(w4d1.values()))
+        sample_frame_2 = next(iter(w4d2.values()))
+        if "og_video_path" not in sample_frame_1:
+            add_paths_to_world4d_dict(w4d1, args.video_base_path_1,
+                                      world4d_path=args.world4d_path_1, K_calib=K_calib_1,
+                                      timestamps_path=args.timestamps_path_1,
+                                      global_time_start=args.global_time_start_1)
+        else:
+            if K_calib_1 is not None and 'K_calib' not in sample_frame_1:
+                for frame_data in w4d1.values():
+                    frame_data['K_calib'] = K_calib_1
+            if args.timestamps_path_1 is not None:
+                _ts1 = np.load(args.timestamps_path_1)
+                for frame_idx, frame_data in w4d1.items():
+                    if frame_idx < len(_ts1):
+                        rel_ts = float(_ts1[frame_idx])
+                        gts = (args.global_time_start_1 if args.global_time_start_1 is not None
+                               else frame_data.get('global_time_start', 0))
+                        frame_data['relative_timestamp'] = rel_ts
+                        frame_data['global_timestamp'] = rel_ts + gts
+        if "og_video_path" not in sample_frame_2:
+            add_paths_to_world4d_dict(w4d2, args.video_base_path_2,
+                                      world4d_path=args.world4d_path_2, K_calib=K_calib_2,
+                                      timestamps_path=args.timestamps_path_2,
+                                      global_time_start=args.global_time_start_2)
+        else:
+            if K_calib_2 is not None and 'K_calib' not in sample_frame_2:
+                for frame_data in w4d2.values():
+                    frame_data['K_calib'] = K_calib_2
+            if args.timestamps_path_2 is not None:
+                _ts2 = np.load(args.timestamps_path_2)
+                for frame_idx, frame_data in w4d2.items():
+                    if frame_idx < len(_ts2):
+                        rel_ts = float(_ts2[frame_idx])
+                        gts = (args.global_time_start_2 if args.global_time_start_2 is not None
+                               else frame_data.get('global_time_start', 0))
+                        frame_data['relative_timestamp'] = rel_ts
+                        frame_data['global_timestamp'] = rel_ts + gts
+
+        # --- make sure videos overlap temporally and crop ---
+        # Save full (uncropped) world4ds so we can extend final output to the full temporal union
+        w4d1_full = dict(w4d1)
+        w4d2_full = dict(w4d2)
+
+        print("\n[Preprocessing] Cropping to common time range...")
+        times1 = [d['global_timestamp'] for d in w4d1.values()]
+        times2 = [d['global_timestamp'] for d in w4d2.values()]
+
+        if times1 and times2:
+            start_common = max(min(times1), min(times2))
+            end_common = min(max(times1), max(times2))
+            
+            print(f"  Common Time Range: {start_common:.2f} to {end_common:.2f}")
+            
+            # Check for valid overlap
+            if start_common >= end_common:
+                print(f"  ERROR: No valid time overlap (start >= end). Skipping.")
+                os.makedirs(args.output_dir, exist_ok=True)
+                report_path = os.path.join(args.output_dir, "calibration_aborted.txt")
+                with open(report_path, 'w') as f:
+                    f.write("Temporal Calibration Aborted\n")
+                    f.write("="*50 + "\n\n")
+                    f.write(f"Camera 1: {cam1_name}\n")
+                    f.write(f"Camera 2: {cam2_name}\n\n")
+                    f.write(f"Reason: No valid time overlap between videos.\n")
+                    f.write(f"  Video 1 time range: {min(times1):.2f} to {max(times1):.2f}\n")
+                    f.write(f"  Video 2 time range: {min(times2):.2f} to {max(times2):.2f}\n")
+                print(f"Report saved to: {report_path}")
+                sys.exit(0)
+            
+            w4d1 = {k: v for k, v in w4d1.items() if start_common <= v['global_timestamp'] <= end_common}
+            w4d2 = {k: v for k, v in w4d2.items() if start_common <= v['global_timestamp'] <= end_common}
+            
+            print(f"  w4d1 reduced to {len(w4d1)} frames")
+            print(f"  w4d2 reduced to {len(w4d2)} frames")
+            
+            if len(w4d1) == 0 or len(w4d2) == 0:
+                print(f"  ERROR: No frames remaining after cropping. Skipping.")
+                os.makedirs(args.output_dir, exist_ok=True)
+                report_path = os.path.join(args.output_dir, "calibration_aborted.txt")
+                with open(report_path, 'w') as f:
+                    f.write("Temporal Calibration Aborted\n")
+                    f.write("="*50 + "\n\n")
+                    f.write(f"Camera 1: {cam1_name}\n")
+                    f.write(f"Camera 2: {cam2_name}\n\n")
+                    f.write(f"Reason: No frames remaining after cropping.\n")
+                print(f"Report saved to: {report_path}")
+                sys.exit(0)
+        else:
+            print("  Warning: One or both dictionaries are empty or have no timestamps.")
+            print("Exiting.")
+            sys.exit(1)
+
+        # --- Crop to max_num_frames if specified (this is for debugging) ---
+        if args.max_num_frames is not None:
+            keys1 = sorted(w4d1.keys())
+            keys2 = sorted(w4d2.keys())
+            keep1 = keys1[:args.max_num_frames]
+            keep2 = keys2[:args.max_num_frames]
+            w4d1 = {k: w4d1[k] for k in keep1}
+            w4d2 = {k: w4d2[k] for k in keep2}
+            print(f"\n[Preprocessing] Cropping to --max_num_frames={args.max_num_frames}:")
+            print(f"  w4d1: {len(keys1)} -> {len(w4d1)} frames")
+            print(f"  w4d2: {len(keys2)} -> {len(w4d2)} frames")
+
+        # --- POSE FRAGMENTATION METRICS (raw outputs, before any PID smoothing) ---
+        print("\n[Computing Pose Fragmentation Metrics (pre-smoothing)]...")
+        naive_switch_w1 = compute_naive_switch_count(w4d1, spatial_threshold=0.2)
+        naive_switch_w2 = compute_naive_switch_count(w4d2, spatial_threshold=0.2)
+        print(f"  {cam1_name}: {naive_switch_w1['count']} naive switches")
+        print(f"  {cam2_name}: {naive_switch_w2['count']} naive switches")
+
+        cvtss_dict = compute_cvtss(
+            [w4d1, w4d2], max_gap_frames=30, spatial_threshold=1.0, confirmation_radius=1.0
+        )
+        cvtss_val = cvtss_dict['cvtss']
+        cvtss_str = f"{cvtss_val:.3f}" if not (isinstance(cvtss_val, float) and
+                                                 np.isnan(cvtss_val)) else "N/A"
+        print(f"  CVTSS: {cvtss_str} ({cvtss_dict['num_confirmed']}/{cvtss_dict['num_candidates']} confirmed)")
+
+        # Apply CVTSS stitching as additional PID smoothing step
+        confirmed_for_cam0 = [e for e in cvtss_dict['confirmed_events'] if e['camera_a_idx'] == 0]
+        confirmed_for_cam1 = [e for e in cvtss_dict['confirmed_events'] if e['camera_a_idx'] == 1]
+        if confirmed_for_cam0:
+            print(f"  Applying CVTSS stitching to {cam1_name} ({len(confirmed_for_cam0)} events)...")
+            w4d1 = apply_cvtss_stitching(w4d1, confirmed_for_cam0)
+        if confirmed_for_cam1:
+            print(f"  Applying CVTSS stitching to {cam2_name} ({len(confirmed_for_cam1)} events)...")
+            w4d2 = apply_cvtss_stitching(w4d2, confirmed_for_cam1)
+
+        # --- Match PID IDs across cameras ---
+        # This ensures the same person has the same PID in both world4d dicts
+        # Returns (None, None) if no matching people found
+        print("\n[Preprocessing] Matching PID IDs across cameras...")
+        w4d1, w4d2 = match_pid_ids(
+            w4d1, w4d2,
+            max_distance=4.0,
+            num_sample_frames=200,
+            stable_max_gap_frames=90,
+            sample_full_video=True,
+            verbose=True,
+        )
+
+        if w4d1 is None or w4d2 is None:
+            print("\n" + "="*60)
+            print("CALIBRATION ABORTED: No matching people found across cameras.")
+            print("="*60)
+
+            os.makedirs(args.output_dir, exist_ok=True)
+            report_path = os.path.join(args.output_dir, "calibration_aborted.txt")
+            with open(report_path, 'w') as f:
+                f.write("Temporal Calibration Aborted\n")
+                f.write("="*50 + "\n\n")
+                f.write(f"Camera 1: {cam1_name}\n")
+                f.write(f"Camera 2: {cam2_name}\n\n")
+                f.write(f"Reason: No matching people found across cameras.\n")
+                f.write(f"The people detected in each camera view do not appear to be the same.\n")
+                f.write(f"Root distance threshold: {MAX_TRANSLATION_DISTANCE_FOR_MATCH}m\n")
+            print(f"Report saved to: {report_path}")
+            sys.exit(0)
+
+        os.makedirs(args.output_dir, exist_ok=True)
+
+        # Collect figures for PDF
+        all_figures = []
+
+        # --- Text Page 1 ---
+        fig = create_text_figure(
+            "Pose Alignment Results",
+            f"Camera 1: {cam1_name}\n"
+            f"Camera 2: {cam2_name}\n\n"
+        )
+        all_figures.append(("Title Page", fig))
+
+        fig = create_text_figure(
+            "Before Temporal Calibration",
+            f"(Global Offset = 0ms)"
+        )
+        all_figures.append(("Title Page", fig))
+
+        # --- DIAGNOSTIC: Frame-shift sweep (bypasses timestamps) ---
+        print("\n[Diagnostic] Frame-shift sweep (±10 frames, step=1)...")
+        fs_shifts, fs_errors, fs_n_valid, fs_best_shift, fs_best_ms = sweep_integer_frame_offsets(
+            w4d1, w4d2, min_shift=-10, max_shift=10, step=1, fps=args.fps
+        )
+        print(f"  Best frame shift: {fs_best_shift} frames ({fs_best_ms:.0f} ms @ {args.fps} fps)")
+        print(f"  Suggested offset range: --start_offset {fs_best_ms - 200:.0f} --end_offset {fs_best_ms + 200:.0f}")
+        fig_sweep = plot_integer_frame_offset_sweep(
+            fs_shifts, fs_errors, fs_n_valid, fs_best_shift, fs_best_ms, fps=args.fps
+        )
+        all_figures.append(("Frame-Shift Sweep (Diagnostic)", fig_sweep))
+
+        # --- PHASE 1: BEFORE (OFFSET 0) ---
+        print("\n[Phase 1] Baseline (Offset 0)...")
+        w1_0, w2_0, _ = combine_world4ds_with_time_offset(w4d1, w4d2, 0)
+        err_0 = compute_all_frame_errors(w1_0, w2_0)
+        error_analysis_dict["errors_before_alignment"] = err_0
+
+        # Joint correlation analysis - before
+        print("\n[Analyzing Joint Error Correlations - Before Alignment]...")
+        corr_figs_before, _, _ = analyze_joint_error_correlations(
+            err_0['per_joint_l2_procrustes'],
+            title_prefix="Before: ",
+            exclude_joints=SMPL_EXCLUDED_JOINTS,
+        )
+        all_figures.extend(corr_figs_before)
+        
+        ################### L2 Mean Error Plots ###################
+        metrics_to_plot = [
+            (error_analysis_dict["errors_before_alignment"]['trans_l2_mean'], "Translation L2", "blue"),
+            (error_analysis_dict["errors_before_alignment"]['pose_l2_mean'], "Pose L2 (Centered)", "green"),
+            (error_analysis_dict["errors_before_alignment"]['pose_l2_procrustes_mean'], "Procrustes Pose L2", "orange"),
+            (error_analysis_dict["errors_before_alignment"]['mpjpe_mean'], "MPJPE (World)", "red")
+        ]
+
+        fig = plot_l2_errors_combined(
+            error_analysis_dict["errors_before_alignment"]['timestamp'], 
+            metrics_to_plot, 
+            error_analysis_dict["errors_before_alignment"]['has_match'],
+            "L2 Error Metrics Before Temporal Alignment"
+        )
+        
+        all_figures.append(("Combined L2 Errors (Before)", fig))
+
+        # Per-PID L2 error plot
+        fig = plot_per_pid_l2_errors(error_analysis_dict["errors_before_alignment"], title="Per-PID Pose L2 Error (Before)")
+        if fig:
+            all_figures.append(("Per-PID Pose L2 Error (Before)", fig))
+
+        fig = plot_per_joint_histograms_overlaid(error_analysis_dict["errors_before_alignment"]['per_joint_l2'], error_analysis_dict["errors_before_alignment"]['per_joint_l2_procrustes'],
+                                                "Per-Joint Error (Before)", use_log=True)
+        if fig:
+            all_figures.append(("Per-Joint Histograms (Log)", fig))
+
+        # Depth vs frame plot
+        fig = plot_depth_vs_frame(w1_0, w2_0, cam1_name=cam1_name, cam2_name=cam2_name,
+                                  title="Depth from Camera vs Frame (Before)")
+        all_figures.append(("Depth vs Frame (Before)", fig))
+
+        # --- NEW: Depth Jitter / Scale Ambiguity Test ---
+        fig_jitter = plot_raw_camera_depth_jitter(w1_0, w2_0, cam1_name=cam1_name, cam2_name=cam2_name)
+        all_figures.append(("Raw Depth Jitter Analysis", fig_jitter))
+
+        # Get best and worst frames based on error
+        best_frames_0, worst_frames_0 = get_best_worst_frames(err_0, n_best=3, n_worst=3)
+        print(f"  Best frames (lowest error): {best_frames_0}")
+        print(f"  Worst frames (highest error): {worst_frames_0}")
+
+        # Best aligned poses - Court view
+        if best_frames_0:
+            fig = visualize_frame_comparison_grid_court(w1_0, w2_0, best_frames_0,
+                                                        cam1_name=cam1_name, cam2_name=cam2_name)
+            if fig:
+                all_figures.append(("Best Aligned Poses, Court View (Before)", fig))
+
+        # Best aligned poses - Zoomed view
+        if best_frames_0:
+            fig = visualize_frame_comparison_grid_zoomed(w1_0, w2_0, best_frames_0,
+                                                        cam1_name=cam1_name, cam2_name=cam2_name,
+                                                        title="Best Aligned Poses, Zoomed View (Before Calibration)")
+            if fig:
+                all_figures.append(("Best Aligned Poses, Zoomed View (Before)", fig))
+
+        # Worst aligned poses - Court view
+        if worst_frames_0:
+            fig = visualize_frame_comparison_grid_court(w1_0, w2_0, worst_frames_0,
+                                                        cam1_name=cam1_name, cam2_name=cam2_name,
+                                                        title="Worst Aligned Poses, Court View (Before Calibration)")
+            if fig:
+                all_figures.append(("Worst Aligned Poses, Court View (Before)", fig))
+
+        # Worst aligned poses - Zoomed view
+        if worst_frames_0:
+            fig = visualize_frame_comparison_grid_zoomed(w1_0, w2_0, worst_frames_0,
+                                                        cam1_name=cam1_name, cam2_name=cam2_name)
+            if fig:
+                all_figures.append(("Worst Aligned Poses, Zoomed View (Before)", fig))
+
+        # 10 consecutive frames with pose data in both cameras — quick sanity check of temporal offset
+        _both_have_people = [
+            k for k in sorted(w1_0.keys())
+            if len(w1_0[k].get('track_id', [])) > 0 and len(w2_0.get(k, {}).get('track_id', [])) > 0
+        ]
+        if len(_both_have_people) >= 10:
+            _mid = len(_both_have_people) // 2
+            _consec_10 = _both_have_people[_mid: _mid + 10]
+            fig = visualize_frame_comparison_grid_court(
+                w1_0, w2_0, _consec_10,
+                cam1_name=cam1_name, cam2_name=cam2_name,
+                title="10 Consecutive Frames Before Calibration (Court)")
+            if fig:
+                all_figures.append(("10 Consecutive Frames Before Cal (Court)", fig))
+            fig = visualize_frame_comparison_grid_zoomed(
+                w1_0, w2_0, _consec_10,
+                cam1_name=cam1_name, cam2_name=cam2_name,
+                title="10 Consecutive Frames Before Calibration (Zoomed)")
+            if fig:
+                all_figures.append(("10 Consecutive Frames Before Cal (Zoomed)", fig))
+
+        # --- Raw RGB sanity-check folders (no pose, before calibration) ---
+        _vbp1 = args.video_base_path_1 or args.video_base_path
+        _vbp2 = args.video_base_path_2 or args.video_base_path
+        if _vbp1 or _vbp2:
+            import cv2 as _cv2
+            _rgb_dir1 = os.path.join(args.output_dir, "rgb_before_calib_cam1")
+            _rgb_dir2 = os.path.join(args.output_dir, "rgb_before_calib_cam2")
+            os.makedirs(_rgb_dir1, exist_ok=True)
+            os.makedirs(_rgb_dir2, exist_ok=True)
+            # Build cam1 list: first 100 frames with a real video frame
+            _cam1_valid = [
+                (k, w4d1[k]['global_timestamp'])
+                for k in sorted(w4d1.keys())
+                if w4d1[k].get('og_rgb_frame') is not None and w4d1[k].get('og_video_path') is not None
+            ][:100]
+            # Build cam2 lookup by timestamp for nearest-neighbor matching
+            _cam2_entries = [
+                (k, w4d2[k]['global_timestamp'])
+                for k in sorted(w4d2.keys())
+                if w4d2[k].get('og_rgb_frame') is not None and w4d2[k].get('og_video_path') is not None
+            ]
+            if not _cam1_valid or not _cam2_entries:
+                print("[raw RGB folders] no frames with valid video paths found")
+            else:
+                _cam2_ts_arr = np.array([t for _, t in _cam2_entries])
+                for _i, (_k1, _ts1) in enumerate(_cam1_valid):
+                    _nearest = int(np.argmin(np.abs(_cam2_ts_arr - _ts1)))
+                    _k2 = _cam2_entries[_nearest][0]
+                    _fd1, _fd2 = w4d1[_k1], w4d2[_k2]
+                    _bgr1 = extract_frame_from_video(_fd1['og_video_path'], _fd1['og_rgb_frame'], _vbp1)
+                    _bgr2 = extract_frame_from_video(_fd2['og_video_path'], _fd2['og_rgb_frame'], _vbp2)
+                    if _bgr1 is not None:
+                        _cv2.imwrite(os.path.join(_rgb_dir1, f"frame_{_i:06d}.png"), _bgr1)
+                    if _bgr2 is not None:
+                        _cv2.imwrite(os.path.join(_rgb_dir2, f"frame_{_i:06d}.png"), _bgr2)
+                print(f"  Raw RGB frames saved to: {_rgb_dir1}  and  {_rgb_dir2}")
+
+        # Clear baseline aligned data to free memory (err_0 still needed for comparison plots later)
+        del w1_0, w2_0
+        gc.collect()
+
+        # --- Text Page 2 ---
+        _coarse_half = (args.end_offset - args.start_offset) / 2.0
+        _coarse_lo = fs_best_ms - _coarse_half
+        _coarse_hi = fs_best_ms + _coarse_half
+        fig = create_text_figure(
+            "Coarse Temporal Optimization",
+            f"Finding optimal temporal offset for {args.chunk_size}-frame chunks.\n\n"
+            f"RGB frame-shift sweep best offset: {fs_best_ms:.0f}ms\n"
+            f"Search range: {_coarse_lo:.0f}ms to {_coarse_hi:.0f}ms (centered on RGB offset)\n"
+            f"Step size: {args.offset_step}ms\n\n"
+            f"Optimization target: Procrustes-aligned pose L2 error"
+        )
+        all_figures.append(("Coarse Optimization", fig))
+
+        # --- PHASE 2: COARSE OPTIMIZATION ---
+        print("\n[Phase 2] Coarse Optimization...")
+        coarse_offsets = np.arange(_coarse_lo, _coarse_hi + args.offset_step, args.offset_step)
+
+        max_key = max(w4d1.keys()) if w4d1 else 0
+        all_chunk_starts = list(range(0, max_key, args.chunk_size))
+
+        # Filter to chunks with valid data if subset is requested
+        if args.calibrate_frame_subset is not None:
+            valid_chunk_starts = []
+            for c_start in all_chunk_starts:
+                c_end = c_start + args.chunk_size
+                valid_keys = [k for k in range(c_start, c_end) if k in w4d1]
+                if valid_keys:
+                    valid_chunk_starts.append(c_start)
+
+            if args.calibrate_frame_subset < len(valid_chunk_starts):
+                # Select evenly-spaced subset from valid chunks
+                n = args.calibrate_frame_subset
+                indices = np.linspace(0, len(valid_chunk_starts) - 1, n, dtype=int)
+                chunk_starts = [valid_chunk_starts[i] for i in indices]
+                print(f"  Subsampled {n} chunks from {len(valid_chunk_starts)} valid chunks "
+                      f"(out of {len(all_chunk_starts)} total)")
+            else:
+                chunk_starts = valid_chunk_starts
+                print(f"  Using all {len(valid_chunk_starts)} valid chunks "
+                      f"(out of {len(all_chunk_starts)} total)")
+        else:
+            chunk_starts = all_chunk_starts
+
+        print(f"  Chunks: {len(chunk_starts)} (frames: {chunk_starts[:5]}...)")
+        print(f"  Testing {len(coarse_offsets)} offsets: {coarse_offsets[0]}ms to {coarse_offsets[-1]}ms")
+
+        coarse_best = []
+        coarse_opt_data = []
+        
+        for c_start in tqdm(chunk_starts, desc="Coarse optimization"):
+            c_end = c_start + args.chunk_size
+            valid_keys = [k for k in range(c_start, c_end) if k in w4d1]
+            
+            if not valid_keys:
+                coarse_best.append(None)
+                continue
+            
+            best_off, stats_list = optimize_chunk_offset(w4d1, w4d2, c_start, c_end, coarse_offsets, valid_keys, n_jobs=args.n_jobs)
+            coarse_best.append(best_off)
+            
+            coarse_opt_data.append({
+                'start_frame': c_start,
+                'offsets': coarse_offsets,
+                'stats': stats_list,
+                'best_offset': best_off
+            })
+
+        coarse_grid_figs = plot_chunk_optimization_grid(coarse_opt_data, " (Coarse)")
+        all_figures.extend(coarse_grid_figs)
+
+        fig = plot_optimal_offsets_vs_chunk(chunk_starts, coarse_best, " (Coarse)", step_size=args.offset_step)
+        if fig:
+            all_figures.append(("Coarse Optimal Offsets", fig))
+
+        # Clear coarse optimization data to free memory
+        del coarse_opt_data
+        gc.collect()
+
+        # --- Text Page 3 ---
+        fine_range = args.offset_step
+        fine_step = args.offset_step / 8
+        fig = create_text_figure(
+            "Fine Temporal Optimization", 
+            f"Refining optimal offset around coarse result.\n\n"
+            f"Search range: best_coarse ± {fine_range}ms\n"
+            f"Step size: {fine_step}ms\n\n"
+            f"Optimization target: Procrustes-aligned pose L2 error"
+        )
+        all_figures.append(("Fine Optimization", fig))
+
+        # --- PHASE 3: FINE OPTIMIZATION ---
+        print("\n[Phase 3] Fine Optimization...")
+        
+        fine_best = []
+        fine_opt_data = []
+        
+        for i, c_start in enumerate(tqdm(chunk_starts, desc="Fine optimization")):
+            c_end = c_start + args.chunk_size
+            valid_keys = [k for k in range(c_start, c_end) if k in w4d1]
+            
+            if not valid_keys or coarse_best[i] is None:
+                fine_best.append(coarse_best[i] if i < len(coarse_best) else None)
+                continue
+            
+            coarse_offset = coarse_best[i]
+            fine_offsets = np.arange(coarse_offset - fine_range, 
+                                    coarse_offset + fine_range + fine_step, 
+                                    fine_step)
+            
+            best_off, stats_list = optimize_chunk_offset(w4d1, w4d2, c_start, c_end, fine_offsets, valid_keys, n_jobs=args.n_jobs)
+            fine_best.append(best_off)
+            
+            fine_opt_data.append({
+                'start_frame': c_start,
+                'offsets': fine_offsets,
+                'stats': stats_list,
+                'best_offset': best_off
+            })
+
+        fine_grid_figs = plot_chunk_optimization_grid(fine_opt_data, " (Fine)")
+        all_figures.extend(fine_grid_figs)
+
+        fig = plot_optimal_offsets_vs_chunk(chunk_starts, fine_best, " (Fine)", step_size=fine_step)
+        if fig:
+            all_figures.append(("Fine Optimal Offsets", fig))
+
+        # Clear fine optimization data to free memory
+        del fine_opt_data
+        gc.collect()
+
+        # --- PHASE 4: STITCH FINAL RESULT ---
+        print("\n[Phase 4] Stitching Final Result...")
+
+        # Build offset mapping for all chunks
+        # If subset was used, non-calibrated chunks get the median offset
+        calibrated_offsets = {c_start: fine_best[i] for i, c_start in enumerate(chunk_starts)
+                              if fine_best[i] is not None}
+        valid_offsets = [v for v in calibrated_offsets.values()]
+        median_offset = float(np.median(valid_offsets)) if valid_offsets else 0.0
+
+        if args.calibrate_frame_subset is not None and len(chunk_starts) < len(all_chunk_starts):
+            print(f"  Using median offset ({median_offset:.1f}ms) for "
+                  f"{len(all_chunk_starts) - len(chunk_starts)} non-calibrated chunks")
+            stitch_chunk_starts = all_chunk_starts
+        else:
+            stitch_chunk_starts = chunk_starts
+
+        final_times, final_tl2, final_pl2, final_mpjpe, final_match = [], [], [], [], []
+        final_pj_l2, final_pj_proc = [], []
+        final_w1, final_w2 = {}, {}
+        global_idx = 0
+
+        for c_start in stitch_chunk_starts:
+            # Use calibrated offset if available, otherwise median
+            off = calibrated_offsets.get(c_start, median_offset)
+
+            if off is None:
+                continue
+
+            c_end = c_start + args.chunk_size
+            valid_keys = [k for k in range(c_start, c_end) if k in w4d1]
+            if not valid_keys:
+                continue
+
+            t_start = w4d1[valid_keys[0]]['global_timestamp']
+            t_end = w4d1[valid_keys[-1]]['global_timestamp'] + 1.0
+            time_margin_ms = abs(off) + 100.0
+
+            w4d1_chunk = extract_time_range_subset(w4d1, t_start, t_end, time_margin=0)
+            w4d2_chunk = extract_time_range_subset(w4d2, t_start, t_end, time_margin=time_margin_ms)
+            w1_aligned, w2_aligned, _ = combine_world4ds_with_time_offset(w4d1_chunk, w4d2_chunk, off)
+
+            for k in sorted(w1_aligned.keys()):
+                frame1 = w1_aligned[k]
+                t = frame1['global_timestamp']
+
+                if t_start <= t <= t_end:
+                    final_w1[global_idx] = frame1
+
+                    if k in w2_aligned:
+                        frame2 = w2_aligned[k]
+                        final_w2[global_idx] = frame2
+
+                        m = extract_matched_joints_by_pid_single(frame1, frame2)
+                        final_times.append(t)
+                        if m:
+                            e = compute_frame_errors(*m)
+                            final_tl2.append(e['trans_l2'])
+                            final_pl2.append(e['pose_l2_procrustes'])
+                            final_mpjpe.append(e['mpjpe'])
+                            final_pj_l2.append(e['per_joint_l2'])
+                            final_pj_proc.append(e['per_joint_l2_procrustes'])
+                            final_match.append(True)
+                        else:
+                            final_tl2.append(np.nan)
+                            final_pl2.append(np.nan)
+                            final_mpjpe.append(np.nan)
+                            final_pj_l2.append(None)
+                            final_pj_proc.append(None)
+                            final_match.append(False)
+                    else:
+                        final_times.append(t)
+                        final_tl2.append(np.nan)
+                        final_pl2.append(np.nan)
+                        final_mpjpe.append(np.nan)
+                        final_pj_l2.append(None)
+                        final_pj_proc.append(None)
+                        final_match.append(False)
+
+                    global_idx += 1
+
+        final_times = np.array(final_times)
+        final_tl2 = np.array(final_tl2)
+        final_pl2 = np.array(final_pl2)
+        final_mpjpe = np.array(final_mpjpe)
+        final_match = np.array(final_match)
+
+        # --- Text Page 4 ---
+        fig = create_text_figure(
+            "Results After Temporal Calibration",
+            f"Pose agreement after coarse-to-fine temporal optimization.\n\n"
+            f"Total frames processed: {len(final_times)}\n"
+            f"Frames with valid matches: {np.sum(final_match)}"
+        )
+        all_figures.append(("Results Summary", fig))
+
+        err_after = compute_all_frame_errors(final_w1, final_w2)
+        error_analysis_dict["errors_after_alignment"] = err_after
+
+        # Define the metrics to overlay for the "After" plot
+        metrics_after = [
+            (error_analysis_dict["errors_after_alignment"]['trans_l2_mean'], "Translation L2", "blue"),
+            (error_analysis_dict["errors_after_alignment"]['pose_l2_mean'], "Pose L2 (Centered)", "green"),
+            (error_analysis_dict["errors_after_alignment"]['pose_l2_procrustes_mean'], "Procrustes Pose L2", "orange"),
+            (error_analysis_dict["errors_after_alignment"]['mpjpe_mean'], "MPJPE (World)", "red")
+        ]
+
+        fig = plot_l2_errors_combined(
+            error_analysis_dict["errors_after_alignment"]['timestamp'], 
+            metrics_after, 
+            error_analysis_dict["errors_after_alignment"]['has_match'],
+            "L2 Error Metrics After Temporal Alignment"
+        )
+        
+        all_figures.append(("Combined L2 Errors (After)", fig))
+
+        # Joint correlation analysis - after
+        print("\n[Analyzing Joint Error Correlations - After Alignment]...")
+        corr_figs_after, _, _ = analyze_joint_error_correlations(
+            final_pj_proc,
+            title_prefix="After: Procrusted-Aligned ",
+            exclude_joints=SMPL_EXCLUDED_JOINTS,
+        )
+        all_figures.extend(corr_figs_after)
+        
+        fig = plot_per_joint_histograms_overlaid(final_pj_l2, final_pj_proc,
+                                                "Per-Joint Error (After)", use_log=True)
+        if fig:
+            all_figures.append(("Per-Joint Histograms After (Log)", fig))
+
+        print("\n[Generating Calibration Comparison Summary]...")
+    
+        # You can loop through the main metrics to generate comparison pages
+        for m_key, m_label in [('trans_l2_mean', 'Translation'), 
+                            ('pose_l2_procrustes_mean', 'Pose (Procrustes)')]:
+            
+            fig = plot_calibration_comparison_summary(
+                err_0, err_after, 
+                metric=m_key,
+                title=f"Calibration Improvement: {m_label}"
+            )
+            all_figures.append((f"Improvement_{m_key}", fig))
+        
+        # Compute per-PID errors for the "after" data
+
+        fig = plot_error_comparison_per_pid(error_analysis_dict["errors_before_alignment"], 
+                                            error_analysis_dict["errors_after_alignment"], 
+                                            'trans_l2',
+                                            "Translation Error: Before vs After", "Translation L2 (m)")
+        all_figures.append(("Translation Error Comparison", fig))
+
+        fig = plot_error_comparison_per_pid(error_analysis_dict["errors_before_alignment"], 
+                                            error_analysis_dict["errors_after_alignment"], 
+                                            'pose_l2_procrustes',
+                                            "Pose Error: Before vs After", "Procrustes Pose L2 (m)")
+        all_figures.append(("Pose Error Comparison", fig))
+
+        gc.collect()
+
+        # Depth vs frame plot (after alignment)
+        if final_w1 and final_w2:
+            fig = plot_depth_vs_frame(final_w1, final_w2, cam1_name=cam1_name, cam2_name=cam2_name,
+                                      title="Depth from Camera vs Frame (After)")
+            all_figures.append(("Depth vs Frame (After)", fig))
+
+        fig = plot_per_pid_l2_errors(error_analysis_dict["errors_after_alignment"], title="Per-PID Pose L2 Error (After)")
+        if fig:
+            all_figures.append(("Per-PID Pose L2 Error (After)", fig))
+
+        # Build drift flags arrays for the error plots
+        # Need to match frame indices in err_final to drift flags in final_w1/final_w2
+        def build_drift_flags_from_err(err_dict, w1, w2):
+            """Build drift flags array matching error dict's frame indices."""
+            drift_flags = []
+            for frame_idx in err_dict['frame_idx']:
+                # Check if either camera has drift at this frame
+                has_drift = 0
+                if frame_idx in w1:
+                    pose_drift_1 = w1[frame_idx].get('pose_drift', [])
+                    if any(d == 1 for d in pose_drift_1):
+                        has_drift = 1
+                if frame_idx in w2:
+                    pose_drift_2 = w2[frame_idx].get('pose_drift', [])
+                    if any(d == 1 for d in pose_drift_2):
+                        has_drift = 1
+                drift_flags.append(has_drift)
+            return np.array(drift_flags)
+
+        drift_flags_final = build_drift_flags_from_err(error_analysis_dict["errors_after_alignment"], final_w1, final_w2)
+
+        # Drift-colored L2 error plot (only if we have pre-calibration data)
+        if 'err_0' in dir() and 'w1_0' in dir() and 'w2_0' in dir():
+            drift_flags_before = build_drift_flags_from_err(err_0, w1_0, w2_0)
+            fig = plot_pose_l2_vs_time_with_drift(
+                times_calib=error_analysis_dict["errors_after_alignment"]['timestamp'],
+                pose_l2_calib=error_analysis_dict["errors_after_alignment"]['pose_l2_procrustes_mean'],
+                has_match_calib=error_analysis_dict["errors_after_alignment"]['has_match'],
+                drift_flags_calib=drift_flags_final,
+                times_uncalib=err_0['timestamp'],
+                pose_l2_uncalib=err_0['pose_l2_procrustes_mean'],
+                has_match_uncalib=err_0['has_match'],
+                drift_flags_uncalib=drift_flags_before,
+                title="Pose L2 Error vs Time (Color-coded by Drift)"
+            )
+            all_figures.append(("Pose L2 with Drift Colors", fig))
+
+        best_frames_final, worst_frames_final = get_best_worst_frames(error_analysis_dict["errors_after_alignment"], n_best=3, n_worst=3)
+        print(f"  Best frames after alignment (lowest error): {best_frames_final}")
+        print(f"  Worst frames after alignment (highest error): {worst_frames_final}")
+
+        # Best aligned poses - Court view
+        fig = visualize_frame_comparison_grid_court(final_w1, final_w2, best_frames_final,
+                                                    cam1_name=cam1_name, cam2_name=cam2_name)
+        all_figures.append(("Best Aligned Poses, Court View (After)", fig))
+        fig = visualize_frame_comparison_grid_zoomed(final_w1, final_w2, best_frames_final,
+                                                        cam1_name=cam1_name, cam2_name=cam2_name,
+                                                        title="Best Aligned Poses, Zoomed View (After Calibration)")
+        all_figures.append(("Best Aligned Poses, Zoomed View (After)", fig))
+
+        # Worst aligned poses - Court view
+        fig = visualize_frame_comparison_grid_court(final_w1, final_w2, worst_frames_final,
+                                                        cam1_name=cam1_name, cam2_name=cam2_name,
+                                                        title="Worst Aligned Poses, Court View (After Calibration)")
+        all_figures.append(("Worst Aligned Poses, Court View (After)", fig))
+        fig = visualize_frame_comparison_grid_zoomed(final_w1, final_w2, worst_frames_final,
+                                                        cam1_name=cam1_name, cam2_name=cam2_name)
+        all_figures.append(("Worst Aligned Poses, Zoomed View (After)", fig))
+
+        # --- SAVE RESULTS ---
+        print("\n[Saving Results]...")
+        
+        results = {
+            'chunk_starts': chunk_starts,
+            'all_chunk_starts': all_chunk_starts,
+            'coarse_offsets': coarse_best,
+            'fine_offsets': fine_best,
+            'median_offset': median_offset,
+            'calibrate_frame_subset': args.calibrate_frame_subset,
+            'chunk_size': args.chunk_size,
+            'coarse_search_params': {
+                'start_offset': args.start_offset,
+                'end_offset': args.end_offset,
+                'offset_step': args.offset_step,
+            },
+            'fine_search_params': {
+                'range': fine_range,
+                'step': fine_step,
+            },
+            'cam1_name': cam1_name,
+            'cam2_name': cam2_name,
+        }
+        
+        results_path = os.path.join(args.output_dir, "calibration_results.pkl")
+        joblib.dump(results, results_path)
+        print(f"  Results saved to: {results_path}")
+
+        # Save aligned world4d dictionaries NOW (intersection only, before temporal union)
+        # so the pkl files stay small and fast to load on subsequent runs.
+        joblib.dump(final_w1, w1_aligned_path)
+        joblib.dump(final_w2, w2_aligned_path)
+        open(_pid_matched_flag, 'w').close()
+        print(f"  Aligned world4d 1 saved to: {w1_aligned_path}")
+        print(f"  Aligned world4d 2 saved to: {w2_aligned_path}")
+
+        # Extend final_w1/final_w2 (in memory only) to the full temporal union so
+        # the fused output covers the full video duration.  The saved pkl files above
+        # remain intersection-only for fast loading on subsequent runs.
+        print("\n[Extending to temporal union (in-memory only)]...")
+        ext_idx = global_idx  # continue sequential indexing
+
+        # Helper to build an empty frame dict for one camera in the other's slot
+        def _make_ext_empty(ref_frame):
+            return {
+                'track_id': np.array([]),
+                'camera': ref_frame.get('camera', np.eye(4)),
+                'global_timestamp': ref_frame.get('global_timestamp'),
+                'global_time_start': ref_frame.get('global_time_start'),
+                'relative_timestamp': ref_frame.get('relative_timestamp'),
+                'og_rgb_frame': None,
+                'og_video_path': None,
+            }
+
+        # Camera 1 frames outside the common range (camera 2 gets empty for those indices)
+        cam1_extra = sorted(
+            [k for k, v in w4d1_full.items()
+             if v.get('global_timestamp') is not None
+             and (v['global_timestamp'] < start_common or v['global_timestamp'] > end_common)],
+            key=lambda k: w4d1_full[k]['global_timestamp']
+        )
+        for k in cam1_extra:
+            final_w1[ext_idx] = w4d1_full[k]
+            final_w2[ext_idx] = _make_ext_empty(w4d1_full[k])
+            ext_idx += 1
+
+        # Camera 2 frames outside the common range — apply temporal offset so timestamps
+        # are expressed in camera 1's time domain (times_2_shifted = times_2 + time_offset).
+        cam2_extra = sorted(
+            [k for k, v in w4d2_full.items()
+             if v.get('global_timestamp') is not None
+             and (v['global_timestamp'] + median_offset < start_common
+                  or v['global_timestamp'] + median_offset > end_common)],
+            key=lambda k: w4d2_full[k]['global_timestamp']
+        )
+        for k in cam2_extra:
+            frame2 = dict(w4d2_full[k])
+            # Shift the timestamp into camera 1's domain
+            if frame2.get('global_timestamp') is not None:
+                frame2['global_timestamp'] = frame2['global_timestamp'] + median_offset
+            final_w1[ext_idx] = _make_ext_empty(frame2)
+            final_w2[ext_idx] = frame2
+            ext_idx += 1
+
+        print(f"  Added {len(cam1_extra)} extra camera-1 frames and "
+              f"{len(cam2_extra)} extra camera-2 frames (temporal union)")
+        print(f"  final_w1: {len(final_w1)} frames, final_w2: {len(final_w2)} frames")
+
+        # Note: PDF generation moved to end of script to include post-processing figures
+
+        # Print summary
+        print("\n" + "="*60)
+        print("CALIBRATION COMPLETE")
+        print("="*60)
+
+        valid_coarse = [x for x in coarse_best if x is not None]
+        valid_fine = [x for x in fine_best if x is not None]
+
+        if valid_coarse:
+            print(f"  Coarse offsets: mean={np.mean(valid_coarse):.1f}ms, std={np.std(valid_coarse):.1f}ms")
+        if valid_fine:
+            print(f"  Fine offsets: mean={np.mean(valid_fine):.1f}ms, std={np.std(valid_fine):.1f}ms")
+
+        print(f"\n  Results: {args.output_dir}")
+
+    # =========================================================
+    # POST-CALIBRATION: FUSION AND VIDEO GENERATION
+    # =========================================================
+    # This section runs whether calibration was just performed or loading existing results
+
+    print("\n" + "="*60)
+    print("POST-PROCESSING: FUSION AND VIDEO GENERATION")
+    print("="*60)
+
+    # Collect post-processing figures for PDF
+    post_figures = []
+
+    # Load the aligned world4d files
+    print("\n[Loading Aligned World4Ds]...")
+    final_w1 = joblib.load(w1_aligned_path)
+    final_w2 = joblib.load(w2_aligned_path)
+    print(f"  Loaded {len(final_w1)} frames from camera 1")
+    print(f"  Loaded {len(final_w2)} frames from camera 2")
+
+    # Refresh og_video_path for the current machine (paths stored in the pkl may be
+    # stale if the file was created on a different machine or with wrong base paths).
+    # Only og_video_path is updated; og_rgb_frame is left intact.
+    def _refresh_video_paths(world4d, video_base_path, world4d_path):
+        import glob as _glob
+        if not video_base_path or not world4d_path:
+            return
+        session_name = os.path.basename(os.path.dirname(world4d_path))
+        new_path = None
+        for ext in ['.MOV', '.mov', '.mp4', '.MP4']:
+            matches = _glob.glob(os.path.join(video_base_path, '*', session_name + ext))
+            if matches:
+                new_path = matches[0][:-len(ext)]
+                print(f"  [refresh_paths] Found video: {new_path}{ext}")
+                break
+        if new_path is None:
+            new_path = video_base_path  # fallback
+        for frame_data in world4d.values():
+            frame_data['og_video_path'] = new_path
+
+    _refresh_video_paths(final_w1, args.video_base_path_1, args.world4d_path_1)
+    _refresh_video_paths(final_w2, args.video_base_path_2, args.world4d_path_2)
+
+    # --- CROP FRAMES FOR PROCESSING ---
+    # Crop to max_num_frames if specified (for faster testing)
+    if args.max_num_frames is not None:
+        keys1 = sorted(final_w1.keys())
+        keys2 = sorted(final_w2.keys())
+        keep1 = keys1[:args.max_num_frames]
+        keep2 = keys2[:args.max_num_frames]
+        final_w1 = {k: final_w1[k] for k in keep1}
+        final_w2 = {k: final_w2[k] for k in keep2}
+        print(f"  Cropped to --max_num_frames={args.max_num_frames}:")
+        print(f"    final_w1: {len(keys1)} -> {len(final_w1)} frames")
+        print(f"    final_w2: {len(keys2)} -> {len(final_w2)} frames")
+
+    # --- POSE FRAGMENTATION METRICS (recompute if calibration was skipped) ---
+    # When calibration was already done (aligned files existed), fragmentation was
+    # not computed in the else branch above. Recompute here on the aligned world4ds.
+    if w4d1 is None or naive_switch_w1['count'] == 0 and not cvtss_dict['confirmed_events']:
+        print("\n[Computing Pose Fragmentation Metrics]...")
+        naive_switch_w1 = compute_naive_switch_count(final_w1, spatial_threshold=0.2)
+        naive_switch_w2 = compute_naive_switch_count(final_w2, spatial_threshold=0.2)
+        cvtss_dict = compute_cvtss(
+            [final_w1, final_w2], max_gap_frames=30, spatial_threshold=1.0, confirmation_radius=1.0
+        )
+        cvtss_str_pp = f"{cvtss_dict['cvtss']:.3f}" if not (
+            isinstance(cvtss_dict['cvtss'], float) and np.isnan(cvtss_dict['cvtss'])) else "N/A"
+        print(f"  {cam1_name}: {naive_switch_w1['count']} naive switches")
+        print(f"  {cam2_name}: {naive_switch_w2['count']} naive switches")
+        print(f"  CVTSS: {cvtss_str_pp} ({cvtss_dict['num_confirmed']}/{cvtss_dict['num_candidates']})")
+        w4d1 = final_w1
+        w4d2 = final_w2
+
+    # --- SPATIAL FUSION ---
+    fused_path = os.path.join(args.output_dir, "world4d_fused.pkl")
+
+    if os.path.exists(fused_path) and not args.force:
+        print("\n[Spatial Fusion] Loading existing fused world4d...")
+        world4d_fused = joblib.load(fused_path)
+        # pdb.set_trace()
+        print(f"  Loaded {len(world4d_fused)} frames from: {fused_path}")
+    else:
+        print("\n[Spatial Fusion]...")
+        world4d_fused = spatial_fusion_mle(final_w1, final_w2)
+        print(f"  Fused {len(world4d_fused)} frames")
+
+        # Save fused world4d
+        joblib.dump(world4d_fused, fused_path)
+        print(f"  Fused world4d saved to: {fused_path}")
+
+    # --- IDENTIFY POSE DRIFT ---
+    print("\n[Identifying Pose Drift]...")
+    final_w1, drift_stats_1 = identify_pose_drift(final_w1, verbose=False)
+    final_w2, drift_stats_2 = identify_pose_drift(final_w2, verbose=False)
+    _, drift_stats_fused = identify_pose_drift(world4d_fused, verbose=False)
+    print(f"  Camera 1: {drift_stats_1['drift_poses']}/{drift_stats_1['total_poses']} poses drifting "
+          f"({drift_stats_1['drift_ratio']*100:.1f}%)")
+    print(f"  Camera 2: {drift_stats_2['drift_poses']}/{drift_stats_2['total_poses']} poses drifting "
+          f"({drift_stats_2['drift_ratio']*100:.1f}%)")
+
+    # Find drift segments for potential video generation
+    drift_segments_1 = get_drift_segments(final_w1, min_segment_length=10)
+    drift_segments_2 = get_drift_segments(final_w2, min_segment_length=10)
+    # Drift speed plot
+    fig_drift_speed = plot_pose_drift_speed(
+        drift_stats_1, drift_stats_2, drift_stats_fused,
+        cam1_name=cam1_name, cam2_name=cam2_name,
+        title="Drift Detection: Pose Translation Speed vs Frame"
+    )
+    if fig_drift_speed:
+        post_figures.append(("Pose Drift Speed", fig_drift_speed))
+
+    # --- Compute errors from fused world4d (needed for statistics and best/worst frame selection) ---
+    print("\n[Computing pose alignment errors from fused data]...")
+    err_fused = compute_fused_errors(world4d_fused)
+    error_analysis_dict["errors_fused"] = err_fused
+
+    # --- Feature 1: Cross-camera beta (shape) consistency + SMPLX T-pose rendering ---
+    print("\n[Computing cross-camera beta consistency]...")
+    beta_l2_by_pid = compute_beta_consistency(final_w1, final_w2)
+    error_analysis_dict['shape_beta_consistency'] = beta_l2_by_pid
+    print(f"  Beta L2 per PID: {beta_l2_by_pid}")
+    fig_beta = plot_beta_consistency(beta_l2_by_pid, cam1_name, cam2_name)
+    post_figures.append(("Beta (Shape) Consistency", fig_beta))
+
+    # SMPLX T-pose render + per-vertex error
+    print("\n[Computing SMPLX T-pose shape renders and per-vertex error]...")
+    try:
+        _smplx_device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        _smplx_model = SMPLX_Layer(SMPLX_PATH).to(_smplx_device)
+        per_pid_shapes = extract_per_pid_shapes(final_w1, final_w2)
+        if per_pid_shapes:
+            scale_by_pid = compute_per_pid_scale_factors(
+                per_pid_shapes, final_w1, final_w2, _smplx_model, _smplx_device)
+            print(f"  Scale factors (world m / model unit): "
+                  f"{ {pid: {k: round(v, 3) for k, v in d.items() if v is not None} for pid, d in scale_by_pid.items()} }")
+            smplx_figs, smplx_vertex_errors = plot_smplx_shape_comparison(
+                per_pid_shapes, _smplx_model, cam1_name, cam2_name,
+                _smplx_device, args.output_dir,
+                scale_by_pid=scale_by_pid,
+            )
+            for name, fig in smplx_figs:
+                post_figures.append((name, fig))
+            error_analysis_dict['shape_vertex_consistency'] = smplx_vertex_errors
+            print(f"  Mean vertex L2 (model units): "
+                  f"{ {pid: round(v['mean_l2_model'], 5) for pid, v in smplx_vertex_errors.items()} }")
+            print("\n[Saving PID RGB crops for SMPLX identification]...")
+            save_pid_rgb_crops(
+                per_pid_shapes, final_w1, final_w2,
+                args.output_dir,
+                args.video_base_path_1, args.video_base_path_2,
+            )
+        else:
+            print("  No matched PIDs found; skipping SMPLX render.")
+        del _smplx_model
+    except Exception as e:
+        print(f"  Warning: SMPLX T-pose render failed: {e}")
+
+    # --- Feature 2: Shape consistency across PromptHMR chunks ---
+    if args.phmr_chunk_size > 0:
+        print("\n[Computing shape consistency across PromptHMR chunks]...")
+        chunk_shapes_1 = collect_chunk_shapes(final_w1, args.phmr_chunk_size, args.phmr_chunk_step)
+        chunk_shapes_2 = collect_chunk_shapes(final_w2, args.phmr_chunk_size, args.phmr_chunk_step)
+        print(f"  Camera 1: {len(chunk_shapes_1)} PIDs across chunks")
+        print(f"  Camera 2: {len(chunk_shapes_2)} PIDs across chunks")
+        figs_chunk_shape = plot_shape_chunk_consistency(chunk_shapes_1, chunk_shapes_2, cam1_name, cam2_name)
+        for name, fig in figs_chunk_shape:
+            post_figures.append((name, fig))
+        error_analysis_dict['shape_chunk_consistency'] = {
+            cam1_name: {str(pid): {str(cs): s.tolist() for cs, s in pdict.items()}
+                        for pid, pdict in chunk_shapes_1.items()},
+            cam2_name: {str(pid): {str(cs): s.tolist() for cs, s in pdict.items()}
+                        for pid, pdict in chunk_shapes_2.items()},
+        }
+
+    # --- Feature 3: Cross-camera error vs position within PromptHMR chunk ---
+    if args.phmr_chunk_size > 0:
+        print("\n[Computing chunk temporal degradation]...")
+        degradation_data = compute_chunk_degradation(
+            final_w1, final_w2, args.fps, args.phmr_chunk_size, args.phmr_chunk_step)
+        if degradation_data:
+            print(f"  Collected data for {len(degradation_data['t_sec'])} positions within chunk")
+            error_analysis_dict['temporal_chunk_degradation'] = {
+                k: v.tolist() if isinstance(v, np.ndarray) else v
+                for k, v in degradation_data.items()
+            }
+            fig_deg = plot_chunk_degradation(degradation_data)
+            post_figures.append(("Chunk Degradation Analysis", fig_deg))
+        else:
+            print("  No chunk degradation data (og_rgb_frame / chunk_start not available in these pkl files)")
+
+    # --- Joint correlation analysis on fused errors (always runs, saved to dict) ---
+    print("\n[Analyzing Joint Error Correlations - Fused]...")
+    corr_figs_fused, fused_corr_matrix, fused_corr_joint_names = analyze_joint_error_correlations(
+        err_fused['per_joint_l2_procrustes'],
+        title_prefix="Fused: ",
+        exclude_joints=SMPL_EXCLUDED_JOINTS,
+    )
+    post_figures.extend(corr_figs_fused)
+    if fused_corr_matrix is not None:
+        error_analysis_dict['joint_correlations'] = {
+            'joint_names': fused_corr_joint_names,
+            'correlation_matrix': fused_corr_matrix.tolist(),
+        }
+        print(f"  Saved {fused_corr_matrix.shape[0]}x{fused_corr_matrix.shape[1]} correlation matrix to error_analysis_dict['joint_correlations']")
+
+    # --- Camera-vs-fused error dict ---
+    print("\n[Computing camera-vs-fused errors]...")
+    error_dict = compute_camera_vs_fused_error_dict_two_cam(
+        world4d_fused, cam_names=[cam1_name, cam2_name]
+    )
+
+    # Compute per-frame average depth (distance from person to each camera center).
+    # camera_1 / camera_2 are 4x4 c2w matrices stored in every fused frame; the
+    # camera center in world space is the last column [:3, 3].
+    _avg_depth_per_frame = []
+    for _fidx in sorted(world4d_fused.keys()):
+        _frame = world4d_fused[_fidx]
+        _tw = _frame.get('trans_world')
+        if _tw is not None:
+            try:
+                _tw_np = np.asarray(_tw.numpy() if hasattr(_tw, 'numpy') else _tw, dtype=float)
+                if _tw_np.ndim == 1:
+                    _tw_np = _tw_np[np.newaxis, :]
+                if _tw_np.shape[0] > 0:
+                    _c1 = np.asarray(_frame.get('camera_1', np.eye(4)), dtype=float)[:3, 3]
+                    _c2 = np.asarray(_frame.get('camera_2', np.eye(4)), dtype=float)[:3, 3]
+                    _cam_centers = np.stack([_c1, _c2])  # (2, 3)
+                    _depths = np.linalg.norm(
+                        _tw_np[:, np.newaxis, :] - _cam_centers[np.newaxis, :, :], axis=-1
+                    )  # (N_people, 2)
+                    _avg_depth_per_frame.append(float(np.mean(_depths)))
+                    continue
+            except Exception:
+                pass
+        _avg_depth_per_frame.append(None)
+
+    error_dict['mean_fused_pose_error']['avg_depth_m'] = _avg_depth_per_frame
+    error_analysis_dict["camera_vs_fused_errors"] = error_dict
+
+    # Plot error dict timeseries for each metric
+    groups = [
+        [('trans_l2', 'Translation L2 (m)'), ('pose_l2', 'Pose L2 (m)')],
+        [('mpjpe', 'MPJPE (m)'), ('pa_mpjpe', 'PA-MPJPE (m)')]
+    ]
+
+    for group in groups:
+        # Create a page with 2 subplots
+        fig, axes = plt.subplots(2, 1, figsize=FIGURE_SIZE, sharex=True)
+        
+        # Fill the subplots using your helper
+        plot_error_dict_timeseries(error_dict, group[0][0], f"Camera vs Fused: {group[0][1]}", 
+                                   ylabel=group[0][1], cam_names=[cam1_name, cam2_name], ax=axes[0])
+        
+        plot_error_dict_timeseries(error_dict, group[1][0], f"Camera vs Fused: {group[1][1]}", 
+                                   ylabel=group[1][1], cam_names=[cam1_name, cam2_name], ax=axes[1])
+        
+        # Final housekeeping for the page
+        axes[1].set_xlabel('Timestamp / Frame Index', fontsize=12)
+        plt.tight_layout()
+        
+        # Append to your figure list
+        page_label = f"Fused Comparison {group[0][0]}_{group[1][0]}"
+        post_figures.append((page_label, fig))
+
+    # Find best and worst pose indices
+    all_aligned_keys = sorted(final_w1.keys())
+    valid_mask = err_fused['has_match'] & ~np.isnan(err_fused['pose_l2_procrustes_mean'])
+    valid_indices = err_fused['frame_idx'][valid_mask]
+    valid_errors = err_fused['pose_l2_procrustes_mean'][valid_mask]
+
+    if len(valid_indices) > 0:
+
+        best_pose_idx, worst_pose_idx = get_best_worst_frames(err_fused, n_best=3, n_worst=3)
+        # valid_indices/valid_errors are positional; best/worst_pose_idx are frame keys — build a lookup
+        frame_error_map = dict(zip(valid_indices.tolist(), valid_errors.tolist()))
+        print(f"  Best pose alignment at frame {best_pose_idx} (error: {frame_error_map.get(best_pose_idx[0], float('nan')):.4f}m)")
+        print(f"  Worst pose alignment at frame {worst_pose_idx} (error: {frame_error_map.get(worst_pose_idx[0], float('nan')):.4f}m)")
+    else:
+        best_pose_idx = [all_aligned_keys[0]]
+        worst_pose_idx = [all_aligned_keys[-1]]
+        print("  Warning: No valid frames for error computation, using first/last frames")
+
+    # --- FOOT SKATING METRIC ---
+    print("\n[Computing Foot Skating Metric]...")
+
+    skating_w1 = compute_foot_skating_metric(final_w1, fps=args.fps)
+    skating_w2 = compute_foot_skating_metric(final_w2, fps=args.fps)
+    skating_fused = compute_foot_skating_metric(world4d_fused, fps=args.fps)
+    error_analysis_dict["physics_foot_skating"] = {
+        "cam1": skating_w1,
+        "cam2": skating_w2,
+        "fused": skating_fused
+    }
+
+    # feet plots
+    skating_metrics = [skating_w1, skating_w2, skating_fused]
+    skating_labels = [cam1_name, cam2_name, "Fused Pose"]
+    fig = plot_foot_skating_comparison(skating_metrics, skating_labels)
+    post_figures.append(("Foot Skating", fig))
+
+    # --- STABILITY METRIC ---
+    print("\n[Computing Stability Metric]...")
+    stability_w1 = compute_stability_metric(final_w1)
+    stability_w2 = compute_stability_metric(final_w2)
+    stability_fused = compute_stability_metric(world4d_fused)
+    error_analysis_dict["physics_stability"] = {
+        "cam1": stability_w1,
+        "cam2": stability_w2,
+        "fused": stability_fused
+    }
+
+    stability_metrics = [stability_w1, stability_w2, stability_fused]
+    stability_labels = [cam1_name, cam2_name, "Fused Pose"]
+    fig = plot_stability_unified(stability_metrics, stability_labels)
+    post_figures.append(("Unified Stability Analysis", fig))
+
+    # --- CROSS-VIEW CONSISTENCY METRICS ---
+    print("\n[Computing Cross-View Consistency Metrics]...")
+    consistency_metrics = compute_cross_view_consistency_metrics(final_w1, final_w2)
+    print(f"  Stability consistency:    {consistency_metrics['stability_consistency_mean']:.4f}m")
+    print(f"  Foot vel. consistency:    {consistency_metrics['foot_velocity_consistency_mean']:.4f}m/s")
+    print(f"  Foot height consistency:  {consistency_metrics['foot_height_consistency_mean']:.4f}m")
+    error_analysis_dict["cross_view_consistency"] = {
+        "stability_consistency": round(float(consistency_metrics['stability_consistency_mean']), 6),
+        "foot_velocity_consistency": round(float(consistency_metrics['foot_velocity_consistency_mean']), 6),
+        "foot_velocity_left": round(float(consistency_metrics['foot_velocity_left_mean']), 6),
+        "foot_velocity_right": round(float(consistency_metrics['foot_velocity_right_mean']), 6),
+        "foot_height_consistency": round(float(consistency_metrics['foot_height_consistency_mean']), 6),
+        "foot_height_left": round(float(consistency_metrics['foot_height_left_mean']), 6),
+        "foot_height_right": round(float(consistency_metrics['foot_height_right_mean']), 6),
+    }
+
+    # --- POSE FRAGMENTATION FIGURES ---
+    print("\n[Generating Pose Fragmentation Figures]...")
+    error_analysis_dict["fragmentation"] = {
+        "naive_switch_cam1": naive_switch_w1.get('count', 0),
+        "naive_switch_cam2": naive_switch_w2.get('count', 0),
+        "cvtss": cvtss_dict.get('cvtss', float('nan')),
+        "num_candidates": cvtss_dict.get('num_candidates', 0),
+        "num_confirmed": cvtss_dict.get('num_confirmed', 0),
+    }
+
+    fig_switch_table = create_switching_metrics_table_figure(
+        [naive_switch_w1, naive_switch_w2], cvtss_dict,
+        cam_names=[cam1_name, cam2_name],
+    )
+    post_figures.append(("Pose Fragmentation Metrics Table", fig_switch_table))
+
+    fig_naive_1 = plot_naive_switch_frames(
+        w4d1, naive_switch_w1['events'], max_events=10,
+        title=f"Naive Switch Events: {cam1_name}",
+    )
+    if fig_naive_1 is not None:
+        post_figures.append((f"Naive Switches {cam1_name}", fig_naive_1))
+
+    fig_naive_2 = plot_naive_switch_frames(
+        w4d2, naive_switch_w2['events'], max_events=10,
+        title=f"Naive Switch Events: {cam2_name}",
+    )
+    if fig_naive_2 is not None:
+        post_figures.append((f"Naive Switches {cam2_name}", fig_naive_2))
+
+    fig_cvtss = plot_cvtss_switch_frames(
+        [w4d1, w4d2], cvtss_dict['confirmed_events'],
+        cam_names=[cam1_name, cam2_name], max_events=5,
+        title="CVTSS Confirmed Switch Events",
+    )
+    if fig_cvtss is not None:
+        post_figures.append(("CVTSS Confirmed Switches", fig_cvtss))
+
+    # --- FOOTWORK VISUALIZATION ---
+    print("\n[Generating Footwork Visualization]...")
+
+    footwork_figures = visualize_footwork_analysis(
+        final_w1, final_w2, world4d_fused,
+        best_pose_idx,
+        stability_w1, stability_w2, stability_fused,
+        skating_w1, skating_w2, skating_fused,
+        cam1_name, cam2_name,
+        video_base_path=args.video_base_path_1 or args.video_base_path,
+        output_dir=args.output_dir,
+        fps=args.fps,
+        title="Footwork Analysis: Best Aligned Pose"
+    )
+    post_figures.extend(footwork_figures)
+    footwork_figures = visualize_footwork_analysis(
+        final_w1, final_w2, world4d_fused,
+        worst_pose_idx,
+        stability_w1, stability_w2, stability_fused,
+        skating_w1, skating_w2, skating_fused,
+        cam1_name, cam2_name,
+        video_base_path=args.video_base_path,
+        output_dir=args.output_dir,
+        fps=args.fps,
+        title="Footwork Analysis: Worst Aligned Pose"
+    )
+    post_figures.extend(footwork_figures)
+
+    # --- GENERATE VIDEOS (optional) ---
+    if args.generate_videos:
+        print("\n[Generating Videos]...")
+        viz = FastTennisVisualizer()
+
+        # Find first frame with visible poses (skip empty frames at start)
+        first_visible_idx = 0
+        for i, frame_idx in enumerate(all_aligned_keys):
+            if frame_idx in final_w1 and frame_idx in final_w2:
+                frame1 = final_w1[frame_idx]
+                frame2 = final_w2[frame_idx]
+                has_poses_1 = 'joints_world' in frame1 and len(frame1['joints_world']) > 0
+                has_poses_2 = 'joints_world' in frame2 and len(frame2['joints_world']) > 0
+                if has_poses_1 or has_poses_2:
+                    first_visible_idx = i
+                    print(f"  First visible pose at frame index {i} (frame {frame_idx})")
+                    break
+
+        # Start from first visible frame
+        keys_from_visible = all_aligned_keys[first_visible_idx:]
+
+        # Determine which frames to render
+        if args.max_render_frames is not None and args.max_render_frames < len(keys_from_visible):
+            render_keys_aligned = keys_from_visible[:args.max_render_frames]
+            print(f"  Limiting aligned video to {args.max_render_frames} frames (out of {len(keys_from_visible)} starting from first visible)")
+        else:
+            render_keys_aligned = keys_from_visible
+
+        # Video 1: Temporally aligned poses (two cameras)
+        print("  Generating video: temporally_aligned_poses.mp4")
+        frames_dir_aligned = os.path.join(args.output_dir, "frames_aligned")
+        os.makedirs(frames_dir_aligned, exist_ok=True)
+
+        for render_idx, frame_idx in enumerate(tqdm(render_keys_aligned, desc="  Rendering aligned frames")):
+            if frame_idx not in final_w2:
+                continue
+
+            frame1 = final_w1[frame_idx]
+            frame2 = final_w2[frame_idx]
+
+            # Extract joints
+            joints1 = [frame1['joints_world'][i].numpy() for i in range(len(frame1['joints_world']))] if 'joints_world' in frame1 else []
+            joints2 = [frame2['joints_world'][i].numpy() for i in range(len(frame2['joints_world']))] if 'joints_world' in frame2 else []
+
+            # Get camera parameters
+            cam1 = frame1.get('camera', np.eye(4))
+            cam2 = frame2.get('camera', np.eye(4))
+            R1, T1 = cam1[:3, :3], cam1[:3, 3]
+            R2, T2 = cam2[:3, :3], cam2[:3, 3]
+
+            # Use render_idx for sequential frame numbering (0, 1, 2...) so ffmpeg can find them
+            viz.visualize_two_cameras_fast(
+                joints1, joints2, render_idx,
+                R1=R1, T1=T1, camera1_label=cam1_name,
+                R2=R2, T2=T2, camera2_label=cam2_name,
+                title="Temporally Aligned Poses",
+                output_dir=frames_dir_aligned,
+                global_timestamp=frame1.get('global_timestamp'),
+                is_c2w=True
+            )
+
+        # Generate video from frames
+        video_path_aligned = os.path.join(args.output_dir, "temporally_aligned_poses.mp4")
+        result = subprocess.run([
+            'ffmpeg', '-y', '-framerate', str(args.fps),
+            '-i', os.path.join(frames_dir_aligned, 'frame_%06d.png'),
+            '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2',
+            '-c:v', 'libx264', '-pix_fmt', 'yuv420p',
+            video_path_aligned
+        ], capture_output=True, text=True)
+
+        if result.returncode != 0:
+            print(f"    FFmpeg error (stdout): {result.stdout}")
+            print(f"    FFmpeg error (stderr): {result.stderr}")
+            raise subprocess.CalledProcessError(result.returncode, result.args, result.stdout, result.stderr)
+
+        print(f"    Saved: {video_path_aligned}")
+
+        # --- Video 2: Single fused pose video ---
+        # Fill empty frames (stride-2 gaps) so the rendered video doesn't flicker.
+        # This is view-only: the saved world4d_fused.pkl keeps its original sparse data
+        # so that velocity/skating metrics are unaffected.
+        world4d_fused_viz = fill_empty_frames(dict(world4d_fused))
+        all_fused_keys = sorted(world4d_fused_viz.keys())
+        n_total = len(all_fused_keys)
+
+        # Determine which fused frames to render
+        if args.max_fused_frames is not None and args.max_fused_frames < n_total:
+            render_keys_fused = all_fused_keys[:args.max_fused_frames]
+            print(f"\n  Generating fused video: fused_poses.mp4 ({args.max_fused_frames} of {n_total} frames)")
+        else:
+            render_keys_fused = all_fused_keys
+            print(f"\n  Generating fused video: fused_poses.mp4 ({n_total} frames)")
+
+        frames_dir_fused = os.path.join(args.output_dir, "frames_fused")
+        os.makedirs(frames_dir_fused, exist_ok=True)
+
+        for render_idx, frame_idx in enumerate(tqdm(render_keys_fused, desc="  Rendering fused frames")):
+            if frame_idx not in world4d_fused_viz:
+                continue
+            if frame_idx not in final_w1 or frame_idx not in final_w2:
+                continue
+
+            frame1 = final_w1[frame_idx]
+            frame2 = final_w2[frame_idx]
+            frame_fused = world4d_fused_viz[frame_idx]
+
+            # Extract joints
+            joints1 = [frame1['joints_world'][i].numpy() for i in range(len(frame1['joints_world']))] if 'joints_world' in frame1 else []
+            joints2 = [frame2['joints_world'][i].numpy() for i in range(len(frame2['joints_world']))] if 'joints_world' in frame2 else []
+            joints_fused = [frame_fused['joints_world'][i].numpy() for i in range(len(frame_fused['joints_world']))] if 'joints_world' in frame_fused else []
+
+            # Get camera parameters
+            cam1 = frame1.get('camera', np.eye(4))
+            cam2 = frame2.get('camera', np.eye(4))
+            R1, T1 = cam1[:3, :3], cam1[:3, 3]
+            R2, T2 = cam2[:3, :3], cam2[:3, 3]
+
+            viz.visualize_two_cameras_with_global_pose(
+                joints1, joints2, joints_fused, render_idx,
+                R1=R1, T1=T1, camera1_label=cam1_name,
+                R2=R2, T2=T2, camera2_label=cam2_name,
+                title="Fused Pose",
+                output_dir=frames_dir_fused,
+                global_timestamp=frame1.get('global_timestamp'),
+                is_c2w=True,
+                global_frame_idx=frame_idx,
+            )
+
+        # Generate video from frames
+        video_path_fused = os.path.join(args.output_dir, "fused_poses.mp4")
+        result = subprocess.run([
+            'ffmpeg', '-y', '-framerate', str(args.fps),
+            '-i', os.path.join(frames_dir_fused, 'frame_%06d.png'),
+            '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2',
+            '-c:v', 'libx264', '-pix_fmt', 'yuv420p',
+            video_path_fused
+        ], capture_output=True, text=True)
+
+        if result.returncode != 0:
+            print(f"    FFmpeg error (stdout): {result.stdout}")
+            print(f"    FFmpeg error (stderr): {result.stderr}")
+            raise subprocess.CalledProcessError(result.returncode, result.args, result.stdout, result.stderr)
+
+        print(f"    Saved: {video_path_fused}")
+    else:
+        print("\n[Skipping video generation (use --generate_videos to enable)]")
+
+    # --- RGB Grid Visualizations (best/worst aligned poses projected onto RGB) ---
+    print("\n[Generating RGB grid visualizations]...")
+
+
+    # Generate RGB grids
+    fused_rgb_figs = generate_fused_rgb_grid_visualizations(
+        world4d_fused,
+        best_pose_idx, worst_pose_idx,
+        cam1_name, cam2_name,
+        output_dir=args.output_dir,
+        video_base_path=args.video_base_path_1 or args.video_base_path,
+    )
+    post_figures.extend([(name, fig) for name, fig in fused_rgb_figs if fig is not None])
+
+    # --- Plot camera-person angles ---
+    print("\n[Generating plots]...")
+    fig_angles = plot_camera_person_angles(world4d_fused, title="Angle Between Cameras via Fused Pose")
+    angle_plot_path = os.path.join(args.output_dir, "camera_person_angles.png")
+    fig_angles.savefig(angle_plot_path, dpi=150, bbox_inches='tight')
+    plt.close(fig_angles)
+    print(f"  Saved: {angle_plot_path}")
+
+    # --- Scatter plot: Camera angle vs translation error ---
+    fig_angle_trans = plot_angle_vs_error_scatter(
+        world4d_fused, err_fused,
+        error_key='trans_l2',
+        title="Camera Angle vs Translation L2 Error"
+    )
+    angle_trans_plot_path = os.path.join(args.output_dir, "camera_angle_vs_translation_error.png")
+    fig_angle_trans.savefig(angle_trans_plot_path, dpi=150, bbox_inches='tight')
+    plt.close(fig_angle_trans)
+    print(f"  Saved: {angle_trans_plot_path}")
+
+    # --- Scatter plot: Camera angle vs joint error ---
+    fig_angle_joint = plot_angle_vs_error_scatter(
+        world4d_fused, err_fused,
+        error_key='pose_l2_procrustes',
+        title="Camera Angle vs Joint L2 Error"
+    )
+    angle_joint_plot_path = os.path.join(args.output_dir, "camera_angle_vs_joint_error.png")
+    fig_angle_joint.savefig(angle_joint_plot_path, dpi=150, bbox_inches='tight')
+    plt.close(fig_angle_joint)
+    print(f"  Saved: {angle_joint_plot_path}")
+
+    # --- Sternum-angle additive model: disagreement² = f(θ_A) + f(θ_B) ---
+    def _get_errors_for_sternum_frames(err_fused, frame_idx_arr, error_key):
+        idx_map = {int(fi): i for i, fi in enumerate(err_fused['frame_idx'])}
+        out = []
+        for fi in frame_idx_arr:
+            i = idx_map.get(int(fi))
+            if i is None:
+                out.append(np.nan)
+                continue
+            val = err_fused[error_key][i]
+            if isinstance(val, np.ndarray):
+                out.append(float(np.nanmean(val)) if val.size > 0 else np.nan)
+            else:
+                out.append(float(val))
+        return np.array(out)
+
+    for sternum_method in ['geometric', 'smplx']:
+        print(f"\n[Sternum-angle model ({sternum_method})]")
+        try:
+            s_frame_idx, theta_A, theta_B = compute_per_camera_sternum_angles(
+                world4d_fused, err_fused, method=sternum_method)
+        except Exception as exc:
+            print(f"  Skipped ({exc})")
+            continue
+
+        print(f"  {len(s_frame_idx)} frames; "
+              f"θ_A mean={np.nanmean(theta_A):.1f}°, θ_B mean={np.nanmean(theta_B):.1f}°")
+
+        for error_key, error_label, unit in [
+            ('trans_l2',           'Translation L2', 'm²'),
+            ('pose_l2_procrustes', 'PA-MPJPE',       'm²'),
+        ]:
+            errors = _get_errors_for_sternum_frames(err_fused, s_frame_idx, error_key)
+            errors_sq = errors ** 2
+
+            valid = ~(np.isnan(theta_A) | np.isnan(theta_B) | np.isnan(errors_sq))
+            if valid.sum() < 10:
+                print(f"  [{error_key}] too few valid frames ({valid.sum()}), skipping")
+                continue
+
+            f_theta, bin_centers = fit_additive_angle_model(
+                theta_A[valid], theta_B[valid], errors_sq[valid])
+
+            plot_title = (f'f(θ): {error_label} vs Sternum Angle '
+                          f'({sternum_method}, n={valid.sum()})')
+            fig_sternum = plot_f_theta(
+                f_theta, bin_centers,
+                theta_A[valid], theta_B[valid], errors_sq[valid],
+                title=plot_title,
+                ylabel=f'{error_label}² ({unit})')
+
+            fname = f"sternum_f_theta_{sternum_method}_{error_key}.png"
+            fpath = os.path.join(args.output_dir, fname)
+            fig_sternum.savefig(fpath, dpi=150, bbox_inches='tight')
+            post_figures.append((plot_title, fig_sternum))
+            print(f"  Saved: {fpath}")
+
+    # --- Pose distribution heatmap ---
+    fig_heatmap = plot_pose_distribution_heatmap(
+        world4d_fused, title="Pose Distribution on Court",
+        cam1_name=cam1_name, cam2_name=cam2_name
+    )
+    heatmap_path = os.path.join(args.output_dir, "pose_distribution_heatmap.png")
+    fig_heatmap.savefig(heatmap_path, dpi=150, bbox_inches='tight')
+    print(f"  Saved: {heatmap_path}")
+
+    # Add to post-processing figures for PDF
+    post_figures.append(("Pose Distribution Heatmap", fig_heatmap))
+
+    # --- Pose error heatmap (color-coded by L2 error) ---
+    fig_error_heatmap = plot_pose_error_heatmap(
+        world4d_fused, err_fused, title="Pose Error by Court Position",
+        cam1_name=cam1_name, cam2_name=cam2_name
+    )
+    error_heatmap_path = os.path.join(args.output_dir, "pose_error_heatmap.png")
+    fig_error_heatmap.savefig(error_heatmap_path, dpi=150, bbox_inches='tight')
+    print(f"  Saved: {error_heatmap_path}")
+    post_figures.append(("Pose Error Heatmap", fig_error_heatmap))
+
+    # --- Compute and save summary statistics ---
+    print("\n[Computing summary statistics]...")
+
+    # Get camera-person angles
+    _, angles_array = compute_camera_person_angles(world4d_fused)
+
+    # Compute mean errors
+    mean_trans_l2 = np.nanmean(err_fused['trans_l2_mean'])
+    mean_pose_l2 = np.nanmean(err_fused['pose_l2_procrustes_mean'])
+
+    # Compute per-joint errors (stacking valid frames)
+    # Flatten: collect all (25,) error arrays from all frames/PIDs
+    valid_pj_errors = []
+    for e in err_fused['per_joint_l2_procrustes']:
+        if e is None:
+            continue
+        if isinstance(e, np.ndarray):
+            if e.size == 0:
+                continue
+            if e.ndim == 1 and e.shape[0] == 25:
+                valid_pj_errors.append(e)
+            elif e.ndim == 2 and e.shape[1] == 25:
+                for row in e:
+                    valid_pj_errors.append(row)
+    if valid_pj_errors:
+        pj_error_matrix = np.stack(valid_pj_errors)
+        mean_pj_errors = np.mean(pj_error_matrix, axis=0)
+    else:
+        mean_pj_errors = np.array([])
+
+    # Load calibration results to get optimal timeshift
+    results_path = os.path.join(args.output_dir, "calibration_results.pkl")
+    if os.path.exists(results_path):
+        calib_results = joblib.load(results_path)
+        fine_offsets = calib_results.get('fine_offsets', [])
+        valid_offsets = [o for o in fine_offsets if o is not None]
+        optimal_timeshift = np.array(valid_offsets) if valid_offsets else np.array([])
+    else:
+        optimal_timeshift = np.array([])
+
+    # Build saved outputs dictionary
+    saved_outputs = {
+        'mean_pose_translation_l2_error_after_temporal_alignment': np.float32(mean_trans_l2),
+        'mean_joint_l2_error_after_temporal_alignment': np.float32(mean_pose_l2),
+        'angle_between_cameras_and_person': angles_array,
+        'optimal_timeshift': optimal_timeshift,
+    }
+
+    # Add per-joint L2 errors
+    for joint_idx, joint_name in enumerate(JOINT_NAMES):
+        if joint_idx < len(mean_pj_errors):
+            saved_outputs[f'{joint_name}_l2_error'] = pj_error_matrix[:, joint_idx] if len(valid_pj_errors) > 0 else np.array([])
+
+    # Save to file
+    output_stats_path = os.path.join(args.output_dir, "calibration_statistics.npz")
+    np.savez(output_stats_path, **saved_outputs)
+    print(f"  Saved statistics to: {output_stats_path}")
+
+    # --- Generate error_metrics.json ---
+    print("\n[Generating error_metrics.json]...")
+
+    # Summary means
+    mean_mpjpe = np.nanmean(err_fused['mpjpe_mean'])
+    mean_fused = error_dict['mean_fused_pose_error']
+    summary_camera_vs_fused = {
+        m: round(float(np.nanmean(mean_fused[m])), 6)
+        for m in ['pose_l2', 'trans_l2', 'mpjpe', 'pa_mpjpe']
+    }
+    summary_pairwise = {
+        'trans_l2': round(float(mean_trans_l2), 6),
+        'pose_l2': round(float(mean_pose_l2), 6),
+        'mpjpe': round(float(mean_mpjpe), 6),
+        'pa_mpjpe': round(float(mean_pose_l2), 6),
+    }
+    error_analysis_dict['summary_camera_vs_fused'] = summary_camera_vs_fused
+    error_analysis_dict['summary_pairwise'] = summary_pairwise
+
+    # --- NEW: Compute individual camera vs fused means ---
+    cam1_fused_key = f"{cam1_name}_fused_pose"
+    cam2_fused_key = f"{cam2_name}_fused_pose"
+    
+    summary_cam1_vs_fused = {
+        m: round(float(np.nanmean(error_dict[cam1_fused_key][m])), 6) if cam1_fused_key in error_dict else float('nan')
+        for m in ['pose_l2', 'trans_l2', 'mpjpe', 'pa_mpjpe']
+    }
+    summary_cam2_vs_fused = {
+        m: round(float(np.nanmean(error_dict[cam2_fused_key][m])), 6) if cam2_fused_key in error_dict else float('nan')
+        for m in ['pose_l2', 'trans_l2', 'mpjpe', 'pa_mpjpe']
+    }
+
+    def default_serializer(obj):
+        # Handle native Python ints and NumPy ints
+        if isinstance(obj, (int, np.integer)):
+            return int(obj)
+        
+        # Handle native Python floats and NumPy floats
+        elif isinstance(obj, (float, np.floating)):
+            if np.isnan(obj):
+                return None
+            return round(float(obj), 6)
+        
+        # Handle NumPy arrays by converting to list and recursing
+        elif isinstance(obj, np.ndarray):
+            return [default_serializer(x) for x in obj.tolist()]
+            
+        # Handle native lists (essential for multi-dimensional array recursion)
+        elif isinstance(obj, list):
+            return [default_serializer(x) for x in obj]
+            
+        raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+
+
+    json_path = os.path.join(args.output_dir, "error_analysis_dict.json")
+    with open(json_path, 'w') as f:
+        # Pass the custom serializer to the 'default' argument
+        json.dump(error_analysis_dict, f, indent=2, default=default_serializer)
+    print(f"  Saved: {json_path}")
+
+    # --- Summary Table ---
+    print("\n[Adding Summary Metrics Table to PDF]...")
+    
+    # Generate the table figure and append it to the PDF figures list
+    # Build skating/stability value dicts for the table
+    skating_table_values = {
+        'pairwise': (skating_w1['skating_mean'] + skating_w2['skating_mean']) / 2,
+        'cam_vs_fused': skating_fused['skating_mean'],
+        'cam1': skating_w1['skating_mean'],
+        'cam2': skating_w2['skating_mean'],
+        'fused': skating_fused['skating_mean'],
+        'cam1_pct': skating_w1.get('skating_pct', float('nan')),
+        'cam2_pct': skating_w2.get('skating_pct', float('nan')),
+        'fused_pct': skating_fused.get('skating_pct', float('nan')),
+    }
+    stability_table_values = {
+        'pairwise': abs(stability_w1['stability_mean'] - stability_w2['stability_mean']),
+        'cam_vs_fused': stability_fused['stability_mean'],
+        'cam1': stability_w1['stability_mean'],
+        'cam2': stability_w2['stability_mean'],
+        'fused': stability_fused['stability_mean'],
+    }
+
+    consistency_table_values = {
+        'stability_consistency': consistency_metrics['stability_consistency_mean'],
+        'foot_velocity_consistency': consistency_metrics['foot_velocity_consistency_mean'],
+        'foot_height_consistency': consistency_metrics['foot_height_consistency_mean'],
+    }
+
+    fig_table = create_metrics_table_figure(
+        summary_pairwise,
+        summary_camera_vs_fused,
+        summary_cam1_vs_fused,
+        summary_cam2_vs_fused,
+        cam1_name,
+        cam2_name,
+        skating_values=skating_table_values,
+        stability_values=stability_table_values,
+        consistency_values=consistency_table_values,
+        n_frames=len(world4d_fused),
+    )
+    post_figures.append(("Summary Metrics Table", fig_table))
+
+    # Keep the additional info printing to the terminal
+    print(f"\n  Additional Info:")
+    print(f"    Mean camera-person angle: {np.mean(angles_array):.1f}° (n={len(angles_array)})")
+    if len(optimal_timeshift) > 0:
+        print(f"    Optimal timeshift: mean={np.mean(optimal_timeshift):.1f}ms, std={np.std(optimal_timeshift):.1f}ms")
+
+    print("\n" + "="*60)
+    print("ALL PROCESSING COMPLETE")
+    print("="*60)
+
+
+    ####### saving oher stuff
+
+    print(f"  Output directory: {args.output_dir}")
+    if args.generate_videos:
+        print(f"  Videos:")
+        print(f"    - temporally_aligned_poses.mp4")
+        print(f"    - fused_poses.mp4")
+    print(f"  Plots:")
+    print(f"    - {os.path.basename(angle_plot_path)}")
+    print(f"    - {os.path.basename(angle_trans_plot_path)}")
+    print(f"    - {os.path.basename(angle_joint_plot_path)}")
+    print(f"    - {os.path.basename(heatmap_path)}")
+    print(f"    - {os.path.basename(error_heatmap_path)}")
+    print(f"  Statistics: {os.path.basename(output_stats_path)}")
+    print(f"  Fused world4d: {os.path.basename(fused_path)}")
+
+    # --- Timestamp Alignment Verification ---
+    # Use video_base_path_1 as the lookup root; og_video_path in the frames is absolute
+    # (set by _refresh_video_paths above) so this base path is only a fallback.
+    _ts_vbp = args.video_base_path_1 or args.video_base_path
+    print("\n[Generating Timestamp Alignment Verification]...")
+    fig_ts = plot_timestamp_alignment_grid(
+        [final_w1, final_w2],
+        cam_names=[cam1_name, cam2_name],
+        video_base_path=_ts_vbp,
+        n_frames=15,
+    )
+    if fig_ts:
+        post_figures.append(("Timestamp Alignment Verification", fig_ts))
+
+    cal_video_path = os.path.join(args.output_dir, "calibration_verification.mp4")
+    create_calibration_verification_video(
+        [final_w1, final_w2],
+        cam_names=[cam1_name, cam2_name],
+        video_base_path=_ts_vbp,
+        output_path=cal_video_path,
+    )
+
+    # --- GENERATE WORST-FRAMES PDF ---
+    print("\n[Generating Worst-Frames PDF]...")
+    generate_worst_frames_pdf(
+        world4d_fused=world4d_fused,
+        final_w1=final_w1,
+        final_w2=final_w2,
+        err_fused=err_fused,
+        cam1_name=cam1_name,
+        cam2_name=cam2_name,
+        output_dir=args.output_dir,
+        video_base_path=args.video_base_path_1 or args.video_base_path,
+        output_folder_name=output_folder_name,
+    )
+
+    # --- GENERATE FINAL PDF (combining calibration and post-processing figures) ---
+    print("\n[Generating PDF Analysis]...")
+    pdf_filename = f"{output_folder_name}.pdf"
+    pdf_path = os.path.join(args.output_dir, pdf_filename)
+
+    # Combine all figures (calibration + post-processing)
+    combined_figures = []
+    if 'all_figures' in dir() and all_figures:
+        combined_figures.extend(all_figures)
+    if post_figures:
+        combined_figures.extend(post_figures)
+
+    if combined_figures:
+        generate_summary_pdf_vector(pdf_path, combined_figures)
+        print(f"  PDF saved to: {pdf_path}")
+        for _, fig in combined_figures:
+            try:
+                plt.close(fig)
+            except Exception:
+                pass
+    else:
+        print("  Warning: No figures to include in PDF")

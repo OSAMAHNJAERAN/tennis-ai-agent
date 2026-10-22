@@ -1,0 +1,158 @@
+{
+  "status": "RED_OR_FAILED",
+  "pytest_exit_code": 1,
+  "started_utc": "2026-10-16T17:24:11.953314+00:00",
+  "ended_utc": "2026-10-16T17:24:24.118721+00:00",
+  "seconds": 12.165405900013866,
+  "counts": {
+    "passed": 3,
+    "failed": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "rows": [
+    {
+      "events": 257,
+      "landing_records": 514,
+      "calibrations": 257,
+      "retained_traced_bytes": 1642015,
+      "peak_traced_bytes": 1718107,
+      "values_sha256": "53cfd8821fc676bbc3d651f447093818e5ce2ecf2d0ea3cb3be6995f8d9d5187",
+      "active_selections": [
+        {
+          "frame": 0,
+          "count": 1,
+          "sha256": "349c705ad86434d07af101a28e4eea276c615ad93014e1ab34a1674588944644"
+        },
+        {
+          "frame": 1,
+          "count": 2,
+          "sha256": "70957f0d3fefe2b7a670c703186534cf7e698a55e02fdc0676c397ee8cb87f96"
+        },
+        {
+          "frame": 20,
+          "count": 20,
+          "sha256": "b8c0169806592e9e0e2a39620416a58f18c9c933b7081f6a6e9e7e61f06aa3e4"
+        },
+        {
+          "frame": 256,
+          "count": 20,
+          "sha256": "fe75549f93d2a472bbe97f9cc4e8d96d8c2040a78332d64e13a443694817eda6"
+        },
+        {
+          "frame": 282,
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_native_geometry": true,
+      "synthetic_writeback_assignments": 514,
+      "seconds": 0.5512510999978986
+    },
+    {
+      "events": 1025,
+      "landing_records": 2050,
+      "calibrations": 1025,
+      "retained_traced_bytes": 6550318,
+      "peak_traced_bytes": 6626410,
+      "values_sha256": "dc5c09effcc98d062e9f46521146f865ee331737424944fea597bef9b052ea18",
+      "active_selections": [
+        {
+          "frame": 0,
+          "count": 1,
+          "sha256": "349c705ad86434d07af101a28e4eea276c615ad93014e1ab34a1674588944644"
+        },
+        {
+          "frame": 1,
+          "count": 2,
+          "sha256": "70957f0d3fefe2b7a670c703186534cf7e698a55e02fdc0676c397ee8cb87f96"
+        },
+        {
+          "frame": 20,
+          "count": 20,
+          "sha256": "b8c0169806592e9e0e2a39620416a58f18c9c933b7081f6a6e9e7e61f06aa3e4"
+        },
+        {
+          "frame": 1024,
+          "count": 20,
+          "sha256": "1ef8a3a11574b52f79ce3c49c95799c9aaea805c700994c4f684d8f1a072f55b"
+        },
+        {
+          "frame": 1050,
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_native_geometry": true,
+      "synthetic_writeback_assignments": 2050,
+      "seconds": 2.1428496000007726
+    },
+    {
+      "events": 4097,
+      "landing_records": 8194,
+      "calibrations": 4097,
+      "retained_traced_bytes": 26187382,
+      "peak_traced_bytes": 26263474,
+      "values_sha256": "266cc0f07e58891a90a7d2bcdbed79ec8d4ac04213ab93fa3c5f93d10a97bfed",
+      "active_selections": [
+        {
+          "frame": 0,
+          "count": 1,
+          "sha256": "349c705ad86434d07af101a28e4eea276c615ad93014e1ab34a1674588944644"
+        },
+        {
+          "frame": 1,
+          "count": 2,
+          "sha256": "70957f0d3fefe2b7a670c703186534cf7e698a55e02fdc0676c397ee8cb87f96"
+        },
+        {
+          "frame": 20,
+          "count": 20,
+          "sha256": "b8c0169806592e9e0e2a39620416a58f18c9c933b7081f6a6e9e7e61f06aa3e4"
+        },
+        {
+          "frame": 4096,
+          "count": 20,
+          "sha256": "d17341788d223a7e5ef2bf85f0f0f540ea1be4d914e260dad62f477841a6caf4"
+        },
+        {
+          "frame": 4122,
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "actual_native_geometry": true,
+      "synthetic_writeback_assignments": 8194,
+      "seconds": 8.853967400005786
+    }
+  ],
+  "source_before": {
+    "src/pipeline/phase6_pipeline.py": "f9905e788a09d7c8eadc93503d90f60c9566070ca45bb50b731b2d83aa4f5e0e",
+    "src/visualization/landing_zones.py": "2eea8fd348effe678bd8bc57b0dc72f0e00af520c38da930796e703aa84a4860",
+    "src/court/court_geometry.py": "a1da8100c2b89562e397024e57e09ad575298b22723cad39436a9852b2981d44",
+    "src/utils/json_array_artifact.py": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194",
+    "tests/test_native_landing_retention.py": "b4688add6073b2a3c35f59616d2731e68e9e6e0463ddf0c4288215e6074dcc74",
+    "tests/test_event_result_pipeline_seam.py": "25ee9fe85783809560a986159fea6a93bfe5c4e9ab59482d7d445811a4e3f356"
+  },
+  "source_after": {
+    "src/pipeline/phase6_pipeline.py": "f9905e788a09d7c8eadc93503d90f60c9566070ca45bb50b731b2d83aa4f5e0e",
+    "src/visualization/landing_zones.py": "2eea8fd348effe678bd8bc57b0dc72f0e00af520c38da930796e703aa84a4860",
+    "src/court/court_geometry.py": "a1da8100c2b89562e397024e57e09ad575298b22723cad39436a9852b2981d44",
+    "src/utils/json_array_artifact.py": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194",
+    "tests/test_native_landing_retention.py": "b4688add6073b2a3c35f59616d2731e68e9e6e0463ddf0c4288215e6074dcc74",
+    "tests/test_event_result_pipeline_seam.py": "25ee9fe85783809560a986159fea6a93bfe5c4e9ab59482d7d445811a4e3f356"
+  },
+  "sources_unchanged": true,
+  "model_runtime_imports_observed": [],
+  "numerical_runtime_imports_observed": [
+    "cv2",
+    "numpy"
+  ],
+  "numpy_version": "2.3.1",
+  "peak_owned_working_set_bytes": 278675456,
+  "video_used": false,
+  "gpu_used": false,
+  "synthetic_geometry_storage_only": true,
+  "qualification_evidence": false,
+  "runner_sha256": "894f882b20381abe1dac23a7369597ec746700341f236aa729dd35644df963b9"
+}

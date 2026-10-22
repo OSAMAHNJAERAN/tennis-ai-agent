@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="64" time="14.180" timestamp="2026-10-08T11:32:02.823570+08:00" hostname="Osamah"><testcase classname="tests.test_product_ownership_uploads" name="test_session_restart_password_storage_revocation_and_csrf" time="0.239" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[]" time="0.151" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/result]" time="0.184" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/media/source]" time="0.161" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/media/annotated]" time="0.164" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/download/original]" time="0.231" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/download/annotated]" time="0.158" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/download/report]" time="0.220" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/download/readable-report]" time="0.395" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/download/csv]" time="0.227" /><testcase classname="tests.test_product_ownership_uploads" name="test_every_private_analysis_media_and_export_fails_for_nonowner[/download/source-timing]" time="0.185" /><testcase classname="tests.test_product_ownership_uploads" name="test_match_profile_draft_commands_and_legacy_isolation" time="0.243" /><testcase classname="tests.test_product_ownership_uploads" name="test_resumable_upload_offset_crash_surplus_completion_and_restart" time="0.306" /><testcase classname="tests.test_product_ownership_uploads" name="test_upload_and_batch_access_controls_cancellation_and_declared_limits" time="0.218" /><testcase classname="tests.test_product_ownership_uploads" name="test_completion_recovers_a_crash_after_queue_commit_without_duplicate" time="0.236" /><testcase classname="tests.test_product_ownership_uploads" name="test_competing_append_and_queue_claims_are_serialized" time="0.266" /><testcase classname="tests.test_product_ownership_uploads" name="test_coach_routes_require_authenticated_session_before_provider_work" time="0.163" /><testcase classname="tests.test_product_ownership_uploads" name="test_same_match_order_duplicate_check_and_one_file_failure" time="0.287" /><testcase classname="tests.test_product_ownership_uploads" name="test_job_cancel_retry_preserves_source_and_old_evidence" time="0.167" /><testcase classname="tests.test_product_ownership_uploads" name="test_account_mode_curated_read_only_examples_and_revoked_manifest" time="0.623" /><testcase classname="tests.test_product_ownership_uploads" name="test_remote_requests_require_account_and_secure_cookie_mode" time="0.147" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes[1]" time="0.001" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes[1000]" time="0.001" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes[65536]" time="0.001" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_absent_or_invalid_credit_remains_empty_without_changing_observations[None]" time="0.001" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_absent_or_invalid_credit_remains_empty_without_changing_observations[source1]" time="0.001" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_header_is_immediate_and_long_input_is_consumed_in_bounded_chunks" time="0.140" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_a_single_long_csv_row_is_never_split_inside_a_quoted_cell" time="0.000" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_fastapi_csv_route_streams_utf8_with_download_headers_and_no_full_buffer" time="0.036"><failure message="AssertionError: assert ['http.respon...esponse.body'] == ['http.respon...ator_started']&#10;  &#10;  At index 1 diff: 'http.response.body' != 'iterator_started'&#10;  Use -v to get more diff">saved_csv_service = (&lt;fastapi.applications.FastAPI object at 0x000002107C315F90&gt;, &lt;src.api.jobs.JobStore object at 0x000002107BEC6030&gt;, 'm...[[4.0, 8.0], None], 'player1Speeds': [0.0, None, 10.0], 'player2CourtPositions': [None, [5.0, 9.0], [6.0, 9.0]], ...}})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000210000F1220&gt;
+
+    def test_fastapi_csv_route_streams_utf8_with_download_headers_and_no_full_buffer(saved_csv_service, monkeypatch):
+        app, _, analysis_id, result = saved_csv_service
+        real_chunks = reporting.telemetry_csv_chunks
+        events = []
+    
+        def observe_chunks(saved):
+            events.append('iterator_started')
+            for chunk in real_chunks(saved, chunk_chars=100):
+                events.append('chunk_produced')
+                yield chunk
+    
+        def prohibit_legacy_buffer(_saved):
+            raise AssertionError('The HTTP route must not materialize the entire CSV.')
+    
+        monkeypatch.setattr(reporting, 'telemetry_csv_chunks', observe_chunks)
+        monkeypatch.setattr(reporting, 'telemetry_csv', prohibit_legacy_buffer)
+        messages = []
+    
+        async def send(message):
+            messages.append(message.copy())
+            events.append(message['type'])
+    
+        asyncio.run(app(request_scope(f'/api/analyses/{analysis_id}/download/csv'), empty_request, send))
+&gt;       assert events[:2] == ['http.response.start', 'iterator_started']
+E       AssertionError: assert ['http.respon...esponse.body'] == ['http.respon...ator_started']
+E         
+E         At index 1 diff: 'http.response.body' != 'iterator_started'
+E         Use -v to get more diff
+
+tests\test_streaming_telemetry_csv.py:180: AssertionError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_disconnected_csv_request_stops_before_reading_future_rows" time="0.033"><failure message="OSError: Client disconnected while sending the first chunk.">saved_csv_service = (&lt;fastapi.applications.FastAPI object at 0x000002107BFD7C50&gt;, &lt;src.api.jobs.JobStore object at 0x000002107BF76570&gt;, 'm...[[4.0, 8.0], None], 'player1Speeds': [0.0, None, 10.0], 'player2CourtPositions': [None, [5.0, 9.0], [6.0, 9.0]], ...}})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002107BFF79B0&gt;
+
+    def test_disconnected_csv_request_stops_before_reading_future_rows(saved_csv_service, monkeypatch):
+        app, _, analysis_id, _ = saved_csv_service
+        produced = []
+    
+        def observe_chunks(_saved):
+            for index in range(1000):
+                produced.append(index)
+                yield f'row {index}\r\n'
+    
+        monkeypatch.setattr(reporting, 'telemetry_csv_chunks', observe_chunks)
+    
+        async def send(message):
+            if message['type'] == 'http.response.body':
+                raise OSError('Client disconnected while sending the first chunk.')
+    
+        with pytest.raises(ClientDisconnect):
+&gt;           asyncio.run(app(request_scope(f'/api/analyses/{analysis_id}/download/csv'), empty_request, send))
+
+tests\test_streaming_telemetry_csv.py:210: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:725: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:1163: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py:90: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+src\api\auth.py:174: in __call__
+    return await response(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\responses.py:167: in __call__
+    await send({"type": "http.response.body", "body": self.body})
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py:161: in _send
+    await send(message)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+message = {'body': b'{"detail":"Local mode requires a loopback hostname."}', 'type': 'http.response.body'}
+
+    async def send(message):
+        if message['type'] == 'http.response.body':
+&gt;           raise OSError('Client disconnected while sending the first chunk.')
+E           OSError: Client disconnected while sending the first chunk.
+
+tests\test_streaming_telemetry_csv.py:207: OSError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_missing_or_corrupt_saved_result_fails_before_csv_headers[None]" time="0.055" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_missing_or_corrupt_saved_result_fails_before_csv_headers[{broken JSON]" time="0.063" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_csv_iteration_failure_does_not_send_a_successful_end_of_stream" time="0.043"><failure message="Failed: DID NOT RAISE &lt;class 'ValueError'&gt;">saved_csv_service = (&lt;fastapi.applications.FastAPI object at 0x000002100014CE10&gt;, &lt;src.api.jobs.JobStore object at 0x000002107BF778F0&gt;, 'm...[[4.0, 8.0], None], 'player1Speeds': [0.0, None, 10.0], 'player2CourtPositions': [None, [5.0, 9.0], [6.0, 9.0]], ...}})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002107C42E470&gt;
+
+    def test_csv_iteration_failure_does_not_send_a_successful_end_of_stream(saved_csv_service, monkeypatch):
+        app, _, analysis_id, _ = saved_csv_service
+    
+        def fail_after_header(_saved):
+            yield 'header\r\n'
+            raise ValueError('Invalid persisted frame row.')
+    
+        monkeypatch.setattr(reporting, 'telemetry_csv_chunks', fail_after_header)
+        messages = []
+    
+        async def send(message):
+            messages.append(message.copy())
+    
+&gt;       with pytest.raises(ValueError, match='Invalid persisted frame row'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE &lt;class 'ValueError'&gt;
+
+tests\test_streaming_telemetry_csv.py:243: Failed</failure></testcase><testcase classname="tests.test_result_document" name="test_published_generation_reopens_lazily_and_preserves_bytes" time="0.402" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[missing-marker]" time="0.285" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[invalid-marker]" time="0.289" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[missing-database]" time="0.293" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[size]" time="0.333" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[same-size-hash]" time="0.282" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[path]" time="0.271" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[schema]" time="0.309" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[identity]" time="0.332" /><testcase classname="tests.test_result_document" name="test_generation_damage_never_falls_back_to_compatibility_json[frames]" time="0.283" /><testcase classname="tests.test_result_document" name="test_wrong_analysis_is_rejected" time="0.271" /><testcase classname="tests.test_result_document" name="test_generation_switch_retains_reader_snapshot" time="0.415" /><testcase classname="tests.test_result_document" name="test_uncommitted_generation_preserves_authoritative_previous_reader[summary-close]" time="0.330" /><testcase classname="tests.test_result_document" name="test_uncommitted_generation_preserves_authoritative_previous_reader[database-publication]" time="0.298" /><testcase classname="tests.test_result_document" name="test_uncommitted_generation_preserves_authoritative_previous_reader[summary-replace]" time="0.422" /><testcase classname="tests.test_result_document" name="test_uncommitted_generation_preserves_authoritative_previous_reader[manifest-replace]" time="0.377" /><testcase classname="tests.test_result_document" name="test_legacy_json_uses_owned_scratch_and_validates_entire_file" time="0.014" /><testcase classname="tests.test_result_document" name="test_invalid_legacy_tail_is_rejected_and_owned_scratch_removed[, &quot;late&quot;: NaN}]" time="0.011" /><testcase classname="tests.test_result_document" name="test_invalid_legacy_tail_is_rejected_and_owned_scratch_removed[, &quot;late&quot;: 1e999}]" time="0.016" /><testcase classname="tests.test_result_document" name="test_invalid_legacy_tail_is_rejected_and_owned_scratch_removed[} garbage]" time="0.011" /><testcase classname="tests.test_result_document" name="test_invalid_legacy_tail_is_rejected_and_owned_scratch_removed[, &quot;late&quot;: []" time="0.009" /><testcase classname="tests.test_result_document" name="test_streaming_response_owns_reader_through_threadpool_and_send_failure[complete]" time="0.181" /><testcase classname="tests.test_result_document" name="test_streaming_response_owns_reader_through_threadpool_and_send_failure[send-failure]" time="0.213" /><testcase classname="tests.test_result_document" name="test_streaming_response_owns_reader_through_threadpool_and_send_failure[iterator-failure]" time="0.200" /><testcase classname="tests.test_result_document" name="test_corrupt_generation_returns_preheader_503_for_every_result_export" time="0.312" /><testcase classname="tests.test_result_document" name="test_cleanup_failure_preserves_primary_reader_error[parse]" time="0.006" /><testcase classname="tests.test_result_document" name="test_cleanup_failure_preserves_primary_reader_error[context]" time="0.006" /><testcase classname="tests.test_result_document" name="test_cleanup_failure_preserves_primary_reader_error[response]" time="0.008" /><testcase classname="tests.test_result_document" name="test_api_result_json_csv_html_exports_preserve_existing_content[published]" time="0.428" /><testcase classname="tests.test_result_document" name="test_api_result_json_csv_html_exports_preserve_existing_content[legacy]" time="0.895" /><testcase classname="tests.test_result_document" name="test_profile_skips_unavailable_sqlite_generation" time="0.464" /></testsuite></testsuites>

@@ -1,0 +1,359 @@
+{
+  "status": "ACTUAL_CPU_ULTRALYTICS_TRAIN_TRANSFORM_PREVIEW_NOT_TRAINED_NOT_QUALIFICATION",
+  "created_utc": "2026-10-15T02:56:39.288379+00:00",
+  "python_executable": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "ultralytics": "8.4.36",
+  "torch": "2.13.0+cu126",
+  "seed": 709,
+  "selection": "FIRST_THREE_MANIFEST_TRAIN_ROWS_ONLY_NO_DEV_OR_TEST",
+  "seeding": "PYTHON_NUMPY_TORCH_CPU_SEED709_NO_CUDA_CALLS",
+  "factory": "ultralytics.data.build.build_yolo_dataset(mode=train,batch=1,rect=False,stride=32)",
+  "not_training_batch_order": true,
+  "model_constructed": false,
+  "training_executed": false,
+  "cuda_initialized": false,
+  "resource_launch": {
+    "free_ram_bytes": 2047938560,
+    "free_disk_bytes": 59180949504
+  },
+  "settings": {
+    "data": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\preflight_data_only_v2\\dataset.yaml",
+    "epochs": 20,
+    "imgsz": 1280,
+    "batch": 1,
+    "device": "0",
+    "seed": 709,
+    "deterministic": true,
+    "patience": 20,
+    "save_period": 5,
+    "amp": false,
+    "workers": 0,
+    "cache": false,
+    "optimizer": "AdamW",
+    "project": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\preflight_data_only_v2",
+    "name": "training",
+    "mosaic": 0.0,
+    "close_mosaic": 0,
+    "mixup": 0.0,
+    "copy_paste": 0.0,
+    "scale": 0.05,
+    "translate": 0.0,
+    "fliplr": 0.0,
+    "flipud": 0.0,
+    "degrees": 0.0,
+    "perspective": 0.0,
+    "hsv_h": 0.01,
+    "hsv_s": 0.15,
+    "hsv_v": 0.15,
+    "nbs": 1,
+    "warmup_epochs": 0.0,
+    "lr0": 0.0005,
+    "auto_augment": null,
+    "augmentations": [],
+    "cutmix": 0.0,
+    "erasing": 0.0,
+    "bgr": 0.0,
+    "multi_scale": 0.0,
+    "rect": false,
+    "shear": 0.0
+  },
+  "training_arguments_sha256": "28d9efc4b6cf686a658f0eea6dee2e4795bab912793b27f0f0863e5cd0fb6d0d",
+  "preflight_sha256": "2f6205cb178ffbce7113266536b5f97f612c102327a9d914b36d47e63241d7f1",
+  "trainer_sha256": "cd05fe4983bb9edac77d76ebc32f1b59a1aa0697392abb15ff096608a7d6d6b1",
+  "preview_script_sha256": "6d092a516c62035618e70fb51b3ff3b83d002dc462db772932058c9b40005151",
+  "actual_transform_repr": "Compose(Compose(<ultralytics.data.augment.Mosaic object at 0x0000028FB27534D0>, <ultralytics.data.augment.CopyPaste object at 0x0000028FB2752A50>, <ultralytics.data.augment.RandomPerspective object at 0x0000028FB2752270>), <ultralytics.data.augment.MixUp object at 0x0000028FB2752510>, <ultralytics.data.augment.CutMix object at 0x0000028FB2753230>, <ultralytics.data.augment.Albumentations object at 0x0000028FB27530E0>, <ultralytics.data.augment.RandomHSV object at 0x0000028FB2752F90>, <ultralytics.data.augment.RandomFlip object at 0x0000028FB27F4050>, <ultralytics.data.augment.RandomFlip object at 0x0000028FB260B4D0>, <ultralytics.data.augment.Format object at 0x0000028FB27F4440>)",
+  "package_source_sha256": {
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\data\\build.py": "dade920b69323a5e6ac49b5245e6914357b28ec31653c33c3fbe69ef6e2818f4",
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\data\\dataset.py": "b495b811257f8a27c9b7291ae12e5411bc2d02ef9ce51f63b2ab054891622ac8",
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\ultralytics\\data\\augment.py": "37a32d0d0555db44bd84f149673d9a85d7be1529e793e4e204a5001b62201dae"
+  },
+  "samples": [
+    {
+      "id": "1csvtOQNd0M_1900",
+      "split": "train",
+      "source_image": "data/yolo26/court_reviewed_development_v1/court/images/train/1csvtOQNd0M_1900.png",
+      "source_image_sha256": "b4f02bc853ca0d82b78989501b469365f247b34ce884821fc0dc3d44482214e5",
+      "source_label_sha256": "a04accac1bb7d4bd0c6748ee880e358da518fe1b4ff938f452af984ead8fbaf4",
+      "actual_tensor_image": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\1csvtOQNd0M_1900_actual_train_tensor.png",
+      "actual_tensor_image_sha256": "e4e9f138c92366a9aecdf8a1d4617bb23798e4d2bd7cdde96bf6494b0cd65fdb",
+      "overlay": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\1csvtOQNd0M_1900_actual_train_overlay.png",
+      "overlay_sha256": "4fd7db64dc68011085cf8dffcd4ffd5659947e1eb84930fcddca5b1b653773b4",
+      "keypoints_normalized": [
+        [
+          [
+            0.3477071225643158,
+            0.3640507757663727,
+            2.0
+          ],
+          [
+            0.6478355526924133,
+            0.3640507757663727,
+            2.0
+          ],
+          [
+            0.1716417372226715,
+            0.6322348117828369,
+            2.0
+          ],
+          [
+            0.821672260761261,
+            0.6322348117828369,
+            2.0
+          ],
+          [
+            0.3855946362018585,
+            0.3640507757663727,
+            2.0
+          ],
+          [
+            0.253359854221344,
+            0.6322348117828369,
+            2.0
+          ],
+          [
+            0.6099480390548706,
+            0.3640507757663727,
+            2.0
+          ],
+          [
+            0.7406970262527466,
+            0.6322348117828369,
+            2.0
+          ],
+          [
+            0.369251012802124,
+            0.3967379927635193,
+            2.0
+          ],
+          [
+            0.6255487203598022,
+            0.3967379927635193,
+            2.0
+          ],
+          [
+            0.3053622841835022,
+            0.5260012149810791,
+            2.0
+          ],
+          [
+            0.6886945962905884,
+            0.5260012149810791,
+            2.0
+          ],
+          [
+            0.49777132272720337,
+            0.3967379927635193,
+            2.0
+          ],
+          [
+            0.4970284402370453,
+            0.5260012149810791,
+            2.0
+          ]
+        ]
+      ],
+      "boxes_xywh_normalized": [
+        [
+          0.49665698409080505,
+          0.498142808675766,
+          0.6500304937362671,
+          0.26818403601646423
+        ]
+      ],
+      "null_indices_after_transform": []
+    },
+    {
+      "id": "TcXqTFdDaTA_2250",
+      "split": "train",
+      "source_image": "data/yolo26/court_reviewed_development_v1/court/images/train/TcXqTFdDaTA_2250.png",
+      "source_image_sha256": "7620b7bb52fc46cc7a9bf6d56e5c954e9601c7c6dad466f48f817bbecb3cab9c",
+      "source_label_sha256": "095f402a3b967eb815c9552b36f08d2d82c3beddc6ae071b04681a8e75f68da2",
+      "actual_tensor_image": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\TcXqTFdDaTA_2250_actual_train_tensor.png",
+      "actual_tensor_image_sha256": "43464a768332d72564dea4a1690bb4a680c1c51f2db15a3bbde3c971b2d9df6a",
+      "overlay": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\TcXqTFdDaTA_2250_actual_train_overlay.png",
+      "overlay_sha256": "c1428e41781024d7e651daf4042d24e5a6b2a2789772ded2653dc9cea8396912",
+      "keypoints_normalized": [
+        [
+          [
+            0.30239811539649963,
+            0.35119858384132385,
+            2.0
+          ],
+          [
+            0.7088020443916321,
+            0.35359862446784973,
+            2.0
+          ],
+          [
+            0.0,
+            0.21199724078178406,
+            0.0
+          ],
+          [
+            0.9080039858818054,
+            0.7008019685745239,
+            2.0
+          ],
+          [
+            0.35359862446784973,
+            0.35199859738349915,
+            2.0
+          ],
+          [
+            0.0,
+            0.21199724078178406,
+            0.0
+          ],
+          [
+            0.657601535320282,
+            0.35359862446784973,
+            2.0
+          ],
+          [
+            0.8088029623031616,
+            0.7008019685745239,
+            2.0
+          ],
+          [
+            0.33439841866493225,
+            0.3975990414619446,
+            2.0
+          ],
+          [
+            0.67760169506073,
+            0.39999905228614807,
+            2.0
+          ],
+          [
+            0.26319772005081177,
+            0.5704006552696228,
+            2.0
+          ],
+          [
+            0.7528024315834045,
+            0.5720006823539734,
+            2.0
+          ],
+          [
+            0.5064000487327576,
+            0.39919906854629517,
+            2.0
+          ],
+          [
+            0.5080000758171082,
+            0.5712007284164429,
+            2.0
+          ]
+        ]
+      ],
+      "boxes_xywh_normalized": [
+        [
+          0.5088001489639282,
+          0.5260002613067627,
+          0.7984077334403992,
+          0.3496033549308777
+        ]
+      ],
+      "null_indices_after_transform": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "spNfR7EEPoc_3200",
+      "split": "train",
+      "source_image": "data/yolo26/court_reviewed_development_v1/court/images/train/spNfR7EEPoc_3200.png",
+      "source_image_sha256": "da8638a40cda923a44ace9d96f7baf896b6654beeb70497862c2e7d96274b221",
+      "source_label_sha256": "317fddb1cd113568d7ab97656d5304757047d3e2b2814eff8ec715f38a2b2118",
+      "actual_tensor_image": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\spNfR7EEPoc_3200_actual_train_tensor.png",
+      "actual_tensor_image_sha256": "138fb135b9e9c08d8eec9652b78224b5070448deef2cbba2633c6b6298edc8b2",
+      "overlay": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-14\\court_development_trainer_v1\\transform_preview_v1\\spNfR7EEPoc_3200_actual_train_overlay.png",
+      "overlay_sha256": "b8009f3d5acf04d66e9140b099812fd2a57765100a16f3507a977e141d4b9284",
+      "keypoints_normalized": [
+        [
+          [
+            0.3056787848472595,
+            0.3810754418373108,
+            2.0
+          ],
+          [
+            0.701316773891449,
+            0.3802981376647949,
+            2.0
+          ],
+          [
+            0.1331215351819992,
+            0.6632298231124878,
+            2.0
+          ],
+          [
+            0.8637693524360657,
+            0.6655616760253906,
+            2.0
+          ],
+          [
+            0.35542502999305725,
+            0.3802981376647949,
+            2.0
+          ],
+          [
+            0.22406387329101562,
+            0.6632298231124878,
+            2.0
+          ],
+          [
+            0.6515705585479736,
+            0.3802981376647949,
+            2.0
+          ],
+          [
+            0.7720497250556946,
+            0.6647844314575195,
+            2.0
+          ],
+          [
+            0.3367701768875122,
+            0.42071694135665894,
+            2.0
+          ],
+          [
+            0.6686708331108093,
+            0.42071694135665894,
+            2.0
+          ],
+          [
+            0.27070099115371704,
+            0.5629600882530212,
+            2.0
+          ],
+          [
+            0.7285217642784119,
+            0.5629600882530212,
+            2.0
+          ],
+          [
+            0.5023318529129028,
+            0.42071694135665894,
+            2.0
+          ],
+          [
+            0.49922269582748413,
+            0.5629600882530212,
+            2.0
+          ]
+        ]
+      ],
+      "boxes_xywh_normalized": [
+        [
+          0.49844542145729065,
+          0.5229299068450928,
+          0.7306478023529053,
+          0.2852635383605957
+        ]
+      ],
+      "null_indices_after_transform": []
+    }
+  ],
+  "source_binding_changes": [],
+  "process_rss_bytes_at_completion": 635199488
+}

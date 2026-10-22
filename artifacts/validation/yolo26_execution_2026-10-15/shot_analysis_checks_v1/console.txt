@@ -1,0 +1,828 @@
+FFFFFFFFFFF....FFF...................................................... [ 34%]
+........................................................................ [ 68%]
+..................................................................       [100%]
+================================== FAILURES ===================================
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events0] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i0')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=20, timestamp_s=0.8, player_...ball_position_px=(50.0, 100.0), court_position_m=(8.0, 5.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = set()
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events1] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i1')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=10, timestamp_s=0.4, player_...all_position_px=(50.0, 100.0), court_position_m=(3.0, 19.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = set()
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events2] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i2')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=5, timestamp_s=0.2, player_i...ball_position_px=(50.0, 100.0), court_position_m=(8.0, 5.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = set()
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events3] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i3')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=7, timestamp_s=0.301, player...ball_position_px=(50.0, 100.0), court_position_m=(8.0, 5.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = set()
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events4] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i4')
+events = [], dead = set()
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events0] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i5')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=20, timestamp_s=0.8, player_...ball_position_px=(50.0, 100.0), court_position_m=(8.0, 5.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = {1, 3}
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events1] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i6')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=10, timestamp_s=0.4, player_...all_position_px=(50.0, 100.0), court_position_m=(3.0, 19.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = {1, 3}
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events2] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i7')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=5, timestamp_s=0.2, player_i...ball_position_px=(50.0, 100.0), court_position_m=(8.0, 5.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = {1, 3}
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events3] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i8')
+events = [TennisEvent(event_id=1, event_type=<EventType.PLAYER_1_HIT: 'PLAYER_1_HIT'>, frame_index=7, timestamp_s=0.301, player...ball_position_px=(50.0, 100.0), court_position_m=(8.0, 5.0), confidence=0.9, trajectory_state='DETECTED', evidence={})]
+dead = {1, 3}
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events4] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_nonempty_linking_i9')
+events = [], dead = {1, 3}
+
+    @pytest.mark.parametrize('events', [
+        [event(1, 20), event(2, 10, events_module.EventType.SERVE_CONTACT, 2),
+         event(3, 25, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None)],
+        [event(1, 10), event(2, 10, events_module.EventType.PLAYER_2_HIT, 2),
+         event(3, 10, events_module.EventType.BOUNCE, None), event(4, 15, events_module.EventType.BOUNCE, None),
+         event(5, 15, events_module.EventType.BOUNCE, None), event(6, 20)],
+        [event(1, 5), event(2, 10), event(3, 16, events_module.EventType.BOUNCE, None)],
+        [event(1, 7, player=None, timestamp=.301), event(2, 8, events_module.EventType.UNKNOWN_EVENT, None),
+         event(3, 12, events_module.EventType.BOUNCE, None, timestamp=.519)],
+        [],
+    ])
+    @pytest.mark.parametrize('dead', [set(), {1, 3}])
+    def test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones(tmp_path, events, dead):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+___________ test_first_bounce_endpoint_ties_and_reuse_are_preserved ___________
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_first_bounce_endpoint_tie0')
+
+    def test_first_bounce_endpoint_ties_and_reuse_are_preserved(tmp_path):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_output_owner_requires_open_empty_store_and_exact_authoritative_event_alias _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_output_owner_requires_ope0')
+
+    def test_output_owner_requires_open_empty_store_and_exact_authoritative_event_alias(tmp_path):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_linker_keeps_live_event_and_shot_objects_constant_across_commit_batches[257] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_linker_keeps_live_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000021AC59EC8A0>
+count = 257
+
+    @pytest.mark.parametrize('count', [257, 1025])
+    def test_native_linker_keeps_live_event_and_shot_objects_constant_across_commit_batches(tmp_path, monkeypatch, count):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:169: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+_ test_native_linker_keeps_live_event_and_shot_objects_constant_across_commit_batches[1025] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-15/shot_analysis_checks_v1/pytest_tmp/test_native_linker_keeps_live_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000021AC57ABE10>
+count = 1025
+
+    @pytest.mark.parametrize('count', [257, 1025])
+    def test_native_linker_keeps_live_event_and_shot_objects_constant_across_commit_batches(tmp_path, monkeypatch, count):
+>       Linker, Classifier = actual_classes()
+                             ^^^^^^^^^^^^^^^^
+
+tests\test_shot_evidence_sequence.py:169: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_shot_evidence_sequence.py:36: in actual_classes
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), namespace)
+src\shot_analysis\shot_linker.py:19: in <module>
+    class TennisShotLinker:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    class TennisShotLinker:
+        """
+        Temporal Shot Linker Engine.
+        Sequentially links player hits/serves to subsequent bounces, classifies shot mechanics,
+        evaluates direction, and tags 3x3 landing zones while strictly honoring dead-ball suppression.
+        """
+    
+        def __init__(
+            self,
+            classifier: TennisShotClassifier,
+            direction_classifier: Optional[ShotDirectionClassifier] = None,
+            zone_engine: Optional[CourtZoneEngine] = None
+        ):
+            self.classifier = classifier
+            self.direction_classifier = direction_classifier or ShotDirectionClassifier()
+            self.zone_engine = zone_engine or CourtZoneEngine()
+    
+        def link_shots(
+            self,
+>           events: List[TennisEvent],
+                         ^^^^^^^^^^^
+            ball_trajectory: List[TemporalBallPoint],
+            player1_boxes: List[Optional[BBox]],
+            player2_boxes: List[Optional[BBox]],
+            raw_frames: Optional[List[np.ndarray]] = None,
+            dead_event_ids: Optional[Set[int]] = None,
+            *, result_output=None, event_output=None,
+        ) -> List[ShotEventEvidence]:
+E       NameError: name 'TennisEvent' is not defined
+
+src\shot_analysis\shot_linker.py:38: NameError
+============================== warnings summary ===============================
+tests/test_event_timestamp_lookup.py::test_actual_features_nearest_timestamp_reads_are_subquadratic
+  tests\test_event_timestamp_lookup.py:96: PytestWarning: record_property is incompatible with junit_family 'xunit2' (use 'legacy' or 'xunit1')
+    def test_actual_features_nearest_timestamp_reads_are_subquadratic(monkeypatch, frozen, record_property):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events0]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events1]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events2]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events3]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead0-events4]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events0]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events1]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events2]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events3]
+FAILED tests/test_shot_evidence_sequence.py::test_native_nonempty_linking_is_exactly_legacy_with_real_classifier_direction_and_zones[dead1-events4]
+FAILED tests/test_shot_evidence_sequence.py::test_first_bounce_endpoint_ties_and_reuse_are_preserved
+FAILED tests/test_shot_evidence_sequence.py::test_output_owner_requires_open_empty_store_and_exact_authoritative_event_alias
+FAILED tests/test_shot_evidence_sequence.py::test_native_linker_keeps_live_event_and_shot_objects_constant_across_commit_batches[257]
+FAILED tests/test_shot_evidence_sequence.py::test_native_linker_keeps_live_event_and_shot_objects_constant_across_commit_batches[1025]
+14 failed, 196 passed, 1 warning in 7.03s

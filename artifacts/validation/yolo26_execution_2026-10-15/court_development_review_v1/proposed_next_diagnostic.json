@@ -1,0 +1,30 @@
+{
+  "schema": "tennis.yolo26.court-development-next-repair-proposal.v1",
+  "status": "PROPOSED_NOT_EXECUTED_REQUIRES_ROOT_RELEASE",
+  "reason": "Matched court boxes coexist with systematic and sometimes direction-reversing landmark deformation. Training used rect:false and retained actual TRAIN previews were square1280. The diagnostic hook recorded both1x3x1280x1280 and1x3x736x1280, without per-image call associations. Input-transform sensitivity is a testable confound, not an established cause.",
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "independent_human_reviewed": false,
+  "training_authorized": false,
+  "inference_authorized": false,
+  "checkpoint_path": "outputs/yolo26_court_reviewed_development_run1/training/weights/best.pt",
+  "checkpoint_sha256": "e47db3784adb39b82be6df7fca73ed0206f67f4f5d1bb029f0f862a34a4feefa",
+  "source_manifest_sha256": "0fadd340acc2fdfa5db9083474f620b396eea1d1eaf8fe025fdf050e43c3c90f",
+  "population": "EXACT_SAME20_FROZEN_DEV_STILLS_IN_MANIFEST_ORDER_NO_NEW_OR_FINAL_TEST_DATA",
+  "arms": [
+    {"name": "EXPLICIT_RECTANGULAR_BASELINE", "rect": true},
+    {"name": "EXPLICIT_SQUARE_INPUT_MATCHING_TRAIN_CONFIGURATION", "rect": false}
+  ],
+  "unchanged_parameters": {"imgsz": 1280, "batch": 1, "conf": 0.05, "iou": 0.7, "max_det": 10, "end2end": true, "nms": false, "half": false, "augment": false, "device": "0", "matched_bbox_iou_minimum": 0.5, "keypoint_confidence_minimum": 0.25, "visible_error_thresholds_px": [10, 20]},
+  "requirements": [
+    "Freeze the complete two-arm protocol before any new inference; use fresh outputs and preserve original diagnostic",
+    "No label-conditioned crop, ROI, per-image arm selection, coordinate correction or threshold search",
+    "Record actual shape, dtype, padding and coordinate map for every image forward separately from warmup",
+    "Check a deterministic native-to-letterbox-to-native coordinate roundtrip independently of model predictions",
+    "Use the same highest-class0-confidence stable-index selection and all-visible-GT recall denominator in both arms",
+    "Report both arms for all20 images, every landmark and both contexts; do not replace the original score with the better arm",
+    "Retain raw returned predictions, all20 native overlays per arm, exact hashes and actual unchanged resource guards",
+    "Treat any difference as DEV engineering evidence; it does not qualify accuracy or authorize production promotion"
+  ],
+  "interpretation_rule": "If square inputs materially change the deformation or complete-miss case, investigate transform consistency before more optimization. If deformation persists, the input-shape hypothesis is weakened; prioritize source-diverse reviewed court data and a separately reviewed bounded optimization plan. Neither outcome authorizes a long retrain automatically."
+}

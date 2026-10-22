@@ -1,0 +1,73 @@
+{
+  "cycles": [
+    {
+      "name": "catalog_loading_and_failure",
+      "greenPassed": 10,
+      "redFailed": 3,
+      "redPassed": 7
+    },
+    {
+      "name": "last_verified_catalog",
+      "greenPassed": 12,
+      "redFailed": 1,
+      "redPassed": 11
+    }
+  ],
+  "realUploadPerformed": false,
+  "preservedBeforeStillExact": true,
+  "lintPassed": true,
+  "evidenceBindings": [
+    {
+      "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/upload_history/before.json",
+      "sha256": "8a734e0ff881a24b713546ffd0ef44d6be1a10f0f288e37eb754867c58431b87"
+    },
+    {
+      "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/upload_history/red/receipt.json",
+      "sha256": "2e0a1d3c99f96ca6e4523b1e40c5da3794c12ed0422e036258040d93e03b3c5c"
+    },
+    {
+      "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/upload_history/green/receipt.json",
+      "sha256": "2cfcbc93f7e7eda85d4b9b59b016a1aeb0adedb3c6694a5ffccd23bc0954edd1"
+    },
+    {
+      "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/upload_history/last_good_red/receipt.json",
+      "sha256": "c940d26653ce1c84da647e435b2ef35e1c23e32e057162ce59ea8a77e3cb87d7"
+    },
+    {
+      "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/upload_history/last_good_green/receipt.json",
+      "sha256": "b5a47318d0df382c914c2baf483eab6a78b7c56ab43f57c18e034b675ce48c06"
+    },
+    {
+      "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/upload_history/lint/receipt.json",
+      "sha256": "0200de51f7be9ba8fad34f85b8a5b32fb7eb544ab1a8ddf8cacb9dc36ef70a1e"
+    },
+    {
+      "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/upload_history/runtime_binding.json",
+      "sha256": "2e417d85f20c467061fe18b91881239365bf9abdb5c523b5db85e725f4533e73"
+    }
+  ],
+  "completedAtUtc": "2026-10-06T09:18:25.6172381Z",
+  "onlyOwnedSourceFilesChanged": [
+    "frontend/src/pages/Upload.tsx",
+    "frontend/src/pages/Upload.test.tsx"
+  ],
+  "fullFrontendSuitePendingRoot": true,
+  "description": "Saved completion View and queued Details remain available during public catalog loading/failure. Unknown classification is explicitly shown as saved analyses that may include public examples. Current and last verified public exclusions retained after failed or malformed refresh. Existing upload progress/cancellation/status tests pass.",
+  "modelInferencePerformed": false,
+  "status": "UPLOAD_HISTORY_RECOVERY_SCOPED_PASSED",
+  "files": [
+    {
+      "sha256": "878cdab8318dc7cdad6681bb9b50ea593579583a5ac11dd0beaf33849bcb28c2",
+      "bytes": 11718,
+      "matchesLastGoodGreenSnapshot": true,
+      "path": "frontend/src/pages/Upload.tsx"
+    },
+    {
+      "sha256": "cdb560867999c8402f6b65d7d0ba44d88723f8a397519075c6d48cf6a890e78d",
+      "bytes": 12490,
+      "matchesLastGoodGreenSnapshot": true,
+      "path": "frontend/src/pages/Upload.test.tsx"
+    }
+  ],
+  "productionNetworkWritesPerformed": false
+}

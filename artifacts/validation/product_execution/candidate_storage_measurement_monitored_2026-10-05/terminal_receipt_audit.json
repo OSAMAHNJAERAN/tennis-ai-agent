@@ -1,0 +1,414 @@
+{
+  "scope": "Synthetic candidate-only storage measurement plus actual frozen/current Kalman tracker equivalence and candidate lifetime, not inference, accuracy or full-pipeline memory qualification.",
+  "benchmarkSourceSha256": "d2ed37345434828dc5e8d205dae9602022d96b7a058b4050eda0249e594d467b",
+  "benchmarkTerminalPassed": true,
+  "sourcesMatchFrozenProtocol": {
+    "scripts/audit/measure_candidate_storage.py": true,
+    "src/utils/ball_candidate_sequence.py": true,
+    "src/utils/bbox_utils.py": true,
+    "src/tracking/temporal_ball_tracker.py": true,
+    "artifacts/validation/product_execution/candidate_spool_baseline_2026-10-05/src/tracking/temporal_ball_tracker.py": true,
+    "artifacts/validation/product_execution/candidate_spool_baseline_2026-10-05/receipt.json": true
+  },
+  "allFourComparisonsPassed": true,
+  "runs": [
+    {
+      "kind": "storage",
+      "mode": "old",
+      "frames": 600,
+      "actualWorkloadPid": 30856,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172418.8572595,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 2,
+      "actualPeakSampledRssBytes": 71397376,
+      "windowsPeakWorkingSetBytes": 73121792,
+      "windowsPeakPrivateCommitBytes": 827510784,
+      "peakSampledOwnedTreeRssBytes": 83107840,
+      "peakSampledOwnedTreePrivateBytes": 827215872,
+      "minimumSampledAvailableRamBytes": 1169342464,
+      "totalChildElapsedSeconds": 0.5196710000163876,
+      "totalMonitoredWallSeconds": 0.8762409000191838,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 33292,
+          "createTimeUnixSeconds": 1791172418.8377204,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 30856,
+          "createTimeUnixSeconds": 1791172418.8572595,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 52104,
+          "createTimeUnixSeconds": 1791172418.8455174,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": null,
+      "passed": true
+    },
+    {
+      "kind": "storage",
+      "mode": "new",
+      "frames": 600,
+      "actualWorkloadPid": 53556,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172419.737085,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 1,
+      "actualPeakSampledRssBytes": 54849536,
+      "windowsPeakWorkingSetBytes": 73998336,
+      "windowsPeakPrivateCommitBytes": 827691008,
+      "peakSampledOwnedTreeRssBytes": 66564096,
+      "peakSampledOwnedTreePrivateBytes": 812609536,
+      "minimumSampledAvailableRamBytes": 1179033600,
+      "totalChildElapsedSeconds": 0.3532155999855604,
+      "totalMonitoredWallSeconds": 0.576807799981907,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 56572,
+          "createTimeUnixSeconds": 1791172419.7144089,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 32412,
+          "createTimeUnixSeconds": 1791172419.7199817,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 53556,
+          "createTimeUnixSeconds": 1791172419.737085,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": {
+        "logicalDatabaseBytesBeforeCleanup": 352256,
+        "allExactOwnedFilesAbsent": true,
+        "settings": {
+          "cache_size": -2048,
+          "temp_store": 1,
+          "mmap_size": 0,
+          "journal_mode": "delete"
+        }
+      },
+      "passed": true
+    },
+    {
+      "kind": "storage",
+      "mode": "old",
+      "frames": 18000,
+      "actualWorkloadPid": 40168,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172420.3395827,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 4,
+      "actualPeakSampledRssBytes": 92041216,
+      "windowsPeakWorkingSetBytes": 92053504,
+      "windowsPeakPrivateCommitBytes": 846061568,
+      "peakSampledOwnedTreeRssBytes": 103751680,
+      "peakSampledOwnedTreePrivateBytes": 848203776,
+      "minimumSampledAvailableRamBytes": 997457920,
+      "totalChildElapsedSeconds": 1.0604545999958646,
+      "totalMonitoredWallSeconds": 1.4297259000013582,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 34764,
+          "createTimeUnixSeconds": 1791172420.3142989,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 40168,
+          "createTimeUnixSeconds": 1791172420.3395827,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 42520,
+          "createTimeUnixSeconds": 1791172420.3251913,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": null,
+      "passed": true
+    },
+    {
+      "kind": "storage",
+      "mode": "new",
+      "frames": 18000,
+      "actualWorkloadPid": 58856,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172421.7711911,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 6,
+      "actualPeakSampledRssBytes": 75788288,
+      "windowsPeakWorkingSetBytes": 75812864,
+      "windowsPeakPrivateCommitBytes": 829190144,
+      "peakSampledOwnedTreeRssBytes": 87502848,
+      "peakSampledOwnedTreePrivateBytes": 831332352,
+      "minimumSampledAvailableRamBytes": 1017692160,
+      "totalChildElapsedSeconds": 1.708965999976499,
+      "totalMonitoredWallSeconds": 1.977875500015216,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 46084,
+          "createTimeUnixSeconds": 1791172421.7455635,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 54472,
+          "createTimeUnixSeconds": 1791172421.7572525,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 58856,
+          "createTimeUnixSeconds": 1791172421.7711911,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": {
+        "logicalDatabaseBytesBeforeCleanup": 10248192,
+        "allExactOwnedFilesAbsent": true,
+        "settings": {
+          "cache_size": -2048,
+          "temp_store": 1,
+          "mmap_size": 0,
+          "journal_mode": "delete"
+        }
+      },
+      "passed": true
+    },
+    {
+      "kind": "storage",
+      "mode": "old",
+      "frames": 432000,
+      "actualWorkloadPid": 59224,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172424.3370793,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 66,
+      "actualPeakSampledRssBytes": 533954560,
+      "windowsPeakWorkingSetBytes": 533958656,
+      "windowsPeakPrivateCommitBytes": 1288814592,
+      "peakSampledOwnedTreeRssBytes": 545665024,
+      "peakSampledOwnedTreePrivateBytes": 1290964992,
+      "minimumSampledAvailableRamBytes": 516009984,
+      "totalChildElapsedSeconds": 18.3387928000011,
+      "totalMonitoredWallSeconds": 18.61343199998373,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 14428,
+          "createTimeUnixSeconds": 1791172424.3059535,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 12060,
+          "createTimeUnixSeconds": 1791172424.318372,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 59224,
+          "createTimeUnixSeconds": 1791172424.3370793,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": null,
+      "passed": true
+    },
+    {
+      "kind": "storage",
+      "mode": "new",
+      "frames": 432000,
+      "actualWorkloadPid": 44552,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172442.9583883,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 119,
+      "actualPeakSampledRssBytes": 75968512,
+      "windowsPeakWorkingSetBytes": 76079104,
+      "windowsPeakPrivateCommitBytes": 829706240,
+      "peakSampledOwnedTreeRssBytes": 87650304,
+      "peakSampledOwnedTreePrivateBytes": 831512576,
+      "minimumSampledAvailableRamBytes": 1159102464,
+      "totalChildElapsedSeconds": 32.80333779999637,
+      "totalMonitoredWallSeconds": 33.29995669997879,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 54092,
+          "createTimeUnixSeconds": 1791172442.921706,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 41072,
+          "createTimeUnixSeconds": 1791172442.9377277,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 44552,
+          "createTimeUnixSeconds": 1791172442.9583883,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": {
+        "logicalDatabaseBytesBeforeCleanup": 245608448,
+        "allExactOwnedFilesAbsent": true,
+        "settings": {
+          "cache_size": -2048,
+          "temp_store": 1,
+          "mmap_size": 0,
+          "journal_mode": "delete"
+        }
+      },
+      "passed": true
+    },
+    {
+      "kind": "tracker",
+      "mode": "old",
+      "frames": 5000,
+      "actualWorkloadPid": 43992,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172489.584304,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 3,
+      "actualPeakSampledRssBytes": 81764352,
+      "windowsPeakWorkingSetBytes": 89067520,
+      "windowsPeakPrivateCommitBytes": 875646976,
+      "peakSampledOwnedTreeRssBytes": 93470720,
+      "peakSampledOwnedTreePrivateBytes": 868777984,
+      "minimumSampledAvailableRamBytes": 2010927104,
+      "totalChildElapsedSeconds": 0.7280629000160843,
+      "totalMonitoredWallSeconds": 1.1456472000281792,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 40216,
+          "createTimeUnixSeconds": 1791172489.5580213,
+          "retired": true,
+          "status": "PID now has a different creation time"
+        },
+        {
+          "pid": 1804,
+          "createTimeUnixSeconds": 1791172489.5698807,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 43992,
+          "createTimeUnixSeconds": 1791172489.584304,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": {
+        "logicalDatabaseBytesBeforeCleanup": 2854912,
+        "allExactOwnedFilesAbsent": true,
+        "settings": {
+          "cache_size": -2048,
+          "temp_store": 1,
+          "mmap_size": 0,
+          "journal_mode": "delete"
+        }
+      },
+      "passed": true
+    },
+    {
+      "kind": "tracker",
+      "mode": "new",
+      "frames": 5000,
+      "actualWorkloadPid": 57248,
+      "actualWorkloadCreateTimeUnixSeconds": 1791172490.7398317,
+      "actualWorkloadSampledByExactIdentity": true,
+      "actualWorkloadSamples": 5,
+      "actualPeakSampledRssBytes": 78295040,
+      "windowsPeakWorkingSetBytes": 78524416,
+      "windowsPeakPrivateCommitBytes": 865247232,
+      "peakSampledOwnedTreeRssBytes": 90017792,
+      "peakSampledOwnedTreePrivateBytes": 867131392,
+      "minimumSampledAvailableRamBytes": 2033426432,
+      "totalChildElapsedSeconds": 1.3714700000127777,
+      "totalMonitoredWallSeconds": 1.6958290000038687,
+      "sampleSumsAndReceiptPeaksMatch": true,
+      "duplicateStoredReceiptsMatch": true,
+      "actualIdentityMatchesTerminalReceipt": true,
+      "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+      "ownedIdentityRetirement": [
+        {
+          "pid": 1992,
+          "createTimeUnixSeconds": 1791172490.7079313,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 37232,
+          "createTimeUnixSeconds": 1791172490.7222753,
+          "retired": true,
+          "status": "NoSuchProcess"
+        },
+        {
+          "pid": 57248,
+          "createTimeUnixSeconds": 1791172490.7398317,
+          "retired": true,
+          "status": "NoSuchProcess"
+        }
+      ],
+      "databaseCleanup": {
+        "logicalDatabaseBytesBeforeCleanup": 2854912,
+        "allExactOwnedFilesAbsent": true,
+        "settings": {
+          "cache_size": -2048,
+          "temp_store": 1,
+          "mmap_size": 0,
+          "journal_mode": "delete"
+        }
+      },
+      "passed": true
+    }
+  ],
+  "terminalOwnedIdentityRetirementOnly": true,
+  "limitations": [
+    "This supplemental audit checks exact remembered identities after the whole run; it does not prove every remembered descendant was checked at each successful run transition.",
+    "The frozen monitor does not put Popen fallback in finally if descendant termination raises; the controlled successful forced-stop proof does not cover that exceptional branch.",
+    "Memory/time and equivalence evidence is synthetic candidate-only; no full-pipeline or accuracy qualification."
+  ],
+  "allEightActualWorkloadsSampledByExactIdentity": true,
+  "allRememberedOwnedIdentitiesRetiredAtTerminalAudit": true,
+  "passed": true
+}

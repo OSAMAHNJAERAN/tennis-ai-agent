@@ -1,0 +1,37 @@
+{
+  "result": {
+    "preparation_successful_exit": false,
+    "rejection": "Corrected preparation: source artifact hash differs before copy: metrics.json",
+    "callbacks": [
+      "TRANSIENT_PRODUCER_METRICS_CHANGED_AFTER_ENTRY_GUARDS"
+    ],
+    "export_unchanged": true,
+    "render_unchanged": true,
+    "final_seals": [],
+    "committed_base_unchanged": true
+  },
+  "source_before": {
+    "src/scoring/corrected_preparation.py": "b80c25acd9e44702f0c9d7d3d9cdd94e2d257b14a7470be4b4a14d6c4cafa089",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85",
+    "src/scoring/corrected_exports.py": "719fa7a6556b3d082189cee9373ff3dc4b312d196dedcfd8bf60f4e950064ae2",
+    "src/scoring/corrected_landing_exports.py": "5c0d47e9b9a1eee9a39f029c5c70ab4e5d8f38e179d352f0f7da0cf009fd7437",
+    "src/scoring/corrected_forecast_presentation.py": "eae419797e0449cfb7fe0f95016d7c76e4fe78a7a995afe581076c637991a2ad",
+    "src/api/results.py": "e13614beba4f6720b69efa129b4ce94aad17fa445039df587d21e7920dec12fa",
+    "src/api/reporting.py": "7302594a9d8872b68ecaf48c62c272589203d6e5ac88e44c7190d30d6d236c40",
+    "tests/test_corrected_preparation.py": "605ad7c65589d41c8378c95d8826d728524582ca41b355918d610151176f9df7"
+  },
+  "source_after": {
+    "src/scoring/corrected_preparation.py": "b80c25acd9e44702f0c9d7d3d9cdd94e2d257b14a7470be4b4a14d6c4cafa089",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85",
+    "src/scoring/corrected_exports.py": "719fa7a6556b3d082189cee9373ff3dc4b312d196dedcfd8bf60f4e950064ae2",
+    "src/scoring/corrected_landing_exports.py": "5c0d47e9b9a1eee9a39f029c5c70ab4e5d8f38e179d352f0f7da0cf009fd7437",
+    "src/scoring/corrected_forecast_presentation.py": "eae419797e0449cfb7fe0f95016d7c76e4fe78a7a995afe581076c637991a2ad",
+    "src/api/results.py": "e13614beba4f6720b69efa129b4ce94aad17fa445039df587d21e7920dec12fa",
+    "src/api/reporting.py": "7302594a9d8872b68ecaf48c62c272589203d6e5ac88e44c7190d30d6d236c40",
+    "tests/test_corrected_preparation.py": "605ad7c65589d41c8378c95d8826d728524582ca41b355918d610151176f9df7"
+  },
+  "forbidden_import_attempts": [],
+  "forbidden_imports_loaded": [],
+  "scope": "Complete synthetic preparation chain with transient producer metrics between entry guard and copy; no publication or accuracy claim",
+  "source_stable": true
+}

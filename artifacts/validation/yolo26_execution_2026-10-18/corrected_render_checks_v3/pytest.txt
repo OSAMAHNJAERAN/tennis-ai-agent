@@ -1,0 +1,38 @@
+...................F...                                                  [100%]
+================================== FAILURES ===================================
+_ test_temporary_live_event_mutation_and_restore_during_frame_render_invalidates_candidate _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v3/temp/pytest/test_temporary_live_event_muta0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001F922899F60>
+
+    def test_temporary_live_event_mutation_and_restore_during_frame_render_invalidates_candidate(tmp_path, monkeypatch):
+        from src.events.event_detector import EventType
+        from src.visualization.video_annotator import VideoAnnotator
+        fixture = build_shot_base(tmp_path, playable_source=True)
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            before = digests(exports.directory)
+            original = shots.events[1]
+            initial_generation = shots.event_owner.events_generation
+            mutated = []
+            native_draw = VideoAnnotator.draw_ball
+            def drawing(frame, position, state):
+                if not mutated:
+                    changed = copy.deepcopy(original)
+                    changed.event_type = EventType.UNKNOWN_EVENT
+                    shots.events[1] = changed
+                    shots.events[1] = original
+                    mutated.append(shots.event_owner.events_generation)
+                return native_draw(frame, position, state)
+            monkeypatch.setattr(VideoAnnotator, 'draw_ball', staticmethod(drawing))
+            try:
+                with pytest.raises(ValueError, match='physical events changed'):
+                    render(rebuilt, shots, forecast, exports, fixture.scratch)
+                assert mutated == [initial_generation+2]
+>               assert shots.events[1].to_dict() == original.to_dict()
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+E               AttributeError: 'TennisEvent' object has no attribute 'to_dict'
+
+tests\test_corrected_rendering.py:469: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/test_corrected_rendering.py::test_temporary_live_event_mutation_and_restore_during_frame_render_invalidates_candidate
+1 failed, 22 passed in 29.90s

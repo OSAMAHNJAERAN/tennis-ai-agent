@@ -1,0 +1,14 @@
+import React from '/node_modules/.vite/deps/react.js';
+import ReactDOMClient from '/node_modules/.vite/deps/react-dom_client.js';
+import '/src/styles/app.css';
+import '/src/styles/astra.css';
+import '/src/styles/astra-light.css';
+import '/src/styles/product.css';
+import '/src/styles/society.css';
+import '/src/styles/society-analytics.css';
+import {PointAnalysisSchema} from '/src/data/contracts.ts';
+import {PointTimelineEvidence} from '/src/components/PointTimelineEvidence.tsx';
+const response=await fetch('/point-fixture.json');
+if(!response.ok) throw new Error('Saved fixture unavailable');
+const analysis=PointAnalysisSchema.parse(await response.json());
+ReactDOMClient.createRoot(document.getElementById('root')).render(React.createElement(PointTimelineEvidence,{analysis}));

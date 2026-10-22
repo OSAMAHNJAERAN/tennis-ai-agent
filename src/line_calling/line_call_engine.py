@@ -35,19 +35,47 @@ class LineCallEvidence:
     decision: LineCallDecision
     decision_context: LineCallContext
     nearest_line: CourtLineType
-    bounce_position_px: Tuple[float, float]
-    bounce_position_m: Tuple[float, float]
+    bounce_position_px: Optional[Tuple[float, float]]
+    bounce_position_m: Optional[Tuple[float, float]]
     tracker_state: str
-    center_signed_distance_cm: float
+    center_signed_distance_cm: Optional[float]
     contact_patch_model: str
-    contact_patch_radius_cm: float
-    ball_edge_margin_cm: float
-    position_uncertainty_cm: float
+    contact_patch_radius_cm: Optional[float]
+    ball_edge_margin_cm: Optional[float]
+    position_uncertainty_cm: Optional[float]
     spatial_tier: str
     confidence: float
     reason: str
     refinement_method: str
     line_strip_info: Optional[Dict[str, Any]] = None
+    reason_code: Optional[str] = None
+
+    @classmethod
+    def unavailable(
+        cls,
+        event_id: int,
+        bounce_frame: int,
+        context: LineCallContext,
+        reason: str,
+        reason_code: str = "SERVICE_TARGET_UNAVAILABLE"
+    ) -> "LineCallEvidence":
+        """Record an abstention without inventing a position or running geometry."""
+        return cls(
+            event_id=event_id, bounce_frame=bounce_frame,
+            decision=LineCallDecision.REVIEW_REQUIRED, decision_context=context,
+            nearest_line=CourtLineType.NONE, bounce_position_px=None,
+            bounce_position_m=None, tracker_state="UNKNOWN",
+            center_signed_distance_cm=None, contact_patch_model="NOT_EVALUATED",
+            contact_patch_radius_cm=None, ball_edge_margin_cm=None,
+            position_uncertainty_cm=None, spatial_tier="UNAVAILABLE", confidence=0.0,
+            reason=reason, refinement_method="NOT_PERFORMED", reason_code=reason_code
+        )
+
+    def overlay_text(self) -> str:
+        if self.ball_edge_margin_cm is None or self.position_uncertainty_cm is None:
+            return f"LINE CALL: [{self.decision.value}] (measurement unavailable)"
+        return (f"LINE CALL: [{self.decision.value}] ({self.nearest_line.value} "
+                f"{self.ball_edge_margin_cm:+.1f}cm, Unc: +- {self.position_uncertainty_cm:.1f}cm)")
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
@@ -90,6 +118,17 @@ class TennisLineCallEngine:
         """
         Evaluates a verified bounce event and returns structured line call evidence.
         """
+        # An unknown service target is a missing rule/identity prerequisite, not
+        # a geometric estimate. Abstain before touching trajectory or frames.
+        if context == LineCallContext.SERVE:
+            try:
+                target_service_box = ServiceBoxType(target_service_box)
+            except (TypeError, ValueError):
+                return LineCallEvidence.unavailable(
+                    event_id, bounce_frame, context,
+                    "The current service target is unavailable; review server identity, "
+                    "court end and service side before evaluating the bounce."
+                )
         base_pt = ball_trajectory[bounce_frame]
         tracker_st = base_pt.state.value if base_pt.state else "UNKNOWN"
 
@@ -144,11 +183,10 @@ class TennisLineCallEngine:
         # 5. Boundary Evaluation based on Shot Context and Finite Line Strips
         r_m = self.contact_patch_radius_cm / 100.0
         if context == LineCallContext.SERVE:
-            box = target_service_box or ServiceBoxType.NEAR_DEUCE
             eval_res = CourtLineGeometry.evaluate_service_box_boundary(
                 court_x_m=court_x_m,
                 court_y_m=court_y_m,
-                target_box=box,
+                target_box=target_service_box,
                 contact_patch_radius_m=r_m,
                 contact_model=self.contact_patch_model
             )

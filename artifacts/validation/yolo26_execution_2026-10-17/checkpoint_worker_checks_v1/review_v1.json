@@ -1,0 +1,36 @@
+{
+  "observed_utc": "2026-10-17T01:32:11.9030389Z",
+  "independent_reviewer": "/root/durable_resume_audit",
+  "reviewed_sources": {
+    "src/api/worker.py": "d62d86d1595f023ff4c2b0294ac2d510a2e01a935d02cd7b2b4fbf9c916406b9",
+    "src/api/analysis_resume.py": "d02992e48cd352ae8c43aa9add7389242e999d4c63e7ad5a36c59eb65bb2a811",
+    "src/api/jobs.py": "a2721b9359cb439f2d27895a149ae8dc3b6290f4a68b26e2abb8f8efd0e46936"
+  },
+  "findings": [
+    {
+      "status": "REPAIRED",
+      "resolution": "Recheck after both decode checks immediately before publish_result",
+      "priority": "P2",
+      "issue": "Final binding check preceded potentially long full-decode validation"
+    },
+    {
+      "status": "REPAIRED",
+      "resolution": "Optional presence/absence and digest bound; drift test added",
+      "priority": "P2",
+      "issue": "Preferential legacy pose_tracking.json missing from optional inventory"
+    }
+  ],
+  "final_result": "No additional concrete P1/P2 issue found",
+  "final_review": "Read-only; no reviewer test execution",
+  "root_helper_review": "Root separately reviewed helper hashing, finite identity, optional inventory, exclusive link publication and cleanup; no concrete P1/P2 issue found",
+  "validation": "checkpoint_worker_checks_v1/final_v2/receipt.json",
+  "limits": [
+    "Completed-stage process-crash continuation only",
+    "Media/model boundaries synthetic",
+    "No within-inference state restoration",
+    "No real full-match or live capacity",
+    "No accuracy qualification",
+    "No Windows power-loss guarantee"
+  ],
+  "qualification_evidence": false
+}

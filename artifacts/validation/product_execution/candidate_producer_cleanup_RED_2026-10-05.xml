@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="4" time="5.709" timestamp="2026-10-05T11:40:33.014111+08:00" hostname="Osamah"><testcase classname="tests.test_pipeline_candidate_storage" name="test_person_records_released_before_ball_inference_and_failed_exports_unpublished" time="1.594" /><testcase classname="tests.test_pipeline_candidate_storage" name="test_incomplete_candidate_stream_fails_before_tracking_or_publication" time="0.006" /><testcase classname="tests.test_pipeline_candidate_storage" name="test_candidate_storage_failure_closes_original_producer_and_preserves_error[False]" time="0.008"><failure message="assert False&#10; +  where False = namespace(live=0, detected=16, observed_before_ball=0, ball_producer_closed=False).ball_producer_closed">tmp_path = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-8/test_candidate_storage_failure0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000231E911F820&gt;
+cleanup_fails = False
+
+    @pytest.mark.parametrize('cleanup_fails', [False, True])
+    def test_candidate_storage_failure_closes_original_producer_and_preserves_error(tmp_path, monkeypatch, cleanup_fails):
+        pipeline, lifetime = pipeline_with_person_observations('close_error' if cleanup_fails else 'short')
+        append = BallCandidateSequence.append
+    
+        def fail_second_append(storage, candidates):
+            if len(storage) == 1:
+                raise OSError('Injected candidate storage failure')
+            append(storage, candidates)
+    
+        monkeypatch.setattr(BallCandidateSequence, 'append', fail_second_append)
+        frames = [np.zeros((80, 120, 3), dtype=np.uint8) for _ in range(4)]
+        with pytest.raises(OSError, match='Injected candidate storage failure') as failure:
+            pipeline._run_with_frames('unused.mp4', tmp_path, frames, SimpleNamespace(fps=60))
+        # Inspect before dropping the traceback: cleanup must not depend on GC.
+&gt;       assert lifetime.ball_producer_closed
+E       assert False
+E        +  where False = namespace(live=0, detected=16, observed_before_ball=0, ball_producer_closed=False).ball_producer_closed
+
+tests\test_pipeline_candidate_storage.py:107: AssertionError</failure></testcase><testcase classname="tests.test_pipeline_candidate_storage" name="test_candidate_storage_failure_closes_original_producer_and_preserves_error[True]" time="0.006"><failure message="assert False&#10; +  where False = namespace(live=0, detected=16, observed_before_ball=0, ball_producer_closed=False).ball_producer_closed">tmp_path = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-8/test_candidate_storage_failure1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000231FCC6F5C0&gt;
+cleanup_fails = True
+
+    @pytest.mark.parametrize('cleanup_fails', [False, True])
+    def test_candidate_storage_failure_closes_original_producer_and_preserves_error(tmp_path, monkeypatch, cleanup_fails):
+        pipeline, lifetime = pipeline_with_person_observations('close_error' if cleanup_fails else 'short')
+        append = BallCandidateSequence.append
+    
+        def fail_second_append(storage, candidates):
+            if len(storage) == 1:
+                raise OSError('Injected candidate storage failure')
+            append(storage, candidates)
+    
+        monkeypatch.setattr(BallCandidateSequence, 'append', fail_second_append)
+        frames = [np.zeros((80, 120, 3), dtype=np.uint8) for _ in range(4)]
+        with pytest.raises(OSError, match='Injected candidate storage failure') as failure:
+            pipeline._run_with_frames('unused.mp4', tmp_path, frames, SimpleNamespace(fps=60))
+        # Inspect before dropping the traceback: cleanup must not depend on GC.
+&gt;       assert lifetime.ball_producer_closed
+E       assert False
+E        +  where False = namespace(live=0, detected=16, observed_before_ball=0, ball_producer_closed=False).ball_producer_closed
+
+tests\test_pipeline_candidate_storage.py:107: AssertionError</failure></testcase></testsuite></testsuites>

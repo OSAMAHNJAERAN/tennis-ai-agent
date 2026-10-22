@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\artifacts\validation\yolo26_execution_2026-10-16\court175_baseline26_attempt1_v1\run_one_baseline.py", line 11, in <module>
+    result=diagnostic.execute(plan,root/"outputs/yolo26_court175_baseline26_attempt1_2026-10-16")
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\scripts\evaluate\diagnose_yolo26_court_repair.py", line 79, in execute
+    training.before_gpu_runtime_guard(receipt["resources_before_gpu_runtime"])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\scripts\train\train_yolo26_court_repair.py", line 195, in before_gpu_runtime_guard
+    raise ValueError("Before Torch/CUDA require4.5GiB available RAM/1GiB disk; unchanged post-CUDA1.5GiB floor follows")
+ValueError: Before Torch/CUDA require4.5GiB available RAM/1GiB disk; unchanged post-CUDA1.5GiB floor follows

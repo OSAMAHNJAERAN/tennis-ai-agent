@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T00:38:44.689013+00:00",
+  "reviewer": "AI_PEER_STATIC_NOT_HUMAN",
+  "status": "PROCESS_RECOVERY_INSTRUMENTATION_FINDING_PENDING_FIX",
+  "reviewed_bindings": [
+    {
+      "path": "tests/test_native_pipeline_process_resume.py",
+      "sha256": "63e8e5ac3e8077690b03e035c1c1e18fa1ea6e208060c6841f33cdb107d5db46",
+      "bytes": 10832,
+      "reviewed_snapshot": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v2/sources/tests/test_native_pipeline_process_resume.py",
+      "current_sha256_observed_when_draft_written": "63e8e5ac3e8077690b03e035c1c1e18fa1ea6e208060c6841f33cdb107d5db46"
+    },
+    {
+      "path": "tests/helpers/native_pipeline_resume_child.py",
+      "sha256": "4126a38bcc27e4ad1ec1cae6eb32530872ccbb23bd5e479f1a6a8049f4c9cf15",
+      "bytes": 9739,
+      "reviewed_snapshot": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v2/sources/tests/helpers/native_pipeline_resume_child.py",
+      "current_sha256_observed_when_draft_written": "30c8cdfa31ddf0d977c5406a897b454f0b81a4a1074301059ffff8134a558761"
+    },
+    {
+      "path": "tests/helpers/native_pipeline_source.py",
+      "sha256": "b4b99dcff081a22d2beda8315d3a14ff7d9405b17f20ed1cd7d42e808efc9c47",
+      "bytes": 14437,
+      "reviewed_snapshot": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v2/sources/tests/helpers/native_pipeline_source.py",
+      "current_sha256_observed_when_draft_written": "b4b99dcff081a22d2beda8315d3a14ff7d9405b17f20ed1cd7d42e808efc9c47"
+    }
+  ],
+  "observed_test_receipt": {
+    "binding": {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v2/receipt.json",
+      "sha256": "44950450cb769fa1cb692f553473adec19e9e85c8c8c222fb0c6280427432745",
+      "bytes": 48020
+    },
+    "status": "FAIL",
+    "counts": {
+      "tests": 484,
+      "errors": 0,
+      "failures": 1,
+      "skipped": 0
+    },
+    "executed_by_this_review": false
+  },
+  "findings": [
+    {
+      "id": "SOURCE_COUNT_PROBE_MISLABELLED_NORMALIZATION",
+      "severity": "P2",
+      "status": "OPEN_IN_REVIEWED_CHILD",
+      "source": "tests/helpers/native_pipeline_resume_child.py::execute",
+      "problem": "The wrapper labels any command whose last argument is source.mp4 as normalizing_source before checking whether the command is ffprobe -count_frames. The normal finalization source-count probe is therefore incorrectly labelled as a second normalization.",
+      "consequence": "The v2 test fails at its one-normalization assertion despite preserved normalized bytes and suffix-only selected-result calls. The event count cannot serve as truthful normalization evidence until corrected.",
+      "requested_fix": "Identify the actual FFmpeg normalization command by its -stats_enc_pre operation, or classify ffprobe -count_frames first; likewise distinguish the browser FFmpeg encode operation from its ffprobe count.",
+      "evidence": "Direct branch-order review and observed terminal v2 log:483passed/1failed at the normalizing_source count(2 rather than1).",
+      "coordination": "Reported promptly to root; no edits or reruns by this reviewer."
+    }
+  ],
+  "credible_scoped_paths": {
+    "actual_process_and_queue": "Parent launches distinct children with subprocess.run; first child calls real journal.append before os._exit(73), bypassing finally/atexit. Real FileLock,JobStore recovery/claim/attempt2 and same owner/id are used.",
+    "durable_frontier": "Crash audit follows real committed frame1 andnext_frame2. Parent SQL checks exactly raw0/1. Resume child reopens actual state and validates no repeated player/court selected-result calls and ball source-frame indices2..7.",
+    "software_and_codec_execution": "Real worker execute delegates to actual FFmpeg/ffprobe; actual frame_mapping, complete native AST definitions, raw numerical/storage/filter/render paths, actual build_result and immutable generation publication execute.",
+    "synthetic_boundaries": "Worker asset admission and checkpoint/runtime identity are explicit synthetic substitutes. Three model result objects supply deterministic NumPy detections; top-level neural imports are omitted and a local inert cuda namespace is injected. Manual interval review,CPU-only configuration and disabled crop/motion branches are also synthetic test assumptions.",
+    "artifact_equivalence": "Parent compares retained normalizedsource/prefix/audit hashes across restart; independent continuous run compares numerical/semantic requiredexports bytewise excluding run-specific path/timing/media fields. Detection video path is removed before exact tree comparison; annotated native/browser decoded pixels are compared rather than codec bytes.",
+    "import_guard": "Child builtins guard runs before worker imports and catches even cached-runtime attempts; meta-path guard also rejects runtime loads. Source AST loader has an independent before-cache guard. Crash/final audits retain all attempt lists and loaded forbidden module roots.",
+    "bounds": "Eight320x240synthetic frames; fixedCPUdevice; no actual learned checkpoint forwards,independent accuracy,longmatch,live or hardware-resource evidence."
+  },
+  "limits": {
+    "tests_run": 0,
+    "project_or_vision_runtime_imports": 0,
+    "host_ram_gpu_probes": 0,
+    "source_edits": 0,
+    "process_workflow_pass_claimed": false,
+    "current_verification": "Until instrumentation is repaired and final guarded scope passes, process recovery evidence remains incomplete."
+  },
+  "binding_observation_note": "Before this review was handed off/frozen, the root fixed the child concurrently with receipt assembly. Reviewed bindings now explicitly use the immutable v2 source snapshots containing the finding; the separate current observations are retained. The closure will bind the fixed current source."
+}

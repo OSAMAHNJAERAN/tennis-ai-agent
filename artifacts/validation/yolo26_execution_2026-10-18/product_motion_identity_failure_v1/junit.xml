@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="1.129" timestamp="2026-10-18T10:52:24.603530+08:00" hostname="Osamah"><testcase classname="tests.test_product_matches" name="test_profiles_do_not_merge_names_and_unconfirmed_motion_is_excluded" time="0.086"><failure message="assert 0 == 1&#10; +  where 0 = len([])">service = (&lt;starlette.testclient.TestClient object at 0x0000028CC2DD2510&gt;, &lt;src.api.jobs.JobStore object at 0x0000028CC2EB6E90&gt;)
+
+    def test_profiles_do_not_merge_names_and_unconfirmed_motion_is_excluded(service):
+        client, jobs = service
+        first = client.post('/api/players', json={'name': 'Alex'}).json()
+        other = client.post('/api/players', json={'name': 'Alex'}).json()
+        assert first['id'] != other['id']
+        metadata = {'participants': [{'profile_id': first['id']}, {'profile_id': other['id']}]}
+        match = client.post('/api/matches', json={'metadata': metadata}).json()
+        jobs.create('match_test', 'clip.mp4', '.mp4', 12, 'config.yaml', match['id'])
+        jobs.finish('match_test')
+        output = jobs.output_dir('match_test'); output.mkdir(parents=True)
+        (output/'result.json').write_text(json.dumps({'summary': {'durationSeconds': 7}, 'playerMetrics': {'player_1': {'total_distance_m': 10}}}))
+        assert client.get(f'/api/players/{first["id"]}').json()['movement'] == []
+        updated = client.patch(f'/api/matches/{match["id"]}/metadata', json={'expected_revision': 0, 'metadata': {**match['metadata'], 'role_assignment': 'same'}}).json()
+&gt;       assert len(client.get(f'/api/players/{first["id"]}').json()['movement']) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests\test_product_matches.py:162: AssertionError</failure></testcase></testsuite></testsuites>

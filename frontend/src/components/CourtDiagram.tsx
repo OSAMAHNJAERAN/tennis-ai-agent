@@ -106,6 +106,7 @@ export const CourtDiagram = memo(function CourtDiagram({
         );
       }) : null}
       {run.lineCalls.map((call) => {
+        if (call.bounce_position_m == null) return null;
         const point = mapCourtPoint(call.bounce_position_m, WIDTH, HEIGHT, PAD);
         return <rect key={`line-${call.event_id}`} className="line-call-marker" x={point.x - 7} y={point.y - 7} width="14" height="14" rx="2" />;
       })}

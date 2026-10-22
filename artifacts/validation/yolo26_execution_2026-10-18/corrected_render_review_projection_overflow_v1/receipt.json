@@ -1,0 +1,53 @@
+{
+  "result": {
+    "semantic_exports_passed": true,
+    "current_camera_frame9_valid": true,
+    "current_camera_frame9_matrix": [
+      [
+        0.01,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.01,
+        0.0
+      ],
+      [
+        0.0,
+        0.0004206983469675885,
+        1.0
+      ]
+    ],
+    "determinant": 0.00010000000000000009,
+    "unexpected_error": "Traceback (most recent call last):\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_projection_overflow_v1\\probe.py\", line 78, in <module>\n    output = render(rebuilt, shots, forecast, exports, fixture.scratch)\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\tests\\test_corrected_rendering.py\", line 57, in render\n    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\scoring\\corrected_rendering.py\", line 391, in render_corrected_video\n    image = _draw_frame(image, frame, rebuilt, shots, landings, partition, mini,\n                        trail, barrier, prediction, pose, initial_state)\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_projection_overflow_v1\\probe.py\", line 68, in observed\n    value = native_draw(image, frame, *args, **kwargs)\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\scoring\\corrected_rendering.py\", line 242, in _draw_frame\n    image = VideoAnnotator.draw_court_keypoints(image, np.asarray(projected))\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\visualization\\video_annotator.py\", line 45, in draw_court_keypoints\n    cv2.circle(img, (x, y), 5, (0, 0, 255), -1)\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ncv2.error: OpenCV(4.13.0) :-1: error: (-5:Bad argument) in function 'circle'\n> Overload resolution failed:\n>  - Can't parse 'center'. Sequence item with index 1 has a wrong type\n>  - Can't parse 'center'. Sequence item with index 1 has a wrong type\n\n"
+  },
+  "source_before": {
+    "src/scoring/corrected_rendering.py": "f0ac972c815b61f57bfeb22f767325a32ee1aef8800f65bb777a185656b4db1f",
+    "src/scoring/corrected_exports.py": "719fa7a6556b3d082189cee9373ff3dc4b312d196dedcfd8bf60f4e950064ae2",
+    "src/scoring/corrected_landing_exports.py": "5c0d47e9b9a1eee9a39f029c5c70ab4e5d8f38e179d352f0f7da0cf009fd7437",
+    "src/scoring/correction_sources.py": "406055445bb781c78715bf675e1cbeca48f5d6659598f2586de529d05d3d1f60",
+    "src/visualization/landing_zones.py": "2eea8fd348effe678bd8bc57b0dc72f0e00af520c38da930796e703aa84a4860",
+    "tests/test_corrected_rendering.py": "0adaed69cf72aba3fbfabe45cb10ad98ef0e77602dd736a920a631612d4ec3b9",
+    "tests/test_corrected_exports.py": "4013dc691093d283a488e6c9aada99164091447f7eb32e33772ceaff7bc484e3",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "tests/test_correction_sources.py": "905085e912e958d2f39f4c8e89a26a5e15514a11f166bc10b241a3dd78a0a590"
+  },
+  "source_after": {
+    "src/scoring/corrected_rendering.py": "f0ac972c815b61f57bfeb22f767325a32ee1aef8800f65bb777a185656b4db1f",
+    "src/scoring/corrected_exports.py": "719fa7a6556b3d082189cee9373ff3dc4b312d196dedcfd8bf60f4e950064ae2",
+    "src/scoring/corrected_landing_exports.py": "5c0d47e9b9a1eee9a39f029c5c70ab4e5d8f38e179d352f0f7da0cf009fd7437",
+    "src/scoring/correction_sources.py": "406055445bb781c78715bf675e1cbeca48f5d6659598f2586de529d05d3d1f60",
+    "src/visualization/landing_zones.py": "2eea8fd348effe678bd8bc57b0dc72f0e00af520c38da930796e703aa84a4860",
+    "tests/test_corrected_rendering.py": "8dac7b12bded3975ccda9bd80eb6657159d5e3112517f86f30a6274c932d74cf",
+    "tests/test_corrected_exports.py": "4013dc691093d283a488e6c9aada99164091447f7eb32e33772ceaff7bc484e3",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "tests/test_correction_sources.py": "905085e912e958d2f39f4c8e89a26a5e15514a11f166bc10b241a3dd78a0a590"
+  },
+  "forbidden_import_attempts": [],
+  "forbidden_imports_loaded": [],
+  "scope": "Synthetic frozen source with one finite invertible but whole-court horizon-crossing display homography; no inference or accuracy claim",
+  "source_stable": false
+}

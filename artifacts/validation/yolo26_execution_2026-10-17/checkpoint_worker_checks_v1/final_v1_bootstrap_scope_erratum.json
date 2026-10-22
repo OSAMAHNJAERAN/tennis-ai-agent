@@ -1,0 +1,11 @@
+{
+  "observed_utc": "2026-10-17T01:31:20.0488232Z",
+  "scope": "Earlier final_v1 test-bootstrap isolation",
+  "earlier": "checkpoint_worker_checks_v1/final_v1/receipt.json",
+  "issue": "Runner did not set TENNIS_STORAGE_ROOT before collection of test_product_api, which imports the module-level default app",
+  "limitation": "No before hash was captured for any pre-existing default bootstrap database; this run cannot prove its bytes remained unchanged. No global-app lifespan or worker was intentionally started.",
+  "repair": "final_v2 confines module-level bootstrap to its unique RUN/temp/app_bootstrap before importing pytest tests",
+  "superseding": "checkpoint_worker_checks_v1/final_v2/receipt.json",
+  "source_or_test_result_retraction": false,
+  "qualification_evidence": false
+}

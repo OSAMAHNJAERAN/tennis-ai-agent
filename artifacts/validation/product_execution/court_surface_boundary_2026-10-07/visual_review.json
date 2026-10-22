@@ -1,0 +1,494 @@
+{
+  "status": "VISUAL_REVIEW_COMPLETED_OF_PRESERVED_TERMINAL_FAILED_RUN",
+  "complete": true,
+  "reviewedAtUtc": "2026-10-07T04:18:00.1693788Z",
+  "workspaceRoot": "C:/Semester 9/FYP2/tennis_ai_agent_bundle",
+  "scope": "Read-only source-context inspection with view_image of all five changed panels and their five native publisher source PNGs, all nine automatic panels and their nine exact decoded native PNGs, and the spectator negative-control panel against the already viewed automatic_04 native source. No fitting, scoring, model inference, test or benchmark rerun was executed for this review.",
+  "runTerminalStatus": "FAILED",
+  "runFailure": "All 64 existing-seed and nine automatic records plus the separate spectator record were preserved. The child's final memory/report step raised AttributeError because actual referred to a numpy.ndarray instead of the process object. run/report.json was not produced. The existing failed resource receipt is retained and is not converted to a successful execution receipt.",
+  "preservedProgressRecordCount": 73,
+  "runReceiptObservations": {
+    "sourcesUnchanged": true,
+    "savedProductUnchanged": true,
+    "allOwnedIdentitiesRetired": true,
+    "remainingOwnedIdentities": [],
+    "source": "run/resource_receipt.json"
+  },
+  "reviewMethod": {
+    "nativeImagesViewedBeforeAutomaticPanels": true,
+    "changedNativePublisherSourcesViewed": true,
+    "numberOfChangedPanels": 5,
+    "numberOfAutomaticPanels": 9,
+    "numberOfSpectatorPanels": 1,
+    "allRequestedPanelsViewed": true,
+    "reviewIsBlinded": false,
+    "independentlyAdjudicatedGroundTruth": false,
+    "physicalCourtValidated": false,
+    "uncertainty": "AI source-context assessment only. Thin paint, red overlay occlusion, image resizing, cropped boundaries and scene occlusions limit fine alignment judgments. Approximate prior Dimitrov marks are exposed development evidence."
+  },
+  "changedCases": [
+    {
+      "index": 14,
+      "id": "bQiC1RcZOe4_200",
+      "source": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/court_heatmap_pilot/images/bQiC1RcZOe4_200.png",
+      "panel": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_14.png",
+      "assessment": "SMALL_PLAUSIBLE_CHANGE_WITH_UNCERTAIN_LOCAL_DIRECTION",
+      "observation": "The candidate and same-optimizer baseline both describe the visible indoor court. The far-baseline tilt and position change slightly, with smaller coupled intersection changes. Red overlay strokes obscure the underlying white stripe, so this source-context review cannot confidently rank the far-baseline change as an improvement or regression. Do not convert its plausible appearance into an accuracy claim."
+    },
+    {
+      "index": 22,
+      "id": "OcvlfHjBdwY_100",
+      "source": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/court_heatmap_pilot/images/OcvlfHjBdwY_100.png",
+      "panel": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_22.png",
+      "assessment": "SMALL_PLAUSIBLE_CHANGE_WITH_RESIDUAL_EDGE_OFFSETS",
+      "observation": "Both overlays retain the Indian Wells court footprint and canonical line topology. The candidate makes small coupled boundary and service-line shifts. Paint remains visible beside parts of the red boundary/intersection overlay, so residual local offsets remain. No grossly misplaced newly admitted court is visible, but small error direction cannot be certified at panel scale."
+    },
+    {
+      "index": 23,
+      "id": "OcvlfHjBdwY_450",
+      "source": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/court_heatmap_pilot/images/OcvlfHjBdwY_450.png",
+      "panel": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_23.png",
+      "assessment": "SMALL_PLAUSIBLE_CHANGE_WITH_RESIDUAL_EDGE_OFFSETS",
+      "observation": "Both overlays remain close to the visible court in the second Monfils/Anderson frame. Changes around the near service line and outer boundaries are subtle; some white paint remains exposed next to red strokes. The review supports continued visual plausibility, not a claim that every changed landmark improves."
+    },
+    {
+      "index": 24,
+      "id": "rBHsQe0Nnyo_700",
+      "source": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/court_heatmap_pilot/images/rBHsQe0Nnyo_700.png",
+      "panel": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_24.png",
+      "assessment": "VISIBLE_LOCAL_ALIGNMENT_IMPROVEMENT_WITH_RESIDUAL_OFFSETS",
+      "observation": "The candidate appears to bring the near service line closer to visible paint, particularly toward the left, while retaining the full Djokovic/Isner court footprint. The near baseline and some outer edges still have small visible offsets. This is a qualitative local improvement, not independent measured accuracy."
+    },
+    {
+      "index": 27,
+      "id": "ktiDOhLZIVs_3500",
+      "source": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/court_heatmap_pilot/images/ktiDOhLZIVs_3500.png",
+      "panel": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/changed_27.png",
+      "assessment": "SMALL_PLAUSIBLE_CHANGE_WITH_RESIDUAL_EDGE_OFFSETS",
+      "observation": "Both baseline and candidate follow the visible Medvedev/Ivashka court. The candidate adjusts the left edge/far corner and coupled internal lines slightly; fine white/red offsets persist around some edges. The source context gives no gross false-fit concern, but cannot certify every intersection or infer physical mapping accuracy."
+    }
+  ],
+  "automaticCases": [
+    {
+      "index": 0,
+      "id": "djokovic_2012",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/demos/sources/djokovic_2012.webm",
+        "bytes": 9089830,
+        "sha256": "0258d7c06fb175e52beb0a2238da3984a45bffc39454aa04d4c814da3779d999"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_00_original.png",
+        "bytes": 797689,
+        "sha256": "5685dbdbefef98359111e27d39656f68dbd90a522bce77385838874e4d055ddf"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_00_panel.png",
+        "bytes": 1072656,
+        "sha256": "a897c320577ec1271722176bb1efeeac6402240685cda1dbf416de02b609874e"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": false,
+      "storedReason": "INSUFFICIENT_COMPATIBLE_LINES",
+      "storedRefinementAccepted": false,
+      "assessment": "CROPPED_COURT_WRONG_COMPLETE_SEED_REJECTED",
+      "observation": "The original frame shows a cropped near half of a diagonal blue court. The automatic seed overlays a complete canonical court across that partial footprint; its internal lines do not correspond to the visible painted service lines. The returned overlay is unchanged and the stored decision rejects it. This is a visible initialization failure, not an accurate mapped court."
+    },
+    {
+      "index": 1,
+      "id": "schiavone_2012",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/demos/sources/schiavone_2012.webm",
+        "bytes": 11937043,
+        "sha256": "964059dfa99763aab2da785185315d6dfd36c0d3f02a5f65f15fe3b17a8ec738"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_01_original.png",
+        "bytes": 621357,
+        "sha256": "800a695a9fe5d5e9140f6cae7b6f8b2bf8cc24e4a2abe4b75f3a12e3d428bf26"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_01_panel.png",
+        "bytes": 815731,
+        "sha256": "f637d219ec54ccd59f9c69dd883c5314632a7ba99e2ed7fdbe329ce1d1629052"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": false,
+      "storedReason": "INSUFFICIENT_COMPATIBLE_LINES",
+      "storedRefinementAccepted": false,
+      "assessment": "RUNOFF_SELECTED_AS_COURT_REJECTED",
+      "observation": "The original frame shows a player on green runoff and only a cropped blue court corner at lower right. The red complete-court hypothesis spans the green floor and does not describe the visible painted court. It is unchanged on return and rejected. A plausible quadrilateral surface alone does not establish semantic court identity."
+    },
+    {
+      "index": 2,
+      "id": "dimitrov_tiafoe_2024",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/demos/sources/dimitrov_tiafoe_2024_rally.mkv",
+        "bytes": 237118447,
+        "sha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_02_original.png",
+        "bytes": 2318109,
+        "sha256": "b45f75203f203b4b0da3ba479efd90249e123175eb1526ac620420ea901d22ad"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_02_panel.png",
+        "bytes": 1465845,
+        "sha256": "20202ff6180b31e3fada56d3bf35b7dd05bf58d76faf835b94c66d7c5f592bb6"
+      },
+      "storedCandidateImageAdmission": true,
+      "storedBaselineImageAdmission": false,
+      "storedReason": "PROJECTIVE_IMAGE_SUPPORT_IMPROVED",
+      "storedRefinementAccepted": true,
+      "assessment": "VISIBLE_ALIGNMENT_IMPROVEMENT_WITH_RESIDUAL_UNCERTAINTY",
+      "observation": "Compared with the automatic hull seed, the returned overlay visibly moves the outer boundaries toward the blue/green paint edges and retains the diagonal court orientation. The near baseline and both outer sidelines show a substantial source-context improvement. Small offsets remain visible at some edges and intersections; the umpire chair occludes part of the far service geometry. The stored image-evidence admission is plausible, but one exposed first frame and approximate AI source marks cannot establish physical court accuracy, temporal stability or a general false-admission rate."
+    },
+    {
+      "index": 3,
+      "id": "uvy_tennis_videos_tennis_V01",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/uvy_tennis_videos/UVY/tennis_V01/vid_vnXVmFWk0nc.mp4",
+        "bytes": 2431877,
+        "sha256": "6920144c45332ebe84df9fc9a12f3b666f88fcd4c5facc4858215106e9c98272"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_03_original.png",
+        "bytes": 407812,
+        "sha256": "44ee63db3e1e64a987dcda2bcfaef28874197eefd5aec6b482bec01c546dddc8"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_03_panel.png",
+        "bytes": 1565720,
+        "sha256": "17fe013e2fde5b53ac60f848d6705e54513a7a8b5209c5af03c4c504664da3e0"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": null,
+      "storedReason": "NO_FOUR_CORNER_COMPONENT_AT_FROZEN_EPSILON",
+      "storedRefinementAccepted": null,
+      "assessment": "NO_AUTOMATIC_GEOMETRY_RETURNED",
+      "observation": "The native image shows a grass court from spectator seating, with a large umpire chair obscuring the central region and foreground spectators. Both panel halves contain the source image without a court overlay. The stored reason is no eligible four-corner component. This is unavailable automatic initialization; conditional refinement was not meaningfully challenged."
+    },
+    {
+      "index": 4,
+      "id": "uvy_tennis_videos_tennis_V02",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/uvy_tennis_videos/UVY/tennis_V02/vid_maRB027fzxc.mp4",
+        "bytes": 2553926,
+        "sha256": "4b1a7e5a535ed3187311ad108fc12b7f80ef401824b53784b5296afe45693d24"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_04_original.png",
+        "bytes": 448167,
+        "sha256": "76a8d8f3a915d9461b3fb690bf70bd7556ccdf444e967fb8f0a2329c245fb208"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_04_panel.png",
+        "bytes": 1698024,
+        "sha256": "1623f16b1778023815a2b1df1869bd61e41464c18aef08e6a6632fe8663e7cb0"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": null,
+      "storedReason": "NO_FOUR_CORNER_COMPONENT_AT_FROZEN_EPSILON",
+      "storedRefinementAccepted": null,
+      "assessment": "NO_AUTOMATIC_GEOMETRY_RETURNED",
+      "observation": "The native image shows a grass court surrounded by packed grandstands and large foreground spectator heads. Both panel halves contain no automatic court geometry. The stored reason is no eligible four-corner component. Keep this distinct from the separate, explicitly supplied wrong spectator seed test."
+    },
+    {
+      "index": 5,
+      "id": "uvy_tennis_videos_tennis_V03",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/uvy_tennis_videos/UVY/tennis_V03/vid_aIPCfLKF1LI.mp4",
+        "bytes": 4254938,
+        "sha256": "a31208d574204aaf94e57f699fea31fedbe84e6f011386fe18e6ded957d99024"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_05_original.png",
+        "bytes": 1467750,
+        "sha256": "1e1db4ce9d1109448e33910099183a0f7f24b3fdb6bbb72c3f6b345a79557989"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_05_panel.png",
+        "bytes": 1733362,
+        "sha256": "3c8ad482688745aa2c415c3f6160a5989fff65f73eaf22a1f893e8120158fd64"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": null,
+      "storedReason": "NO_FOUR_CORNER_COMPONENT_AT_FROZEN_EPSILON",
+      "storedRefinementAccepted": null,
+      "assessment": "NO_AUTOMATIC_GEOMETRY_RETURNED",
+      "observation": "The native grass-court image has strong illumination variation, a central umpire chair and foreground spectator occlusion. No automatic geometry is drawn in either panel half; the saved candidate is unavailable for lack of an eligible four-corner component. This does not establish accurate localization of the partly visible court."
+    },
+    {
+      "index": 6,
+      "id": "caltennis_diagnostic_1",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/caltennis_diagnostic/09_18_2025_16_15_court5/09_18_2025_17_25_35_000_court5_NW_01_17_26_16_546.mp4",
+        "bytes": 22250960,
+        "sha256": "13bdd45c27d4b6ccc3bad699eb458d9a6d49905eada758f252db9fb70c7efff1"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_06_original.png",
+        "bytes": 1872574,
+        "sha256": "8a769c92b5d1628302af0840a1b7089cda87725eeee0c3cbdbe02bcd990a6afe"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_06_panel.png",
+        "bytes": 1154972,
+        "sha256": "4b92de78768e04bb7c5896ee19325fda71554f7289d71ab2d678fbc7d15ecbb0"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": null,
+      "storedReason": "NO_FOUR_CORNER_COMPONENT_AT_FROZEN_EPSILON",
+      "storedRefinementAccepted": null,
+      "assessment": "NO_AUTOMATIC_GEOMETRY_RETURNED",
+      "observation": "The native low sideline view shows a red court, a foreground player and a net that occludes distant markings. The near end of the court extends beyond the image. Both panel halves lack automatic geometry and the stored outcome is no eligible four-corner component. It provides no accepted mapping."
+    },
+    {
+      "index": 7,
+      "id": "caltennis_diagnostic_2",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/caltennis_diagnostic/10_02_2025_08_00_court5/10_02_2025_08_13_47_000_court5_N_1_08_14_41_276.mp4",
+        "bytes": 29756835,
+        "sha256": "60600137dac44c3dd53bc3a098f506882b8a79fa2a0294c849513c90afe5eaac"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_07_original.png",
+        "bytes": 2426515,
+        "sha256": "7509db999d5df2357b6448b765ca9745e10715b3ec389c0f63020a01f314b059"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_07_panel.png",
+        "bytes": 1374255,
+        "sha256": "403c605725040ba3feda8e975a06b0c5830e93e2f4553994724fca21eed221d2"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": null,
+      "storedReason": "NO_FOUR_CORNER_COMPONENT_AT_FROZEN_EPSILON",
+      "storedRefinementAccepted": null,
+      "assessment": "NO_AUTOMATIC_GEOMETRY_RETURNED",
+      "observation": "The native frame shows a red court viewed from near the baseline, with a central foreground player, net occlusion and strong shadows. Both panel halves contain no returned court overlay. No eligible four-corner component was selected; this is an unresolved initialization case rather than proof that the surface cue is safe or accurate on this view."
+    },
+    {
+      "index": 8,
+      "id": "caltennis_diagnostic_3",
+      "sourceVideo": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/data/external/caltennis_diagnostic/09_18_2025_16_15_court5/09_18_2025_17_25_43_000_court5_NE_01_17_27_11_168.mp4",
+        "bytes": 42087211,
+        "sha256": "29a79eb657ff1542d6b6686d3bbe9c48122e00d6d755694ec3a118210aca4833"
+      },
+      "nativeOriginal": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_08_original.png",
+        "bytes": 2082291,
+        "sha256": "2af2dc22ab9d8a7746fd20656ed4dc555ae2d7869369fed9eae3e8b6fc2dcdf3"
+      },
+      "panel": {
+        "path": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_08_panel.png",
+        "bytes": 1230715,
+        "sha256": "6aec03d0f1f79192a3863e601e5e91769d473211d4f8d7f2a3d1f86c49ca0dc9"
+      },
+      "storedCandidateImageAdmission": false,
+      "storedBaselineImageAdmission": null,
+      "storedReason": "NO_FOUR_CORNER_COMPONENT_AT_FROZEN_EPSILON",
+      "storedRefinementAccepted": null,
+      "assessment": "NO_AUTOMATIC_GEOMETRY_RETURNED",
+      "observation": "The native low diagonal view shows a red court, net, fence and cropped near end. No court hypothesis is drawn in either panel half; the saved reason is no eligible four-corner component. Whole-court registration remains unavailable."
+    }
+  ],
+  "spectatorControl": {
+    "sourceContext": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/automatic_04_original.png",
+    "record": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/spectator_control.json",
+    "panel": "C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/court_surface_boundary_2026-10-07/run/spectator_control_panel.png",
+    "storedOriginalProductionCalibrationRejected": true,
+    "storedBaselineImageAdmission": false,
+    "storedCandidateImageAdmission": false,
+    "storedRefinementAccepted": false,
+    "storedReason": "INSUFFICIENT_COMPATIBLE_LINES",
+    "assessment": "CLEARLY_WRONG_SPECTATOR_HYPOTHESIS_REJECTED",
+    "observation": "The red complete-court seed is drawn over grandstand spectators far above the actual grass court. Its returned overlay remains equally wrong. The stored admission and refinement both reject it, so drawing unchanged returned points must not be described as an accepted spectator court. This is one explicit negative hypothesis, not an exhaustive false-acceptance benchmark."
+  },
+  "decision": {
+    "productionPromoted": false,
+    "qualificationEvidence": false,
+    "physicalSpeedOr3DEnabled": false,
+    "newlyAdmittedAutomaticCases": [
+      "dimitrov_tiafoe_2024"
+    ],
+    "newlyAdmittedCaseVisuallyPlausible": true,
+    "wronglyAdmittedHypothesisIdentifiedInInspectedPanels": false,
+    "allCasesAccurate": false,
+    "statement": "The Dimitrov outer-boundary correction is a useful exposed development result. The other automatic views remain rejected or unavailable, the spectator hypothesis remains rejected, and the five existing-seed changes require their full numerical gains/losses to accompany this visual review. The failed finalization and lack of independently labeled footage/reference measurements remain explicit. No production promotion follows."
+  },
+  "artifactBindings": [
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_00_original.png",
+      "bytes": 797689,
+      "sha256": "5685dbdbefef98359111e27d39656f68dbd90a522bce77385838874e4d055ddf"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_00_panel.png",
+      "bytes": 1072656,
+      "sha256": "a897c320577ec1271722176bb1efeeac6402240685cda1dbf416de02b609874e"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_01_original.png",
+      "bytes": 621357,
+      "sha256": "800a695a9fe5d5e9140f6cae7b6f8b2bf8cc24e4a2abe4b75f3a12e3d428bf26"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_01_panel.png",
+      "bytes": 815731,
+      "sha256": "f637d219ec54ccd59f9c69dd883c5314632a7ba99e2ed7fdbe329ce1d1629052"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_02_original.png",
+      "bytes": 2318109,
+      "sha256": "b45f75203f203b4b0da3ba479efd90249e123175eb1526ac620420ea901d22ad"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_02_panel.png",
+      "bytes": 1465845,
+      "sha256": "20202ff6180b31e3fada56d3bf35b7dd05bf58d76faf835b94c66d7c5f592bb6"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_03_original.png",
+      "bytes": 407812,
+      "sha256": "44ee63db3e1e64a987dcda2bcfaef28874197eefd5aec6b482bec01c546dddc8"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_03_panel.png",
+      "bytes": 1565720,
+      "sha256": "17fe013e2fde5b53ac60f848d6705e54513a7a8b5209c5af03c4c504664da3e0"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_04_original.png",
+      "bytes": 448167,
+      "sha256": "76a8d8f3a915d9461b3fb690bf70bd7556ccdf444e967fb8f0a2329c245fb208"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_04_panel.png",
+      "bytes": 1698024,
+      "sha256": "1623f16b1778023815a2b1df1869bd61e41464c18aef08e6a6632fe8663e7cb0"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_05_original.png",
+      "bytes": 1467750,
+      "sha256": "1e1db4ce9d1109448e33910099183a0f7f24b3fdb6bbb72c3f6b345a79557989"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_05_panel.png",
+      "bytes": 1733362,
+      "sha256": "3c8ad482688745aa2c415c3f6160a5989fff65f73eaf22a1f893e8120158fd64"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_06_original.png",
+      "bytes": 1872574,
+      "sha256": "8a769c92b5d1628302af0840a1b7089cda87725eeee0c3cbdbe02bcd990a6afe"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_06_panel.png",
+      "bytes": 1154972,
+      "sha256": "4b92de78768e04bb7c5896ee19325fda71554f7289d71ab2d678fbc7d15ecbb0"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_07_original.png",
+      "bytes": 2426515,
+      "sha256": "7509db999d5df2357b6448b765ca9745e10715b3ec389c0f63020a01f314b059"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_07_panel.png",
+      "bytes": 1374255,
+      "sha256": "403c605725040ba3feda8e975a06b0c5830e93e2f4553994724fca21eed221d2"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_08_original.png",
+      "bytes": 2082291,
+      "sha256": "2af2dc22ab9d8a7746fd20656ed4dc555ae2d7869369fed9eae3e8b6fc2dcdf3"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\automatic_08_panel.png",
+      "bytes": 1230715,
+      "sha256": "6aec03d0f1f79192a3863e601e5e91769d473211d4f8d7f2a3d1f86c49ca0dc9"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\changed_14.png",
+      "bytes": 938861,
+      "sha256": "e88ce0e8eebc437a4c4f8da89c18a0f50233f6b9a872a45b1c39265951911e90"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\changed_22.png",
+      "bytes": 1023317,
+      "sha256": "b9524f0f53783dc5edff795aac8f45a84254eaf9ea6dfdc2ab5b681c71b005bd"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\changed_23.png",
+      "bytes": 1011785,
+      "sha256": "75c58c60958604db7b8445e0794e97850f390fa0159d482bb7fb3749a66c4524"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\changed_24.png",
+      "bytes": 1045325,
+      "sha256": "e6b15ec43ecacda31e77f31bbd12c97dc85ee23d5ff7ede4511a14fb8b7ea5a2"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\changed_27.png",
+      "bytes": 1035719,
+      "sha256": "a676e3646e37843fef9a4964a104eac23f4ce8a4c14ada81ad3e5aebfa0554cf"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\spectator_control_panel.png",
+      "bytes": 1697351,
+      "sha256": "02c65d34c1e0550ced591fd4ff261cf0079777fff4aa95855ef4073f755cdb6a"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\protocol.json",
+      "bytes": 6801,
+      "sha256": "6b6609c7743a5a5434f2a56951fdaf4f1b29febeb32b7d69782bd5ef2fc93421"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\candidate.py",
+      "bytes": 7099,
+      "sha256": "0e0a6420432ca3866326d0fe6c5fa69494110c2719e6faa6b7a658931ebccfd0"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\resource_receipt.json",
+      "bytes": 1428,
+      "sha256": "73ced561b386ffa6c399927193230d99784b0596f68eb6e7172711eaee7fda33"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\progress.jsonl",
+      "bytes": 4511711,
+      "sha256": "e728e98cb4c45a5772cd90b90089d2625ac755dd863bfa795e5513e6378fc47b"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\court_surface_boundary_2026-10-07\\run\\spectator_control.json",
+      "bytes": 119823,
+      "sha256": "5af2640d77193c4d20c385bce77f707aa3f60fe791757cc9d3983d7548c5d530"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\court_heatmap_pilot\\images\\bQiC1RcZOe4_200.png",
+      "bytes": 748503,
+      "sha256": "7a28ca21df9c492ac0a692b3b40fe0175c2f8c39a7f3057bec93590cbeec08ba"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\court_heatmap_pilot\\images\\OcvlfHjBdwY_100.png",
+      "bytes": 823343,
+      "sha256": "0119d6813d45a9e383328cdbb5f68e7654d26dbf051641c7218b69a58462cb4a"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\court_heatmap_pilot\\images\\OcvlfHjBdwY_450.png",
+      "bytes": 819414,
+      "sha256": "eb081907ecffb595dbe6291925cb8522400e9c5088d93108bed175a1cf7b124d"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\court_heatmap_pilot\\images\\rBHsQe0Nnyo_700.png",
+      "bytes": 845615,
+      "sha256": "7ca5bcd994eff8b2216acb5db9ff7be31076fbd6abdf255a0e397885b341130f"
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\court_heatmap_pilot\\images\\ktiDOhLZIVs_3500.png",
+      "bytes": 848452,
+      "sha256": "80a5425fc4aaec17467232fc40ea9928d1e77a882795832f55cadf77822c1140"
+    }
+  ]
+}

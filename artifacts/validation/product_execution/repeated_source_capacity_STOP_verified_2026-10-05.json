@@ -1,0 +1,366 @@
+{
+  "verifiedAt": "2026-10-05T03:05:00.840768+00:00",
+  "evidenceVerified": true,
+  "workloadPassed": false,
+  "qualificationEvidence": false,
+  "toolSession": 22734,
+  "toolExitCodeObserved": 1,
+  "analysisId": "match_63a83c719d1345ae96fa48646402595f",
+  "terminalJob": {
+    "id": "match_63a83c719d1345ae96fa48646402595f",
+    "filename": "repeated_licensed_stress.mp4",
+    "extension": ".mp4",
+    "status": "FAILED",
+    "stage": "Analysis failed",
+    "step": 0,
+    "created_at": "2026-10-05T02:46:11.454459+00:00",
+    "started_at": "2026-10-05T02:46:11.460693+00:00",
+    "completed_at": "2026-10-05T03:00:23.874560+00:00",
+    "error": "Isolated engineering stress was interrupted by its monitoring safeguard; partial artifacts retained.",
+    "size_bytes": 391693630,
+    "config_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\configs\\phase6_analytics\\wasb_tiled_residual_pose_small_validation.yaml"
+  },
+  "resourceReceipt": {
+    "startedAt": "2026-10-05T02:43:19.569257+00:00",
+    "passed": false,
+    "samples": 509,
+    "peakSampledOwnedTreeRssBytes": 1854242816,
+    "peakSampledOwnedTreePrivateBytes": 4055429120,
+    "minimumSampledAvailableRamBytes": 296972288,
+    "scope": "Sampled owned process tree; shared RSS pages may be counted twice and short peaks may be missed.",
+    "safeguardStop": "Predeclared owned workload resource threshold reached",
+    "completedAt": "2026-10-05T03:00:23.877008+00:00",
+    "totalMonitoredWallSeconds": 1024.3077618000098,
+    "diskAfterBytes": {
+      "total": 1022844989440,
+      "used": 946830934016,
+      "free": 76014055424
+    },
+    "ownedFilesBytes": 763646007
+  },
+  "stopReasonVerified": "AVAILABLE_SYSTEM_RAM_BELOW_400000000_BYTES_FOR_FIVE_CONSECUTIVE_SAMPLES",
+  "stopSamples": [
+    {
+      "at": "2026-10-05T03:00:15.799580+00:00",
+      "elapsedSeconds": 1016.2303354000032,
+      "processes": [
+        {
+          "pid": 12604,
+          "rssBytes": 4304896,
+          "privateBytes": 835584
+        },
+        {
+          "pid": 13880,
+          "rssBytes": 7524352,
+          "privateBytes": 1253376
+        },
+        {
+          "pid": 18584,
+          "rssBytes": 1804656640,
+          "privateBytes": 3925110784
+        }
+      ],
+      "availableRamBytes": 314109952,
+      "freeDiskBytes": 76009590784,
+      "ownedTreeRssBytes": 1816485888,
+      "ownedTreePrivateBytes": 3927199744,
+      "analysisId": "match_63a83c719d1345ae96fa48646402595f",
+      "status": "PROCESSING",
+      "stage": "Running wasb Tennis Ball Detection",
+      "step": 4
+    },
+    {
+      "at": "2026-10-05T03:00:17.810996+00:00",
+      "elapsedSeconds": 1018.2417498000141,
+      "processes": [
+        {
+          "pid": 12604,
+          "rssBytes": 4304896,
+          "privateBytes": 835584
+        },
+        {
+          "pid": 13880,
+          "rssBytes": 7524352,
+          "privateBytes": 1253376
+        },
+        {
+          "pid": 18584,
+          "rssBytes": 1804656640,
+          "privateBytes": 3925114880
+        }
+      ],
+      "availableRamBytes": 345661440,
+      "freeDiskBytes": 76014321664,
+      "ownedTreeRssBytes": 1816485888,
+      "ownedTreePrivateBytes": 3927203840,
+      "analysisId": "match_63a83c719d1345ae96fa48646402595f",
+      "status": "PROCESSING",
+      "stage": "Running wasb Tennis Ball Detection",
+      "step": 4
+    },
+    {
+      "at": "2026-10-05T03:00:19.831015+00:00",
+      "elapsedSeconds": 1020.2617694000073,
+      "processes": [
+        {
+          "pid": 12604,
+          "rssBytes": 4304896,
+          "privateBytes": 835584
+        },
+        {
+          "pid": 13880,
+          "rssBytes": 7524352,
+          "privateBytes": 1253376
+        },
+        {
+          "pid": 18584,
+          "rssBytes": 1804677120,
+          "privateBytes": 3925110784
+        }
+      ],
+      "availableRamBytes": 302993408,
+      "freeDiskBytes": 76014317568,
+      "ownedTreeRssBytes": 1816506368,
+      "ownedTreePrivateBytes": 3927199744,
+      "analysisId": "match_63a83c719d1345ae96fa48646402595f",
+      "status": "PROCESSING",
+      "stage": "Running wasb Tennis Ball Detection",
+      "step": 4
+    },
+    {
+      "at": "2026-10-05T03:00:21.843534+00:00",
+      "elapsedSeconds": 1022.2742890999943,
+      "processes": [
+        {
+          "pid": 12604,
+          "rssBytes": 4304896,
+          "privateBytes": 835584
+        },
+        {
+          "pid": 13880,
+          "rssBytes": 7524352,
+          "privateBytes": 1253376
+        },
+        {
+          "pid": 18584,
+          "rssBytes": 1804677120,
+          "privateBytes": 3925114880
+        }
+      ],
+      "availableRamBytes": 335376384,
+      "freeDiskBytes": 76014157824,
+      "ownedTreeRssBytes": 1816506368,
+      "ownedTreePrivateBytes": 3927203840,
+      "analysisId": "match_63a83c719d1345ae96fa48646402595f",
+      "status": "PROCESSING",
+      "stage": "Running wasb Tennis Ball Detection",
+      "step": 4
+    },
+    {
+      "at": "2026-10-05T03:00:23.855463+00:00",
+      "elapsedSeconds": 1024.2862176000199,
+      "processes": [
+        {
+          "pid": 12604,
+          "rssBytes": 4304896,
+          "privateBytes": 835584
+        },
+        {
+          "pid": 13880,
+          "rssBytes": 7524352,
+          "privateBytes": 1253376
+        },
+        {
+          "pid": 18584,
+          "rssBytes": 1802911744,
+          "privateBytes": 3925114880
+        }
+      ],
+      "availableRamBytes": 296972288,
+      "freeDiskBytes": 76014055424,
+      "ownedTreeRssBytes": 1814740992,
+      "ownedTreePrivateBytes": 3927203840,
+      "analysisId": "match_63a83c719d1345ae96fa48646402595f",
+      "status": "PROCESSING",
+      "stage": "Running wasb Tennis Ball Detection",
+      "step": 4
+    }
+  ],
+  "ownedProcessesRetired": [
+    {
+      "pid": 12604,
+      "state": "NO_SUCH_PROCESS"
+    },
+    {
+      "pid": 13880,
+      "state": "NO_SUCH_PROCESS"
+    },
+    {
+      "pid": 18584,
+      "state": "NO_SUCH_PROCESS"
+    }
+  ],
+  "sourceAndConfigurationBindingsUnchanged": true,
+  "normalizationOnly": {
+    "mappingRecords": 18000,
+    "uniquePreparedInputFrames": 18000,
+    "normalizedAndPreparedInputRationalPts": "Every frame equals N/60",
+    "scope": "Prepared synthetic uniform clock; original licensed source PTS and final annotated media are not verified."
+  },
+  "sourceCredit": {
+    "id": "dimitrov_tiafoe_2024",
+    "title": "Dimitrov & Tiafoe \u00b7 2024 US Open \u00b7 repeated systems stress",
+    "author": "Oleg Yunakov",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2024_US_Open._Grigor_Dimitrov_vs._Frances_Tiafoe.webm",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "derivativeLicense": "CC BY-SA 4.0",
+    "sourceSha256": "e7740e59b96550374e807b666903b1b5eec5e44fd8d97940dc9657892da1e209",
+    "inputSha256": "b8e9f8765bb4cceed088bc81d0448c8a39e74b2ec94121cf29bf5dbeac810dab",
+    "modifications": "Thirty consecutive repetitions of the licensed source frames 390\u2013989; video-only H.264 CRF 18 compression and source dimensions preserved. A synthetic uniform 60 FPS clock assigns timestamp N/60; original quantized source PTS are not claimed. Artificial discontinuities occur every 600 frames. Analysis adds evidence overlays."
+  },
+  "retainedSourceSha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+  "missingTerminalWorkerReceipt": true,
+  "unpublishedArtifactsAbsent": [
+    "result.json",
+    "summary.json",
+    "annotated_web.mp4",
+    "annotated.mp4",
+    "metrics.json"
+  ],
+  "retainedPartialWriterFiles": [
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\.camera_registration.json.dicj21js.tmp"
+  ],
+  "liveProductJobStatesUnchanged": [
+    [
+      "match_02d494b88e99400d8cf7243528302f9b",
+      "COMPLETED"
+    ],
+    [
+      "match_085721ef943d4a02b4d8117327208186",
+      "COMPLETED"
+    ],
+    [
+      "match_1bb12f2aa52a438ebce8a9895fa2bd4f",
+      "COMPLETED"
+    ],
+    [
+      "match_3f7ae891370e4d41a0d028e92464722b",
+      "COMPLETED"
+    ],
+    [
+      "match_98bbadb29082430a849171b99f62a986",
+      "FAILED"
+    ],
+    [
+      "match_9de7cb2d09eb46a0af0e34c3b0e6b818",
+      "COMPLETED"
+    ],
+    [
+      "match_ca65db557684431890bbf3826229e084",
+      "COMPLETED"
+    ],
+    [
+      "match_dc93224eebea4312bc6effa23badf26c",
+      "COMPLETED"
+    ],
+    [
+      "match_f2a47cbd9ab14ddfa3acedbf497d3ea0",
+      "COMPLETED"
+    ],
+    [
+      "match_fd56f004ae154fb399c6261fa58df39d",
+      "COMPLETED"
+    ]
+  ],
+  "artifactBindings": {
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\accepted_job.json": {
+      "bytes": 326,
+      "sha256": "130d65d87f08f401a02ac432b8235956f48699ced39b57ea619d0196ca325ad8"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\child_stdout.txt": {
+      "bytes": 257,
+      "sha256": "77de75951886ae24c99eb102ce7836b3c14dd017d4d1766706718214ab991d61"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\.camera_registration.json.dicj21js.tmp": {
+      "bytes": 7908559,
+      "sha256": "a52e8bdc62d3b21146f97003000601b8f9137e9061a1a16178addbedf476c4a6"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\inference_config.yaml": {
+      "bytes": 3987,
+      "sha256": "7507b2c0d49aa1ab5fedbea262312efbbf2090c15dc5f3b8b9dde832cab93b11"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\media_metadata.json": {
+      "bytes": 1322,
+      "sha256": "979419ff0ba58e8c077cbcf7d6ac2e7276daa10374633b40e7bbccf8638f15d0"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\media_source.json": {
+      "bytes": 929,
+      "sha256": "47735d2cb1e02165deb3d46c91dbd7937a7653f2fe5a9157454db96fb226a4e5"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\normalization_frame_stats.txt": {
+      "bytes": 664326,
+      "sha256": "c8f6e3e424c6ecf57481d39432d2e992f4f4f8c52d7f88c3fd392838c7fd5085"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\processing.log": {
+      "bytes": 419846,
+      "sha256": "46c56a054f6a64c7fce5bfb5e35be690b127849f9656c914d375cfdbc544bde1"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\source.mp4": {
+      "bytes": 356365310,
+      "sha256": "2229b318975bbdd0400bcd1f846a2a193a22aa1807ee438cb74a6a00e614fd6c"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses\\match_63a83c719d1345ae96fa48646402595f\\source_frame_mapping.jsonl": {
+      "bytes": 6255227,
+      "sha256": "38d06cde029db4c1d74219c3edcd125fe4f047017687aa6fd55c49e24f93107f"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses.sqlite3": {
+      "bytes": 40960,
+      "sha256": "03f0226a33a175d34d075e495fc69f8f866a523c04404ff26ba57017dfff2cfa"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses.sqlite3-shm": {
+      "bytes": 32768,
+      "sha256": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\analyses.sqlite3-wal": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\isolated_product\\uploads\\match_63a83c719d1345ae96fa48646402595f\\original.mp4": {
+      "bytes": 391693630,
+      "sha256": "b8e9f8765bb4cceed088bc81d0448c8a39e74b2ec94121cf29bf5dbeac810dab"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\protocol.json": {
+      "bytes": 2021,
+      "sha256": "c0a8a317032ff5483ef8361bc9135e3d9ea6ff6e3d7a7372bd48be515005ceb8"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\resource_receipt.json": {
+      "bytes": 679,
+      "sha256": "0c575d39fd273588b895ea38ea505f9f32cbde3c64ab8c3369263b5d644c1a7c"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\resource_samples.jsonl": {
+      "bytes": 288489,
+      "sha256": "6d29d6f8e161e3b4437f1b2f382eac1ee8eee0e4365640f8a344f5d987ee34eb"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\running_process.json": {
+      "bytes": 183,
+      "sha256": "69401a420fb477d40eb7ea1ded9d5155dd554045e3573c95c4e041ef6ab76f2c"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\ultralytics_settings\\Ultralytics\\persistent_cache.json": {
+      "bytes": 43,
+      "sha256": "89f37b31597b20533266a7d65c22dbc1107144e56e9a454e24e5a6e02a569cf6"
+    },
+    "artifacts\\validation\\product_execution\\repeated_source_capacity_uniform_clock_2026-10-05\\ultralytics_settings\\Ultralytics\\settings.json": {
+      "bytes": 592,
+      "sha256": "80de846f39b0744e6f0dbf367e501e0c29850f155bb7581c2b2dc9092d5d65e9"
+    }
+  },
+  "limitations": [
+    "No completed inference, annotated media, result, report or CSV was produced.",
+    "Parent safeguard force-stopped only its owned workload; no child finally receipt or CUDA allocator peak survived.",
+    "Sampled tree RSS can double-count shared pages and miss brief peaks; private commit is not resident RAM.",
+    "The system RAM decline does not by itself establish a worker memory leak or identify other host allocations.",
+    "Logical file sizes and free-disk changes are different measurements; no cleanup was performed.",
+    "Five-minute and representative full-match capacity remain unqualified; no automatic inference retry was started."
+  ]
+}

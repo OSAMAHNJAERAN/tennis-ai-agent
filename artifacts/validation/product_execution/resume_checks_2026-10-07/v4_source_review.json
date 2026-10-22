@@ -1,0 +1,48 @@
+{
+  "reviewedAt": "2026-10-07T04:49:37.982913+00:00",
+  "passed": true,
+  "scope": "Static AST identity for actual worker/model/output functions and every retained guard constant; fresh paths/history additions manually reviewed.",
+  "v3Sha256": "967ddbd5ed2c28d4b64edb13508a6f5b7a81726b70f7d75bebcef398a3a35e11",
+  "v4Sha256": "6cad723439512a9feb309a42bf74d34f361e8d1749f3d7531df3fa0a9aab2015",
+  "unchangedFunctions": [
+    "check_finite",
+    "digest",
+    "equal_files",
+    "first_attempt_history",
+    "live_product_tree",
+    "load_module",
+    "main",
+    "model_observer",
+    "retained_guard",
+    "run_child",
+    "save",
+    "stamp",
+    "strict_json",
+    "validate_semantics",
+    "verify_first_attempt",
+    "verify_previous_attempt",
+    "verify_raw_pose_racket",
+    "verify_saved_result",
+    "verify_second_attempt",
+    "verify_videos",
+    "write_chunks"
+  ],
+  "changedFunctions": [
+    "binding_snapshot",
+    "origin_history",
+    "origin_record",
+    "prepare",
+    "run_parent"
+  ],
+  "changedConstants": [
+    "UNIT"
+  ],
+  "newConstants": [
+    "V3_ATTEMPT",
+    "V3_REVIEW_SHA256",
+    "V3_SHA256",
+    "V3_UNIT"
+  ],
+  "workloadStarted": false,
+  "qualificationEvidence": false
+}

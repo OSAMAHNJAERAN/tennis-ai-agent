@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="14" skipped="0" tests="14" time="9.193" timestamp="2026-10-18T11:01:10.744339+08:00" hostname="Osamah"><testcase classname="tests.test_corrected_landing_exports" name="test_fresh_corrected_fault_contact_replaces_scope_and_line_call_using_current_geometry" time="2.077"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_corrected_fault_con0\\analysis\\.result\\7b0cd50803df4d77a85e3a7eed5a56eb.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_corrected_fault_con0\\analysis\\.result\\997ba4cbfceed98b927ed9098091397e06c85f4f56cbf1e86e70726ea251c305.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_fresh_corrected_fault_con0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C23A80180&gt;
+
+    def test_fresh_corrected_fault_contact_replaces_scope_and_line_call_using_current_geometry(tmp_path, monkeypatch):
+        from src.api.landing_zone_contract import validate_landing_zones
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_fresh_corrected_fault_con0/analysis/.result')
+token = '997ba4cbfceed98b927ed9098091397e06c85f4f56cbf1e86e70726ea251c305'
+identifier = '7b0cd50803df4d77a85e3a7eed5a56eb'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_corrected_fault_con0\\analysis\\.result\\7b0cd50803df4d77a85e3a7eed5a56eb.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_corrected_fault_con0\\analysis\\.result\\997ba4cbfceed98b927ed9098091397e06c85f4f56cbf1e86e70726ea251c305.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change0]" time="0.473"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve0\\analysis\\.result\\f62a494544ab4e44854cf39ae3ab3f42.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve0\\analysis\\.result\\31b3bd931edeaacdd315e5fd9f031650272f4783cbdbbe7062e343a8323c1e6d.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C54721FD0&gt;
+change = {'review_status': 'provisional'}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve0/analysis/.result')
+token = '31b3bd931edeaacdd315e5fd9f031650272f4783cbdbbe7062e343a8323c1e6d'
+identifier = 'f62a494544ab4e44854cf39ae3ab3f42'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve0\\analysis\\.result\\f62a494544ab4e44854cf39ae3ab3f42.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve0\\analysis\\.result\\31b3bd931edeaacdd315e5fd9f031650272f4783cbdbbe7062e343a8323c1e6d.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change1]" time="0.524"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve1\\analysis\\.result\\80a94fb9e2ce4f7a8f36d1b69fd10161.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve1\\analysis\\.result\\71b9f5632b1a6cd55340a33c0a82bc1e0c0c044123bc21bb48efdb66f226f2ab.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C231F9040&gt;
+change = {'active_play': False}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve1/analysis/.result')
+token = '71b9f5632b1a6cd55340a33c0a82bc1e0c0c044123bc21bb48efdb66f226f2ab'
+identifier = '80a94fb9e2ce4f7a8f36d1b69fd10161'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve1\\analysis\\.result\\80a94fb9e2ce4f7a8f36d1b69fd10161.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve1\\analysis\\.result\\71b9f5632b1a6cd55340a33c0a82bc1e0c0c044123bc21bb48efdb66f226f2ab.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change2]" time="0.514"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve2\\analysis\\.result\\2a6fce7c2cd849728eaf10dd348bf5d7.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve2\\analysis\\.result\\0a5557081f904f76eba4420bcc9ed1ce9094f8907d565242635c3f53d164793c.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve2')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C5475A750&gt;
+change = {'position_type': 'airborne_projection'}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve2/analysis/.result')
+token = '0a5557081f904f76eba4420bcc9ed1ce9094f8907d565242635c3f53d164793c'
+identifier = '2a6fce7c2cd849728eaf10dd348bf5d7'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve2\\analysis\\.result\\2a6fce7c2cd849728eaf10dd348bf5d7.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve2\\analysis\\.result\\0a5557081f904f76eba4420bcc9ed1ce9094f8907d565242635c3f53d164793c.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change3]" time="0.512"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve3\\analysis\\.result\\db549b1d021e4dd0ba8fff13c7cf22a9.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve3\\analysis\\.result\\637ac840a7595f3396adc81fabaee0fbe4ecc134a957db00a12ed8f9bb03e2af.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve3')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C568EB200&gt;
+change = {'ground_contact_source': ''}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve3/analysis/.result')
+token = '637ac840a7595f3396adc81fabaee0fbe4ecc134a957db00a12ed8f9bb03e2af'
+identifier = 'db549b1d021e4dd0ba8fff13c7cf22a9'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve3\\analysis\\.result\\db549b1d021e4dd0ba8fff13c7cf22a9.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve3\\analysis\\.result\\637ac840a7595f3396adc81fabaee0fbe4ecc134a957db00a12ed8f9bb03e2af.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change4]" time="0.483"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve4\\analysis\\.result\\f37caa262ae94c059f52ee589a0b7a1f.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve4\\analysis\\.result\\cc0c750c8dc1a38bc813c7bcd34c68fd6b233398251be677e2510c9106ca7fba.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve4')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C56860910&gt;
+change = {'ground_contact_source': '   '}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve4/analysis/.result')
+token = 'cc0c750c8dc1a38bc813c7bcd34c68fd6b233398251be677e2510c9106ca7fba'
+identifier = 'f37caa262ae94c059f52ee589a0b7a1f'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve4\\analysis\\.result\\f37caa262ae94c059f52ee589a0b7a1f.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve4\\analysis\\.result\\cc0c750c8dc1a38bc813c7bcd34c68fd6b233398251be677e2510c9106ca7fba.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change5]" time="0.499"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve5\\analysis\\.result\\17f068a5ead344e5bc0ffb479d8c1905.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve5\\analysis\\.result\\9ac9b79da5f8091e537e9236e7526010c92f1344bf000bc54cb368eb93bbe652.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve5')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C54762990&gt;
+change = {'position_uncertainty_m': None}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve5/analysis/.result')
+token = '9ac9b79da5f8091e537e9236e7526010c92f1344bf000bc54cb368eb93bbe652'
+identifier = '17f068a5ead344e5bc0ffb479d8c1905'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve5\\analysis\\.result\\17f068a5ead344e5bc0ffb479d8c1905.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve5\\analysis\\.result\\9ac9b79da5f8091e537e9236e7526010c92f1344bf000bc54cb368eb93bbe652.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change6]" time="0.549"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve6\\analysis\\.result\\8c747a770059400eb61b021add067f19.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve6\\analysis\\.result\\67ce20dae372e5c3ccea192e4e47b066f347fd75a9dadc8b7b0e5e0e6dd22ee9.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve6')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C54806D00&gt;
+change = {'position_uncertainty_m': True}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve6/analysis/.result')
+token = '67ce20dae372e5c3ccea192e4e47b066f347fd75a9dadc8b7b0e5e0e6dd22ee9'
+identifier = '8c747a770059400eb61b021add067f19'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve6\\analysis\\.result\\8c747a770059400eb61b021add067f19.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve6\\analysis\\.result\\67ce20dae372e5c3ccea192e4e47b066f347fd75a9dadc8b7b0e5e0e6dd22ee9.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_line_call_confidence_never_supplies_missing_contact_qualification[change7]" time="0.480"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve7\\analysis\\.result\\8654b742a42f44ad993b018d04db65a9.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve7\\analysis\\.result\\765a933cd361685e5272deb00f08556b4934074137fe71401bab88c626dfaf3d.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve7')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C54799810&gt;
+change = {'position_uncertainty_m': -0.1}
+
+    @pytest.mark.parametrize('change', [
+        {'review_status': 'provisional'}, {'active_play': False},
+        {'position_type': 'airborne_projection'}, {'ground_contact_source': ''},
+        {'ground_contact_source': '   '}, {'position_uncertainty_m': None},
+        {'position_uncertainty_m': True}, {'position_uncertainty_m': -.1},
+    ])
+    def test_line_call_confidence_never_supplies_missing_contact_qualification(tmp_path, monkeypatch, change):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, evidence_change=change)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_line_call_confidence_neve7/analysis/.result')
+token = '765a933cd361685e5272deb00f08556b4934074137fe71401bab88c626dfaf3d'
+identifier = '8654b742a42f44ad993b018d04db65a9'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve7\\analysis\\.result\\8654b742a42f44ad993b018d04db65a9.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_line_call_confidence_neve7\\analysis\\.result\\765a933cd361685e5272deb00f08556b4934074137fe71401bab88c626dfaf3d.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_unqualified_source_cannot_be_upgraded_by_mutating_fresh_event_snapshot" time="0.481"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_unqualified_source_cannot0\\analysis\\.result\\0400ba9fb2ae47179521dd263edea836.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_unqualified_source_cannot0\\analysis\\.result\\2e07bf4bd930d6332206f870700245502b36ec9612895f7939cce80575aeb44f.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_unqualified_source_cannot0')
+
+    def test_unqualified_source_cannot_be_upgraded_by_mutating_fresh_event_snapshot(tmp_path):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = build_shot_base(tmp_path, config_tail='visualization:\n  landing_zones:\n    enabled: true\n')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_unqualified_source_cannot0/analysis/.result')
+token = '2e07bf4bd930d6332206f870700245502b36ec9612895f7939cce80575aeb44f'
+identifier = '0400ba9fb2ae47179521dd263edea836'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_unqualified_source_cannot0\\analysis\\.result\\0400ba9fb2ae47179521dd263edea836.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_unqualified_source_cannot0\\analysis\\.result\\2e07bf4bd930d6332206f870700245502b36ec9612895f7939cce80575aeb44f.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_corrected_dead_bounce_has_no_landing_despite_original_contact_review" time="0.455"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_corrected_dead_bounce_has0\\analysis\\.result\\97a09057b2444687a050c1648ccaf936.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_corrected_dead_bounce_has0\\analysis\\.result\\33a91267d78b54efa72ae2e97a5df5b5f5874a8df89bf0d0852d741795fd9c5e.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_corrected_dead_bounce_has0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C5474B6D0&gt;
+
+    def test_corrected_dead_bounce_has_no_landing_despite_original_contact_review(tmp_path, monkeypatch):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch, dead_bounce=True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:138: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_corrected_dead_bounce_has0/analysis/.result')
+token = '33a91267d78b54efa72ae2e97a5df5b5f5874a8df89bf0d0852d741795fd9c5e'
+identifier = '97a09057b2444687a050c1648ccaf936'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_corrected_dead_bounce_has0\\analysis\\.result\\97a09057b2444687a050c1648ccaf936.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_corrected_dead_bounce_has0\\analysis\\.result\\33a91267d78b54efa72ae2e97a5df5b5f5874a8df89bf0d0852d741795fd9c5e.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_fresh_source_join_damage_rejects_before_export_and_preserves_generation" time="0.526"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_source_join_damage_0\\analysis\\.result\\6ef026d15916477d8fa6a2e63e21f722.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_source_join_damage_0\\analysis\\.result\\c94511aa793714c32c56016a09b0e26ae20857a97b94bd31e07438921797f966.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_fresh_source_join_damage_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C569108A0&gt;
+
+    def test_fresh_source_join_damage_rejects_before_export_and_preserves_generation(tmp_path, monkeypatch):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_fresh_source_join_damage_0/analysis/.result')
+token = 'c94511aa793714c32c56016a09b0e26ae20857a97b94bd31e07438921797f966'
+identifier = '6ef026d15916477d8fa6a2e63e21f722'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_source_join_damage_0\\analysis\\.result\\6ef026d15916477d8fa6a2e63e21f722.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_fresh_source_join_damage_0\\analysis\\.result\\c94511aa793714c32c56016a09b0e26ae20857a97b94bd31e07438921797f966.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_existing_destination_and_analysis_directory_are_rejected" time="0.452"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_existing_destination_and_0\\analysis\\.result\\0c7aae5be3dd4644b24ba89e469f833d.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_existing_destination_and_0\\analysis\\.result\\a8b69bc66c2530f4a0e874c95da4c0c64c239905586af7ebe1a5689549e238bb.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_existing_destination_and_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C56910440&gt;
+
+    def test_existing_destination_and_analysis_directory_are_rejected(tmp_path, monkeypatch):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_existing_destination_and_0/analysis/.result')
+token = 'a8b69bc66c2530f4a0e874c95da4c0c64c239905586af7ebe1a5689549e238bb'
+identifier = '0c7aae5be3dd4644b24ba89e469f833d'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_existing_destination_and_0\\analysis\\.result\\0c7aae5be3dd4644b24ba89e469f833d.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_existing_destination_and_0\\analysis\\.result\\a8b69bc66c2530f4a0e874c95da4c0c64c239905586af7ebe1a5689549e238bb.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase><testcase classname="tests.test_corrected_landing_exports" name="test_geometry_withheld_does_not_borrow_initial_or_old_landing_geometry" time="0.504"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_geometry_withheld_does_no0\\analysis\\.result\\432b3a7516234b68b3c54b287419a222.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_geometry_withheld_does_no0\\analysis\\.result\\64822611cc5248d60d4ecb1a733741d89748b8e1b913f36e62c1a60a05c2c3b0.committed'">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_geometry_withheld_does_no0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022C56913B60&gt;
+
+    def test_geometry_withheld_does_not_borrow_initial_or_old_landing_geometry(tmp_path, monkeypatch):
+        from src.scoring.corrected_landing_exports import write_corrected_landing_zones
+        from src.scoring.correction_sources import EventGeometry
+&gt;       fixture = reviewed_base(tmp_path, monkeypatch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_landing_exports.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_landing_exports.py:46: in reviewed_base
+    return build_shot_base(tmp_path, config_tail=(
+tests\test_corrected_shot_rebuild.py:208: in build_shot_base
+    token = publish_analysis_generation(storage, {
+src\api\analysis_generation.py:491: in publish_analysis_generation
+    _retain_current_receipt(generations, previous_pointer['generation'], identifier)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+generations = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_landing_checks_v2/temp/test_geometry_withheld_does_no0/analysis/.result')
+token = '64822611cc5248d60d4ecb1a733741d89748b8e1b913f36e62c1a60a05c2c3b0'
+identifier = '432b3a7516234b68b3c54b287419a222'
+
+    def _retain_current_receipt(generations, token, identifier):
+        """Remember an already committed current token before replacing it.
+    
+        Only a tiny newly created immutable receipt is atomically linked here;
+        worker inputs/media are always independently copied. Exclusive creation
+        preserves any existing receipt, including a corrupt one that must fail.
+        """
+        if _has_committed_receipt(generations, token):
+            return
+        temporary = generations / (identifier + '.committed.tmp')
+        _write_bytes(temporary, _receipt_bytes(token), temporary=True)
+        primary = None
+        try:
+&gt;           os.link(temporary, generations / (token + '.committed'))
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_geometry_withheld_does_no0\\analysis\\.result\\432b3a7516234b68b3c54b287419a222.committed.tmp' -&gt; 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_landing_checks_v2\\temp\\test_geometry_withheld_does_no0\\analysis\\.result\\64822611cc5248d60d4ecb1a733741d89748b8e1b913f36e62c1a60a05c2c3b0.committed'
+
+src\api\analysis_generation.py:310: PermissionError</failure></testcase></testsuite></testsuites>

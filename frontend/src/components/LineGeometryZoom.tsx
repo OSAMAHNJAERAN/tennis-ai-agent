@@ -3,6 +3,17 @@ import type { LineCall } from "../data/contracts";
 
 export function LineGeometryZoom({ call }: { call: LineCall }) {
   const titleId = useId();
+  if (call.ball_edge_margin_cm == null || call.position_uncertainty_cm == null || call.contact_patch_radius_cm == null
+      || !Number.isFinite(call.ball_edge_margin_cm) || !Number.isFinite(call.position_uncertainty_cm) || !Number.isFinite(call.contact_patch_radius_cm)) {
+    return (
+      <svg className="line-geometry-zoom" viewBox="0 0 520 250" role="img" aria-labelledby={titleId}>
+        <title id={titleId}>Line-call geometry unavailable</title>
+        <rect className="zoom-surface" x="1" y="1" width="518" height="248" rx="12" />
+        <text x="260" y="115" textAnchor="middle">Geometry unavailable</text>
+        <text x="260" y="145" textAnchor="middle">Complete contact measurements are unavailable.</text>
+      </svg>
+    );
+  }
   const margin = Math.max(-250, Math.min(250, call.ball_edge_margin_cm));
   const centerX = 260 + margin * .7;
   const uncertainty = Math.max(4, call.position_uncertainty_cm * 2.2);

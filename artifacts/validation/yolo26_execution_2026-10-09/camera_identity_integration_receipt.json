@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "scope": "YOLO26_CANDIDATE_CAMERA_IDENTITY_PIPELINE_INTEGRATION_SOFTWARE_CHECKS",
+  "sourceFiles": {
+    "src/pipeline/phase6_pipeline.py": "b5fda1a9f16af29b6e1d741ecb699bbc81fa64fcbb6cc850a6d5580f56513c84",
+    "tests/test_yolo26_camera_identity_pipeline.py": "2c737acb7866887742c21c0b724f648ac36834d3eb74ad3b6891acd573874d8e"
+  },
+  "tests": {
+    "tests": 98,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junitArtifact": "artifacts/validation/yolo26_execution_2026-10-09/camera_identity_integration_junit.xml"
+  },
+  "preservedLegacyBehavior": true,
+  "candidateMetricClaimsAvailable": false,
+  "accuracyQualified": false,
+  "fullMatchCapacityQualified": false,
+  "liveLatencyQualified": false,
+  "pipelineResumeSupported": false,
+  "newArtifacts": [
+    "camera_intervals.json",
+    "match_identity.json"
+  ],
+  "sourceProvenance": "Worker source_frame_mapping.jsonl is consumed sequentially; original PTS and time base retained; missing provenance withheld.",
+  "correctionPersistence": "Frame events, reviewed corrections, revision and bounded identity checkpoint atomically published in the complete audit; historical corrections require replay.",
+  "fullBackendSuite": "Parent task runs separately after integration."
+}

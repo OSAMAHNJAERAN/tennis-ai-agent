@@ -1,10 +1,10 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Component, useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
+import { Component, useCallback, useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { ArrowsOut, ArrowCounterClockwise, Minus, Plus } from "@phosphor-icons/react";
 import type { AnalysisRun } from "../../data/contracts";
-import { COURT, PLAYER_COLORS, courtToWorld, densityGrid, distance, interpolatePosition, samplePoints, splitTrail, type CourtPoint, type FrameRange, type NormalizedTelemetry, type PlayerFilter } from "../../lib/tennisTelemetry";
+import { COURT, PLAYER_COLORS, courtToWorld, densityGrid, interpolatePosition, samplePoints, splitTrail, type CourtPoint, type FrameRange, type NormalizedTelemetry, type PlayerFilter } from "../../lib/tennisTelemetry";
 
 type CameraAngle = "Tactical" | "Broadcast" | "Top" | "Cinematic";
 const CAMERA_ANGLES: Record<CameraAngle, [number, number, number]> = { Tactical: [18, 24, 22], Broadcast: [0, 12, 31], Top: [0, 39, 0.01], Cinematic: [23, 16, 22] };
@@ -22,12 +22,33 @@ export default function TennisCourt3D(props: SceneProps & { onFallback: () => vo
   const [zoom, setZoom] = useState(1);
   const [lost, setLost] = useState(false);
   const root = useRef<HTMLDivElement>(null);
+  const rendererRef = useRef<{ renderer: THREE.WebGLRenderer; disposed: boolean } | null>(null);
+  const attachCanvas = useCallback((canvas: HTMLCanvasElement | null) => {
+    if (canvas) {
+      if (rendererRef.current?.renderer.domElement !== canvas || rendererRef.current.disposed) {
+        // Canvas attaches its public ref before its asynchronous configuration.
+        // Construct on that same canvas so a refusal reaches SceneBoundary.
+        rendererRef.current = { renderer: new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' }), disposed: false };
+      }
+      return;
+    }
+    const owned = rendererRef.current;
+    if (owned) queueMicrotask(() => {
+      // StrictMode and Canvas rerenders temporarily detach the callback ref.
+      // Dispose only after the DOM canvas has actually left the document.
+      if (owned.disposed || owned.renderer.domElement.isConnected) return;
+      owned.disposed = true;
+      owned.renderer.dispose();
+      if (rendererRef.current === owned) rendererRef.current = null;
+    });
+  }, []);
+  const provideRenderer = useCallback(() => rendererRef.current!.renderer, []);
   const fallback = <div className="spatial-empty" role="status"><ArrowsOut size={34} /><h3>3D rendering unavailable</h3><p>This browser could not create a WebGL scene. Your telemetry is available in the tactical view.</p><button type="button" className="astra-button" onClick={props.onFallback}>Open 2D tactical view</button></div>;
   // Avoid probing a context here: Canvas owns and releases the only WebGL context.
   const supported = typeof window.WebGL2RenderingContext !== "undefined";
   return <div className="court3d-host" ref={root}>
     {!supported || lost ? fallback : <SceneBoundary fallback={fallback}>
-      <Canvas shadows="percentage" frameloop="demand" dpr={[1, 1.6]} camera={{ position: CAMERA_ANGLES.Cinematic, fov: 43, near: 0.1, far: 150 }} gl={{ antialias: true, powerPreference: "high-performance" }} fallback={<span aria-hidden="true" />}
+      <Canvas ref={attachCanvas} shadows="percentage" frameloop="demand" dpr={[1, 1.6]} camera={{ position: CAMERA_ANGLES.Cinematic, fov: 43, near: 0.1, far: 150 }} gl={provideRenderer} fallback={<span aria-hidden="true" />}
         onCreated={({ gl }) => { gl.domElement.setAttribute("aria-label", "Interactive 3D tennis court; use camera buttons to change perspective"); }}>
         <ReplayRenderDriver frame={props.frame ?? 0} playing={props.playing ?? false} />
         <ContextMonitor onLost={() => setLost(true)} />
@@ -51,7 +72,6 @@ export default function TennisCourt3D(props: SceneProps & { onFallback: () => vo
           <BounceMarkers run={props.run} playhead={props.playhead} />
         </>}
       </Canvas>
-    </SceneBoundary>}
     <div className="court-camera-bar" role="group" aria-label="Camera angle">
       {(Object.keys(CAMERA_ANGLES) as CameraAngle[]).map(value => <button key={value} type="button" aria-pressed={angle === value} onClick={() => { setAngle(value); setZoom(1); setRevision(v => v + 1); }}>{value}</button>)}
     </div>
@@ -62,6 +82,7 @@ export default function TennisCourt3D(props: SceneProps & { onFallback: () => vo
     </div>
     <div className="court-interaction-hint">Drag to orbit <span>·</span> Scroll to zoom</div>
     <div className="court-axis" aria-hidden="true"><span>Z</span><i /><b>X</b></div>
+    </SceneBoundary>}
   </div>;
 }
 
@@ -78,6 +99,9 @@ function ContextMonitor({ onLost }: { onLost: () => void }) {
     const canvas = gl.domElement;
     const handle = (event: Event) => { event.preventDefault(); onLost(); };
     canvas.addEventListener("webglcontextlost", handle);
+    // Context creation precedes scene effects; a loss in that interval has
+    // already dispatched its event. Subscribe first, then inspect its state.
+    if (gl.getContext().isContextLost()) onLost();
     return () => canvas.removeEventListener("webglcontextlost", handle);
   }, [gl, onLost]);
   return null;
@@ -158,7 +182,7 @@ function CourtSurface() {
   </group>;
 }
 
-function PlayerAvatar3D({ index, telemetry, playhead, reducedMotion }: SceneProps & { index: number }) {
+function PlayerAvatar3D({ index, telemetry, playhead }: SceneProps & { index: number }) {
   const group = useRef<THREE.Group>(null);
   const leftLeg = useRef<THREE.Group>(null); const rightLeg = useRef<THREE.Group>(null);
   const arm = useRef<THREE.Group>(null);
@@ -172,15 +196,13 @@ function PlayerAvatar3D({ index, telemetry, playhead, reducedMotion }: SceneProp
     avatar.visible = !!point;
     if (!point) return;
     avatar.position.set(...courtToWorld(point));
-    const before = points[Math.max(0, Math.floor(frame) - 1)];
-    const speed = before ? Math.min(1, distance(before, point) * telemetry.fps / 6) : 0;
     const ball = interpolatePosition(telemetry.ballPositions, frame, 5);
     if (ball) avatar.rotation.y = Math.atan2(ball[0] - point[0], ball[1] - point[1]);
     else avatar.rotation.y = index === 0 ? Math.PI : 0;
-    const gait = reducedMotion ? 0 : Math.sin(frame / telemetry.fps * 13) * speed * 0.55;
-    if (leftLeg.current) leftLeg.current.rotation.x = gait;
-    if (rightLeg.current) rightLeg.current.rotation.x = -gait;
-    if (arm.current) arm.current.rotation.x = -0.25 - gait * 0.5;
+    // A static generic marker carries location only; image pose has no qualified 3D lift.
+    if (leftLeg.current) leftLeg.current.rotation.x = 0;
+    if (rightLeg.current) rightLeg.current.rotation.x = 0;
+    if (arm.current) arm.current.rotation.x = -0.25;
   });
   return <group ref={group}>
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.025, 0]}><ringGeometry args={[0.48, 0.56, 40]} /><meshBasicMaterial color={color} transparent opacity={0.8} /></mesh>
@@ -238,23 +260,16 @@ function MovementTrail({ points, playhead, color, maxJump, count = 60 }: { point
   return <lineSegments frustumCulled={false}><bufferGeometry ref={geometry}><bufferAttribute attach="attributes-position" args={[positions, 3]} /></bufferGeometry><lineBasicMaterial color={color} transparent opacity={0.7} /></lineSegments>;
 }
 
-function BallTrajectory3D({ telemetry, playhead, arc, run }: SceneProps) {
+function BallTrajectory3D({ telemetry, playhead }: SceneProps) {
   const group = useRef<THREE.Group>(null);
   const shadow = useRef<THREE.Mesh>(null);
-  const events = useMemo(() => [...run.events].sort((a, b) => a.frame - b.frame), [run.events]);
   useFrame(() => {
     if (!group.current || !shadow.current) return;
     const frame = playhead.current;
     const point = interpolatePosition(telemetry.ballPositions, frame, 5);
     group.current.visible = shadow.current.visible = !!point;
     if (!point) return;
-    let height = 0.16;
-    if (arc) {
-      const end = events.findIndex(event => event.frame >= frame);
-      const a = events[end - 1]; const b = events[end];
-      if (a && b && b.frame > a.frame && b.frame - a.frame < telemetry.fps * 3) height += Math.sin(Math.PI * (frame - a.frame) / (b.frame - a.frame)) * 1.8;
-    }
-    group.current.position.set(...courtToWorld(point, height));
+    group.current.position.set(...courtToWorld(point, 0.14));
     shadow.current.position.set(...courtToWorld(point, 0.035));
   });
   return <>

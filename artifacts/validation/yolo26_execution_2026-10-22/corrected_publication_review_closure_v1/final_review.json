@@ -1,0 +1,56 @@
+{
+  "status": "PASS_CURRENT_BACKEND_FINDING_CLOSURE",
+  "review_scope": "READ_ONLY CORRECTION WORKER/STORE/PUBLISHER REVIEW AND ACTUAL SYNTHETIC NATIVE CAS FAULT PROBES",
+  "current_source_pins": {
+    "src/scoring/corrected_publication.py": "2be85fad6c748c173cd36245e5d3fe87b58781ead5e46b21d4da6863e2e34e34",
+    "src/api/correction_worker.py": "a83f13f531494f2f0fd9bd55986ad2916574a59c696d04b3f08a2f352f74ed95",
+    "src/api/corrections.py": "a95feea1c83871dbfb9fa3c35bbe8d245af5a4b06ba3cdd4e3d67b8235e50184",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "tests/test_corrected_publication.py": "f9ef03268659f9015ccdf4f12e025f76b4c3c30c99e3b63fa74554d84067660c",
+    "tests/test_corrected_preparation.py": "44e5f526475e2036c710bd2cb94a83bd5d1500beba61357da59db8aa5d92fccf",
+    "src/scoring/corrected_preparation.py": "3acaebe4141b7e9eb17f43e131beef34293eda60b911fa440ce080b1380cf5a3"
+  },
+  "evidence_sha256": {
+    "receipt.json": "f76601d38dc9a3f5336dd5f0006bdaf3edff36c1c06d1940f5f6ef3ca6421c80",
+    "pointer_receipt.json": "f2ef6b08b12d37664592d813be1cdf821b2b88b1acb06046fefb89f6e7c75da7",
+    "execution_interrupt_receipt.json": "31c4cb28331e97a264a520754184924e118b87cb535bd7d668f7127490dec560",
+    "verify_database_gap.py": "4e7bc54aa46c1202e0a753661374b55f9ff734fefe2562e2965b6cc143bdf8f7",
+    "verify_pointer_gap.py": "18b8bf474e56e6e75571f131eabf7c67de76a61e0d7148508d4d15ba525a015e",
+    "verify_execution_interrupts.py": "1567baae5d0ec77c66f63199a7c41a2566f77ff3e69711be1dd88def2102162b",
+    "finalize_review.py": "e5a10a8ba138a19c67952a2311fee046abcce1a9892cc36bc5769bbbc4862e4e"
+  },
+  "closed_findings": [
+    {
+      "priority": "P1",
+      "issue": "Candidate DB mutation after native manifest hash and before final callback was learned as a trusted baseline.",
+      "proof": "Original mutation probe now rejects trusted closed producer byte mismatch; current pointer and old readable result remain intact."
+    },
+    {
+      "priority": "P1",
+      "issue": "Candidate pointer temporary could be corrupted before final callback and committed.",
+      "proof": "Actual native pointer writer corruption is rejected against reconstructed canonical generation pointer before commit."
+    },
+    {
+      "priority": "P2",
+      "issue": "Committed KeyboardInterrupt/SystemExit were swallowed as ordinary lost acknowledgements.",
+      "proof": "Both actual post-CAS interrupts propagate while committed generations remain readable."
+    },
+    {
+      "priority": "P2",
+      "issue": "Crop inputs diverged from pinned predict defaults and provider invocations could be reported as actual inference.",
+      "proof": "Current proxy uses checkpoint-derived crop options; detached records preserve zero/two actual software proxy calls separately from one provider call."
+    }
+  ],
+  "remaining_p1_p2_in_reviewed_backend_scope": [],
+  "frontend_scope": "Historical completed-view and multiline-review findings are assigned to frontend owner; additional foreign-base active-command historical autojump was reported and remains outside this backend closure.",
+  "qualifications": {
+    "actual_checkpoint_or_cuda_execution": false,
+    "independent_vision_accuracy": false,
+    "real_long_match": false,
+    "genuine_live_video": false,
+    "frontend_browser_visuals": false
+  },
+  "goal_status": "ACTIVE_INCOMPLETE"
+}

@@ -1,0 +1,40 @@
+........................................................................ [  5%]
+........................................................................ [ 10%]
+........................................................................ [ 16%]
+........................................................................ [ 21%]
+........................................................................ [ 27%]
+........................................................................ [ 32%]
+........................................................................ [ 38%]
+........................................................................ [ 43%]
+........................................................................ [ 49%]
+........................................................................ [ 54%]
+...........................................F............................ [ 60%]
+........................................................................ [ 65%]
+........................................................................ [ 71%]
+........................................................................ [ 76%]
+........................................................................ [ 82%]
+........................................................................ [ 87%]
+........................................................................ [ 93%]
+........................................................................ [ 98%]
+....................                                                     [100%]
+================================== FAILURES ===================================
+_ test_recovery_input_hashes_match_current_sources_and_exclude_pristine_media _
+tests\test_phase6_4_recovery_artifacts.py:95: in test_recovery_input_hashes_match_current_sources_and_exclude_pristine_media
+    assert _sha256(source) == record["sha256"]
+E   AssertionError: assert 'ccc00b450aa1...114af715eff63' == '078cd52f5ff5...2f6ee73a79552'
+E     
+E     - 078cd52f5ff55a7256f7b7d5e2506352dbd59df4d328ca1bd6f2f6ee73a79552
+E     + ccc00b450aa144d59a5fff13ede8a675749dc62fdc500143d3c114af715eff63
+============================== warnings summary ===============================
+..\..\..\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/test_event_timestamp_lookup.py::test_actual_features_nearest_timestamp_reads_are_subquadratic
+  tests\test_event_timestamp_lookup.py:96: PytestWarning: record_property is incompatible with junit_family 'xunit2' (use 'legacy' or 'xunit1')
+    def test_actual_features_nearest_timestamp_reads_are_subquadratic(monkeypatch, frozen, record_property):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_phase6_4_recovery_artifacts.py::test_recovery_input_hashes_match_current_sources_and_exclude_pristine_media
+1 failed, 1315 passed, 2 warnings in 92.36s (0:01:32)

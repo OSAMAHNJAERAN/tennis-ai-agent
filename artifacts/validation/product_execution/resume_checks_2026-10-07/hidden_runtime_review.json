@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-07T04:55:12.764864+00:00",
+  "passed": true,
+  "independentReviewPassed": true,
+  "scope": "Read-only process, listener, loopback health and unchanged source/saved-job evidence for this exact hidden launch; no process or persistent-product mutation.",
+  "runtimeStoppedOrStarted": false,
+  "productStateChanged": false,
+  "qualificationEvidence": false,
+  "productionQualified": false,
+  "runtime": {
+    "state": "OWNED_IDLE_PAIR",
+    "processes": [
+      {
+        "pid": 32552,
+        "createTimeUnixSeconds": 1791348710.7337363,
+        "parentPid": 21516,
+        "name": "python.exe",
+        "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "cmdline": [
+          "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "scripts/run/serve_product.py"
+        ],
+        "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+      },
+      {
+        "pid": 42724,
+        "createTimeUnixSeconds": 1791348712.0018811,
+        "parentPid": 32552,
+        "name": "python.exe",
+        "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "cmdline": [
+          "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-u",
+          "-m",
+          "src.api.worker"
+        ],
+        "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+      }
+    ],
+    "ownedDescendants": [
+      {
+        "pid": 42148,
+        "createTimeUnixSeconds": 1791348710.7410307,
+        "parentPid": 32552,
+        "name": "conhost.exe",
+        "exe": "C:\\Windows\\System32\\conhost.exe",
+        "cmdline": [
+          "\\??\\C:\\Windows\\system32\\conhost.exe",
+          "0x4"
+        ],
+        "cwd": "C:\\Windows"
+      },
+      {
+        "pid": 31924,
+        "createTimeUnixSeconds": 1791348712.0111527,
+        "parentPid": 42724,
+        "name": "conhost.exe",
+        "exe": "C:\\Windows\\System32\\conhost.exe",
+        "cmdline": [
+          "\\??\\C:\\Windows\\system32\\conhost.exe",
+          "0x4"
+        ],
+        "cwd": "C:\\Windows"
+      }
+    ],
+    "port8000Listeners": [
+      {
+        "pid": 32552,
+        "host": "127.0.0.1",
+        "port": 8000
+      }
+    ],
+    "launchWrappers": [],
+    "serverDirectConsoleIds": [
+      42148
+    ]
+  },
+  "serverDirectConsoleIds": [
+    42148
+  ],
+  "recognizedRuntimeInventory": [
+    {
+      "pid": 32552,
+      "createTimeUnixSeconds": 1791348710.7337363,
+      "parentPid": 21516,
+      "name": "python.exe",
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run/serve_product.py"
+      ],
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+    },
+    {
+      "pid": 42724,
+      "createTimeUnixSeconds": 1791348712.0018811,
+      "parentPid": 32552,
+      "name": "python.exe",
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-u",
+        "-m",
+        "src.api.worker"
+      ],
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+    }
+  ],
+  "immediateParentRecords": [
+    {
+      "pid": 21516,
+      "exists": false,
+      "scope": "Immediate launch parent had exited before review; child parent PID retained."
+    },
+    {
+      "exists": true,
+      "pid": 32552,
+      "createTimeUnixSeconds": 1791348710.7337363,
+      "parentPid": 21516,
+      "name": "python.exe",
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run/serve_product.py"
+      ],
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+    },
+    {
+      "exists": true,
+      "pid": 42724,
+      "createTimeUnixSeconds": 1791348712.0018811,
+      "parentPid": 32552,
+      "name": "python.exe",
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-u",
+        "-m",
+        "src.api.worker"
+      ],
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "max_upload_bytes": 1073741824,
+    "supported_formats": [
+      ".avi",
+      ".mov",
+      ".mp4"
+    ],
+    "max_duration_seconds": 7200,
+    "worker_available": true
+  },
+  "healthStatus": 200,
+  "healthResponseSha256": "8e2c9ab7dd92865406f9adcbddda4f570bc7f36b390b33697784d9b99531d4ef",
+  "bindingsBefore": {
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/verify_runtime.py": {
+      "bytes": 18500,
+      "sha256": "620285d1ea9446f92194fa6f4ba595573c21f724bc61e46497bd2a5c08b67743"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/inspect_hidden_runtime.py": {
+      "bytes": 9007,
+      "sha256": "b91ee3ae9fc42e5b8cb04d9eb16f2fc5f62f6371c0a6cbd9ea461d765018cee4"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/runtime_preflight.json": {
+      "bytes": 86657,
+      "sha256": "0993ac27d484f51d0a07af976645d1446f3a813400016e98d21b2c65fbbdfb36"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/server_launch.json": {
+      "bytes": 402,
+      "sha256": "da9f20e4be01920d8ea722345628488b86eb16bda600d427664d40edac3793f3"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/worker_review.json": {
+      "bytes": 1484,
+      "sha256": "6074148c94bcaf14315348dc3d3db8378f38b71ceafac1d4c0da2be125e0cabc"
+    }
+  },
+  "bindingsAfter": {
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/verify_runtime.py": {
+      "bytes": 18500,
+      "sha256": "620285d1ea9446f92194fa6f4ba595573c21f724bc61e46497bd2a5c08b67743"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/inspect_hidden_runtime.py": {
+      "bytes": 9007,
+      "sha256": "b91ee3ae9fc42e5b8cb04d9eb16f2fc5f62f6371c0a6cbd9ea461d765018cee4"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/runtime_preflight.json": {
+      "bytes": 86657,
+      "sha256": "0993ac27d484f51d0a07af976645d1446f3a813400016e98d21b2c65fbbdfb36"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/server_launch.json": {
+      "bytes": 402,
+      "sha256": "da9f20e4be01920d8ea722345628488b86eb16bda600d427664d40edac3793f3"
+    },
+    "artifacts/validation/product_execution/resume_checks_2026-10-07/worker_review.json": {
+      "bytes": 1484,
+      "sha256": "6074148c94bcaf14315348dc3d3db8378f38b71ceafac1d4c0da2be125e0cabc"
+    }
+  },
+  "allBoundReviewInputsUnchanged": true,
+  "originalHelperUnchanged": true,
+  "sourceBindingsMatchPreflight": true,
+  "savedSnapshotMatchesPreflight": true,
+  "savedJobs": 10,
+  "savedAnalysisFiles": 319,
+  "runtimeStableAcrossChecks": true,
+  "noAdditionalRuntimeOrDescendant": true,
+  "nativeConsoleIdentitiesFixedForThisLaunch": true,
+  "completedAt": "2026-10-07T04:55:15.423318+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "scope": "SELECTED_YOLO26_ADAPTER_DEVICE_NORMALIZATION_SOFTWARE_CHECK",
+  "changedRuntimeSource": "src/detection/yolo26_adapters.py",
+  "beforeSha256": "1a83d1a599ec21eacf07b295df68b6072eee1f6a8430451b13d50e9d300dcac7",
+  "afterSha256": "d0d3344ee67747382c7b25f17bc9feec25f226e3b731f4a3b7136ea47481cd96",
+  "testSource": {
+    "tests/test_yolo26_adapter_devices.py": "ea42c2edf8f45ebd7b55f5cc4f1b2d7ab0bb52da9eddb5472133bc8c4e120741"
+  },
+  "tests": {
+    "tests": 42,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "junitArtifact": "artifacts/validation/yolo26_execution_2026-10-09/yolo26_adapter_devices_junit.xml",
+  "junitSha256": "066f7e3e8ed251b10ee5a3b9934074ffbd495b06cb091dc4f2f9aa9654b3d689",
+  "run3ReceiptPreservedSha256": "3a7302f8c518fcaeb1b6cecb6b92f742df1d229b13d8acf7a2668e98074abf6e",
+  "deviceBehavior": {
+    "numericUltralyticsID": "torch placement cuda:index, inference original device ID",
+    "auto": "No explicit placement or predict device",
+    "cpu": "Unchanged"
+  },
+  "actualGpuInferenceTested": false,
+  "modelCountChanged": false,
+  "productionQualificationWeakened": false,
+  "run4Status": "PREPARED_WAITING_ROOT_RESOURCE_RELEASE_NO_EXECUTION"
+}

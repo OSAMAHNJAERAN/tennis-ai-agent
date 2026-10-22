@@ -1,0 +1,102 @@
+{
+  "scope": "BOUNDED_PRIMARY_CALIBRATION_AND_CLOCK_CONVENTIONS_FOLLOWUP_ONLY",
+  "finished_utc": "2026-10-16T17:15:08.285034+00:00",
+  "client_date": "2026-10-17",
+  "status": "NEW_CONDITIONAL_CODE_LEAD; PUBLISHER_ARTIFACT_CONVENTIONS_STILL_UNRESOLVED",
+  "note_path": "docs/research/CALTENNIS_CAMERA_CONVENTIONS.md",
+  "note_original_prefix_sha256": "565994bca9e324cd46267ca563fb61cdfe607a7ee3efde9b052a61c90f73116f",
+  "note_original_prefix_unchanged": true,
+  "note_final_sha256": "37521a0a12c70833b332c6f35f60864fc072e36ba666557975ddae48a5ac70bf",
+  "local_metadata_source_bindings_sha256": {
+    "docs/research/CALTENNIS_CAMERA_CONVENTIONS.md": "37521a0a12c70833b332c6f35f60864fc072e36ba666557975ddae48a5ac70bf",
+    "data/external/caltennis_metadata_v1/README.md": "540e2de40207558028b07d03a0c5026187ea6e29b82cc919703d24329dcdac22",
+    "data/external/caltennis_metadata_v1/acquisition_receipt.json": "6f3954b752cc86bc204167537cc998314c098e5fe8789f7bb56992669240f7d5",
+    "data/external/caltennis_metadata_v1/publisher_metadata.json": "527bdfbd965caf8b73302b44bcba8464f45e711e0244947d283a879e4806cacf",
+    "data/external/caltennis_reference_assets_v1/acquisition_receipt.json": "0be6ac14f193472c2659e4c14dd25da1e219697cd87543539b239f022ca14712",
+    "data/yolo26/caltennis_reference_reservation_v2.json": "23af7b2875abe45bcdcd3829e3d13bc79ae80245d70d7837996ff9cfafed0a95",
+    "artifacts/validation/yolo26_execution_2026-10-09/caltennis_prior_use_correction_receipt.json": "e6a6d045101b339e9fd825d9e8a622e3a34b9cd8784e2009150a4aeb8fafdd8b"
+  },
+  "batch_receipts": [
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-17/caltennis_conventions_followup_v1/primary_batch1/receipt.json",
+      "sha256": "eefd46c290aa711089ffd8c5a54d02a6d3b47f419a6c56df06961d65ef8e2534"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-17/caltennis_conventions_followup_v1/primary_batch2/receipt.json",
+      "sha256": "64a6442567bf4103c83bc9e3b52a5d5d7fc67e441c917674d78381ae173cbff4"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-17/caltennis_conventions_followup_v1/primary_batch3/receipt.json",
+      "sha256": "3f57f7f0907d55318392f8bdc52983a33ced46b90322efa84727485b19b7c43e"
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-17/caltennis_conventions_followup_v1/primary_batch4/receipt.json",
+      "sha256": "e3d14ee375246ec04069b043c38c65a095e7ffbe07cd8ae2ac93824d7731dee0"
+    }
+  ],
+  "bounded_capture_request_count": 22,
+  "successful_text_captures": 19,
+  "failed_text_captures": 3,
+  "captured_text_bytes": 1065114,
+  "max_bytes_per_capture": 524288,
+  "publisher_site_commit": "543c878446b68f150e967f801400fc12cbf8526d",
+  "publisher_site_code_link_unassigned": true,
+  "conditional_code_lead": {
+    "repository": "https://github.com/selinananana/caltech-tennis-benchmark",
+    "commit": "4a24b98ead5a000a2597770e617bb31225f8f122",
+    "tree_entries": 891,
+    "tree_truncated": false,
+    "verified_publisher_or_export_linkage": false,
+    "findings": [
+      {
+        "source": "camera_pose_recovery/courtannotator.py#L24",
+        "finding": "The repository labels its court coordinates in meters: x runs along court length, y across width, and listed court points have z=0. No geographic axis signs or correspondence to the pinned HF calibrations is established."
+      },
+      {
+        "source": "camera_pose_recovery/README.md#L42",
+        "finding": "The repository specifies a top-left court origin; this is not a verified origin assignment for the acquired calibration files."
+      },
+      {
+        "source": "utils/video_alignment_utils.py#L96",
+        "finding": "The timestamp loader documents milliseconds and multiplies decoded PTS*time_base by 1000; the extraction script saves this relative NPY array. The exact writer of the acquired HF arrays remains unverified."
+      },
+      {
+        "source": "prompthmr/visualization_scripts/visualize_time_calibrated_two_processed_world4ds_procrustes_aligned.py",
+        "finding": "Later alignment loads timestamp arrays into relative/global time fields and performs a separate offset optimization. This is not a released per-camera offset table."
+      },
+      {
+        "source": "camera_pose_recovery/camera_calibration.py#L232",
+        "finding": "K is scaled for annotation-image dimensions relative to assumed 1920x1080. This does not define the anonymized published-video export transform."
+      }
+    ]
+  },
+  "web_tool_only_observations": [
+    {
+      "url": "https://huggingface.co/datasets/demalenk/caltennis/tree/main",
+      "observation": "The public tree displayed head 4af17dd4d398aad4116a35b5a74de4388658d356 and metadata/calibration path maintenance. Direct commit/API capture was unavailable; this displayed metadata observation did not change any local reservation."
+    },
+    {
+      "url": "https://huggingface.co/datasets/demalenk/caltennis/blob/main/README.md",
+      "observation": "The public card was readable through the web tool and showed its existing README metadata. Direct pinned README capture reset the connection."
+    },
+    {
+      "url": "https://arxiv.org/abs/2606.20542",
+      "observation": "The abstract page showed only v1, submitted 18 June 2026. Paper calibration/synchronization sections do not bind the acquired files to a court template, released synchronization offsets or image export transform."
+    }
+  ],
+  "unresolved": [
+    "PUBLISHED_CALIBRATION_WORLD_ORIGIN_AXIS_SIGNS_AND_UNITS_BINDING",
+    "PUBLISHED_TIMESTAMP_WRITER_UNITS_AND_APPLIED_INTERCAMERA_OFFSETS_BINDING",
+    "1920X1080_CALIBRATION_TO_1920X1088_PUBLISHED_IMAGE_TRANSFORM"
+  ],
+  "reserved_revision": "7ab45fb0f159f9e421e32d8ebc9e52c40b256d86",
+  "reserved_data_unchanged": true,
+  "frames_acquired": 0,
+  "frames_viewed": 0,
+  "timestamp_arrays_read": 0,
+  "downloaded_source_executed": false,
+  "model_inference_executed": false,
+  "reference_or_accuracy_qualified": false,
+  "production_source_edits": false,
+  "finalizer_sha256": "01be58270a41eb0e4b42275a61fc3f27dee3f0f7ecf090f5fc8eeeb08b071a1f"
+}

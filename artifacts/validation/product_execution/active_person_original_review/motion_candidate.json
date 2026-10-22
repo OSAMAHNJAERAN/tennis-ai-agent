@@ -1,0 +1,2057 @@
+{
+  "protocol": {
+    "sourceSha256": "79b556aa969ca4ee28eb1ddcfe31d4f2a83dd8bd31443f9fb6e4898323c51a21",
+    "labelsSha256": "6a714c0967fbc53183bea15658dced5a1453a20adaf47ca75a0d69dea67cfa01",
+    "predictionsSha256": "9f6b980a28a7c48a979b7ffa089c317c67a88a14673d2255ac3daebc06adee35",
+    "scriptSha256": "8061c46ba9443d41e1376d0f1285ac4065db31efff5c7c17c050823f44681df5",
+    "selectorSha256": "2407c75a706ecb7d142a80b998a0da1d669ea12bcb882fd5d71240550b659172",
+    "camera": {
+      "width": 960,
+      "sampleFrameStride": 12,
+      "orbFeatures": 4000,
+      "ratio": 0.75,
+      "minimumInliers": 20,
+      "minimumInlierFraction": 0.5,
+      "maximumMeanResidualPx": 2,
+      "minimumMatchedSpanFraction": [
+        0.4,
+        0.3
+      ],
+      "ransacThresholdPx": 2
+    },
+    "selector": {
+      "minimum_observed_seconds": 0.5,
+      "minimum_motion_extent_heights": 0.6,
+      "minimum_camera_samples": 4,
+      "minimum_motion_span_seconds": 0.5
+    },
+    "selection": "ALL_ELIGIBLE_OBSERVED_MOVING_FRAGMENTS; ABSTAIN_IF_MORE_THAN_TWO_COOCCUR",
+    "independentHumanReview": false,
+    "qualificationEvidence": false,
+    "productionDefaultsChanged": false,
+    "identityMerging": false,
+    "courtRolesAssigned": false
+  },
+  "cameraSamples": [
+    {
+      "frame_index": 0,
+      "timestamp_seconds": 0.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3964,
+      "rejectionReason": null,
+      "inliers": 3964,
+      "meanResidualPx": 0
+    },
+    {
+      "frame_index": 12,
+      "timestamp_seconds": 0.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9815994450845777,
+          0.00046560057533171325,
+          16.934383487384533
+        ],
+        [
+          -0.00046560057533171325,
+          0.9815994450845777,
+          11.144681253074323
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3955,
+      "rejectionReason": null,
+      "matches": 2451,
+      "inliers": 2174,
+      "inlierFraction": 0.886984904120767,
+      "meanResidualPx": 0.7780881381508442,
+      "matchedSpanFraction": [
+        0.9322916666666666,
+        0.8833333333333333
+      ]
+    },
+    {
+      "frame_index": 24,
+      "timestamp_seconds": 0.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9607221889757874,
+          0.0005713142658121458,
+          35.37709692820358
+        ],
+        [
+          -0.0005713142658121458,
+          0.9607221889757874,
+          23.54290437495882
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3942,
+      "rejectionReason": null,
+      "matches": 2047,
+      "inliers": 1794,
+      "inlierFraction": 0.8764044943820225,
+      "meanResidualPx": 0.7618082783704995,
+      "matchedSpanFraction": [
+        0.934375,
+        0.8833333333333333
+      ]
+    },
+    {
+      "frame_index": 36,
+      "timestamp_seconds": 0.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9415047791086762,
+          0.00028582488274907334,
+          52.04301786426736
+        ],
+        [
+          -0.00028582488274907334,
+          0.9415047791086762,
+          33.9509974263076
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3941,
+      "rejectionReason": null,
+      "matches": 1679,
+      "inliers": 1336,
+      "inlierFraction": 0.7957117331745086,
+      "meanResidualPx": 0.7818334404024067,
+      "matchedSpanFraction": [
+        0.9260416666666667,
+        0.8333333333333334
+      ]
+    },
+    {
+      "frame_index": 48,
+      "timestamp_seconds": 0.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9294797555086406,
+          0.0012765219512713252,
+          62.01416056652145
+        ],
+        [
+          -0.0012765219512713252,
+          0.9294797555086406,
+          42.525811057820285
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3937,
+      "rejectionReason": null,
+      "matches": 1500,
+      "inliers": 1273,
+      "inlierFraction": 0.8486666666666667,
+      "meanResidualPx": 0.7770069663227213,
+      "matchedSpanFraction": [
+        0.934375,
+        0.8833333333333333
+      ]
+    },
+    {
+      "frame_index": 60,
+      "timestamp_seconds": 1.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.92485069170577,
+          0.0018212347784751597,
+          63.14835397857913
+        ],
+        [
+          -0.0018212347784751597,
+          0.92485069170577,
+          45.21035949743228
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3947,
+      "rejectionReason": null,
+      "matches": 1442,
+      "inliers": 1187,
+      "inlierFraction": 0.8231622746185853,
+      "meanResidualPx": 0.7616927667253682,
+      "matchedSpanFraction": [
+        0.9322916666666666,
+        0.8388888888888889
+      ]
+    },
+    {
+      "frame_index": 72,
+      "timestamp_seconds": 1.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9239937870969407,
+          0.0021526088224269268,
+          61.705035348545096
+        ],
+        [
+          -0.0021526088224269268,
+          0.9239937870969407,
+          45.14466671727397
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3939,
+      "rejectionReason": null,
+      "matches": 1420,
+      "inliers": 1226,
+      "inlierFraction": 0.8633802816901408,
+      "meanResidualPx": 0.8243218901018029,
+      "matchedSpanFraction": [
+        0.9322916666666666,
+        0.8470370822482639
+      ]
+    },
+    {
+      "frame_index": 84,
+      "timestamp_seconds": 1.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9235491419317647,
+          0.0031644708695639846,
+          59.38539039719009
+        ],
+        [
+          -0.0031644708695639846,
+          0.9235491419317647,
+          45.848770793773426
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3936,
+      "rejectionReason": null,
+      "matches": 1362,
+      "inliers": 1147,
+      "inlierFraction": 0.842143906020558,
+      "meanResidualPx": 0.796404527564023,
+      "matchedSpanFraction": [
+        0.9302083333333333,
+        0.858148193359375
+      ]
+    },
+    {
+      "frame_index": 96,
+      "timestamp_seconds": 1.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9236421378874834,
+          0.003687346149777123,
+          57.138400844730825
+        ],
+        [
+          -0.003687346149777123,
+          0.9236421378874834,
+          45.13198308753848
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3931,
+      "rejectionReason": null,
+      "matches": 1388,
+      "inliers": 1166,
+      "inlierFraction": 0.840057636887608,
+      "meanResidualPx": 0.7967367418571357,
+      "matchedSpanFraction": [
+        0.9279166539510091,
+        0.8412593135127315
+      ]
+    },
+    {
+      "frame_index": 108,
+      "timestamp_seconds": 1.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9244623197197869,
+          0.005705721585462653,
+          54.20460813606299
+        ],
+        [
+          -0.005705721585462653,
+          0.9244623197197869,
+          44.60252685397115
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3934,
+      "rejectionReason": null,
+      "matches": 1356,
+      "inliers": 876,
+      "inlierFraction": 0.6460176991150443,
+      "meanResidualPx": 0.7642217549418142,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.8574074074074074
+      ]
+    },
+    {
+      "frame_index": 120,
+      "timestamp_seconds": 2.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9235898913085894,
+          0.006680955849152978,
+          53.15938915812384
+        ],
+        [
+          -0.006680955849152978,
+          0.9235898913085894,
+          44.124363951520834
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3954,
+      "rejectionReason": null,
+      "matches": 1372,
+      "inliers": 1143,
+      "inlierFraction": 0.8330903790087464,
+      "meanResidualPx": 0.7921773232691289,
+      "matchedSpanFraction": [
+        0.934375,
+        0.8592592592592593
+      ]
+    },
+    {
+      "frame_index": 132,
+      "timestamp_seconds": 2.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9238824307375904,
+          0.008131730283631528,
+          51.237877258595354
+        ],
+        [
+          -0.008131730283631528,
+          0.9238824307375904,
+          43.5933910189095
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3955,
+      "rejectionReason": null,
+      "matches": 1333,
+      "inliers": 1121,
+      "inlierFraction": 0.840960240060015,
+      "meanResidualPx": 0.7725719713754889,
+      "matchedSpanFraction": [
+        0.934375,
+        0.860370381673177
+      ]
+    },
+    {
+      "frame_index": 144,
+      "timestamp_seconds": 2.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9239678039794077,
+          0.00965742061678858,
+          50.72971524126435
+        ],
+        [
+          -0.00965742061678858,
+          0.9239678039794077,
+          42.711529923614165
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3954,
+      "rejectionReason": null,
+      "matches": 1377,
+      "inliers": 1198,
+      "inlierFraction": 0.8700072621641249,
+      "meanResidualPx": 0.8160659892542758,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.8572592841254341
+      ]
+    },
+    {
+      "frame_index": 156,
+      "timestamp_seconds": 2.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9240384305609849,
+          0.011384751927528336,
+          50.2189103613435
+        ],
+        [
+          -0.011384751927528336,
+          0.9240384305609849,
+          41.855642424703106
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3945,
+      "rejectionReason": null,
+      "matches": 1410,
+      "inliers": 1219,
+      "inlierFraction": 0.8645390070921986,
+      "meanResidualPx": 0.799732519801027,
+      "matchedSpanFraction": [
+        0.925,
+        0.8448148374204283
+      ]
+    },
+    {
+      "frame_index": 168,
+      "timestamp_seconds": 2.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9240321773754706,
+          0.012728077812698206,
+          50.42856205376463
+        ],
+        [
+          -0.012728077812698206,
+          0.9240321773754706,
+          41.14940430186466
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3974,
+      "rejectionReason": null,
+      "matches": 1399,
+      "inliers": 1211,
+      "inlierFraction": 0.8656182987848463,
+      "meanResidualPx": 0.791845858485238,
+      "matchedSpanFraction": [
+        0.9279166539510091,
+        0.8444444444444444
+      ]
+    },
+    {
+      "frame_index": 180,
+      "timestamp_seconds": 3.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9240740858204936,
+          0.01395536987454199,
+          50.42273450972741
+        ],
+        [
+          -0.01395536987454199,
+          0.9240740858204936,
+          40.119138165541116
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3964,
+      "rejectionReason": null,
+      "matches": 1407,
+      "inliers": 1168,
+      "inlierFraction": 0.830135039090263,
+      "meanResidualPx": 0.7772481828849829,
+      "matchedSpanFraction": [
+        0.9279166539510091,
+        0.849259270562066
+      ]
+    },
+    {
+      "frame_index": 192,
+      "timestamp_seconds": 3.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9231356616222518,
+          0.01571556035206582,
+          51.61256893673044
+        ],
+        [
+          -0.01571556035206582,
+          0.9231356616222518,
+          39.721932303985646
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3959,
+      "rejectionReason": null,
+      "matches": 1400,
+      "inliers": 1022,
+      "inlierFraction": 0.73,
+      "meanResidualPx": 0.7606769606518943,
+      "matchedSpanFraction": [
+        0.9179166793823242,
+        0.8425926491066261
+      ]
+    },
+    {
+      "frame_index": 204,
+      "timestamp_seconds": 3.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.924538438606642,
+          0.0159936643080552,
+          50.90426277517088
+        ],
+        [
+          -0.0159936643080552,
+          0.924538438606642,
+          37.6232777104065
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3973,
+      "rejectionReason": null,
+      "matches": 1422,
+      "inliers": 1148,
+      "inlierFraction": 0.8073136427566807,
+      "meanResidualPx": 0.8157739240357947,
+      "matchedSpanFraction": [
+        0.934375,
+        0.85
+      ]
+    },
+    {
+      "frame_index": 216,
+      "timestamp_seconds": 3.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9238724413568686,
+          0.016168432136220524,
+          53.22636581405336
+        ],
+        [
+          -0.016168432136220524,
+          0.9238724413568686,
+          36.230072789012986
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3977,
+      "rejectionReason": null,
+      "matches": 1413,
+      "inliers": 1214,
+      "inlierFraction": 0.8591648973814578,
+      "meanResidualPx": 0.8096330124240226,
+      "matchedSpanFraction": [
+        0.9241666793823242,
+        0.8518518518518519
+      ]
+    },
+    {
+      "frame_index": 228,
+      "timestamp_seconds": 3.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9239414194455868,
+          0.016963943861009013,
+          55.453156175688925
+        ],
+        [
+          -0.016963943861009013,
+          0.9239414194455868,
+          35.31046044156967
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3965,
+      "rejectionReason": null,
+      "matches": 1428,
+      "inliers": 1129,
+      "inlierFraction": 0.7906162464985994,
+      "meanResidualPx": 0.7979587478049862,
+      "matchedSpanFraction": [
+        0.9254166920979817,
+        0.8518518518518519
+      ]
+    },
+    {
+      "frame_index": 240,
+      "timestamp_seconds": 4.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9239974981995485,
+          0.015985566020317872,
+          57.91038868272933
+        ],
+        [
+          -0.015985566020317872,
+          0.9239974981995485,
+          31.92806891433752
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3983,
+      "rejectionReason": null,
+      "matches": 1394,
+      "inliers": 1135,
+      "inlierFraction": 0.8142037302725968,
+      "meanResidualPx": 0.8161336431511889,
+      "matchedSpanFraction": [
+        0.9291666666666667,
+        0.8555555555555555
+      ]
+    },
+    {
+      "frame_index": 252,
+      "timestamp_seconds": 4.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9241091027954369,
+          0.016452698745130036,
+          61.02835483964669
+        ],
+        [
+          -0.016452698745130036,
+          0.9241091027954369,
+          30.506062411382572
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3979,
+      "rejectionReason": null,
+      "matches": 1347,
+      "inliers": 1134,
+      "inlierFraction": 0.8418708240534521,
+      "meanResidualPx": 0.8124270726037381,
+      "matchedSpanFraction": [
+        0.928125,
+        0.858148193359375
+      ]
+    },
+    {
+      "frame_index": 264,
+      "timestamp_seconds": 4.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9239068180638834,
+          0.016272248506188712,
+          65.40195760126686
+        ],
+        [
+          -0.016272248506188712,
+          0.9239068180638834,
+          27.632673716747775
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3980,
+      "rejectionReason": null,
+      "matches": 1344,
+      "inliers": 1091,
+      "inlierFraction": 0.8117559523809523,
+      "meanResidualPx": 0.8053987316323572,
+      "matchedSpanFraction": [
+        0.928125,
+        0.8585185298213253
+      ]
+    },
+    {
+      "frame_index": 270,
+      "timestamp_seconds": 4.5,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9242102899562779,
+          0.016658115712490543,
+          67.16664618519144
+        ],
+        [
+          -0.016658115712490543,
+          0.9242102899562779,
+          26.602918404822805
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3993,
+      "rejectionReason": null,
+      "matches": 1378,
+      "inliers": 1167,
+      "inlierFraction": 0.8468795355587808,
+      "meanResidualPx": 0.8005641991864456,
+      "matchedSpanFraction": [
+        0.93125,
+        0.8629629629629629
+      ]
+    },
+    {
+      "frame_index": 276,
+      "timestamp_seconds": 4.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9247085064610103,
+          0.016092238048729078,
+          68.96054797535885
+        ],
+        [
+          -0.016092238048729078,
+          0.9247085064610103,
+          24.197034581260137
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3979,
+      "rejectionReason": null,
+      "matches": 1376,
+      "inliers": 1138,
+      "inlierFraction": 0.8270348837209303,
+      "meanResidualPx": 0.802847208508343,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.8629629629629629
+      ]
+    },
+    {
+      "frame_index": 288,
+      "timestamp_seconds": 4.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9241912022118202,
+          0.01604105978013229,
+          73.76346876798125
+        ],
+        [
+          -0.01604105978013229,
+          0.9241912022118202,
+          21.09532827939017
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3994,
+      "rejectionReason": null,
+      "matches": 1400,
+      "inliers": 1173,
+      "inlierFraction": 0.8378571428571429,
+      "meanResidualPx": 0.7986871126059499,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.8648148148148148
+      ]
+    },
+    {
+      "frame_index": 300,
+      "timestamp_seconds": 5.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9243087833389673,
+          0.016163838831486334,
+          78.27479381577015
+        ],
+        [
+          -0.016163838831486334,
+          0.9243087833389673,
+          17.90677488452082
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3994,
+      "rejectionReason": null,
+      "matches": 1420,
+      "inliers": 1236,
+      "inlierFraction": 0.8704225352112676,
+      "meanResidualPx": 0.82197614208963,
+      "matchedSpanFraction": [
+        0.934375,
+        0.8685185185185185
+      ]
+    },
+    {
+      "frame_index": 312,
+      "timestamp_seconds": 5.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9246756915288421,
+          0.015781231947891026,
+          83.91281657330372
+        ],
+        [
+          -0.015781231947891026,
+          0.9246756915288421,
+          13.726182186211638
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1384,
+      "inliers": 1066,
+      "inlierFraction": 0.7702312138728323,
+      "meanResidualPx": 0.8245377086641787,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.8685185185185185
+      ]
+    },
+    {
+      "frame_index": 324,
+      "timestamp_seconds": 5.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9247551703908009,
+          0.015708041683549914,
+          88.24490782572025
+        ],
+        [
+          -0.015708041683549914,
+          0.9247551703908009,
+          9.601320056136203
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 3999,
+      "rejectionReason": null,
+      "matches": 1383,
+      "inliers": 1200,
+      "inlierFraction": 0.8676789587852495,
+      "meanResidualPx": 0.8210380932311871,
+      "matchedSpanFraction": [
+        0.9302083333333333,
+        0.8577778003833912
+      ]
+    },
+    {
+      "frame_index": 336,
+      "timestamp_seconds": 5.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9244463519822591,
+          0.015444656230032409,
+          93.1098201540306
+        ],
+        [
+          -0.015444656230032409,
+          0.9244463519822591,
+          6.263664600237883
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1382,
+      "inliers": 1064,
+      "inlierFraction": 0.7698986975397974,
+      "meanResidualPx": 0.7946142824527248,
+      "matchedSpanFraction": [
+        0.9270833333333334,
+        0.8685185185185185
+      ]
+    },
+    {
+      "frame_index": 348,
+      "timestamp_seconds": 5.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9252283960627901,
+          0.015032667100454561,
+          95.19571462475915
+        ],
+        [
+          -0.015032667100454561,
+          0.9252283960627901,
+          2.6964766148356434
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1363,
+      "inliers": 1065,
+      "inlierFraction": 0.7813646368305209,
+      "meanResidualPx": 0.8286194712133153,
+      "matchedSpanFraction": [
+        0.93125,
+        0.835555578161169
+      ]
+    },
+    {
+      "frame_index": 360,
+      "timestamp_seconds": 6.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9246528223128534,
+          0.015473112433598704,
+          98.99556212314724
+        ],
+        [
+          -0.015473112433598704,
+          0.9246528223128534,
+          1.0955923499496008
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1413,
+      "inliers": 1182,
+      "inlierFraction": 0.8365180467091295,
+      "meanResidualPx": 0.8684231818884945,
+      "matchedSpanFraction": [
+        0.9322916666666666,
+        0.8577778003833912
+      ]
+    },
+    {
+      "frame_index": 372,
+      "timestamp_seconds": 6.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9246615420303497,
+          0.015326168330420515,
+          101.21005544998651
+        ],
+        [
+          -0.015326168330420515,
+          0.9246615420303497,
+          -1.3399309605084275
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1352,
+      "inliers": 1042,
+      "inlierFraction": 0.7707100591715976,
+      "meanResidualPx": 0.8288675061772781,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.8574074074074074
+      ]
+    },
+    {
+      "frame_index": 384,
+      "timestamp_seconds": 6.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9245642170254929,
+          0.014925891721409207,
+          103.15653207235545
+        ],
+        [
+          -0.014925891721409207,
+          0.9245642170254929,
+          -3.810863871896597
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1384,
+      "inliers": 1128,
+      "inlierFraction": 0.815028901734104,
+      "meanResidualPx": 0.886086781916483,
+      "matchedSpanFraction": [
+        0.934375,
+        0.8588888662832754
+      ]
+    },
+    {
+      "frame_index": 396,
+      "timestamp_seconds": 6.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9250087968815548,
+          0.014924393192775245,
+          103.90684496783119
+        ],
+        [
+          -0.014924393192775245,
+          0.9250087968815548,
+          -5.93386245864366
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1324,
+      "inliers": 1115,
+      "inlierFraction": 0.8421450151057401,
+      "meanResidualPx": 0.8904814522350498,
+      "matchedSpanFraction": [
+        0.934375,
+        0.8407407972547744
+      ]
+    },
+    {
+      "frame_index": 408,
+      "timestamp_seconds": 6.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9250995665230886,
+          0.015048833828289369,
+          104.88632460640221
+        ],
+        [
+          -0.015048833828289369,
+          0.9250995665230886,
+          -7.853878361448742
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1304,
+      "inliers": 1044,
+      "inlierFraction": 0.8006134969325154,
+      "meanResidualPx": 0.8659028636748881,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.7099999886971933
+      ]
+    },
+    {
+      "frame_index": 420,
+      "timestamp_seconds": 7.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9243536119299123,
+          0.015303019294059207,
+          105.87677677748597
+        ],
+        [
+          -0.015303019294059207,
+          0.9243536119299123,
+          -9.50603183783615
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1292,
+      "inliers": 946,
+      "inlierFraction": 0.7321981424148607,
+      "meanResidualPx": 0.8668447856443641,
+      "matchedSpanFraction": [
+        0.9268749872843425,
+        0.8400000678168402
+      ]
+    },
+    {
+      "frame_index": 432,
+      "timestamp_seconds": 7.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9246955257293819,
+          0.014479704145256534,
+          106.93682442116439
+        ],
+        [
+          -0.014479704145256534,
+          0.9246955257293819,
+          -11.891793258046947
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1300,
+      "inliers": 1010,
+      "inlierFraction": 0.7769230769230769,
+      "meanResidualPx": 0.8530830664241903,
+      "matchedSpanFraction": [
+        0.9158333460489909,
+        0.7092592592592593
+      ]
+    },
+    {
+      "frame_index": 444,
+      "timestamp_seconds": 7.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9252272252586586,
+          0.015565832611655572,
+          107.27579242220501
+        ],
+        [
+          -0.015565832611655572,
+          0.9252272252586586,
+          -13.741074841515298
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1265,
+      "inliers": 855,
+      "inlierFraction": 0.6758893280632411,
+      "meanResidualPx": 0.8171448921814946,
+      "matchedSpanFraction": [
+        0.9202083587646485,
+        0.7092593157732928
+      ]
+    },
+    {
+      "frame_index": 456,
+      "timestamp_seconds": 7.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9250652541316641,
+          0.015107309751371527,
+          108.63753584068559
+        ],
+        [
+          -0.015107309751371527,
+          0.9250652541316641,
+          -16.837986646861193
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1248,
+      "inliers": 928,
+      "inlierFraction": 0.7435897435897436,
+      "meanResidualPx": 0.8602176717184238,
+      "matchedSpanFraction": [
+        0.9197916666666667,
+        0.8437037150065104
+      ]
+    },
+    {
+      "frame_index": 468,
+      "timestamp_seconds": 7.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9250132419770942,
+          0.015416298286623976,
+          108.93273429937027
+        ],
+        [
+          -0.015416298286623976,
+          0.9250132419770942,
+          -19.023728401990113
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1267,
+      "inliers": 1025,
+      "inlierFraction": 0.8089976322020521,
+      "meanResidualPx": 0.9314330117177789,
+      "matchedSpanFraction": [
+        0.9208333333333333,
+        0.8433333220305266
+      ]
+    },
+    {
+      "frame_index": 480,
+      "timestamp_seconds": 8.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9248654808950804,
+          0.015551857676723131,
+          109.39562211662565
+        ],
+        [
+          -0.015551857676723131,
+          0.9248654808950804,
+          -21.209211563324914
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1272,
+      "inliers": 1071,
+      "inlierFraction": 0.8419811320754716,
+      "meanResidualPx": 0.9056203576405412,
+      "matchedSpanFraction": [
+        0.9104166666666667,
+        0.7096296522352431
+      ]
+    },
+    {
+      "frame_index": 492,
+      "timestamp_seconds": 8.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9251001940726284,
+          0.015252815371297601,
+          109.45917774132185
+        ],
+        [
+          -0.015252815371297601,
+          0.9251001940726284,
+          -23.911315901817826
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1256,
+      "inliers": 1076,
+      "inlierFraction": 0.856687898089172,
+      "meanResidualPx": 0.9184731191213965,
+      "matchedSpanFraction": [
+        0.9172916412353516,
+        0.708888922797309
+      ]
+    },
+    {
+      "frame_index": 504,
+      "timestamp_seconds": 8.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9249107936097819,
+          0.015541758344578542,
+          109.96436999829109
+        ],
+        [
+          -0.015541758344578542,
+          0.9249107936097819,
+          -25.549447310496106
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1163,
+      "inliers": 977,
+      "inlierFraction": 0.8400687876182287,
+      "meanResidualPx": 0.9152157224705516,
+      "matchedSpanFraction": [
+        0.9183333079020183,
+        0.7054699933087384
+      ]
+    },
+    {
+      "frame_index": 516,
+      "timestamp_seconds": 8.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9244810476150056,
+          0.015754212410484823,
+          110.37243074244293
+        ],
+        [
+          -0.015754212410484823,
+          0.9244810476150056,
+          -26.316202746077863
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1231,
+      "inliers": 932,
+      "inlierFraction": 0.7571080422420796,
+      "meanResidualPx": 0.8746791083472554,
+      "matchedSpanFraction": [
+        0.9162499745686848,
+        0.7096296522352431
+      ]
+    },
+    {
+      "frame_index": 528,
+      "timestamp_seconds": 8.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9252957043884154,
+          0.01531755761554644,
+          109.93038348482267
+        ],
+        [
+          -0.01531755761554644,
+          0.9252957043884154,
+          -28.550987084530444
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1204,
+      "inliers": 997,
+      "inlierFraction": 0.8280730897009967,
+      "meanResidualPx": 0.9081769867309998,
+      "matchedSpanFraction": [
+        0.9204166412353516,
+        0.7077778003833912
+      ]
+    },
+    {
+      "frame_index": 540,
+      "timestamp_seconds": 9.0,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.924401519499153,
+          0.015939997986645433,
+          110.84346702762905
+        ],
+        [
+          -0.015939997986645433,
+          0.924401519499153,
+          -28.676620444275066
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1220,
+      "inliers": 941,
+      "inlierFraction": 0.771311475409836,
+      "meanResidualPx": 0.8891433679523543,
+      "matchedSpanFraction": [
+        0.9333333333333333,
+        0.7111111111111111
+      ]
+    },
+    {
+      "frame_index": 552,
+      "timestamp_seconds": 9.2,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9253166125683209,
+          0.01584461042274008,
+          109.77132271501631
+        ],
+        [
+          -0.01584461042274008,
+          0.9253166125683209,
+          -30.23508207269802
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1218,
+      "inliers": 1041,
+      "inlierFraction": 0.854679802955665,
+      "meanResidualPx": 0.92019746420577,
+      "matchedSpanFraction": [
+        0.9116666793823243,
+        0.708888922797309
+      ]
+    },
+    {
+      "frame_index": 564,
+      "timestamp_seconds": 9.4,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9247699877892868,
+          0.015683945765851796,
+          109.97323137448552
+        ],
+        [
+          -0.015683945765851796,
+          0.9247699877892868,
+          -30.621214817016625
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1246,
+      "inliers": 1008,
+      "inlierFraction": 0.8089887640449438,
+      "meanResidualPx": 0.935497869151512,
+      "matchedSpanFraction": [
+        0.93125,
+        0.7092592592592593
+      ]
+    },
+    {
+      "frame_index": 576,
+      "timestamp_seconds": 9.6,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9257888976296553,
+          0.015930649462896667,
+          107.61454787501042
+        ],
+        [
+          -0.015930649462896667,
+          0.9257888976296553,
+          -31.204835693823537
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1252,
+      "inliers": 1030,
+      "inlierFraction": 0.8226837060702875,
+      "meanResidualPx": 0.9403858093194367,
+      "matchedSpanFraction": [
+        0.9104166666666667,
+        0.7111111111111111
+      ]
+    },
+    {
+      "frame_index": 588,
+      "timestamp_seconds": 9.8,
+      "isValid": true,
+      "frameToAnchor": [
+        [
+          0.9248062633624445,
+          0.016038048458153136,
+          108.49908987186893
+        ],
+        [
+          -0.016038048458153136,
+          0.9248062633624445,
+          -31.36982846412021
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "features": 4000,
+      "rejectionReason": null,
+      "matches": 1202,
+      "inliers": 956,
+      "inlierFraction": 0.7953410981697171,
+      "meanResidualPx": 0.9106269467495424,
+      "matchedSpanFraction": [
+        0.9191666920979817,
+        0.7096296522352431
+      ]
+    }
+  ],
+  "selectionAudit": {
+    "statistics": {
+      "1": {
+        "observedFrames": 270,
+        "cameraSupportedSamples": 23,
+        "motionSpanSeconds": 4.4,
+        "motionExtentBodyHeights": 3.195484263878118,
+        "eligibleMovingPersonCandidate": true,
+        "identityScope": "SOURCE_TRACK_FRAGMENT_NOT_VERIFIED_PERSON_ID"
+      },
+      "2": {
+        "observedFrames": 600,
+        "cameraSupportedSamples": 51,
+        "motionSpanSeconds": 9.8,
+        "motionExtentBodyHeights": 2.3763170299869127,
+        "eligibleMovingPersonCandidate": true,
+        "identityScope": "SOURCE_TRACK_FRAGMENT_NOT_VERIFIED_PERSON_ID"
+      },
+      "3": {
+        "observedFrames": 600,
+        "cameraSupportedSamples": 51,
+        "motionSpanSeconds": 9.8,
+        "motionExtentBodyHeights": 0.06434688492297383,
+        "eligibleMovingPersonCandidate": false,
+        "identityScope": "SOURCE_TRACK_FRAGMENT_NOT_VERIFIED_PERSON_ID"
+      },
+      "5": {
+        "observedFrames": 3,
+        "cameraSupportedSamples": 0,
+        "motionSpanSeconds": 0,
+        "motionExtentBodyHeights": null,
+        "eligibleMovingPersonCandidate": false,
+        "identityScope": "SOURCE_TRACK_FRAGMENT_NOT_VERIFIED_PERSON_ID"
+      },
+      "7": {
+        "observedFrames": 4,
+        "cameraSupportedSamples": 0,
+        "motionSpanSeconds": 0,
+        "motionExtentBodyHeights": null,
+        "eligibleMovingPersonCandidate": false,
+        "identityScope": "SOURCE_TRACK_FRAGMENT_NOT_VERIFIED_PERSON_ID"
+      },
+      "8": {
+        "observedFrames": 268,
+        "cameraSupportedSamples": 22,
+        "motionSpanSeconds": 4.2,
+        "motionExtentBodyHeights": 3.1763536930385907,
+        "eligibleMovingPersonCandidate": true,
+        "identityScope": "SOURCE_TRACK_FRAGMENT_NOT_VERIFIED_PERSON_ID"
+      }
+    },
+    "ambiguousFrames": [],
+    "selectionScope": "OFFLINE_MOVING_PERSON_CANDIDATE_NOT_VERIFIED_ACTIVE_PARTICIPANT",
+    "qualificationEvidence": false,
+    "identityMerging": false,
+    "gapFilling": false
+  },
+  "frames": [
+    {
+      "frame_index": 0,
+      "selected": [
+        {
+          "bbox": [
+            1300.220703125,
+            821.9053344726562,
+            1396.954345703125,
+            1000.7305297851562
+          ],
+          "confidence": 0.889829158782959,
+          "sourceTrackId": 1,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        },
+        {
+          "bbox": [
+            406.84161376953125,
+            191.28045654296875,
+            453.738525390625,
+            314.41949462890625
+          ],
+          "confidence": 0.7992697954177856,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.9391197528563829,
+          "sourceTrackId": 2
+        },
+        {
+          "labelIdentity": "B",
+          "matched": true,
+          "maximumIoU": 0.9646550041861114,
+          "sourceTrackId": 1
+        }
+      ],
+      "unmatchedSelected": []
+    },
+    {
+      "frame_index": 120,
+      "selected": [
+        {
+          "bbox": [
+            1443.0941162109375,
+            748.2496337890625,
+            1539.665771484375,
+            898.4854736328125
+          ],
+          "confidence": 0.8549379110336304,
+          "sourceTrackId": 1,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        },
+        {
+          "bbox": [
+            419.62139892578125,
+            197.14315795898438,
+            479.0500183105469,
+            293.77410888671875
+          ],
+          "confidence": 0.7875721454620361,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.6623580165481304,
+          "sourceTrackId": 2
+        },
+        {
+          "labelIdentity": "B",
+          "matched": true,
+          "maximumIoU": 0.9296760050689473,
+          "sourceTrackId": 1
+        }
+      ],
+      "unmatchedSelected": []
+    },
+    {
+      "frame_index": 240,
+      "selected": [
+        {
+          "bbox": [
+            1786.6875,
+            774.989990234375,
+            1882.056640625,
+            957.4857788085938
+          ],
+          "confidence": 0.8527475595474243,
+          "sourceTrackId": 1,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        },
+        {
+          "bbox": [
+            249.824951171875,
+            225.21295166015625,
+            310.79547119140625,
+            349.05169677734375
+          ],
+          "confidence": 0.7426640391349792,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.8346986304009602,
+          "sourceTrackId": 2
+        },
+        {
+          "labelIdentity": "B",
+          "matched": true,
+          "maximumIoU": 0.9011911296755214,
+          "sourceTrackId": 1
+        }
+      ],
+      "unmatchedSelected": []
+    },
+    {
+      "frame_index": 270,
+      "selected": [
+        {
+          "bbox": [
+            236.8977813720703,
+            213.32046508789062,
+            291.216796875,
+            341.4578552246094
+          ],
+          "confidence": 0.8031877279281616,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.899263162964002,
+          "sourceTrackId": 2
+        }
+      ],
+      "unmatchedSelected": []
+    },
+    {
+      "frame_index": 300,
+      "selected": [
+        {
+          "bbox": [
+            187.82383728027344,
+            236.00059509277344,
+            262.3273010253906,
+            335.0356750488281
+          ],
+          "confidence": 0.8592128157615662,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.709194203095031,
+          "sourceTrackId": 2
+        }
+      ],
+      "unmatchedSelected": []
+    },
+    {
+      "frame_index": 360,
+      "selected": [
+        {
+          "bbox": [
+            142.90272521972656,
+            217.31423950195312,
+            248.0973663330078,
+            351.3304443359375
+          ],
+          "confidence": 0.8431738615036011,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        },
+        {
+          "bbox": [
+            1808.2249755859375,
+            798.9752807617188,
+            1880.8809814453125,
+            984.0152587890625
+          ],
+          "confidence": 0.8405578136444092,
+          "sourceTrackId": 8,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.8547414258561904,
+          "sourceTrackId": 2
+        },
+        {
+          "labelIdentity": "B",
+          "matched": true,
+          "maximumIoU": 0.9485917446048141,
+          "sourceTrackId": 8
+        }
+      ],
+      "unmatchedSelected": []
+    },
+    {
+      "frame_index": 480,
+      "selected": [
+        {
+          "bbox": [
+            267.7955322265625,
+            221.91905212402344,
+            333.42620849609375,
+            334.9110412597656
+          ],
+          "confidence": 0.8262873291969299,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        },
+        {
+          "bbox": [
+            1617.32421875,
+            866.1890258789062,
+            1689.353515625,
+            1044.8753662109375
+          ],
+          "confidence": 0.867882251739502,
+          "sourceTrackId": 8,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.9646903793653463,
+          "sourceTrackId": 2
+        },
+        {
+          "labelIdentity": "B",
+          "matched": true,
+          "maximumIoU": 0.7772132521306259,
+          "sourceTrackId": 8
+        }
+      ],
+      "unmatchedSelected": []
+    },
+    {
+      "frame_index": 540,
+      "selected": [
+        {
+          "bbox": [
+            388.0555725097656,
+            197.49557495117188,
+            461.8309020996094,
+            314.0499267578125
+          ],
+          "confidence": 0.8128122091293335,
+          "sourceTrackId": 2,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        },
+        {
+          "bbox": [
+            1465.107421875,
+            848.0911865234375,
+            1567.19873046875,
+            1028.6575927734375
+          ],
+          "confidence": 0.8988931179046631,
+          "sourceTrackId": 8,
+          "courtRole": null,
+          "participantStatus": "UNKNOWN"
+        }
+      ],
+      "matches": [
+        {
+          "labelIdentity": "A",
+          "matched": true,
+          "maximumIoU": 0.9433321081631563,
+          "sourceTrackId": 2
+        },
+        {
+          "labelIdentity": "B",
+          "matched": true,
+          "maximumIoU": 0.8711843432010009,
+          "sourceTrackId": 8
+        }
+      ],
+      "unmatchedSelected": []
+    }
+  ],
+  "qualificationEvidence": false,
+  "limitations": [
+    "Single reused diagnostic clip and eight approximate agent-labeled frames.",
+    "Moving officials or spectators can qualify; motion does not prove participation.",
+    "No physical geometry, named identity, court roles or production promotion.",
+    "Sparse camera samples support offline fragment selection; no per-frame motion or speed estimate."
+  ],
+  "summary": {
+    "sampledCameraFrames": 51,
+    "acceptedCameraFrames": 51,
+    "selectedActualObservations": 1138,
+    "labeledSubsetTP": 14,
+    "labeledSubsetFP": 0,
+    "labeledSubsetFN": 0,
+    "ignoredPartialSelections": 0,
+    "productionQualified": false,
+    "identityAccuracy": null,
+    "independentGeneralizationAccuracy": null
+  }
+}

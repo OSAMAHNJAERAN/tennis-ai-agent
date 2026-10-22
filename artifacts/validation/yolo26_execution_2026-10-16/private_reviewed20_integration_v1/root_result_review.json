@@ -1,0 +1,118 @@
+{
+  "status": "ACTUAL30_FRAME_PRIVATE_INTEGRATION_REVIEWED_UNQUALIFIED",
+  "created_utc": "2026-10-16T01:49:21.041146+00:00",
+  "evaluation_receipt_sha256": "6d798d43541f901a7e43ceccd3f6235665e3378995e107900ded79d08691b479",
+  "observer_sha256": "e57a42fc8578b57fdbaaf3a37e603c81c84b755acaa4e084dde66202ef24f5b1",
+  "decoded_source_frames": 30,
+  "decoded_annotated_frames": 30,
+  "distinct_model_objects": 3,
+  "ball_native_tile_image_inputs": 240,
+  "ball_downscaled_full_frame_image_inputs": 30,
+  "player_image_inputs": 30,
+  "court_image_inputs": 31,
+  "separate_library_warmup_forwards": 3,
+  "event_storage": {
+    "owner_type": "EventAnalysisSequence",
+    "owner_open_at_analysis_return": true,
+    "scratch_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\private_yolo26_reviewed20_candidate_run1_2026-10-16\\event_analysis_3hgc0tq2.sqlite3",
+    "scratch_exists_at_analysis_return": true,
+    "candidate_sequence_type": "_Rows",
+    "events_sequence_type": "_Rows",
+    "trace_sequence_type": "_Rows",
+    "candidates": 1,
+    "events": 1,
+    "traces": 1,
+    "scratch_exists_after_pipeline_exit": false
+  },
+  "raw_image_ball_states": {
+    "DETECTED": 1,
+    "TRACKED": 2,
+    "MISSING": 27
+  },
+  "physical_speed_and_court_position_available": false,
+  "all30_camera_activity_and_identity_unconfirmed": true,
+  "authoritative_events": 0,
+  "court_fit": {
+    "valid": false,
+    "reason": "INSUFFICIENT_INLIER_SUPPORT",
+    "inliers": 6,
+    "correspondences": 14
+  },
+  "visual_review_frames": [
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\private_reviewed20_integration_v1\\local_visual_review\\annotated_01.png",
+      "frame_index": 0,
+      "sha256": "9c81fc63fa0f080aa0dc1aacc130b4bfe65c383874946adfef52a5b4850c03ec",
+      "root_actually_viewed_original_1920x1080": true
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\private_reviewed20_integration_v1\\local_visual_review\\annotated_02.png",
+      "frame_index": 15,
+      "sha256": "cab1a638633e7cd8d030efc3b9bd099a9f84e986a2e29e93d33ce48ef6a24a1a",
+      "root_actually_viewed_original_1920x1080": true
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\private_reviewed20_integration_v1\\local_visual_review\\annotated_03.png",
+      "frame_index": 29,
+      "sha256": "0add1261a73af48aa12f972ea8db1ecf5f6373f00dcf8562d4fac7a2a6966ec8",
+      "root_actually_viewed_original_1920x1080": true
+    }
+  ],
+  "visual_observations": [
+    "Unavailable banner is readable.",
+    "Raw red court keypoint proposals are visibly displaced from white intersections.",
+    "Frame0 green raw image-space ball candidate is consistent with retained raw state; no ground or physical-speed authority.",
+    "Frames15/29 have no retained image-space ball observation.",
+    "No qualified synchronized mini-court, identity, movement or score result was established."
+  ],
+  "external_video_connector_review": "AUTO_REVIEW_REJECTED_FRAME_TRANSFER_PRIVACY; LOCAL_FFMPEG_AND_LOCAL_IMAGE_REVIEW_COMPLETED",
+  "initial_root_assertion_corrected": "An unwritten review assertion initially assumed all30 ball image states were missing; actual retained states are1DETECTED,2TRACKED,27MISSING. No product code or artifact was altered to satisfy it.",
+  "source_exposure": "MATCH172_BEIJING_TRAIN_EXPOSED_NOT_INDEPENDENT",
+  "runtime_sources_and_inputs_unchanged": true,
+  "pipeline_elapsed_seconds": 12.515185099997325,
+  "resource_sampler": {
+    "sample_interval_seconds": 0.25,
+    "samples": 72,
+    "fields": {
+      "available_ram_bytes": {
+        "minimum": 1793216512,
+        "maximum": 2856173568,
+        "last": 2034003968
+      },
+      "process_rss_bytes": {
+        "minimum": 681607168,
+        "maximum": 1905836032,
+        "last": 1737527296
+      },
+      "process_peak_working_set_bytes": {
+        "minimum": 681607168,
+        "maximum": 1923444736,
+        "last": 1923444736
+      },
+      "free_vram_bytes": {
+        "minimum": 4819255296,
+        "maximum": 5326766080,
+        "last": 5087690752
+      },
+      "torch_peak_allocated_bytes": {
+        "minimum": 0,
+        "maximum": 390994944,
+        "last": 390994944
+      },
+      "torch_peak_reserved_bytes": {
+        "minimum": 0,
+        "maximum": 482344960,
+        "last": 482344960
+      }
+    },
+    "sampling_errors_count": 0,
+    "sampling_errors": [],
+    "scope": "OWNED_PROCESS_RSS_AND_SYSTEM_AVAILABLE_RAM_SELECTED_DEVICE_FREE_VRAM",
+    "observed_peaks_are_sampling_lower_bounds": true
+  },
+  "qualification_evidence": false,
+  "full_match_capacity_qualified": false,
+  "live_latency_qualified": false,
+  "production_promoted": false,
+  "final_test_used": false
+}

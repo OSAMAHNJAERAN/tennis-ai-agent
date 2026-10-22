@@ -1,0 +1,99 @@
+{
+  "schema": "tennis.yolo26.root-paired-transform-review.v1",
+  "status": "ACTUAL_TWO_ARM_DIAGNOSTIC_REVIEWED_SHAPE_CHANGE_DOES_NOT_RESOLVE_LOCALIZATION",
+  "created_utc": "2026-10-15T07:52:11.9936844Z",
+  "paired_diagnostic": {
+    "sha256": "31541074eddacc77d8ce7db3a9f6b194592325dd09c7f30c0c1266354481e752",
+    "path": "outputs/yolo26_court_input_transform_diagnostic_v1/diagnostic.json"
+  },
+  "original_diagnostic": {
+    "sha256": "768fb2f4d016e0d704c2bb555e5927395f3a3c76b5453f8cc6fbcb7d98b09aec",
+    "path": "outputs/yolo26_court_reviewed_development_diagnostic_v1/diagnostic.json"
+  },
+  "rectangular_raw_predictions_identical_to_original": true,
+  "raw_prediction_difference_image_ids": [],
+  "arm_summaries": [
+    {
+      "name": "EXPLICIT_RECTANGULAR_BASELINE",
+      "rect": true,
+      "summary": {
+        "visible_gt_denominator": 278,
+        "unknown_gt_excluded": 2,
+        "finite_confident_matched_predictions": 264,
+        "missing_visible_keypoints": 14,
+        "coverage": 0.9496402877697842,
+        "within_10_px": 20,
+        "within_20_px": 74,
+        "recall_at_10_px": 0.07194244604316546,
+        "recall_at_20_px": 0.26618705035971224,
+        "median_error_native_px": 31.530870632176104,
+        "p95_error_native_px": 122.8921856306252
+      },
+      "matched_instances": 19,
+      "complete_instance_misses": 1
+    },
+    {
+      "name": "EXPLICIT_SQUARE_INPUT_MATCHING_TRAIN_CONFIGURATION",
+      "rect": false,
+      "summary": {
+        "visible_gt_denominator": 278,
+        "unknown_gt_excluded": 2,
+        "finite_confident_matched_predictions": 264,
+        "missing_visible_keypoints": 14,
+        "coverage": 0.9496402877697842,
+        "within_10_px": 22,
+        "within_20_px": 56,
+        "recall_at_10_px": 0.07913669064748201,
+        "recall_at_20_px": 0.2014388489208633,
+        "median_error_native_px": 41.81914241821268,
+        "p95_error_native_px": 143.79860499900963
+      },
+      "matched_instances": 19,
+      "complete_instance_misses": 1
+    }
+  ],
+  "paired_all_visible": {
+    "visible_gt_denominator": 278,
+    "unknown_gt_excluded": 2,
+    "both_available": 264,
+    "rect_only_available": 0,
+    "square_only_available": 0,
+    "both_missing": 14,
+    "common_available_square_minus_rect_median_error_px": 5.055392970488661,
+    "common_available_square_minus_rect_p95_error_px": 81.76016878514594,
+    "delta_error_population": "BOTH_ARMS_FINITE_CONFIDENT_BBOX_MATCHED_SAME_VISIBLE_TARGET_ONLY",
+    "no_missing_error_imputation": true,
+    "rect_missing_reasons": {
+      "NO_RETURNED_INSTANCE": 14
+    },
+    "rect_within_10_px": 20,
+    "rect_recall_at_10_px": 0.07194244604316546,
+    "rect_within_20_px": 74,
+    "rect_recall_at_20_px": 0.26618705035971224,
+    "square_missing_reasons": {
+      "NO_RETURNED_INSTANCE": 14
+    },
+    "square_within_10_px": 22,
+    "square_recall_at_10_px": 0.07913669064748201,
+    "square_within_20_px": 56,
+    "square_recall_at_20_px": 0.2014388489208633
+  },
+  "elapsed_seconds": 25.649484499997925,
+  "peak_cuda_allocated_bytes": 253476864,
+  "peak_cuda_reserved_bytes": 339738624,
+  "input_hashes_unchanged": true,
+  "changed_inputs": [],
+  "forward_count": 42,
+  "actual_image_forward_count": 40,
+  "library_warmup_forward_count": 2,
+  "root_actual_visual_scope": [
+    "Square DEV03: large asymmetric deformation persists",
+    "Square DEV09: extra far-baseline and left displacement compared with prior rectangular overlay",
+    "Square DEV16: still no returned court"
+  ],
+  "decision": "Retain both arms and original baseline. A simple square-input switch does not repair localization and worsens median/P95 in this DEV sample. The shape-only explanation is weakened, not a complete causal diagnosis. Prioritize source-diverse reviewed court data and then a separately justified bounded optimization plan. No long retrain, configuration change or production promotion approved.",
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "training_performed": false,
+  "production_manifest_sha256": "8a902c6fe9eecbe97799b48c51e2ea55ca92355e44fd7b39527d7665af30f0cb"
+}

@@ -14,8 +14,8 @@ class CourtLineType(str, Enum):
     NONE = "NONE"
 
 class ServiceBoxType(str, Enum):
-    NEAR_DEUCE = "NEAR_DEUCE"  # Receiver's right side / server's cross-court from far deuce
-    NEAR_AD = "NEAR_AD"        # Receiver's left side / server's cross-court from far ad
+    NEAR_DEUCE = "NEAR_DEUCE"  # Far server's deuce target: camera-right near box
+    NEAR_AD = "NEAR_AD"        # Far server's ad target: camera-left near box
     FAR_DEUCE = "FAR_DEUCE"    # Top-left box from camera perspective
     FAR_AD = "FAR_AD"          # Top-right box from camera perspective
 
@@ -95,8 +95,8 @@ class CourtLineGeometry:
 
     # Service Box Metric Polygons [X_min, X_max, Y_min, Y_max]
     SERVICE_BOX_BOUNDS = {
-        ServiceBoxType.NEAR_DEUCE: (1.37, 5.485, 11.885, 18.285),
-        ServiceBoxType.NEAR_AD: (5.485, 9.60, 11.885, 18.285),
+        ServiceBoxType.NEAR_DEUCE: (5.485, 9.60, 11.885, 18.285),
+        ServiceBoxType.NEAR_AD: (1.37, 5.485, 11.885, 18.285),
         ServiceBoxType.FAR_DEUCE: (1.37, 5.485, 5.485, 11.885),
         ServiceBoxType.FAR_AD: (5.485, 9.60, 5.485, 11.885)
     }
@@ -305,7 +305,7 @@ class CourtLineGeometry:
         d_bottom = y_max - court_y_m
 
         # Determine line types based on box
-        if target_box in (ServiceBoxType.NEAR_DEUCE, ServiceBoxType.FAR_DEUCE):
+        if x_max == cls.CENTER_SERVICE_X:
             left_type = CourtLineType.LEFT_SIDELINE
             right_type = CourtLineType.CENTER_SERVICE_LINE
         else:

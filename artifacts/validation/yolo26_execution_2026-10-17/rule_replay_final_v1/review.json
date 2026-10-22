@@ -1,0 +1,21 @@
+{
+  "observed_utc": "2026-10-17T01:58:00.5369020Z",
+  "scope": "Read-only independent review of raw-state codec, unchanged replay capture/writer/reproducer; root verified integration and actual source hashes",
+  "reviewer": "durable_resume_audit",
+  "status": "NO_REMAINING_CONCRETE_P1_P2",
+  "repaired_finding": "Writer admitted authority-off diagnostic orphan shots while reproducer rejected them; now rejected before publication",
+  "regression": "tests/test_rule_replay_admission.py::test_authority_off_diagnostic_orphan_shot_is_not_published",
+  "test_receipt": "rule_replay_final_v1/receipt.json",
+  "reviewed_current_sources": {
+    "src/scoring/match_state_codec.py": "24f94385f76362b5fe6ccf900f46b39bf176ca7a0052184998fbbbee6cb65abc",
+    "src/scoring/rule_replay.py": "18600811b51184d2d95c4c45ce79cf09f369ca7afb87ac1985a5b1a6e6d718f0",
+    "src/scoring/rule_reproduction.py": "1d486f0f9fad01ccb831311d677a455b3a18363d10de15b176f7ccd31b602a66",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src/scoring/scoring_engine.py": "70eab632c1d623023bc63f1217e6f8e8c028dd69be47d512ae5e5b03fc7af03d",
+    "src/pipeline/phase6_pipeline.py": "06ac4d401e42efb2805798a02ab5010098f8d6541b3ac8786af8d3307f0a6955",
+    "src/api/analysis_resume.py": "732a3bdca9d62c7b72913cdd6e3cd4b992734c06192c16b45e8526ed25b128b9"
+  },
+  "reviewer_ran_tests": false,
+  "correction_publication_implemented": false,
+  "independent_accuracy_validated": false
+}

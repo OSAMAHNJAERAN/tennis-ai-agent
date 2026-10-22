@@ -1,0 +1,58 @@
+{
+  "created_utc": "2026-10-15T03:31:22.055851+00:00",
+  "status": "STOCKHOLM_ALIAS_VISUALLY_CONFIRMED_ESTORIL_MISMATCH_REMAINS_FOR_GROUP_AUDIT",
+  "prior_negative_review": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_negative_review_root_v1.json",
+    "sha256": "4760f30b2eb6eed4faa79995022d87ecd8e4aa9c17309c5677e6291882b52d7b"
+  },
+  "manifest_sha256": "c6ec5bd28d0a36af85afb5f8018b136f9bc9afbbae65996bf9aa938ab2ab4a17",
+  "reviewer_type": "ROOT_AGENT_VISUAL_REVIEW_NOT_INDEPENDENT_HUMAN",
+  "actually_viewed_full_native_frame": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000009.png",
+    "sha256": "7468122f6ee15054f327f371bbce977f45aa5c1c0d362a5741388e1c61828292",
+    "pixel_sha256": "94ab5880eca9143bb0acc9e0e4d50d6ebd076416f5266f512866062c608ed72f",
+    "shape": [
+      1080,
+      1920,
+      3
+    ]
+  },
+  "observation": "Root viewed full1920x1080 match219 frame9: near and far STOCKHOLM court lettering and BNP PARIBAS NORDIC OPEN are readable. HYLO branding alone was insufficient; full-frame lettering confirms the frozen Stockholm alias for this frame. No verified match date/identity inferred.",
+  "tile_revision": {
+    "proposal_id": "tile_review_0113",
+    "previous_decision": "REJECT_SOURCE_CONTEXT_PENDING",
+    "new_decision": "ACCEPT_VISIBLE_ABSENCE",
+    "basis": "Root inspected the entire current native640tile earlier and now resolves its event-context question by fullframe. The active visible ball trail lies outside this top-left640tile. No visible tennis ball was observed within this tile; no claim about hidden balls or adjacent times.",
+    "images": {
+      "current_tile": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\tiles\\tile_review_0113_context1.png",
+        "sha256": "917f82e7e408d41d96a3e0d22c965a3ee82c5b9e803c1a6e360d47dfd26e41e9",
+        "pixel_sha256": "349d6895a1c75a77f2bd3e64deab94f657bb70d6b52e8e3e4f6e14436bc0cd47",
+        "shape": [
+          640,
+          640,
+          3
+        ]
+      },
+      "native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match219_000_f000009.png",
+        "sha256": "7468122f6ee15054f327f371bbce977f45aa5c1c0d362a5741388e1c61828292",
+        "pixel_sha256": "94ab5880eca9143bb0acc9e0e4d50d6ebd076416f5266f512866062c608ed72f",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      }
+    }
+  },
+  "effective_tile_decisions": {
+    "reviewed": 16,
+    "provisionally_accepted_visible_absence": 4,
+    "rejected_or_pending": 12
+  },
+  "source208": "Confirmed ESTORIL lettering conflicts with frozen madrid alias and must be reconciled against all conservative source/event groups before supervised export. Old sampler is preserved unchanged.",
+  "qualification_evidence": false,
+  "supervised_export_approved": false,
+  "yolo_labels_written": 0
+}

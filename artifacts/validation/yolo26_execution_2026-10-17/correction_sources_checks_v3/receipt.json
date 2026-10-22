@@ -1,0 +1,44 @@
+{
+  "scope": "SYNTHETIC_SEALED_OBSERVATION_ADAPTERS_ONLY_NO_INFERENCE",
+  "exit_code": 0,
+  "elapsed_seconds": 19.660094738006592,
+  "source_before": {
+    "src/scoring/correction_sources.py": "9accb32e2b473eb31cd815dded09084464c54cd73482de04e034cb6610ce8536",
+    "tests/test_correction_sources.py": "aebb0f0b9721ef380666bf3a3c3726cbbd56dbf7960ee5b28fcfa0fcd09e11f3",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/utils/bbox_utils.py": "1a98eafd4a6e04920f5b6ad7ba2c875d146354f9b2f19347dde4d6b31383da0d"
+  },
+  "source_after": {
+    "src/scoring/correction_sources.py": "9accb32e2b473eb31cd815dded09084464c54cd73482de04e034cb6610ce8536",
+    "tests/test_correction_sources.py": "aebb0f0b9721ef380666bf3a3c3726cbbd56dbf7960ee5b28fcfa0fcd09e11f3",
+    "src/api/analysis_generation.py": "ffcaf8a2e4a2ae40121a47a7204e9444eb9611da291f7b0021d1afa7a17c894a",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/utils/bbox_utils.py": "1a98eafd4a6e04920f5b6ad7ba2c875d146354f9b2f19347dde4d6b31383da0d"
+  },
+  "source_pins_stable": true,
+  "imported": {
+    "torch": false,
+    "ultralytics": false,
+    "numpy": true,
+    "pandas": true,
+    "cv2": false
+  },
+  "prior_run_result": "v1 retained: 38 pass, one incorrect assertion that an 11-frame small array must spill. Added real 257/4097-frame spill and capacity cases.",
+  "capacity": [
+    {
+      "frames": 257,
+      "retained_bytes": 31158,
+      "peak_bytes": 1239291
+    },
+    {
+      "frames": 4097,
+      "retained_bytes": 40050,
+      "peak_bytes": 2122702
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-21T18:08:13.2240476Z",
+  "status": "DEV_TOP_VIEW_REFERENCE_ELIGIBILITY_REMAINS_UNRESOLVED",
+  "reviewer": {
+    "agent": "/root/frontend_finish",
+    "kind": "AI_AGENT_NOT_HUMAN",
+    "human_review": false,
+    "independent_of_root_side_view_review": true
+  },
+  "source": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\nkust_landing_reference_indoor_development_v4\\IST01.mp4",
+    "sha256": "1c457c85355f7b29af814f33f18fcd5ae617ad93317a165081dae3276f119b9b",
+    "native_frame_count": 139,
+    "native_rate": "60000/1001",
+    "source_time_base": "1/60000",
+    "container_duration_seconds": "2.318983",
+    "probe_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_native_probe.json",
+    "probe_sha256": "e90675b8af64f0383ad3b1cf0832c5483b9c9161df93d64f7c4554e0c8a015e2"
+  },
+  "extraction_receipt": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\top\\extraction_receipt.json",
+    "sha256": "bcea70ad3fc530d71d017af2af1fe6d5122f5808e0cfa9c89d998e1231a16cc0"
+  },
+  "viewed_anchors": [
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_frame_0104.png",
+      "sha256": "1e1a926c9fd3d732ad097be5a952aae12310610c090a9da855c19e7bbd87d9a3",
+      "native_frame_index": 104,
+      "source_pts": "104104",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.735067",
+      "reused_prior_anchor": true
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\top\\IST01_frame_0110.png",
+      "sha256": "a9cb7611de53b5ccd8fe9bf96d267d7dba01c82bfaf206a1c757905984bd0f8b",
+      "native_frame_index": 110,
+      "source_pts": "110110",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.835167",
+      "reused_prior_anchor": false
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\top\\IST01_frame_0118.png",
+      "sha256": "f0c5c9fa5cd7f7c5fe1cae0466703a48830d302528f9ccabb6e49c73fa6f2b87",
+      "native_frame_index": 118,
+      "source_pts": "118118",
+      "source_time_base": "1/60000",
+      "source_pts_time": "1.968633",
+      "reused_prior_anchor": false
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\top\\IST01_frame_0126.png",
+      "sha256": "825092c36ee91904bff24d38dac16f6308bf238944b9cd25d1df1823e764e509",
+      "native_frame_index": 126,
+      "source_pts": "126126",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.102100",
+      "reused_prior_anchor": false
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_contact_scope_v1\\top\\IST01_frame_0134.png",
+      "sha256": "869f483efd84c704ea084e93456cf15a2d61a3c3769a027e5208f84edefe1cc1",
+      "native_frame_index": 134,
+      "source_pts": "134134",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.235567",
+      "reused_prior_anchor": false
+    },
+    {
+      "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-22\\nkust_indoor_acquisition_v1\\native_review\\IST01_frame_0138.png",
+      "sha256": "b97f0038050632105a15339906367f8c758485b09b86f4bb24e4e411cc1910ce",
+      "native_frame_index": 138,
+      "source_pts": "138138",
+      "source_time_base": "1/60000",
+      "source_pts_time": "2.302300",
+      "reused_prior_anchor": true
+    }
+  ],
+  "actual_new_frame_extractions": 4,
+  "existing_frames_reextracted": false,
+  "visual_observations": [
+    {
+      "frame": 104,
+      "finding": "Ball is separate from the racket in the preparation/incoming phase; this frame does not identify ball-ground landing contact."
+    },
+    {
+      "frame": 110,
+      "finding": "Visible ball is very close to or overlapping the blurred racket-head region beside the hitter. This is a visual racket-contact candidate, not an independently resolved contact frame."
+    },
+    {
+      "frame": 118,
+      "finding": "Racket and body are in follow-through; no measured outgoing landing or readable numbered landing marker is established in this still."
+    },
+    {
+      "frames": [
+        126,
+        134,
+        138
+      ],
+      "finding": "Follow-through continues near the same hitter area. These inspected anchors do not establish the measured outgoing ground contact or a readable numbered landing marker."
+    },
+    {
+      "frames": [
+        104,
+        110,
+        118,
+        126,
+        134,
+        138
+      ],
+      "finding": "The fixed elevated view contains overlapping white/red/green sports lines and partial constructed floor markings. Neither a regulation-sized tennis-court layout nor the identities and metric positions of reference lines can be assumed from these images."
+    }
+  ],
+  "visual_racket_contact_candidate": {
+    "status": "CONSERVATIVE_VISUAL_BRACKET_NOT_INDEPENDENT_CONTACT_GROUND_TRUTH",
+    "candidate_near_native_frame": 110,
+    "candidate_near_source_pts": "110110",
+    "candidate_near_source_pts_time": "1.835167",
+    "conservative_start_native_frame": 104,
+    "conservative_start_source_pts": "104104",
+    "conservative_start_source_pts_time": "1.735067",
+    "conservative_end_native_frame": 118,
+    "conservative_end_source_pts": "118118",
+    "conservative_end_source_pts_time": "1.968633",
+    "source_time_base": "1/60000",
+    "exact_contact_frame_verified": false,
+    "independent_contact_timestamp_seconds": null,
+    "ground_truth_annotation_created": false,
+    "explanation": "Frame104 shows separated ball/racket before the candidate strike, frame110 shows close/overlapping ball and blurred racket, and frame118 shows follow-through. Sparse stills cannot establish an exact contact frame; no audio or frame-complete contact review was performed."
+  },
+  "clip_tail": {
+    "last_native_frame": 138,
+    "last_native_frame_source_pts": "138138",
+    "last_native_frame_source_pts_time": "2.302300",
+    "container_duration_seconds": "2.318983",
+    "container_end_minus_visual_bracket_end_seconds": "0.350350",
+    "container_end_minus_visual_bracket_start_seconds": "0.583916",
+    "interpretation": "The clip ends approximately 0.35-0.58 seconds after the visual strike bracket; this describes the retained clip tail, not a measured outgoing flight or landing time."
+  },
+  "eligibility": {
+    "measured_outgoing_landing_demonstrably_visible_in_reviewed_anchors": false,
+    "readable_numbered_landing_marker_established_in_reviewed_anchors": false,
+    "exact_csv_identifier_clip_join_verified": false,
+    "verified_reference_baseline_or_line_edge": false,
+    "regulation_court_geometry_assumed": false,
+    "independent_contact_timing_verified": false,
+    "independent_landing_error_evaluable_from_this_review": false,
+    "unresolved_prerequisites": [
+      "Verified outgoing landing/contact evidence with native timing and uncertainty, linked to the measured target.",
+      "Author-backed current-v4 CSV Index-to-clip correspondence.",
+      "Measured constructed-field dimensions, reference baseline and line-edge convention.",
+      "Independent court-plane calibration and validation points; no target-fitting or assumed regulation geometry."
+    ]
+  },
+  "limits": {
+    "reviewed_top_anchor_count": 6,
+    "whole139_frame_review": false,
+    "whole_clip_landing_absence_claim": false,
+    "whole_dataset_landing_absence_claim": false,
+    "human_review": false,
+    "csv_values_inspected": false,
+    "outdoor_test_media_or_targets_accessed": false,
+    "hardware_probe_performed": false,
+    "model_imports_or_inference": false,
+    "camera_calibration_created": false,
+    "metric_accuracy_computed": false,
+    "qualification_evidence": false
+  }
+}

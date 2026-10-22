@@ -1,0 +1,50 @@
+import axe from "axe-core";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { describe, expect, it } from "vitest";
+import { AnalysisProvider } from "./AnalysisContext";
+import { AppShell } from "./AppShell";
+
+function renderShell() {
+  return render(
+    <MemoryRouter initialEntries={["/?run=phase5_scoring_1"]}>
+      <Routes>
+        <Route element={<AnalysisProvider><AppShell /></AnalysisProvider>}>
+          <Route index element={<div>Overview route content</div>} />
+          <Route path="match-center" element={<div>Analysis route content</div>} />
+          <Route path="analysis" element={<div>Analysis route content</div>} />
+        </Route>
+      </Routes>
+    </MemoryRouter>,
+  );
+}
+
+describe("application shell", () => {
+  it("navigates with semantic primary links", async () => {
+    const user = userEvent.setup();
+    renderShell();
+    expect(await screen.findByText("Overview route content")).toBeInTheDocument();
+    await user.click(screen.getByRole("link", { name: 'My analyses' }));
+    expect(screen.getByText("Analysis route content")).toBeInTheDocument();
+  });
+
+  it("has no automated accessibility violations", async () => {
+    const { container } = renderShell();
+    await screen.findByText("Overview route content");
+    const results = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
+    expect(results.violations).toEqual([]);
+  });
+
+  it("closes the menu with Escape and restores focus to its toggle", async () => {
+    const user = userEvent.setup();
+    renderShell();
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await user.tab();
+    await user.keyboard("{Escape}");
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(toggle).toHaveFocus();
+  });
+});

@@ -90,9 +90,9 @@ export function EmptyState({ title, detail }: { title: string; detail: string })
   );
 }
 
-export function SkeletonPage() {
+export function SkeletonPage({ label = "Loading analysis" }: { label?: string }) {
   return (
-    <div className="skeleton-page" aria-label="Loading analysis" role="status">
+    <div className="skeleton-page" aria-label={label} role="status">
       <span className="skeleton skeleton-title" />
       <span className="skeleton skeleton-subtitle" />
       <div className="skeleton-grid">

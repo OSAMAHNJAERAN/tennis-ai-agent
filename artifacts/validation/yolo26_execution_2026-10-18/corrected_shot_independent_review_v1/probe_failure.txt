@@ -1,0 +1,8 @@
+Initial review probe exited 1. It used opaque object() boxes without track IDs,
+then assumed all continuous neighbour frames were available. While review was
+underway the root driver added a local tracking guard (driver SHA changed from
+b14e51606bbfe9c35a895f2dcd6342d3100cc4f7015f4e2ecccdc885c4bba3c7 to
+0431bcb221bb599c18b297ca321a1b855f08928c80ed4f9b5b2f5e37a165e465).
+Actual allowed indices became event-only {8}, which is correct for unknown
+tracking. The reviewer corrected the probe fixture in v2 to explicit track IDs.
+No production or test file was edited by this reviewer.

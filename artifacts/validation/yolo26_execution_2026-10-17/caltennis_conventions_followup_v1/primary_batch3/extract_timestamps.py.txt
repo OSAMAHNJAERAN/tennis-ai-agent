@@ -1,0 +1,143 @@
+"""
+Takes an input video file, extracts timestamps and saves as .npy file
+
+Example usage:
+python extract_timestamps.py \
+    --folder_name 10_16_2025_16_51_court2 \
+    --video_name 10_16_2025_16_48_47_000_court5_E_1_17_24_36_021
+
+For overhead .mp4 videos:
+python extract_timestamps.py \
+    --folder_name 10_16_2025_16_51_court2 \
+    --video_name 10_16_2025_16_48_overhead \
+    --extension .mp4
+
+"""
+
+from utils.video_alignment_utils import load_video_timestamps
+from pathlib import Path
+import os
+import re
+import numpy as np
+import argparse
+import pdb
+from datetime import datetime, timezone
+
+
+def parse_overhead_start_time(video_name):
+    """
+    Parse the start time from an overhead video filename.
+
+    Overhead video formats:
+      {month}_{day}_{year}_{start_hour}_{start_minute}_overhead
+      {month}_{day}_{year}_{start_hour}_{start_minute}_court{N}_overhead
+    Returns a datetime object.
+    """
+    # Try with court ID first
+    pattern_court = r"(\d{2})_(\d{2})_(\d{4})_(\d{2})_(\d{2})_court\d+_overhead"
+    match = re.match(pattern_court, video_name)
+    if not match:
+        # Try without court ID
+        pattern = r"(\d{2})_(\d{2})_(\d{4})_(\d{2})_(\d{2})_overhead"
+        match = re.match(pattern, video_name)
+    if not match:
+        raise ValueError(f"Could not parse overhead video name: {video_name}")
+
+    month, day, year, start_h, start_m = match.groups()
+    return datetime(int(year), int(month), int(day), int(start_h), int(start_m), 0, 0)
+
+
+def main(folder_name, video_name, base_path="/Volumes/ilona_seagate/tennis_dataset/full_dataset", force=False, extension=".MOV"):
+    """
+    Extract timestamps from a video and save as .npy file.
+
+    Args:
+        folder_name: Parent folder name (e.g., "10_16_2025_16_51_court2")
+        video_name: Video name without extension (e.g., "10_16_2025_16_48_47_000_court5_E_1_17_24_36_021")
+        base_path: Base path to the dataset
+        force: If True, overwrite existing timestamps file
+        extension: File extension (e.g., ".MOV" or ".mp4")
+    """
+    # Construct paths
+    video_path = os.path.join(base_path, folder_name, f"{video_name}{extension}")
+    # Save timestamps in the same folder as the video
+    save_path = os.path.join(base_path, folder_name, f"{video_name}_timestamps.npy")
+    
+    # Check if timestamps already exist
+    if os.path.exists(save_path) and not force:
+        print(f"Skipping: Timestamps already exist at {save_path}")
+        print("  Use --force to overwrite")
+        return True
+    
+    # Check if video exists
+    if not os.path.exists(video_path):
+        print(f"Error: Video file not found: {video_path}")
+        return False
+    
+    print(f"Processing: {folder_name}/{video_name}")
+    print(f"Video path: {video_path}")
+    print(f"Save path: {save_path}")
+    
+    # Load video timestamps (relative to frame 0)
+    print("Loading video timestamps...")
+    timestamps = load_video_timestamps(video_path, force)
+
+    print(f"  Frame 0 timestamp: {timestamps[0]:.3f} ms")
+    print(f"  Frame 1 timestamp: {timestamps[1]:.3f} ms")
+    print(f"  Last frame timestamp: {timestamps[-1]:.3f} ms")
+    print(f"  Total duration: {(timestamps[-1] - timestamps[0]) / 1000:.2f} seconds")
+
+    # Create save directory if needed
+    save_dir = Path(save_path).parent
+    save_dir.mkdir(parents=True, exist_ok=True)
+
+    # Save timestamps
+    print(f"Saving relative timestamps to {save_path}")
+    np.save(save_path, timestamps)
+    
+    print(f"Successfully saved {len(timestamps)} timestamps")
+    return True
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Extract timestamps from a .MOV video file and save as .npy"
+    )
+    parser.add_argument(
+        "--folder_name",
+        type=str,
+        required=True,
+        help="Parent folder name (e.g., '10_16_2025_16_51_court2')"
+    )
+    parser.add_argument(
+        "--video_name",
+        type=str,
+        required=True,
+        help="Video name without extension (e.g., '10_16_2025_16_48_47_000_court5_E_1_17_24_36_021')"
+    )
+    parser.add_argument(
+        "--base_path",
+        type=str,
+        default="/Volumes/ilona_seagate/tennis_dataset/full_dataset",
+        help="Base path to the dataset"
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Overwrite existing timestamps file if it exists"
+    )
+    parser.add_argument(
+        "--extension",
+        type=str,
+        default=".MOV",
+        help="Video file extension (e.g., '.MOV' or '.mp4')"
+    )
+    args = parser.parse_args()
+
+    main(
+        folder_name=args.folder_name,
+        video_name=args.video_name,
+        base_path=args.base_path,
+        force=args.force,
+        extension=args.extension
+    )

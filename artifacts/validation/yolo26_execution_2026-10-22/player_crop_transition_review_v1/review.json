@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-10-21T23:52:11.0899420Z",
+  "reviewer": "Independent collaborating AI agent /root/resume_contract",
+  "status": "REVIEWED_FINDINGS_CLOSED_NO_NEW_CONCRETE_DEFECT",
+  "scope": "Static review of sequential suffix decoder and native ball-pass cleanup; no new test execution",
+  "reviewed_files": [
+    {
+      "path": "src/utils/video_frame_sequence.py",
+      "sha256": "934a157eb4a11f0fd209b1120f31da74e0ab2c3b4f165e5ebd06a3434b5fda40",
+      "bytes": 4762
+    },
+    {
+      "path": "src/pipeline/phase6_pipeline.py",
+      "sha256": "b796486bac265866975c5f86ee09f6f54b3d271021433a829e5441556c6eb028",
+      "bytes": 102169
+    },
+    {
+      "path": "tests/test_video_frame_sequence.py",
+      "sha256": "3f910c6636cf534cb37e1087d2ade140568fdd5481468f575e59b1f97b74dc99",
+      "bytes": 5817
+    },
+    {
+      "path": "tests/test_ball_pass_decoder.py",
+      "sha256": "62f6e93a98ac1db0cbea452d6f2c205a33154a570df7b288771e452566e9fc4b",
+      "bytes": 3885
+    }
+  ],
+  "linked_verification": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/player_crop_transition_checks_v4/receipt.json",
+    "sha256": "cdd51bde58f78c9893ad6a1a720b623a934f04cf2af24f599a99802f110bd5cd",
+    "reported_tests": 132,
+    "reported_status": "PASS",
+    "source_pins_match_review": true,
+    "test_execution_by_this_reviewer": false
+  },
+  "original_findings": [
+    {
+      "id": "cleanup_primary_error",
+      "original": "Native ball loop used finally-close, allowing decoder cleanup failure to replace a model or storage failure.",
+      "resolution": "Native ball branch catches BaseException, attempts decoder close, appends cleanup failure as a note, and re-raises the original. Successful iteration separately closes and surfaces cleanup failure. Decoder also retains primary decode errors and surfaces release failure when explicitly closed through GeneratorExit.",
+      "reviewed_source_locations": [
+        "src/pipeline/phase6_pipeline.py:786",
+        "src/utils/video_frame_sequence.py:95"
+      ],
+      "status": "CLOSED",
+      "reviewed_regressions": [
+        "test_decoder_close_failure_cannot_replace_original_model_failure",
+        "test_decode_failure_keeps_its_cause_when_release_also_fails",
+        "test_iterator_close_surfaces_its_decoder_release_failure"
+      ]
+    },
+    {
+      "id": "numpy_boolean_boundary",
+      "original": "Python bool was rejected but NumPy bool_ could enter through operator.index.",
+      "resolution": "The suffix start boundary now rejects both bool and np.bool_ before operator.index or decoder creation.",
+      "reviewed_source_locations": [
+        "src/utils/video_frame_sequence.py:75"
+      ],
+      "status": "CLOSED",
+      "reviewed_regressions": [
+        "test_invalid_suffix_never_opens_decoder"
+      ]
+    }
+  ],
+  "conclusions": [
+    "Sequential decoding starts from the beginning and discards the prefix without yielding it to the inference consumer.",
+    "The independent decoder does not mutate the original random-access decoder position or frame cache.",
+    "The current native ball inference uses prefix zero and closes its decoder on success or failure.",
+    "No new concrete correctness or resource defect was found within the reviewed changes."
+  ],
+  "limits": {
+    "tests_run_by_reviewer": 0,
+    "project_or_inference_modules_imported": false,
+    "model_loads": 0,
+    "inference": false,
+    "hardware_resource_probes": false,
+    "source_edits": false,
+    "partial_inference_resume_implemented_or_proven": false,
+    "actual_long_match_or_independent_accuracy_qualified": false
+  }
+}

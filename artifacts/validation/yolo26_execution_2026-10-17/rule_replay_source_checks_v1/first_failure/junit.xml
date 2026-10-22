@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.336" timestamp="2026-10-17T19:39:58.233227+08:00" hostname="Osamah"><testcase classname="tests.test_rule_replay_source" name="test_source_decoder_retains_exact_raw_states_and_disk_backed_rows" time="0.086"><failure message="AssertionError: assert False&#10; +  where False = isinstance([{'accepted_transition': {'attempt_uid': 'attempt_86cb5bd8ff400501e73d800ec78d47d8b1004acfc05527971af7565ac3d29886', '...in_cm': 100.0, 'bounce_frame': 10, 'bounce_position_m': [3.0, 6.0], 'bounce_position_px': [3.0, 6.0], ...}, ...}, ...}], DiskSeries)">api = namespace(__name__='actual_scoring_service_phase_current', __doc__=None, __package__=None, __loader__=None, __spec__=N...se_current.ScoreEventHistory'&gt;, TennisScoringEngine=&lt;class 'actual_scoring_service_phase_current.TennisScoringEngine'&gt;)
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-17/rule_replay_source_checks_v1/first_failure/temp/pytest/test_source_decoder_retains_ex0')
+
+    def test_source_decoder_retains_exact_raw_states_and_disk_backed_rows(api, tmp_path):
+        fixture = build_replay(api, tmp_path / 'original', scenario='sparse_rally')
+        directory = tmp_path / 'decode'
+        with open_source(fixture, directory) as source:
+            assert isinstance(source.source_frames, Sequence)
+            assert isinstance(source.source_frames.rows, DiskSeries)
+&gt;           assert isinstance(source.document['inputs'], DiskSeries)
+E           AssertionError: assert False
+E            +  where False = isinstance([{'accepted_transition': {'attempt_uid': 'attempt_86cb5bd8ff400501e73d800ec78d47d8b1004acfc05527971af7565ac3d29886', '...in_cm': 100.0, 'bounce_frame': 10, 'bounce_position_m': [3.0, 6.0], 'bounce_position_px': [3.0, 6.0], ...}, ...}, ...}], DiskSeries)
+
+tests\test_rule_replay_source.py:38: AssertionError</failure></testcase></testsuite></testsuites>

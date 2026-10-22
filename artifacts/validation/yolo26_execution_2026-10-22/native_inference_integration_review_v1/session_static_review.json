@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T00:33:24.459818+00:00",
+  "reviewer": "AI_PEER_READ_ONLY_NOT_HUMAN",
+  "status": "NO_CONCRETE_DEFECT_FOUND_IN_SCOPED_STATIC_REVIEW",
+  "reviewed_bindings": [
+    {
+      "path": "src/utils/native_inference_session.py",
+      "sha256": "d694abc98138b9409197fcbb908d98b757d836ac285fd02d1dc511a960c3c19b",
+      "bytes": 16719
+    },
+    {
+      "path": "tests/test_native_inference_session.py",
+      "sha256": "15b34ca86481f1b113ba5d6701e95bb8bd5937a003ca06c210f15e76995a9d2c",
+      "bytes": 16855
+    }
+  ],
+  "scoped_neighbor_bindings": [
+    {
+      "path": "src/api/worker.py",
+      "sha256": "06597d2db4764f2306665b00368e9cc518a4da2448c63d8e4d5cd44572b7d502",
+      "bytes": 21843
+    },
+    {
+      "path": "src/utils/native_inference_prefix.py",
+      "sha256": "ae238c38109512366bea86ef5fe88cc79fa6c53eba488b3ea9dee3a8c2967a97",
+      "bytes": 39520
+    },
+    {
+      "path": "src/utils/ball_inference_journal.py",
+      "sha256": "f8d75a15e53cdabdbdec0353d2feee220e14b4954a9ce332336e47d443907113",
+      "bytes": 20245
+    }
+  ],
+  "findings": [],
+  "reviewed_contracts": {
+    "identity_schema": "Finite plain JSON, nonempty dict identities, strict bool/int/float representation,64KiB derived identity bounds,64-level recursion guard, duplicate JSON-key and nonfinite-token rejection. Fixed source-seal inventory keys/presence/bytes/hash schemas are strict.",
+    "bounded_filesystem_reads": "Regular artifact/ancestor symlink,junction,reparse rejection; fixed filenames;1MiB file hashing chunks; bounded marker and media-metadata reads check size before full read and retained descriptor/path signatures afterward. Required normalized files must be nonempty.",
+    "exclusive_publication": "Already-present source marker is rejected. File contents are synced and re-inventoried before an exclusive hard-link marker publication; staging is retained. Source-marker loading never normalizes or rewrites these assets.",
+    "presence_matching": "Both optional normalized files encode explicit absence or exact presence/byte/hash records. A later added or removed file changes the derived identity and rejects load.",
+    "prefix_and_ball_binding": "Derived identity binds baseidentity and exact normalized inventory. Ball-journal identity additionally binds prefix-marker bytes, operation config and canonical resolved device. Full prefix validation is a separate owner used by validate_partial_inference; ball_journal_identity alone is not a full prefix validator.",
+    "journal_recovery": "Valid prefix with no journal/sidecars returns zero frontier without creating a journal. Existing journal opens read/write explicitly for SQLite hot rollback, then every accepted frame is read through its integrity/codec checks. No new frames are appended. Orphaned/redirected sidecars are rejected.",
+    "tamper_recheck": "After journal validation, normalized asset/source-marker bindings and exact prefix-marker binding are rechecked; prefix metadata access verifies retained database signature. Changed mapping count is rejected against prefix count.",
+    "exception_and_corruption": "Present malformed seals raise; missing source/prefix returns None by API. Worker separately rejects retained-prefix/missing-source state, so it does not restart normalization over that corruption. File and directory cleanup retain original BaseException identities and annotate secondary close failures; prefix/journal owners provide their own cleanup handling."
+  },
+  "regression_cases_read": [
+    "Actual retained synthetic source/prefix/journal zero,partial,and complete frontier cases",
+    "Required/optional normalized-file tamper,presence,removal",
+    "Strict baseidentity/schema/size/duplicate/nonfinite controls",
+    "Exact prefix-marker bytes,ball config and device mismatch",
+    "Raw-row corruption and prefix/database corruption retained without overwrite",
+    "Mapped-count aliases/mismatch and oversized metadata rejection",
+    "Orphaned journal sidecar and filesystem redirect/path controls",
+    "Marker publication interruption, directory-sync cleanup and file-read cleanup fault injection"
+  ],
+  "limits": {
+    "tests_run": 0,
+    "project_or_vision_runtime_imports": 0,
+    "host_ram_gpu_probes": 0,
+    "source_edits": 0,
+    "actual_model_or_complete_pipeline_resume_verified": false,
+    "integration_test_status": "Root is executing integrated checks separately; this receipt records static review only.",
+    "missing_prefix_semantics": "Interrupted player tracking still has no eligible resume prefix; normalized-source seal alone does not qualify recovery."
+  }
+}

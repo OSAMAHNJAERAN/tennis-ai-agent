@@ -25,7 +25,7 @@ describe("application shell", () => {
     const user = userEvent.setup();
     renderShell();
     expect(await screen.findByText("Overview route content")).toBeInTheDocument();
-    await user.click(screen.getAllByRole("link", { name: /Match Center|Match analysis/i })[0]!);
+    await user.click(screen.getByRole("link", { name: 'My analyses' }));
     expect(screen.getByText("Analysis route content")).toBeInTheDocument();
   });
 
@@ -34,5 +34,17 @@ describe("application shell", () => {
     await screen.findByText("Overview route content");
     const results = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
     expect(results.violations).toEqual([]);
+  });
+
+  it("closes the menu with Escape and restores focus to its toggle", async () => {
+    const user = userEvent.setup();
+    renderShell();
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await user.tab();
+    await user.keyboard("{Escape}");
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(toggle).toHaveFocus();
   });
 });

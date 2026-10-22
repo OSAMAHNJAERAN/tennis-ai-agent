@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "scope": "ACTUAL_NATIVE_CLASSIFIER_WINDOW_BOX_VALIDATION_AND_EXTRACTED_CROP_METHOD_WITH_ONLY_NO_GRAD_STUB; NO_MODEL_OR_GPU_INFERENCE",
+  "source_before": {
+    "src/shot_analysis/pose_feature_extractor.py": "717ae1799011d5ce69c6ef2d6fe43c66d443917463e9cf53172d70c1203e48d5",
+    "src/shot_analysis/shot_classifier.py": "7edabf5a81bcd9a7bc29bf2cf3982a726bb69a738d566269b9f2ffd48e356969",
+    "src/scoring/corrected_shot_rebuild.py": "e19605d359e86b5c39185ad8b1ec931041a38855c4b4006783aec19bc5b46f1f",
+    "src/scoring/corrected_shot_sources.py": "93f65fe797affdb137e125599186b2b918df06e4c4655bdc0697fbaef433b98c",
+    "src/utils/bbox_utils.py": "1a98eafd4a6e04920f5b6ad7ba2c875d146354f9b2f19347dde4d6b31383da0d",
+    "src/shot_analysis/shot_types.py": "7334e204748734615d6f095ed1396702922dac0ebfda4cf6d97003fb2681ce84"
+  },
+  "source_after": {
+    "src/shot_analysis/pose_feature_extractor.py": "717ae1799011d5ce69c6ef2d6fe43c66d443917463e9cf53172d70c1203e48d5",
+    "src/shot_analysis/shot_classifier.py": "7edabf5a81bcd9a7bc29bf2cf3982a726bb69a738d566269b9f2ffd48e356969",
+    "src/scoring/corrected_shot_rebuild.py": "e19605d359e86b5c39185ad8b1ec931041a38855c4b4006783aec19bc5b46f1f",
+    "src/scoring/corrected_shot_sources.py": "93f65fe797affdb137e125599186b2b918df06e4c4655bdc0697fbaef433b98c",
+    "src/utils/bbox_utils.py": "1a98eafd4a6e04920f5b6ad7ba2c875d146354f9b2f19347dde4d6b31383da0d",
+    "src/shot_analysis/shot_types.py": "7334e204748734615d6f095ed1396702922dac0ebfda4cf6d97003fb2681ce84"
+  },
+  "source_unchanged": true,
+  "observations": [
+    {
+      "case": "all_boxes_absent",
+      "actual_native_provider_calls": 1,
+      "actual_model_predict_invocations": 0,
+      "frames_read": [],
+      "native_classification": "UNKNOWN",
+      "classification_source": "ABSTENTION_UNKNOWN",
+      "allowed_window_indices": [
+        3
+      ]
+    },
+    {
+      "case": "all_expanded_crops_too_small",
+      "actual_native_provider_calls": 1,
+      "actual_model_predict_invocations": 0,
+      "frames_read": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "native_classification": "UNKNOWN",
+      "classification_source": "ABSTENTION_UNKNOWN",
+      "allowed_window_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "stub_imports": [
+    "torch",
+    "torch"
+  ],
+  "torch_imported": false,
+  "ultralytics_imported": false
+}

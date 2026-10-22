@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="11" failures="12" skipped="0" tests="108" time="2.278" timestamp="2026-10-15T11:22:06.382575+08:00" hostname="Osamah"><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_import_has_no_numpy_torch_ultralytics_or_image_runtime" time="0.002" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_highest_confidence_wrong_box_is_not_replaced_using_ground_truth" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_confidence_ties_use_original_index_and_nonclass0_is_retained" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_inclusive_iou_point_confidence_and_pixel_threshold_boundaries" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_point_confidence_below_half_is_retained_and_scored_at_protocol_quarter" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_all_visible_points_remain_denominator_for_lowconf_nonfinite_and_large_error" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_no_predictions_is_complete_miss_with_explicit_zero_coverage" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_missing_keypoint_data_does_not_become_zero_error" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_extreme_finite_values_cannot_create_nonfinite_metric_json" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_even_finite_large_errors_have_finite_median_and_aggregate_json" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_nonfinite_boxes_or_confidences_stay_raw_null_and_fail_visible_recall[inf]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_nonfinite_boxes_or_confidences_stay_raw_null_and_fail_visible_recall[-inf]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_nonfinite_boxes_or_confidences_stay_raw_null_and_fail_visible_recall[nan]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_per_landmark_and_context_denominators_include_whole_image_misses" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_guard_requires_each_unchanged_launch_floor" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_guard_rejects_nonfinite_or_nonnumeric_resource_readings[nan]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_guard_rejects_nonfinite_or_nonnumeric_resource_readings[inf]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_guard_rejects_nonfinite_or_nonnumeric_resource_readings[-inf]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_guard_rejects_nonfinite_or_nonnumeric_resource_readings[None]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_guard_rejects_nonfinite_or_nonnumeric_resource_readings[True]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_guard_rejects_nonfinite_or_nonnumeric_resource_readings[2000000000]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_protocol_cannot_change_threshold_split_or_image_count" time="0.022" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_court_head_cannot_lose_a_semantic_slot" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_model_validation_requires_the_actual_yolo26_court14_pose_head" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_completed_root_monitor_requires_exact_unchanged_source_snapshots" time="0.003" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[status-RUNNING_PRIVATE_UNQUALIFIED]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[exit_code-1]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[exit_code-False]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[source_freeze_verified-False]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[changed_runtime_inputs-value4]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[added_runtime_sources-value5]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[trainer_status-TRAINING_STARTED_UNQUALIFIED]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[metadata_sha256-wrong]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[runtime_input_count-860]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_root_monitor_cannot_be_replaced_by_success_boolean_or_unbound_metadata[qualification_evidence-True]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_metadata_gate_rejects_active_short_extended_or_qualified_runs[None-status-TRAINING_STARTED_UNQUALIFIED]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_metadata_gate_rejects_active_short_extended_or_qualified_runs[training_arguments-epochs-19]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_metadata_gate_rejects_active_short_extended_or_qualified_runs[training_arguments-epochs-21]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_metadata_gate_rejects_active_short_extended_or_qualified_runs[None-extension_review-value3]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_metadata_gate_rejects_active_short_extended_or_qualified_runs[data_audit-static_image_timing_is_unknown-False]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_metadata_gate_rejects_active_short_extended_or_qualified_runs[None-qualification_evidence-True]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_metadata_needs_actual_epoch20_optimizer_receipt" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_diagnostic_never_substitutes_unbound_best_or_last_checkpoint[checkpoints0]" time="0.000" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_diagnostic_never_substitutes_unbound_best_or_last_checkpoint[checkpoints1]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_diagnostic_never_substitutes_unbound_best_or_last_checkpoint[checkpoints2]" time="0.001" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_csv_rejects_short_extended_reordered_or_duplicate_epochs[epochs0]" time="0.018" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_csv_rejects_short_extended_reordered_or_duplicate_epochs[epochs1]" time="0.007" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_csv_rejects_short_extended_reordered_or_duplicate_epochs[epochs2]" time="0.009" /><testcase classname="tests.test_yolo26_reviewed_court_diagnostic" name="test_initial20_csv_rejects_short_extended_reordered_or_duplicate_epochs[epochs3]" time="0.021" /><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FrozenPlanContractTests" name="test_plan_semantics_reject_changed_source_pts_groups_and_accepted_targets" time="0.056" /><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FrozenPlanContractTests" name="test_plan_semantics_reject_wave_reselection_duplicates_and_guard_changes" time="0.056" /><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FrozenPlanContractTests" name="test_read_existing_sampler_requires_both_explicit_hash_and_exact_sidecar" time="0.002"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpbkgxjgx8'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FrozenPlanContractTests testMethod=test_read_existing_sampler_requires_both_explicit_hash_and_exact_sidecar&gt;
+
+    def test_read_existing_sampler_requires_both_explicit_hash_and_exact_sidecar(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            frozen = root / "sampler.json"
+&gt;           frozen.write_bytes(self.frozen_raw)
+
+tests\test_yolo26_ball_frozen_render_contract.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py:641: in write_bytes
+    with self.open(mode='wb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpbkgxjgx8/sampler.json')
+mode = 'wb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+&gt;       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [Errno 13] Permission denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpbkgxjgx8\\sampler.json'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:537: PermissionError
+
+During handling of the above exception, another exception occurred:
+
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpbkgxjgx8'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED6105300&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpbkgxjgx8'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;tests.test_yolo26_ball_frozen_render_contract.FrozenPlanContractTests testMethod=test_read_existing_sampler_requires_both_explicit_hash_and_exact_sidecar&gt;
+
+    def test_read_existing_sampler_requires_both_explicit_hash_and_exact_sidecar(self):
+&gt;       with tempfile.TemporaryDirectory() as directory:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_yolo26_ball_frozen_render_contract.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:950: in __exit__
+    self.cleanup()
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpbkgxjgx8'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpbkgxjgx8'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FrozenPlanContractTests" name="test_retained_plan_keeps_exact600_centers96_wave_and16_pending_tiles" time="0.006" /><testcase classname="tests.test_yolo26_ball_frozen_render_contract.ResourceObservationContractTests" name="test_media_guard_keeps_exact_original_thresholds" time="0.001" /><testcase classname="tests.test_yolo26_ball_frozen_render_contract.ResourceObservationContractTests" name="test_media_guard_rejects_noninteger_nonfinite_boolean_and_negative_readings" time="0.009" /><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_changed_protected_source_postflight_prevents_completed_review_manifest" time="0.002"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpj9rv3wgj\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_changed_protected_source_postflight_prevents_completed_review_manifest&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpj9rv3wgj/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpj9rv3wgj\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_changed_protected_source_postflight_prevents_completed_review_manifest" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpj9rv3wgj'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpj9rv3wgj'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED6107560&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpj9rv3wgj'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpj9rv3wgj'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpj9rv3wgj'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_decode_failure_retains_new_partial_artifact_without_complete_review_manifest" time="0.002"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpas_c6ah6\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_decode_failure_retains_new_partial_artifact_without_complete_review_manifest&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpas_c6ah6/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpas_c6ah6\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_decode_failure_retains_new_partial_artifact_without_complete_review_manifest" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpas_c6ah6'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpas_c6ah6'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62AC2C0&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpas_c6ah6'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpas_c6ah6'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpas_c6ah6'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_existing_output_is_rejected_without_guard_import_decode_or_write" time="0.001"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp7dac56i0\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_existing_output_is_rejected_without_guard_import_decode_or_write&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmp7dac56i0/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp7dac56i0\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_existing_output_is_rejected_without_guard_import_decode_or_write" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp7dac56i0'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp7dac56i0'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62AC7C0&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp7dac56i0'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp7dac56i0'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp7dac56i0'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_failure_receipt_write_error_preserves_original_failure_and_old_artifacts" time="0.001"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp47tqv31i\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_failure_receipt_write_error_preserves_original_failure_and_old_artifacts&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmp47tqv31i/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp47tqv31i\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_failure_receipt_write_error_preserves_original_failure_and_old_artifacts" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp47tqv31i'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp47tqv31i'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62AC9A0&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp47tqv31i'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp47tqv31i'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp47tqv31i'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_first_guard_failure_precedes_media_import_and_all_output_creation" time="0.001"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp9hma36j1\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_first_guard_failure_precedes_media_import_and_all_output_creation&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmp9hma36j1/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp9hma36j1\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_first_guard_failure_precedes_media_import_and_all_output_creation" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp9hma36j1'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp9hma36j1'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED61051C0&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp9hma36j1'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp9hma36j1'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmp9hma36j1'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_fresh_output_cannot_be_nested_under_old_failed_artifacts" time="0.001"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpis8v4_zm\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_fresh_output_cannot_be_nested_under_old_failed_artifacts&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpis8v4_zm/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpis8v4_zm\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_fresh_output_cannot_be_nested_under_old_failed_artifacts" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpis8v4_zm'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpis8v4_zm'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62ACB80&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpis8v4_zm'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpis8v4_zm'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpis8v4_zm'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_manifest_write_failures_are_terminal_and_never_claim_completed_review" time="0.003"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpa4dxflqd\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_manifest_write_failures_are_terminal_and_never_claim_completed_review&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpa4dxflqd/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpa4dxflqd\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_manifest_write_failures_are_terminal_and_never_claim_completed_review" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpa4dxflqd'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpa4dxflqd'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62ADE40&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpa4dxflqd'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpa4dxflqd'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpa4dxflqd'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_output_path_traversal_is_rejected_before_guard_import_or_mutation" time="0.002"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpax603_3q\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_output_path_traversal_is_rejected_before_guard_import_or_mutation&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpax603_3q/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpax603_3q\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_output_path_traversal_is_rejected_before_guard_import_or_mutation" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpax603_3q'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpax603_3q'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62AEA20&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpax603_3q'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpax603_3q'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpax603_3q'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_postimport_guard_failure_still_creates_no_output" time="0.001"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpsimvezy5\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_postimport_guard_failure_still_creates_no_output&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpsimvezy5/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpsimvezy5\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_postimport_guard_failure_still_creates_no_output" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpsimvezy5'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpsimvezy5'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62ADBC0&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpsimvezy5'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpsimvezy5'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpsimvezy5'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_render_cli_requires_explicit_frozen_digest_and_rejects_wave_changes" time="0.002"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpg_d3pwp9\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_render_cli_requires_explicit_frozen_digest_and_rejects_wave_changes&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmpg_d3pwp9/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpg_d3pwp9\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_render_cli_requires_explicit_frozen_digest_and_rejects_wave_changes" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpg_d3pwp9'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpg_d3pwp9'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62AD800&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpg_d3pwp9'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpg_d3pwp9'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmpg_d3pwp9'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_success_uses_original_plan_without_sampling_and_records_renderer_separately" time="0.001"><failure message="PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmprj34tbd4\\old_failed_render'">self = &lt;tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests testMethod=test_success_uses_original_plan_without_sampling_and_records_renderer_separately&gt;
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.old = self.root / "old_failed_render"
+&gt;       self.old.mkdir()
+
+tests\test_yolo26_ball_frozen_render_contract.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/ac-98/AppData/Local/Packages/sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}/AC/Temp/tmprj34tbd4/old_failed_render')
+mode = 511, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+&gt;           os.mkdir(self, mode)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmprj34tbd4\\old_failed_render'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: PermissionError</failure></testcase><testcase classname="tests.test_yolo26_ball_frozen_render_contract.FreshOutputContractTests" name="test_success_uses_original_plan_without_sampling_and_records_renderer_separately" time="0.000"><error message="failed on teardown with &quot;PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmprj34tbd4'&quot;">path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmprj34tbd4'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001AED62AE480&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            if not isinstance(err, FileNotFoundError):
+                onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.unlink(fullname)
+                except FileNotFoundError:
+                    continue
+                except OSError as err:
+                    onexc(os.unlink, fullname, err)
+        try:
+&gt;           os.rmdir(path)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmprj34tbd4'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:631: PermissionError
+
+During handling of the above exception, another exception occurred:
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:790: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.rmdir, path, err)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:906: in onexc
+    _resetperms(path)
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:286: in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function chmod&gt;
+path = 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmprj34tbd4'
+args = (448,)
+
+    def _dont_follow_symlinks(func, path, *args):
+        # Pass follow_symlinks=False, unless not supported on this platform.
+        if func in _os.supports_follow_symlinks:
+&gt;           func(path, *args, follow_symlinks=False)
+E           PermissionError: [WinError 5] Access is denied: 'C:\\Users\\ac-98\\AppData\\Local\\Packages\\sandbox.{ee05e977-2886-4260-ab0a-46478ebcaf1e}\\AC\\Temp\\tmprj34tbd4'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\tempfile.py:275: PermissionError</error></testcase><testcase classname="tests.test_yolo26_ball_review_wave" name="test_context_uses_actual_vfr_pts_including_nonzero_origin_and_exact_ties" time="0.001" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_invalid_or_manufactured_timelines_are_rejected[ticks0-1/25]" time="0.001" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_invalid_or_manufactured_timelines_are_rejected[ticks1-1/25]" time="0.000" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_invalid_or_manufactured_timelines_are_rejected[ticks2-1/25]" time="0.000" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_invalid_or_manufactured_timelines_are_rejected[ticks3-0]" time="0.000" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_invalid_or_manufactured_timelines_are_rejected[ticks4-1/25]" time="0.000" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_clamped_native_patch_origin_preserves_box_round_trip_at_image_edges" time="0.000" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_event_groups_cover_omitted_source_once_and_never_mix_train_dev" time="0.000" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_source_frame_duplicates_are_rejected_before_review" time="0.000" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_saved_patch_png_retains_exact_pixels_and_shape" time="0.267" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_metadata_entry_imports_no_image_or_model_stack" time="0.173" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_pure_sampler_retains_prior_sampling_without_importing_image_helpers" time="0.020" /><testcase classname="tests.test_yolo26_ball_review_wave" name="test_card_reconciliation_accepts_only_exact_original_text_with_windows_newlines" time="0.037" /></testsuite></testsuites>

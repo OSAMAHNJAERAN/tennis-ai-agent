@@ -1,0 +1,127 @@
+{
+  "status": "ACTUAL_INITIAL20_TRAINING_AND_FIXED_DEV_DIAGNOSTIC_REVIEWED_NOT_QUALIFICATION",
+  "created_utc": "2026-10-15T03:24:54.734832+00:00",
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "training_metadata": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1\\run_metadata.json",
+    "sha256": "d5b35180e9399a30412cb486296d2590efadbdfbcc40516237fd8d6c0266c7f4"
+  },
+  "execution_receipt_sha256": "a209f8868274ecab87bce534d7c1c1ecb0c3d112ecd37bcf34d5b3e1a97bc71d",
+  "diagnostic": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_diagnostic_v1\\diagnostic.json",
+    "sha256": "768fb2f4d016e0d704c2bb555e5927395f3a3c76b5453f8cc6fbcb7d98b09aec"
+  },
+  "epochs_completed": 20,
+  "optimizer_first": {
+    "epoch": 1,
+    "optimizer_step_values": [
+      100.0
+    ],
+    "batches_per_epoch": 100,
+    "accumulation": 1,
+    "warmup_epochs": 0.0
+  },
+  "optimizer_last": {
+    "epoch": 20,
+    "optimizer_step_values": [
+      2000.0
+    ],
+    "batches_per_epoch": 100,
+    "accumulation": 1,
+    "warmup_epochs": 0.0
+  },
+  "best_checkpoint": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_run1\\training\\weights\\best.pt",
+    "sha256": "e47db3784adb39b82be6df7fca73ed0206f67f4f5d1bb029f0f862a34a4feefa"
+  },
+  "source_freeze_verified": true,
+  "runtime_inputs": 861,
+  "initial20_train_seconds": 1326.0434412999966,
+  "peak_cuda_allocated_bytes": 2530392576,
+  "peak_cuda_reserved_bytes": 3124756480,
+  "sampled_minimum_available_ram_bytes": 260558848,
+  "sampled_peak_owned_tree_rss_bytes": 2782920704,
+  "matched_instances": 19,
+  "complete_instance_misses": 1,
+  "all_visible_keypoint_summary": {
+    "visible_gt_denominator": 278,
+    "unknown_gt_excluded": 2,
+    "finite_confident_matched_predictions": 264,
+    "missing_visible_keypoints": 14,
+    "coverage": 0.9496402877697842,
+    "within_10_px": 20,
+    "within_20_px": 74,
+    "recall_at_10_px": 0.07194244604316546,
+    "recall_at_20_px": 0.26618705035971224,
+    "median_error_native_px": 31.530870632176104,
+    "p95_error_native_px": 122.8921856306252,
+    "missing_reasons": {
+      "NO_RETURNED_INSTANCE": 14
+    },
+    "conditional_error_population": "ALL_FINITE_CONFIDENT_MATCHED_VISIBLE_GT_POINTS_INCLUDING_ERRORS_OVER20PX"
+  },
+  "actual_network_tensor_shapes": [
+    [
+      1,
+      3,
+      736,
+      1280
+    ],
+    [
+      1,
+      3,
+      1280,
+      1280
+    ]
+  ],
+  "root_visual_review": {
+    "reviewer_type": "ROOT_AGENT_NOT_INDEPENDENT_HUMAN",
+    "image_ordinals": [
+      3,
+      9,
+      16
+    ],
+    "files": [
+      {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_diagnostic_v1\\dev_03_VtqY_T2_gI4_750.png",
+        "sha256": "13021215b42133e8b865739defd2fdbfc8dc85fdc3838fcedb32a3ff4f54a779",
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_diagnostic_v1\\dev_09_wMjFLZGBBho_700.png",
+        "sha256": "1023b8965d8391bb7b2de0487a9b968f75bfa7b9dc0b7e25227016cd37fbda61",
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court_reviewed_development_diagnostic_v1\\dev_16_uXkAqALS0AA_100.png",
+        "sha256": "468f8e2ec933f650e44ab0385d839624d5e3137c8b097ea9c9151c52a391e35d",
+        "resolution": [
+          1280,
+          720
+        ]
+      }
+    ],
+    "findings": "DEV03 has large asymmetric near/far left-side displacements despite matched court box; DEV09 is closer but points remain displaced; DEV16 returns no court on a valid visible primary-view image. No label changes or causal attribution from this three-image review."
+  },
+  "focused_tests": {
+    "junit": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\post_training_checks_v2\\junit.xml",
+    "sha256": "67b2fd05d0c6c8674426dca226e66eae83a8cec48bc8aca2a06616c72d7ade3c",
+    "counts": {
+      "tests": 113,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "pytest_reported_subtests_passed": 34,
+    "prior_attempt": "post_training_checks_v1 retained:12fail11error67pass from unittest temp sandbox paths; corrected invocation sets explicit workspace tempfile.tempdir as well as pytest basetemp"
+  },
+  "decision": "DO_NOT_PROMOTE_OR_AUTOMATICALLY_EXTEND; inspect all20 errors and resolve next bounded development repair before further training",
+  "production_manifest_sha256": "8a902c6fe9eecbe97799b48c51e2ea55ca92355e44fd7b39527d7665af30f0cb"
+}

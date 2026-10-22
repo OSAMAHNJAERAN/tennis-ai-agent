@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-07T04:21:39.962247+00:00",
+  "reviewer": "accuracy_data_research",
+  "independentReviewPassed": true,
+  "reviewScope": "Read-only terminal preflight evidence and exact preserved helper/history bindings. No helper, workload, model or download execution by this reviewer.",
+  "attemptStatus": "NOT_STARTED",
+  "attemptPassed": false,
+  "inferenceChildStarted": false,
+  "samples": 0,
+  "peakSampledOwnedTreeRssBytes": 0,
+  "peakSampledOwnedTreePrivateBytes": 0,
+  "monitoredChildWallSeconds": null,
+  "productionStatePublished": false,
+  "availableRamBytes": 2435448832,
+  "preflightAvailableRamBytes": 2500000000,
+  "declineOccurredBeforeProductionModelMediaBindings": true,
+  "protocolHasSourceBindingsBefore": false,
+  "sourceModelMediaProductionChecksExercised": false,
+  "actualWorkerCompletionVerified": false,
+  "actualPoseRacketModelOutputVerified": false,
+  "actualSavedResultCompatibilityVerified": false,
+  "qualificationEvidence": false,
+  "productionQualified": false,
+  "newAttemptAuthorizedByThisReview": false,
+  "guardsMatchPreparationAndProtocol": true,
+  "guards": {
+    "preflightAvailableRamBytes": 2500000000,
+    "maximumSampledOwnedTreeRssBytes": 3000000000,
+    "minimumAvailableRamBytes": 400000000,
+    "lowRamConsecutiveSamplesToStop": 5,
+    "sampleIntervalSeconds": 0.25,
+    "maximumChildWallSeconds": 300,
+    "frames": 30,
+    "nativeFps": 60
+  },
+  "currentHelper": {
+    "path": "scripts/audit/verify_pose_racket_storage_worker_smoke_v3.py",
+    "sha256": "967ddbd5ed2c28d4b64edb13508a6f5b7a81726b70f7d75bebcef398a3a35e11",
+    "matchesReviewedSourcePreparationAndProtocol": true
+  },
+  "originReceiptHashMatchesPreparation": true,
+  "protocolEmbeddedOriginMatchesStandaloneOrigin": true,
+  "exclusiveLaunchMarkerMatchesProtocolToken": true,
+  "previousV2": {
+    "status": "NOT_STARTED",
+    "inferenceChildStarted": false,
+    "samples": 0,
+    "availableRamBytes": 1514926080,
+    "helperSha256": "802963484bd482415a603f9ff1257a72412be137368cde6627ac05ad9185a28d",
+    "sourceAndCompleteFiveFileHistoryMatchOriginAndPreparation": true,
+    "completeFileInventoryVerified": true,
+    "bindingRecords": 6
+  },
+  "allPreservedHistoryBindingsRehashed": true,
+  "preservedHistoryBindingRecords": 21,
+  "historyBindingGroups": {
+    "firstLatencyAttemptBindings": 7,
+    "secondLatencyAttemptBindings": 8,
+    "previousPoseRacketAttemptBindings": 6
+  },
+  "workloadEvidenceAbsentInCurrentAndPreviousV2": [
+    "run",
+    "actual_child_identity.json",
+    "actual_child_sampled.json",
+    "child_receipt.json",
+    "resource_samples.jsonl",
+    "running_process.json",
+    "child_stdout.txt",
+    "isolated_claimed_job.json",
+    "isolated_completed_job.json"
+  ],
+  "currentUnitFilesBeforeThisReview": [
+    {
+      "file": "launch_marker.json",
+      "bytes": 126,
+      "sha256": "5cbc93052dc3a0eb36212ab7f85b39a350e1632d2e8059ca3192cd2247b183bc"
+    },
+    {
+      "file": "origin.json",
+      "bytes": 6253,
+      "sha256": "476afa82337f98b6ae52f320c2c261e18c1014312da6a338d160c9a9b06d433a"
+    },
+    {
+      "file": "preparation.json",
+      "bytes": 3730,
+      "sha256": "cc5961474806a2546aac0b1b8d53e17593a4af10fc6097226a1c389eef198845"
+    },
+    {
+      "file": "protocol.json",
+      "bytes": 8892,
+      "sha256": "ac51b264637e3c938be500f669f288969c408be4f4976c7e7273b869dde03339"
+    },
+    {
+      "file": "resource_receipt.json",
+      "bytes": 1190,
+      "sha256": "aaeb8bd61114f9d12240ec228f825e7298314bdf7a4bf062d6bf210a9a53abb6"
+    }
+  ],
+  "readOnlyInspectionDiagnostic": "The initial complete-inventory comparison used an incorrectly parenthesized PowerShell -join comparison and raised before reaching the remaining checks. Separate comparison variables proved the inventories equal; the corrected full read-only inspection passed. No attempt evidence or helper was changed.",
+  "conclusion": "A genuine one-shot preflight decline is verified. It consumed the fresh unit without child launch. Real current-revision worker inference and output validation remain pending; this review does not authorize a retry or relax resource limits."
+}

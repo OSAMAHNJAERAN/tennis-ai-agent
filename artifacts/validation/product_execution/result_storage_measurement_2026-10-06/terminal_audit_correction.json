@@ -1,0 +1,1172 @@
+{
+  "startedAt": "2026-10-06T05:34:54.775059+00:00",
+  "passed": true,
+  "errors": [],
+  "originalAuditUnmodified": {
+    "bytes": 49981,
+    "sha256": "f919a9ea204c4b0c13d0cdb6d09385aca585f97f51cbba60cf99057bfbfdf289"
+  },
+  "originalAuditStatus": false,
+  "originalAuditAssertionClassifiedInvalid": "Comparing sample.at <= ack.at cannot prove sampling-before-ack: the executed parent computes rows=owned.sample(), publishes ack, then computes sample.at. The log timestamp belongs to the already sampled rows and is intentionally after the acknowledgment.",
+  "scope": "Read-only correction of the independent terminal auditor timestamp assumption; completed synthetic benchmark is not rerun or relabeled. No worker smoke/production file touched.",
+  "qualificationEvidence": false,
+  "inferenceRun": false,
+  "originalAuditRetained": "terminal_audit.json",
+  "boundOriginalAuditChecks": "All other independently checked 114 file hashes, five byte equivalences per count, source binding equivalence, OS/process/tree measurements, CSV gap/clock/formula/CRLF checks and terminal ownership checks remain carried by the immutable original audit.",
+  "cases": [
+    {
+      "frames": 600,
+      "mode": "old",
+      "actualWorkloadIdentity": {
+        "pid": 38544,
+        "createTimeUnixSeconds": 1791264485.2888937
+      },
+      "firstActualSample": {
+        "logRow": 2,
+        "sample": {
+          "at": "2026-10-06T05:28:05.575207+00:00",
+          "elapsedSeconds": 0.4260904000257142,
+          "processes": [
+            {
+              "pid": 32248,
+              "createTimeUnixSeconds": 1791264485.2454972,
+              "parentPid": null,
+              "depth": 0,
+              "memoryBytes": {
+                "rss": 4796416,
+                "vms": 909312,
+                "num_page_faults": 1282,
+                "peak_wset": 4857856,
+                "wset": 4796416,
+                "peak_paged_pool": 38552,
+                "paged_pool": 30248,
+                "peak_nonpaged_pool": 20616,
+                "nonpaged_pool": 4904,
+                "pagefile": 909312,
+                "peak_pagefile": 917504,
+                "private": 909312
+              }
+            },
+            {
+              "pid": 25624,
+              "createTimeUnixSeconds": 1791264485.2696967,
+              "parentPid": 32248,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 7405568,
+                "vms": 1282048,
+                "num_page_faults": 1896,
+                "peak_wset": 7409664,
+                "wset": 7405568,
+                "peak_paged_pool": 114544,
+                "paged_pool": 114544,
+                "peak_nonpaged_pool": 8704,
+                "nonpaged_pool": 8704,
+                "pagefile": 1282048,
+                "peak_pagefile": 1282048,
+                "private": 1282048
+              }
+            },
+            {
+              "pid": 38544,
+              "createTimeUnixSeconds": 1791264485.2888937,
+              "parentPid": 32248,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 25296896,
+                "vms": 14352384,
+                "num_page_faults": 6371,
+                "peak_wset": 25296896,
+                "wset": 25296896,
+                "peak_paged_pool": 157112,
+                "paged_pool": 156936,
+                "peak_nonpaged_pool": 13808,
+                "nonpaged_pool": 13456,
+                "pagefile": 14352384,
+                "peak_pagefile": 14352384,
+                "private": 14352384
+              }
+            }
+          ],
+          "ownedTreeRssBytes": 37498880,
+          "ownedTreePrivateBytes": 16543744,
+          "allPrivateValuesAvailable": true,
+          "availableRamBytes": 3748376576
+        },
+        "actualProcess": {
+          "pid": 38544,
+          "createTimeUnixSeconds": 1791264485.2888937,
+          "parentPid": 32248,
+          "depth": 1,
+          "memoryBytes": {
+            "rss": 25296896,
+            "vms": 14352384,
+            "num_page_faults": 6371,
+            "peak_wset": 25296896,
+            "wset": 25296896,
+            "peak_paged_pool": 157112,
+            "paged_pool": 156936,
+            "peak_nonpaged_pool": 13808,
+            "nonpaged_pool": 13456,
+            "pagefile": 14352384,
+            "peak_pagefile": 14352384,
+            "private": 14352384
+          }
+        }
+      },
+      "acknowledgment": {
+        "at": "2026-10-06T05:28:05.573756+00:00",
+        "identity": {
+          "pid": 38544,
+          "createTimeUnixSeconds": 1791264485.2888937
+        },
+        "sampledByExactIdentity": true
+      },
+      "loggedSampleStampAfterAckSeconds": 0.001451,
+      "firstActualSampleElapsedSeconds": 0.4260904000257142,
+      "actualMemorySampleObtainedBeforeAckByVerifiedExecutedOrder": true,
+      "childWaitDeadlineSeconds": 10,
+      "rememberedActualSampleCount": 9,
+      "allOwnedIdentitiesRetiredNow": true,
+      "ownedIdentityRetirementNow": [
+        {
+          "pid": 32248,
+          "createTimeUnixSeconds": 1791264485.2454972,
+          "checkedAt": "2026-10-06T05:34:55.037132+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 25624,
+          "createTimeUnixSeconds": 1791264485.2696967,
+          "checkedAt": "2026-10-06T05:34:55.037188+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 38544,
+          "createTimeUnixSeconds": 1791264485.2888937,
+          "checkedAt": "2026-10-06T05:34:55.037205+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ]
+    },
+    {
+      "frames": 600,
+      "mode": "new",
+      "actualWorkloadIdentity": {
+        "pid": 12620,
+        "createTimeUnixSeconds": 1791264488.1019251
+      },
+      "firstActualSample": {
+        "logRow": 2,
+        "sample": {
+          "at": "2026-10-06T05:28:08.392979+00:00",
+          "elapsedSeconds": 0.32326959999045357,
+          "processes": [
+            {
+              "pid": 23176,
+              "createTimeUnixSeconds": 1791264488.0725408,
+              "parentPid": null,
+              "depth": 0,
+              "memoryBytes": {
+                "rss": 4796416,
+                "vms": 913408,
+                "num_page_faults": 1283,
+                "peak_wset": 4857856,
+                "wset": 4796416,
+                "peak_paged_pool": 38552,
+                "paged_pool": 30248,
+                "peak_nonpaged_pool": 20616,
+                "nonpaged_pool": 4904,
+                "pagefile": 913408,
+                "peak_pagefile": 921600,
+                "private": 913408
+              }
+            },
+            {
+              "pid": 67572,
+              "createTimeUnixSeconds": 1791264488.0834177,
+              "parentPid": 23176,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 7405568,
+                "vms": 1282048,
+                "num_page_faults": 1894,
+                "peak_wset": 7409664,
+                "wset": 7405568,
+                "peak_paged_pool": 114544,
+                "paged_pool": 114544,
+                "peak_nonpaged_pool": 8704,
+                "nonpaged_pool": 8704,
+                "pagefile": 1282048,
+                "peak_pagefile": 1282048,
+                "private": 1282048
+              }
+            },
+            {
+              "pid": 12620,
+              "createTimeUnixSeconds": 1791264488.1019251,
+              "parentPid": 23176,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 25198592,
+                "vms": 14102528,
+                "num_page_faults": 6288,
+                "peak_wset": 25198592,
+                "wset": 25198592,
+                "peak_paged_pool": 157112,
+                "paged_pool": 156936,
+                "peak_nonpaged_pool": 13808,
+                "nonpaged_pool": 13456,
+                "pagefile": 14102528,
+                "peak_pagefile": 14102528,
+                "private": 14102528
+              }
+            }
+          ],
+          "ownedTreeRssBytes": 37400576,
+          "ownedTreePrivateBytes": 16297984,
+          "allPrivateValuesAvailable": true,
+          "availableRamBytes": 3695710208
+        },
+        "actualProcess": {
+          "pid": 12620,
+          "createTimeUnixSeconds": 1791264488.1019251,
+          "parentPid": 23176,
+          "depth": 1,
+          "memoryBytes": {
+            "rss": 25198592,
+            "vms": 14102528,
+            "num_page_faults": 6288,
+            "peak_wset": 25198592,
+            "wset": 25198592,
+            "peak_paged_pool": 157112,
+            "paged_pool": 156936,
+            "peak_nonpaged_pool": 13808,
+            "nonpaged_pool": 13456,
+            "pagefile": 14102528,
+            "peak_pagefile": 14102528,
+            "private": 14102528
+          }
+        }
+      },
+      "acknowledgment": {
+        "at": "2026-10-06T05:28:08.391212+00:00",
+        "identity": {
+          "pid": 12620,
+          "createTimeUnixSeconds": 1791264488.1019251
+        },
+        "sampledByExactIdentity": true
+      },
+      "loggedSampleStampAfterAckSeconds": 0.001767,
+      "firstActualSampleElapsedSeconds": 0.32326959999045357,
+      "actualMemorySampleObtainedBeforeAckByVerifiedExecutedOrder": true,
+      "childWaitDeadlineSeconds": 10,
+      "rememberedActualSampleCount": 15,
+      "allOwnedIdentitiesRetiredNow": true,
+      "ownedIdentityRetirementNow": [
+        {
+          "pid": 23176,
+          "createTimeUnixSeconds": 1791264488.0725408,
+          "checkedAt": "2026-10-06T05:34:55.037785+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 12620,
+          "createTimeUnixSeconds": 1791264488.1019251,
+          "checkedAt": "2026-10-06T05:34:55.037805+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 67572,
+          "createTimeUnixSeconds": 1791264488.0834177,
+          "checkedAt": "2026-10-06T05:34:55.037812+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ]
+    },
+    {
+      "frames": 18000,
+      "mode": "old",
+      "actualWorkloadIdentity": {
+        "pid": 64988,
+        "createTimeUnixSeconds": 1791264492.6745288
+      },
+      "firstActualSample": {
+        "logRow": 2,
+        "sample": {
+          "at": "2026-10-06T05:28:12.968392+00:00",
+          "elapsedSeconds": 0.33097700000507757,
+          "processes": [
+            {
+              "pid": 64412,
+              "createTimeUnixSeconds": 1791264492.6384313,
+              "parentPid": null,
+              "depth": 0,
+              "memoryBytes": {
+                "rss": 4796416,
+                "vms": 921600,
+                "num_page_faults": 1284,
+                "peak_wset": 4857856,
+                "wset": 4796416,
+                "peak_paged_pool": 38552,
+                "paged_pool": 30248,
+                "peak_nonpaged_pool": 20616,
+                "nonpaged_pool": 4904,
+                "pagefile": 921600,
+                "peak_pagefile": 929792,
+                "private": 921600
+              }
+            },
+            {
+              "pid": 65104,
+              "createTimeUnixSeconds": 1791264492.65509,
+              "parentPid": 64412,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 7417856,
+                "vms": 1314816,
+                "num_page_faults": 1899,
+                "peak_wset": 7421952,
+                "wset": 7417856,
+                "peak_paged_pool": 114544,
+                "paged_pool": 114544,
+                "peak_nonpaged_pool": 8704,
+                "nonpaged_pool": 8704,
+                "pagefile": 1314816,
+                "peak_pagefile": 1314816,
+                "private": 1314816
+              }
+            },
+            {
+              "pid": 64988,
+              "createTimeUnixSeconds": 1791264492.6745288,
+              "parentPid": 64412,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 24940544,
+                "vms": 13930496,
+                "num_page_faults": 6303,
+                "peak_wset": 24940544,
+                "wset": 24940544,
+                "peak_paged_pool": 157112,
+                "paged_pool": 156936,
+                "peak_nonpaged_pool": 13824,
+                "nonpaged_pool": 13456,
+                "pagefile": 13930496,
+                "peak_pagefile": 13930496,
+                "private": 13930496
+              }
+            }
+          ],
+          "ownedTreeRssBytes": 37154816,
+          "ownedTreePrivateBytes": 16166912,
+          "allPrivateValuesAvailable": true,
+          "availableRamBytes": 3646083072
+        },
+        "actualProcess": {
+          "pid": 64988,
+          "createTimeUnixSeconds": 1791264492.6745288,
+          "parentPid": 64412,
+          "depth": 1,
+          "memoryBytes": {
+            "rss": 24940544,
+            "vms": 13930496,
+            "num_page_faults": 6303,
+            "peak_wset": 24940544,
+            "wset": 24940544,
+            "peak_paged_pool": 157112,
+            "paged_pool": 156936,
+            "peak_nonpaged_pool": 13824,
+            "nonpaged_pool": 13456,
+            "pagefile": 13930496,
+            "peak_pagefile": 13930496,
+            "private": 13930496
+          }
+        }
+      },
+      "acknowledgment": {
+        "at": "2026-10-06T05:28:12.967008+00:00",
+        "identity": {
+          "pid": 64988,
+          "createTimeUnixSeconds": 1791264492.6745288
+        },
+        "sampledByExactIdentity": true
+      },
+      "loggedSampleStampAfterAckSeconds": 0.001384,
+      "firstActualSampleElapsedSeconds": 0.33097700000507757,
+      "actualMemorySampleObtainedBeforeAckByVerifiedExecutedOrder": true,
+      "childWaitDeadlineSeconds": 10,
+      "rememberedActualSampleCount": 57,
+      "allOwnedIdentitiesRetiredNow": true,
+      "ownedIdentityRetirementNow": [
+        {
+          "pid": 64412,
+          "createTimeUnixSeconds": 1791264492.6384313,
+          "checkedAt": "2026-10-06T05:34:55.038394+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 64988,
+          "createTimeUnixSeconds": 1791264492.6745288,
+          "checkedAt": "2026-10-06T05:34:55.038415+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 65104,
+          "createTimeUnixSeconds": 1791264492.65509,
+          "checkedAt": "2026-10-06T05:34:55.038423+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ]
+    },
+    {
+      "frames": 18000,
+      "mode": "new",
+      "actualWorkloadIdentity": {
+        "pid": 62660,
+        "createTimeUnixSeconds": 1791264509.084803
+      },
+      "firstActualSample": {
+        "logRow": 2,
+        "sample": {
+          "at": "2026-10-06T05:28:29.385952+00:00",
+          "elapsedSeconds": 0.33198879996780306,
+          "processes": [
+            {
+              "pid": 17704,
+              "createTimeUnixSeconds": 1791264509.0549593,
+              "parentPid": null,
+              "depth": 0,
+              "memoryBytes": {
+                "rss": 4796416,
+                "vms": 913408,
+                "num_page_faults": 1283,
+                "peak_wset": 4857856,
+                "wset": 4796416,
+                "peak_paged_pool": 38552,
+                "paged_pool": 30248,
+                "peak_nonpaged_pool": 20616,
+                "nonpaged_pool": 4904,
+                "pagefile": 913408,
+                "peak_pagefile": 921600,
+                "private": 913408
+              }
+            },
+            {
+              "pid": 63504,
+              "createTimeUnixSeconds": 1791264509.0705037,
+              "parentPid": 17704,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 7413760,
+                "vms": 1298432,
+                "num_page_faults": 1904,
+                "peak_wset": 7417856,
+                "wset": 7413760,
+                "peak_paged_pool": 114544,
+                "paged_pool": 114544,
+                "peak_nonpaged_pool": 8704,
+                "nonpaged_pool": 8704,
+                "pagefile": 1298432,
+                "peak_pagefile": 1298432,
+                "private": 1298432
+              }
+            },
+            {
+              "pid": 62660,
+              "createTimeUnixSeconds": 1791264509.084803,
+              "parentPid": 17704,
+              "depth": 1,
+              "memoryBytes": {
+                "rss": 24899584,
+                "vms": 13942784,
+                "num_page_faults": 6291,
+                "peak_wset": 24899584,
+                "wset": 24899584,
+                "peak_paged_pool": 157112,
+                "paged_pool": 156936,
+                "peak_nonpaged_pool": 13824,
+                "nonpaged_pool": 13456,
+                "pagefile": 13942784,
+                "peak_pagefile": 13942784,
+                "private": 13942784
+              }
+            }
+          ],
+          "ownedTreeRssBytes": 37109760,
+          "ownedTreePrivateBytes": 16154624,
+          "allPrivateValuesAvailable": true,
+          "availableRamBytes": 3294437376
+        },
+        "actualProcess": {
+          "pid": 62660,
+          "createTimeUnixSeconds": 1791264509.084803,
+          "parentPid": 17704,
+          "depth": 1,
+          "memoryBytes": {
+            "rss": 24899584,
+            "vms": 13942784,
+            "num_page_faults": 6291,
+            "peak_wset": 24899584,
+            "wset": 24899584,
+            "peak_paged_pool": 157112,
+            "paged_pool": 156936,
+            "peak_nonpaged_pool": 13824,
+            "nonpaged_pool": 13456,
+            "pagefile": 13942784,
+            "peak_pagefile": 13942784,
+            "private": 13942784
+          }
+        }
+      },
+      "acknowledgment": {
+        "at": "2026-10-06T05:28:29.384693+00:00",
+        "identity": {
+          "pid": 62660,
+          "createTimeUnixSeconds": 1791264509.084803
+        },
+        "sampledByExactIdentity": true
+      },
+      "loggedSampleStampAfterAckSeconds": 0.001259,
+      "firstActualSampleElapsedSeconds": 0.33198879996780306,
+      "actualMemorySampleObtainedBeforeAckByVerifiedExecutedOrder": true,
+      "childWaitDeadlineSeconds": 10,
+      "rememberedActualSampleCount": 356,
+      "allOwnedIdentitiesRetiredNow": true,
+      "ownedIdentityRetirementNow": [
+        {
+          "pid": 17704,
+          "createTimeUnixSeconds": 1791264509.0549593,
+          "checkedAt": "2026-10-06T05:34:55.039013+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 62660,
+          "createTimeUnixSeconds": 1791264509.084803,
+          "checkedAt": "2026-10-06T05:34:55.039033+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        },
+        {
+          "pid": 63504,
+          "createTimeUnixSeconds": 1791264509.0705037,
+          "checkedAt": "2026-10-06T05:34:55.039041+00:00",
+          "currentPidExists": false,
+          "originalIdentityStillLive": false,
+          "pidReused": false
+        }
+      ]
+    }
+  ],
+  "executedOrderProof": {
+    "executedHelper": {
+      "bytes": 44418,
+      "sha256": "8a1585543a904826fca354f5fa727debfd7b5071f330cae9cfe8c41eb0f446dc"
+    },
+    "verifiedMonitor": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "whileLine": 653,
+    "sampleRowsLine": 654,
+    "guardedAckBranchLine": 657,
+    "sampleAtStampLine": 663,
+    "sampleThenObservedExactIdentityThenAtomicAckThenLogTimestamp": true,
+    "actualChildAckDecodedLine": 437,
+    "childProductionImportsBeginLine": 450,
+    "childDeadlineSeconds": 10,
+    "childCannotBeginProductionImportsUntilAckDecodedAndIdentityMatches": true
+  },
+  "original114FileBindingsVerifiedUnchanged": true,
+  "fileBindings": {
+    "helper.py": {
+      "bytes": 44418,
+      "sha256": "8a1585543a904826fca354f5fa727debfd7b5071f330cae9cfe8c41eb0f446dc"
+    },
+    "prepared_source_bindings.json": {
+      "bytes": 4256,
+      "sha256": "80120590ebf17ae9e7648e069651d1e4ff0ede935ea5bd849d849eb60ebae713"
+    },
+    "protocol.json": {
+      "bytes": 5606,
+      "sha256": "c982c5fd1dbd6e7cd33917bdf46886ca4d4ef9a43ce88066d974d605bcfab097"
+    },
+    "PROTOCOL.md": {
+      "bytes": 3981,
+      "sha256": "a46f402bd63eaa9012c10974438339a0679cbc2fd37415c51a119ff599e314f5"
+    },
+    "run/18000_new/actual_identity.json": {
+      "bytes": 65,
+      "sha256": "889c346c728fb6fbd55cd0135eeb82abb781d21d5bc3ac4207b7d7acd7c58eaa"
+    },
+    "run/18000_new/actual_identity_sampled.json": {
+      "bytes": 167,
+      "sha256": "4136d96e12014b4e520be118b838d8ead264b45dccedd3cab50780f916e64b38"
+    },
+    "run/18000_new/analysis/.result/3daca2a06c1c45b5be9fd12fcf1ed8eb.sqlite3": {
+      "bytes": 118726656,
+      "sha256": "7de2498f905e5525f20a471662158695976abcbff42defef8732ae55fa0f7d74"
+    },
+    "run/18000_new/analysis/.result/current.store": {
+      "bytes": 263,
+      "sha256": "7d2ea306582af2f15ed476b20e9c87d427828170058e2207ecf8334334494772"
+    },
+    "run/18000_new/analysis/camera_registration.json": {
+      "bytes": 5748402,
+      "sha256": "2ed3c9b1cbfb13c29df5ca5db9e7a54849ca4636f68ec017b436de521f403dcc"
+    },
+    "run/18000_new/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/18000_new/analysis/detections.json": {
+      "bytes": 4170800,
+      "sha256": "08dac997012ac4315c8e9efd6fddcf8ef964fc60ca7022625b0092af3f8bbdce"
+    },
+    "run/18000_new/analysis/image_people.json": {
+      "bytes": 8668941,
+      "sha256": "05f8604bd10b69f313f86113176c635da931a7c0d35dbde437832822e103b0e9"
+    },
+    "run/18000_new/analysis/line_calls.json": {
+      "bytes": 834906,
+      "sha256": "ee56ed2700b9b5ae2039926ae4605bb08937ea08455d04e9b5130c31b2c3c946"
+    },
+    "run/18000_new/analysis/match_events.json": {
+      "bytes": 1107645,
+      "sha256": "05c6f1c89246552a473d841595cc9d53e0fd4532e85fd7c15f804f900cb411fe"
+    },
+    "run/18000_new/analysis/media_metadata.json": {
+      "bytes": 4130,
+      "sha256": "d47e77ef2f32eb1d436fed0688e32990ff0cb50380eaecc121dabcb33676d24b"
+    },
+    "run/18000_new/analysis/media_source.json": {
+      "bytes": 738,
+      "sha256": "e9052a804ceef2a22ce539665a01131647cd6d798882bd852483fdc092587fe6"
+    },
+    "run/18000_new/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/18000_new/analysis/player_motion.json": {
+      "bytes": 6080679,
+      "sha256": "ee9daa780929e1c5dd47718e58cf3df66303ef1a831492aa51c47649b1eac231"
+    },
+    "run/18000_new/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/18000_new/analysis/racket_tracking.json": {
+      "bytes": 4068189,
+      "sha256": "b80768ac18971b6fad7ccc0a0f0bc8814e46c0560da887461a890192b9b544b8"
+    },
+    "run/18000_new/analysis/result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_new/analysis/source_frame_mapping.jsonl": {
+      "bytes": 2579413,
+      "sha256": "e225d83288e1a4b4991a5919fbd49857ec4b63ca6be693dbd5aef06eabbccd07"
+    },
+    "run/18000_new/analysis/summary.json": {
+      "bytes": 948,
+      "sha256": "d9073b2163d911afae49c9baf2b22b9b0a9656b6a4907955d290cbfe68025479"
+    },
+    "run/18000_new/analysis/trajectories.json": {
+      "bytes": 7413430,
+      "sha256": "880748ce486470aad5a3b13c9534ff2caa83cb39d0cee9993265a84c3db6eb87"
+    },
+    "run/18000_new/child_receipt.json": {
+      "bytes": 20009,
+      "sha256": "2d4aa0f914b7ba16aa0aba080ce2a613a44c50fdda859728393dd55504dfb184"
+    },
+    "run/18000_new/read_result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_new/report.html": {
+      "bytes": 34611,
+      "sha256": "39cd31c6f276b90e7387edd2eb55f056fd1e1b3511b0527914e28b06b5049d29"
+    },
+    "run/18000_new/resource_receipt.json": {
+      "bytes": 1679,
+      "sha256": "09ea251938fdb1bce50c668f1258142b9335b4a2aa636a8a67ba063b73fa71a5"
+    },
+    "run/18000_new/samples.jsonl": {
+      "bytes": 483758,
+      "sha256": "b78a32ef815a0bf7b86a3701fd9b8e5700e9a507a60ebd63712cb41286f2d918"
+    },
+    "run/18000_new/stdout.txt": {
+      "bytes": 65,
+      "sha256": "d36ca9d2127a604bcd30933c02d5f7b9cbc5241b348bd48200883c1357d52752"
+    },
+    "run/18000_new/telemetry.csv": {
+      "bytes": 9483428,
+      "sha256": "d77461456d4a3da7fd7452c8ba87d5df789782572021d84a3cdc479a701b4034"
+    },
+    "run/18000_old/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "6db698bd728d6878256b9cdf09f5e0f84affa9c28eb58c68956de813b8122c3c"
+    },
+    "run/18000_old/actual_identity_sampled.json": {
+      "bytes": 168,
+      "sha256": "f1aa7ab5a91cde2c56beb31254deb9c91cda14bb50ad3ab097723604650db6d6"
+    },
+    "run/18000_old/analysis/camera_registration.json": {
+      "bytes": 5748402,
+      "sha256": "2ed3c9b1cbfb13c29df5ca5db9e7a54849ca4636f68ec017b436de521f403dcc"
+    },
+    "run/18000_old/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/18000_old/analysis/detections.json": {
+      "bytes": 4170800,
+      "sha256": "08dac997012ac4315c8e9efd6fddcf8ef964fc60ca7022625b0092af3f8bbdce"
+    },
+    "run/18000_old/analysis/image_people.json": {
+      "bytes": 8668941,
+      "sha256": "05f8604bd10b69f313f86113176c635da931a7c0d35dbde437832822e103b0e9"
+    },
+    "run/18000_old/analysis/line_calls.json": {
+      "bytes": 834906,
+      "sha256": "ee56ed2700b9b5ae2039926ae4605bb08937ea08455d04e9b5130c31b2c3c946"
+    },
+    "run/18000_old/analysis/match_events.json": {
+      "bytes": 1107645,
+      "sha256": "05c6f1c89246552a473d841595cc9d53e0fd4532e85fd7c15f804f900cb411fe"
+    },
+    "run/18000_old/analysis/media_metadata.json": {
+      "bytes": 4130,
+      "sha256": "d47e77ef2f32eb1d436fed0688e32990ff0cb50380eaecc121dabcb33676d24b"
+    },
+    "run/18000_old/analysis/media_source.json": {
+      "bytes": 738,
+      "sha256": "e9052a804ceef2a22ce539665a01131647cd6d798882bd852483fdc092587fe6"
+    },
+    "run/18000_old/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/18000_old/analysis/player_motion.json": {
+      "bytes": 6080679,
+      "sha256": "ee9daa780929e1c5dd47718e58cf3df66303ef1a831492aa51c47649b1eac231"
+    },
+    "run/18000_old/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/18000_old/analysis/racket_tracking.json": {
+      "bytes": 4068189,
+      "sha256": "b80768ac18971b6fad7ccc0a0f0bc8814e46c0560da887461a890192b9b544b8"
+    },
+    "run/18000_old/analysis/result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_old/analysis/source_frame_mapping.jsonl": {
+      "bytes": 2579413,
+      "sha256": "e225d83288e1a4b4991a5919fbd49857ec4b63ca6be693dbd5aef06eabbccd07"
+    },
+    "run/18000_old/analysis/summary.json": {
+      "bytes": 948,
+      "sha256": "d9073b2163d911afae49c9baf2b22b9b0a9656b6a4907955d290cbfe68025479"
+    },
+    "run/18000_old/analysis/trajectories.json": {
+      "bytes": 7413430,
+      "sha256": "880748ce486470aad5a3b13c9534ff2caa83cb39d0cee9993265a84c3db6eb87"
+    },
+    "run/18000_old/child_receipt.json": {
+      "bytes": 19522,
+      "sha256": "7d0527f62e007aa28e1ad00be44952f5c99edec1eb0b92ca2063ab52ca4c05cb"
+    },
+    "run/18000_old/read_result.json": {
+      "bytes": 48391681,
+      "sha256": "dc2146e34cd9cb222e89dcf7f661fbc75bfb9b9b7a0501780c5b88b985032070"
+    },
+    "run/18000_old/report.html": {
+      "bytes": 34611,
+      "sha256": "39cd31c6f276b90e7387edd2eb55f056fd1e1b3511b0527914e28b06b5049d29"
+    },
+    "run/18000_old/resource_receipt.json": {
+      "bytes": 1670,
+      "sha256": "582b677c7284da2e3b8f0339aead7de6bc84557e3de103029b472814be836f58"
+    },
+    "run/18000_old/samples.jsonl": {
+      "bytes": 78386,
+      "sha256": "e59423444718c948e7b6bab6024fac9e2dbf28a7827991d09053069c84c28be6"
+    },
+    "run/18000_old/stdout.txt": {
+      "bytes": 65,
+      "sha256": "2bd2ff19de9ad338f6e6cd6fb4cbd25d1d497afc54921d9d4da916a2930bddb2"
+    },
+    "run/18000_old/telemetry.csv": {
+      "bytes": 9483428,
+      "sha256": "d77461456d4a3da7fd7452c8ba87d5df789782572021d84a3cdc479a701b4034"
+    },
+    "run/600_new/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "ef8d7ada3f6b37b388aaee9c75a65f49a7e715a5ccb5569d410dacb8a8842a60"
+    },
+    "run/600_new/actual_identity_sampled.json": {
+      "bytes": 168,
+      "sha256": "429a48e39605ec2e7d3870beee9700090925f5700ad3381330e46678138ec1e6"
+    },
+    "run/600_new/analysis/.result/84eda7395409485b9a0a3f7a235d5e66.sqlite3": {
+      "bytes": 4476928,
+      "sha256": "6c8b54df57cb1e5c3fb2312d78c91aaf4f27b8638167999416f5ca378c97f33c"
+    },
+    "run/600_new/analysis/.result/current.store": {
+      "bytes": 259,
+      "sha256": "e2f53f0520318df0e5a6c2070a2358726b54cb8fe8e5a11cb018a622c46cad66"
+    },
+    "run/600_new/analysis/camera_registration.json": {
+      "bytes": 190129,
+      "sha256": "88a495fd24811db74384e24cf115eded44b6935540477b7b8ad479c23d7d8198"
+    },
+    "run/600_new/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/600_new/analysis/detections.json": {
+      "bytes": 138137,
+      "sha256": "c405252086016fc99981118ec1e7c0abf242cdc36bc52b2463d84f97dce4f98a"
+    },
+    "run/600_new/analysis/image_people.json": {
+      "bytes": 284805,
+      "sha256": "c539e42aa07d5a4982faa7e4afc91569f55b251624e9dfeaf0186cceab1716bc"
+    },
+    "run/600_new/analysis/line_calls.json": {
+      "bytes": 26906,
+      "sha256": "3d392e3ac4f957c64d9cf584d22355676613c30efe8d67f5a10241cfdd485281"
+    },
+    "run/600_new/analysis/match_events.json": {
+      "bytes": 36457,
+      "sha256": "08fae2ae86867faa25c2323db1ed680389766dc1a3ffb3517992f24498739677"
+    },
+    "run/600_new/analysis/media_metadata.json": {
+      "bytes": 730,
+      "sha256": "9bb39e21415a8f38af47e11a977dccacfad93cda0642c4c64ceac5fad14abf3a"
+    },
+    "run/600_new/analysis/media_source.json": {
+      "bytes": 733,
+      "sha256": "52513b343be05ce85bf994455443fbf7b7cc843ab732799a2c8de287070dd73e"
+    },
+    "run/600_new/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/600_new/analysis/player_motion.json": {
+      "bytes": 199973,
+      "sha256": "1eb5f735f411d106c524ca5a90763bfce85398544dec42563fb6798ac9f0d0f8"
+    },
+    "run/600_new/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/600_new/analysis/racket_tracking.json": {
+      "bytes": 135635,
+      "sha256": "3d0b9a12b3b3c7f76ca030e61559ffca0b1d08fab3ef41db330aa0c5a3ba1206"
+    },
+    "run/600_new/analysis/result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_new/analysis/source_frame_mapping.jsonl": {
+      "bytes": 83625,
+      "sha256": "226231adcd18e9af0f8195424a342d898c861d06b5f42693ea0af1ba483da82f"
+    },
+    "run/600_new/analysis/summary.json": {
+      "bytes": 945,
+      "sha256": "52e3fb824f002a17ace160eb6ccc01699cfa70c8d0d077c50525a93a97734d27"
+    },
+    "run/600_new/analysis/trajectories.json": {
+      "bytes": 245710,
+      "sha256": "9000f392a5951bd4244f38ddbbc688f52071ab516010811be4b58686694a1acb"
+    },
+    "run/600_new/child_receipt.json": {
+      "bytes": 19950,
+      "sha256": "afd0ba1194f44997d1c7c2dc59711693ea76b0590f2ff74b89a24e7b2edf5660"
+    },
+    "run/600_new/read_result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_new/report.html": {
+      "bytes": 23404,
+      "sha256": "f0196d6b6f9a23c5ff032654facf543d9b5c9373ac98d00e983432a4cb91c615"
+    },
+    "run/600_new/resource_receipt.json": {
+      "bytes": 1669,
+      "sha256": "027c0616d5aa0a2ac19be8396ff6d353c2638774ed9ec55991f15b7e3059d4c1"
+    },
+    "run/600_new/samples.jsonl": {
+      "bytes": 21333,
+      "sha256": "bbfeea2499db2f58f7e4d0a34198830ee7eff9d106e673ac93b2dd83f95a77d6"
+    },
+    "run/600_new/stdout.txt": {
+      "bytes": 63,
+      "sha256": "bb7a701d22d04e383375dd1a96c03ffef1239036b1144f3cdea03e115d625e73"
+    },
+    "run/600_new/telemetry.csv": {
+      "bytes": 314926,
+      "sha256": "94087083a7681754233ec696a4e24d762ab2fc4cc2acacc59428186314718a1f"
+    },
+    "run/600_old/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "820d33cb6dedf275ff7e089700943297f1ccb1809f92b1bff82803c62c305ed0"
+    },
+    "run/600_old/actual_identity_sampled.json": {
+      "bytes": 168,
+      "sha256": "d288ed06f4d4940b0556426107b9fb675c3667914825036f2b72375f4e54f451"
+    },
+    "run/600_old/analysis/camera_registration.json": {
+      "bytes": 190129,
+      "sha256": "88a495fd24811db74384e24cf115eded44b6935540477b7b8ad479c23d7d8198"
+    },
+    "run/600_old/analysis/court_geometry.json": {
+      "bytes": 224,
+      "sha256": "0ee143aa9492b709e25c59f16a09bd5884278e8c14c2640415418ad59f9f5d28"
+    },
+    "run/600_old/analysis/detections.json": {
+      "bytes": 138137,
+      "sha256": "c405252086016fc99981118ec1e7c0abf242cdc36bc52b2463d84f97dce4f98a"
+    },
+    "run/600_old/analysis/image_people.json": {
+      "bytes": 284805,
+      "sha256": "c539e42aa07d5a4982faa7e4afc91569f55b251624e9dfeaf0186cceab1716bc"
+    },
+    "run/600_old/analysis/line_calls.json": {
+      "bytes": 26906,
+      "sha256": "3d392e3ac4f957c64d9cf584d22355676613c30efe8d67f5a10241cfdd485281"
+    },
+    "run/600_old/analysis/match_events.json": {
+      "bytes": 36457,
+      "sha256": "08fae2ae86867faa25c2323db1ed680389766dc1a3ffb3517992f24498739677"
+    },
+    "run/600_old/analysis/media_metadata.json": {
+      "bytes": 730,
+      "sha256": "9bb39e21415a8f38af47e11a977dccacfad93cda0642c4c64ceac5fad14abf3a"
+    },
+    "run/600_old/analysis/media_source.json": {
+      "bytes": 733,
+      "sha256": "52513b343be05ce85bf994455443fbf7b7cc843ab732799a2c8de287070dd73e"
+    },
+    "run/600_old/analysis/metrics.json": {
+      "bytes": 178,
+      "sha256": "a7eb389105da2bfbe1ccd6cc367a631537b402e00457f90d1196e43c495f7f26"
+    },
+    "run/600_old/analysis/player_motion.json": {
+      "bytes": 199973,
+      "sha256": "1eb5f735f411d106c524ca5a90763bfce85398544dec42563fb6798ac9f0d0f8"
+    },
+    "run/600_old/analysis/pose_tracking.json": {
+      "bytes": 13402,
+      "sha256": "743b8f6820d40cde10b8d81eaa74060349435be33f257e5c5196de29b0a4ba7d"
+    },
+    "run/600_old/analysis/racket_tracking.json": {
+      "bytes": 135635,
+      "sha256": "3d0b9a12b3b3c7f76ca030e61559ffca0b1d08fab3ef41db330aa0c5a3ba1206"
+    },
+    "run/600_old/analysis/result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_old/analysis/source_frame_mapping.jsonl": {
+      "bytes": 83625,
+      "sha256": "226231adcd18e9af0f8195424a342d898c861d06b5f42693ea0af1ba483da82f"
+    },
+    "run/600_old/analysis/summary.json": {
+      "bytes": 945,
+      "sha256": "52e3fb824f002a17ace160eb6ccc01699cfa70c8d0d077c50525a93a97734d27"
+    },
+    "run/600_old/analysis/trajectories.json": {
+      "bytes": 245710,
+      "sha256": "9000f392a5951bd4244f38ddbbc688f52071ab516010811be4b58686694a1acb"
+    },
+    "run/600_old/child_receipt.json": {
+      "bytes": 19465,
+      "sha256": "355babac32007ab9109ac9a9c9b36043cbc9d068cb9e19b82144b662c6738b49"
+    },
+    "run/600_old/read_result.json": {
+      "bytes": 1795219,
+      "sha256": "68776905ebaa96b6930c5ec4793cc1ba970ec9d2f853e8f062c07801ba8d8f05"
+    },
+    "run/600_old/report.html": {
+      "bytes": 23404,
+      "sha256": "f0196d6b6f9a23c5ff032654facf543d9b5c9373ac98d00e983432a4cb91c615"
+    },
+    "run/600_old/resource_receipt.json": {
+      "bytes": 1662,
+      "sha256": "e97c7a5913d9ad35d7a121271e2532f46176d12ca23de29642094faaf1fbd95d"
+    },
+    "run/600_old/samples.jsonl": {
+      "bytes": 13156,
+      "sha256": "717aa35e8f91cb01ae1f4f0509a7ab61956fb66bd23d1a2a792bc7705d3847d3"
+    },
+    "run/600_old/stdout.txt": {
+      "bytes": 63,
+      "sha256": "0dc86ea44f0ca8c6cd69ec57d78ee3042d08b7f34de60d34b94cd7b19c9b615a"
+    },
+    "run/600_old/telemetry.csv": {
+      "bytes": 314926,
+      "sha256": "94087083a7681754233ec696a4e24d762ab2fc4cc2acacc59428186314718a1f"
+    },
+    "run/comparison_18000.json": {
+      "bytes": 2620,
+      "sha256": "e0201cf5098d8ca4f369d5c416fa9278f42237bc7f958f74c1b72905bc529467"
+    },
+    "run/comparison_600.json": {
+      "bytes": 2623,
+      "sha256": "d11e9e4aeac67be83d1736580a39a6c7d2c9b5446b009074c7e05906aaadbe65"
+    },
+    "run/executed_helper.py": {
+      "bytes": 44418,
+      "sha256": "8a1585543a904826fca354f5fa727debfd7b5071f330cae9cfe8c41eb0f446dc"
+    },
+    "run/report.json": {
+      "bytes": 23166,
+      "sha256": "a8021b212064a84a7403fe92442422779366cf58ac1083d9f5d76749d8916c35"
+    },
+    "run/source_bindings.json": {
+      "bytes": 4256,
+      "sha256": "80120590ebf17ae9e7648e069651d1e4ff0ede935ea5bd849d849eb60ebae713"
+    },
+    "static_sanity_receipt.json": {
+      "bytes": 680,
+      "sha256": "079502e4416df9e2415d99cce1141e2006982d363ee9d6ea4e950236e2f5f137"
+    }
+  },
+  "currentBoundSources": {
+    "src/api/results.py": {
+      "bytes": 35337,
+      "sha256": "30a64418e141d2ab5d847c33aa6fcc0386807ff7a04a5891b5172a904f9c1a55"
+    },
+    "src/api/result_storage.py": {
+      "bytes": 22807,
+      "sha256": "6c553e36e55bbf54888819162b6207297686fd050cd62e085821d04fedee5fc2"
+    },
+    "src/api/result_document.py": {
+      "bytes": 8158,
+      "sha256": "d30e7abe74d5228bae6bfea14ec9ae07bca317d5032cd3aeda6bf92f811d1cdc"
+    },
+    "src/api/reporting.py": {
+      "bytes": 17376,
+      "sha256": "7854e4952e840d43e495b36cfced57b69a3f38107b1a2849e53dd99705880f17"
+    },
+    "src/api/worker.py": {
+      "bytes": 11967,
+      "sha256": "02e9e14ce2a8857bd65fdfdfa8f8b3d43baaf2612521d0659bec1258b490aedb"
+    },
+    "src/api/app.py": {
+      "bytes": 11742,
+      "sha256": "0639b614f8f1ed3b00ee9abd3aee6fa6eab7498f5b7e1c27232d2348fb747253"
+    },
+    "src/api/product.py": {
+      "bytes": 16609,
+      "sha256": "0e3c03dc07987b3d0f40f4dd0c1743bf8b168276be7573846a4eaef09bcadacb"
+    },
+    "src/api/media_source.py": {
+      "bytes": 3474,
+      "sha256": "89c1177118c00dbfff1bfe9789cd1ac7710db1e0784d52d60df0c9afc9b3fd14"
+    },
+    "src/api/media_revision.py": {
+      "bytes": 3637,
+      "sha256": "62a09e3634b77ed70b6356fbf01124c9d4e55affbb243330f27a4c4adb6feb74"
+    },
+    "src/api/jobs.py": {
+      "bytes": 5017,
+      "sha256": "a60acd43f8a990a5975850848fc823fd9403401469fdf268fff55195eff55b3a"
+    },
+    "src/detection/image_people.py": {
+      "bytes": 3407,
+      "sha256": "3259d982f9a718d52e6152ae825d01570a9e76c2f108c45445817bb96cacb58c"
+    },
+    "src/tracking/player_motion_tracking.py": {
+      "bytes": 7820,
+      "sha256": "4b7835932b6e7646507fd223ee4df8c8f4650caba440dce843da88bfbf9d07ef"
+    },
+    "src/utils/bbox_utils.py": {
+      "bytes": 1232,
+      "sha256": "0dabfa8a8f8cf317ef5e571a88f1f4b412d411659b26ef4728338326d6445e59"
+    },
+    "requirements-product.txt": {
+      "bytes": 715,
+      "sha256": "2d35459dcb01d87f29250e4436fabbf24fef624f7483edc47d666788b3358e09"
+    },
+    "scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "artifacts/validation/product_installation/clean_env/Scripts/python.exe": {
+      "bytes": 254800,
+      "sha256": "935016795f3e6908e75acbc2040a01e2e4cdb494a57c42f63a0d6eedb2372256"
+    },
+    "artifacts/validation/product_installation/clean_env/pyvenv.cfg": {
+      "bytes": 378,
+      "sha256": "0b0232d7993a8dbae356760a48139df91f3ad9978c8671cce7db49648012f278"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/results.py": {
+      "bytes": 34028,
+      "sha256": "d043172fa3674fc311176f97dc979e1660e1af8a17f8dec4f2dca34f6e33b5d7"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/reporting.py": {
+      "bytes": 16149,
+      "sha256": "c39639f8033fd68ee91b39f2e9a27332e570fd776fb00201cdd46283df7e1631"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/worker.py": {
+      "bytes": 11965,
+      "sha256": "5c6784d408604c764ff7e0dd7a08f95068bfd012c54b83e707822451e4eb1aba"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/app.py": {
+      "bytes": 11269,
+      "sha256": "0c3bcb7691ca24cd00a6f33dadcf1630e5e09cc7063ec43e60fd92f4379bcfdc"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/src/api/media_revision.py": {
+      "bytes": 3637,
+      "sha256": "62a09e3634b77ed70b6356fbf01124c9d4e55affbb243330f27a4c4adb6feb74"
+    },
+    "artifacts/validation/product_execution/result_storage_baseline_2026-10-06/receipt.json": {
+      "bytes": 1855,
+      "sha256": "d75dfff071a187922b5972e5781c54d12ab861aa2e076c16316dd84f7f5e1738"
+    },
+    "artifacts/validation/product_execution/result_storage_measurement_2026-10-06/helper.py": {
+      "bytes": 44418,
+      "sha256": "8a1585543a904826fca354f5fa727debfd7b5071f330cae9cfe8c41eb0f446dc"
+    },
+    "artifacts/validation/product_execution/result_storage_measurement_2026-10-06/protocol.json": {
+      "bytes": 5606,
+      "sha256": "c982c5fd1dbd6e7cd33917bdf46886ca4d4ef9a43ce88066d974d605bcfab097"
+    },
+    "artifacts/validation/product_execution/result_storage_measurement_2026-10-06/PROTOCOL.md": {
+      "bytes": 3981,
+      "sha256": "a46f402bd63eaa9012c10974438339a0679cbc2fd37415c51a119ff599e314f5"
+    }
+  },
+  "all12OwnedOriginalIdentitiesRetiredNow": true,
+  "allFourActualWorkloadsSampledBeforeAckByVerifiedExecutedOrder": true,
+  "fiveOutputByteEquivalencesAtBothCountsRemainPassed": true,
+  "retainedFileBindingsUnchangedAtEnd": true,
+  "correctedTerminalConclusion": "Four terminal synthetic children passed, every actual interpreter was sampled before acknowledgment by verified execution order, all 12 remembered owned exact identities are retired now, all five outputs are byte-equivalent at both counts, and all 114 retained files/source bindings remain unchanged. Initial independent auditor timestamp assertion was invalid and is preserved as diagnostic; no benchmark case was rerun.",
+  "completedAt": "2026-10-06T05:34:55.281614+00:00"
+}

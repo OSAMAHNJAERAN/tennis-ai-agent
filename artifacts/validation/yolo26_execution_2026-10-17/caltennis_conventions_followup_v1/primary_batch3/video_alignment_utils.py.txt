@@ -1,0 +1,182 @@
+import os
+import pdb
+import re
+from datetime import datetime
+import subprocess
+import numpy as np
+import av
+from datetime import timezone
+
+
+def load_start_and_end_times_from_video(video_file):
+    """
+    loads global start and end time for a video
+    """
+    pattern = r"(\d{2})_(\d{2})_(\d{4})_(\d{2})_(\d{2})_(\d{2})_(\d{3})_court\d+_([A-Z]+)_(\d+)_(\d{2})_(\d{2})_(\d{2})_(\d{3})\.MOV"
+    match = re.match(pattern, video_file)
+
+    (
+        month,
+        day,
+        year,
+        start_h,
+        start_m,
+        start_s,
+        start_ms,
+        pos,
+        vid_num,
+        end_h,
+        end_m,
+        end_s,
+        end_ms,
+    ) = match.groups()
+
+    start_time = datetime(
+        int(year),
+        int(month),
+        int(day),
+        int(start_h),
+        int(start_m),
+        int(start_s),
+        int(start_ms) * 1000,
+    )
+    end_time = datetime(
+        int(year),
+        int(month),
+        int(day),
+        int(end_h),
+        int(end_m),
+        int(end_s),
+        int(end_ms) * 1000,
+    )
+
+    return start_time, end_time
+
+def estimate_num_frames(video_path):
+    """
+    estimates number of frames in a video using ffprobe
+    """
+    cmd = [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-count_frames",
+        "-show_entries",
+        "stream=nb_read_frames",
+        "-of",
+        "default=nokey=1:noprint_wrappers=1",
+        video_path,
+    ]
+    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    num_frames = int(result.stdout)
+    return num_frames
+
+def find_valid_video_pairs(video_directory):
+    """
+    finds temporally overlapping video pairs
+    """
+    all_videos = [f for f in os.listdir(video_directory) if f.endswith(".MOV")]
+    videos_with_times = []
+    for video in all_videos:
+        start_time, end_time = load_start_and_end_times_from_video(video)
+
+        videos_with_times.append((video, start_time, end_time))
+
+    pairs = []
+    for i in range(len(videos_with_times)):
+        for j in range(i + 1, len(videos_with_times)):
+            vid1, start1, end1 = videos_with_times[i]
+            vid2, start2, end2 = videos_with_times[j]
+
+            if start1 < end2 and start2 < end1:
+                pairs.append((vid1, vid2))
+
+    return pairs
+
+
+def load_video_timestamps(video_path, force=False):
+    """
+    loads timestamps in milliseconds (timestamps start at 0)
+    """
+
+    base_path = video_path.replace(".mp4", "").replace(".MOV", "")
+    npy_path = base_path + "_timestamps.npy"
+    if not force:
+        if os.path.exists(npy_path):
+            return np.load(npy_path, allow_pickle=True)
+
+    # Get relative frame timestamps
+    container = av.open(video_path)
+    timestamps = []
+    for frame in container.decode(video=0):
+        timestamps.append((float(frame.pts * frame.time_base)) * 1000.0)
+    container.close()
+
+    timestamps = np.array(timestamps)
+    np.save(npy_path, timestamps)
+    return timestamps
+
+
+def get_timecrop_masks_from_two_videos(video_1, video_2, data_dir):
+    # load start times
+    start_1, end_1 = load_start_and_end_times_from_video(video_1)
+    start_2, end_2 = load_start_and_end_times_from_video(video_2)
+    # convert to milliseconds
+    start_1 = int(start_1.replace(tzinfo=timezone.utc).timestamp() * 1000)
+    start_2 = int(start_2.replace(tzinfo=timezone.utc).timestamp() * 1000)
+
+    times_1 = load_video_timestamps(os.path.join(data_dir, video_1))
+    times_2 = load_video_timestamps(os.path.join(data_dir, video_2))
+
+    # add global wallclock time
+    times_1 = times_1 + start_1
+    times_2 = times_2 + start_2
+
+    start_time = max(start_1, start_2)
+    end_time = min(times_1[-1], times_2[-1])
+
+    # get timecrop masks
+    time1_crop = times_1[times_1 >= start_time]
+    time1_crop = time1_crop[time1_crop <= end_time]
+    time2_crop = times_2[times_2 >= start_time]
+    time2_crop = time2_crop[times_2 <= end_time]
+
+    mask1 = (times_1 >= start_time) & (times_1 <= end_time)
+    mask2 = (times_2 >= start_time) & (times_2 <= end_time)
+
+    time1_crop = times_1[mask1]
+    time2_crop = times_2[mask2]
+
+    return mask1, mask2, time1_crop, time2_crop
+
+
+# ilona testing methods
+def main():
+
+    # find video pairs
+    dataset_root = "/data/ilona/datasets/tennis_datasets/full_dataset/"
+    session_name = "09_18_2025_16_15_court5"
+    video_directory = os.path.join(dataset_root, session_name)
+
+    all_videos = [f for f in os.listdir(video_directory) if f.endswith(".MOV")]
+
+    pairs = find_valid_video_pairs(video_directory)
+    print(f"found {len(pairs)} valid video pairs in {video_directory}:")
+    for pair in pairs:
+        print(pair)
+
+    # get timestamps of each video
+    # TODO - add overhead court timestamp handling
+    # need to figure out how to synchronize
+    for video_id in all_videos:
+        if (".DS_Store" in video_id) or ("overhead" in video_id):
+            continue
+        print("checking video_id ", video_id)
+        video_path = os.path.join(video_directory, video_id)
+        load_video_timestamps(video_path)
+
+
+if __name__ == "__main__":
+    main()

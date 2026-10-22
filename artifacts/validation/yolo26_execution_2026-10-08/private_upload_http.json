@@ -1,0 +1,132 @@
+{
+  "kind": "ACTUAL_LOOPBACK_HTTP_UPLOAD",
+  "started_unix": 1791541154.2978985,
+  "worker_enabled": false,
+  "vision_qualification": false,
+  "browser_file_chooser_tested": false,
+  "browser_file_chooser_limitation": "Chrome extension requires Allow access to file URLs; permission was not changed.",
+  "server_health": {
+    "status": "ok",
+    "max_upload_bytes": 1073741824,
+    "supported_formats": [
+      ".avi",
+      ".mov",
+      ".mp4"
+    ],
+    "max_duration_seconds": 7200,
+    "worker_available": false,
+    "auth_required": true,
+    "resumable_uploads": true,
+    "upload_chunk_bytes": 8388608,
+    "batch_max_files": 16
+  },
+  "batch_id": "batch_6ae0004a7df044669bda6b45bd57cd95",
+  "files": [
+    {
+      "source": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\racketvision_training20\\tennis\\videos\\match172_000.mp4",
+      "sha256": "eb1dd91dbdf4c270f02f3f26d86cd9e7ed81606123f354805263771f6f9a5a1a",
+      "bytes": 1858196,
+      "chunks": 4,
+      "resumed_from_committed_offset": true,
+      "upload_id": "upload_c747e26c707a4900a71b39d842cda4c2",
+      "job_id": "match_1518ebf806ba4dea9b16235cb73de522"
+    },
+    {
+      "source": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\data\\external\\racketvision_training20\\tennis\\videos\\match175_000.mp4",
+      "sha256": "0dafea81a8e09847fbb9ca9a194ba33ab1d190fdf91d075cbff4f28d5976d3ca",
+      "bytes": 4554773,
+      "chunks": 9,
+      "resumed_from_committed_offset": true,
+      "upload_id": "upload_e5d73d4908fa46328132f1eafba4d5ec",
+      "job_id": "match_d37842cce90443528d55fd3c2d0db466"
+    }
+  ],
+  "checks": [
+    "actual_bytes_and_server_sha256",
+    "multiple_chunks",
+    "connection_relogin_resume",
+    "stale_offset_conflict",
+    "completion_idempotency",
+    "cross_account_404",
+    "independent_batch_no_invented_unified_report",
+    "cancel_and_new_id_retry_preserves_original"
+  ],
+  "retry_job_id": "match_d2cb325a742c4051a5f8c3079665ae23",
+  "batch_status": {
+    "id": "batch_6ae0004a7df044669bda6b45bd57cd95",
+    "mode": "independent",
+    "created_at": "2026-10-09T10:19:14.557832+00:00",
+    "uploads": [
+      {
+        "id": "upload_c747e26c707a4900a71b39d842cda4c2",
+        "filename": "match172_000.mp4",
+        "size_bytes": 1858196,
+        "offset": 1858196,
+        "status": "COMPLETED",
+        "batch_id": "batch_6ae0004a7df044669bda6b45bd57cd95",
+        "analysis_id": "match_1518ebf806ba4dea9b16235cb73de522",
+        "clip_index": 0,
+        "start_offset_seconds": null,
+        "checksum": "eb1dd91dbdf4c270f02f3f26d86cd9e7ed81606123f354805263771f6f9a5a1a",
+        "error": null,
+        "created_at": "2026-10-09T10:19:14.558966+00:00",
+        "updated_at": "2026-10-09T10:19:14.922178+00:00",
+        "job": {
+          "id": "match_1518ebf806ba4dea9b16235cb73de522",
+          "filename": "match172_000.mp4",
+          "status": "UPLOADED",
+          "stage": "Waiting for the analysis worker",
+          "step": 0,
+          "created_at": "2026-10-09T10:19:14.898039+00:00",
+          "started_at": null,
+          "completed_at": null,
+          "error": null,
+          "size_bytes": 1858196,
+          "cancel_requested": 0,
+          "attempt": 0,
+          "retry_of": null,
+          "heartbeat_at": null,
+          "cancelled": false
+        }
+      },
+      {
+        "id": "upload_e5d73d4908fa46328132f1eafba4d5ec",
+        "filename": "match175_000.mp4",
+        "size_bytes": 4554773,
+        "offset": 4554773,
+        "status": "COMPLETED",
+        "batch_id": "batch_6ae0004a7df044669bda6b45bd57cd95",
+        "analysis_id": "match_d37842cce90443528d55fd3c2d0db466",
+        "clip_index": 1,
+        "start_offset_seconds": null,
+        "checksum": "0dafea81a8e09847fbb9ca9a194ba33ab1d190fdf91d075cbff4f28d5976d3ca",
+        "error": null,
+        "created_at": "2026-10-09T10:19:14.559062+00:00",
+        "updated_at": "2026-10-09T10:19:15.530515+00:00",
+        "job": {
+          "id": "match_d37842cce90443528d55fd3c2d0db466",
+          "filename": "match175_000.mp4",
+          "status": "UPLOADED",
+          "stage": "Waiting for the analysis worker",
+          "step": 0,
+          "created_at": "2026-10-09T10:19:15.504849+00:00",
+          "started_at": null,
+          "completed_at": null,
+          "error": null,
+          "size_bytes": 4554773,
+          "cancel_requested": 0,
+          "attempt": 0,
+          "retry_of": null,
+          "heartbeat_at": null,
+          "cancelled": false
+        }
+      }
+    ],
+    "grouping_status": "unverified",
+    "unified_report": null,
+    "reason": "Match continuity and clip overlap require independent verification before merging."
+  },
+  "elapsed_seconds": 1.3423643112182617,
+  "status": "PASS",
+  "script_sha256": "1421c59899f641020de8dceed823861957640bcf82977236223b01b09d16a8e2"
+}

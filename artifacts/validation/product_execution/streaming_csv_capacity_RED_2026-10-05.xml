@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="12" time="1.323" timestamp="2026-10-05T10:23:38.925508+08:00" hostname="Osamah"><testcase classname="tests.test_streaming_telemetry_csv" name="test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes[1]" time="0.001"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">chunk_chars = 1
+
+    @pytest.mark.parametrize('chunk_chars', [1, 1000, 65536])
+    def test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes(chunk_chars):
+        result = telemetry_result()
+        expected = expected_csv()
+&gt;       assert ''.join(reporting.telemetry_csv_chunks(result, chunk_chars=chunk_chars)) == expected
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:75: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes[1000]" time="0.000"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">chunk_chars = 1000
+
+    @pytest.mark.parametrize('chunk_chars', [1, 1000, 65536])
+    def test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes(chunk_chars):
+        result = telemetry_result()
+        expected = expected_csv()
+&gt;       assert ''.join(reporting.telemetry_csv_chunks(result, chunk_chars=chunk_chars)) == expected
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:75: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes[65536]" time="0.001"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">chunk_chars = 65536
+
+    @pytest.mark.parametrize('chunk_chars', [1, 1000, 65536])
+    def test_streamed_csv_and_compatibility_wrapper_preserve_exact_bytes(chunk_chars):
+        result = telemetry_result()
+        expected = expected_csv()
+&gt;       assert ''.join(reporting.telemetry_csv_chunks(result, chunk_chars=chunk_chars)) == expected
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:75: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_absent_or_invalid_credit_remains_empty_without_changing_observations[None]" time="0.000"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">source = None
+
+    @pytest.mark.parametrize('source', [None, {'id': 'invalid'}])
+    def test_absent_or_invalid_credit_remains_empty_without_changing_observations(source):
+        result = telemetry_result()
+        result['mediaSource'] = source
+&gt;       rows = list(csv.DictReader(io.StringIO(''.join(reporting.telemetry_csv_chunks(result)))))
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:84: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_absent_or_invalid_credit_remains_empty_without_changing_observations[source1]" time="0.000"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">source = {'id': 'invalid'}
+
+    @pytest.mark.parametrize('source', [None, {'id': 'invalid'}])
+    def test_absent_or_invalid_credit_remains_empty_without_changing_observations(source):
+        result = telemetry_result()
+        result['mediaSource'] = source
+&gt;       rows = list(csv.DictReader(io.StringIO(''.join(reporting.telemetry_csv_chunks(result)))))
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:84: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_header_is_immediate_and_long_input_is_consumed_in_bounded_chunks" time="0.000"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">def test_header_is_immediate_and_long_input_is_consumed_in_bounded_chunks():
+        frames = CountedFrames(100_000)
+        result = {'summary': {'id': 'match_large'}, 'trajectories': {'ballTrajectory': frames}}
+&gt;       chunks = reporting.telemetry_csv_chunks(result, chunk_chars=1024)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:107: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_a_single_long_csv_row_is_never_split_inside_a_quoted_cell" time="0.000"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">def test_a_single_long_csv_row_is_never_split_inside_a_quoted_cell():
+        result = telemetry_result()
+&gt;       chunks = list(reporting.telemetry_csv_chunks(result, chunk_chars=100))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:124: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_fastapi_csv_route_streams_utf8_with_download_headers_and_no_full_buffer" time="0.019"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'">saved_csv_service = (&lt;fastapi.applications.FastAPI object at 0x000001C721D57ED0&gt;, &lt;src.api.jobs.JobStore object at 0x000001C721D57390&gt;, 'm...[[4.0, 8.0], None], 'player1Speeds': [0.0, None, 10.0], 'player2CourtPositions': [None, [5.0, 9.0], [6.0, 9.0]], ...}})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C721DE4180&gt;
+
+    def test_fastapi_csv_route_streams_utf8_with_download_headers_and_no_full_buffer(saved_csv_service, monkeypatch):
+        app, _, analysis_id, result = saved_csv_service
+&gt;       real_chunks = reporting.telemetry_csv_chunks
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:159: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_disconnected_csv_request_stops_before_reading_future_rows" time="0.015"><failure message="AttributeError: &lt;module 'src.api.reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\api\\reporting.py'&gt; has no attribute 'telemetry_csv_chunks'">saved_csv_service = (&lt;fastapi.applications.FastAPI object at 0x000001C721DD9810&gt;, &lt;src.api.jobs.JobStore object at 0x000001C721DD96D0&gt;, 'm...[[4.0, 8.0], None], 'player1Speeds': [0.0, None, 10.0], 'player2CourtPositions': [None, [5.0, 9.0], [6.0, 9.0]], ...}})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C721DE4770&gt;
+
+    def test_disconnected_csv_request_stops_before_reading_future_rows(saved_csv_service, monkeypatch):
+        app, _, analysis_id, _ = saved_csv_service
+        produced = []
+    
+        def observe_chunks(_saved):
+            for index in range(1000):
+                produced.append(index)
+                yield f'row {index}\r\n'
+    
+&gt;       monkeypatch.setattr(reporting, 'telemetry_csv_chunks', observe_chunks)
+E       AttributeError: &lt;module 'src.api.reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\api\\reporting.py'&gt; has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:203: AttributeError</failure></testcase><testcase classname="tests.test_streaming_telemetry_csv" name="test_missing_or_corrupt_saved_result_fails_before_csv_headers[None]" time="0.036" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_missing_or_corrupt_saved_result_fails_before_csv_headers[{broken JSON]" time="0.037" /><testcase classname="tests.test_streaming_telemetry_csv" name="test_csv_iteration_failure_does_not_send_a_successful_end_of_stream" time="0.017"><failure message="AttributeError: &lt;module 'src.api.reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\api\\reporting.py'&gt; has no attribute 'telemetry_csv_chunks'">saved_csv_service = (&lt;fastapi.applications.FastAPI object at 0x000001C721EAD6D0&gt;, &lt;src.api.jobs.JobStore object at 0x000001C721EB7650&gt;, 'm...[[4.0, 8.0], None], 'player1Speeds': [0.0, None, 10.0], 'player2CourtPositions': [None, [5.0, 9.0], [6.0, 9.0]], ...}})
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001C721F51910&gt;
+
+    def test_csv_iteration_failure_does_not_send_a_successful_end_of_stream(saved_csv_service, monkeypatch):
+        app, _, analysis_id, _ = saved_csv_service
+    
+        def fail_after_header(_saved):
+            yield 'header\r\n'
+            raise ValueError('Invalid persisted frame row.')
+    
+&gt;       monkeypatch.setattr(reporting, 'telemetry_csv_chunks', fail_after_header)
+E       AttributeError: &lt;module 'src.api.reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\api\\reporting.py'&gt; has no attribute 'telemetry_csv_chunks'
+
+tests\test_streaming_telemetry_csv.py:237: AttributeError</failure></testcase></testsuite></testsuites>

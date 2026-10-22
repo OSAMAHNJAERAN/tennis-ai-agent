@@ -1,0 +1,1248 @@
+{
+  "startedAt": "2026-10-05T02:32:46.432883+00:00",
+  "scope": "Synthetic export-only systems stress; no video inference, accuracy or full-match qualification.",
+  "frames": [
+    600,
+    18000,
+    432000
+  ],
+  "fpsForScaleOnly": 60,
+  "limitations": [
+    "CSV pairs include existing O(N) input arrays in both measurements.",
+    "Camera pairs isolate the removed export-only audit accumulation, without model allocations.",
+    "One process per run; Windows peak working set/commit include interpreter imports; host background activity is uncontrolled.",
+    "These paths do not bound all pipeline/result/API/frontend arrays."
+  ],
+  "sourceFiles": {
+    "scripts\\audit\\measure_export_capacity.py": "a0790d34ddb8a865e25cd8d9de7d9eaed1da11132dd4dd1719a21622976126ec",
+    "artifacts\\validation\\product_execution\\reporting_before_streamed_csv_capacity_2026-10-05.py": "e463ef7ed64a8352f8e2a1e1f3eb5427088ab798c8e99f44b8b0265131f1440c",
+    "src\\utils\\json_array_artifact.py": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194",
+    "src\\api\\reporting.py": "c39639f8033fd68ee91b39f2e9a27332e570fd776fb00201cdd46283df7e1631",
+    "outputs\\product\\analyses\\match_02d494b88e99400d8cf7243528302f9b\\camera_registration.json": "0b1a7d398f0baeb9b3fdc2234d8905a95bdc93730611e3587957b7436a942ed4",
+    "outputs\\product\\analyses\\match_02d494b88e99400d8cf7243528302f9b\\result.json": "e192bef01fd35292d98e061417d9b77fded9a21ae0028925d28fcb01d9f45fc6"
+  },
+  "runs": [
+    {
+      "kind": "camera",
+      "mode": "old",
+      "frames": 600,
+      "elapsedSeconds": 0.009037399984663352,
+      "memoryBeforeBytes": {
+        "rss": 23113728,
+        "vms": 13643776,
+        "num_page_faults": 5788,
+        "peak_wset": 23113728,
+        "wset": 23113728,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13643776,
+        "peak_pagefile": 13643776,
+        "private": 13643776
+      },
+      "memoryAfterBytes": {
+        "rss": 24207360,
+        "vms": 15716352,
+        "num_page_faults": 6309,
+        "peak_wset": 24207360,
+        "wset": 24207360,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 13720,
+        "nonpaged_pool": 13592,
+        "pagefile": 15716352,
+        "peak_pagefile": 15716352,
+        "private": 15716352
+      },
+      "peakWorkingSetBytes": 24207360,
+      "peakPrivateCommitBytes": 15716352,
+      "outputBytes": 339835,
+      "outputSha256": "0b1a7d398f0baeb9b3fdc2234d8905a95bdc93730611e3587957b7436a942ed4",
+      "outputFile": "camera_old_600.json",
+      "parentSamples": [
+        {
+          "seconds": 0.0007782999891787767,
+          "rssBytes": 1974272,
+          "privateBytes": 389120,
+          "availableRamBytes": 3010129920
+        }
+      ]
+    },
+    {
+      "kind": "camera",
+      "mode": "new",
+      "frames": 600,
+      "elapsedSeconds": 0.013023899984546006,
+      "memoryBeforeBytes": {
+        "rss": 23048192,
+        "vms": 13578240,
+        "num_page_faults": 5735,
+        "peak_wset": 23048192,
+        "wset": 23048192,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13578240,
+        "peak_pagefile": 13578240,
+        "private": 13578240
+      },
+      "memoryAfterBytes": {
+        "rss": 23732224,
+        "vms": 14602240,
+        "num_page_faults": 6158,
+        "peak_wset": 24055808,
+        "wset": 23732224,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13760,
+        "nonpaged_pool": 13456,
+        "pagefile": 14602240,
+        "peak_pagefile": 14602240,
+        "private": 14602240
+      },
+      "peakWorkingSetBytes": 24055808,
+      "peakPrivateCommitBytes": 14602240,
+      "outputBytes": 262997,
+      "outputSha256": "b6a587a6370f2741d1784a611ef70645b7ae70256511891940f7a28c5bc0726b",
+      "outputFile": "camera_new_600.json",
+      "parentSamples": [
+        {
+          "seconds": 0.0007106999983079731,
+          "rssBytes": 2019328,
+          "privateBytes": 393216,
+          "availableRamBytes": 2995810304
+        }
+      ]
+    },
+    {
+      "kind": "camera",
+      "mode": "old",
+      "frames": 18000,
+      "elapsedSeconds": 0.21817649999866262,
+      "memoryBeforeBytes": {
+        "rss": 23392256,
+        "vms": 13967360,
+        "num_page_faults": 5818,
+        "peak_wset": 23392256,
+        "wset": 23392256,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13967360,
+        "peak_pagefile": 13967360,
+        "private": 13967360
+      },
+      "memoryAfterBytes": {
+        "rss": 33128448,
+        "vms": 24444928,
+        "num_page_faults": 8483,
+        "peak_wset": 33128448,
+        "wset": 33128448,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 14808,
+        "nonpaged_pool": 14680,
+        "pagefile": 24444928,
+        "peak_pagefile": 24444928,
+        "private": 24444928
+      },
+      "peakWorkingSetBytes": 33128448,
+      "peakPrivateCommitBytes": 24444928,
+      "outputBytes": 10213235,
+      "outputSha256": "9cee0975a4f4ba4095308aea3f29aa1191c36286f8bb3d812049290803769e82",
+      "outputFile": "camera_old_18000.json",
+      "parentSamples": [
+        {
+          "seconds": 0.0006708000146318227,
+          "rssBytes": 1978368,
+          "privateBytes": 397312,
+          "availableRamBytes": 3005456384
+        },
+        {
+          "seconds": 0.25170280001475476,
+          "rssBytes": 4235264,
+          "privateBytes": 872448,
+          "availableRamBytes": 2988744704
+        }
+      ]
+    },
+    {
+      "kind": "camera",
+      "mode": "new",
+      "frames": 18000,
+      "elapsedSeconds": 0.2772555999981705,
+      "memoryBeforeBytes": {
+        "rss": 23330816,
+        "vms": 13897728,
+        "num_page_faults": 5805,
+        "peak_wset": 23330816,
+        "wset": 23330816,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13897728,
+        "peak_pagefile": 13897728,
+        "private": 13897728
+      },
+      "memoryAfterBytes": {
+        "rss": 24092672,
+        "vms": 13901824,
+        "num_page_faults": 6280,
+        "peak_wset": 24346624,
+        "wset": 24092672,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13776,
+        "nonpaged_pool": 13456,
+        "pagefile": 13901824,
+        "peak_pagefile": 14917632,
+        "private": 13901824
+      },
+      "peakWorkingSetBytes": 24346624,
+      "peakPrivateCommitBytes": 14917632,
+      "outputBytes": 7909197,
+      "outputSha256": "41ef2f4e7a3d373e2a39653d2a56cf309e9327322c1a3e12700c693cb4ca7d56",
+      "outputFile": "camera_new_18000.json",
+      "parentSamples": [
+        {
+          "seconds": 0.0006991999980527908,
+          "rssBytes": 1978368,
+          "privateBytes": 397312,
+          "availableRamBytes": 2986500096
+        },
+        {
+          "seconds": 0.25157880000188015,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2963763200
+        }
+      ]
+    },
+    {
+      "kind": "camera",
+      "mode": "old",
+      "frames": 432000,
+      "elapsedSeconds": 5.147675700020045,
+      "memoryBeforeBytes": {
+        "rss": 23318528,
+        "vms": 13860864,
+        "num_page_faults": 5797,
+        "peak_wset": 23318528,
+        "wset": 23318528,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13860864,
+        "peak_pagefile": 13860864,
+        "private": 13860864
+      },
+      "memoryAfterBytes": {
+        "rss": 245805056,
+        "vms": 238186496,
+        "num_page_faults": 65800,
+        "peak_wset": 245805056,
+        "wset": 245805056,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 42144,
+        "nonpaged_pool": 42016,
+        "pagefile": 238186496,
+        "peak_pagefile": 238186496,
+        "private": 238186496
+      },
+      "peakWorkingSetBytes": 245805056,
+      "peakPrivateCommitBytes": 238186496,
+      "outputBytes": 245697235,
+      "outputSha256": "8d6c1cf3a430a428a4e1a7c818cce21be4c06e46138b0bba1cd8596ea2821ff4",
+      "outputFile": "camera_old_432000.json",
+      "parentSamples": [
+        {
+          "seconds": 0.0006186999962665141,
+          "rssBytes": 2002944,
+          "privateBytes": 393216,
+          "availableRamBytes": 2948931584
+        },
+        {
+          "seconds": 0.2516761000151746,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2864795648
+        },
+        {
+          "seconds": 0.5024944000178948,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2928504832
+        },
+        {
+          "seconds": 0.7534790000063367,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2848190464
+        },
+        {
+          "seconds": 1.0046194000169635,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2829524992
+        },
+        {
+          "seconds": 1.2554487000161316,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2692915200
+        },
+        {
+          "seconds": 1.5065818000002764,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2788884480
+        },
+        {
+          "seconds": 1.757552700000815,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2765946880
+        },
+        {
+          "seconds": 2.008649499999592,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2705227776
+        },
+        {
+          "seconds": 2.2596448000113014,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2692210688
+        },
+        {
+          "seconds": 2.510610199999064,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2598248448
+        },
+        {
+          "seconds": 2.761428400001023,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2701164544
+        },
+        {
+          "seconds": 3.0122776000062004,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2658304000
+        },
+        {
+          "seconds": 3.26314180000918,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2648862720
+        },
+        {
+          "seconds": 3.5140981000149623,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2641219584
+        },
+        {
+          "seconds": 3.7652663000044413,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2608959488
+        },
+        {
+          "seconds": 4.016366399999242,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2581536768
+        },
+        {
+          "seconds": 4.267163900018204,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2594041856
+        },
+        {
+          "seconds": 4.518307000020286,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2621857792
+        },
+        {
+          "seconds": 4.7695901000115555,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2593955840
+        },
+        {
+          "seconds": 5.0205571000115015,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2549067776
+        },
+        {
+          "seconds": 5.271689300017897,
+          "rssBytes": 4235264,
+          "privateBytes": 864256,
+          "availableRamBytes": 2491703296
+        }
+      ]
+    },
+    {
+      "kind": "camera",
+      "mode": "new",
+      "frames": 432000,
+      "elapsedSeconds": 6.6140866999921855,
+      "memoryBeforeBytes": {
+        "rss": 23400448,
+        "vms": 13987840,
+        "num_page_faults": 5822,
+        "peak_wset": 23400448,
+        "wset": 23400448,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13987840,
+        "peak_pagefile": 13987840,
+        "private": 13987840
+      },
+      "memoryAfterBytes": {
+        "rss": 24395776,
+        "vms": 15020032,
+        "num_page_faults": 6364,
+        "peak_wset": 24416256,
+        "wset": 24395776,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13912,
+        "nonpaged_pool": 13592,
+        "pagefile": 15020032,
+        "peak_pagefile": 15020032,
+        "private": 15020032
+      },
+      "peakWorkingSetBytes": 24416256,
+      "peakPrivateCommitBytes": 15020032,
+      "outputBytes": 190401197,
+      "outputSha256": "5e04e236b0a0a761f10741b6713e4de29b1731683079abd406456e681230ad7b",
+      "outputFile": "camera_new_432000.json",
+      "parentSamples": [
+        {
+          "seconds": 0.0006311000033747405,
+          "rssBytes": 1978368,
+          "privateBytes": 393216,
+          "availableRamBytes": 2788704256
+        },
+        {
+          "seconds": 0.251597499998752,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2772987904
+        },
+        {
+          "seconds": 0.5025055000151042,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2789535744
+        },
+        {
+          "seconds": 0.7536504000017885,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2778456064
+        },
+        {
+          "seconds": 1.0046997000172269,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2764234752
+        },
+        {
+          "seconds": 1.2554628000070807,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2759368704
+        },
+        {
+          "seconds": 1.5064846000168473,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2704728064
+        },
+        {
+          "seconds": 1.7575506000139285,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2724257792
+        },
+        {
+          "seconds": 2.008510000014212,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2762465280
+        },
+        {
+          "seconds": 2.2595377000106964,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2757095424
+        },
+        {
+          "seconds": 2.52073570000357,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2717945856
+        },
+        {
+          "seconds": 2.771992499998305,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2708586496
+        },
+        {
+          "seconds": 3.02302230001078,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2693353472
+        },
+        {
+          "seconds": 3.2741150000074413,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2770501632
+        },
+        {
+          "seconds": 3.5252899000188336,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2769022976
+        },
+        {
+          "seconds": 3.7760514999972656,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2767339520
+        },
+        {
+          "seconds": 4.026858199998969,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2793172992
+        },
+        {
+          "seconds": 4.278172899998026,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2789335040
+        },
+        {
+          "seconds": 4.529251400002977,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2784849920
+        },
+        {
+          "seconds": 4.780518900020979,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2775408640
+        },
+        {
+          "seconds": 5.031497999996645,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2769518592
+        },
+        {
+          "seconds": 5.282228500000201,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2764877824
+        },
+        {
+          "seconds": 5.533187699998962,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2788073472
+        },
+        {
+          "seconds": 5.78415320001659,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2779041792
+        },
+        {
+          "seconds": 6.035044200019911,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2770509824
+        },
+        {
+          "seconds": 6.286139600008028,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2758541312
+        },
+        {
+          "seconds": 6.537260200013407,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2748280832
+        },
+        {
+          "seconds": 6.788262100017164,
+          "rssBytes": 4235264,
+          "privateBytes": 860160,
+          "availableRamBytes": 2980286464
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "mode": "old",
+      "frames": 600,
+      "elapsedSeconds": 0.019274899997981265,
+      "memoryBeforeBytes": {
+        "rss": 23470080,
+        "vms": 14045184,
+        "num_page_faults": 5841,
+        "peak_wset": 23470080,
+        "wset": 23470080,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 14045184,
+        "peak_pagefile": 14045184,
+        "private": 14045184
+      },
+      "memoryAfterBytes": {
+        "rss": 28659712,
+        "vms": 19210240,
+        "num_page_faults": 8237,
+        "peak_wset": 29470720,
+        "wset": 28659712,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 14232,
+        "nonpaged_pool": 14000,
+        "pagefile": 19210240,
+        "peak_pagefile": 20217856,
+        "private": 19210240
+      },
+      "peakWorkingSetBytes": 29470720,
+      "peakPrivateCommitBytes": 20217856,
+      "outputBytes": 364350,
+      "outputSha256": "52fcde73df1e3ab7623fe1bb239d89f171a2a546836393d39a6392bb446df4d3",
+      "outputFile": "csv_old_600.csv",
+      "parentSamples": [
+        {
+          "seconds": 0.0007715000247117132,
+          "rssBytes": 2023424,
+          "privateBytes": 401408,
+          "availableRamBytes": 3005263872
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "mode": "new",
+      "frames": 600,
+      "elapsedSeconds": 0.012381300010019913,
+      "memoryBeforeBytes": {
+        "rss": 23306240,
+        "vms": 13873152,
+        "num_page_faults": 5798,
+        "peak_wset": 23306240,
+        "wset": 23306240,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13873152,
+        "peak_pagefile": 13873152,
+        "private": 13873152
+      },
+      "memoryAfterBytes": {
+        "rss": 26140672,
+        "vms": 16478208,
+        "num_page_faults": 7143,
+        "peak_wset": 26664960,
+        "wset": 26140672,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13856,
+        "nonpaged_pool": 13728,
+        "pagefile": 16478208,
+        "peak_pagefile": 18022400,
+        "private": 16478208
+      },
+      "peakWorkingSetBytes": 26664960,
+      "peakPrivateCommitBytes": 18022400,
+      "outputBytes": 364350,
+      "outputSha256": "52fcde73df1e3ab7623fe1bb239d89f171a2a546836393d39a6392bb446df4d3",
+      "outputFile": "csv_new_600.csv",
+      "parentSamples": [
+        {
+          "seconds": 0.0006719999946653843,
+          "rssBytes": 2019328,
+          "privateBytes": 397312,
+          "availableRamBytes": 2999156736
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "mode": "old",
+      "frames": 18000,
+      "elapsedSeconds": 0.2258746000006795,
+      "memoryBeforeBytes": {
+        "rss": 23351296,
+        "vms": 13942784,
+        "num_page_faults": 5849,
+        "peak_wset": 23351296,
+        "wset": 23351296,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13942784,
+        "peak_pagefile": 13942784,
+        "private": 13942784
+      },
+      "memoryAfterBytes": {
+        "rss": 69074944,
+        "vms": 59338752,
+        "num_page_faults": 33769,
+        "peak_wset": 79990784,
+        "wset": 69074944,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 15488,
+        "nonpaged_pool": 15360,
+        "pagefile": 59338752,
+        "peak_pagefile": 81121280,
+        "private": 59338752
+      },
+      "peakWorkingSetBytes": 79990784,
+      "peakPrivateCommitBytes": 81121280,
+      "outputBytes": 10960735,
+      "outputSha256": "f4dc1bc9f22428c37203cc6eeec3c7bead5ea1953970d8fd61f6806ff978f943",
+      "outputFile": "csv_old_18000.csv",
+      "parentSamples": [
+        {
+          "seconds": 0.0006202000076882541,
+          "rssBytes": 2019328,
+          "privateBytes": 397312,
+          "availableRamBytes": 3001581568
+        },
+        {
+          "seconds": 0.25171310000587255,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2972135424
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "mode": "new",
+      "frames": 18000,
+      "elapsedSeconds": 0.19411799998488277,
+      "memoryBeforeBytes": {
+        "rss": 23429120,
+        "vms": 13979648,
+        "num_page_faults": 5827,
+        "peak_wset": 23429120,
+        "wset": 23429120,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13979648,
+        "peak_pagefile": 13979648,
+        "private": 13979648
+      },
+      "memoryAfterBytes": {
+        "rss": 36319232,
+        "vms": 27242496,
+        "num_page_faults": 9683,
+        "peak_wset": 36831232,
+        "wset": 36319232,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 15080,
+        "nonpaged_pool": 14952,
+        "pagefile": 27242496,
+        "peak_pagefile": 27262976,
+        "private": 27242496
+      },
+      "peakWorkingSetBytes": 36831232,
+      "peakPrivateCommitBytes": 27262976,
+      "outputBytes": 10960735,
+      "outputSha256": "f4dc1bc9f22428c37203cc6eeec3c7bead5ea1953970d8fd61f6806ff978f943",
+      "outputFile": "csv_new_18000.csv",
+      "parentSamples": [
+        {
+          "seconds": 0.0006973999843467027,
+          "rssBytes": 2048000,
+          "privateBytes": 397312,
+          "availableRamBytes": 2988290048
+        },
+        {
+          "seconds": 0.25154669999028556,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2944188416
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "mode": "old",
+      "frames": 432000,
+      "elapsedSeconds": 5.478482500009704,
+      "memoryBeforeBytes": {
+        "rss": 23478272,
+        "vms": 14065664,
+        "num_page_faults": 5837,
+        "peak_wset": 23478272,
+        "wset": 23478272,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 14065664,
+        "peak_pagefile": 14065664,
+        "private": 14065664
+      },
+      "memoryAfterBytes": {
+        "rss": 1064333312,
+        "vms": 1058402304,
+        "num_page_faults": 672200,
+        "peak_wset": 1325469696,
+        "wset": 1064333312,
+        "peak_paged_pool": 155800,
+        "paged_pool": 155624,
+        "peak_nonpaged_pool": 45000,
+        "nonpaged_pool": 44872,
+        "pagefile": 1058402304,
+        "peak_pagefile": 1581981696,
+        "private": 1058402304
+      },
+      "peakWorkingSetBytes": 1325469696,
+      "peakPrivateCommitBytes": 1581981696,
+      "outputBytes": 263703065,
+      "outputSha256": "db0ff6d7315e79039993a1addd762ce9be86e5c99199a09715be604327128acb",
+      "outputFile": "csv_old_432000.csv",
+      "parentSamples": [
+        {
+          "seconds": 0.0006797999958507717,
+          "rssBytes": 2023424,
+          "privateBytes": 397312,
+          "availableRamBytes": 2938249216
+        },
+        {
+          "seconds": 0.25167359999613836,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2911866880
+        },
+        {
+          "seconds": 0.5025591000157874,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2848665600
+        },
+        {
+          "seconds": 0.7532897000201046,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2751352832
+        },
+        {
+          "seconds": 1.0042443000129424,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2826117120
+        },
+        {
+          "seconds": 1.2553804999915883,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2725720064
+        },
+        {
+          "seconds": 1.5060789000126533,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2738290688
+        },
+        {
+          "seconds": 1.7572414000169374,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2646519808
+        },
+        {
+          "seconds": 2.0083991000137758,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2701545472
+        },
+        {
+          "seconds": 2.2592580000055023,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2680586240
+        },
+        {
+          "seconds": 2.510409000009531,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2646892544
+        },
+        {
+          "seconds": 2.761637100018561,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2608267264
+        },
+        {
+          "seconds": 3.012695400015218,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2571911168
+        },
+        {
+          "seconds": 3.2634128000063356,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2540912640
+        },
+        {
+          "seconds": 3.514181600010488,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2510483456
+        },
+        {
+          "seconds": 3.765024499996798,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2467217408
+        },
+        {
+          "seconds": 4.0161884000117425,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2431299584
+        },
+        {
+          "seconds": 4.267442400014261,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2197307392
+        },
+        {
+          "seconds": 4.51856699999189,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2386526208
+        },
+        {
+          "seconds": 4.769759000017075,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2367602688
+        },
+        {
+          "seconds": 5.02062660001684,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2315587584
+        },
+        {
+          "seconds": 5.27173340000445,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 1801900032
+        },
+        {
+          "seconds": 5.522499600017909,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2049413120
+        },
+        {
+          "seconds": 5.7734191000054125,
+          "rssBytes": 4239360,
+          "privateBytes": 868352,
+          "availableRamBytes": 2132402176
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "mode": "new",
+      "frames": 432000,
+      "elapsedSeconds": 4.535528200009139,
+      "memoryBeforeBytes": {
+        "rss": 23425024,
+        "vms": 13979648,
+        "num_page_faults": 5830,
+        "peak_wset": 23425024,
+        "wset": 23425024,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 13584,
+        "nonpaged_pool": 13456,
+        "pagefile": 13979648,
+        "peak_pagefile": 13979648,
+        "private": 13979648
+      },
+      "memoryAfterBytes": {
+        "rss": 275775488,
+        "vms": 267235328,
+        "num_page_faults": 73667,
+        "peak_wset": 276389888,
+        "wset": 275775488,
+        "peak_paged_pool": 155784,
+        "paged_pool": 155608,
+        "peak_nonpaged_pool": 44728,
+        "nonpaged_pool": 44600,
+        "pagefile": 267235328,
+        "peak_pagefile": 267845632,
+        "private": 267235328
+      },
+      "peakWorkingSetBytes": 276389888,
+      "peakPrivateCommitBytes": 267845632,
+      "outputBytes": 263703065,
+      "outputSha256": "db0ff6d7315e79039993a1addd762ce9be86e5c99199a09715be604327128acb",
+      "outputFile": "csv_new_432000.csv",
+      "parentSamples": [
+        {
+          "seconds": 0.0006309000018518418,
+          "rssBytes": 1978368,
+          "privateBytes": 397312,
+          "availableRamBytes": 3100790784
+        },
+        {
+          "seconds": 0.2517646999913268,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 3074277376
+        },
+        {
+          "seconds": 0.5027562000032049,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 3018199040
+        },
+        {
+          "seconds": 0.7538248999917414,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2979975168
+        },
+        {
+          "seconds": 1.00495289999526,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2920177664
+        },
+        {
+          "seconds": 1.2556896999885794,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2886795264
+        },
+        {
+          "seconds": 1.5069354999868665,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2807271424
+        },
+        {
+          "seconds": 1.7581033000024036,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2853195776
+        },
+        {
+          "seconds": 2.00906800001394,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2815770624
+        },
+        {
+          "seconds": 2.2601451000082307,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2775879680
+        },
+        {
+          "seconds": 2.5113025000027847,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2757554176
+        },
+        {
+          "seconds": 2.762388400005875,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2754891776
+        },
+        {
+          "seconds": 3.0134216000151355,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2731237376
+        },
+        {
+          "seconds": 3.264560200012056,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2696982528
+        },
+        {
+          "seconds": 3.515662899997551,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2669817856
+        },
+        {
+          "seconds": 3.7667013999889605,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2575446016
+        },
+        {
+          "seconds": 4.017729599989252,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2663047168
+        },
+        {
+          "seconds": 4.268414099991787,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2578567168
+        },
+        {
+          "seconds": 4.519267199997557,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2655428608
+        },
+        {
+          "seconds": 4.770025900012115,
+          "rssBytes": 4235264,
+          "privateBytes": 868352,
+          "availableRamBytes": 2636320768
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "kind": "camera",
+      "frames": 600,
+      "identicalValues": true,
+      "verification": [
+        {
+          "frames": 600,
+          "canonicalSha256": "5dfe34ac7db47f14c438dfa947b2117ba8389213517c006528ffbd6a86810e98"
+        },
+        {
+          "frames": 600,
+          "canonicalSha256": "5dfe34ac7db47f14c438dfa947b2117ba8389213517c006528ffbd6a86810e98"
+        }
+      ]
+    },
+    {
+      "kind": "camera",
+      "frames": 18000,
+      "identicalValues": true,
+      "verification": [
+        {
+          "frames": 18000,
+          "canonicalSha256": "8d5357ba5bb3bc04177a4c6b9de0a64aec047620bd102739791df8500a8734dc"
+        },
+        {
+          "frames": 18000,
+          "canonicalSha256": "8d5357ba5bb3bc04177a4c6b9de0a64aec047620bd102739791df8500a8734dc"
+        }
+      ]
+    },
+    {
+      "kind": "camera",
+      "frames": 432000,
+      "identicalValues": true,
+      "verification": [
+        {
+          "frames": 432000,
+          "canonicalSha256": "1b6c5a6810eeab48d02fa300e97639c1afe3f366bb02a1f7aa0394373c6870f5"
+        },
+        {
+          "frames": 432000,
+          "canonicalSha256": "1b6c5a6810eeab48d02fa300e97639c1afe3f366bb02a1f7aa0394373c6870f5"
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "frames": 600,
+      "identicalValues": true,
+      "verification": [
+        {
+          "bytes": 364350,
+          "sha256": "52fcde73df1e3ab7623fe1bb239d89f171a2a546836393d39a6392bb446df4d3"
+        },
+        {
+          "bytes": 364350,
+          "sha256": "52fcde73df1e3ab7623fe1bb239d89f171a2a546836393d39a6392bb446df4d3"
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "frames": 18000,
+      "identicalValues": true,
+      "verification": [
+        {
+          "bytes": 10960735,
+          "sha256": "f4dc1bc9f22428c37203cc6eeec3c7bead5ea1953970d8fd61f6806ff978f943"
+        },
+        {
+          "bytes": 10960735,
+          "sha256": "f4dc1bc9f22428c37203cc6eeec3c7bead5ea1953970d8fd61f6806ff978f943"
+        }
+      ]
+    },
+    {
+      "kind": "csv",
+      "frames": 432000,
+      "identicalValues": true,
+      "verification": [
+        {
+          "bytes": 263703065,
+          "sha256": "db0ff6d7315e79039993a1addd762ce9be86e5c99199a09715be604327128acb"
+        },
+        {
+          "bytes": 263703065,
+          "sha256": "db0ff6d7315e79039993a1addd762ce9be86e5c99199a09715be604327128acb"
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-10-05T02:33:19.252931+00:00"
+}

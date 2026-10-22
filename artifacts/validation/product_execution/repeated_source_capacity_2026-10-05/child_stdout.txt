@@ -1,0 +1,27 @@
+{"at": "2026-10-05T02:41:23.043570+00:00", "stage": "Preparing 30 licensed repetitions at native 60 FPS"}
+{"passed": false, "analysisId": null, "workerElapsedSeconds": null, "error": "CalledProcessError: Command '['C:\\\\Users\\\\ac-98\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Links\\\\ffmpeg.EXE', '-nostdin', '-v', 'error', '-xerror', '-stream_loop', '29', '-i', 'C:\\\\Semester 9\\\\FYP2\\\\tennis_ai_agent_bundle\\\\artifacts\\\\demos\\\\sources\\\\dimitrov_tiafoe_2024_rally.mkv', '-map', '0:v:0', '-an', '-frames:v', '18000', '-fps_mode', 'passthrough', '-c:v', 'libx264', '-preset', 'fast', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', 'C:\\\\Semester 9\\\\FYP2\\\\tennis_ai_agent_bundle\\\\artifacts\\\\validation\\\\product_execution\\\\repeated_source_capacity_2026-10-05\\\\repeated_licensed_input.mp4']' returned non-zero exit status 4294967274."}
+Traceback (most recent call last):
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\scripts\audit\run_repeated_source_capacity.py", line 282, in <module>
+    main()
+    ~~~~^^
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\scripts\audit\run_repeated_source_capacity.py", line 177, in main
+    run_child(directory)
+    ~~~~~~~~~^^^^^^^^^^^
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\scripts\audit\run_repeated_source_capacity.py", line 62, in run_child
+    command([ffmpeg, '-nostdin', '-v', 'error', '-xerror', '-stream_loop', '29', '-i', str(original),
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             '-map', '0:v:0', '-an', '-frames:v', '18000', '-fps_mode', 'passthrough',
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             '-c:v', 'libx264', '-preset', 'fast', '-crf', '18', '-pix_fmt', 'yuv420p',
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             '-movflags', '+faststart', str(prepared)])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Semester 9\FYP2\tennis_ai_agent_bundle\scripts\audit\run_repeated_source_capacity.py", line 37, in command
+    return subprocess.run(args, capture_output=True, text=True, check=True, timeout=timeout,
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                          creationflags=subprocess.CREATE_NO_WINDOW).stdout
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\ac-98\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.EXE', '-nostdin', '-v', 'error', '-xerror', '-stream_loop', '29', '-i', 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\demos\\sources\\dimitrov_tiafoe_2024_rally.mkv', '-map', '0:v:0', '-an', '-frames:v', '18000', '-fps_mode', 'passthrough', '-c:v', 'libx264', '-preset', 'fast', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\repeated_source_capacity_2026-10-05\\repeated_licensed_input.mp4']' returned non-zero exit status 4294967274.

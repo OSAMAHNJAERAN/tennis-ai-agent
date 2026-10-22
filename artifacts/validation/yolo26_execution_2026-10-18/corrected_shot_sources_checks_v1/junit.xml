@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="26" time="21.829" timestamp="2026-10-18T00:45:26.998173+08:00" hostname="Osamah"><testcase classname="tests.test_corrected_shot_sources" name="test_native_events_use_new_bounce_coordinates_and_never_old_contact_projection" time="1.100" /><testcase classname="tests.test_corrected_shot_sources" name="test_reviewed_rule_signals_are_not_native_physical_events" time="0.311" /><testcase classname="tests.test_corrected_shot_sources" name="test_missing_player_observations_stay_missing" time="0.305" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[bbox_bool]" time="0.305" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[bbox_reversed]" time="0.293" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[confidence_bool]" time="0.307" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[confidence_high]" time="0.410" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[track_bool]" time="0.340" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[track_fraction]" time="0.332" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[track_negative]" time="0.357" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[extra_player_field]" time="0.378" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[missing_player]" time="0.341" /><testcase classname="tests.test_corrected_shot_sources" name="test_malformed_sealed_player_observations_fail_closed[match_identity]" time="0.372" /><testcase classname="tests.test_corrected_shot_sources" name="test_mutable_pending_rows_cannot_inject_old_geometry_or_unsupported_native_types[scoring_call]" time="0.378" /><testcase classname="tests.test_corrected_shot_sources" name="test_mutable_pending_rows_cannot_inject_old_geometry_or_unsupported_native_types[source_fingerprint]" time="0.360" /><testcase classname="tests.test_corrected_shot_sources" name="test_mutable_pending_rows_cannot_inject_old_geometry_or_unsupported_native_types[transition]" time="0.427" /><testcase classname="tests.test_corrected_shot_sources" name="test_mutable_pending_rows_cannot_inject_old_geometry_or_unsupported_native_types[source_role_bool]" time="0.348" /><testcase classname="tests.test_corrected_shot_sources" name="test_mutable_pending_rows_cannot_inject_old_geometry_or_unsupported_native_types[evidence_string]" time="0.391" /><testcase classname="tests.test_corrected_shot_sources" name="test_mutable_pending_rows_cannot_inject_old_geometry_or_unsupported_native_types[authority_off]" time="0.359" /><testcase classname="tests.test_corrected_shot_sources" name="test_unavailable_new_bounce_geometry_does_not_reuse_old_source_projection" time="0.269"><failure message="ValueError: Rule reproduction: stored context fails current source/identity binding">tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_shot_sources_checks_v1/pytest-temp/test_unavailable_new_bounce_ge0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000027E82D7C590&gt;
+
+    def test_unavailable_new_bounce_geometry_does_not_reuse_old_source_projection(tmp_path, monkeypatch):
+        from src.scoring.corrected_rule_rebuild import rebuild_corrected_rule_timeline
+        fixture = build_native_sealed_base(tmp_path, monkeypatch)
+        request = copy.deepcopy(fixture.request)
+        source = fixture.document['inputs'][1]
+        replacement = copy.deepcopy(source['source_input'])
+        replacement['context']['binding'] = None
+        replacement['context']['anchor_frame_index'] = None
+        replacement['context']['binding_audit_matches'] = False
+        request['input_amendments'] = [{'event_id': 2,
+            'expected_input_fingerprint': source['input_fingerprint'], 'replacement_source_input': replacement}]
+        # The supported amendment contract preserves original source anchor tokens.
+        # A current context with a missing geometry review is instead supplied by
+        # changing only that review binding field to unavailable.
+        replacement['context'] = copy.deepcopy(source['source_input']['context'])
+        replacement['context']['binding']['geometry_qualification_ref'] = ''
+&gt;       with rebuild_corrected_rule_timeline(fixture.directory, fixture.scratch, request=request) as rebuilt:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_shot_sources.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+src\scoring\corrected_rule_rebuild.py:246: in rebuild_corrected_rule_timeline
+    event, context = source.decode_source_event(replacement)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\rule_replay_source.py:237: in decode_source_event
+    return _source_event(record, self.source_frames, self._analysis_id, self._source_sha256)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\rule_replay_source.py:213: in _source_event
+    _same(context_record(current), record['context'], 'stored context fails current source/identity binding')
+src\scoring\rule_replay_source.py:50: in _same
+    _require(_canonical(actual) == _canonical(expected), message)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False
+message = 'stored context fails current source/identity binding'
+
+    def _require(condition, message):
+        if not condition:
+&gt;           raise ValueError('Rule reproduction: ' + message)
+E           ValueError: Rule reproduction: stored context fails current source/identity binding
+
+src\scoring\rule_replay_source.py:33: ValueError</failure></testcase><testcase classname="tests.test_corrected_shot_sources" name="test_direct_scratch_admission_cannot_write_into_immutable_analysis[analysis]" time="0.384" /><testcase classname="tests.test_corrected_shot_sources" name="test_direct_scratch_admission_cannot_write_into_immutable_analysis[parent]" time="0.373" /><testcase classname="tests.test_corrected_shot_sources" name="test_direct_scratch_admission_cannot_write_into_immutable_analysis[missing]" time="0.349" /><testcase classname="tests.test_corrected_shot_sources" name="test_direct_scratch_admission_cannot_write_into_immutable_analysis[traversal]" time="0.340" /><testcase classname="tests.test_corrected_shot_sources" name="test_body_failure_closes_event_and_box_owners_without_publication" time="0.405" /><testcase classname="tests.test_corrected_shot_sources" name="test_adapter_duration_capacity_retains_no_python_frame_or_event_cache" time="11.934" /></testsuite></testsuites>

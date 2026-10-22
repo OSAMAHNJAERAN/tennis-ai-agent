@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-10-18T02:56:35.379633+00:00",
+  "reviewer": "/root/forecast_independent_review",
+  "authorship": "Read-only independent review; no source/test edits and no tests rerun.",
+  "receipt_sha256": "8d1077eb88fa106c52b12701d313ad5f1eb08081084fe633fe82b35bed14970f",
+  "remaining_P1_P2": [],
+  "verified_current_source_pins": 383,
+  "verified_retained_source_copies": 383,
+  "verified_unique_passing_junit_cases": 346,
+  "deselected_cases": 7,
+  "runner_elapsed_seconds": 78.1980483000516,
+  "parent_peak_working_set_bytes": 248188928,
+  "inference_import_attempts": [],
+  "forbidden_inference_loaded": [],
+  "current_prior_independent_review_sha256": "6fceb35ab6a77651ecf35efd3d561443bff81c84fdb2f8d5ca448bf3eaef008f",
+  "prior_independent_review_source_pins": {
+    "src/scoring/corrected_forecasts.py": "f6bde158752b4f0607fc2cef3ca7626555bb40733ee662e14572b0ce824104e4",
+    "src/utils/forecast_sequence.py": "ba3fbc87a2412b3bc8e1629f2615a0ac6415ecb763cd2280a655fb7d95a3966b",
+    "src/prediction/tennis.py": "e3a93c22c4866858468cbf9e19890015c550e109fc01139a08820337e3c780c1",
+    "src/scoring/scoring_rules.py": "490ac0c74367ed8dd9bd0c4da65a3645833923255e5decef04ccddd1b336b2b7"
+  },
+  "closed_findings": [
+    {
+      "priority": "P2",
+      "issue": "Mutable audit/current presentation aliases could forge export provenance and calibration claims.",
+      "fix": "Frozen owned result fields; fresh detached current/audit values; native bound export handles.",
+      "exact_reproduction_and_closure_retained": true
+    },
+    {
+      "priority": "P2",
+      "issue": "Replacing public history and current could export one forged row instead of the sealed seven-row history.",
+      "fix": "Public result handle replacement raises FrozenInstanceError; exporter requires the owning history handle.",
+      "exact_reproduction_and_closure_retained": true
+    },
+    {
+      "priority": "P2",
+      "issue": "Contradictory reviewed terminal set counts passed existing shared invariants and produced a false active-match forecast.",
+      "fix": "Private native terminal context validation withholds all affected snapshots and posterior updates; original raw state hash retained.",
+      "reason_code": "INVALID_TERMINAL_SCORE",
+      "limitation": "Existing manual/global scoring invariant API was not changed; this closure applies to the new private native forecast path.",
+      "exact_reproduction_and_closure_retained": true
+    }
+  ],
+  "capacity": {
+    "receipt_sha256": "0eb8654aa30098a1b055f35a36d74c1aee72f8ccd00cded87a5ebf2c35e9d256",
+    "source_pins": {
+      "src/scoring/corrected_forecasts.py": "f6bde158752b4f0607fc2cef3ca7626555bb40733ee662e14572b0ce824104e4",
+      "src/utils/forecast_sequence.py": "ba3fbc87a2412b3bc8e1629f2615a0ac6415ecb763cd2280a655fb7d95a3966b",
+      "src/prediction/tennis.py": "e3a93c22c4866858468cbf9e19890015c550e109fc01139a08820337e3c780c1",
+      "tests/test_corrected_forecasts.py": "998a9ff156a8a0244b4e53cda00ce9d0a28746d1cda7aea6a62e9f298db4efe2"
+    },
+    "exact_junit_case": "test_growing_completed_points_bounds_forecast_history_and_deduplication_in_python",
+    "case_passed": true,
+    "whole_previous_run_failed": true,
+    "unrelated_previous_failure": "test_profiles_do_not_merge_names_and_unconfirmed_motion_is_excluded",
+    "measurements": [
+      {
+        "completed_points": 8,
+        "accepted_inputs": 24,
+        "history_rows": 49,
+        "deduplicated_point_ids": 8,
+        "retained_python_bytes_inside_context": 123938,
+        "peak_python_bytes": 1074818,
+        "forecast_owner_disk_bytes": 118784,
+        "elapsed_seconds_inside_and_entry": 0.3859523999853991
+      },
+      {
+        "completed_points": 128,
+        "accepted_inputs": 384,
+        "history_rows": 769,
+        "deduplicated_point_ids": 128,
+        "retained_python_bytes_inside_context": 135798,
+        "peak_python_bytes": 2579041,
+        "forecast_owner_disk_bytes": 1622016,
+        "elapsed_seconds_inside_and_entry": 4.677928199991584
+      }
+    ],
+    "exclusions": "Fixture construction, corrected rules/shots, SQLite native memory and numerical-library allocations",
+    "retained_python_growth_bytes": 11860
+  },
+  "profile_fixture_repair": {
+    "only_shared_source_change": [
+      "tests\\test_product_matches.py"
+    ],
+    "application_sources_unchanged": true,
+    "focus_receipt_sha256": "03ea4d66919b0b3d5085cd7ba918b6c263c015160b4b814759dcd2f3fbc505b5",
+    "focus_unique_passing_cases": 11,
+    "negative_identity_controls": 2,
+    "change": "Positive legacy fixture now supplies matching summary.id; missing and foreign identity remain rejected."
+  },
+  "artifact_sha256": {
+    "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_forecast_final_v2\\junit.xml": "401eb0989ccd462b1f4014af2e4f79b225dedabaa3d4cb426a849c76d2ad7a66",
+    "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_forecast_final_v2\\pytest.txt": "1e67b20dc7f823a9a0d40e4c7d4858141860df9e36305719b1bd139b3c749c94",
+    "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_forecast_final_v1\\junit.xml": "c42557a21e0927e3ff76614fc67b8fdb60924139d15f625e9bbf3d603a156f1e",
+    "artifacts\\validation\\yolo26_execution_2026-10-18\\product_motion_identity_checks_v1\\junit.xml": "ef5cc3cbcea7fae5c4a69b6738b6a522d89f57af831a1a0b330800f3ce1e23b1"
+  },
+  "limits": [
+    "Synthetic native rule/shot/forecast chain and two toy crop videos; no inference or independent tennis accuracy qualification.",
+    "Forecasts remain explicitly not calibrated; independent prediction calibration/evaluation remains required.",
+    "Capacity reuses one passing current-source case from a prior run with one unrelated fixture failure; it does not relabel the whole prior run as passing.",
+    "Capacity excludes fixture/rule/shot setup, SQLite native memory and numerical library allocations; no long-match or live capacity qualification.",
+    "Private scratch correction only; authenticated owner workflow, full corrected exports/rendering and generation compare-and-swap publication remain required.",
+    "The terminal-state safeguard applies to the private native forecast stage; the legacy manual/global invariant API is unchanged."
+  ],
+  "published": false,
+  "goal_complete": false
+}

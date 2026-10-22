@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "fixture": "25000_synthetic_frames_one_unique_track_id_per_frame",
+  "frame_count": 25000,
+  "presence_rows": 25000,
+  "live_source_boxes_after_spooling": 0,
+  "peak_live_source_boxes": 2,
+  "source_producer_closed": true,
+  "tracemalloc_current_bytes": 189166,
+  "tracemalloc_peak_bytes": 208250,
+  "measurement_scope": "Python allocations traced during source spooling and both candidate passes",
+  "unmeasured_scope": "Native SQLite allocations, process RSS, neural inference and full pipeline capacity",
+  "sqlite_cache_kib_per_database": 2048,
+  "sqlite_mmap_bytes": 0,
+  "sqlite_temp_store": "FILE",
+  "storage_snapshot_scope": "Before normal context close; bounded final transactions may remain in journals",
+  "databases": {
+    "source": {
+      "filename": "player_detections_51k6u826.sqlite3",
+      "database_bytes": 7290880,
+      "sidecar_bytes": {
+        "-journal": 12824,
+        "-wal": 0,
+        "-shm": 0
+      }
+    },
+    "selected": {
+      "filename": "player_detections_barpca9m.sqlite3",
+      "database_bytes": 7290880,
+      "sidecar_bytes": {
+        "-journal": 12824,
+        "-wal": 0,
+        "-shm": 0
+      }
+    },
+    "ledger": {
+      "filename": "court_player_selection_054a2b5b.sqlite3",
+      "database_bytes": 565248,
+      "sidecar_bytes": {
+        "-journal": 12824,
+        "-wal": 0,
+        "-shm": 0
+      }
+    }
+  },
+  "owned_databases_removed_on_success": true
+}

@@ -1,0 +1,114 @@
+# Restore the current upload/report runtime
+
+This guide describes the selected **unqualified** local bundle, configured by `configs/phase6_analytics/wasb_tiled_residual_pose_small_validation.yaml`. Its software checks do not certify tennis measurement accuracy or permission to deploy the models publicly. The complete asset and dependency record is [PRODUCT_RESTORE_MANIFEST.json](PRODUCT_RESTORE_MANIFEST.json).
+
+Use Windows x86_64 and CPython 3.13.5 to reproduce the checked environment. Other operating systems, CPU-only PyTorch builds and Python versions require their own installation and inference checks. The frontend requires Node.js 22 or newer and `pnpm@11.19.0`, as declared in `frontend/package.json`.
+
+## Python environment
+
+Run these commands from the repository root. They create a separate product environment and preserve the existing research environment and `requirements.txt`.
+
+```powershell
+python --version
+python -m venv .venv-product
+python scripts/setup/verify_product_installation.py --write-constraints artifacts/validation/product_installation/observed_constraints.txt
+.\.venv-product\Scripts\python.exe -m pip install --only-binary=:all: --extra-index-url https://download.pytorch.org/whl/cu126 -r requirements-product.txt -c artifacts/validation/product_installation/observed_constraints.txt
+.\.venv-product\Scripts\python.exe -m pip check
+```
+
+`requirements-product.txt` contains the actual direct web and inference imports, plus ByteTrack's dynamic `lap` dependency. The generated constraints preserve all recorded transitive versions. Use one OpenCV provider (`opencv-python`) in this environment; the old global environment contains three overlapping `cv2` providers. Training notebooks, desktop automation, document tools, MediaPipe and audio packages are absent from this product dependency group. CUDA 12.6 PyTorch/torchvision pins reproduce the current installation; an NVIDIA driver and sufficient system/GPU memory are needed to reproduce its CUDA inference behavior.
+
+Package installation alone does not restore the models. A source checkout without the retained court checkpoint cannot run this selected pipeline. Do not replace a missing weight with another file of the same name.
+
+## Required source and model assets
+
+The manifest pins byte sizes and SHA-256 hashes for the selected configuration, four weights, WASB runtime files, source license, frontend package manifest and lock file. Restore the exact retained files to their recorded relative paths:
+
+| Asset | Runtime role | Restoration limit |
+|---|---|---|
+| `yolo11m.pt` | Person detection, ByteTrack and crop-based racket observations | Retained exact bytes are known; original acquisition revision is not recorded. [Ultralytics lists AGPL-3.0 and Enterprise model licenses](https://docs.ultralytics.com/models/yolo11/). Project deployment permission remains unverified. |
+| `yolo11s-pose.pt` | Continuous player pose observations | Same acquisition and deployment-permission limit as the person model. |
+| `models/keypoints_model.pth` | Full ResNet-50 court state dictionary | Source, author and weight license are unknown. No verified public restoration URL is available; obtain the exact retained asset and its provenance from the owner if absent. |
+| `artifacts/models/ball/wasb_tennis_best.pth.tar` | WASB tennis heatmap inference | The [pinned official model zoo](https://github.com/nttcom/WASB-SBDT/blob/923462cacdeb3353b84ddebdedb3f4b7a8553b0f/MODEL_ZOO.md) identifies the upstream checkpoint. Existing provenance pins its hash and URL. Separate weight and training-footage redistribution terms remain unverified. |
+| `artifacts/research/WASB-SBDT/` | HRNet architecture, affine preprocessing and model YAML | Required runtime source at commit `923462cacdeb3353b84ddebdedb3f4b7a8553b0f`; preserve its MIT notice. |
+
+For an **absent** WASB source directory, restore the exact revision with:
+
+```powershell
+git clone https://github.com/nttcom/WASB-SBDT.git artifacts/research/WASB-SBDT
+git -C artifacts/research/WASB-SBDT -c core.autocrlf=true checkout --detach 923462cacdeb3353b84ddebdedb3f4b7a8553b0f
+git -C artifacts/research/WASB-SBDT rev-parse HEAD
+git -C artifacts/research/WASB-SBDT status --short
+```
+
+The recorded required-file hashes use Windows checkout bytes with `core.autocrlf=true`; the independent restoration check reproduced those four hashes at the pinned commit. If the directory already exists, verify its revision and required file hashes instead of cloning over it. Source code is licensed under [WASB's MIT license](https://github.com/nttcom/WASB-SBDT/blob/923462cacdeb3353b84ddebdedb3f4b7a8553b0f/LICENSE.md); that source license does not by itself establish permissions for training footage or public demo videos. The project has no recorded Enterprise licensing evidence, and no paid license or new checkpoint is acquired by these setup commands.
+
+The saved court state is loaded strictly with `weights_only=True`. Its architecture initializes with `weights=None`, so restoring a full saved checkpoint does not require the unrelated ImageNet home-cache file or a background pretrained download. Missing keys and incompatible tensor shapes remain errors. Initialization without a saved checkpoint retains the existing pretrained training behavior.
+
+## FFmpeg and frontend
+
+Install a trusted FFmpeg build with `ffmpeg` and `ffprobe` on `PATH`, or set `TENNIS_FFMPEG` and `TENNIS_FFPROBE` to their absolute executable paths. The observed Windows build is `8.1.1-essentials_build-www.gyan.dev`; its executable hashes are recorded in the manifest. The verifier checks the version plus `libx264`, `fps`, `pad`, `setpts` and `stats_enc_pre` capabilities used by source timing capture. A different build requires its own timing/media checks.
+
+Use the committed frontend lock file:
+
+```powershell
+node --version
+pnpm --dir frontend --version
+pnpm --dir frontend install --frozen-lockfile
+pnpm --dir frontend build
+```
+
+Check pnpm's version in the frontend directory: its `packageManager` selects the project release. The recorded launcher reports `10.28.0` outside that directory, while the project-selected cached release is `11.19.0`. The isolated frozen offline restore used `11.19.0`, installed 373 package-store directories and left the original package manifest and lock file unchanged. Do not run a lockfile update as part of restoring this bundle. The frozen install and production build are separate from the Python environment check.
+
+The application also imports the tracked repository-root `theme.css` and `variables.css` from `frontend/src/styles/app.css`. Preserve that directory relationship when restoring the source.
+
+To check the current source with cached pinned dependencies, run:
+
+```powershell
+python scripts/setup/verify_frontend_source_restore.py
+```
+
+This helper creates a new evidence directory, copies the frontend build inputs and both shared stylesheets, then runs a frozen offline install, lint, the TypeScript/production build and the complete copied test set. It records the exact verifier, source and build hashes plus command logs. It also checks the input inventory and hashes again after the run. The selected frontend's dependencies and build output are outside that comparison; the helper makes no whole-workspace integrity or model-accuracy claim. An empty package cache requires the normal pinned installation above before this offline check can succeed. Existing evidence directories are preserved.
+
+## Verify and run
+
+The verifier checks package metadata, source revision/cleanliness, file hashes and FFmpeg capabilities without loading models. Its optional API check uses a new isolated storage directory, disables the analysis worker and rejects an invalid upload; it does not enqueue inference in `outputs/product`.
+
+```powershell
+.\.venv-product\Scripts\python.exe scripts/setup/verify_product_installation.py --api-smoke --report artifacts/validation/product_installation/restored_host_verification.json
+.\.venv-product\Scripts\python.exe scripts/run/serve_product.py
+```
+
+Open [the local website](http://127.0.0.1:8000/). The server listens on localhost; publishing the service, changing model licenses or enabling external paid services is outside these setup commands. The default runtime configuration is selected by `TENNIS_PIPELINE_CONFIG`, and persistent storage by `TENNIS_STORAGE_ROOT` (default `outputs/product`). Changing either produces a different runtime that must be verified separately.
+
+Preserve the SQLite database, uploads and the complete analyses tree when updating dependencies. This includes any sibling `<analysisId>.annotated_web_credit.json` files beside the analysis directories: each describes one reviewed derivative and is bound to its exact video/source/input hashes. Missing or stale derivative metadata retains the historical source credit. Take a coherent SQLite backup before relocating state; copying a database while ignoring its live WAL can omit committed records. Setup never deletes, replaces or imports product state.
+
+For the three retained October1 refreshed demo videos, `python scripts/run/publish_public_demo_credits.py --report artifacts/validation/product_execution/restored_derivative_credits.json` can restore identical derivative-credit sidecars from their completed refresh receipt. Choose a fresh receipt filename if that file already exists. The helper checks the manifest, renderer, complete original analysis file sets, reviewed video hashes and read-only job snapshots before writing. Existing different sidecars or receipts are preserved and rejected. This helper does not render videos or run models; new derivatives need their own reviewed credits. Original source metadata and measurement JSON remain unchanged.
+
+## Evidence and remaining checks
+
+The [candidate-storage update](../../artifacts/validation/product_execution/candidate_storage_measurement_monitored_2026-10-05/report.json) passed all1063 backend tests plus4 later process-guard regressions. Candidate storage now uses owned bounded-cache SQLite, with early person export and lazy temporal bounds filtering. Synthetic432,000-frame candidate peak working set changed533.96 →76.08MB, elapsed18.339 →32.803s and scratch database245.61MB before cleanup; these are candidate-only costs. [Fresh30-frame clean-runtime compatibility](../../artifacts/validation/product_execution/candidate_storage_real_smoke_2026-10-05/resource_receipt.json) preserves26JSON artifact values (excluding only two measured runtime fields), exact run_config and annotated media bytes, original input pixels/relativePTS and all10 saved analyses. Actual interpreter/descendant monitoring and retirement are verified. Court rejection and unavailable scientific sections persist. Selected configuration/assets and frontend source/build remain unchanged; no new dependency is required. The preceding capacity-stop host/manifest seal below is historical after this evidence metadata update. Full calibration/player/trajectory/result/API/frontend arrays remain O(N); the prior five-minute failure and unqualified full-match ceiling still apply.
+
+[The final candidate-storage installation check](../../artifacts/validation/product_installation/candidate_storage_host_verification_2026-10-05.json) passed all 75 checks at `2026-10-05T04:15:55.742209+00:00`, binding manifest SHA256 `7b4718de1ca8dbcbce42393e5af9fbbcc234ba20deeda0b69a005884c4fb41e8`. The isolated worker-disabled API returned health/library 200 and invalid-upload 415 without model imports or inference. [The final evidence readback](../../artifacts/validation/product_execution/candidate_storage_final_evidence_2026-10-05.json) rechecks the current source and assets, exact historical copies, 124 current/copied frontend inputs, 37 identical build files, the retained failed stress artifacts and all ten unchanged saved analysis records. The full goal remains incomplete: model accuracy, representative long-clip capacity and physical speed/3D remain unqualified.
+
+The final October5 [capacity-stop host receipt](../../artifacts/validation/product_installation/capacity_stop_host_verification_2026-10-05.json) passed all75 checks at `2026-10-05T03:08:41.735045+00:00`, binding the failure-aware manifest SHA256 `34cf4385b5a97953085fae9babb8d20fd67c23e19b1eb49c524e59bb764e9026`. Receipt SHA256 `4c45f66e615d5254bef8b3d1762d9a0c7c07fd434d022f16dc6491615173ea6f`. Fresh worker-disabled isolated storage returned health/library200 and invalid-upload415, with no model imports or inference. The [pre-stop receipt](../../artifacts/validation/product_installation/capacity_source_restoration_host_verification_2026-10-05.json) and [live scoped snapshot](../../artifacts/validation/product_execution/capacity_evidence_recheck_2026-10-05.json) remain historical. The unchanged current frontend restoration still binds124 current/copied inputs,37 byte-identical build files and32 completed evidence files. The guide’s `.venv-product` path is the environment to create for a new installation; this workspace’s recorded environment is `artifacts/validation/product_installation/clean_env`. Pytest is intentionally absent from that inference runtime. [Ten focused worker-publication tests](../../artifacts/validation/product_execution/worker_publication_capacity_2026-10-05.xml) passed separately without inference.
+
+The [fresh capacity frontend restoration](../../artifacts/validation/product_installation/frontend_source_restore_capacity_2026-10-05/receipt.json) installed 373 frozen offline packages and passed lint/build/all 161 tests across 23 copied files. [Its seal](../../artifacts/validation/product_installation/frontend_source_restore_capacity_2026-10-05/verification_seal.json) checks 124 inputs and 37 byte-identical production files. The final backend suite passed 974 tests. The [actual browser CSV](../../artifacts/validation/product_execution/capacity_browser_csv_verified_2026-10-05.json) preserved all 469 ordered rows, analysis identity and source credits, matching the original serializer byte for byte through chunked HTTP delivery. Playback pause/step observations agreed at frames 284/285 on the rebuilt preview.
+
+[Configured-scale export measurements](../../artifacts/validation/product_execution/export_capacity_2026-10-05/report.json) use synthetic records, without video inference. At 432,000 frames camera-audit peak working set fell from 245.8 MB to 24.4 MB; serialization took 5.15 → 6.61 seconds. CSV peak working set fell from 1,325.5 MB to 276.4 MB, with identical 263.7 MB output. Streaming eliminates export-only accumulation/full CSV copies; full detector/calibration/motion/result arrays and frontend/API parsing remain O(N). The 7,200-second configured ceiling remains unqualified. The isolated five-minute real-worker stress **failed** during ball detection after 1,024.308 monitored seconds: available system RAM stayed below 400 MB for five samples (minimum297.0 MB); sampled owned-tree RSS peaked at1,854.2 MB and private commit at4,055.4 MB. No completed result/annotation/CSV or child CUDA peak receipt was produced. [The terminal audit](../../artifacts/validation/product_execution/repeated_source_capacity_STOP_verified_2026-10-05.json) verifies all18,000 prepared N/60 normalization records, unchanged sources/configuration and preserved live analyses. This failure does not establish five-minute/full-match capacity or a worker leak. Repetition and synthetic timing cannot qualify representative match behavior or accuracy; see [the progress record](../plans/TENNIS_EXECUTION_PROGRESS.md). All stress originals, normalized/intermediate/annotated videos and logs are retained; no aggregate storage quota or automatic retention policy is implemented.
+
+The earlier October 5 [failure-path host receipt](../../artifacts/validation/product_installation/failure_paths_source_restoration_host_verification_2026-10-05.json) verifies its historical manifest SHA256 `a29dc1da114bf120aa4922e10ba3851fcc5b195ac0b6de575f0a215a2a53ebd6`: all 75 checks passed with worker-disabled fresh storage, health/library 200 and invalid-upload 415. The [keyboard host receipt](../../artifacts/validation/product_installation/keyboard_source_restoration_host_verification_2026-10-05.json) and [October 4 receipt](../../artifacts/validation/product_installation/frontend_source_restoration_host_verification_2026-10-04.json) also remain historical.
+
+The historical October 5 [playback/WebGL source restoration](../../artifacts/validation/product_installation/frontend_source_restore_failure_paths_2026-10-05/receipt.json) copied 122 build inputs into a fresh directory, including both tracked root stylesheets. The offline install of 373 packages, lint, TypeScript/Vite build and all 155 tests across 22 files passed. [The evidence seal](../../artifacts/validation/product_installation/frontend_source_restore_failure_paths_2026-10-05/verification_seal.json) rechecked all 122 selected/copied inputs and all 37 byte-identical production files at that revision, and binds 31 test/build/browser evidence files. [Its dated read-only recheck](../../artifacts/validation/product_execution/failure_paths_evidence_recheck_2026-10-05.json) verifies those historical bindings and host receipt. The earlier [keyboard restoration](../../artifacts/validation/product_installation/frontend_source_restore_keyboard_2026-10-05/receipt.json), [October 4 restoration](../../artifacts/validation/product_installation/frontend_source_restore_replay_shared_2026-10-04/receipt.json) and first source-copy failure are preserved as dated evidence. These checks establish software restoration on the recorded host with cached dependencies. Native blocked muted autoplay and GPU-failure compatibility remain unverified; the Canvas failure tests substitute the GPU renderer and the public browser example correctly abstains from invalid court mapping.
+
+The original host's 74 metadata/asset/source/tool checks passed with its multiple-OpenCV-provider warning. The separate clean environment installed all 57 pinned runtime distributions, passed `pip check`, and passed 75 installation/API checks with no warnings. Its worker-disabled API returned health 200 and an empty isolated library, rejected an invalid upload with 415, and imported no model modules. The exact observed transitive pins resolved against PyPI and the official PyTorch CUDA 12.6 index.
+
+All four retained model assets also loaded successfully on CPU in that clean environment in 18.17 seconds with zero network attempts. That check loaded the actual court, person/racket, WASB and pose assets and exercised the `lap` assignment solver; it did not run inference. Four court bootstrap tests passed, covering offline saved-state initialization, strict missing/shape rejection and unchanged training initialization. The frozen frontend restore passed independently with Node `v26.7.0` and effective pnpm `11.19.0`.
+
+The clean environment subsequently completed the actual selected pipeline on a licensed 30-frame excerpt: original decoded pixels, 1920×1080 dimensions and native 60 FPS were verified against the retained source. The strict offline run used `YOLO_OFFLINE=true` and completed in 26.04 seconds including setup (17.93 seconds in the pipeline), exported 26 valid JSON files and decoded all 30 annotated frames, with zero recorded network connection attempts. Its outputs are confined to the installation evidence directory. This is a half-second software smoke only: court calibration rejected this excerpt, so selected player roles and meaningful pose/racket measurements were withheld. Event/scoring authority remained disabled. It does not establish full-match performance or measurement accuracy.
+
+The [smoke receipt](../../artifacts/validation/product_installation/real_pipeline_smoke.json) also records model-load time, process peak working set, PyTorch CUDA allocator peaks and disk space before/after. Earlier receipts retain the blocked first online probe and a subsequent export failure when disk space reached zero; the successful retry followed recovery of disk space and changed no production state. The [final host receipt](../../artifacts/validation/product_installation/final_host_verification.json) verifies the updated manifest separately without inference.
+
+The dated reports in [`artifacts/validation/product_installation`](../../artifacts/validation/product_installation/) remain historical receipts. Updating the manifest's completion fields does not rerun those checks or change their captured manifest digest. The manifest links each report and distinguishes software restoration from release qualification.
+
+A reproducible environment check does not establish a qualified production release. Fresh independent labels, accuracy gates, full-match operational validation, supported-angle public demos and the unresolved model provenance/licensing evidence still need verification.

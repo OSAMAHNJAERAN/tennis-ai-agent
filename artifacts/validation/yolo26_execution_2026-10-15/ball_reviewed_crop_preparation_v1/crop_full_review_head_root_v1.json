@@ -1,0 +1,3583 @@
+{
+  "schema_version": "tennis.complete-native-positive-crop-agent-review.v1",
+  "created_at_utc": "2026-10-15T08:10:38.2578112Z",
+  "status": "44_COMPLETE_NATIVE640_CROPS_ACTUALLY_VISUALLY_REVIEWED_BY_ROOT",
+  "reviewer": "AGENT /root",
+  "reviewer_type": "AGENT",
+  "independent_human_review": false,
+  "root_visual_attribution": "ROOT_ACTUALLY_VIEWED_THESE44_ON_BOARDS00_THROUGH10_AT_ORIGINAL_DETAIL",
+  "crop_preparation_manifest": {
+    "sha256": "537d16626181ab74a7f332350d36bfd36c2efad9ee463aa8f3730924f04164cb",
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native_crop_review_boards.json"
+  },
+  "derived_development_manifest": {
+    "sha256": "b94a4e0d6cfc3504817b9223abc5e43a2252fd5d826ea95bf2dd14e129b41110",
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\derived_development_manifest.json"
+  },
+  "reviewed_crop_manifest_indices_inclusive": [
+    0,
+    43
+  ],
+  "reviewed_board_indices_inclusive": [
+    0,
+    10
+  ],
+  "counts": {
+    "native_2x2_boards_actually_viewed": 11,
+    "rejected_unannotated_or_ambiguous": 6,
+    "complete_native640_crops_actually_viewed": 44,
+    "records": 44,
+    "additional_direct_native640_views": 3,
+    "provisionally_accepted_complete_single_ball_crops": 38,
+    "new_boxes_or_labels": 0
+  },
+  "protocol": "Inspect entire native640crop at original detail for additional active/spare balls and unresolved ball-like objects. Preserve main boxes; reject unresolved extra objects without guessing annotations. Current crop only; no claim about hidden objects, whole frame, other time, independent human ground truth or final qualification.",
+  "records": [
+    {
+      "accepted_crop_manifest_index": 0,
+      "proposal_id": "positive_0000",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0000.png",
+      "crop_sha256": "1f3662b4d9385e17476a4b41d848c591924beff4ea8445f164d27df5edc766bb",
+      "crop_pixel_sha256": "2a9156d876e3371516a6eac1b5f6ee622079712cb1befd01f5cff95a496857af",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match172_000_f000009.png",
+        "sha256": "3867b992f35c398ad11acc7d37095722dbdfa77582816a7efea7a20bb7417a8e",
+        "pixel_sha256": "51904a5819e11bd59faa0643bc88daea5f3ba668ea54f34dbef9157d5e6e7814",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        805,
+        121,
+        1445,
+        761
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        920,
+        290,
+        928,
+        297
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        115,
+        169,
+        123,
+        176
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+      "board_sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+          "sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 1,
+      "proposal_id": "positive_0007",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0007.png",
+      "crop_sha256": "c481e2e8330202c26b41bb64104a921a4c2de6806d56a509458fe6dd25c68ec1",
+      "crop_pixel_sha256": "87d8fcb22fb04d41e9481e2f5af49872d7a773a86c499101c484c53300a09e4e",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match172_000_f000075.png",
+        "sha256": "0af34124aadaa8140bcf27e107d00f981ee00b22d5845bb1e57c1854168b63be",
+        "pixel_sha256": "490fe4c0d0305463593c564d01fcde813766b0b68b4a1f4160eaf1a26ed5dab0",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        621,
+        85,
+        1261,
+        725
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1182,
+        377,
+        1189,
+        389
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        561,
+        292,
+        568,
+        304
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+      "board_sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+          "sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 2,
+      "proposal_id": "positive_0015",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0015.png",
+      "crop_sha256": "b47d7bf9c61dbdf9538bb203aa3888814316b5e5926f87b85b88296d9089ed8e",
+      "crop_pixel_sha256": "8b8dedd46d2db988702789cc6afd475317fc96f9103f07bcf09708cb46c4a0c1",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match172_000_f000202.png",
+        "sha256": "2190728e497185c220352f9d2512313c14381b2f92a0a58f5cd82d27ec3c5ead",
+        "pixel_sha256": "b900e9d294a37b21fd0ec684e1a129ef1697f88c5b81780eb819c7e8e52aa207",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        985,
+        78,
+        1625,
+        718
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1163,
+        134,
+        1168,
+        141
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        178,
+        56,
+        183,
+        63
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+      "board_sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "REJECT_CROP_UNANNOTATED_OR_AMBIGUOUS",
+      "reason": "Separate yellow-green objects at crouched ball-kid hands/shoes remain unresolved from active target; exclude entire crop rather than guess extra boxes.",
+      "complete_for_single_visible_ball_development_candidate": false,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+          "sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0015.png",
+          "sha256": "b47d7bf9c61dbdf9538bb203aa3888814316b5e5926f87b85b88296d9089ed8e",
+          "kind": "DIRECT_NATIVE640_FULL_TILE",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 3,
+      "proposal_id": "positive_0022",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0022.png",
+      "crop_sha256": "b95c510b7ff70754f120a99a703828e36486244756b9138fc44defa05c8a7771",
+      "crop_pixel_sha256": "f9442a8ee3066e099f06897e3da66193248736eac1fa5c1082f54c322e2a5632",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match201_000_f000060.png",
+        "sha256": "a0b5f0659b774e355e2c5bb0b1e94d35610a0596ec2ad478eb639c53469f2ffe",
+        "pixel_sha256": "7849af2b7d9d424f2c8f03e447cce310a4e6135d9c1f7d673d7680f7d6eec969",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        753,
+        426,
+        1393,
+        1066
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        991,
+        581,
+        1000,
+        597
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        238,
+        155,
+        247,
+        171
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+      "board_sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_00.png",
+          "sha256": "b4a0b4748a12ec7c86f50997045095b966930350ce3e46280e62473d91dbc9d5",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 4,
+      "proposal_id": "positive_0030",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0030.png",
+      "crop_sha256": "3d6c16398a745705543f6c9a00f534c60ce3c1716f5ddeb30ed4de9eecc2fabd",
+      "crop_pixel_sha256": "b7403000ae54b3c6975c0e1a46b10ec24c9492edb05af482602aa144fa4027be",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match201_000_f000149.png",
+        "sha256": "2993d7aff078f2d14b4a74fb0dfa00e7381730ee0451d002e4161efe33b21f86",
+        "pixel_sha256": "5013a3e518a4035087db4001756b962c7a687cd7225ac02f8717d9c357adeb99",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        452,
+        243,
+        1092,
+        883
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1024,
+        457,
+        1034,
+        466
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        572,
+        214,
+        582,
+        223
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+      "board_sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+          "sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 5,
+      "proposal_id": "positive_0037",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0037.png",
+      "crop_sha256": "61a9cff2ad15e7f1c1aec4c08a8578066c604a322e6dcef52604e43f9b350d78",
+      "crop_pixel_sha256": "84a98bed20ac5acdb73da188b56ab9998e24d390c079106c689e66e79efab0e5",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match201_000_f000229.png",
+        "sha256": "ae1fe67cb78223e561902f525a3c1444921b92f5f2b74787537c38609a20473f",
+        "pixel_sha256": "9e448b4a64fe4fa6712cd3477db253867f61f91c2efed7de386fc2c6714968b5",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        266,
+        71,
+        906,
+        711
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        765,
+        126,
+        773,
+        143
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        499,
+        55,
+        507,
+        72
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+      "board_sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+          "sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 6,
+      "proposal_id": "positive_0038",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0038.png",
+      "crop_sha256": "3e5b89fc5925c8f855890cd3f0eaba55960a748e1fd75b97e1ca04463b2e8754",
+      "crop_pixel_sha256": "58d85efb7cd84ee44229047f4d78f80cf1f9172c42c51cfde0a32b207a944e1f",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match173_000_f000009.png",
+        "sha256": "034c314b7fb49f2a4d55e3b209ad366c075099fb356c1e4fd28f3fdf463134e8",
+        "pixel_sha256": "d143d6406ae988073ef1004df68e052588a5b34aa4c7a57ee85fc15eb4b8b231",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        451,
+        351,
+        1091,
+        991
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        937,
+        469,
+        944,
+        500
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        486,
+        118,
+        493,
+        149
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+      "board_sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+          "sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 7,
+      "proposal_id": "positive_0045",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0045.png",
+      "crop_sha256": "1d19dea4f2094393eaebe8ef722be45a4e7a5ad6c1edc37a0ae048f28e6ead8f",
+      "crop_pixel_sha256": "e5dde25a46f30ee96456d488c7ae1b6b5c50c913754334e9a47dc5b7b8f0b321",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match173_000_f000192.png",
+        "sha256": "a5c63ebb333e6ef95e19d81b1a561ab0c8b9648d53b3ea9d84d275a9634f749b",
+        "pixel_sha256": "9d8f8cb8f5199c653af67e327eac62e1a289ab330fc55148123388747a44e70d",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        336,
+        187,
+        976,
+        827
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        896,
+        193,
+        903,
+        200
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        560,
+        6,
+        567,
+        13
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+      "board_sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_01.png",
+          "sha256": "67aad6cc733364d8991e2fbeec7c78b88b6503e7dfb49bb4c1558559138b8fc1",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 8,
+      "proposal_id": "positive_0053",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0053.png",
+      "crop_sha256": "bdde653ff00755ad7b54fe70b123c1071b8758df59c17c302c402468cab27ea0",
+      "crop_pixel_sha256": "0d9589a96787153dd0841233cc68ef00b4f24a449ca3f60ca3e1686c18180e18",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match18_000_f000070.png",
+        "sha256": "6fdc52bfd61e84bdfdc3d272891a63f53650646d217fa9f5cdca40c226f4c06c",
+        "pixel_sha256": "0cd263108be8b725291d71d017a805dd37cb72d56afb8338f82cb15f92fac7e4",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        801,
+        155,
+        1441,
+        795
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1093,
+        455,
+        1108,
+        475
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        292,
+        300,
+        307,
+        320
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+      "board_sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+          "sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 9,
+      "proposal_id": "positive_0068",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0068.png",
+      "crop_sha256": "219b2662100ffc0909982467a162824704bc58eed37bde1114b70dd86d9b3b95",
+      "crop_pixel_sha256": "6309711bd3c94d9ee0e78800db4e8ec35248154004466cd273476e1adb8aac6b",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match2_000_f000140.png",
+        "sha256": "c9e6db1ad9d8878a270fc71350f1104f2c9dfa002d13a29e7c826725cc476202",
+        "pixel_sha256": "75a553f7a29921d836ac3c7bd27182b467497f631caa5c1404fc2ee23ef995f5",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        996,
+        347,
+        1636,
+        987
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1235,
+        508,
+        1248,
+        519
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        239,
+        161,
+        252,
+        172
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+      "board_sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+          "sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 10,
+      "proposal_id": "positive_0075",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0075.png",
+      "crop_sha256": "3460c27d440aa6097c6a10402d4d5ec98b6421ad2e0c2ae55779ebbe3f9d0563",
+      "crop_pixel_sha256": "92bc4ff487ee2705b1100695c85671a0675b3be2212c03b0446da63777651621",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match2_000_f000239.png",
+        "sha256": "60d138c73287c6aa6775464d42ed10691ce17a44018e86719b3f4ac8c295b8bc",
+        "pixel_sha256": "80641601f6b49da5b5e701953aa13308afce89aa06662befcc8b2f52ca41eeee",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        569,
+        111,
+        1209,
+        751
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        987,
+        223,
+        994,
+        230
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        418,
+        112,
+        425,
+        119
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+      "board_sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+          "sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 11,
+      "proposal_id": "positive_0076",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0076.png",
+      "crop_sha256": "d26c1ea3f4a15df464a47e593ab527df6ca375002d9d7b4d611546c6cf6b7903",
+      "crop_pixel_sha256": "d66ed416e42a3a0388f62f249b3f57db2c5f53e6387903ba6a5ee1ebfec904dc",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match212_000_f000009.png",
+        "sha256": "d04a3862df74f7b95cedc10cee3bcf7435161f8b76f89304a8fc3a303179c047",
+        "pixel_sha256": "a0bef1f9852f3c1ad407a65d7f169942224f25c58d2846fb6c0c05775565d076",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        473,
+        347,
+        1113,
+        987
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        884,
+        421,
+        896,
+        428
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        411,
+        74,
+        423,
+        81
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+      "board_sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_02.png",
+          "sha256": "8d6cad6a9d48eca0d2d59ae530795a028c92e06550bbc6bef0cd7f80abae91a3",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 12,
+      "proposal_id": "positive_0083",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0083.png",
+      "crop_sha256": "89263d8ff7d10a412d38b3cad46f85f73f209f9c1fdc41813f755f46a5cb2c7d",
+      "crop_pixel_sha256": "96432ab8343fbe483d99537c939231de4504f6e8f2e71f579d1bf193b7b28ccc",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match212_000_f000051.png",
+        "sha256": "3001653a8ff2139607a1f2defad81908cec0e1bb1e9e22f179600cb9d316cb8e",
+        "pixel_sha256": "07413eb054c0f929731205bac73acdaaf7738ac19ad47552a7647f4ffe46ecb7",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        295,
+        354,
+        935,
+        994
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        717,
+        639,
+        736,
+        665
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        422,
+        285,
+        441,
+        311
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+      "board_sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+          "sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 13,
+      "proposal_id": "positive_0090",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0090.png",
+      "crop_sha256": "df6cf46036ed3022a62792a9ec8d6052984bf099c303463d3ab7df934d178b7f",
+      "crop_pixel_sha256": "68d0f9ab5d25370c44f2e6489a95752fd9f6c8909c562d7eb12dae49681c7b4e",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match212_000_f000107.png",
+        "sha256": "b64352cfee74e341ae7cdbc7d3bcc87b05be0607fa2f70996147759c0e132810",
+        "pixel_sha256": "4e32bba58e4ffbf9b44611a271c9f598e45883f517075da9f47134d265fd831a",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        925,
+        328,
+        1565,
+        968
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1076,
+        571,
+        1084,
+        589
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        151,
+        243,
+        159,
+        261
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+      "board_sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+          "sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 14,
+      "proposal_id": "positive_0098",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0098.png",
+      "crop_sha256": "6aa07e8be696143691c5f70f0dd50fe949235324ce539d3f1b6ac0c67b99f153",
+      "crop_pixel_sha256": "1f03ba1c154463300cba2ce0c46921c8c8a24f537435c1c18b98705bfb214788",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match212_000_f000154.png",
+        "sha256": "622dbcc54d144da64cdaf0f21425d65d98ea0a43685d1c4a67ef3661b5e5bab7",
+        "pixel_sha256": "e16f0e15f3a2f3feb576a3af2206a60e4fe91403fd837d341852ca69f816ed38",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        840,
+        263,
+        1480,
+        903
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1006,
+        293,
+        1016,
+        301
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        166,
+        30,
+        176,
+        38
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+      "board_sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+          "sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 15,
+      "proposal_id": "positive_0105",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0105.png",
+      "crop_sha256": "b36bd7351c919644c92075a1eb64a6c9c45909c3c7701b3b6dae99b0ee991196",
+      "crop_pixel_sha256": "77266502f48f03a75bc3499774ab7090fba42c0e45709e0cc91cbdc0ecd85cab",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match212_000_f000196.png",
+        "sha256": "8ae279ed81850a83d360e244d08d525843387ac70adfa47fe82b83fd8f25137c",
+        "pixel_sha256": "f7bb7f91d7c7bcc38b6b35f667cd1cfdd94292142aff7327e2d4199d41a0cfa9",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        106,
+        336,
+        746,
+        976
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        693,
+        454,
+        702,
+        467
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        587,
+        118,
+        596,
+        131
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+      "board_sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_03.png",
+          "sha256": "c539a1ed28f4f4beaecdbd817e90847e4a121ddd2b6386102c1ed339f241d7aa",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 16,
+      "proposal_id": "positive_0112",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0112.png",
+      "crop_sha256": "4105418fe2e2280526c80829a0a067d40e415ee567bc21ed04d623b212441aab",
+      "crop_pixel_sha256": "661f2ef4452f5a8ff5490c82baa817d370ec543fe731122590778e6f3afdaf1a",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match212_000_f000239.png",
+        "sha256": "f62360ff54fcbe889579acaf72d230d1bbe6da78617b2d05be95c0b14fa84787",
+        "pixel_sha256": "65789e55e50bccf1244eaf0288aa3f9d4ce352cb63d683e5f80c86e60626d368",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        961,
+        330,
+        1601,
+        970
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1136,
+        487,
+        1155,
+        504
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        175,
+        157,
+        194,
+        174
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+      "board_sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+          "sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 17,
+      "proposal_id": "positive_0121",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0121.png",
+      "crop_sha256": "548789c48679708a07ae4ad9d496264cefaf35d3c2be90ad43067191098c593e",
+      "crop_pixel_sha256": "873ed7d600f896b4709f5faaee1a161f22305960185ce5882c568d2b01c83177",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match177_000_f000349.png",
+        "sha256": "3016ebea9d80a09a901cdec8d86d1f7b1fff87513b015d224e1c16e5c6f4ed84",
+        "pixel_sha256": "f97a727b8e56f7c8522ecf3bc6fec5125294e124006d1cfd879295e2690aac50",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        371,
+        4,
+        1011,
+        644
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        850,
+        123,
+        856,
+        129
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        479,
+        119,
+        485,
+        125
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+      "board_sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+          "sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 18,
+      "proposal_id": "positive_0129",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0129.png",
+      "crop_sha256": "475ff258ad17afdbd8d8db538d5e36a874848293a892777993f3901ff4077802",
+      "crop_pixel_sha256": "54ac8f2075aa7ddf8d26de94e1e10f350ba694b2b1a95f45eec365a74218293c",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match200_000_f000126.png",
+        "sha256": "b25ce59603bd15abb2ab62a9e631008f84230f7a321ecb5197b92a1b7bcc1a29",
+        "pixel_sha256": "61ef75d96d5cdd8e9771cb5780b342caad0272d577c5f886bcdbc7f94f7c6e56",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        161,
+        201,
+        801,
+        841
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        766,
+        589,
+        777,
+        601
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        605,
+        388,
+        616,
+        400
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+      "board_sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed. Direct native view distinguishes the green cylindrical bottles and patterned equipment bag from tennis balls; sideline hands show no separate visible ball.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+          "sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0129.png",
+          "sha256": "475ff258ad17afdbd8d8db538d5e36a874848293a892777993f3901ff4077802",
+          "kind": "DIRECT_NATIVE640_FULL_TILE",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 19,
+      "proposal_id": "positive_0136",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0136.png",
+      "crop_sha256": "eeaf9893c8fc4f1974d0afce3f60ec62797ae3c6c244ba849c94405ff939e9b2",
+      "crop_pixel_sha256": "3a04817987351667a1cdbc53cb7cfcf9cd2715b11867be10291f5f80645121eb",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match215_000_f000151.png",
+        "sha256": "541f316e2bf1a696f4765271d08ba786fdc7f001bda44068b3058ac02cf6d95a",
+        "pixel_sha256": "65e9acead3ad71a289911dcb9ef4aaf30c3ca9c04d52db9a91c69dfcc67e5a01",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        416,
+        422,
+        1056,
+        1062
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        985,
+        439,
+        993,
+        447
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        569,
+        17,
+        577,
+        25
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+      "board_sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_04.png",
+          "sha256": "b93de1b18aceb5615c15de10dc0f24a380fcf841a6395aa43fef5f9d2835561e",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 20,
+      "proposal_id": "positive_0152",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0152.png",
+      "crop_sha256": "a6e803ef6f1c221c381c19a8adbc0746f113e39936a6027c422c8f19e21782ac",
+      "crop_pixel_sha256": "aa827f1e5bc1d727e3edabcf3237c1fff44d3ce3c3335f464343bea83a90a513",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match221_000_f000560.png",
+        "sha256": "bbd22188d3fe9507999b1ef179ea0a119376e0736222814d05c1a3d21067c194",
+        "pixel_sha256": "dd4ca3f89b5c8a9cffe65b5a0c6eba8ae7647b5b632c7286903822f60ebf1f9b",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        1076,
+        380,
+        1716,
+        1020
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1380,
+        588,
+        1388,
+        595
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        304,
+        208,
+        312,
+        215
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+      "board_sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+          "sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 21,
+      "proposal_id": "positive_0160",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0160.png",
+      "crop_sha256": "c0e5ede9644803a286d44d774fd2991ffac40c50157cc8b7b9427d9cdd7b79c7",
+      "crop_pixel_sha256": "5cd6d87ee3f4ef0b4d0c639f58ced48a9b897b05b941f5179c2ae84e8a4cc910",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match179_000_f000051.png",
+        "sha256": "c0b676ff4d1e0504c210ae2091cda144f065cd4cdac31bae9a20799f66dd3cc4",
+        "pixel_sha256": "e4d3c002d9d89b4731b1456d9af4e434f7a7268079c73b93938b19bac23b3cc4",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        823,
+        166,
+        1463,
+        806
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1071,
+        307,
+        1077,
+        317
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        248,
+        141,
+        254,
+        151
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+      "board_sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+          "sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 22,
+      "proposal_id": "positive_0167",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0167.png",
+      "crop_sha256": "3f1f52952be03f6fe4ecd66fac4611fe4644c8ea65ece952f39715338c8c0650",
+      "crop_pixel_sha256": "97001dcab5ff5e0f9aa06ff8db120f947fdf40d880d979688c33518876430c66",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match179_000_f000098.png",
+        "sha256": "fa5f1408263a2734640a1f62349f146e769ceb080d7b7acb7d7de7d9ca4e931a",
+        "pixel_sha256": "267137cf3330030da7ecdc5d3ec5520bd4128e53da3b14b8f2937eb72fe707e2",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        774,
+        252,
+        1414,
+        892
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        967,
+        388,
+        980,
+        397
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        193,
+        136,
+        206,
+        145
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+      "board_sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+          "sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 23,
+      "proposal_id": "positive_0175",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0175.png",
+      "crop_sha256": "6f6cf6dc8ace5fd233a2b98ee2bd52165289a94c65ef3c85ffdf12a3090bcc05",
+      "crop_pixel_sha256": "2837356e3ece9b96079fa79e0d932d42b9b8d06e0e0e7f253d7baa6b806543c1",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match179_000_f000155.png",
+        "sha256": "5c858a1e332db639401c06a0891e855e44a60e09b7d8f503a73f45723783f561",
+        "pixel_sha256": "1957a987af857c4bbbe561daea3281fc45b79763b4ee8e287932af42485b2c76",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        657,
+        83,
+        1297,
+        723
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1023,
+        108,
+        1035,
+        116
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        366,
+        25,
+        378,
+        33
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+      "board_sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_05.png",
+          "sha256": "35008c5d0b5f5ec3471cac72fbc1b131aca74a90b5187218601524e03a596265",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 24,
+      "proposal_id": "positive_0182",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0182.png",
+      "crop_sha256": "082cfe9260f23dcb2b94860defe6858eb1bed7567ccd7ecec34c503896da09db",
+      "crop_pixel_sha256": "429b86537dddee18cc6c7eb8d947bf76771ec674cd37b6fcf4bd2f836f9f7e4a",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match179_000_f000197.png",
+        "sha256": "faa69870c6db2875d8d1dd42be91c46441bc4d8373b01009b23d601e08c54a63",
+        "pixel_sha256": "9c84ffc30e08259319e4c983d84385712312b71f7703119897a0e7e741eb3d19",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        146,
+        86,
+        786,
+        726
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        470,
+        563,
+        484,
+        575
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        324,
+        477,
+        338,
+        489
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+      "board_sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "REJECT_CROP_UNANNOTATED_OR_AMBIGUOUS",
+      "reason": "Visible row of spare yellow tennis balls below umpire chair is not covered by the preserved main-ball annotation.",
+      "complete_for_single_visible_ball_development_candidate": false,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+          "sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 25,
+      "proposal_id": "positive_0189",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0189.png",
+      "crop_sha256": "1352e1b6094c33acde86dc81da77945174918fc06c53c7c4f124e485433cffc9",
+      "crop_pixel_sha256": "a7ba70c14da88a4667a7784c73296b43b6ed8006a7c3f150210475245ca0ee6f",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match179_000_f000240.png",
+        "sha256": "44d44517c86e33eac0568bcbaf9a83329c8d8fc60975b400eb3e9abcc530e5fd",
+        "pixel_sha256": "9ebbcc13859b0b5d869d59ca1f89802b360b048aaeb5b13211c9093ca776f792",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        742,
+        241,
+        1382,
+        881
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1227,
+        284,
+        1236,
+        293
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        485,
+        43,
+        494,
+        52
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+      "board_sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+          "sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 26,
+      "proposal_id": "positive_0190",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0190.png",
+      "crop_sha256": "3bb39596d9be071245be56ecfd529d53fc4276ce6650260be673d45a2acd2694",
+      "crop_pixel_sha256": "3df8f09e13f9a7293718fd8275cd3de87660360f263da5e22eae53598070436f",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match181_000_f000009.png",
+        "sha256": "67b0770e89e0c581f12b535cc0530ed055f4649145ad63c78356808364d9ba5e",
+        "pixel_sha256": "5bfa371a536bde00ae06e47c9344b70dcab67bdb67ec4402a6d11dff2a8ef4a4",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        134,
+        353,
+        774,
+        993
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        569,
+        663,
+        577,
+        670
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        435,
+        310,
+        443,
+        317
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+      "board_sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "REJECT_CROP_UNANNOTATED_OR_AMBIGUOUS",
+      "reason": "Visible yellow balls held beside umpire chair and another ball-like yellow object by equipment are outside the main target annotation.",
+      "complete_for_single_visible_ball_development_candidate": false,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+          "sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        },
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0190.png",
+          "sha256": "3bb39596d9be071245be56ecfd529d53fc4276ce6650260be673d45a2acd2694",
+          "kind": "DIRECT_NATIVE640_FULL_TILE",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 27,
+      "proposal_id": "positive_0197",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0197.png",
+      "crop_sha256": "8f3715a18aaf02c102f2b3953df05b62618d08e572a01b221cb815c3018c4b8a",
+      "crop_pixel_sha256": "720397dfe484d6739f5873957c9e497dbfc99ddd05052951891ca578df495b8d",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match181_000_f000246.png",
+        "sha256": "8d8528770aec9a6043aeef2b0589b83de3121f40591dba2f5734734fa00abae3",
+        "pixel_sha256": "c235d4863247f1def4c8acb3565fcc80de685c4828118bb9c40a8f70b2382bde",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        766,
+        181,
+        1406,
+        821
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1152,
+        369,
+        1160,
+        377
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        386,
+        188,
+        394,
+        196
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+      "board_sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_06.png",
+          "sha256": "b9b8ffed25925439664990709473de7c818b0cc36347b756bd05c5acee3372e8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 28,
+      "proposal_id": "positive_0204",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0204.png",
+      "crop_sha256": "b08cee28ac18e4c56aae174068dfaf22dfbd3951d115b9f98c1a81ab624cad8a",
+      "crop_pixel_sha256": "4429c5de0e56ac70cfb43729e54854fd8157795a67faa63808393a024182e04d",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match181_000_f000483.png",
+        "sha256": "03cba1abf64d21540a541df8fd12a42447a788540618340579fd041b20d21294",
+        "pixel_sha256": "fe1a55b529aea406d13a7d47da63f3b17a7cb4dc43f49913283edfd711a00769",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        595,
+        298,
+        1235,
+        938
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        916,
+        508,
+        928,
+        526
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        321,
+        210,
+        333,
+        228
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+      "board_sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+          "sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 29,
+      "proposal_id": "positive_0227",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0227.png",
+      "crop_sha256": "056a3de64929c0e1b1cc4c9d049703796bf14b33a057e6c52f6fd4fea30cfe8d",
+      "crop_pixel_sha256": "f68c687272c3ce4b72052d245c96595732121547dc92c508c53004b644e54869",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match184_000_f000009.png",
+        "sha256": "b8ebd7150fe7cc4110ab4aa45400ed5152f5291c786a9ce954a820aa42e30cd0",
+        "pixel_sha256": "7cca58ce234e4b5fdc2b464977f16baf94ae58f2fe7010d6609889cd6561fbec",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        374,
+        91,
+        1014,
+        731
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        961,
+        121,
+        976,
+        132
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        587,
+        30,
+        602,
+        41
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+      "board_sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "REJECT_CROP_UNANNOTATED_OR_AMBIGUOUS",
+      "reason": "Visible giant tennis-ball props at the left crop edge are not labeled; exclude crop from this single-target export.",
+      "complete_for_single_visible_ball_development_candidate": false,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+          "sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 30,
+      "proposal_id": "positive_0234",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0234.png",
+      "crop_sha256": "2cab695d3c1ee3e6af06134532215f907b4fac2394b16298790631e36629cbd3",
+      "crop_pixel_sha256": "000e40a303f286ee6eb638e1ef6f03161e29d88d173264e0081de6e3975daa0e",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match184_000_f000246.png",
+        "sha256": "6a7f11fc787afbf2aa15ac2b3144fa888c3689c6f906b4873af5fbe1782214a2",
+        "pixel_sha256": "1e49bd48672f3b5f51912ce88c4cb17a6cff58fd59c5320de0cab5c55aef92e0",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        65,
+        60,
+        705,
+        700
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        560,
+        665,
+        575,
+        671
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        495,
+        605,
+        510,
+        611
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+      "board_sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "REJECT_CROP_UNANNOTATED_OR_AMBIGUOUS",
+      "reason": "Visible giant tennis-ball props beside umpire chair are not labeled; exclude crop from this single-target export.",
+      "complete_for_single_visible_ball_development_candidate": false,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+          "sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 31,
+      "proposal_id": "positive_0241",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0241.png",
+      "crop_sha256": "a5492e1d3085e6df021fd4d542bf1250841b2ca01681753c4b0391489241be9d",
+      "crop_pixel_sha256": "239a63fec33c9fa3554c7091ef0feada377c5562c6c04270b8608d964ff636d5",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match184_000_f000471.png",
+        "sha256": "073efc82be0a5d10513227384eb2850fa5bed2b1723a3354df49648e93a71978",
+        "pixel_sha256": "f3b17c6b09b2c7076b704f02ff8b0c661445e5eee711f772f26e50ae4dd11acd",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        227,
+        92,
+        867,
+        732
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        816,
+        365,
+        823,
+        386
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        589,
+        273,
+        596,
+        294
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+      "board_sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "REJECT_CROP_UNANNOTATED_OR_AMBIGUOUS",
+      "reason": "Visible giant tennis-ball props beside umpire chair are not labeled; exclude crop from this single-target export.",
+      "complete_for_single_visible_ball_development_candidate": false,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_07.png",
+          "sha256": "42db6bd4dd0ea8585f77b6439766c6fb510d1e340cfe52d223e940c71d3ad4f9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 32,
+      "proposal_id": "positive_0249",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0249.png",
+      "crop_sha256": "fe85b5bd19a2ad47921255a71c7a17d91eb50af29bb5d55172a119d86e0ed723",
+      "crop_pixel_sha256": "10efba0e78973b93e37183185cf15599ed7665104b90265a56f467f24d917e5a",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match217_000_f000115.png",
+        "sha256": "4feeb4ac34935ccad6c40043908798bd5c3e4eb5deeb64f6cb78ff41cba04f2e",
+        "pixel_sha256": "906f5a51f9dad85960d4d62e0f9ea50d936298232bd7859ed3a362f276868b5e",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        329,
+        51,
+        969,
+        691
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        915,
+        99,
+        920,
+        106
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        586,
+        48,
+        591,
+        55
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+      "board_sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+          "sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 33,
+      "proposal_id": "positive_0256",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0256.png",
+      "crop_sha256": "1c9e38b07a7369e42bb1d488c3b643403d754f0084d85cb89deb117b9451eb62",
+      "crop_pixel_sha256": "621d2732cabeb7180bfebccd5cfaa2cbfcc190db5afc15ed52fc50b0b2f6d8ee",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match217_000_f000376.png",
+        "sha256": "b56b3c4f1877555007074be4cd1c10009fdccf8710de7c12eee3c7a51a902862",
+        "pixel_sha256": "378caaff450c7ecd1eef5ba8abdf721bfe05ac258a784fcf5986926cf3f5349e",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        983,
+        254,
+        1623,
+        894
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1488,
+        592,
+        1503,
+        600
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        505,
+        338,
+        520,
+        346
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+      "board_sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+          "sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 34,
+      "proposal_id": "positive_0263",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0263.png",
+      "crop_sha256": "88dbe209aa854846abab14c07a7e5445b7a42ea2ca892dd673aba14a6b8d3b0c",
+      "crop_pixel_sha256": "3d11eca8163104a25c84b0beddb10922c54bba8b5cb8cb817da256ba1cab4645",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match217_000_f000590.png",
+        "sha256": "c93da57d0f4c145d2028a3c95d775fdae20abceef033b68e2540cb5369e6d67b",
+        "pixel_sha256": "387611e599f30f8305de80bfbf9afa1fa671cf312891356e9db3ed6456f0f004",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        770,
+        42,
+        1410,
+        682
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        978,
+        72,
+        983,
+        79
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        208,
+        30,
+        213,
+        37
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+      "board_sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+          "sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 35,
+      "proposal_id": "positive_0264",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0264.png",
+      "crop_sha256": "73dc1b426569d985cff7f88c1c5c654f8b712d44be998bc8460b527b4681e250",
+      "crop_pixel_sha256": "e26e142bb2995075426a50cda212c6b284fd8210f5aaf25ca23caa2d3b3fafbd",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match188_000_f000009.png",
+        "sha256": "a559b72267628edc6826226de2996c97f4267e075646d9fa3c1b5c5874f36a94",
+        "pixel_sha256": "654f94d112253adae60ff5242c3b1f3c2e70b10a0f78169a9bf80cdc24d19d21",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        662,
+        238,
+        1302,
+        878
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1096,
+        427,
+        1112,
+        431
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        434,
+        189,
+        450,
+        193
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+      "board_sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_08.png",
+          "sha256": "851c85c8d832bcb64ff3354637565b32b685934719b0a0cf10faa3cbb7e8b524",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 36,
+      "proposal_id": "positive_0271",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0271.png",
+      "crop_sha256": "50b3262a00f8dbb4081892bbf1991c9828f2cbff2345b37a355e3642a0eb1b5d",
+      "crop_pixel_sha256": "76932dbb474a89c6f31916ec7bd74739c642d663891b327119c62f6ebc621a78",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match188_000_f000175.png",
+        "sha256": "ab3da39250e43eb77aad5ef533a6d8052f16c47285e640cc58a47bf69c359c58",
+        "pixel_sha256": "0168cfeb713119bf368c22c2bc9382e2501f9f8ce4fb6268e7a120dd5c0ae324",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        654,
+        91,
+        1294,
+        731
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1031,
+        376,
+        1044,
+        382
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        377,
+        285,
+        390,
+        291
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+      "board_sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+          "sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 37,
+      "proposal_id": "positive_0278",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0278.png",
+      "crop_sha256": "eab32e57fec082449c5b1d8784806ae424a00f3a3a83b6b59a13859c8a840a53",
+      "crop_pixel_sha256": "89b69ae846b465f94c1c6b258c7c4260739bd29700db95d2b819b186d716afa4",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match189_000_f000099.png",
+        "sha256": "aeadf2ad267c03a6e46ff7daae99171b28415a3f877c3307e24da685d106e2da",
+        "pixel_sha256": "a89a5d74107e13f46824aa67f2b5701dce8aa4a6b93ccb4b14487b0e1b3d8acb",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        569,
+        75,
+        1209,
+        715
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        757,
+        251,
+        764,
+        258
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        188,
+        176,
+        195,
+        183
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+      "board_sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+          "sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 38,
+      "proposal_id": "positive_0286",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0286.png",
+      "crop_sha256": "b62bb2e89dab3b9d3868771c03b56520b979c824cc423316bb69c7b3977c5f3e",
+      "crop_pixel_sha256": "a0c1b373a9c4e4da475fcfd044bf2d0a22d989fec366d0a256f30ce314ee83be",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match224_000_f000013.png",
+        "sha256": "4d7e9e9ad33ce2a4528250057b231565ee488099464519e52e31e627ba3f3659",
+        "pixel_sha256": "0a1bfc28c5c87b34a9ffca5d63dd55e4555dcaff373cd959dcab7d6bb96388c8",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        261,
+        136,
+        901,
+        776
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        892,
+        269,
+        900,
+        280
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        631,
+        133,
+        639,
+        144
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+      "board_sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+          "sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 39,
+      "proposal_id": "positive_0293",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0293.png",
+      "crop_sha256": "836fb1fb1006d30ec37a6ddd293a623596d797fd0596745b56434f040201069c",
+      "crop_pixel_sha256": "fe204789e9a7793ecc017cf1bfb8370858680f6e456798d27924ec02c4a40e34",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match224_000_f000112.png",
+        "sha256": "5f30f829c05a54891f55494223383dee4266448c384df4f9a360e2d28b21f30d",
+        "pixel_sha256": "54148100f8693c8e1d945d6f9e47662fabf10166f842c80bd2c93da21151fd6a",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        1144,
+        374,
+        1784,
+        1014
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        1297,
+        542,
+        1308,
+        570
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        153,
+        168,
+        164,
+        196
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+      "board_sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_09.png",
+          "sha256": "88870cba7023eecde7e090b02ea6ed6fdad1ca509aa4a4fa5255126b94e82cd8",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 40,
+      "proposal_id": "positive_0300",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0300.png",
+      "crop_sha256": "2f4caadf2e561d156d09b22fd90951bcc8f1e14ad1dbf21fdcae7ba928ef8a6a",
+      "crop_pixel_sha256": "e799e88febf364788f58455f700a2120caa2c218920553b7ee497140cbb432c2",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match224_000_f000240.png",
+        "sha256": "4082db11e8033f0f17a157593b5254dda58a0dc6a42b47d3bec522ae1c4a3da7",
+        "pixel_sha256": "9ad917d18a08254133f125a840c5a2bc5c6f9237177778468fc108e7f90ef211",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        140,
+        318,
+        780,
+        958
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        573,
+        320,
+        581,
+        336
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        433,
+        2,
+        441,
+        18
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+      "board_sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+      "board_cell_canvas_xy": [
+        0,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+          "sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 41,
+      "proposal_id": "positive_0301",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0301.png",
+      "crop_sha256": "33a1abc0ea9a93e459b755fbedb142eadf17351ea38a5ca70e8f3ee6091ee201",
+      "crop_pixel_sha256": "22350bfd09d5218fc277f818c8f47ba0d7952a27351bae975e150e81c357b54e",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match191_000_f000009.png",
+        "sha256": "dec9a15543b9d7182bdaad4cf70837e90bed01219a6af594e1633d1585fd0b3f",
+        "pixel_sha256": "d53368d8f4d8f49b64d1c0f4da904e617bc8c4ced892474aa21a4bfe2c0bd8b0",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        366,
+        38,
+        1006,
+        678
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        872,
+        305,
+        880,
+        312
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        506,
+        267,
+        514,
+        274
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+      "board_sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+      "board_cell_canvas_xy": [
+        640,
+        28
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+          "sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            28
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 42,
+      "proposal_id": "positive_0308",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0308.png",
+      "crop_sha256": "40027e6cbcfc3e958631858cda34aa742fbdc74c1ac0808022c87a453c311728",
+      "crop_pixel_sha256": "9e915a8934872165b504a682db413d2c10ba56654fcfae6f4dc803103f92dcd5",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match191_000_f000223.png",
+        "sha256": "719920beaae006ca0d73d04c847c0869c3b487430bcff71528bb1893e095c7fa",
+        "pixel_sha256": "e789a3bee8de664d123edca6c8f9120660bcc8884300b604b74fe0ebb241629e",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        827,
+        16,
+        1467,
+        656
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        937,
+        164,
+        943,
+        170
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        110,
+        148,
+        116,
+        154
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+      "board_sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+      "board_cell_canvas_xy": [
+        0,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+          "sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            0,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    },
+    {
+      "accepted_crop_manifest_index": 43,
+      "proposal_id": "positive_0323",
+      "crop_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\native640\\positive_0323.png",
+      "crop_sha256": "88581ee80f4720b3f65e7d5d269efbff0552d651c64bf14f1af268ea004c7346",
+      "crop_pixel_sha256": "2e9e43288d98029f7ae3bed64498b3575d84af8c49b8f80a60f841ebbc2f37f5",
+      "crop_shape": [
+        640,
+        640,
+        3
+      ],
+      "source_native_frame": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_data_repair_review_wave96_v3\\native\\match21_000_f000155.png",
+        "sha256": "3ea33248c22ea6c4abc408329613586c189865fcd949e1ef1dad90bec87e8b4a",
+        "pixel_sha256": "0a58d0b627f6b25f4f83b0cda2cbe43b841709dac6f36a201afb24501250214d",
+        "shape": [
+          1080,
+          1920,
+          3
+        ]
+      },
+      "source_crop_xyxy_native_px": [
+        389,
+        119,
+        1029,
+        759
+      ],
+      "preserved_main_bbox_xyxy_native_px": [
+        530,
+        449,
+        546,
+        472
+      ],
+      "preserved_main_bbox_xyxy_crop_px": [
+        141,
+        330,
+        157,
+        353
+      ],
+      "board_path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+      "board_sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+      "board_cell_canvas_xy": [
+        640,
+        696
+      ],
+      "reviewer": "AGENT /root",
+      "reviewer_type": "AGENT",
+      "root_agent_actually_viewed_this_crop": true,
+      "independent_human_review": false,
+      "full_current_crop_actually_viewed": true,
+      "review_scope_native_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ],
+      "all_crop_pixels_scanned": true,
+      "decision": "ACCEPT_CROP_SINGLE_REVIEWED_BALL",
+      "reason": "All640x640 current-crop pixels scanned at original detail: known main ball, court, lines/net, visible people/hands/rackets, equipment/graphics and margins; no additional visible tennis ball or unresolved ball-like object observed.",
+      "complete_for_single_visible_ball_development_candidate": true,
+      "images_actually_viewed": [
+        {
+          "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\ball_reviewed_crop_preparation_v1\\boards\\board_10.png",
+          "sha256": "697d2934196e277489cb752512e729b87f5d130c1bb27b7d045d21a298826bf9",
+          "kind": "UNMARKED_2X2_NATIVE_SCALE_BOARD",
+          "actually_viewed": true,
+          "requested_view_detail": "original",
+          "native_pixels_per_display_pixel": 1,
+          "source_pixel_canvas_xy": [
+            640,
+            696
+          ],
+          "complete_native_crop_pixels_viewed": true
+        }
+      ],
+      "additional_ball_boxes_created": 0,
+      "main_bbox_changed": false,
+      "supervised_export_approved": false,
+      "qualification_evidence": false
+    }
+  ],
+  "supervised_export_approved": false,
+  "training_performed": false
+}

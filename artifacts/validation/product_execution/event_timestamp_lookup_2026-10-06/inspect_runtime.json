@@ -1,0 +1,132 @@
+{
+  "observedAt": "2026-10-06T07:27:09.074996+00:00",
+  "readOnly": true,
+  "availableRamBytes": 1339641856,
+  "runtimeCandidates": [
+    {
+      "pid": 35940,
+      "createTimeUnixSeconds": 1791269295.84763,
+      "parentPid": 67460,
+      "name": "python.exe",
+      "workspaceMatches": true,
+      "rssBytes": 10952704,
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-u",
+        "-m",
+        "src.api.worker"
+      ],
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "directChildren": [
+        {
+          "pid": 42984,
+          "createTimeUnixSeconds": 1791269295.8574448,
+          "name": "conhost.exe",
+          "exe": "C:\\Windows\\System32\\conhost.exe"
+        }
+      ]
+    },
+    {
+      "pid": 40316,
+      "createTimeUnixSeconds": 1791269294.2861109,
+      "parentPid": 66348,
+      "name": "cmd.exe",
+      "workspaceMatches": true,
+      "rssBytes": 1355776,
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+      "cmdline": [
+        "C:\\Windows\\system32\\cmd.exe",
+        "/c",
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe scripts/run/serve_product.py"
+      ],
+      "exe": "C:\\Windows\\System32\\cmd.exe",
+      "directChildren": [
+        {
+          "pid": 30344,
+          "createTimeUnixSeconds": 1791269294.2956765,
+          "name": "conhost.exe",
+          "exe": "C:\\Windows\\System32\\conhost.exe"
+        },
+        {
+          "pid": 67460,
+          "createTimeUnixSeconds": 1791269294.320354,
+          "name": "python.exe",
+          "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+        }
+      ]
+    },
+    {
+      "pid": 60476,
+      "createTimeUnixSeconds": 1791271164.8575602,
+      "parentPid": 35056,
+      "name": "pwsh.exe",
+      "workspaceMatches": true,
+      "rssBytes": 74981376,
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+      "cmdline": [
+        "C:\\Users\\ac-98\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "-Command",
+        "try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}\npython scripts/run/serve_product.py"
+      ],
+      "exe": "C:\\Users\\ac-98\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "directChildren": [
+        {
+          "pid": 65116,
+          "createTimeUnixSeconds": 1791271168.1400733,
+          "name": "conhost.exe",
+          "exe": "C:\\Windows\\System32\\conhost.exe"
+        },
+        {
+          "pid": 62896,
+          "createTimeUnixSeconds": 1791271168.4355752,
+          "name": "python.exe",
+          "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+        }
+      ]
+    },
+    {
+      "pid": 62896,
+      "createTimeUnixSeconds": 1791271168.4355752,
+      "parentPid": 60476,
+      "name": "python.exe",
+      "workspaceMatches": true,
+      "rssBytes": 30461952,
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run/serve_product.py"
+      ],
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "directChildren": []
+    },
+    {
+      "pid": 67460,
+      "createTimeUnixSeconds": 1791269294.320354,
+      "parentPid": 40316,
+      "name": "python.exe",
+      "workspaceMatches": true,
+      "rssBytes": 46419968,
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run/serve_product.py"
+      ],
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "directChildren": [
+        {
+          "pid": 35940,
+          "createTimeUnixSeconds": 1791269295.84763,
+          "name": "python.exe",
+          "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+        }
+      ]
+    }
+  ],
+  "port8000Listeners": [
+    {
+      "pid": 67460,
+      "host": "127.0.0.1"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "status": "COMPLETED_METADATA_ONLY_NO_IMAGE_TRANSFER",
+  "created_utc": "2026-10-15T14:34:54.428467+00:00",
+  "result": {
+    "plan": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-15\\court_source_wave_metadata_v1\\source_wave_plan.json",
+    "sha256": "4c7746d559e94c42116494cab9081f61e8da6e4608104159503ed568a8b1162d",
+    "counts": {
+      "publisher_images": 8841,
+      "publisher_video_ids": 498,
+      "publisher_annotation_counts": {
+        "data_train.json": 6630,
+        "data_val.json": 2211
+      },
+      "publisher_cross_split_video_ids": 434,
+      "existing_images": 165,
+      "excluded_existing_publisher_video_ids": 88,
+      "new_candidate_publisher_video_ids": 410,
+      "selected_images": 64,
+      "selected_publisher_video_ids": 64,
+      "selected_with_out_of_image_points": 2,
+      "selected_null_keypoint_slots": 0
+    },
+    "planned_range_bytes_upper_bound": 52987635
+  },
+  "source_script": "scripts/data/plan_yolo26_court_source_wave.py",
+  "source_script_sha256": "c802fe8552e5ceec47ff303f4470cf4a7284172c75112ff0a56d8f6ae21f5704",
+  "forbidden_import_attempts": [],
+  "metadata_only_available_ram_floor_bytes": 134217728,
+  "resources_before": {
+    "available_physical_ram_bytes": 917856256,
+    "owned_rss_bytes": 20692992,
+    "peak_owned_rss_bytes": 20692992
+  },
+  "resources_after": {
+    "available_physical_ram_bytes": 630034432,
+    "owned_rss_bytes": 30040064,
+    "peak_owned_rss_bytes": 54915072
+  },
+  "elapsed_seconds": 0.3261258000129601,
+  "network_bytes_received": 0,
+  "image_files_opened": 0,
+  "gpu_operations": 0,
+  "model_operations": 0
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="55" failures="2" errors="0" time="2.0116742">
+    <testsuite name="src/components/VideoEvidencePlayer.test.tsx" timestamp="2026-10-08T03:56:26.488Z" hostname="Osamah" tests="39" failures="0" errors="0" skipped="0" time="1.4142362">
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; supports keyboard playback and overlay toggles" time="0.2082845">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; keeps fullscreen available when replay transport owns playback" time="0.1377942">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; holds the presented frame through buffering, pause, timeupdate, resume and overlay changes" time="0.0731126">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;rapid frame steps&apos; and resumes from the decoded acknowledgement" time="0.0344624">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;opposing one-second seeks&apos; and resumes from the decoded acknowledgement" time="0.0326416">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;frame steps before a transport commit&apos; and resumes from the decoded acknowledgement" time="0.0283476">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates pending keyboard &apos;upper-bound reversal&apos; and resumes from the decoded acknowledgement" time="0.0239717">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; accumulates standalone frame buttons while the decoder has not presented the seek" time="0.0532168">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalonePendingRecovery reverses from the final source frame after repeated keys" time="0.0246091">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalonePendingRecovery reverses from the final source frame after repeated buttons" time="0.0332484">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalonePendingRecovery ignores a pre-command callback delivered after seeked and keeps the pending target" time="0.0134422">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; observes paused decoded seeks and ignores a callback queued before a seek command" time="0.0070477">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; waits for the final decoded frame when ended arrives before its callback" time="0.0152552">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; uses media events as the fallback clock when video-frame callbacks are unavailable" time="0.0071066">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; ignores a superseded play rejection after the playback rate changes" time="0.0084439">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; handles a current play rejection named &apos;AbortError&apos; with appropriate feedback" time="0.0051003">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; handles a current play rejection named &apos;NotAllowedError&apos; with appropriate feedback" time="0.0050975">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; keeps the presented frame and offers a retry for a current &apos;NotAllowedError&apos;" time="0.0453001">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; keeps the presented frame and offers a retry for a current &apos;generic error&apos;" time="0.0391538">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; handles a cancelled AbortError without retry feedback or advancing evidence" time="0.0226681">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores an earlier request rejection after a newer successful start" time="0.0378821">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after pause invalidates its playback attempt" time="0.0218066">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after inactive invalidates its playback attempt" time="0.0178648">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after source change invalidates its playback attempt" time="0.0150199">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; standalone play rejection lifecycle &gt; ignores a request rejection after unmount invalidates its playback attempt" time="0.0129596">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; offers generic detected people separately from player roles and leaves it off initially" time="0.0349087">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds the generic people overlay when no raw observations were exported" time="0.0101069">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays without exported boxes even when the players capability is false" time="0.0669223">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays without exported boxes even when the players capability is true" time="0.0627968">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when the entire detection section is unavailable" time="0.011451">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; keeps sparse image boxes usable without court or player world tracking and preserves preferences" time="0.1321851">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; offers UNKNOWN people without presenting them as exported players" time="0.0157742">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.0121822">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 10 were exported" time="0.0171359">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.0149694">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.0197521">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; withholds player overlays when only malformed box coordinates 1 were exported" time="0.0193823">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; skips malformed boxes and draws sparse evidence {&quot;bbox&quot;:[1,2,10,20],&quot;expected&quot;:[6,12,54,108]} within the media clip" time="0.0435888">
+        </testcase>
+        <testcase classname="src/components/VideoEvidencePlayer.test.tsx" name="video evidence player &gt; skips malformed boxes and draws sparse evidence {&quot;bbox&quot;:[-5,-4,10,20],&quot;expected&quot;:[-30,-24,90,144]} within the media clip" time="0.0266875">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/landingZones.test.ts" timestamp="2026-10-08T03:56:26.494Z" hostname="Osamah" tests="12" failures="2" errors="0" skipped="0" time="0.0146923">
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; shows complete selected cells after contact for the bounded source-time interval" time="0.0059714">
+            <failure message="expected [ 19.999999999999996, 140 ] to deeply equal [ 20, 140 ]" type="AssertionError">
+AssertionError: expected [ 19.999999999999996, 140 ] to deeply equal [ 20, 140 ]
+
+- Expected
++ Received
+
+  [
+-   20,
++   19.999999999999996,
+    140,
+  ]
+
+ ❯ src/lib/landingZones.test.ts:12:37
+            </failure>
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting revision evidence" time="0.0003053">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting airborne evidence" time="0.0001268">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting dead evidence" time="0.0000964">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting unreviewed evidence" time="0.0000909">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting source evidence" time="0.0000988">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting position evidence" time="0.0000925">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; withholds conflicting calibration evidence" time="0.0000916">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; reprojects the same metric cell and contact during camera motion" time="0.0006725">
+            <failure message="expected [ 39.99999999999999, 280 ] to deeply equal [ 40, 280 ]" type="AssertionError">
+AssertionError: expected [ 39.99999999999999, 280 ] to deeply equal [ 40, 280 ]
+
+- Expected
++ Received
+
+  [
+-   40,
++   39.99999999999999,
+    280,
+  ]
+
+ ❯ src/lib/landingZones.test.ts:33:37
+            </failure>
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; ends an old highlight when calibration is lost and later recovers" time="0.0002049">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; rejects singular matrices and polygons crossing a projective horizon" time="0.0001336">
+        </testcase>
+        <testcase classname="src/lib/landingZones.test.ts" name="reviewed landing zones &gt; keeps usable video when an optional zone artifact is malformed" time="0.0058971">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/LandingZones.test.tsx" timestamp="2026-10-08T03:56:26.499Z" hostname="Osamah" tests="3" failures="0" errors="0" skipped="0" time="0.2874239">
+        <testcase classname="src/components/spatial/LandingZones.test.tsx" name="shared landing presentation &gt; uses the same partition and visibility on the main court and mini court" time="0.1927413">
+        </testcase>
+        <testcase classname="src/components/spatial/LandingZones.test.tsx" name="shared landing presentation &gt; expires the zone fill after the contact interval while retaining event review" time="0.0755706">
+        </testcase>
+        <testcase classname="src/components/spatial/LandingZones.test.tsx" name="shared landing presentation &gt; does not add overlay controls to a run without reviewed zone records" time="0.0175031">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/spatial/TelemetryDashboard.test.tsx" timestamp="2026-10-08T03:56:26.500Z" hostname="Osamah" tests="1" failures="0" errors="0" skipped="0" time="0.2953218">
+        <testcase classname="src/components/spatial/TelemetryDashboard.test.tsx" name="decoded-frame replay integration &gt; holds shared evidence during seeks and commands the decoder on view and source changes" time="0.2936264">
+        </testcase>
+    </testsuite>
+</testsuites>

@@ -1,0 +1,243 @@
+{
+  "recordedAt": "2026-10-05T04:53:38.453022+00:00",
+  "actualWorkloadIdentity": {
+    "pid": 55044,
+    "createTimeUnixSeconds": 1791176018.0314388
+  },
+  "database": "artifacts/validation/product_execution/registration_storage_measurement_2026-10-05/dynamic_432000_new/frame_registration_x3npv05i.sqlite3",
+  "rows": 432000,
+  "minimumFrame": 0,
+  "maximumFrame": 431999,
+  "queryPlan": [
+    [
+      2,
+      0,
+      33,
+      "SEARCH registration_frames USING INTEGER PRIMARY KEY (rowid=?)"
+    ]
+  ],
+  "stages": [
+    {
+      "startFrame": 0,
+      "frames": 1000,
+      "readDecodeSeconds": 0.03519869997398928,
+      "profiledGeometryEncodingSeconds": 0.025610100012272596,
+      "sha256": "31915c8207e60e023c340d44c2bca461c6946062156c848ee05e1c3ffb269aa0",
+      "topCumulative": [
+        {
+          "function": "encoded",
+          "file": "probe_registration_storage_delay.py",
+          "line": 41,
+          "calls": 1000,
+          "totalSeconds": 0.0028991000000000004,
+          "cumulativeSeconds": 0.0242005
+        },
+        {
+          "function": "project_ground_point",
+          "file": "calibration.py",
+          "line": 32,
+          "calls": 1000,
+          "totalSeconds": 0.0041586,
+          "cumulativeSeconds": 0.0102597
+        },
+        {
+          "function": "dumps",
+          "file": "__init__.py",
+          "line": 183,
+          "calls": 1000,
+          "totalSeconds": 0.0007647,
+          "cumulativeSeconds": 0.0048044
+        },
+        {
+          "function": "encode",
+          "file": "encoder.py",
+          "line": 183,
+          "calls": 1000,
+          "totalSeconds": 0.0007223,
+          "cumulativeSeconds": 0.0038789000000000002
+        },
+        {
+          "function": "iterencode",
+          "file": "encoder.py",
+          "line": 205,
+          "calls": 1000,
+          "totalSeconds": 0.0028565,
+          "cumulativeSeconds": 0.0028565
+        },
+        {
+          "function": "array",
+          "file": "probe_registration_storage_delay.py",
+          "line": 43,
+          "calls": 3000,
+          "totalSeconds": 0.001585,
+          "cumulativeSeconds": 0.0026024000000000004
+        },
+        {
+          "function": "append",
+          "file": "_function_base_impl.py",
+          "line": 5661,
+          "calls": 892,
+          "totalSeconds": 0.0012051000000000002,
+          "cumulativeSeconds": 0.0023746
+        },
+        {
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "file": "~",
+          "line": 0,
+          "calls": 1784,
+          "totalSeconds": 0.000495,
+          "cumulativeSeconds": 0.0023596000000000003
+        },
+        {
+          "function": "scalar",
+          "file": "probe_registration_storage_delay.py",
+          "line": 45,
+          "calls": 4784,
+          "totalSeconds": 0.0010134,
+          "cumulativeSeconds": 0.0020758
+        },
+        {
+          "function": "_all",
+          "file": "_methods.py",
+          "line": 66,
+          "calls": 1784,
+          "totalSeconds": 0.0003912,
+          "cumulativeSeconds": 0.0018646000000000001
+        },
+        {
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "file": "~",
+          "line": 0,
+          "calls": 1784,
+          "totalSeconds": 0.0014734000000000001,
+          "cumulativeSeconds": 0.0014734000000000001
+        },
+        {
+          "function": "<method 'hex' of 'float' objects>",
+          "file": "~",
+          "line": 0,
+          "calls": 4784,
+          "totalSeconds": 0.0010624,
+          "cumulativeSeconds": 0.0010624
+        }
+      ]
+    },
+    {
+      "startFrame": 431000,
+      "frames": 1000,
+      "readDecodeSeconds": 0.03491960000246763,
+      "profiledGeometryEncodingSeconds": 0.024840300029609352,
+      "sha256": "bff6ceec82397310087913485d35ec252e2aed3a4d3f7a908b0753e4b098a1fe",
+      "topCumulative": [
+        {
+          "function": "encoded",
+          "file": "probe_registration_storage_delay.py",
+          "line": 41,
+          "calls": 1000,
+          "totalSeconds": 0.0028618000000000003,
+          "cumulativeSeconds": 0.0239551
+        },
+        {
+          "function": "project_ground_point",
+          "file": "calibration.py",
+          "line": 32,
+          "calls": 1000,
+          "totalSeconds": 0.0041995,
+          "cumulativeSeconds": 0.0102252
+        },
+        {
+          "function": "dumps",
+          "file": "__init__.py",
+          "line": 183,
+          "calls": 1000,
+          "totalSeconds": 0.0007435,
+          "cumulativeSeconds": 0.004792800000000001
+        },
+        {
+          "function": "encode",
+          "file": "encoder.py",
+          "line": 183,
+          "calls": 1000,
+          "totalSeconds": 0.0007137000000000001,
+          "cumulativeSeconds": 0.0039018000000000004
+        },
+        {
+          "function": "iterencode",
+          "file": "encoder.py",
+          "line": 205,
+          "calls": 1000,
+          "totalSeconds": 0.0028829000000000003,
+          "cumulativeSeconds": 0.0028829000000000003
+        },
+        {
+          "function": "array",
+          "file": "probe_registration_storage_delay.py",
+          "line": 43,
+          "calls": 3000,
+          "totalSeconds": 0.0015723,
+          "cumulativeSeconds": 0.0025565
+        },
+        {
+          "function": "append",
+          "file": "_function_base_impl.py",
+          "line": 5661,
+          "calls": 892,
+          "totalSeconds": 0.0012575000000000002,
+          "cumulativeSeconds": 0.0023688000000000003
+        },
+        {
+          "function": "<method 'all' of 'numpy.ndarray' objects>",
+          "file": "~",
+          "line": 0,
+          "calls": 1784,
+          "totalSeconds": 0.0005057,
+          "cumulativeSeconds": 0.0023023
+        },
+        {
+          "function": "scalar",
+          "file": "probe_registration_storage_delay.py",
+          "line": 45,
+          "calls": 4784,
+          "totalSeconds": 0.0009973,
+          "cumulativeSeconds": 0.0020443
+        },
+        {
+          "function": "_all",
+          "file": "_methods.py",
+          "line": 66,
+          "calls": 1784,
+          "totalSeconds": 0.00039630000000000004,
+          "cumulativeSeconds": 0.0017966000000000002
+        },
+        {
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "file": "~",
+          "line": 0,
+          "calls": 1784,
+          "totalSeconds": 0.0014003000000000002,
+          "cumulativeSeconds": 0.0014003000000000002
+        },
+        {
+          "function": "<method 'hex' of 'float' objects>",
+          "file": "~",
+          "line": 0,
+          "calls": 4784,
+          "totalSeconds": 0.001047,
+          "cumulativeSeconds": 0.001047
+        }
+      ]
+    }
+  ],
+  "threads": 27,
+  "pythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "libraries": {
+    "numpy": "2.3.1",
+    "opencv": "4.13.0"
+  },
+  "peakWorkingSetBytes": 47587328,
+  "fastLoop": true,
+  "diagnosticThresholdSecondsPer1000Records": 0.3,
+  "inferenceRun": false,
+  "readOnlyDatabase": true,
+  "scope": "1000-record first/last windows only; diagnostic threshold, not product throughput or qualification."
+}

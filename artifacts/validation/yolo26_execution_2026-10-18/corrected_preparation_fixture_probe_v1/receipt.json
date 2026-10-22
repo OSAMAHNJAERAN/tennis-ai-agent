@@ -1,0 +1,25 @@
+{
+  "exit_code": 1,
+  "result": {
+    "unexpected_error": "Traceback (most recent call last):\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_fixture_probe_v1\\probe.py\", line 41, in <module>\n    fixture = build_complete_base(directory)\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\tests\\test_corrected_preparation.py\", line 164, in build_complete_base\n    write_json_array_artifact(files[name], metadata, key, rows, allow_nan=False)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\utils\\json_array_artifact.py\", line 97, in write_json_array_artifact\n    for record in iterator:\n                  ^^^^^^^^\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\scoring\\corrected_exports.py\", line 134, in _physical_events\n    with closing(iter(events)) as rows:\n         ~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\contextlib.py\", line 364, in __exit__\n    self.thing.close()\n    ^^^^^^^^^^^^^^^^\nAttributeError: 'list_iterator' object has no attribute 'close'\n"
+  },
+  "elapsed_seconds": 1.5257185999653302,
+  "source_before": {
+    "tests/test_corrected_preparation.py": "9003a0be72f182285126293fc441bfd2038186aa6c7cb3cf6ebd7e7b84047376",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85"
+  },
+  "source_after": {
+    "tests/test_corrected_preparation.py": "9003a0be72f182285126293fc441bfd2038186aa6c7cb3cf6ebd7e7b84047376",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85"
+  },
+  "forbidden_import_attempts": [],
+  "forbidden_imports_loaded": [],
+  "scope": "Actual complete original native export + fresh corrected pipeline fixture; toy images and synthetic measurements, no accuracy claim",
+  "source_stable": true
+}

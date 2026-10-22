@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "verified_utc": "2026-10-22T00:40:39.053325+00:00",
+  "reviewer": "Collaborating AI agent /root/resume_contract; fix author independently inspecting retained execution evidence",
+  "status": "EXECUTED_SOFTWARE_SCOPE_VERIFIED_FINDING_CLOSED",
+  "evidence": [
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/receipt.json",
+      "sha256": "a007ad6413cb22fc84c661da8d6e0a4fa7244511c1f76429117bd96f9cfa08bb",
+      "bytes": 49368
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/junit.xml",
+      "sha256": "92d5ad7fa7fc0c5b30e72cd26c94eabb69c2b08a1d6e054a504d8be9d2300705",
+      "bytes": 73213
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/pytest.txt",
+      "sha256": "f7c6e6a1eaadeb261ada927e5eaeba2bc252c502f272f970b9cc99254abbb13a",
+      "bytes": 1190
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/temp/pytest/test_hard_process_loss_resumes0/native_worker_process_recovery_evidence.json",
+      "sha256": "bfac9d59340865e4fb320a97f63930bde74a106ce78e5dda3a94124dd60d64ef",
+      "bytes": 1153
+    }
+  ],
+  "preserved_prior_reviews": [
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_review_v1/worker_static_review.json",
+      "sha256": "3f73ed3ee9b91c861e824daedf6fe7764d31156d9dcdb1a76127399743259128",
+      "bytes": 3656
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_review_v1/worker_static_closure.json",
+      "sha256": "7a0c2056b8a3d7a01ae4082040338a510d6fd7902b195149018a9ef08a647811",
+      "bytes": 2158
+    }
+  ],
+  "current_source_and_test_pins": [
+    {
+      "path": "src/api/worker.py",
+      "sha256": "5338aa08a599bfd54677f6abb5cff7153ed53fe9b4a4cff422834dcd85a91ce9",
+      "bytes": 23292
+    },
+    {
+      "path": "src/utils/native_inference_session.py",
+      "sha256": "d694abc98138b9409197fcbb908d98b757d836ac285fd02d1dc511a960c3c19b",
+      "bytes": 16719
+    },
+    {
+      "path": "tests/test_worker_partial_inference.py",
+      "sha256": "8fe4a444f6106e37f2259d76e918c5327a4c7be8559b4e1ee50b289b7af57da5",
+      "bytes": 22216
+    },
+    {
+      "path": "tests/test_native_inference_session.py",
+      "sha256": "f785a8dbf576b40d5d47b00989dc2e3f7ff44f88b496c5977bbe12bfb5b9ce59",
+      "bytes": 16965
+    },
+    {
+      "path": "tests/test_native_pipeline_process_resume.py",
+      "sha256": "63e8e5ac3e8077690b03e035c1c1e18fa1ea6e208060c6841f33cdb107d5db46",
+      "bytes": 10832
+    },
+    {
+      "path": "tests/helpers/native_pipeline_resume_child.py",
+      "sha256": "30c8cdfa31ddf0d977c5406a897b454f0b81a4a1074301059ffff8134a558761",
+      "bytes": 9797
+    }
+  ],
+  "verification": {
+    "runner_exit_code": 0,
+    "junit_tests": 484,
+    "junit_failures": 0,
+    "junit_errors": 0,
+    "junit_skips": 0,
+    "elapsed_seconds": 44.611615899950266,
+    "all_receipt_pins_match_current_files": true,
+    "total_bound_files": 193,
+    "source_python_files": 168,
+    "worker_partial_cases_passed": 23,
+    "session_coordinator_cases_passed": 94,
+    "reviewer_reexecuted_tests": false,
+    "actual_workflow_inference_import_attempts": [],
+    "forbidden_inference_runtimes_loaded": [],
+    "deliberate_guard_controls": [
+      {
+        "case": "would_return_cached",
+        "deliberate_blocked_attempts": [
+          {
+            "mechanism": "builtins.__import__",
+            "name": "torch",
+            "root": "torch"
+          }
+        ],
+        "actual_import_delegations": 0
+      },
+      {
+        "case": "would_raise_missing",
+        "deliberate_blocked_attempts": [
+          {
+            "mechanism": "builtins.__import__",
+            "name": "torch",
+            "root": "torch"
+          }
+        ],
+        "actual_import_delegations": 0
+      },
+      {
+        "case": "preserved_primary_interrupt",
+        "deliberate_blocked_attempts": [
+          {
+            "mechanism": "builtins.__import__",
+            "name": "torchvision",
+            "root": "torchvision"
+          }
+        ],
+        "actual_import_delegations": 0
+      }
+    ]
+  },
+  "reviewed_worker_controls": [
+    "test_same_job_recovery_reuses_sealed_source_and_passes_partial_identity",
+    "test_valid_prefix_without_raw_journal_starts_at_zero_without_renormalizing",
+    "test_complete_marker_has_precedence_over_damaged_partial_state",
+    "test_corrupt_complete_marker_never_falls_back_to_valid_partial_prefix",
+    "test_source_change_between_post_pipeline_check_and_completed_hashing_cannot_publish",
+    "test_completed_native_recovery_rechecks_its_existing_source_seal_at_publication[modify]",
+    "test_completed_native_recovery_rechecks_its_existing_source_seal_at_publication[remove]",
+    "test_older_completed_native_checkpoint_without_source_seal_keeps_completed_only_contract",
+    "test_partial_recovery_preserves_real_queue_cancellation_and_attempt_limit[cancelled]",
+    "test_partial_recovery_preserves_real_queue_cancellation_and_attempt_limit[cancel_during_validation]",
+    "test_partial_recovery_preserves_real_queue_cancellation_and_attempt_limit[attempt_limit]",
+    "test_ordinary_pipeline_exception_is_failed_without_automatic_recovery",
+    "test_loss_before_completed_player_prefix_is_not_recoverable"
+  ],
+  "coordinator_scope": [
+    "Real retained synthetic normalized assets with actual completed player-prefix and ball-journal stores, zero/partial/complete frontiers.",
+    "Changed source/configuration/optional presence, strict identity/device/schema/count, corrupted rows, redirected paths and cleanup failures reject.",
+    "Seven explicit short malformed-marker IDs are present in JUnit, including the oversized payload; current test pin is bound above."
+  ],
+  "normalized_source_publication_finding": {
+    "id": "normalized_source_revalidation_at_publication",
+    "status": "CLOSED_BY_REVIEW_AND_PASSING_REGRESSIONS",
+    "scope": "The after-pipeline/before-completed-hashing mutation is rejected before a current generation commits. Existing native source seals are also rechecked for completed recovery; older absent-seal completed-only recovery remains covered."
+  },
+  "actual_process_evidence": {
+    "scope": "NATIVE_WORKER_PROCESS_RECOVERY_WITH_SYNTHETIC_SELECTED_VISION",
+    "analysis_id": "match_26ba1126ba1126ba1126ba1126ba1126",
+    "recovery_child_exit_codes": [
+      73,
+      0
+    ],
+    "recovery_process_ids": [
+      52936,
+      56088
+    ],
+    "attempts": [
+      1,
+      2
+    ],
+    "normalizations_across_recovery": 1,
+    "repeated_player_or_court_predictions": 0,
+    "reused_raw_frames": 2,
+    "resumed_ball_frame_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "continuous_ball_frame_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "actual_ffmpeg_normalization_and_browser_encode": true,
+    "actual_native_pipeline_and_worker": true,
+    "actual_result_builder_and_generation_publication": true,
+    "retained_input_prefix_audits_unchanged": true,
+    "semantic_exports_and_decoded_annotated_pixels_equal": true,
+    "actual_model_loads_or_forwards": 0,
+    "asset_admission_and_model_results": "EXPLICIT_SYNTHETIC_BOUNDARIES",
+    "forbidden_import_attempts_or_loaded_runtimes": [],
+    "hardware_resource_probes": false,
+    "real_match_accuracy_long_match_or_live_qualification": false
+  },
+  "limits": {
+    "accuracy_qualification": false,
+    "actual_selected_model_inference": false,
+    "long_match_qualification": false,
+    "live_operation_qualification": false,
+    "vision_asset_admission_and_model_outputs": "Explicit synthetic boundaries in the process fixture",
+    "reviewer_hardware_probes": false,
+    "reviewer_product_edits": false,
+    "test_counts_overlap_prior_runs_and_are_not_added": true
+  }
+}

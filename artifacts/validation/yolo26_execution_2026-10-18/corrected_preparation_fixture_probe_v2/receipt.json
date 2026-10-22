@@ -1,0 +1,25 @@
+{
+  "exit_code": 1,
+  "result": {
+    "unexpected_error": "Traceback (most recent call last):\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_preparation_fixture_probe_v2\\probe.py\", line 41, in <module>\n    fixture = build_complete_base(directory)\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\tests\\test_corrected_preparation.py\", line 200, in build_complete_base\n    token = publish_analysis_generation(storage, original_result, fixture.directory,\n        files={name: path for name, path in files.items() if name not in set(omit)},\n        analysis_revision=0, expected_generation=fixture.snapshot.generation)\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\api\\analysis_generation.py\", line 438, in publish_analysis_generation\n    database = storage.publish(generations / (identifier + '.sqlite3'))\n  File \"C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\src\\api\\result_storage.py\", line 381, in publish\n    raise ValueError(\"Result destination must be a fresh path within its directory\")\nValueError: Result destination must be a fresh path within its directory\n"
+  },
+  "elapsed_seconds": 2.1247298999805935,
+  "source_before": {
+    "tests/test_corrected_preparation.py": "87565fa346bc334cc11bacef23641372f627d6ff9451d5f151d16b3f715dd739",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85"
+  },
+  "source_after": {
+    "tests/test_corrected_preparation.py": "87565fa346bc334cc11bacef23641372f627d6ff9451d5f151d16b3f715dd739",
+    "tests/test_corrected_shot_rebuild.py": "66e1ed1d3f6597b41dafc11a04b1a1c185e2f40e7a8b0946094dd05da88deb9b",
+    "tests/test_corrected_rule_rebuild.py": "d589eee5154d1a6ac028aa8fc93a82cf96261f62122a7536bad05f1807650c84",
+    "src/api/results.py": "e5c32937658ab21b6dbc83689fdf4f282230c38eb22cfb35125e03078ab1f4e3",
+    "src/scoring/corrected_rendering.py": "01affb6493caa71ffe40ecbb398b512d614e748d5dd27af29f7d2e23e5454e85"
+  },
+  "forbidden_import_attempts": [],
+  "forbidden_imports_loaded": [],
+  "scope": "Actual complete original native export + fresh corrected pipeline fixture; toy images and synthetic measurements, no accuracy claim",
+  "source_stable": true
+}

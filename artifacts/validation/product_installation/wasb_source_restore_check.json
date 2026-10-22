@@ -1,0 +1,63 @@
+{
+  "verifiedAt": "2026-10-01T03:29:31.981999+00:00",
+  "passed": true,
+  "checks": [
+    {
+      "path": "artifacts/research/WASB-SBDT/LICENSE.md",
+      "expectedSha256": "92cdd65f99330008e488ccbf04ae83004e80ded375df2206b9db0ac5bd84caee",
+      "observedSha256": "92cdd65f99330008e488ccbf04ae83004e80ded375df2206b9db0ac5bd84caee",
+      "passed": true
+    },
+    {
+      "path": "artifacts/research/WASB-SBDT/src/models/hrnet.py",
+      "expectedSha256": "656c03770e1d7c4442f6f7431ca1f50a674042ac75ff6ba3cd120a2316e74688",
+      "observedSha256": "656c03770e1d7c4442f6f7431ca1f50a674042ac75ff6ba3cd120a2316e74688",
+      "passed": true
+    },
+    {
+      "path": "artifacts/research/WASB-SBDT/src/utils/image.py",
+      "expectedSha256": "2e35148b8ed519b786487191fb6184d4c931c8c2621f5ab7fea68d8503c9c33c",
+      "observedSha256": "2e35148b8ed519b786487191fb6184d4c931c8c2621f5ab7fea68d8503c9c33c",
+      "passed": true
+    },
+    {
+      "path": "artifacts/research/WASB-SBDT/src/configs/model/wasb.yaml",
+      "expectedSha256": "547fd086f8f8fcff54bb960e01f67cac6e66088067b2159b3a6e6678c9ff3fdc",
+      "observedSha256": "547fd086f8f8fcff54bb960e01f67cac6e66088067b2159b3a6e6678c9ff3fdc",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "git",
+        "clone",
+        "--no-checkout",
+        "https://github.com/nttcom/WASB-SBDT.git",
+        "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\wasb_restore_check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "Cloning into 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\wasb_restore_check'...\n"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_installation\\wasb_restore_check",
+        "-c",
+        "core.autocrlf=true",
+        "checkout",
+        "--detach",
+        "923462cacdeb3353b84ddebdedb3f4b7a8553b0f"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "HEAD is now at 923462c added DeepBall, DeelBall-Large and BallSeg\n"
+    }
+  ],
+  "sourceCommit": "923462cacdeb3353b84ddebdedb3f4b7a8553b0f",
+  "lineEndingPolicy": "core.autocrlf=true reproduces the observed Windows source checkout bytes",
+  "modelsImported": false,
+  "inferenceRun": false
+}

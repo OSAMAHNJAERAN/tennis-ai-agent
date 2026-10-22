@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.1",
+  "bundle_id": "private-yolo26-reviewed20-native640-tiles-match172-2026-10-16",
+  "status": "UNQUALIFIED_PRIVATE_REVIEWED20_DEVELOPMENT",
+  "qualification_receipt": null,
+  "models": {
+    "ball": {
+      "family": "yolo26m",
+      "task": "detect",
+      "kpt_shape": null,
+      "path": "outputs/yolo26_ball_reviewed_development_run1/training/weights/best.pt",
+      "sha256": "90a141489dc7198789043466d7ab3c0245b86cb0135122f7b78d62115a8a9fcc",
+      "initial_weights": "yolo26m.pt",
+      "training_provenance": {
+        "path": "outputs/yolo26_ball_reviewed_development_run1/run_metadata.json",
+        "sha256": "8bd1a064a5379f0730d743da3c2bd0209679c65240ea967d2b92febf3f7fc5a3"
+      },
+      "independent_accuracy_validated": false
+    },
+    "players": {
+      "family": "yolo26s",
+      "task": "pose",
+      "kpt_shape": [
+        17,
+        3
+      ],
+      "path": "models/yolo26/yolo26s-pose.pt",
+      "sha256": "a083adb42303728ae14c4bd6bd56d80da46f82fb2564dbd6f31dcc92ea321646",
+      "initial_weights": "yolo26s-pose.pt",
+      "training_provenance": null,
+      "independent_accuracy_validated": false,
+      "origin_provenance": {
+        "path": "models/yolo26/provenance.json",
+        "sha256": "04a666caa99962653fc273f7dd057f6cd51037d120285930e5548437c40443db"
+      }
+    },
+    "court": {
+      "family": "yolo26s",
+      "task": "pose",
+      "kpt_shape": [
+        14,
+        3
+      ],
+      "path": "outputs/yolo26_court_reviewed_development_run1/training/weights/best.pt",
+      "sha256": "e47db3784adb39b82be6df7fca73ed0206f67f4f5d1bb029f0f862a34a4feefa",
+      "initial_weights": "yolo26s-pose.pt",
+      "training_provenance": {
+        "path": "outputs/yolo26_court_reviewed_development_run1/run_metadata.json",
+        "sha256": "d5b35180e9399a30412cb486296d2590efadbdfbcc40516237fd8d6c0266c7f4"
+      },
+      "independent_accuracy_validated": false
+    }
+  },
+  "use_scope": "PRIVATE_OFFLINE_EVALUATION",
+  "evaluation_only": true,
+  "public_redistribution_allowed": false,
+  "evaluation_sources": {
+    "path": "configs/evaluation/yolo26.private-reviewed20-match172-2026-10-16.sources.json",
+    "sha256": "993e3b2a39728bc1d483ebde30a7289017b26825dc7d55c9633174dac356f32d"
+  }
+}

@@ -8,7 +8,13 @@ Unavailable evidence remains ``None`` rather than receiving a fabricated value.
 from __future__ import annotations
 
 import math
+import json
+import operator
+from pathlib import Path
+import sqlite3
+import tempfile
 from bisect import bisect_left, bisect_right
+from contextlib import ExitStack
 from dataclasses import asdict, dataclass, field, fields, replace
 from enum import Enum
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
@@ -23,6 +29,8 @@ from src.events.activity_state import (
 from src.events.provenance_auditor import ProvenanceAuditor
 from src.tracking.temporal_ball_tracker import BallState, TemporalBallPoint
 from src.utils.bbox_utils import BBox
+from src.utils.temporal_ball_point_sequence import _encode_number, _decode_number
+from src.utils.mapped_sequence_view import MappedSequenceView, attribute_sequence
 
 
 class EventType(Enum):
@@ -161,9 +169,9 @@ class EventDetectorSettings:
 
 @dataclass
 class EventDetectionAnalysis:
-    candidates: List[EventCandidate]
-    events: List[TennisEvent]
-    verification_traces: List[Dict[str, Any]]
+    candidates: Sequence[EventCandidate]
+    events: Sequence[TennisEvent]
+    verification_traces: Sequence[Dict[str, Any]]
     settings: Dict[str, Any]
     coordinate_system: Dict[str, Any]
 
@@ -191,6 +199,277 @@ class _Feature:
     edge_continuity: bool = False
     score: float = 0.0
     strengths: Dict[str, float] = field(default_factory=dict)
+
+
+_FEATURE_PAIRS = ('raw_position', 'feature_position', 'pre_velocity', 'post_velocity')
+_FEATURE_NUMBERS = ('timestamp', 'confidence', 'pre_speed', 'post_speed', 'normalized_speed',
+                    'normalized_velocity_change', 'normalized_acceleration', 'direction_change',
+                    'normalized_curvature', 'continuity', 'score')
+_FEATURE_REQUIRED_NUMBERS = frozenset(('timestamp', 'continuity', 'score'))
+_FEATURE_FLAGS = ('vertical_inversion', 'court_rebound', 'edge_continuity')
+_FEATURE_FIELDS = frozenset(item.name for item in fields(_Feature))
+
+
+def _feature_record(feature):
+    """Check the private dataclass schema and preserve IEEE numeric payloads."""
+    if not isinstance(feature, _Feature):
+        raise TypeError('Event feature storage requires a typed feature')
+    if isinstance(feature.frame, (bool, np.bool_)):
+        raise TypeError('Event feature frame requires an integer')
+    try:
+        frame = operator.index(feature.frame)
+    except TypeError as error:
+        raise TypeError('Event feature frame requires an integer') from error
+    if frame < 0 or feature.state not in {state.value for state in BallState}:
+        raise TypeError('Event feature frame/state is invalid')
+    record = {'frame': frame, 'state': feature.state}
+    for name in _FEATURE_NUMBERS:
+        value = getattr(feature, name)
+        if value is None and name in _FEATURE_REQUIRED_NUMBERS:
+            raise TypeError(f'Event feature {name} is required')
+        record[name] = _encode_number(value)
+    for name in _FEATURE_PAIRS:
+        value = getattr(feature, name)
+        if value is not None and (not isinstance(value, tuple) or len(value) != 2
+                                  or any(item is None for item in value)):
+            raise TypeError(f'Event feature {name} requires a two-number tuple or None')
+        record[name] = None if value is None else [_encode_number(item) for item in value]
+    for name in _FEATURE_FLAGS:
+        value = getattr(feature, name)
+        if value is not None and type(value) is not bool:
+            raise TypeError(f'Event feature {name} requires a boolean or None')
+        if name == 'edge_continuity' and value is None:
+            raise TypeError('Event feature edge_continuity is required')
+        record[name] = value
+    if not isinstance(feature.strengths, dict) or any(not isinstance(key, str) for key in feature.strengths):
+        raise TypeError('Event feature strengths require a string-number dictionary')
+    record['strengths'] = {key: _encode_number(value) for key, value in feature.strengths.items()}
+    if any(value is None for value in feature.strengths.values()):
+        raise TypeError('Event feature strengths require numeric values')
+    return record
+
+
+def _decode_feature(payload):
+    document = json.loads(payload)
+    if (not isinstance(document, dict) or set(document) != {'schema_version', 'feature'}
+            or type(document['schema_version']) is not int or document['schema_version'] != 1):
+        raise ValueError('Unsupported event feature schema')
+    record = document['feature']
+    if not isinstance(record, dict) or set(record) != _FEATURE_FIELDS:
+        raise ValueError('Malformed event feature record')
+    values = dict(record)
+    for name in _FEATURE_NUMBERS:
+        values[name] = _decode_number(record[name])
+    for name in _FEATURE_PAIRS:
+        pair = record[name]
+        if pair is not None and (not isinstance(pair, list) or len(pair) != 2):
+            raise ValueError('Malformed event feature pair')
+        values[name] = None if pair is None else tuple(_decode_number(item) for item in pair)
+    if not isinstance(record['strengths'], dict):
+        raise ValueError('Malformed event feature strengths')
+    values['strengths'] = {key: _decode_number(value) for key, value in record['strengths'].items()}
+    feature = _Feature(**values)
+    _feature_record(feature)
+    return feature
+
+
+class _FeatureSequence(Sequence):
+    """Owned feature snapshots, ranking and suppression on bounded SQLite.
+
+    Payloads retain typed tuples and IEEE numbers. Ranking accepts finite
+    binary64 keys only on this explicit scratch path. SQLite retains no decoded
+    feature cache; ranking and accepted timestamps stay on disk. The caller's
+    default candidate/event lists still grow unless a result_output is supplied. Successful and
+    failed context exits remove this exact scratch file and its sidecars.
+    """
+
+    def __init__(self, directory, *, transaction_size=256):
+        if isinstance(transaction_size, (bool, np.bool_)):
+            raise ValueError('Event feature transaction size must be an integer from 1 through 256')
+        try:
+            transaction_size = operator.index(transaction_size)
+        except TypeError as error:
+            raise ValueError('Event feature transaction size must be an integer from 1 through 256') from error
+        if not 1 <= transaction_size <= 256:
+            raise ValueError('Event feature transaction size must be an integer from 1 through 256')
+        self.directory = Path(directory).resolve()
+        self.transaction_size = transaction_size
+        self._path = self._connection = None
+        self._length = self._pending = 0
+
+    @property
+    def path(self):
+        return self._path
+
+    def _open(self):
+        if self._connection is None:
+            raise RuntimeError('Event feature storage is not open')
+        return self._connection
+
+    def _execute(self, sql, parameters=(), *, fetch=False):
+        cursor = self._open().execute(sql, parameters)
+        try:
+            return cursor.fetchone() if fetch else None
+        finally:
+            cursor.close()
+
+    def __enter__(self):
+        if self._path is not None:
+            raise RuntimeError('Event feature storage cannot be reused')
+        try:
+            with tempfile.NamedTemporaryFile(dir=self.directory, prefix='event_features_',
+                                             suffix='.sqlite3', delete=False) as temporary:
+                self._path = Path(temporary.name).resolve()
+            if self._path.parent != self.directory:
+                raise ValueError('Owned event feature storage escaped its directory')
+            self._connection = sqlite3.connect(self._path)
+            for pragma in ('journal_mode=DELETE', 'cache_size=-2048', 'temp_store=FILE', 'mmap_size=0'):
+                self._execute(f'PRAGMA {pragma}', fetch=True)
+            self._execute('CREATE TABLE features (position INTEGER PRIMARY KEY, payload TEXT NOT NULL)')
+            self._execute('CREATE TABLE ranking (position INTEGER PRIMARY KEY, score REAL NOT NULL, '
+                          'vertical INTEGER NOT NULL, direction REAL NOT NULL, velocity REAL NOT NULL, '
+                          'acceleration REAL NOT NULL, timestamp REAL NOT NULL)')
+            self._execute('CREATE INDEX feature_rank ON ranking '
+                          '(score DESC, vertical DESC, direction DESC, velocity DESC, '
+                          'acceleration DESC, timestamp, position)')
+            self._execute('CREATE TABLE accepted (position INTEGER PRIMARY KEY, '
+                          'timestamp REAL NOT NULL, rank_order INTEGER NOT NULL)')
+            self._execute('CREATE INDEX accepted_time ON accepted (timestamp, rank_order)')
+            self.flush()
+            return self
+        except BaseException as error:
+            self._dispose(error)
+            raise
+
+    def flush(self):
+        self._open().commit()
+        self._pending = 0
+
+    def _mutation(self):
+        self._pending += 1
+        if self._pending >= self.transaction_size:
+            self.flush()
+
+    def __len__(self):
+        return self._length
+
+    def append(self, feature):
+        payload = json.dumps({'schema_version': 1, 'feature': _feature_record(feature)},
+                             separators=(',', ':'), allow_nan=False)
+        self._execute('INSERT INTO features VALUES (?,?)', (self._length, payload))
+        self._length += 1
+        self._mutation()
+
+    def __getitem__(self, index):
+        self._open()
+        if isinstance(index, slice):
+            return MappedSequenceView(self, lambda feature, _index: feature)[index]
+        index = operator.index(index)
+        if index < 0:
+            index += self._length
+        if not 0 <= index < self._length:
+            raise IndexError(index)
+        row = self._execute('SELECT payload FROM features WHERE position=?', (index,), fetch=True)
+        if row is None:
+            raise RuntimeError(f'Owned event feature {index} is missing')
+        return _decode_feature(row[0])
+
+    @staticmethod
+    def _rank_number(value, name):
+        number = float(value)
+        if not math.isfinite(number) or number != value:
+            raise ValueError(f'Candidate scratch ranking requires finite binary64 {name}')
+        return number
+
+    def select_candidates(self, settings):
+        """Yield selected snapshots with the legacy stable rank and abs rule."""
+        interval = self._rank_number(settings.candidate_min_interval_seconds, 'suppression interval')
+        self._execute('DELETE FROM ranking')
+        self._mutation()
+        self._execute('DELETE FROM accepted')
+        self._mutation()
+        for position in range(self._length):
+            feature = self[position]
+            if feature.raw_position is None or feature.state == BallState.MISSING.value:
+                continue
+            # Reject invalid active keys before SQLite could normalize NaN to
+            # NULL. Missing features still preserve arbitrary IEEE payloads.
+            score = self._rank_number(feature.score, 'score')
+            direction = self._rank_number(feature.direction_change or 0., 'direction change')
+            velocity = self._rank_number(feature.normalized_velocity_change or 0., 'velocity change')
+            acceleration = self._rank_number(feature.normalized_acceleration or 0., 'acceleration')
+            timestamp = self._rank_number(feature.timestamp, 'timestamp')
+            speed = self._rank_number(feature.normalized_speed or 0., 'normalized speed')
+            if (score >= settings.candidate_score_threshold
+                    and speed >= settings.candidate_min_normalized_speed_per_s):
+                self._execute('INSERT INTO ranking VALUES (?,?,?,?,?,?,?)',
+                              (position, score, 1 if feature.vertical_inversion else 0,
+                               direction, velocity, acceleration, timestamp))
+                self._mutation()
+        feature = None
+        self.flush()
+        cursor = self._open().execute('SELECT position,timestamp FROM ranking ORDER BY '
+                                     'score DESC,vertical DESC,direction DESC,velocity DESC,'
+                                     'acceleration DESC,timestamp,position')
+        try:
+            for rank_order, (position, timestamp) in enumerate(cursor):
+                if interval < 0:
+                    suppressed = None
+                else:
+                    # Round outward before applying the exact subtraction
+                    # predicate. A bare timestamp +/- interval can exclude an
+                    # endpoint whose rounded abs difference meets the rule.
+                    # The range allows the timestamp index to narrow the scan;
+                    # abs subtraction remains the final, unchanged decision.
+                    widened = math.nextafter(interval, math.inf)
+                    lower = math.nextafter(timestamp - widened, -math.inf)
+                    upper = math.nextafter(timestamp + widened, math.inf)
+                    suppressed = self._execute(
+                        'SELECT 1 FROM accepted WHERE timestamp>=? AND timestamp<=? '
+                        'AND abs(timestamp-?)<=? LIMIT 1',
+                        (lower, upper, timestamp, interval), fetch=True)
+                if suppressed is None:
+                    self._execute('INSERT INTO accepted VALUES (?,?,?)', (position, timestamp, rank_order))
+                    self._mutation()
+        finally:
+            cursor.close()
+        self.flush()
+        cursor = self._open().execute('SELECT position FROM accepted ORDER BY timestamp,rank_order')
+        try:
+            for row in cursor:
+                yield self[row[0]]
+        finally:
+            cursor.close()
+
+    def _dispose(self, primary=None):
+        failures = []
+        connection, self._connection = self._connection, None
+        if connection is not None:
+            try:
+                connection.close()
+            except BaseException as error:
+                failures.append(('close', error))
+        if self._path is not None:
+            for suffix in ('-journal', '-wal', '-shm', ''):
+                path = Path(str(self._path) + suffix)
+                try:
+                    if path.is_symlink() or path.resolve().parent != self.directory:
+                        raise ValueError('Owned event feature cleanup escaped its directory')
+                    path.unlink(missing_ok=True)
+                except BaseException as error:
+                    failures.append(('cleanup', error))
+        if primary is None and failures:
+            _, primary = failures.pop(0)
+            for stage, error in failures:
+                primary.add_note(f'Event feature storage {stage} also failed: {error}')
+            raise primary
+        if primary is not None:
+            for stage, error in failures:
+                primary.add_note(f'Event feature storage {stage} also failed: {error}')
+
+    def __exit__(self, error_type, error, traceback):
+        self._dispose(error)
+        return False
 
 
 class TennisEventDetector:
@@ -259,8 +538,8 @@ class TennisEventDetector:
             if width <= 0 or height <= 0:
                 raise ValueError("frame_size must contain positive dimensions")
             return width, height, "VIDEO_METADATA"
-        xs = [float(p.x_px) for p in trajectory if p.x_px is not None]
-        ys = [float(p.y_px) for p in trajectory if p.y_px is not None]
+        xs = (float(p.x_px) for p in trajectory if p.x_px is not None)
+        ys = (float(p.y_px) for p in trajectory if p.y_px is not None)
         return (
             max(1280, int(math.ceil(max(xs, default=1279.0) + 1))),
             max(720, int(math.ceil(max(ys, default=719.0) + 1))),
@@ -271,7 +550,25 @@ class TennisEventDetector:
         self,
         trajectory: Sequence[TemporalBallPoint],
         offsets: Optional[Sequence[Optional[Tuple[float, float]]]],
-    ) -> Tuple[List[Optional[Tuple[float, float]]], str]:
+    ) -> Tuple[Sequence[Optional[Tuple[float, float]]], str]:
+        if not isinstance(trajectory, list):
+            if offsets is not None and self.settings.enable_camera_motion_compensation and len(offsets) != len(trajectory):
+                raise ValueError("camera_offsets_px must align with trajectory")
+            compensate = self.settings.enable_camera_motion_compensation and offsets is not None
+
+            def position(point, index):
+                if point.x_px is None or point.y_px is None:
+                    return None
+                raw = float(point.x_px), float(point.y_px)
+                offset = offsets[index] if compensate else None
+                if offset is None:
+                    return raw
+                return raw[0] - float(offset[0]), raw[1] - float(offset[1])
+
+            state = ("DISABLED" if not self.settings.enable_camera_motion_compensation
+                     else "GLOBAL_TRANSLATION_COMPENSATED_STATIC_SCENE_INPUT" if compensate
+                     else "UNAVAILABLE_NO_PER_FRAME_STATIC_SCENE_TRANSFORM")
+            return MappedSequenceView(trajectory, position), state
         raw = [
             (float(p.x_px), float(p.y_px)) if p.x_px is not None and p.y_px is not None else None
             for p in trajectory
@@ -295,6 +592,30 @@ class TennisEventDetector:
         return min(range(len(timestamps)), key=lambda index: abs(timestamps[index] - target))
 
     @staticmethod
+    def _nearest_ordered_index(timestamps: Sequence[float], target: float) -> int:
+        """Match the first minimum on an already checked finite ordered timeline."""
+        if not timestamps or not math.isfinite(target):
+            return TennisEventDetector._nearest_index(timestamps, target)
+        insertion = bisect_left(timestamps, target)
+        if insertion == 0:
+            return 0
+        left = insertion - 1
+        distance = abs(timestamps[left] - target)
+        if insertion < len(timestamps) and abs(timestamps[insertion] - target) < distance:
+            return insertion
+        # Floating subtraction may round several distinct timestamps to the
+        # same distance, even outside the timeline. The original min chooses
+        # the first of them, rather than merely the immediate predecessor.
+        low, high = 0, left
+        while low < high:
+            middle = (low + high) // 2
+            if abs(timestamps[middle] - target) <= distance:
+                high = middle
+            else:
+                low = middle + 1
+        return low
+
+    @staticmethod
     def _velocity(
         first: Optional[Tuple[Optional[float], Optional[float]]],
         second: Optional[Tuple[Optional[float], Optional[float]]],
@@ -316,13 +637,20 @@ class TennisEventDetector:
         trajectory: Sequence[TemporalBallPoint],
         frame_size: Tuple[int, int],
         positions: Sequence[Optional[Tuple[float, float]]],
-    ) -> List[_Feature]:
-        timestamps = [float(p.timestamp_seconds) for p in trajectory]
+        *, output=None,
+    ) -> Sequence[_Feature]:
+        timestamps = attribute_sequence(trajectory, 'timestamp_seconds', convert=float)
         if any(b <= a for a, b in zip(timestamps, timestamps[1:])):
             raise ValueError("trajectory timestamps must be strictly increasing")
+        # Certify the stable timeline once. Keep the original lookup for legacy
+        # nonfinite inputs, whose behavior the ordering check does not reject.
+        nearest_index = (self._nearest_ordered_index if all(math.isfinite(value) for value in timestamps)
+                         else self._nearest_index)
         diagonal = max(1.0, math.hypot(*frame_size))
         scales = (0.045, self.settings.feature_half_window_seconds)
-        result: List[_Feature] = []
+        result = [] if output is None else output
+        if len(result):
+            raise ValueError('Event feature output must be empty')
         for index, point in enumerate(trajectory):
             raw = (
                 (float(point.x_px), float(point.y_px))
@@ -340,8 +668,8 @@ class TennisEventDetector:
             best_tuple = None
 
             for half_window in scales:
-                before_i = self._nearest_index(timestamps, timestamps[index] - half_window)
-                after_i = self._nearest_index(timestamps, timestamps[index] + half_window)
+                before_i = nearest_index(timestamps, timestamps[index] - half_window)
+                after_i = nearest_index(timestamps, timestamps[index] + half_window)
                 pre_velocity = self._velocity(
                     positions[before_i], positions[index], timestamps[before_i], timestamps[index]
                 )
@@ -501,6 +829,22 @@ class TennisEventDetector:
         width, height, _ = self._frame_size(ball_trajectory, frame_size)
         positions, camera_state = self._positions(ball_trajectory, camera_offsets_px)
         features = self._features(ball_trajectory, (width, height), positions)
+        return self._candidates_from_features(features, fps, width, height, camera_state)
+
+    def _candidates_from_features(self, features, fps, width, height, camera_state, *, output=None):
+        """Select from a computed feature timeline without a second feature pass."""
+        if len(features) < 3:
+            return [] if output is None else output
+        if isinstance(features, _FeatureSequence):
+            diagonal = math.hypot(width, height)
+            if output is not None:
+                for item in features.select_candidates(self.settings):
+                    output.append(self._candidate(item, fps, camera_state, diagonal))
+                return output
+            return [self._candidate(item, fps, camera_state, diagonal)
+                    for item in features.select_candidates(self.settings)]
+        if output is not None:
+            raise ValueError('Bounded event results require the explicit native feature scratch path')
         eligible = [
             item for item in features
             if item.raw_position is not None
@@ -537,7 +881,7 @@ class TennisEventDetector:
         window_seconds: float,
     ) -> Dict[str, Any]:
         timestamp = trajectory[frame].timestamp_seconds
-        timestamps = [point.timestamp_seconds for point in trajectory]
+        timestamps = attribute_sequence(trajectory, 'timestamp_seconds')
         left = bisect_left(timestamps, timestamp - window_seconds)
         right = bisect_right(timestamps, timestamp + window_seconds)
         records: Dict[int, Dict[str, Any]] = {}
@@ -642,7 +986,8 @@ class TennisEventDetector:
         if not self.settings.enable_event_time_refinement:
             return candidate.frame_index
         options: List[Tuple[float, float, int, int]] = []
-        timestamps = [item.timestamp for item in features]
+        timestamps = (attribute_sequence(features, 'timestamp') if isinstance(trajectory, list)
+                      else MappedSequenceView(features, lambda item, _index: item.timestamp))
         left = bisect_left(timestamps, candidate.timestamp_s - self.settings.event_time_refinement_window_seconds)
         right = bisect_right(timestamps, candidate.timestamp_s + self.settings.event_time_refinement_window_seconds)
         for item in features[left:right]:
@@ -667,11 +1012,13 @@ class TennisEventDetector:
         player_id: Optional[int],
         trajectory: Sequence[TemporalBallPoint],
         boxes: Sequence[Optional[BBox]],
+        *, ordered_timestamps: Optional[Sequence[float]] = None,
     ) -> float:
         if player_id is None:
             return 0.0
         target = trajectory[frame].timestamp_seconds + self.settings.departure_window_seconds
-        index = min(range(len(trajectory)), key=lambda i: abs(trajectory[i].timestamp_seconds - target))
+        index = (min(range(len(trajectory)), key=lambda i: abs(trajectory[i].timestamp_seconds - target))
+                 if ordered_timestamps is None else self._nearest_ordered_index(ordered_timestamps, target))
         point, box = trajectory[index], boxes[index] if index < len(boxes) else None
         if point.x_px is None or point.y_px is None or box is None:
             return 0.0
@@ -712,7 +1059,7 @@ class TennisEventDetector:
         speed_gain = (item.post_speed or 0.0) / max(item.pre_speed or 0.0, 1e-9)
         fast = post_normalized >= self.settings.serve_min_post_speed_normalized_per_s
         timestamp = trajectory[frame].timestamp_seconds
-        timestamps = [point.timestamp_seconds for point in trajectory]
+        timestamps = attribute_sequence(trajectory, 'timestamp_seconds')
         left = bisect_left(timestamps, timestamp - self.settings.serve_evidence_window_seconds)
         right = bisect_left(timestamps, timestamp)
         prior = [
@@ -746,6 +1093,7 @@ class TennisEventDetector:
         camera_state: str,
         frame_height: int,
         frame_diagonal: float,
+        *, ordered_timestamps: Optional[Sequence[float]] = None,
     ) -> Tuple[Optional[TennisEvent], Dict[str, Any]]:
         point = trajectory[item.frame]
         player = self._player_features(
@@ -779,7 +1127,9 @@ class TennisEventDetector:
         state_weight = self.settings.state_weights.get(item.state, 0.0)
         quality = state_weight if self.settings.enable_provenance_weighting else 1.0
         boxes = p1_boxes if selected_player == 1 else p2_boxes
-        departure = self._departure(item.frame, selected_player, trajectory, boxes) if selected_player else 0.0
+        departure_kwargs = {} if ordered_timestamps is None else {'ordered_timestamps': ordered_timestamps}
+        departure = (self._departure(item.frame, selected_player, trajectory, boxes, **departure_kwargs)
+                     if selected_player else 0.0)
         pose: Optional[float] = None
         if self.settings.enable_pose_support and pose_support is not None and selected_player is not None:
             pose = pose_support.get(item.frame, {}).get(selected_player)
@@ -1032,6 +1382,42 @@ class TennisEventDetector:
         frame_size: Optional[Tuple[int, int]] = None,
         camera_offsets_px: Optional[Sequence[Optional[Tuple[float, float]]]] = None,
         pose_support: Optional[Mapping[int, Mapping[int, float]]] = None,
+        *, scratch_directory=None, result_output=None,
+    ) -> EventDetectionAnalysis:
+        """Analyze the timeline; optional scratch opts into the native selector.
+
+        The default retains legacy ``detect_candidates`` overrides. Explicit
+        scratch mode stores this detector's typed features once and selects
+        from them directly. An explicit caller-owned result_output keeps typed
+        candidates/events/traces alive through downstream exports without lists.
+        Its context must outlive every consumer; default callers retain lists.
+        """
+        if result_output is not None:
+            from src.utils.event_analysis_sequence import EventAnalysisSequence
+            if not isinstance(result_output, EventAnalysisSequence) or scratch_directory is None:
+                raise ValueError('Event result output requires an open caller-owned store and explicit native feature scratch')
+            result_output._open()
+            if any(len(rows) for rows in (result_output.candidates, result_output.events,
+                                          result_output.verification_traces)):
+                raise ValueError('Event result output must be empty and cannot be reused across analyses')
+        if scratch_directory is not None:
+            with ExitStack() as scratch:
+                features = scratch.enter_context(_FeatureSequence(scratch_directory))
+                activity_output = None
+                if self.settings.enable_activity_state_gating:
+                    from src.utils.activity_state_sequence import ActivityStateSequence
+                    activity_output = scratch.enter_context(ActivityStateSequence(scratch_directory))
+                return self._analyze(ball_trajectory, player1_boxes, player2_boxes,
+                                     homography_matrix, fps, frame_size, camera_offsets_px,
+                                     pose_support, feature_output=features, result_output=result_output,
+                                     activity_output=activity_output)
+        return self._analyze(ball_trajectory, player1_boxes, player2_boxes,
+                             homography_matrix, fps, frame_size, camera_offsets_px, pose_support)
+
+    def _analyze(
+        self, ball_trajectory, player1_boxes, player2_boxes, homography_matrix,
+        fps, frame_size, camera_offsets_px, pose_support, *, feature_output=None, result_output=None,
+        activity_output=None,
     ) -> EventDetectionAnalysis:
         del homography_matrix  # A static transform cannot compensate per-frame camera motion.
         if fps <= 0:
@@ -1040,8 +1426,21 @@ class TennisEventDetector:
             raise ValueError("player timelines must align with ball trajectory")
         width, height, size_source = self._frame_size(ball_trajectory, frame_size)
         positions, camera_state = self._positions(ball_trajectory, camera_offsets_px)
-        features = self._features(ball_trajectory, (width, height), positions)
-        if frame_size is None and camera_offsets_px is None:
+        features = (self._features(ball_trajectory, (width, height), positions)
+                    if feature_output is None else
+                    self._features(ball_trajectory, (width, height), positions, output=feature_output))
+        verification_kwargs = {}
+        if not isinstance(ball_trajectory, list):
+            # _features has checked strict ordering. Certify finiteness once
+            # for this stable analysis only; raw scalars retain the historical
+            # departure arithmetic and nonfinite inputs keep the linear scan.
+            departure_timestamps = attribute_sequence(ball_trajectory, 'timestamp_seconds')
+            if all(math.isfinite(value) for value in departure_timestamps):
+                verification_kwargs['ordered_timestamps'] = departure_timestamps
+        if feature_output is not None:
+            candidates = self._candidates_from_features(features, fps, width, height, camera_state,
+                **({'output': result_output.candidates} if result_output is not None else {}))
+        elif frame_size is None and camera_offsets_px is None:
             candidates = self.detect_candidates(ball_trajectory, fps=fps)
         else:
             candidates = self.detect_candidates(
@@ -1065,7 +1464,8 @@ class TennisEventDetector:
             act_cls = VisualActivityStateClassifier(
                 fps=fps, frame_size=(width, height), settings=act_settings,
             )
-            activity_states = act_cls.classify_trajectory(ball_trajectory)
+            activity_states = act_cls.classify_trajectory(
+                ball_trajectory, **({'output': activity_output} if activity_output is not None else {}))
 
         # ---------------------------------------------------------------
         # Provenance auditor
@@ -1083,7 +1483,7 @@ class TennisEventDetector:
             )
 
         provisional: List[Tuple[TennisEvent, Dict[str, Any]]] = []
-        traces: List[Dict[str, Any]] = []
+        traces = [] if result_output is None else result_output.verification_traces
         for candidate_id, candidate in enumerate(candidates, 1):
             frame = self._refined_frame(candidate, features, ball_trajectory, player1_boxes, player2_boxes)
             frame = max(0, min(len(features) - 1, frame))
@@ -1091,6 +1491,7 @@ class TennisEventDetector:
             event, trace = self._verify(
                 candidate_id, candidate, item, ball_trajectory, player1_boxes, player2_boxes,
                 pose_support, camera_state, height, diagonal,
+                **verification_kwargs,
             )
             traces.append(trace)
             if event is None:
@@ -1114,6 +1515,8 @@ class TennisEventDetector:
                         "suppressed": True,
                         "suppression_reason": "POST_RALLY_NON_LIVE_PLAY",
                     })
+                    if result_output is not None:
+                        traces[candidate_id - 1] = trace
                     continue
                 if (
                     self.settings.activity_gating_penalise_possible_end
@@ -1136,59 +1539,69 @@ class TennisEventDetector:
                         "suppressed": True,
                         "suppression_reason": prov.low_trust_reason or "LOW_PROVENANCE_TRUST",
                     })
+                    if result_output is not None:
+                        traces[candidate_id - 1] = trace
                     continue
 
-            provisional.append((event, trace))
+            if result_output is None:
+                provisional.append((event, trace))
+            else:
+                traces[candidate_id - 1] = trace
+                result_output.add_provisional(candidate_id, event)
 
         # ---------------------------------------------------------------
         # Spatial duplicate clustering + temporal de-duplication
         # ---------------------------------------------------------------
-        selected: List[Tuple[TennisEvent, Dict[str, Any]]] = []
-        for event, trace in sorted(
-            provisional, key=lambda row: (-row[0].confidence, row[0].timestamp_s, row[1]["candidate_id"])
-        ):
-            keep = True
-            for kept, _ in selected:
-                dt = abs(event.timestamp_s - kept.timestamp_s)
-                if dt > self.settings.final_event_min_interval_seconds:
-                    continue
-                # Within time window — check spatial distance for clustering
-                if self.settings.enable_spatial_duplicate_clustering:
-                    dx = event.ball_position_px[0] - kept.ball_position_px[0]
-                    dy = event.ball_position_px[1] - kept.ball_position_px[1]
-                    dist_px = math.hypot(dx, dy)
-                    # Merge only if close in space AND close in time
-                    if (
-                        dt <= self.settings.spatial_cluster_time_s
-                        and dist_px <= self.settings.spatial_cluster_distance_px
-                    ):
+        if result_output is not None:
+            result_output.finalize(self.settings)
+            events = result_output.events
+        else:
+            selected: List[Tuple[TennisEvent, Dict[str, Any]]] = []
+            for event, trace in sorted(
+                provisional, key=lambda row: (-row[0].confidence, row[0].timestamp_s, row[1]["candidate_id"])
+            ):
+                keep = True
+                for kept, _ in selected:
+                    dt = abs(event.timestamp_s - kept.timestamp_s)
+                    if dt > self.settings.final_event_min_interval_seconds:
+                        continue
+                    # Within time window — check spatial distance for clustering
+                    if self.settings.enable_spatial_duplicate_clustering:
+                        dx = event.ball_position_px[0] - kept.ball_position_px[0]
+                        dy = event.ball_position_px[1] - kept.ball_position_px[1]
+                        dist_px = math.hypot(dx, dy)
+                        # Merge only if close in space AND close in time
+                        if (
+                            dt <= self.settings.spatial_cluster_time_s
+                            and dist_px <= self.settings.spatial_cluster_distance_px
+                        ):
+                            keep = False
+                            break
+                        elif dt <= self.settings.final_event_min_interval_seconds:
+                            keep = False
+                            break
+                    else:
                         keep = False
                         break
-                    elif dt <= self.settings.final_event_min_interval_seconds:
-                        keep = False
-                        break
+                if keep:
+                    selected.append((event, trace))
                 else:
-                    keep = False
-                    break
-            if keep:
-                selected.append((event, trace))
-            else:
-                trace.update({
-                    "verification_pass": False,
-                    "rejection_stage": "TEMPORAL_SUPPRESSION",
-                    "rejection_reason": "DUPLICATE_VERIFIED_EVENT",
-                })
+                    trace.update({
+                        "verification_pass": False,
+                        "rejection_stage": "TEMPORAL_SUPPRESSION",
+                        "rejection_reason": "DUPLICATE_VERIFIED_EVENT",
+                    })
 
-        selected.sort(key=lambda row: row[0].timestamp_s)
-        events: List[TennisEvent] = []
-        for event_id, (event, trace) in enumerate(selected, 1):
-            event.event_id = event_id
-            trace["stage_pass"]["temporal_suppression"] = True
-            trace["stage_pass"]["final_authoritative_event"] = True
-            trace["final_event_emitted"] = True
-            trace["final_event_id"] = event_id
-            trace["final_event_type"] = event.event_type.value
-            events.append(event)
+            selected.sort(key=lambda row: row[0].timestamp_s)
+            events: List[TennisEvent] = []
+            for event_id, (event, trace) in enumerate(selected, 1):
+                event.event_id = event_id
+                trace["stage_pass"]["temporal_suppression"] = True
+                trace["stage_pass"]["final_authoritative_event"] = True
+                trace["final_event_emitted"] = True
+                trace["final_event_id"] = event_id
+                trace["final_event_type"] = event.event_type.value
+                events.append(event)
 
         analysis = EventDetectionAnalysis(
             candidates=candidates,

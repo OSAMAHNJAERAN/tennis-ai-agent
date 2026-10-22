@@ -1,0 +1,146 @@
+{
+  "status": "PASSED",
+  "passed": true,
+  "startedAt": "2026-10-06T09:51:35.116698+00:00",
+  "command": [
+    "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "tests",
+    "-q",
+    "--tb=short",
+    "-o",
+    "faulthandler_timeout=30",
+    "-o",
+    "junit_family=legacy",
+    "--basetemp=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\backend_full\\tmp",
+    "--junitxml=C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\backend_full\\junit.xml"
+  ],
+  "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle",
+  "guards": {
+    "wallSeconds": 180,
+    "ownedTreeRssBytes": 2000000000,
+    "availableRamBytes": 300000000,
+    "lowRamSamples": 5,
+    "sampleSeconds": 0.25
+  },
+  "sourceInventoryCount": 266,
+  "sourceBeforePath": "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/source_bindings_before.json",
+  "scope": "Complete backend software regressions; no real models/media jobs, accuracy or full-match qualification.",
+  "storageRoot": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\pose_racket_storage_2026-10-06\\backend_full\\bootstrap",
+  "qualificationEvidence": false,
+  "launcherIdentity": {
+    "pid": 59868,
+    "createTimeUnixSeconds": 1791280295.1187215
+  },
+  "exitCode": 0,
+  "allOwnedIdentitiesRetired": true,
+  "counts": {
+    "tests": 1390,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 1390
+  },
+  "testElapsedSeconds": 75.924,
+  "ownedIdentities": [
+    {
+      "pid": 59868,
+      "createTimeUnixSeconds": 1791280295.1187215,
+      "parentPid": null,
+      "depth": 0,
+      "firstObservedAt": "2026-10-06T09:51:35.122928+00:00",
+      "sampleCount": 285,
+      "peakSampledRssBytes": 1746276352,
+      "peakSampledPrivateBytes": 3313049600
+    },
+    {
+      "pid": 37416,
+      "createTimeUnixSeconds": 1791280295.1248376,
+      "parentPid": 59868,
+      "depth": 1,
+      "firstObservedAt": "2026-10-06T09:51:35.133654+00:00",
+      "sampleCount": 284,
+      "peakSampledRssBytes": 7442432,
+      "peakSampledPrivateBytes": 1277952
+    },
+    {
+      "pid": 51236,
+      "createTimeUnixSeconds": 1791280345.0093281,
+      "parentPid": 59868,
+      "depth": 1,
+      "firstObservedAt": "2026-10-06T09:52:25.073242+00:00",
+      "sampleCount": 0,
+      "peakSampledRssBytes": 0,
+      "peakSampledPrivateBytes": 0
+    },
+    {
+      "pid": 66512,
+      "createTimeUnixSeconds": 1791280344.7713728,
+      "parentPid": 59868,
+      "depth": 1,
+      "firstObservedAt": "2026-10-06T09:52:24.783871+00:00",
+      "sampleCount": 0,
+      "peakSampledRssBytes": 0,
+      "peakSampledPrivateBytes": 0
+    }
+  ],
+  "actualProcessExecutables": [
+    {
+      "identity": {
+        "pid": 59868,
+        "createTimeUnixSeconds": 1791280295.1187215
+      },
+      "path": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "bytes": 105816,
+      "sha256": "5341746f92483a93e44c313de830f2fba2956f0759094404a16b2fed06c9a2ed"
+    },
+    {
+      "identity": {
+        "pid": 37416,
+        "createTimeUnixSeconds": 1791280295.1248376
+      },
+      "path": "C:\\Windows\\System32\\conhost.exe",
+      "bytes": 1003520,
+      "sha256": "c86146188b78e484f32cc29e2331689659943b47689a85570342044f499938ac"
+    }
+  ],
+  "sourcesUnchanged": true,
+  "sourceAfterPath": "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/source_bindings_after.json",
+  "baseInterpreterAfterMatchesBefore": true,
+  "completedAt": "2026-10-06T09:52:53.432450+00:00",
+  "elapsedSeconds": 78.31508069997653,
+  "sampleCount": 285,
+  "peakSampledOwnedTreeRssBytes": 1753698304,
+  "artifacts": {
+    "launch.json": {
+      "bytes": 1375,
+      "sha256": "3b84542f0f1dbc4a9a6111d81b6a0053c6238a1d4f9289c1d59de63a85d7c776"
+    },
+    "source_bindings_before.json": {
+      "bytes": 41826,
+      "sha256": "cbf5f0d8cb06f09dbdf41407a579b951ab4434c2d341df24529f2f1d9e66617b"
+    },
+    "source_bindings_after.json": {
+      "bytes": 41826,
+      "sha256": "cbf5f0d8cb06f09dbdf41407a579b951ab4434c2d341df24529f2f1d9e66617b"
+    },
+    "stdout.log": {
+      "bytes": 2208,
+      "sha256": "9da71ce3db3b65cb1d68b9dd2b494241966858b8cd6f9080c2fcfb6ed7f74917"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "samples.jsonl": {
+      "bytes": 254869,
+      "sha256": "b6fa90d1c294ce29bc58804209a5b78ce4bf9d58e2ab23012d8d0a3c8f8a16f0"
+    },
+    "junit.xml": {
+      "bytes": 271268,
+      "sha256": "080240122f1f2a0c864bb131a553bede774443d0837cca984bb1a6686aa02aab"
+    }
+  }
+}

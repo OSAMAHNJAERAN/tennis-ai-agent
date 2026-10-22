@@ -1,0 +1,33 @@
+{
+  "scope": "ACTUAL_PROFILE_ROLE_CONFIRMATION_AND_SOURCE_IDENTITY_PRODUCT_REGRESSIONS",
+  "pytest_exit_code": 0,
+  "junit": {
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "elapsed_seconds": 7.34879339998588,
+  "source_before": {
+    "src/api/product.py": "9f0216fdbcba2f685e53d7abcd55642e874bfbe6a0b985ca93900bf99a709750",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "tests/test_product_matches.py": "e1766b8c1f6ab18c282016cdabdf194d28b31885710b99f2137fb9016f3466ad",
+    "docs/PRODUCT_DASHBOARD.md": "266947864911745c7b35cf5fe3b2571e8f40b3cc0be89efe0f60b095c145f9f4"
+  },
+  "source_after": {
+    "src/api/product.py": "9f0216fdbcba2f685e53d7abcd55642e874bfbe6a0b985ca93900bf99a709750",
+    "src/api/result_document.py": "27595098ae059ab81b659b86e362af41cbe10ed53bf87be09dab0a963d3a0fc8",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "tests/test_product_matches.py": "e1766b8c1f6ab18c282016cdabdf194d28b31885710b99f2137fb9016f3466ad",
+    "docs/PRODUCT_DASHBOARD.md": "266947864911745c7b35cf5fe3b2571e8f40b3cc0be89efe0f60b095c145f9f4"
+  },
+  "source_pins_stable": true,
+  "model_import_attempts": [],
+  "forbidden_loaded": [],
+  "handlers_unchanged_from_exact_failed_reproduction": true,
+  "fixture_only_change": "Add summary.id=match_test to the preexisting positive legacy fixture and its unchanged-result assertion.",
+  "negative_controls": "Missing and foreign summary.id cannot enter movement history even with explicit whole-clip role confirmation and linked profile; source bytes remain unchanged.",
+  "measurement_qualification_change": false,
+  "expected_old_failure_receipt_sha256": "3ed921914c51b62a88ba14058f1e0f621bb47eca503b7731df83bdd87c1e987e"
+}

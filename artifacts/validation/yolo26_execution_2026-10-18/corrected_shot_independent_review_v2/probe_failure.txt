@@ -1,0 +1,6 @@
+Review probe exited 1 because the expected transition boundary was off by one.
+A false measurement transition at frame 7 forbids edge 6-to-7; a hit at frame
+8 can still use frame 7 through valid edge 7-to-8. Actual allowed frames were
+{7, 8, 9, 10, 11}; this is correct and is not a production finding.
+The nonmonotone PTS case similarly permits frame 7 relative to hit 8 but blocks
+crossing to frame 6. Expectations are corrected in the separately retained v3.

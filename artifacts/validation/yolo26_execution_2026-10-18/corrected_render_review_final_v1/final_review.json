@@ -1,0 +1,126 @@
+{
+  "status": "PASS_WITH_CLOSED_FINDINGS",
+  "remaining_P1_P2": [],
+  "source_sha256": {
+    "src/scoring/corrected_rendering.py": "48b6ac3418495bef6fd5543beb21c215770fe9797dfe113147f66f9c701092a7",
+    "src/scoring/corrected_exports.py": "719fa7a6556b3d082189cee9373ff3dc4b312d196dedcfd8bf60f4e950064ae2",
+    "src/scoring/corrected_landing_exports.py": "5c0d47e9b9a1eee9a39f029c5c70ab4e5d8f38e179d352f0f7da0cf009fd7437",
+    "src/scoring/corrected_rule_rebuild.py": "7801e15a5538406b1e21c7944046920626ae71ad03b4cbbe055cc8df65eb1dd2",
+    "src/scoring/corrected_forecasts.py": "f6bde158752b4f0607fc2cef3ca7626555bb40733ee662e14572b0ce824104e4",
+    "src/scoring/corrected_shot_rebuild.py": "e19605d359e86b5c39185ad8b1ec931041a38855c4b4006783aec19bc5b46f1f",
+    "src/scoring/corrected_shot_sources.py": "93f65fe797affdb137e125599186b2b918df06e4c4655bdc0697fbaef433b98c",
+    "src/scoring/correction_sources.py": "406055445bb781c78715bf675e1cbeca48f5d6659598f2586de529d05d3d1f60",
+    "src/utils/event_analysis_sequence.py": "6c87be659f35ff0c4ba0c9ca0ec788da1b2aa1c95cc6b630e31f32cb4cf31a07",
+    "src/visualization/landing_zones.py": "2eea8fd348effe678bd8bc57b0dc72f0e00af520c38da930796e703aa84a4860",
+    "src/visualization/video_annotator.py": "69ef2085b578cf0fc4a0a76aff483bb8999cfac1f218e39a454cde2233791838",
+    "src/visualization/mini_court.py": "b6b7d4359804df390e534862b7fecb6fbaa90781d0cc37e3bac4032920de3def",
+    "tests/test_corrected_rendering.py": "8dac7b12bded3975ccda9bd80eb6657159d5e3112517f86f30a6274c932d74cf"
+  },
+  "independence": "Reviewer changed no implementation or test files in this stage. Only isolated read-only-review harnesses, synthetic fixture outputs and receipts were written.",
+  "closed_findings": [
+    {
+      "priority": 1,
+      "title": "Renderer imported an absent parser alias",
+      "proof": "Initial independent invocation raised ImportError before rendering.",
+      "baseline": {
+        "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_v1\\receipt.json",
+        "sha256": "ab2db40b7fd23260ea13a176e6a5a0a7467d363dea23593ac64898af4bd68922"
+      },
+      "fix": "Use the existing _ephemeral_storage adapter through the intended alias.",
+      "closure": [
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_geometry_closure_v1\\receipt.json",
+          "sha256": "17331f41a24f36d6c10fdfc2fddbc72b808bc78728b178a63d8807e35e444965"
+        },
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_overflow_closure_v1\\receipt.json",
+          "sha256": "fa672d0cd2b42f0e5214018b7ae11f1df050ce3a92a7bdf01c5f33551dd9afbc"
+        }
+      ]
+    },
+    {
+      "priority": 1,
+      "title": "Small parsed landing arrays failed reader cleanup",
+      "proof": "The native parser keeps small arrays as lists; closing(iter(list)) raised AttributeError for default empty landing records.",
+      "baseline": {
+        "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_v2\\receipt.json",
+        "sha256": "7b0c6aa9a7c042b85f18b46d5a5532d9bf6b7d3201509817d67d08888fa08e90"
+      },
+      "fix": "The private _reader context closes only closeable iterators and retains cleanup failures correctly.",
+      "closure": [
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_geometry_closure_v1\\receipt.json",
+          "sha256": "17331f41a24f36d6c10fdfc2fddbc72b808bc78728b178a63d8807e35e444965"
+        },
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_overflow_closure_v1\\receipt.json",
+          "sha256": "fa672d0cd2b42f0e5214018b7ae11f1df050ce3a92a7bdf01c5f33551dd9afbc"
+        }
+      ]
+    },
+    {
+      "priority": 2,
+      "title": "Writable live events could render semantics different from the sealed export",
+      "proof": "A normal indexed event-type write changed sealed BOUNCE to a rendered UNKNOWN_EVENT while both actual video codecs and final seal succeeded.",
+      "baseline": {
+        "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_v3\\receipt.json",
+        "sha256": "9255f2f747fac5958e115bdc1f979f8052f8aebbe23ed7df70b5cb70a65118cb"
+      },
+      "fix": "Stream-compare live physical events to pinned match_events and capture the owner change token before comparison; retain that exact token before and after every frame and final checks.",
+      "closure": [
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_closure_v1\\receipt.json",
+          "sha256": "2b124bb6b1a312842968ee1083fb9e762642ef2e6f5cd51ab27bf8c375e6af52"
+        },
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_midrestore_v1\\receipt.json",
+          "sha256": "b5f304f1569c8d7eeafbadee9790016ff3378ca195bd45cd98eb02360186f140"
+        }
+      ],
+      "restore_equal_case": "Normal changed-and-restored writes advanced generation 6 to 8 and were rejected with closed source/writer handles, no final seal and unchanged exports/base."
+    },
+    {
+      "priority": 2,
+      "title": "One unusable display projection aborted an otherwise recoverable video",
+      "proof": "A finite invertible frame-9 matrix crossed the court horizon; another same-hemisphere matrix exceeded OpenCV coordinate representation. Semantic exports had succeeded before the renderer aborted.",
+      "baseline": [
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_horizon_v1\\receipt.json",
+          "sha256": "3a3ec1add082c9e9b2594f9971bda10866934e83f1e3f1b9a873ac954a66d55e"
+        },
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_projection_overflow_v1\\receipt.json",
+          "sha256": "a241c026929e66c857c1ba8818a7564fdc6293af413a7f3cda94fe61f38bdcd7"
+        }
+      ],
+      "baseline_limitation": "The overflow baseline application pins were stable but test_corrected_rendering.py changed during the run; that receipt correctly reports source_stable=False. Both final closure receipts are fully source-stable.",
+      "fix": "Admit whole-court and retained landmark display projection separately from source qualification, withhold only known unusable display geometry and reset continuity; retain source matrices and accepted rules.",
+      "closure": [
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_geometry_closure_v1\\receipt.json",
+          "sha256": "17331f41a24f36d6c10fdfc2fddbc72b808bc78728b178a63d8807e35e444965"
+        },
+        {
+          "path": "artifacts\\validation\\yolo26_execution_2026-10-18\\corrected_render_review_overflow_closure_v1\\receipt.json",
+          "sha256": "fa672d0cd2b42f0e5214018b7ae11f1df050ce3a92a7bdf01c5f33551dd9afbc"
+        }
+      ],
+      "executed_closure": "Both cases fully decode source/native/browser at 12/12/12, withhold frame 9 with an explicit reason, and restore court drawing on frame 10."
+    }
+  ],
+  "reviewed_boundaries": [
+    "Native frozen export manifest digest plus exact inventory and every artifact hash before and after rendering.",
+    "Source-only native rendering and fresh H264 browser encoding; full source/native/browser decode count, dimensions and normalized frame rate.",
+    "Current native frame-state HUD, accepted line calls, dead-ball suppression and prefix-only forecast history without future-event badges.",
+    "Current display-frame landing reprojection plus camera/identity/source barriers and bounded trail/history storage.",
+    "Detached actual engine initial state rather than mutable timeline presentation fallback.",
+    "No renderer use of a fourth model or unsupported airborne/player ground reconstruction.",
+    "Final video hashes bound before and after full decoding and before returning a private render seal."
+  ],
+  "limitations": [
+    "The parent current-source combined integration run is separate evidence and was still running when this independent review was finalized.",
+    "All footage and geometry in these probes are explicitly synthetic. No independent detector, calibration, speed, prediction, long-match or live qualification is established.",
+    "Rendering remains private; report construction, authenticated correction lifecycle, complete-generation publication and product integration remain outside this helper."
+  ],
+  "published": false
+}

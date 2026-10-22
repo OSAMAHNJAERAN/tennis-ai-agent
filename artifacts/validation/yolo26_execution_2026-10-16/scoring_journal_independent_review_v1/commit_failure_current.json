@@ -1,0 +1,67 @@
+{
+  "scope": "Explicit synthetic stdlib SQLite failure injection, actual rule classes; no media or model accuracy",
+  "source_hashes_before": {
+    "src/utils/scoring_journal.py": "3a5422499fecaaf15a3b6ef89c758f90646d7a993936d6aac8a3cfa94b887f7a",
+    "src/scoring/scoring_engine.py": "571dae8cb082beec8f600c4750e0f31398ae9a9416c36422ee18a783159e3937"
+  },
+  "source_hashes_after": {
+    "src/utils/scoring_journal.py": "3a5422499fecaaf15a3b6ef89c758f90646d7a993936d6aac8a3cfa94b887f7a",
+    "src/scoring/scoring_engine.py": "571dae8cb082beec8f600c4750e0f31398ae9a9416c36422ee18a783159e3937"
+  },
+  "prior": {
+    "history": 255,
+    "inputs": 255,
+    "processed": 255,
+    "pending": 255,
+    "state_version": 255
+  },
+  "failure": {
+    "type": "OperationalError",
+    "message": "Explicit synthetic commit failure before COMMIT"
+  },
+  "checks": {
+    "history_read": {
+      "rejected": true,
+      "type": "RuntimeError",
+      "message": "Scoring journal is invalid after a transaction failure: OperationalError: Explicit synthetic commit failure before COMMIT"
+    },
+    "input_read": {
+      "rejected": true,
+      "type": "RuntimeError",
+      "message": "Scoring journal is invalid after a transaction failure: OperationalError: Explicit synthetic commit failure before COMMIT"
+    },
+    "processed_read": {
+      "rejected": true,
+      "type": "RuntimeError",
+      "message": "Scoring journal is invalid after a transaction failure: OperationalError: Explicit synthetic commit failure before COMMIT"
+    },
+    "completed_read": {
+      "rejected": true,
+      "type": "RuntimeError",
+      "message": "Scoring journal is invalid after a transaction failure: OperationalError: Explicit synthetic commit failure before COMMIT"
+    },
+    "retry_event": {
+      "rejected": true,
+      "type": "RuntimeError",
+      "message": "Scoring journal is invalid after a transaction failure: OperationalError: Explicit synthetic commit failure before COMMIT"
+    },
+    "history_export": {
+      "rejected": true,
+      "type": "RuntimeError",
+      "message": "Scoring journal is invalid after a transaction failure: OperationalError: Explicit synthetic commit failure before COMMIT"
+    },
+    "engine_get_current_state": {
+      "rejected": false,
+      "value": 255
+    },
+    "engine_state_export": {
+      "rejected": false,
+      "value": null
+    }
+  },
+  "diagnostic_private_raw_remaining_rows": 0,
+  "engine_state_version_after": 255,
+  "state_export_preserved_sentinel": false,
+  "forbidden_imports": [],
+  "outcome": "Journal reads/writes/history export fail closed; public engine current-state read/state export still succeed after journal invalidation"
+}

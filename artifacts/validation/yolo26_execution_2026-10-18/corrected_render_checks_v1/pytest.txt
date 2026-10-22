@@ -1,0 +1,461 @@
+.FF.......FFFFFFFF                                                       [100%]
+================================== FAILURES ===================================
+_ test_actual_two_encoded_videos_show_corrected_causal_hud_fault_and_dead_receiver _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_actual_two_encoded_videos0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022A9CAE8E90>
+
+    def test_actual_two_encoded_videos_show_corrected_causal_hud_fault_and_dead_receiver(tmp_path, monkeypatch):
+        import cv2
+        from src.line_calling.line_call_engine import LineCallEvidence
+        from src.visualization.video_annotator import VideoAnnotator
+        fixture = build_shot_base(tmp_path, playable_source=True)
+        text, text_frames, calls, ball_draws = [], [], [], []
+        original_text, original_call = cv2.putText, LineCallEvidence.overlay_text
+        original_ball = VideoAnnotator.draw_ball
+        def observed_text(image, value, *args, **kwargs):
+            text.append(str(value))
+            text_frames.append((len(ball_draws)-1, str(value)))
+            return original_text(image, value, *args, **kwargs)
+        def observed_call(call):
+            calls.append((call.event_id, call.decision.value))
+            return original_call(call)
+        def observed_ball(frame, position, state):
+            ball_draws.append((position, state.value))
+            return original_ball(frame, position, state)
+        monkeypatch.setattr(cv2, 'putText', observed_text)
+        monkeypatch.setattr(LineCallEvidence, 'overlay_text', observed_call)
+        monkeypatch.setattr(VideoAnnotator, 'draw_ball', staticmethod(observed_ball))
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            before = digests(exports.directory)
+>           result = render(rebuilt, shots, forecast, exports, fixture.scratch)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_rendering.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022A9C94BD10>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+___ test_reviewed_landing_is_drawn_from_new_fault_geometry_in_actual_video ____
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_reviewed_landing_is_drawn0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022A9C94BAD0>
+
+    def test_reviewed_landing_is_drawn_from_new_fault_geometry_in_actual_video(tmp_path, monkeypatch):
+        from src.events.event_detector import EventType
+        from src.scoring import point_timeline
+        from src.visualization import landing_zones
+        native = point_timeline.process_timeline_event
+        def reviewed(event, *args, **kwargs):
+            if getattr(event, 'event_type', None) is EventType.BOUNCE:
+                event.evidence.update(review_status='confirmed', active_play=True,
+                    position_type='ground_contact', position_uncertainty_m=.1,
+                    ground_contact_source='EXPLICIT_SYNTHETIC_CONTACT_NOT_INDEPENDENT_GROUND_TRUTH')
+            return native(event, *args, **kwargs)
+        with monkeypatch.context() as scoped:
+            scoped.setattr(point_timeline, 'process_timeline_event', reviewed)
+            fixture = build_shot_base(tmp_path, playable_source=True, config_tail=(
+                'visualization:\n  landing_zones:\n    enabled: true\n'
+                '    partition: tactical_3x3\n    duration_seconds: 0.8\n'))
+        observed = []
+        native_draw = landing_zones.draw_landing
+        def drawing(frame, record, **kwargs):
+            observed.append((record['event_id'], record['analysis_revision'], record['line_call'],
+                             kwargs['timestamp_seconds'], record['contact_position_px']))
+            return native_draw(frame, record, **kwargs)
+        monkeypatch.setattr(landing_zones, 'draw_landing', drawing)
+        from src.scoring import corrected_rendering as renderer
+        if hasattr(renderer, 'draw_landing'):
+            monkeypatch.setattr(renderer, 'draw_landing', drawing)
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            assert {row['event_id'] for row in read(exports.files['landing_zones.json'])['records']} == {2}
+>           result = render(rebuilt, shots, forecast, exports, fixture.scratch)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_rendering.py:205: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022A9C934750>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+__ test_actual_source_decode_requires_exact_sealed_analysis_frame_count[11] ___
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_actual_source_decode_requ0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022ACB40B450>
+count = 11
+
+    @pytest.mark.parametrize('count', [11, 13])
+    def test_actual_source_decode_requires_exact_sealed_analysis_frame_count(tmp_path, monkeypatch, count):
+        import cv2
+        native_writer = cv2.VideoWriter
+        class DifferentCountWriter:
+            def __init__(self, *args, **kwargs):
+                self.writer = native_writer(*args, **kwargs)
+                self.count, self.last = 0, None
+            def isOpened(self):
+                return self.writer.isOpened()
+            def write(self, frame):
+                self.count += 1
+                self.last = frame
+                if count == 13 or self.count <= 11:
+                    self.writer.write(frame)
+            def release(self):
+                if count == 13:
+                    self.writer.write(self.last)
+                self.writer.release()
+        with monkeypatch.context() as scoped:
+            scoped.setattr(cv2, 'VideoWriter', DifferentCountWriter)
+            fixture = build_shot_base(tmp_path, playable_source=True)
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            metadata, _ = decode(exports.files['source.mp4'])
+            assert metadata['frames'] == count and fixture.snapshot.frames == 12
+            with pytest.raises((ValueError, RuntimeError), match='frame|count|ended|extra|align'):
+>               render(rebuilt, shots, forecast, exports, fixture.scratch)
+
+tests\test_corrected_rendering.py:303: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022AD008A3F0>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+__ test_actual_source_decode_requires_exact_sealed_analysis_frame_count[13] ___
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_actual_source_decode_requ1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022ACFEC9850>
+count = 13
+
+    @pytest.mark.parametrize('count', [11, 13])
+    def test_actual_source_decode_requires_exact_sealed_analysis_frame_count(tmp_path, monkeypatch, count):
+        import cv2
+        native_writer = cv2.VideoWriter
+        class DifferentCountWriter:
+            def __init__(self, *args, **kwargs):
+                self.writer = native_writer(*args, **kwargs)
+                self.count, self.last = 0, None
+            def isOpened(self):
+                return self.writer.isOpened()
+            def write(self, frame):
+                self.count += 1
+                self.last = frame
+                if count == 13 or self.count <= 11:
+                    self.writer.write(frame)
+            def release(self):
+                if count == 13:
+                    self.writer.write(self.last)
+                self.writer.release()
+        with monkeypatch.context() as scoped:
+            scoped.setattr(cv2, 'VideoWriter', DifferentCountWriter)
+            fixture = build_shot_base(tmp_path, playable_source=True)
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            metadata, _ = decode(exports.files['source.mp4'])
+            assert metadata['frames'] == count and fixture.snapshot.frames == 12
+            with pytest.raises((ValueError, RuntimeError), match='frame|count|ended|extra|align'):
+>               render(rebuilt, shots, forecast, exports, fixture.scratch)
+
+tests\test_corrected_rendering.py:303: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022ACFE93160>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+____ test_actual_source_dimensions_must_match_sealed_observation_metadata _____
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_actual_source_dimensions_0')
+
+    def test_actual_source_dimensions_must_match_sealed_observation_metadata(tmp_path):
+        fixture = build_shot_base(tmp_path, playable_source=True, metadata_size=(640, 480))
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            with pytest.raises((ValueError, RuntimeError), match='dimension|width|height|size|metadata'):
+>               render(rebuilt, shots, forecast, exports, fixture.scratch)
+
+tests\test_corrected_rendering.py:312: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022AD008A800>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+_______ test_actual_source_fps_must_match_the_retained_normalized_clock _______
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_actual_source_fps_must_ma0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022ACFF1F570>
+
+    def test_actual_source_fps_must_match_the_retained_normalized_clock(tmp_path, monkeypatch):
+        import cv2
+        native_writer = cv2.VideoWriter
+        def writer(*args, **kwargs):
+            args = list(args)
+            args[2] = 25.
+            return native_writer(*args, **kwargs)
+        with monkeypatch.context() as scoped:
+            scoped.setattr(cv2, 'VideoWriter', writer)
+            fixture = build_shot_base(tmp_path, playable_source=True)
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            metadata, _ = decode(exports.files['source.mp4'])
+            assert metadata['fps'] == 25.
+            with pytest.raises((ValueError, RuntimeError), match='fps|FPS|rate|clock|timing'):
+>               render(rebuilt, shots, forecast, exports, fixture.scratch)
+
+tests\test_corrected_rendering.py:331: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022ACFECF9D0>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+___ test_failed_later_render_leaves_successful_videos_and_exports_unchanged ___
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_failed_later_render_leave0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022ACFFFA7B0>
+
+    def test_failed_later_render_leaves_successful_videos_and_exports_unchanged(tmp_path, monkeypatch):
+        import cv2
+        from src.visualization.video_annotator import VideoAnnotator
+        fixture = build_shot_base(tmp_path, playable_source=True)
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+>           first = render(rebuilt, shots, forecast, exports, fixture.scratch)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_corrected_rendering.py:341: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022ACFE7E620>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+_ test_browser_encode_or_full_decode_failure_cannot_seal_a_native_only_result[encoder] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_browser_encode_or_full_de0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022AD00FCAD0>
+failure = 'encoder'
+
+    @pytest.mark.parametrize('failure', ['encoder', 'corrupt_output'])
+    def test_browser_encode_or_full_decode_failure_cannot_seal_a_native_only_result(tmp_path, monkeypatch, failure):
+        from src.api.worker import AnalysisError
+        from src.scoring import corrected_rendering as renderer
+        fixture = build_shot_base(tmp_path, playable_source=True)
+        attempted = []
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            before = digests(exports.directory)
+            native_execute = renderer.execute
+            def execute(args, *positional, **kwargs):
+                if 'libx264' not in args:
+                    return native_execute(args, *positional, **kwargs)
+                attempted.append(list(args))
+                if failure == 'encoder':
+                    raise RuntimeError('SYNTHETIC_BROWSER_ENCODER_FAILURE')
+                value = native_execute(args, *positional, **kwargs)
+                Path(args[-1]).write_bytes(b'SYNTHETIC_INVALID_BROWSER_VIDEO')
+                return value
+            monkeypatch.setattr(renderer, 'execute', execute)
+            with pytest.raises((ValueError, RuntimeError, AnalysisError)):
+>               render(rebuilt, shots, forecast, exports, fixture.scratch)
+
+tests\test_corrected_rendering.py:390: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022AD0222D50>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+_ test_browser_encode_or_full_decode_failure_cannot_seal_a_native_only_result[corrupt_output] _
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_browser_encode_or_full_de1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022AD019D950>
+failure = 'corrupt_output'
+
+    @pytest.mark.parametrize('failure', ['encoder', 'corrupt_output'])
+    def test_browser_encode_or_full_decode_failure_cannot_seal_a_native_only_result(tmp_path, monkeypatch, failure):
+        from src.api.worker import AnalysisError
+        from src.scoring import corrected_rendering as renderer
+        fixture = build_shot_base(tmp_path, playable_source=True)
+        attempted = []
+        with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+            before = digests(exports.directory)
+            native_execute = renderer.execute
+            def execute(args, *positional, **kwargs):
+                if 'libx264' not in args:
+                    return native_execute(args, *positional, **kwargs)
+                attempted.append(list(args))
+                if failure == 'encoder':
+                    raise RuntimeError('SYNTHETIC_BROWSER_ENCODER_FAILURE')
+                value = native_execute(args, *positional, **kwargs)
+                Path(args[-1]).write_bytes(b'SYNTHETIC_INVALID_BROWSER_VIDEO')
+                return value
+            monkeypatch.setattr(renderer, 'execute', execute)
+            with pytest.raises((ValueError, RuntimeError, AnalysisError)):
+>               render(rebuilt, shots, forecast, exports, fixture.scratch)
+
+tests\test_corrected_rendering.py:390: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022AD01E85A0>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+____ test_generation_advance_during_actual_frame_render_rejects_final_seal ____
+
+tmp_path = WindowsPath('C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/yolo26_execution_2026-10-18/corrected_render_checks_v1/temp/pytest/test_generation_advance_during0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022AD012F5B0>
+
+    def test_generation_advance_during_actual_frame_render_rejects_final_seal(tmp_path, monkeypatch):
+        from src.api.analysis_generation import resolve_generation
+        from src.visualization.video_annotator import VideoAnnotator
+        fixture = build_shot_base(tmp_path, playable_source=True)
+        advanced = []
+        with pytest.raises(ValueError, match='current generation|base'):
+            with fresh_exports(fixture) as (rebuilt, shots, forecast, exports):
+                before = digests(exports.directory)
+                native = VideoAnnotator.draw_ball
+                def advance(frame, position, state):
+                    if not advanced:
+                        advanced.append(advance_equivalent_generation(fixture))
+                    return native(frame, position, state)
+                monkeypatch.setattr(VideoAnnotator, 'draw_ball', staticmethod(advance))
+                with pytest.raises(ValueError, match='current generation|base'):
+>                   render(rebuilt, shots, forecast, exports, fixture.scratch)
+
+tests\test_corrected_rendering.py:416: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_corrected_rendering.py:56: in render
+    return render_corrected_video(rebuilt, shots, forecast, exports, scratch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\scoring\corrected_rendering.py:311: in render_corrected_video
+    with closing(iter(raw['records'])) as rows:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <contextlib.closing object at 0x0000022ACFECD2C0>
+exc_info = (None, None, None)
+
+    def __exit__(self, *exc_info):
+>       self.thing.close()
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: 'list_iterator' object has no attribute 'close'
+
+C:\Users\ac-98\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:364: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/test_corrected_rendering.py::test_actual_two_encoded_videos_show_corrected_causal_hud_fault_and_dead_receiver
+FAILED tests/test_corrected_rendering.py::test_reviewed_landing_is_drawn_from_new_fault_geometry_in_actual_video
+FAILED tests/test_corrected_rendering.py::test_actual_source_decode_requires_exact_sealed_analysis_frame_count[11]
+FAILED tests/test_corrected_rendering.py::test_actual_source_decode_requires_exact_sealed_analysis_frame_count[13]
+FAILED tests/test_corrected_rendering.py::test_actual_source_dimensions_must_match_sealed_observation_metadata
+FAILED tests/test_corrected_rendering.py::test_actual_source_fps_must_match_the_retained_normalized_clock
+FAILED tests/test_corrected_rendering.py::test_failed_later_render_leaves_successful_videos_and_exports_unchanged
+FAILED tests/test_corrected_rendering.py::test_browser_encode_or_full_decode_failure_cannot_seal_a_native_only_result[encoder]
+FAILED tests/test_corrected_rendering.py::test_browser_encode_or_full_decode_failure_cannot_seal_a_native_only_result[corrupt_output]
+FAILED tests/test_corrected_rendering.py::test_generation_advance_during_actual_frame_render_rejects_final_seal
+10 failed, 8 passed in 17.86s

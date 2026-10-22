@@ -1,0 +1,37 @@
+{
+  "scope": "Bounded native browser observations transcribed from read-only Cua page inspection after the final production build.",
+  "browserId": "2",
+  "tabId": "3",
+  "entry": "/assets/index-DuZEcRmc.js",
+  "exampleUrl": "http://127.0.0.1:8000/examples/djokovic_2012",
+  "sourceAnalysisId": "match_9de7cb2d09eb46a0af0e34c3b0e6b818",
+  "replay": [
+    {"action": "Play video", "observedAt": "2026-10-05T02:04:33.141Z", "presentedFrame": 2, "presentedSeconds": 0.083, "sharedFrame": 2, "mediaTime": 0.103636, "paused": false, "readyState": 4, "statuses": []},
+    {"action": "Pause video", "observedAt": "2026-10-05T02:04:42.270Z", "presentedFrame": 215, "presentedSeconds": 8.967, "sharedFrame": 215, "mediaTime": 8.962712, "paused": true, "readyState": 4, "statuses": []},
+    {"action": "Open 3D Court", "observedAt": "2026-10-05T02:04:42.572Z", "presentedFrame": 215, "sharedFrame": 215, "mediaTime": 8.962712, "paused": true, "readyState": 4, "status": "Court replay unavailable", "reason": "This analysis does not include valid mapped player trajectories."},
+    {"action": "Inspect unavailable court", "observedAt": "2026-10-05T02:05:04.753Z", "courtCanvasCount": 0, "cameraControls": 0},
+    {"action": "Return to Video Feed", "observedAt": "2026-10-05T02:05:05.056Z", "presentedFrame": 215, "presentedSeconds": 8.967, "sharedFrame": 215, "mediaTime": 8.967292, "paused": true, "readyState": 4, "statuses": []}
+  ],
+  "homepage": {
+    "url": "http://127.0.0.1:8000/overview",
+    "observedAt": "2026-10-05T02:05:30.715Z",
+    "publicPreviews": [
+      {"analysisId": "match_9de7cb2d09eb46a0af0e34c3b0e6b818", "mediaTime": 5.552821, "paused": false, "readyState": 4},
+      {"analysisId": "match_ca65db557684431890bbf3826229e084", "mediaTime": 8.157111, "paused": false, "readyState": 4},
+      {"analysisId": "match_02d494b88e99400d8cf7243528302f9b", "mediaTime": 5.090756, "paused": false, "readyState": 4}
+    ],
+    "nativePause": {"action": "Space on the first native video", "observedAt": "2026-10-05T02:05:56.878Z", "mediaTime": 12.115126, "paused": true, "readyState": 4, "activeLabel": "Annotated preview: Djokovic point · 2012 US Open", "visibleRecoveryButton": "Play preview: Djokovic point · 2012 US Open"},
+    "manualResume": {"action": "Click the visible preview play button", "observedAt": "2026-10-05T02:06:08.660Z", "mediaTime": 12.169712, "paused": false, "readyState": 4, "recoveryButtonAbsent": true},
+    "matchedAnalysisLink": "/examples/djokovic_2012"
+  },
+  "retainedPreview": {"observedAt": "2026-10-05T02:06:23.663Z", "presentedFrame": 0, "sharedFrame": 0, "mediaTime": 0, "paused": true, "readyState": 4, "statuses": [], "markedDeliverable": true},
+  "capturedBrowserErrors": [],
+  "screenshotArtifact": null,
+  "qualificationEvidence": false,
+  "limitations": [
+    "This browser allowed muted preview playback; no actual autoplay-policy rejection was observed.",
+    "The public example has invalid court mapping, so opening 3D correctly abstained and never mounted its WebGL renderer.",
+    "Renderer creation/loss and caller recovery were verified through actual installed Canvas with a mocked GPU renderer in automated tests, not native GPU failure here.",
+    "No supported-angle accuracy, valid spatial reconstruction, full-match capacity, mobile compatibility or deployment-rights qualification."
+  ]
+}

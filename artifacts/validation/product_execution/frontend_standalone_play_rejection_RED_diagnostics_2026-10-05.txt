@@ -1,0 +1,451 @@
+
+ RUN  v4.1.11 C:/Semester 9/FYP2/tennis_ai_agent_bundle/frontend
+
+ ❯ src/components/VideoEvidencePlayer.test.tsx (39 tests | 2 failed | 31 skipped) 352ms
+     ↓ supports keyboard playback and overlay toggles
+     ↓ keeps fullscreen available when replay transport owns playback
+     ↓ holds the presented frame through buffering, pause, timeupdate, resume and overlay changes
+     ↓ accumulates pending keyboard 'rapid frame steps' and resumes from the decoded acknowledgement
+     ↓ accumulates pending keyboard 'opposing one-second seeks' and resumes from the decoded acknowledgement
+     ↓ accumulates pending keyboard 'frame steps before a transport commit' and resumes from the decoded acknowledgement
+     ↓ accumulates pending keyboard 'upper-bound reversal' and resumes from the decoded acknowledgement
+     ↓ accumulates standalone frame buttons while the decoder has not presented the seek
+     ↓ standalonePendingRecovery reverses from the final source frame after repeated keys
+     ↓ standalonePendingRecovery reverses from the final source frame after repeated buttons
+     ↓ standalonePendingRecovery ignores a pre-command callback delivered after seeked and keeps the pending target
+     ↓ observes paused decoded seeks and ignores a callback queued before a seek command
+     ↓ waits for the final decoded frame when ended arrives before its callback
+     ↓ uses media events as the fallback clock when video-frame callbacks are unavailable
+     ↓ ignores a superseded play rejection after the playback rate changes
+     ↓ handles a current play rejection named 'AbortError' with appropriate feedback
+     ↓ handles a current play rejection named 'NotAllowedError' with appropriate feedback
+       × keeps the presented frame and offers a retry for a current 'NotAllowedError' 109ms
+       × keeps the presented frame and offers a retry for a current 'generic error' 29ms
+       ✓ handles a cancelled AbortError without retry feedback or advancing evidence 30ms
+       ✓ ignores an earlier request rejection after a newer successful start 61ms
+       ✓ ignores a request rejection after pause invalidates its playback attempt 38ms
+       ✓ ignores a request rejection after inactive invalidates its playback attempt 28ms
+       ✓ ignores a request rejection after source change invalidates its playback attempt 29ms
+       ✓ ignores a request rejection after unmount invalidates its playback attempt 27ms
+     ↓ offers generic detected people separately from player roles and leaves it off initially
+     ↓ withholds the generic people overlay when no raw observations were exported
+     ↓ withholds player overlays without exported boxes even when the players capability is false
+     ↓ withholds player overlays without exported boxes even when the players capability is true
+     ↓ withholds player overlays when the entire detection section is unavailable
+     ↓ keeps sparse image boxes usable without court or player world tracking and preserves preferences
+     ↓ offers UNKNOWN people without presenting them as exported players
+     ↓ withholds player overlays when only malformed box coordinates 1 were exported
+     ↓ withholds player overlays when only malformed box coordinates 10 were exported
+     ↓ withholds player overlays when only malformed box coordinates 1 were exported
+     ↓ withholds player overlays when only malformed box coordinates 1 were exported
+     ↓ withholds player overlays when only malformed box coordinates 1 were exported
+     ↓ skips malformed boxes and draws sparse evidence {"bbox":[1,2,10,20],"expected":[6,12,54,108]} within the media clip
+     ↓ skips malformed boxes and draws sparse evidence {"bbox":[-5,-4,10,20],"expected":[-30,-24,90,144]} within the media clip
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > keeps the presented frame and offers a retry for a current 'NotAllowedError'
+ FAIL  src/components/VideoEvidencePlayer.test.tsx > video evidence player > standalone play rejection lifecycle > keeps the presented frame and offers a retry for a current 'generic error'
+TestingLibraryElementError: Unable to find an element with the text: Playback did not start. Press play to try again.. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m"Video evidence player. Space plays or pauses. Arrow keys step frames. Shift and arrow keys seek one second."[39m
+      [33mclass[39m=[32m"evidence-player"[39m
+      [33mtabindex[39m=[32m"0"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"video-stage"[39m
+        [33mstyle[39m=[32m"aspect-ratio: 100 / 100;"[39m
+      [36m>[39m
+        [36m<video[39m
+          [33maria-label[39m=[32m"Source match video"[39m
+          [33mplaysinline[39m=[32m""[39m
+          [33mpreload[39m=[32m"metadata"[39m
+          [33msrc[39m=[32m"/demo/input-video.mp4"[39m
+        [36m/>[39m
+        [36m<canvas[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"telemetry-canvas"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Frame 30, 1.000 seconds"[39m
+          [33mclass[39m=[32m"frame-chip"[39m
+        [36m>[39m
+          [36m<strong>[39m
+            [0mF [0m
+            [0m30[0m
+          [36m</strong>[39m
+          [36m<span>[39m
+            [0m1.000[0m
+            [0m s[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"timeline-wrap"[39m
+      [36m>[39m
+        [36m<input[39m
+          [33maria-label[39m=[32m"Playback position"[39m
+          [33mclass[39m=[32m"video-scrubber"[39m
+          [33mmax[39m=[32m"20"[39m
+          [33mmin[39m=[32m"0"[39m
+          [33mstep[39m=[32m"0.03333333333333333"[39m
+          [33mtype[39m=[32m"range"[39m
+          [33mvalue[39m=[32m"1"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Analysis events"[39m
+          [33mclass[39m=[32m"semantic-ticks"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Serve contact at 0.77 seconds"[39m
+            [33mclass[39m=[32m""[39m
+            [33mstyle[39m=[32m"left: 3.8335%;"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Bounce at 2.70 seconds"[39m
+            [33mclass[39m=[32m""[39m
+            [33mstyle[39m=[32m"left: 13.5%;"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Player 1 hit at 2.80 seconds"[39m
+            [33mclass[39m=[32m""[39m
+            [33mstyle[39m=[32m"left: 13.999999999999998%;"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Bounce at 4.60 seconds"[39m
+            [33mclass[39m=[32m""[39m
+            [33mstyle[39m=[32m"left: 23%;"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Player 2 hit at 4.80 seconds"[39m
+            [33mclass[39m=[32m""[39m
+            [33mstyle[39m=[32m"left: 24%;"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Bounce at 5.93 seconds"[39m
+            [33mclass[39m=[32m""[39m
+            [33mstyle[39m=[32m"left: 29.666500000000003%;"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"player-controls"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"control-cluster"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Play"[39m
+            [33mclass[39m=[32m"icon-button control-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"currentColor"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mviewBox[39m=[32m"0 0 256 256"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Restart"[39m
+            [33mclass[39m=[32m"icon-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"currentColor"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mviewBox[39m=[32m"0 0 256 256"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M224,128a96,96,0,0,1-94.71,96H128A95.38,95.38,0,0,1,62.1,197.8a8,8,0,0,1,11-11.63A80,80,0,1,0,71.43,71.39a3.07,3.07,0,0,1-.26.25L44.59,96H72a8,8,0,0,1,0,16H24a8,8,0,0,1-8-8V56a8,8,0,0,1,16,0V85.8L60.25,60A96,96,0,0,1,224,128Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Previous frame"[39m
+            [33mclass[39m=[32m"icon-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"currentColor"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mviewBox[39m=[32m"0 0 256 256"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Next frame"[39m
+            [33mclass[39m=[32m"icon-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"currentColor"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mviewBox[39m=[32m"0 0 256 256"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"time-readout"[39m
+          [36m>[39m
+            [0m0:01.0[0m
+            [0m / [0m
+            [0m0:20.0[0m
+          [36m</span>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"control-cluster control-options"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"speed-control"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mSpeed[0m
+            [36m</span>[39m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"0.25"[39m
+              [36m>[39m
+                [0m0.25[0m
+                [0mx[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"0.5"[39m
+              [36m>[39m
+                [0m0.5[0m
+                [0mx[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"1"[39m
+              [36m>[39m
+                [0m1[0m
+                [0mx[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"1.5"[39m
+              [36m>[39m
+                [0m1.5[0m
+                [0mx[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"2"[39m
+              [36m>[39m
+                [0m2[0m
+                [0mx[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Mute audio"[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"currentColor"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mviewBox[39m=[32m"0 0 256 256"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,88,164.09V91.91l56-43.55Zm101.66-61.3a8,8,0,0,1-11.32,11.32L216,139.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L204.69,128l-18.35-18.34a8,8,0,0,1,11.32-11.32L216,116.69l18.34-18.35a8,8,0,0,1,11.32,11.32L227.31,128Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Enter fullscreen"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"icon-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"currentColor"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mviewBox[39m=[32m"0 0 256 256"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M216,48V88a8,8,0,0,1-16,0V56H168a8,8,0,0,1,0-16h40A8,8,0,0,1,216,48ZM88,200H56V168a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H88a8,8,0,0,0,0-16Zm120-40a8,8,0,0,0-8,8v32H168a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V168A8,8,0,0,0,208,160ZM88,40H48a8,8,0,0,0-8,8V88a8,8,0,0,0,16,0V56H88a8,8,0,0,0,0-16Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"overlay-controls"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"currentColor"[39m
+            [33mheight[39m=[32m"16"[39m
+            [33mviewBox[39m=[32m"0 0 256 256"[39m
+            [33mwidth[39m=[32m"16"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M40,88H73a32,32,0,0,0,62,0h81a8,8,0,0,0,0-16H135a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16Zm64-24A16,16,0,1,1,88,80,16,16,0,0,1,104,64ZM216,168H199a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16h97a32,32,0,0,0,62,0h17a8,8,0,0,0,0-16Zm-48,24a16,16,0,1,1,16-16A16,16,0,0,1,168,192Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0m Overlays[0m
+        [36m</span>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Video overlay controls"[39m
+          [33mdir[39m=[32m"ltr"[39m
+          [33mrole[39m=[32m"toolbar"[39m
+          [33mstyle[39m=[32m"outline: none;"[39m
+          [33mtabindex[39m=[32m"0"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle detected people overlay"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mdata-disabled[39m=[32m""[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"off"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mDetected people[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle players overlay"[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"on"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mPlayers[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle ball overlay"[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"on"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mBall[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle trajectory overlay"[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"on"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mTrajectory[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle skeleton overlay"[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mdata-disabled[39m=[32m""[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"on"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mSkeleton[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle racket overlay"[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mdata-disabled[39m=[32m""[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"on"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mRacket[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle court overlay"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"off"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mCourt[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle events overlay"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mdata-radix-collection-item[39m=[32m""[39m
+            [33mdata-state[39m=[32m"off"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mEvents[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"upload-hint"[39m
+      [36m>[39m
+        [0mSkeleton observations unavailable. [0m
+        [0mRacket observations unavailable.[0m
+      [36m</p>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/VideoEvidencePlayer.test.tsx:516:21
+    514|       video.currentTime = 4;
+    515|       await act(async () => requests[0]!.reject(error));
+    516|       expect(screen.getByText('Playback did not start. Press play to t…
+       |                     ^
+    517|       expect(screen.getByRole('button', { name: 'Play' })).toBeEnabled…
+    518|       expect(screen.getByLabelText(frameLabel)).toBeInTheDocument();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed | 31 skipped (39)
+   Start at  09:48:53
+   Duration  3.57s (transform 116ms, setup 136ms, import 2.45s, tests 352ms, environment 509ms)
+
+JSON report written to C:/Semester 9/FYP2/tennis_ai_agent_bundle/artifacts/validation/product_execution/frontend_standalone_play_rejection_RED_diagnostics_2026-10-05.json

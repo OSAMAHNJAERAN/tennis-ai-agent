@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="4.059" timestamp="2026-10-06T13:59:46.329214+08:00" hostname="Osamah"><testcase classname="tests.test_result_builder_reads" name="test_dense_people_and_body_observations_use_bounded_frame_snapshots[65]" time="0.465"><failure message="assert 3441 &lt;= (10 * 65)">tmp_path = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-21/test_dense_people_and_body_obs0')
+frozen = &lt;module 'frozen_result_builder_reads_20261006' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_latency_baseline_2026-10-06\\src\\api\\results.py'&gt;
+count = 65
+
+    @pytest.mark.parametrize('count', [65, 600])
+    def test_dense_people_and_body_observations_use_bounded_frame_snapshots(tmp_path, frozen, count):
+        directory, job = artifacts(tmp_path, count, proposals_per_frame=24)
+        expected = frozen.build_result(directory, job)
+        expected_bytes = json.dumps(expected, allow_nan=False).encode('utf-8')
+        scratch = tmp_path / 'storage'
+        scratch.mkdir()
+        with ObservedStorage(scratch) as storage:
+            result = build_result(directory, job, _storage=storage)
+            gc.collect()
+            reads, peak, live = storage.frame_reads, storage.peak_live_frames, storage.live_frames
+            stream = io.StringIO()
+            storage.dump(result, stream)
+            actual_bytes = stream.getvalue().encode('utf-8')
+            assert actual_bytes == expected_bytes
+            # The emitted tree owns disk references, never a growing frame cache.
+            assert live == 0 and peak &lt;= 4
+            print(json.dumps({'frames': count, 'normalizedFrameDecodesDuringBuild': reads,
+                              'peakLiveNormalizedFrameSnapshots': peak, 'liveAfterBuild': live,
+                              'exactFrozenJsonBytes': True}), flush=True)
+            # Seven other normalization passes plus one snapshot per optional
+            # pose/racket/person frame. Person density must not multiply reads.
+&gt;           assert reads &lt;= 10 * count
+E           assert 3441 &lt;= (10 * 65)
+
+tests\test_result_builder_reads.py:136: AssertionError</failure></testcase><testcase classname="tests.test_result_builder_reads" name="test_dense_people_and_body_observations_use_bounded_frame_snapshots[600]" time="3.444"><failure message="assert 31948 &lt;= (10 * 600)">tmp_path = WindowsPath('C:/Users/ac-98/AppData/Local/Temp/pytest-of-ac-98/pytest-21/test_dense_people_and_body_obs1')
+frozen = &lt;module 'frozen_result_builder_reads_20261006' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_latency_baseline_2026-10-06\\src\\api\\results.py'&gt;
+count = 600
+
+    @pytest.mark.parametrize('count', [65, 600])
+    def test_dense_people_and_body_observations_use_bounded_frame_snapshots(tmp_path, frozen, count):
+        directory, job = artifacts(tmp_path, count, proposals_per_frame=24)
+        expected = frozen.build_result(directory, job)
+        expected_bytes = json.dumps(expected, allow_nan=False).encode('utf-8')
+        scratch = tmp_path / 'storage'
+        scratch.mkdir()
+        with ObservedStorage(scratch) as storage:
+            result = build_result(directory, job, _storage=storage)
+            gc.collect()
+            reads, peak, live = storage.frame_reads, storage.peak_live_frames, storage.live_frames
+            stream = io.StringIO()
+            storage.dump(result, stream)
+            actual_bytes = stream.getvalue().encode('utf-8')
+            assert actual_bytes == expected_bytes
+            # The emitted tree owns disk references, never a growing frame cache.
+            assert live == 0 and peak &lt;= 4
+            print(json.dumps({'frames': count, 'normalizedFrameDecodesDuringBuild': reads,
+                              'peakLiveNormalizedFrameSnapshots': peak, 'liveAfterBuild': live,
+                              'exactFrozenJsonBytes': True}), flush=True)
+            # Seven other normalization passes plus one snapshot per optional
+            # pose/racket/person frame. Person density must not multiply reads.
+&gt;           assert reads &lt;= 10 * count
+E           assert 31948 &lt;= (10 * 600)
+
+tests\test_result_builder_reads.py:136: AssertionError</failure></testcase></testsuite></testsuites>

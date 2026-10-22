@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-22T00:40:27.929506+00:00",
+  "reviewer": "AI_PEER_READ_ONLY_NOT_HUMAN",
+  "status": "PROCESS_INSTRUMENTATION_FINDING_CLOSED_AND_TERMINAL_EVIDENCE_VERIFIED",
+  "prior_immutable_review": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_review_v1/process_static_review.json",
+    "sha256": "c367b7900c2bd7155b596bd819629957f57927a854324242af6100e3d9c1cac7",
+    "bytes": 6004
+  },
+  "finding_closure": {
+    "id": "SOURCE_COUNT_PROBE_MISLABELLED_NORMALIZATION",
+    "status": "CLOSED",
+    "exact_fix": "Source normalization audit requires FFmpeg -stats_enc_pre; browser encoding audit requires -c:v. Actual ffprobe -count_frames commands now receive their own count event.",
+    "observed_events": {
+      "source_normalization": 1,
+      "browser_encoding": 1,
+      "frame_count_probes": [
+        "source.mp4",
+        "annotated_web.mp4"
+      ]
+    }
+  },
+  "final_combined_receipt": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/receipt.json",
+    "sha256": "a007ad6413cb22fc84c661da8d6e0a4fa7244511c1f76429117bd96f9cfa08bb",
+    "bytes": 49368
+  },
+  "junit": {
+    "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/junit.xml",
+    "sha256": "92d5ad7fa7fc0c5b30e72cd26c94eabb69c2b08a1d6e054a504d8be9d2300705",
+    "bytes": 73213
+  },
+  "verified_test_counts": {
+    "tests": 484,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "source_test_helper_runner_pins_verified": 193,
+  "core_current_bindings": [
+    {
+      "path": "tests/test_native_pipeline_process_resume.py",
+      "sha256": "63e8e5ac3e8077690b03e035c1c1e18fa1ea6e208060c6841f33cdb107d5db46",
+      "bytes": 10832
+    },
+    {
+      "path": "tests/helpers/native_pipeline_resume_child.py",
+      "sha256": "30c8cdfa31ddf0d977c5406a897b454f0b81a4a1074301059ffff8134a558761",
+      "bytes": 9797
+    },
+    {
+      "path": "tests/helpers/native_pipeline_source.py",
+      "sha256": "b4b99dcff081a22d2beda8315d3a14ff7d9405b17f20ed1cd7d42e808efc9c47",
+      "bytes": 14437
+    },
+    {
+      "path": "src/api/worker.py",
+      "sha256": "5338aa08a599bfd54677f6abb5cff7153ed53fe9b4a4cff422834dcd85a91ce9",
+      "bytes": 23292
+    },
+    {
+      "path": "src/pipeline/phase6_pipeline.py",
+      "sha256": "1086c25de98f9e5c8a11986ef94e00095ca5499c4b6d2c707422318351ac31ff",
+      "bytes": 109731
+    },
+    {
+      "path": "src/utils/native_inference_session.py",
+      "sha256": "d694abc98138b9409197fcbb908d98b757d836ac285fd02d1dc511a960c3c19b",
+      "bytes": 16719
+    },
+    {
+      "path": "src/utils/native_inference_prefix.py",
+      "sha256": "ae238c38109512366bea86ef5fe88cc79fa6c53eba488b3ea9dee3a8c2967a97",
+      "bytes": 39520
+    },
+    {
+      "path": "src/utils/ball_inference_journal.py",
+      "sha256": "f8d75a15e53cdabdbdec0353d2feee220e14b4954a9ce332336e47d443907113",
+      "bytes": 20245
+    }
+  ],
+  "actual_child_observation_bindings": [
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/temp/pytest/test_hard_process_loss_resumes0/recovered/native_worker_observations.jsonl",
+      "sha256": "1c43cebcad77cae334beeb1aac53d730e028db1d620e8eaf4dc31b33957182b9",
+      "bytes": 5265
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/temp/pytest/test_hard_process_loss_resumes0/continuous/native_worker_observations.jsonl",
+      "sha256": "d44779fa51d40a72876ca786c9a0bcb0dfe62a23c634e16bbd71953dae404198",
+      "bytes": 4351
+    },
+    {
+      "path": "artifacts/validation/yolo26_execution_2026-10-22/native_inference_integration_checks_v3/temp/pytest/test_hard_process_loss_resumes0/native_worker_process_recovery_evidence.json",
+      "sha256": "bfac9d59340865e4fb320a97f63930bde74a106ce78e5dda3a94124dd60d64ef",
+      "bytes": 1153
+    }
+  ],
+  "actual_observed_recovery": {
+    "analysis_id": "match_26ba1126ba1126ba1126ba1126ba1126",
+    "owner_id": "native-process-recovery-owner",
+    "status": "COMPLETED",
+    "attempt": 2,
+    "exit_codes": [
+      73,
+      0
+    ],
+    "process_ids": [
+      52936,
+      56088
+    ],
+    "committed_frontier_at_hard_exit": 2,
+    "initial_ball_frames": [
+      0,
+      1
+    ],
+    "resumed_ball_frames": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "repeated_player_or_court_predictions": 0,
+    "final_raw_journal_frames": 8,
+    "published_generation": "d62e96fcffd09ab2025edf871d8b98732a8f9295d13364c913b21555d7fabf64",
+    "source_and_prefix_seals_rehashed_in_this_review": true,
+    "matching_semantic_exports_and_decoded_pixels": "Verified by the passing exact process test and retained PROCESS_OBSERVATIONS; not redecoded by this static review."
+  },
+  "limits": {
+    "tests_or_codecs_run_by_this_review": 0,
+    "project_or_vision_runtime_imports": 0,
+    "hardware_resource_probes": 0,
+    "source_edits": 0,
+    "scope": "Eight320x240synthetic frames; real distinct worker processes,FFmpeg normalization,source mapping,native numerical/storage/render methods,result builder and immutable generation publication.",
+    "synthetic_boundaries": [
+      "Selected checkpoint/runtime asset admission and provenance identity",
+      "Deterministic NumPy outputs of all three selected vision roles",
+      "Explicit synthetic interval review and CPU/no-crop/no-player-motion fixture configuration",
+      "Neural top-level imports omitted with local inert cuda namespace"
+    ],
+    "actual_learned_models_or_forwards": 0,
+    "real_match_accuracy_long_match_capacity_live_or_power_loss_qualification": false
+  }
+}

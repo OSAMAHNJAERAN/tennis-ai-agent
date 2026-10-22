@@ -1,0 +1,43 @@
+{
+  "status": "ROOT_ACCEPTED_ACTUAL_CPU_FACTORY_TRANSFORMS_PENDING_GPU_BASELINE",
+  "reviewer_type": "ROOT_AGENT",
+  "reviewed_utc": "2026-10-16T14:15:34.2327589Z",
+  "cpu_receipt": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_ball101_cpu_preview_v1\\receipt.json",
+    "sha256": "159714bc4187c33784c57d62ec4fcfd105313ca509c049bc96558846dfde1efe"
+  },
+  "actual_preview_images_reviewed": true,
+  "image_review_method": "Local view_image inspection of all three actual unmarked factory tensors and their three separately saved label overlays at 640x640",
+  "decisions": [
+    {
+      "id": "author_France_Review_Red_Court_1_f000139",
+      "accepted": true,
+      "note": "Tiny reviewed far-court target remains at its original label extent after HSV-only transform; visibility is marginal and this is training preview evidence, not independent ground truth."
+    },
+    {
+      "id": "author_America_Best_10_1_f000784",
+      "accepted": true,
+      "note": "Reviewed blurred ball remains visible within its original box; exact native geometry preserved, no newly observed unresolved ball target."
+    },
+    {
+      "id": "tile_review_0056",
+      "accepted": true,
+      "note": "Reviewed absence crop and empty label remain unchanged; overlay is unmarked."
+    }
+  ],
+  "complete_transfer_tensor_count": 768,
+  "cuda_initialized": false,
+  "resources_at_end": {
+    "ram": 1344106496,
+    "disk": 63822581760,
+    "rss": 1049882624,
+    "peak_rss": 1054941184,
+    "vram": null
+  },
+  "memory_note": "End available RAM is only slightly above unchanged 1.5 GiB admission floor; no comfortable GPU/training-memory claim.",
+  "training_performed": false,
+  "gpu_baseline_or_training_approved": false,
+  "qualification_evidence": false,
+  "final_test_used": false,
+  "public_release_cleared": false
+}

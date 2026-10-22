@@ -1,0 +1,127 @@
+{
+  "status": "MISSING_SERVICE_TARGET_SILENT_DEFAULT_REPRODUCED",
+  "created_utc": "2026-10-16T07:03:34.849440+00:00",
+  "source_sha256": "5bb1da61ddf1e0bed28b862f9e844499199a8ec66e654dd238a076696ffe3e83",
+  "source_unchanged": true,
+  "observed": {
+    "missing_target": {
+      "event_id": 1,
+      "bounce_frame": 0,
+      "decision": "SERVE_FAULT",
+      "decision_context": "SERVE",
+      "nearest_line": "NONE",
+      "bounce_position_px": [
+        3.0,
+        6.0
+      ],
+      "bounce_position_m": [
+        3.0,
+        6.0
+      ],
+      "tracker_state": "DETECTED",
+      "center_signed_distance_cm": -588.5,
+      "contact_patch_model": "EMPIRICAL_PATCH",
+      "contact_patch_radius_cm": 1.25,
+      "ball_edge_margin_cm": -587.25,
+      "position_uncertainty_cm": 2.8,
+      "spatial_tier": "MID",
+      "confidence": 0.98,
+      "reason": "Ball contact patch is outside legal NEAR_DEUCE by 587.2 cm past NONE beyond uncertainty (\u00b12.8 cm).",
+      "refinement_method": "EXPLICIT_SYNTHETIC_METRIC_POINT",
+      "line_strip_info": null
+    },
+    "explicit_correct_target": {
+      "event_id": 1,
+      "bounce_frame": 0,
+      "decision": "SERVE_IN",
+      "decision_context": "SERVE",
+      "nearest_line": "FAR_SERVICE_LINE",
+      "bounce_position_px": [
+        3.0,
+        6.0
+      ],
+      "bounce_position_m": [
+        3.0,
+        6.0
+      ],
+      "tracker_state": "DETECTED",
+      "center_signed_distance_cm": 51.5,
+      "contact_patch_model": "EMPIRICAL_PATCH",
+      "contact_patch_radius_cm": 1.25,
+      "ball_edge_margin_cm": 52.75,
+      "position_uncertainty_cm": 2.8,
+      "spatial_tier": "MID",
+      "confidence": 0.947,
+      "reason": "Ball contact patch is inside legal FAR_DEUCE by 52.8 cm beyond uncertainty (\u00b12.8 cm).",
+      "refinement_method": "EXPLICIT_SYNTHETIC_METRIC_POINT",
+      "line_strip_info": {
+        "line_type": "FAR_SERVICE_LINE",
+        "outer_edge_m": 5.485,
+        "inner_edge_m": 5.535,
+        "centerline_m": 5.51,
+        "width_cm": 5.0,
+        "width_uncertainty_cm": 1.25,
+        "polygon_bounds_m": [
+          1.37,
+          9.6,
+          5.485,
+          5.535
+        ]
+      }
+    },
+    "rally_context": {
+      "event_id": 1,
+      "bounce_frame": 0,
+      "decision": "IN",
+      "decision_context": "RALLY",
+      "nearest_line": "LEFT_SIDELINE",
+      "bounce_position_px": [
+        3.0,
+        6.0
+      ],
+      "bounce_position_m": [
+        3.0,
+        6.0
+      ],
+      "tracker_state": "DETECTED",
+      "center_signed_distance_cm": 163.0,
+      "contact_patch_model": "EMPIRICAL_PATCH",
+      "contact_patch_radius_cm": 1.25,
+      "ball_edge_margin_cm": 164.25,
+      "position_uncertainty_cm": 2.8,
+      "spatial_tier": "MID",
+      "confidence": 0.98,
+      "reason": "Ball contact patch is inside legal SINGLES_COURT by 164.2 cm beyond uncertainty (\u00b12.8 cm).",
+      "refinement_method": "EXPLICIT_SYNTHETIC_METRIC_POINT",
+      "line_strip_info": {
+        "line_type": "LEFT_SIDELINE",
+        "outer_edge_m": 1.37,
+        "inner_edge_m": 1.42,
+        "centerline_m": 1.395,
+        "width_cm": 5.0,
+        "width_uncertainty_cm": 1.25,
+        "polygon_bounds_m": [
+          1.37,
+          1.42,
+          0.0,
+          23.77
+        ]
+      }
+    }
+  },
+  "fixture_point_m": [
+    3.0,
+    6.0
+  ],
+  "fixture_correct_box": "FAR_DEUCE",
+  "source_behavior": "target_service_box or ServiceBoxType.NEAR_DEUCE",
+  "expected_without_eligible_identity_end_or_target": "UNKNOWN_OR_REVIEW_REQUIRED_NOT_INVENTED_FAULT",
+  "synthetic_identity_homography_and_refinement_not_geometric_GT": true,
+  "torch_imported": false,
+  "ultralytics_imported": false,
+  "model_used": false,
+  "media_used": false,
+  "training_performed": false,
+  "qualification_evidence": false,
+  "script_sha256": "e25398aa30dfe215230dcf52cbd67bca0041dd8dd63df5ef832000fc468edcfd"
+}

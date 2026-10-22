@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-04",
+  "source": "ACTUAL_CUA_BROWSER_AND_COMPLETED_COMMAND_OUTPUTS",
+  "analysisId": "match_9de7cb2d09eb46a0af0e34c3b0e6b818",
+  "url": "http://127.0.0.1:8000/examples/djokovic_2012",
+  "servedEntryScript": "/assets/index-Cds0hvk4.js",
+  "sha256": {
+    "frontend/src/components/VideoEvidencePlayer.tsx": "39af9556ba198aa549663a1b1ddea12462f2d23076d539b717f34a0fec8ad53d",
+    "frontend/src/components/VideoEvidencePlayer.test.tsx": "597f5c179c0947d7afa163dd03357ff500ee1b4f9eb6be494dd57c4644a11c30",
+    "frontend/dist/assets/index-Cds0hvk4.js": "7b89548592665e1f7170886b9f1b3a5098db9fdbdba1ad8500bef6e835f1ab15",
+    "artifacts/validation/product_execution/frontend_player_overlay_2026-10-04.json": "26af4de40447ba9093fd77224836e0a1b9cb6d2f6f8de451a93b005e148eb0e8"
+  },
+  "focusedTests": {
+    "command": "pnpm --dir frontend test src/components/VideoEvidencePlayer.test.tsx --reporter=default --reporter=json --outputFile=../artifacts/validation/product_execution/frontend_player_overlay_2026-10-04.json",
+    "passed": 16,
+    "failed": 0,
+    "durationSeconds": 131.41,
+    "covers": ["missing and malformed selected-player boxes", "sparse image boxes independent of court/world capabilities", "preferences across availability changes", "UNKNOWN people remain separate", "partially off-image boxes draw under the existing media clip"]
+  },
+  "lint": {"command": "pnpm --dir frontend lint", "exitCode": 0},
+  "build": {"command": "pnpm --dir frontend build", "exitCode": 0, "typecheckPassed": true, "modules": 5434, "viteBuildSeconds": 7.22},
+  "observedOverlays": [
+    {"label": "Toggle detected people overlay", "disabled": true, "state": "off"},
+    {"label": "Toggle players overlay", "disabled": true, "state": "on"},
+    {"label": "Toggle ball overlay", "disabled": false, "state": "on"},
+    {"label": "Toggle trajectory overlay", "disabled": false, "state": "on"},
+    {"label": "Toggle skeleton overlay", "disabled": true, "state": "on"},
+    {"label": "Toggle racket overlay", "disabled": true, "state": "on"},
+    {"label": "Toggle court overlay", "disabled": true, "state": "off"}
+  ],
+  "desktop": {
+    "requestedViewport": {"width": 1280, "height": 800},
+    "nextFrameDisplayed": 1,
+    "videoCurrentTime": 0.041708,
+    "videoPaused": true,
+    "videoReadyState": 4,
+    "videoSize": {"width": 1280, "height": 720}
+  },
+  "mobile": {
+    "observedInnerWidth": 390,
+    "observedInnerHeight": 844,
+    "observedDocumentWidth": 375,
+    "ballKeyboardSpaceToggle": "on -> off -> on",
+    "playersStayedDisabled": true,
+    "videoCurrentTimeDuringToggle": 0.041708,
+    "videoPausedDuringToggle": true,
+    "temporaryViewportReset": true
+  },
+  "sourceCredit": "Video by JC; CC BY-SA 2.0; Original WebM supplied to analysis without trimming or changing cadence. Annotated playback omits audio and adds ball image tracking and notices for unavailable measurements.",
+  "screenshotsObservedInline": true,
+  "savedScreenshotPath": null,
+  "qualifiedAccuracy": false,
+  "limitations": "Bounded software and browser observations on one public example. Sparse and partial-edge boxes are automated fixture checks. This does not qualify participant accuracy, all mobile/keyboard flows, buffering, or full synchronization."
+}

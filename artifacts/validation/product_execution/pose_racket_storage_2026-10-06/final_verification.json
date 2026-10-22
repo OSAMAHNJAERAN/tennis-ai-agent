@@ -1,0 +1,1316 @@
+{
+  "verifiedAt": "2026-10-06T10:19:39.393623+00:00",
+  "status": "PASSED",
+  "passed": true,
+  "scope": "Bounded pose/racket storage engineering tests, synthetic measurement, clean host and saved-result HTTP compatibility. Full execution prompt remains incomplete.",
+  "software": {
+    "validRed": {
+      "tests": 17,
+      "failures": 7,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 10
+    },
+    "storageFocused": {
+      "tests": 57,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 57
+    },
+    "pipelineGreen": {
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 17
+    },
+    "fullBackend": {
+      "tests": 1390,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1390
+    },
+    "measurementHelperContracts": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    }
+  },
+  "measurement": {
+    "status": "COMPLETED",
+    "passed": true,
+    "runs": [
+      {
+        "frames": 600,
+        "mode": "old",
+        "status": "COMPLETED",
+        "passed": true,
+        "childStarted": true,
+        "actualWorkloadWasSampled": true,
+        "actualOsPeakWorkingSetBytes": 56049664,
+        "actualOsPeakProcessCommitBytes": 817512448,
+        "peakSampledOwnedTreeRssBytes": 66961408,
+        "peakSampledOwnedTreePrivateBytes": 818601984,
+        "monitoredChildWallSeconds": 5.653396399982739,
+        "minimumSampledAvailableRamBytes": 1994637312,
+        "safeguardStop": null,
+        "error": null,
+        "childStages": {
+          "completeObservationConstructionAndAppendSeconds": 0.03879560000495985,
+          "indexedRenderLikeReadsSeconds": 0.004105899948626757,
+          "playerMotionSerializationSeconds": 0.1721535999677144,
+          "racketTrackingSerializationSeconds": 0.025317000050563365,
+          "completeNativeFidelitySerializationSeconds": 0.08188680000603199,
+          "outputHashVerificationSeconds": 0.07321140001295134,
+          "sequenceContextCleanupSeconds": 5.999987479299307e-06,
+          "totalChildElapsedSeconds": 4.918062400014605,
+          "storageDisk": {
+            "filesBeforeCleanup": {},
+            "databaseAndSidecarLogicalBytesBeforeCleanup": 0,
+            "databaseMainLogicalBytesBeforeCleanup": 0,
+            "scope": "Old pose/racket observations are resident lists; no observation database."
+          }
+        }
+      },
+      {
+        "frames": 600,
+        "mode": "new",
+        "status": "COMPLETED",
+        "passed": true,
+        "childStarted": true,
+        "actualWorkloadWasSampled": true,
+        "actualOsPeakWorkingSetBytes": 46063616,
+        "actualOsPeakProcessCommitBytes": 806002688,
+        "peakSampledOwnedTreeRssBytes": 57704448,
+        "peakSampledOwnedTreePrivateBytes": 808148992,
+        "monitoredChildWallSeconds": 2.0155032000038773,
+        "minimumSampledAvailableRamBytes": 1999962112,
+        "safeguardStop": null,
+        "error": null,
+        "childStages": {
+          "completeObservationConstructionAndAppendSeconds": 0.13917820004280657,
+          "indexedRenderLikeReadsSeconds": 0.08093200001167133,
+          "playerMotionSerializationSeconds": 0.24596329999621958,
+          "racketTrackingSerializationSeconds": 0.03892139997333288,
+          "completeNativeFidelitySerializationSeconds": 0.16388499998720363,
+          "outputHashVerificationSeconds": 0.06425860000308603,
+          "sequenceContextCleanupSeconds": 0.005658900015987456,
+          "totalChildElapsedSeconds": 1.3617241000174545,
+          "storageDisk": {
+            "filesBeforeCleanup": {
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/scratch/identity_frames_m86p0p90.sqlite3": 4202496,
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/scratch/identity_frames_m86p0p90.sqlite3-journal": 8720,
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/scratch/identity_frames_1wvj8zc0.sqlite3": 569344,
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/scratch/identity_frames_1wvj8zc0.sqlite3-journal": 12824
+            },
+            "databaseAndSidecarLogicalBytesBeforeCleanup": 4793384,
+            "databaseMainLogicalBytesBeforeCleanup": 4771840,
+            "scope": "Actual logical file lengths just before context cleanup, including pending-transaction sidecars; not allocated blocks or total result disk."
+          }
+        }
+      },
+      {
+        "frames": 18000,
+        "mode": "old",
+        "status": "COMPLETED",
+        "passed": true,
+        "childStarted": true,
+        "actualWorkloadWasSampled": true,
+        "actualOsPeakWorkingSetBytes": 555474944,
+        "actualOsPeakProcessCommitBytes": 1317560320,
+        "peakSampledOwnedTreeRssBytes": 567148544,
+        "peakSampledOwnedTreePrivateBytes": 1319706624,
+        "monitoredChildWallSeconds": 11.716697800031397,
+        "minimumSampledAvailableRamBytes": 1554137088,
+        "safeguardStop": null,
+        "error": null,
+        "childStages": {
+          "completeObservationConstructionAndAppendSeconds": 1.4144975999952294,
+          "indexedRenderLikeReadsSeconds": 0.10102960001677275,
+          "playerMotionSerializationSeconds": 5.583493300015107,
+          "racketTrackingSerializationSeconds": 0.7596238999976777,
+          "completeNativeFidelitySerializationSeconds": 2.3936499999836087,
+          "outputHashVerificationSeconds": 0.2486790000111796,
+          "sequenceContextCleanupSeconds": 6.799993570894003e-06,
+          "totalChildElapsedSeconds": 11.113283000013325,
+          "storageDisk": {
+            "filesBeforeCleanup": {},
+            "databaseAndSidecarLogicalBytesBeforeCleanup": 0,
+            "databaseMainLogicalBytesBeforeCleanup": 0,
+            "scope": "Old pose/racket observations are resident lists; no observation database."
+          }
+        }
+      },
+      {
+        "frames": 18000,
+        "mode": "new",
+        "status": "COMPLETED",
+        "passed": true,
+        "childStarted": true,
+        "actualWorkloadWasSampled": true,
+        "actualOsPeakWorkingSetBytes": 47775744,
+        "actualOsPeakProcessCommitBytes": 807755776,
+        "peakSampledOwnedTreeRssBytes": 59441152,
+        "peakSampledOwnedTreePrivateBytes": 809902080,
+        "monitoredChildWallSeconds": 21.014345299976412,
+        "minimumSampledAvailableRamBytes": 1883561984,
+        "safeguardStop": null,
+        "error": null,
+        "childStages": {
+          "completeObservationConstructionAndAppendSeconds": 4.271739499992691,
+          "indexedRenderLikeReadsSeconds": 2.3906758000375703,
+          "playerMotionSerializationSeconds": 7.0515822999877855,
+          "racketTrackingSerializationSeconds": 1.1716494000284001,
+          "completeNativeFidelitySerializationSeconds": 4.775923400011379,
+          "outputHashVerificationSeconds": 0.17374120000749826,
+          "sequenceContextCleanupSeconds": 0.016191500006243587,
+          "totalChildElapsedSeconds": 20.46534110000357,
+          "storageDisk": {
+            "filesBeforeCleanup": {
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/scratch/identity_frames_be_wu6_i.sqlite3": 146972672,
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/scratch/identity_frames_be_wu6_i.sqlite3-journal": 21032,
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/scratch/identity_frames_p4270pbf.sqlite3": 19628032,
+              "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/scratch/identity_frames_p4270pbf.sqlite3-journal": 12824
+            },
+            "databaseAndSidecarLogicalBytesBeforeCleanup": 166634560,
+            "databaseMainLogicalBytesBeforeCleanup": 166600704,
+            "scope": "Actual logical file lengths just before context cleanup, including pending-transaction sidecars; not allocated blocks or total result disk."
+          }
+        }
+      }
+    ],
+    "comparisons": [
+      {
+        "frames": 600,
+        "passed": true,
+        "outputs": {
+          "observations.jsonl": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 4506044,
+              "sha256": "6a48e3ccf8d8d9ed882f793395d5e0ab7174618cb8413aa158c3509a8a8baea3"
+            },
+            "new": {
+              "bytes": 4506044,
+              "sha256": "6a48e3ccf8d8d9ed882f793395d5e0ab7174618cb8413aa158c3509a8a8baea3"
+            }
+          },
+          "render_audit.json": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 227,
+              "sha256": "419eab0c3c0f1abef7f8899606b07fb4c59d9c3aa50e75eac67981ef86c063be"
+            },
+            "new": {
+              "bytes": 227,
+              "sha256": "419eab0c3c0f1abef7f8899606b07fb4c59d9c3aa50e75eac67981ef86c063be"
+            }
+          },
+          "player_motion.json": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 3841925,
+              "sha256": "718c8c94bd9d08f3847b59182c2f9f437e068356162b5ad3f1677aa589df8bad"
+            },
+            "new": {
+              "bytes": 3841925,
+              "sha256": "718c8c94bd9d08f3847b59182c2f9f437e068356162b5ad3f1677aa589df8bad"
+            }
+          },
+          "racket_tracking.json": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 520665,
+              "sha256": "29bf13c0f229cfffa27ef562a8bb22abdd264530e6e66954c04d48dceb28d138"
+            },
+            "new": {
+              "bytes": 520665,
+              "sha256": "29bf13c0f229cfffa27ef562a8bb22abdd264530e6e66954c04d48dceb28d138"
+            }
+          }
+        },
+        "fieldExclusions": [],
+        "metadata": {
+          "playerMotion": {
+            "schema_version": "2.0",
+            "pose_enabled": true,
+            "joint_names": [
+              "nose",
+              "left_eye",
+              "right_eye",
+              "left_ear",
+              "right_ear",
+              "left_shoulder",
+              "right_shoulder",
+              "left_elbow",
+              "right_elbow",
+              "left_wrist",
+              "right_wrist",
+              "left_hip",
+              "right_hip",
+              "left_knee",
+              "right_knee",
+              "left_ankle",
+              "right_ankle"
+            ],
+            "coordinate_system": "SOURCE_IMAGE_PIXELS",
+            "ground_position_source": "CALIBRATED_BBOX_BOTTOM_CENTER_PROXY",
+            "camera_registration_enabled": false,
+            "ground_projection_scope": "STATIC_INITIAL_COURT_PLANE",
+            "foot_contact_validated": false,
+            "pose_accuracy_validated": false,
+            "identity_scope": "NEAR_FAR_ROLE_WITHIN_STATIC_SINGLES_CAMERA_SEGMENT",
+            "player_1": {
+              "observed_distance_m": null,
+              "mean_speed_kmh": null,
+              "measured_duration_s": 0.0,
+              "accepted_intervals": 0,
+              "measurement_scope": "OBSERVED_CONTIGUOUS_FOOT_PROXY_INTERVALS_ONLY",
+              "distance_estimator": "INTEGRAL_OF_BACKWARD_WINDOW_LEAST_SQUARES_SPEED",
+              "velocity_window_seconds": 0.15,
+              "raw_observed_polyline_distance_m": null,
+              "uncertainty_scope": "SHORT_WINDOW_FIT_RESIDUAL_IS_NOT_INDEPENDENT_SENSOR_ERROR; STATIONARY_NOISE_CAN_REMAIN",
+              "samples": []
+            },
+            "player_2": {
+              "observed_distance_m": null,
+              "mean_speed_kmh": null,
+              "measured_duration_s": 0.0,
+              "accepted_intervals": 0,
+              "measurement_scope": "OBSERVED_CONTIGUOUS_FOOT_PROXY_INTERVALS_ONLY",
+              "distance_estimator": "INTEGRAL_OF_BACKWARD_WINDOW_LEAST_SQUARES_SPEED",
+              "velocity_window_seconds": 0.15,
+              "raw_observed_polyline_distance_m": null,
+              "uncertainty_scope": "SHORT_WINDOW_FIT_RESIDUAL_IS_NOT_INDEPENDENT_SENSOR_ERROR; STATIONARY_NOISE_CAN_REMAIN",
+              "samples": []
+            }
+          },
+          "racketTracking": {
+            "schema_version": "1.0",
+            "enabled": true,
+            "coordinate_system": "SOURCE_IMAGE_PIXELS",
+            "accuracy_validated": false,
+            "motion_semantics": "BBOX_CENTER_TRANSLATION_NOT_SWING_OR_CONTACT_CLASSIFICATION"
+          },
+          "fps": 59.94005994005994,
+          "fixtureScope": "Complete native pose/racket observations only; ground motion is unknown/empty; no media/inference/accuracy evidence."
+        },
+        "scope": "Full native ordered observations and exact unmodified pose/racket JSON bytes; no sampling/field filtering, rendering/inference or scientific qualification."
+      },
+      {
+        "frames": 18000,
+        "passed": true,
+        "outputs": {
+          "observations.jsonl": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 135212004,
+              "sha256": "e3c6b079f040dfa024e10560adac8124e2bb0a719dee3735db9944c6c6608424"
+            },
+            "new": {
+              "bytes": 135212004,
+              "sha256": "e3c6b079f040dfa024e10560adac8124e2bb0a719dee3735db9944c6c6608424"
+            }
+          },
+          "render_audit.json": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 235,
+              "sha256": "96cafa91f03e394b73a043fb33dfe166a0a90119e1db66099dc9090c4517dd81"
+            },
+            "new": {
+              "bytes": 235,
+              "sha256": "96cafa91f03e394b73a043fb33dfe166a0a90119e1db66099dc9090c4517dd81"
+            }
+          },
+          "player_motion.json": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 114435351,
+              "sha256": "9d4f852c48bcc3b83b80b328a373ce6efbcb5eab9d99b1edaaae736726988871"
+            },
+            "new": {
+              "bytes": 114435351,
+              "sha256": "9d4f852c48bcc3b83b80b328a373ce6efbcb5eab9d99b1edaaae736726988871"
+            }
+          },
+          "racket_tracking.json": {
+            "exactBytesEqual": true,
+            "old": {
+              "bytes": 15542071,
+              "sha256": "a9ad6dd6050f8549ed11b627b2601821a22f1ba72818027fff3e24e11cd17d2b"
+            },
+            "new": {
+              "bytes": 15542071,
+              "sha256": "a9ad6dd6050f8549ed11b627b2601821a22f1ba72818027fff3e24e11cd17d2b"
+            }
+          }
+        },
+        "fieldExclusions": [],
+        "metadata": {
+          "playerMotion": {
+            "schema_version": "2.0",
+            "pose_enabled": true,
+            "joint_names": [
+              "nose",
+              "left_eye",
+              "right_eye",
+              "left_ear",
+              "right_ear",
+              "left_shoulder",
+              "right_shoulder",
+              "left_elbow",
+              "right_elbow",
+              "left_wrist",
+              "right_wrist",
+              "left_hip",
+              "right_hip",
+              "left_knee",
+              "right_knee",
+              "left_ankle",
+              "right_ankle"
+            ],
+            "coordinate_system": "SOURCE_IMAGE_PIXELS",
+            "ground_position_source": "CALIBRATED_BBOX_BOTTOM_CENTER_PROXY",
+            "camera_registration_enabled": false,
+            "ground_projection_scope": "STATIC_INITIAL_COURT_PLANE",
+            "foot_contact_validated": false,
+            "pose_accuracy_validated": false,
+            "identity_scope": "NEAR_FAR_ROLE_WITHIN_STATIC_SINGLES_CAMERA_SEGMENT",
+            "player_1": {
+              "observed_distance_m": null,
+              "mean_speed_kmh": null,
+              "measured_duration_s": 0.0,
+              "accepted_intervals": 0,
+              "measurement_scope": "OBSERVED_CONTIGUOUS_FOOT_PROXY_INTERVALS_ONLY",
+              "distance_estimator": "INTEGRAL_OF_BACKWARD_WINDOW_LEAST_SQUARES_SPEED",
+              "velocity_window_seconds": 0.15,
+              "raw_observed_polyline_distance_m": null,
+              "uncertainty_scope": "SHORT_WINDOW_FIT_RESIDUAL_IS_NOT_INDEPENDENT_SENSOR_ERROR; STATIONARY_NOISE_CAN_REMAIN",
+              "samples": []
+            },
+            "player_2": {
+              "observed_distance_m": null,
+              "mean_speed_kmh": null,
+              "measured_duration_s": 0.0,
+              "accepted_intervals": 0,
+              "measurement_scope": "OBSERVED_CONTIGUOUS_FOOT_PROXY_INTERVALS_ONLY",
+              "distance_estimator": "INTEGRAL_OF_BACKWARD_WINDOW_LEAST_SQUARES_SPEED",
+              "velocity_window_seconds": 0.15,
+              "raw_observed_polyline_distance_m": null,
+              "uncertainty_scope": "SHORT_WINDOW_FIT_RESIDUAL_IS_NOT_INDEPENDENT_SENSOR_ERROR; STATIONARY_NOISE_CAN_REMAIN",
+              "samples": []
+            }
+          },
+          "racketTracking": {
+            "schema_version": "1.0",
+            "enabled": true,
+            "coordinate_system": "SOURCE_IMAGE_PIXELS",
+            "accuracy_validated": false,
+            "motion_semantics": "BBOX_CENTER_TRANSLATION_NOT_SWING_OR_CONTACT_CLASSIFICATION"
+          },
+          "fps": 59.94005994005994,
+          "fixtureScope": "Complete native pose/racket observations only; ground motion is unknown/empty; no media/inference/accuracy evidence."
+        },
+        "scope": "Full native ordered observations and exact unmodified pose/racket JSON bytes; no sampling/field filtering, rendering/inference or scientific qualification."
+      }
+    ],
+    "error": null,
+    "memoryScope": "OS actual interpreter peak working set and peak process commit are separate from sampled aggregate owned RSS/private. Windows peak_pagefile means process commit, not disk file usage. Peaks include imports/export/fidelity work; aggregate RSS can count shared pages twice and samples can miss brief peaks. Host guards include unrelated activity.",
+    "timingScope": "Construction includes complete fixture parsing/native observation construction/append; indexed read and each native JSON export are separate uninstrumented spans. Full typed observation verification, hashes, imports and fixture generation are separate. One old/new case per count, no repetitions or performance acceptance threshold.",
+    "qualificationEvidence": false
+  },
+  "worker": {
+    "status": "NOT_STARTED",
+    "passed": false,
+    "inferenceRun": false,
+    "notStartedReason": "Available RAM below 2.5 GB before bindings; no launch or retry.",
+    "availableRamBytes": 1514926080
+  },
+  "runtime": {
+    "passed": true,
+    "freshIdleReload": true,
+    "catalogEntries": 3,
+    "exports": 12,
+    "savedJobs": 10,
+    "savedAnalysisFiles": 319,
+    "frontendAssets": 7,
+    "productStateChanged": false,
+    "inferenceRun": false
+  },
+  "independentMeasurementAudit": {
+    "passed": true,
+    "status": "PASSED",
+    "fullFileComparisons": 8,
+    "nativeRowsAcrossBothModes": 37200,
+    "receipt": "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/terminal_audit.json",
+    "receiptBinding": {
+      "bytes": 110753,
+      "sha256": "612b976e3175873ef0f3823722cab4fb48c59b1223fce32f7d52b73959edd065"
+    }
+  },
+  "measurementIndependentAudit": {
+    "bytes": 110753,
+    "sha256": "612b976e3175873ef0f3823722cab4fb48c59b1223fce32f7d52b73959edd065"
+  },
+  "cleanHostCheckCount": 75,
+  "workerInferenceStatus": "NOT_STARTED",
+  "currentRevisionRealWorkerVerified": false,
+  "workerPreflightAvailableRamBytes": 1514926080,
+  "liveRuntimeProcesses": [
+    {
+      "pid": 55396,
+      "createTimeUnixSeconds": 1791281024.7928948,
+      "parentPid": 22732,
+      "name": "python.exe",
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run/serve_product.py"
+      ],
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+    },
+    {
+      "pid": 65104,
+      "createTimeUnixSeconds": 1791281026.3223748,
+      "parentPid": 55396,
+      "name": "python.exe",
+      "exe": "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "cmdline": [
+        "C:\\Users\\ac-98\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-u",
+        "-m",
+        "src.api.worker"
+      ],
+      "cwd": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle"
+    }
+  ],
+  "savedJobs": 10,
+  "savedAnalysisFiles": 319,
+  "previousFrontendSeal": {
+    "path": "artifacts/validation/product_execution/frontend_entry_recovery_2026-10-06/final_verification.json",
+    "bytes": 557977,
+    "sha256": "e81b4e627af107b0aba7d706790b390f21c6e40d9ccea8335a951fd7d4a3fae5"
+  },
+  "productionSources": {
+    "src/pipeline/phase6_pipeline.py": "ce88b62b44613509d5f4217d0d11fe8c13d9136c9f32c8bf97813d3bdc922811",
+    "src/utils/identity_frame_sequence.py": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04",
+    "tests/test_identity_frame_sequence.py": "149ecfd4eec084c27e70469302413e9cc7d17bbcaced7e0cee8a6fb436e35913",
+    "tests/test_pipeline_pose_storage.py": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0",
+    "scripts/audit/verify_pose_racket_storage_worker_smoke.py": "1fee98a45597e5744aa2e22cb4a343b15e929b94bcb36fa23d9d65df5e78734a",
+    "scripts/audit/verify_pose_racket_storage_worker_smoke_v2.py": "802963484bd482415a603f9ff1257a72412be137368cde6627ac05ad9185a28d"
+  },
+  "unitFiles": {
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/after_backend_host.json": {
+      "bytes": 2685,
+      "sha256": "47b6bc6a0e596798692e3940da9d58208b13e39d2c9e9781318050df085712b5"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/after_measurement_host.json": {
+      "bytes": 2685,
+      "sha256": "2894fe86cc9f7b2ed6e7414aa46696359e846d5f157cdd95798a6e51ff4759f7"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before.json": {
+      "bytes": 3519,
+      "sha256": "2d8a56ee5b7147125b5f96d7619d649d8c1986771a3ff07f51f4940bd7f13246"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/connect_pipeline.py": {
+      "bytes": 7334,
+      "sha256": "fe5efb721e5f1a74fa919948c141bfd7843ee8566e228915dcddec879ca4ebb9"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_receipt.json": {
+      "bytes": 200965,
+      "sha256": "6f789f38d4a8753362099092fda6128b0f03cbfe237d992353f937320d6d7ae3"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/finalize_unit.py": {
+      "bytes": 7068,
+      "sha256": "ac1cef14e2d22e04314d5a809e7df77b2b00919765400e28865f35fde55b9b6d"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/host_launch.json": {
+      "bytes": 130158,
+      "sha256": "b8abcd6b5b32ea8a8b2d0df5236808db40b140d3aac6100994b7fa4e843866fe"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/idle_stop_marker.json": {
+      "bytes": 252,
+      "sha256": "95aa47e101973cd61cba163be538abb08761600a5cf37f5e00f2672573583b1f"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/idle_stop_receipt.json": {
+      "bytes": 2032,
+      "sha256": "4fb3a739d25c3399ba692798f5116e0fbae1f810a06218a634038a47b00f6fbe"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/integration_receipt.json": {
+      "bytes": 648,
+      "sha256": "e0577a6d3cb5c25d5984cf21ce84ac20e5231d431096d204f9bf2147f211e1c2"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/observe_host.py": {
+      "bytes": 2315,
+      "sha256": "06169ae5680619c6ab7e98666b490309136a08c68be777a22ffdc534182c03a9"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_prepared.py": {
+      "bytes": 61515,
+      "sha256": "ce88b62b44613509d5f4217d0d11fe8c13d9136c9f32c8bf97813d3bdc922811"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/preparation_correction.json": {
+      "bytes": 443,
+      "sha256": "9a8840f1744a3dbfcad6a0117a434fb9b757e314c46e1f43a5505b0d610b29c0"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/prepare_baseline.py": {
+      "bytes": 2177,
+      "sha256": "474b124b6298cd95db1714d311893ec81f03f790e0bfc9db3cd397dbd9088aee"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/prepare_baseline_correction.py": {
+      "bytes": 1469,
+      "sha256": "a9330799cdb5dd1ef1dbb53e0ef21a039d6a55563a8fd1fee0299eb126249e58"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/prepare_baseline_v2.py": {
+      "bytes": 2217,
+      "sha256": "964a1e8c4bba43e69fbf7f74124c09064df05d7f9c83dc0986e3f4b1ea5e016e"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/prepare_runtime_worker.py": {
+      "bytes": 7504,
+      "sha256": "0d85d4c26fbe0b3b73b6490c0d6cad5f906a439de8492002633c70f3ce18d668"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/prepare_worker_v2.py": {
+      "bytes": 4667,
+      "sha256": "4160770c56a57c76531194a2c508813af04e6533b80559d60cdf35ef38b31fc9"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/review.json": {
+      "bytes": 4062,
+      "sha256": "d84fd5834cf7ad92e6ddfcc93c95cde4a8b50228ea85f4250a06c0214109cb57"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/runtime_preflight.json": {
+      "bytes": 89586,
+      "sha256": "bcd122349bb37acb97cbb125a242925b023726802129959b74e48c2aa96aea1d"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/runtime_verification.json": {
+      "bytes": 159836,
+      "sha256": "99881f99e1a14d8f0bdae087289e7e021af6086052d94295cca2d6490c938b9b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/runtime_worker_preparation.json": {
+      "bytes": 1021,
+      "sha256": "5dc860db8c81471348138719cb56af1abbf75f7403689c0bcfe933edcc237369"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/run_storage_focused.py": {
+      "bytes": 2683,
+      "sha256": "876ccea528df31664d33ee14b0c5cadea59385477f7b36a62af46211ca12bbdc"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/stop_idle_runtime.py": {
+      "bytes": 4576,
+      "sha256": "e0eec02d63bacb756d3622bc56800a23e930c0bc169074297fc26299e1e75466"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/verify_installation.json": {
+      "bytes": 135219,
+      "sha256": "247c824ff0ff87f04a6d7015cc5eea2c5791e1329adb89dfcdd3467e85f4434c"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/verify_installation.log": {
+      "bytes": 942,
+      "sha256": "0cc1ca693e96b1661f58ae088091554366bbf2f6ba393453a852eb4ffcbe14cb"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/verify_installation_samples.jsonl": {
+      "bytes": 26003,
+      "sha256": "0a38cf7a64d6ccd0ff8f19489c9a9405abb108e1905b37195e33ac5efd10e66b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/verify_runtime.py": {
+      "bytes": 18500,
+      "sha256": "620285d1ea9446f92194fa6f4ba595573c21f724bc61e46497bd2a5c08b67743"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_preparation_revision.json": {
+      "bytes": 1168,
+      "sha256": "855ad16908ac2736fca7ce85ef4976fa21cb21093ed3446a33f16034f3b0c8b7"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/junit.xml": {
+      "bytes": 271268,
+      "sha256": "080240122f1f2a0c864bb131a553bede774443d0837cca984bb1a6686aa02aab"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/launch.json": {
+      "bytes": 1375,
+      "sha256": "3b84542f0f1dbc4a9a6111d81b6a0053c6238a1d4f9289c1d59de63a85d7c776"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/receipt.json": {
+      "bytes": 4811,
+      "sha256": "1210f5c53014788a68a6a9c14cebac6522c24d503032a8b23f06ad1583b69a50"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/samples.jsonl": {
+      "bytes": 254869,
+      "sha256": "b6fa90d1c294ce29bc58804209a5b78ce4bf9d58e2ab23012d8d0a3c8f8a16f0"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/source_bindings_after.json": {
+      "bytes": 41826,
+      "sha256": "cbf5f0d8cb06f09dbdf41407a579b951ab4434c2d341df24529f2f1d9e66617b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/source_bindings_before.json": {
+      "bytes": 41826,
+      "sha256": "cbf5f0d8cb06f09dbdf41407a579b951ab4434c2d341df24529f2f1d9e66617b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/stdout.log": {
+      "bytes": 2208,
+      "sha256": "9da71ce3db3b65cb1d68b9dd2b494241966858b8cd6f9080c2fcfb6ed7f74917"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/backend_full/verify_backend_full.py": {
+      "bytes": 9605,
+      "sha256": "37c82e2839cb63213c0e9bafd0fab00ef92cbcafa3b8c646dd7b6b107211a8ce"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/document_evidence.py": {
+      "bytes": 28777,
+      "sha256": "e135487d015a4534f704fdb997a8f34b983f390958cf769f99fe47acb1848ab1"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/document_evidence_v2.py": {
+      "bytes": 30673,
+      "sha256": "94fefa10c141202994c9336cbff672b0a864cf108d824e3240af77fc725e8f13"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/document_evidence_v3.py": {
+      "bytes": 30782,
+      "sha256": "ee7209ed8f4c9a165e24e09b32578dfbfb0eea3d54267854338641c0214ae009"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/initial_dry_run.json": {
+      "bytes": 943,
+      "sha256": "0b87e99c5610e73600dfd45b0f72154c126e882d64a457ac6fba12e4beb0245c"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/preparation.json": {
+      "bytes": 126703,
+      "sha256": "f537bda274f41b7656aa90f31b137985bf5d6cc7f84fe9fa82d922f0fb2a87c1"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/preparation_v2.json": {
+      "bytes": 128872,
+      "sha256": "c4884438f980361f24aa060f14e32039cc0339e608197b1a51cb17ed3d428f89"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/preparation_v3.json": {
+      "bytes": 131379,
+      "sha256": "bfe64f9fe88aef370ad00f95430bc69b227e5be0b3b6aea40cbbfa3b79fc1f59"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/prepare_revision_2.py": {
+      "bytes": 6084,
+      "sha256": "66352e725a2a414b3dcbdf0eefd73734831afcd3136503034d9019106c843a21"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/prepare_revision_3.py": {
+      "bytes": 4588,
+      "sha256": "5697175c3be6a42f930b37d22f0dbcd1bf3aa3e1113010437e1110ca0512eaa5"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/revision_2_origin.json": {
+      "bytes": 1606,
+      "sha256": "3e567cad74b57c8c712a90775322fb63feb1c0787a630b5608d59e547dbb592b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/revision_3_origin.json": {
+      "bytes": 2503,
+      "sha256": "1a82089f3a03b8458cdb3abd58b4e08ebc4dfc6de2133f8722017c53ce285fad"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/seal_preparation.py": {
+      "bytes": 7203,
+      "sha256": "dbf304320b35cec0ac13771bcac1fbb5ee10547b365c030f193f0af8c4e2563e"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/seal_preparation_v2.py": {
+      "bytes": 7452,
+      "sha256": "6d1bc783749cd4637f2ccbde3f07225832962a38ca18e2dd2c2c1849ed5a0aec"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/seal_preparation_v3.py": {
+      "bytes": 7840,
+      "sha256": "ae3711594a8f88dc1ba651d7fdc8c4d675e6936e98a4edc362148831de9f009c"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/verify_installation.py": {
+      "bytes": 8980,
+      "sha256": "f161575c404e62ebd021724588d955277d293bb37fd35bc40a0253f6b0370645"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/verify_installation_v2.py": {
+      "bytes": 8986,
+      "sha256": "2059798bb01b2d5500e61d1a06e737191fe964f5dc661a8c10eb71ed73485f17"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/verify_installation_v3.py": {
+      "bytes": 8986,
+      "sha256": "858270f9d56fc419c1f6660c096b1b0bd7ca3873ed6e96c8b257618338483162"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/audit_terminal.py": {
+      "bytes": 34389,
+      "sha256": "2c472c90e981d00f6737da7a3085a31fa918b4b394c297889ccb852c083c8427"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/helper.py": {
+      "bytes": 49854,
+      "sha256": "056855431ba0c5abe433c15e556f96e6540d69f5626e90ce350626ce34692d4f"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/preparation.json": {
+      "bytes": 2202,
+      "sha256": "307923b304fda9f98944816ff23e964f4fadf8d90d7e6a3fc6b3a63844bea8a0"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/prepared_bindings.json": {
+      "bytes": 46717,
+      "sha256": "c1b296d86fe3a1e77b001b36d5b86e26d02d229876761850d2c13baf6a40dbe8"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/protocol.json": {
+      "bytes": 6647,
+      "sha256": "6ee00bb20f0cc9eff95d9807c3018af4a0d1f060ef17a9a7577155f315010c1d"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/README.md": {
+      "bytes": 2501,
+      "sha256": "d9181603ddcb1c1ba0bd987ac13a258f6dbc89333cc497f68352f64dea961c19"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/terminal_audit.json": {
+      "bytes": 110753,
+      "sha256": "612b976e3175873ef0f3823722cab4fb48c59b1223fce32f7d52b73959edd065"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/test_helper_contract.py": {
+      "bytes": 4560,
+      "sha256": "90c854a9c0f4bcd8c31ec921c73f4bcd78685a7975b9448b796c85a3933148ca"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/junit.xml": {
+      "bytes": 2961,
+      "sha256": "8894d6255db8801b7d40b925a6704f0c043e99b2a6af1202ce4e21127f6ca8ed"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/launch.json": {
+      "bytes": 2256,
+      "sha256": "5465fb8d0421d84a5774a9c51c5b756b50ede7064c5b7d0abbad0218d8d4c348"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/receipt.json": {
+      "bytes": 3939,
+      "sha256": "13183a53dc5f553fd37aa001216e0e0e5e2d96461240c21130915c62337c5c80"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/run_focused_green.py": {
+      "bytes": 6818,
+      "sha256": "e163f7ca2780533282d32446dda18189563a572569c9c9e0793f54a33e7ffd55"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/samples.jsonl": {
+      "bytes": 16565,
+      "sha256": "d4cec31f17af293f27818798896c0a9403c4f7ee8840d665b19d215f6241677b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/stdout.log": {
+      "bytes": 101,
+      "sha256": "63a9cca52e14142690e47ba5542ad66e503a354b3fce63c0a93d426763d52636"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/fixture_configuration_diagnostic.json": {
+      "bytes": 905,
+      "sha256": "62f4c9594e8f0ed83e42095b5bfde1f89c147ec3319e84da0358a8e4cd24f4a2"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/junit.xml": {
+      "bytes": 105727,
+      "sha256": "ee0597eff6cfd85fb7d86089449308dd365fa60d7b6893e2cfe24011f2726718"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/launch.json": {
+      "bytes": 1934,
+      "sha256": "2422d136a748e82a028e56ccefe7e682b2bed41ed6371654ef1e6b885d4ad911"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/receipt.json": {
+      "bytes": 6690,
+      "sha256": "cd5309123dca9c1f4884ff59724a1aaf2cddb84e487b577ee222a15b3ff6c173"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/runner_preparation_failure_1.json": {
+      "bytes": 854,
+      "sha256": "61db8a51009b5b062a1cc3ce9f365ea068ef89849d35737508a1b1cbb176bdd2"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/run_focused_red.py": {
+      "bytes": 6438,
+      "sha256": "6f03216abb4077080b2bdf043db599a4c476ecb3f809b08d48a353fe743b5c80"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/run_focused_red_failed_v1.py": {
+      "bytes": 6438,
+      "sha256": "6f03216abb4077080b2bdf043db599a4c476ecb3f809b08d48a353fe743b5c80"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/run_focused_red_v2.py": {
+      "bytes": 6444,
+      "sha256": "009a19c17194af4035fd6ee9f304431c1f41f3597aff7d1a1c72ece725836df3"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/samples.jsonl": {
+      "bytes": 33546,
+      "sha256": "20aa66b022bb5ee0815e9586c4ed49461762c0574d19949433f397b4d3993db5"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/stdout.log": {
+      "bytes": 104585,
+      "sha256": "972bddbcb4862e0cc115ed79fdc520bba0229486321b2ebb659925a7e2ea013d"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/storage_focused/junit.xml": {
+      "bytes": 8724,
+      "sha256": "44cba53985311a0e739031f3cfd85a8fa13966ae5982192065030703987da8f1"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/storage_focused/output.log": {
+      "bytes": 101,
+      "sha256": "950561c2aec4f13b18ccb29fb8590b575ed21e8384f619df98e74d9ac53b7e27"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/storage_focused/preparation.json": {
+      "bytes": 1164,
+      "sha256": "6ea9af6f45da0dbbd93c43ad06507e74cf15718c785cd28dc1c25f96aeecdb86"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/storage_focused/receipt.json": {
+      "bytes": 1328,
+      "sha256": "7b78348c63edbb8602e87333401d61122f4c103454cc9bbe81ed14fcf6ddeeaf"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke/origin.json": {
+      "bytes": 4699,
+      "sha256": "68477ce513f9549d4b96cb8053e85c8edc8963528e8a173a86298f948dbc98aa"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke/preparation.json": {
+      "bytes": 2173,
+      "sha256": "00610eae75040b21d52313632c6224bc876700054388a021e5401291d6e7d5b1"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/launch_marker.json": {
+      "bytes": 126,
+      "sha256": "c0c938e2ec93aa9a61cf43ef27866026c143f98fa6c19b504a31cf9bb6c830b3"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/origin.json": {
+      "bytes": 4702,
+      "sha256": "2d16fbc1cfdd56527f89cea8b928b2f7dfb18b65e53e2016b87c16e099f73f21"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/preparation.json": {
+      "bytes": 2179,
+      "sha256": "98c2fa13300f3398755ba562c805d87ace64214790aba0e69dffe2a70e73c9fc"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/protocol.json": {
+      "bytes": 7293,
+      "sha256": "2843905e61877239a766d5d711d1ce9ed155816824f75690f3f9be6023cdc520"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/worker_smoke_v2/resource_receipt.json": {
+      "bytes": 1190,
+      "sha256": "521e9c8335a93a69a09246d3ad98adce564057066a6144c0a8a75a3f333af0c0"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/storage_focused/source/tests/test_identity_frame_sequence.py": {
+      "bytes": 24210,
+      "sha256": "149ecfd4eec084c27e70469302413e9cc7d17bbcaced7e0cee8a6fb436e35913"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/storage_focused/source/src/pipeline/phase6_pipeline.py": {
+      "bytes": 60228,
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/storage_focused/source/src/utils/identity_frame_sequence.py": {
+      "bytes": 10709,
+      "sha256": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/junit.xml": {
+      "bytes": 17181,
+      "sha256": "835a328954171d9531a8afedbcf95ca08d8b86c445e5f4984aa8dacf4c73ab60"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/launch.json": {
+      "bytes": 2123,
+      "sha256": "02cf3afddf3418925ff3c6bdb99cf986b8856380b007bb1d1b2d6b9d479eb3e4"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/receipt.json": {
+      "bytes": 7367,
+      "sha256": "7b819ad90bbb453734bd8a59090efabed5810292d8fc424be45f9c31473a1468"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/run_focused_red.py": {
+      "bytes": 6817,
+      "sha256": "f108f968a0f48df418546956851a2f7ba2b70f7a27b8403dd9be3bb088bc4614"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/samples.jsonl": {
+      "bytes": 17596,
+      "sha256": "0d902d0ffc2f6e85134019aea6a02cfce9e83342fd9aad8fa76641778b175377"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/stdout.log": {
+      "bytes": 24471,
+      "sha256": "0445648eea3f84c7eb8cc647096429ddfd84ed7041e6263fd42a59a6d009e0ab"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/sources/tests/test_pipeline_pose_storage.py": {
+      "bytes": 15543,
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/sources/src/pipeline/phase6_pipeline.py": {
+      "bytes": 60228,
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/sources/scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/valid_red/sources/configs/phase6_analytics/pipeline.yaml": {
+      "bytes": 3490,
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/sources/tests/test_pipeline_pose_storage.py": {
+      "bytes": 15471,
+      "sha256": "dd4e96f12f1e37fa3d1c6047875549b9d8f42e5c4af42cb49d813ddb26890077"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/sources/src/pipeline/phase6_pipeline.py": {
+      "bytes": 60228,
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_red/sources/scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/sources/tests/test_pipeline_pose_storage.py": {
+      "bytes": 15543,
+      "sha256": "c26c9aaf9541c6aecbca01c01b598edf8edfc912d4b1ea27e84c5f9eb55367a0"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/sources/src/pipeline/phase6_pipeline.py": {
+      "bytes": 61515,
+      "sha256": "ce88b62b44613509d5f4217d0d11fe8c13d9136c9f32c8bf97813d3bdc922811"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/sources/src/utils/identity_frame_sequence.py": {
+      "bytes": 10709,
+      "sha256": "f2d2118ccbe68493cd191de79c4b674ea2d6e36c7f81bb726bef6ef0deb17f04"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/sources/scripts/audit/measure_candidate_storage.py": {
+      "bytes": 42673,
+      "sha256": "8a6789800d16cc8decb5f6441169ca1a6705bfdd30ba4de2a1a04ad725b18c39"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/pipeline_green/sources/configs/phase6_analytics/pipeline.yaml": {
+      "bytes": 3490,
+      "sha256": "edf6c8b30b178d3bc4aef0a5c23625e5859d058e7cd228df33818ca3b3a634ed"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/junit.xml": {
+      "bytes": 2902,
+      "sha256": "c42c249e3e7b5df40f6843c653a2fce153b648a851ef33d6d4b6d1b2a3a75f42"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/launch.json": {
+      "bytes": 51007,
+      "sha256": "bea3ec34c7eb392c858353103722eba220a55d1690b9d4abecaa61bca0cf55fd"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/receipt.json": {
+      "bytes": 103130,
+      "sha256": "526b79045a52d427df887f9213d33cc020fc11e5a75a8954f9f00068d850a08e"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/run_contract.py": {
+      "bytes": 8541,
+      "sha256": "759fa9177d4a0daf6c8b408b8abbd65d333c8da6b23703dd925b3a59d6e2e9e8"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/samples.jsonl": {
+      "bytes": 2739,
+      "sha256": "9abf6136b387824ea612f6ab16194e30aab390935ed17493d2ae4f08b730b902"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/source_bindings_after.json": {
+      "bytes": 47371,
+      "sha256": "c6cc3bc8460b7a46140cd8e26656c7799bf71230edc6d43e7270271e456c6b28"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/source_bindings_before.json": {
+      "bytes": 47371,
+      "sha256": "c6cc3bc8460b7a46140cd8e26656c7799bf71230edc6d43e7270271e456c6b28"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/contract_tests/stdout.log": {
+      "bytes": 100,
+      "sha256": "2f2813b2f62b798b17e396016aa5814a9ed7f4d81395fd23f5cef04560c9f362"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/comparison_18000.json": {
+      "bytes": 4032,
+      "sha256": "95ed8863f6dc7a5329eb614fbdee4fdc5f04f46eec9d78af00373c7fd82fea28"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/comparison_600.json": {
+      "bytes": 4018,
+      "sha256": "b0d2c97586c4c859d101be5d5a709795687eef7fc994b23d6c2c734ade5bf334"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/fixture_18000.jsonl": {
+      "bytes": 70409129,
+      "sha256": "8ef07aedcac82b2d975b1f6280b7f7419e03bd9f3afe3635b7bdacb126d0a96e"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/fixture_18000_receipt.json": {
+      "bytes": 3164,
+      "sha256": "97574cecdce1380bba98db9751a2abed81602f6f7db3441a8dddb9b7a942a5da"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/fixture_600.jsonl": {
+      "bytes": 2374070,
+      "sha256": "35d31c94362e67f271296d4edce104a0eb189776b5bd0942238958f7c95d357f"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/fixture_600_receipt.json": {
+      "bytes": 3156,
+      "sha256": "bfb1b45f6947cfe82248e1b66457d2c2909990e90bd80c6437712f171fd0add3"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/immutable_inputs_18000.json": {
+      "bytes": 892,
+      "sha256": "2d099f5fb6024918721bd8295257084844d8dfe3fe7d13c446084e16ed513442"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/immutable_inputs_600.json": {
+      "bytes": 445,
+      "sha256": "85733c844fe1939e02db03c72941af9d6db8f386aab711de2c25ee80cc8f590c"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/launch_marker.json": {
+      "bytes": 102,
+      "sha256": "f8f6ff5257e124d01c6799ca68da30aa2949d7c050607613623e3fb469f9426a"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/launch_source_bindings.json": {
+      "bytes": 47146,
+      "sha256": "3a440b1283441d818fb7b160ab5beeb5e75b551b8011f90fc807e6dd40d6edd2"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/report.json": {
+      "bytes": 184792,
+      "sha256": "f26b1b66c3a69dc31556a2967922855641e04886a2a929fd4a768a8166c92ae2"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/actual_identity.json": {
+      "bytes": 66,
+      "sha256": "ae9b04ea6f0e6a454006c804b1e84506d7a3bfe1ea923dee98846abcd6980bef"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/actual_identity_sampled.json": {
+      "bytes": 168,
+      "sha256": "09cbb6d2bb6fb2d9d926a00700c2821d10a257e174cc90ae9efaab194a1c7b2d"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/child_receipt.json": {
+      "bytes": 125981,
+      "sha256": "906df37990318cc0e91ebd307c4e4535ceb77fdee628a613481af3e9840f297c"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/imported_sources.json": {
+      "bytes": 61135,
+      "sha256": "7e4b378c4aa513a80d84fac78d1c61772499c3c74ec2f581dae4d40637d2fe41"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/observations.jsonl": {
+      "bytes": 135212004,
+      "sha256": "e3c6b079f040dfa024e10560adac8124e2bb0a719dee3735db9944c6c6608424"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/player_motion.json": {
+      "bytes": 114435351,
+      "sha256": "9d4f852c48bcc3b83b80b328a373ce6efbcb5eab9d99b1edaaae736726988871"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/racket_tracking.json": {
+      "bytes": 15542071,
+      "sha256": "a9ad6dd6050f8549ed11b627b2601821a22f1ba72818027fff3e24e11cd17d2b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/render_audit.json": {
+      "bytes": 235,
+      "sha256": "96cafa91f03e394b73a043fb33dfe166a0a90119e1db66099dc9090c4517dd81"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/resource_receipt.json": {
+      "bytes": 3036,
+      "sha256": "5082684b7f64f9e0732206149ad3c6981a9c315e6b8099998f6ac65674dedf56"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/resource_samples.jsonl": {
+      "bytes": 100823,
+      "sha256": "705a79734c208353ecadff9c64844567bb03b00851729f50cc5f18791daaa703"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_new/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/actual_identity.json": {
+      "bytes": 65,
+      "sha256": "f466e6f278d6508c989ecb46a077cb8c7b2693825e8d4dcb75cd534d09d0b0e2"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/actual_identity_sampled.json": {
+      "bytes": 167,
+      "sha256": "6ccb580c80c80a26a0e83dc7b5e487d3ffef334c56614b42961121c387bcc2f1"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/child_receipt.json": {
+      "bytes": 125233,
+      "sha256": "b51f3b6688531a697fe69ac0c21653ff22b3b70da4c4fc7021e6b70b887eebf6"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/imported_sources.json": {
+      "bytes": 61135,
+      "sha256": "7e4b378c4aa513a80d84fac78d1c61772499c3c74ec2f581dae4d40637d2fe41"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/observations.jsonl": {
+      "bytes": 135212004,
+      "sha256": "e3c6b079f040dfa024e10560adac8124e2bb0a719dee3735db9944c6c6608424"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/player_motion.json": {
+      "bytes": 114435351,
+      "sha256": "9d4f852c48bcc3b83b80b328a373ce6efbcb5eab9d99b1edaaae736726988871"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/racket_tracking.json": {
+      "bytes": 15542071,
+      "sha256": "a9ad6dd6050f8549ed11b627b2601821a22f1ba72818027fff3e24e11cd17d2b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/render_audit.json": {
+      "bytes": 235,
+      "sha256": "96cafa91f03e394b73a043fb33dfe166a0a90119e1db66099dc9090c4517dd81"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/resource_receipt.json": {
+      "bytes": 3037,
+      "sha256": "3ab0b3bc0db940c11bf4be3703bf670f3b3136a1131d0f7fd16cb80dfcf5b71b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/resource_samples.jsonl": {
+      "bytes": 55294,
+      "sha256": "cbba8ccd710b0372590c8eab603f696658d1664062772b373a6f5e99da2af5a4"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/18000_old/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/actual_identity.json": {
+      "bytes": 65,
+      "sha256": "9c8719096352f3a54cc4f30e02ea9e3819f321dd0f45677f99c2875855930079"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/actual_identity_sampled.json": {
+      "bytes": 167,
+      "sha256": "6777ed12bacdbdb7696cbf00fe97bdb3d6d789f1349e82fb98a00fc433ec8625"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/child_receipt.json": {
+      "bytes": 125955,
+      "sha256": "38f6cbbc5f40871fdeac67c426d863eaf15c49739df8e537db4c633c40bcf903"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/imported_sources.json": {
+      "bytes": 61135,
+      "sha256": "7e4b378c4aa513a80d84fac78d1c61772499c3c74ec2f581dae4d40637d2fe41"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/observations.jsonl": {
+      "bytes": 4506044,
+      "sha256": "6a48e3ccf8d8d9ed882f793395d5e0ab7174618cb8413aa158c3509a8a8baea3"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/player_motion.json": {
+      "bytes": 3841925,
+      "sha256": "718c8c94bd9d08f3847b59182c2f9f437e068356162b5ad3f1677aa589df8bad"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/racket_tracking.json": {
+      "bytes": 520665,
+      "sha256": "29bf13c0f229cfffa27ef562a8bb22abdd264530e6e66954c04d48dceb28d138"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/render_audit.json": {
+      "bytes": 227,
+      "sha256": "419eab0c3c0f1abef7f8899606b07fb4c59d9c3aa50e75eac67981ef86c063be"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/resource_receipt.json": {
+      "bytes": 3024,
+      "sha256": "a7894f965ae3cd3fe2b0e753433a415376a74db963bb6bd5ce64167c963613e1"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/resource_samples.jsonl": {
+      "bytes": 7918,
+      "sha256": "df2de5974624f52d6cc5df0a33939d3695c194e33e68eea8f88252f74395d914"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_new/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/actual_identity.json": {
+      "bytes": 65,
+      "sha256": "44bf38e045a23a41cb296c27edaca8488dead693dfec8ded1329d1ec67cd7d4c"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/actual_identity_sampled.json": {
+      "bytes": 167,
+      "sha256": "bb1250b3030077b2daacc580e14e6d1fefe2ad7f495f50d01afe387787d88cec"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/child_receipt.json": {
+      "bytes": 125213,
+      "sha256": "8ce1943c168885293fedd9f431f21d7c70c80dda9fa8f4b226bba0f0beb9c7bb"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/imported_sources.json": {
+      "bytes": 61135,
+      "sha256": "7e4b378c4aa513a80d84fac78d1c61772499c3c74ec2f581dae4d40637d2fe41"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/observations.jsonl": {
+      "bytes": 4506044,
+      "sha256": "6a48e3ccf8d8d9ed882f793395d5e0ab7174618cb8413aa158c3509a8a8baea3"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/player_motion.json": {
+      "bytes": 3841925,
+      "sha256": "718c8c94bd9d08f3847b59182c2f9f437e068356162b5ad3f1677aa589df8bad"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/racket_tracking.json": {
+      "bytes": 520665,
+      "sha256": "29bf13c0f229cfffa27ef562a8bb22abdd264530e6e66954c04d48dceb28d138"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/render_audit.json": {
+      "bytes": 227,
+      "sha256": "419eab0c3c0f1abef7f8899606b07fb4c59d9c3aa50e75eac67981ef86c063be"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/resource_receipt.json": {
+      "bytes": 3025,
+      "sha256": "79ccfe21a684833f52c4bf5c6b4558c46e2414c3dae2173e6affda40fa29e8a2"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/resource_samples.jsonl": {
+      "bytes": 24784,
+      "sha256": "5fb5353899292db06f318a56bc59839d873c1660f6314fe29e65cd3f749b69fd"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/measurement/run/600_old/stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v2/PRODUCT_INSTALLATION.md": {
+      "bytes": 34808,
+      "sha256": "609c4224439b16c9e6880691400d0b610a99e3237fbacfa01833b85332ac494e"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v2/PRODUCT_RESTORE_MANIFEST.json": {
+      "bytes": 96652,
+      "sha256": "c934986d0a55e2b413d06a699d149e55590c4ca2c54d0eab917997c49df33272"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v2/receipt.json": {
+      "bytes": 197276,
+      "sha256": "5cf3238401eda93a4f4b242f5190506128935baef05b0c926f7efb4ac4769f01"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v2/TENNIS_EXECUTION_PROGRESS.md": {
+      "bytes": 103593,
+      "sha256": "1243103dbb8d0a1fae3e7ef41ec90ce70fd4b824e450d5a5330f0a457c4ee662"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v3/PRODUCT_INSTALLATION.md": {
+      "bytes": 34902,
+      "sha256": "3dd83d4c268cc1275de2a2fdbf60f68ea5bcf83591c49b9b4134b266addb3d2e"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v3/PRODUCT_RESTORE_MANIFEST.json": {
+      "bytes": 96652,
+      "sha256": "2e62e77ef64d27fb620a27e0b1b553f291f82d2b0a5e962e348ad60d193bdc1f"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v3/receipt.json": {
+      "bytes": 199743,
+      "sha256": "ecace4afb502a38e1395629e41f8cf5d197953dca2a5add189ca275a8a56e3ca"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/draft_review_v3/TENNIS_EXECUTION_PROGRESS.md": {
+      "bytes": 103687,
+      "sha256": "bd3e5e51a1133c878ae480641bca5037ec24d30bab19295958180b1a64495570"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/publication/0.original": {
+      "bytes": 99625,
+      "sha256": "fcbd041543847097520ed236c410b6dd8dc500e23c1a97a8abbdc587a5d00b8b"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/publication/1.original": {
+      "bytes": 30840,
+      "sha256": "27a4e5ae18a2395221c9997aec5a990c0c602bceb0e3b09778444641a406e9a8"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/publication/2.original": {
+      "bytes": 94182,
+      "sha256": "1974efacf6b708379b021bc3b0b8fb57517ed0e1303360997672c1f1351f472f"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/documentation_preparation/publication/launch.json": {
+      "bytes": 186,
+      "sha256": "2ff6533ade9e22c725395dc782f50bd0abefaf1e06f10186dcb8b0a06a1a795e"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/tests/test_phase6_pipeline_smoke.py": {
+      "bytes": 10709,
+      "sha256": "dd24d7117b37b45fe76ee0093fe846b93d6a12431361582ccb3f5101b6074fb8"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/src/pipeline/phase6_pipeline.py": {
+      "bytes": 60228,
+      "sha256": "93b1bcf44a56ed70d76264ae7ab8cd2e8423616821632da09904d71ddc3c75ec"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/src/tracking/player_motion_tracking.py": {
+      "bytes": 7820,
+      "sha256": "4b7835932b6e7646507fd223ee4df8c8f4650caba440dce843da88bfbf9d07ef"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/src/tracking/racket_tracking.py": {
+      "bytes": 4167,
+      "sha256": "85154bdc2e18bcb75ab879c237299356a5e0f0f1e5e0ab7c9ba482e368309426"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/src/utils/frame_registration_sequence.py": {
+      "bytes": 13276,
+      "sha256": "bcff4f7ea0146b16576e5209b436668603894672be07be1e14da397313d2e796"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/src/utils/json_array_artifact.py": {
+      "bytes": 4048,
+      "sha256": "4611cf18466dbdded62768a52955b2a9d122cfa60f1bb48b70fd97669303a194"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/docs/deployment/PRODUCT_INSTALLATION.md": {
+      "bytes": 30840,
+      "sha256": "27a4e5ae18a2395221c9997aec5a990c0c602bceb0e3b09778444641a406e9a8"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/docs/deployment/PRODUCT_RESTORE_MANIFEST.json": {
+      "bytes": 94182,
+      "sha256": "1974efacf6b708379b021bc3b0b8fb57517ed0e1303360997672c1f1351f472f"
+    },
+    "artifacts/validation/product_execution/pose_racket_storage_2026-10-06/before/docs/plans/TENNIS_EXECUTION_PROGRESS.md": {
+      "bytes": 99625,
+      "sha256": "fcbd041543847097520ed236c410b6dd8dc500e23c1a97a8abbdc587a5d00b8b"
+    }
+  },
+  "qualificationEvidence": false,
+  "accuracyQualified": false,
+  "physicalSpeedAnd3DQualified": false,
+  "fullMatchQualified": false,
+  "productionQualified": false,
+  "fullPromptComplete": false,
+  "remaining": [
+    "Current revision real-worker/model check lacks RAM headroom.",
+    "Other resident arrays and whole-match compute/disk capacity remain unqualified.",
+    "Independent recordings, held-out accuracy and physical reference validation remain unavailable."
+  ]
+}

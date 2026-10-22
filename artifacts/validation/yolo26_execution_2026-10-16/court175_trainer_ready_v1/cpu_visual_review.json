@@ -1,0 +1,77 @@
+{
+  "status": "AGENT_ACTUALLY_VIEWED_ALL3_CPU_TENSORS_AND3_OVERLAYS_NOT_QUALIFICATION",
+  "reviewer": "COURT175_FINISH_AGENT",
+  "created_utc": "2026-10-16T06:49:10.106240+00:00",
+  "cpu_inspection": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\receipt.json",
+    "sha256": "d629771e232ec2db86c8f77f07d24d635663709aacc2ddb32046dbf4d934bcfd"
+  },
+  "local_images_only_no_external_connector": true,
+  "qualification_evidence": false,
+  "independent_human_review": false,
+  "training_performed": false,
+  "cuda_initialized": false,
+  "samples": [
+    {
+      "id": "TcXqTFdDaTA_2250",
+      "actually_viewed_unmarked": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\TcXqTFdDaTA_2250_actual_train_tensor.png",
+        "sha256": "daa11d4aa0cd93fc8b387380ae401d0e9b02ea16201938568ed713f73f77ac38"
+      },
+      "actually_viewed_overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\TcXqTFdDaTA_2250_actual_train_overlay.png",
+        "sha256": "7ca1b70b74c2f665862fd59e2f54e4b3ee2f7cf5bc0fc65eade677c4da8f2756"
+      },
+      "unknown_slots": [
+        2,
+        5
+      ],
+      "maximum_visible_coordinate_error_px": 9.149312973022461e-05,
+      "maximum_bbox_coordinate_error_px": 3.2067298889160156e-05,
+      "uncalibrated_visual_note": "Actually viewed both1280square files. Halle grass broadcast, nearleft baseline/singles intersections hidden by scoreboard; slots2/5 remain unknown and unplotted. Other visible fourteen-order indices align with their displayed white-line intersections after modest scale/HSV and padding."
+    },
+    {
+      "id": "dEsWEIct7Fk_2550",
+      "actually_viewed_unmarked": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\dEsWEIct7Fk_2550_actual_train_tensor.png",
+        "sha256": "2f8a1e27d2e76128ce356001475637e9929980b0d86c556270c1d693a2800fea"
+      },
+      "actually_viewed_overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\dEsWEIct7Fk_2550_actual_train_overlay.png",
+        "sha256": "311b39979c7f40efb7f76af397438c79186f598f9f78722b2d21b8bc66573d69"
+      },
+      "unknown_slots": [],
+      "maximum_visible_coordinate_error_px": 4.315376281738281e-05,
+      "maximum_bbox_coordinate_error_px": 6.437301635742188e-05,
+      "uncalibrated_visual_note": "Actually viewed both1280square files. Rome clay broadcast, all14 visible slots remain attached to the correct white-line intersections; modest scale/HSV and padding do not swap axes or sides."
+    },
+    {
+      "id": "t0WOL-1c9sQ_1550",
+      "actually_viewed_unmarked": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\t0WOL-1c9sQ_1550_actual_train_tensor.png",
+        "sha256": "807419833cbd78b83fbceb07acdb4f5e7ed0394824d29be3e6c7dd4545451686"
+      },
+      "actually_viewed_overlay": {
+        "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\yolo26_court175_cpu_preview_v1\\t0WOL-1c9sQ_1550_actual_train_overlay.png",
+        "sha256": "95b07ffe5c6ad7aa8113fab23c0703c8497e8056a550e0dce2281fb38299fa8b"
+      },
+      "unknown_slots": [
+        13
+      ],
+      "maximum_visible_coordinate_error_px": 7.164478302001953e-05,
+      "maximum_bbox_coordinate_error_px": 6.73532485961914e-05,
+      "uncalibrated_visual_note": "Actually viewed both1280square files. Shanghai hardcourt broadcast, nearservicecenter behind nearplayer remains unknown slot13/unplotted. Visible outer/singles/service intersections remain aligned after scale/HSV/padding."
+    }
+  ],
+  "resource_observation": {
+    "before_torch_bytes": 2298634240,
+    "after_torch_bytes": 1771421696,
+    "end_available_bytes": 1384501248,
+    "admission_before_and_after_torch_passed": true,
+    "continuous1point5gib_floor_not_claimed": true,
+    "end_available_below_admission_floor": true,
+    "concurrent_other_agent_heavy_software_check_reported": true,
+    "concurrent_check_caused_pressure_not_established": true
+  },
+  "post_cpu_training_code_edit": "Only head_fingerprints switched from all head state buffers to trainable named_parameters to prevent BN running counters masquerading as learning; CPU transform and exact transfer functions unchanged. Final preflight source hashes refreshed."
+}

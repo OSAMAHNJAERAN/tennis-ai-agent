@@ -1,0 +1,20 @@
+--- pre_fix_scoring_engine.py
++++ fixed_scoring_engine.py
+@@ -138,8 +138,15 @@
+             self.resolver.reset_point(self.state.server_id, serve_attempt=self.state.serve_attempt, initial_ball_state=BallPlayState.LET_REPLAY)
+ 
+         elif outcome.outcome_type == PointOutcomeType.SERVE_IN_PLAY:
+-            self.state.point_state = PointState.RALLY_LIVE
+-            self.state.ball_state = BallPlayState.LIVE
++            # The resolver uses this outcome for both serve contact and the
++            # verified legal service bounce. Preserve its phase so the caller
++            # evaluates that first bounce in the service box before play is live.
++            self.state.ball_state = self.resolver.ball_play_state
++            if self.state.ball_state == BallPlayState.SERVE_STARTED:
++                self.state.point_state = (PointState.FIRST_SERVE_IN_PROGRESS
++                    if self.state.serve_attempt == 1 else PointState.SECOND_SERVE_IN_PROGRESS)
++            else:
++                self.state.point_state = PointState.RALLY_LIVE
+             self.state.state_version += 1
+ 
+         elif outcome.outcome_type == PointOutcomeType.RALLY_CONTINUES:

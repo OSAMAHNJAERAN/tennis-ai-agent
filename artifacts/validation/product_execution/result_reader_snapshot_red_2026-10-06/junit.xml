@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="0.144" timestamp="2026-10-06T13:59:55.255936+08:00" hostname="Osamah"><testcase classname="tests.test_result_reader_snapshot" name="test_one_reader_keeps_generation_snapshot_across_external_atomic_commit" time="0.016"><failure message="AssertionError: assert {'frame': 0} == {'frame': 1}&#10;  &#10;  Differing items:&#10;  {'frame': 0} != {'frame': 1}&#10;  Use -v to get more diff">tests\test_result_reader_snapshot.py:34: in test_one_reader_keeps_generation_snapshot_across_external_atomic_commit
+    assert frames[1] == {'frame': 1}
+E   AssertionError: assert {'frame': 0} == {'frame': 1}
+E     
+E     Differing items:
+E     {'frame': 0} != {'frame': 1}
+E     Use -v to get more diff</failure></testcase><testcase classname="tests.test_result_reader_snapshot" name="test_reader_releases_snapshot_after_success_or_failed_response[False]" time="0.011" /><testcase classname="tests.test_result_reader_snapshot" name="test_reader_releases_snapshot_after_success_or_failed_response[True]" time="0.009" /></testsuite></testsuites>

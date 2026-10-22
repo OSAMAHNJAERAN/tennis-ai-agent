@@ -1,0 +1,154 @@
+{
+  "status": "READ_ONLY_REVIEW_FINDINGS_REPRODUCED_NATIVE_NULL_BANNER_AND_SERVICE_ROTATION_RED",
+  "created_utc": "2026-10-16T07:19:44.946646+00:00",
+  "official_rule_source": {
+    "url": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "rule": 17,
+    "pdf_zero_based_page": 10,
+    "printed_page": 8,
+    "paraphrase": "Servers begin from their right side and alternate halves; the serve must land in the diagonally opposite service court."
+  },
+  "court_axes": {
+    "origin": "far/top-left doubles corner",
+    "positive_x": "right",
+    "positive_y": "toward near/bottom baseline",
+    "width_m": 10.97,
+    "length_m": 23.77
+  },
+  "native_banner_nullable_evidence": {
+    "status": "REPRODUCED_NULLABLE_NATIVE_BANNER_FAILURE",
+    "type": "TypeError",
+    "reason": "unsupported format string passed to NoneType.__format__",
+    "source_line": 1287,
+    "source": "call_text = f'LINE CALL: [{evidence.decision.value}] ({evidence.nearest_line.value} {evidence.ball_edge_margin_cm:+.1f}cm, Unc: +- {evidence.position_uncertainty_cm:.1f}cm)'"
+  },
+  "rotation_cases": [
+    {
+      "server_end": "NEAR_COURT",
+      "service_side": "DEUCE",
+      "target": "FAR_DEUCE",
+      "source_box_center_m": [
+        3.4275,
+        8.685
+      ],
+      "rotated_server_end": "FAR_COURT",
+      "rotated_point_m": [
+        7.5425,
+        15.085
+      ],
+      "expected_rotated_target": "NEAR_DEUCE",
+      "expected_inside_by_rule17_and_rotation": true,
+      "actual_is_inside": false,
+      "actual_margin_cm": -205.75,
+      "actual_nearest_line": "CENTER_SERVICE_LINE"
+    },
+    {
+      "server_end": "NEAR_COURT",
+      "service_side": "AD",
+      "target": "FAR_AD",
+      "source_box_center_m": [
+        7.5425,
+        8.685
+      ],
+      "rotated_server_end": "FAR_COURT",
+      "rotated_point_m": [
+        3.4275,
+        15.085
+      ],
+      "expected_rotated_target": "NEAR_AD",
+      "expected_inside_by_rule17_and_rotation": true,
+      "actual_is_inside": false,
+      "actual_margin_cm": -205.75,
+      "actual_nearest_line": "CENTER_SERVICE_LINE"
+    },
+    {
+      "server_end": "FAR_COURT",
+      "service_side": "DEUCE",
+      "target": "NEAR_DEUCE",
+      "source_box_center_m": [
+        3.4275,
+        15.085
+      ],
+      "rotated_server_end": "NEAR_COURT",
+      "rotated_point_m": [
+        7.5425,
+        8.685
+      ],
+      "expected_rotated_target": "FAR_DEUCE",
+      "expected_inside_by_rule17_and_rotation": true,
+      "actual_is_inside": false,
+      "actual_margin_cm": -205.75,
+      "actual_nearest_line": "CENTER_SERVICE_LINE"
+    },
+    {
+      "server_end": "FAR_COURT",
+      "service_side": "AD",
+      "target": "NEAR_AD",
+      "source_box_center_m": [
+        7.5425,
+        15.085
+      ],
+      "rotated_server_end": "NEAR_COURT",
+      "rotated_point_m": [
+        3.4275,
+        8.685
+      ],
+      "expected_rotated_target": "FAR_AD",
+      "expected_inside_by_rule17_and_rotation": true,
+      "actual_is_inside": false,
+      "actual_margin_cm": -205.75,
+      "actual_nearest_line": "CENTER_SERVICE_LINE"
+    }
+  ],
+  "polygon_only_fix_still_wrong_line_tag": {
+    "in_process_polygon_swap_only_not_source_edit": true,
+    "point_m": [
+      9.7,
+      15.0
+    ],
+    "target": "NEAR_DEUCE",
+    "expected_nearest_line": "RIGHT_SIDELINE",
+    "actual_nearest_line": "CENTER_SERVICE_LINE",
+    "actual_margin_cm": -10.0
+  },
+  "reviewed_source_bindings": [
+    {
+      "path": "src/line_calling/line_call_engine.py",
+      "sha256": "72861963a87521368833520ec6629a09ea5b88b87c5bf55357db3e99d1dadde3"
+    },
+    {
+      "path": "src/line_calling/line_geometry.py",
+      "sha256": "15e9e9402c351b021230bba21ec8e029d8cab24ae13bd5293ae76a2388fe1b59"
+    },
+    {
+      "path": "src/scoring/match_state.py",
+      "sha256": "a6c9c76c30ef66833de71df664ad23947f553dc124d3cda1aee58cbfdfd7b1ca"
+    },
+    {
+      "path": "src/court/court_geometry.py",
+      "sha256": "a1da8100c2b89562e397024e57e09ad575298b22723cad39436a9852b2981d44"
+    },
+    {
+      "path": "src/pipeline/phase4_pipeline.py",
+      "sha256": "14e46bfd6093b32fdccdebb574f9d77d5d2a2446a733fd51c2f99902a93cd267"
+    },
+    {
+      "path": "src/pipeline/phase5_pipeline.py",
+      "sha256": "154995161d8673afb34b11d961c6934071f1ccc3bfcbb1a10d125c9f2f1fbab2"
+    },
+    {
+      "path": "src/pipeline/phase6_pipeline.py",
+      "sha256": "1a4be99ff536d8c0f4351c301f91483dd22cf8a4215644a3f77d9a68d1c31be5"
+    },
+    {
+      "path": "tests/test_service_target_abstention.py",
+      "sha256": "b23997ed87960d9182f7a2f4fc79fda1d768d6e7900caddce0f2c2c8c09f2d51"
+    }
+  ],
+  "heavy_imported": [],
+  "SRC_files_edited": false,
+  "model_used": false,
+  "media_used": false,
+  "GPU_used": false,
+  "qualification_evidence": false
+}

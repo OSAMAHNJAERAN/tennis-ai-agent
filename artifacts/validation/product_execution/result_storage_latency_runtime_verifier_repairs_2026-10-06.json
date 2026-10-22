@@ -1,0 +1,35 @@
+{
+  "scope": "Verifier preparation defects; no server/job/media/source mutation occurred during the refused preflights.",
+  "failuresPreserved": [
+    {
+      "source": "artifacts/validation/product_execution/verify_result_storage_latency_runtime_2026-10-06_initial.py",
+      "phase": "preflight before any receipt",
+      "exitCode": 1,
+      "error": "AssertionError: Require exactly one owned server and one owned worker",
+      "causeEstablishedByReadOnlyInspection": "The cmd /c launch shell was counted as a server because its complete command string ended with serve_product.py."
+    },
+    {
+      "source": "artifacts/validation/product_execution/verify_result_storage_latency_runtime_2026-10-06_wrapper_only.py",
+      "phase": "preflight before any receipt",
+      "exitCode": 1,
+      "error": "AssertionError: Require exactly one owned server and one owned worker",
+      "causeEstablishedByReadOnlyInspection": "The exact launch shell also owns a conhost.exe child; the initial wrapper exception required exactly one child."
+    },
+    {
+      "phase": "read-only inline process inspection",
+      "exitCode": 1,
+      "error": "SyntaxError: unterminated string literal",
+      "effect": "The inline Python code did not execute; a saved inspection script subsequently read the exact wrapper children."
+    }
+  ],
+  "correctedVerifier": "artifacts/validation/product_execution/verify_result_storage_latency_runtime_2026-10-06.py",
+  "correction": "Allow only the exact base-Python cmd /c launch string in the workspace, one verified server child, and optional actual Windows conhost children. The server and worker commands, executable, cwd, parent/descendants and loopback listener remain strictly checked.",
+  "actualRuntimePreflightPassed": true,
+  "actualRuntimePostverificationPassed": true,
+  "savedAnalysisRowsUnchanged": 10,
+  "savedAnalysisFilesUnchanged": 319,
+  "exactExportsVerified": 12,
+  "frontendAssetsVerified": 7,
+  "inferenceRun": false,
+  "qualificationEvidence": false
+}

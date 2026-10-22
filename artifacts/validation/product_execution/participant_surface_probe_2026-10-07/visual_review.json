@@ -1,0 +1,778 @@
+{
+  "reviewer": "ROOT_AI_AGENT",
+  "method": "Actual native context overlays viewed with view_image(detail=original)",
+  "qualificationEvidence": false,
+  "productionPromoted": false,
+  "decision": "NO_PROMOTION_OF_SURFACE_ALONE_OR_MOTION_INTERSECTION",
+  "reviewedAt": "2026-10-07T05:24:50.853274+00:00",
+  "frames": [
+    {
+      "sequence": "tennis_V01",
+      "frameIndex": 0,
+      "observation": "Both visible players receive support; large foreground spectator fragments are rejected or unknown because their complete sampling patches extend outside the image.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000000/native_context_overlay.png",
+        "bytes": 418878,
+        "sha256": "f3e0a5150b59ae6f6592a1f33c1005e745278e91b76740399e38317c6e33b9a2"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000000/native_original.png",
+        "bytes": 407812,
+        "sha256": "44ee63db3e1e64a987dcda2bcfaef28874197eefd5aec6b482bec01c546dddc8"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000000/component_mask_01.png",
+        "bytes": 4471,
+        "sha256": "ee0738f564391c1eb1ca0f22f6415432e098e267ad32c1786219ff172d481a0b"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 6,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.7464907160827481,
+            0.6031707938984955
+          ],
+          "proposalCount": 8,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.7464907160827481,
+            0.6031707938984955
+          ],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V01",
+      "frameIndex": 409,
+      "observation": "The left player remains supported. The valid right-player proposal is rejected at the surface boundary: this is the one lost original class1 match.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000409/native_context_overlay.png",
+        "bytes": 412993,
+        "sha256": "4de45add3c1816fe6bcc771040597f426c3c74b381dd378f62d0207c9daf0bbb"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000409/native_original.png",
+        "bytes": 403060,
+        "sha256": "e5fd5968a7169185d60ccebbed9ae44e478ed4c866a6ac067ee91dbc3981bb50"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000409/component_mask_01.png",
+        "bytes": 4491,
+        "sha256": "4420e528f8b80f9e174c929fb386bebe6d8957c5d1b56b710dab82f896206df3"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 6,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.793547776536121,
+            0.7222177824287703
+          ],
+          "proposalCount": 8,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.793547776536121
+          ],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V01",
+      "frameIndex": 604,
+      "observation": "Visible players have no cached proposal in this view. Foreground spectator boxes receive rejection or unknown. The original missing-player-label defect remains unchanged.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000604/native_context_overlay.png",
+        "bytes": 405636,
+        "sha256": "76cf3165b8a981dd59a9e2f9ef92e9d9edb5f2fe59d86d80e1a968b67e28dad4"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000604/native_original.png",
+        "bytes": 397294,
+        "sha256": "5fe83edd46332a40ca8a3e22a758185855de6f6ecc408081ab070cce140adaa7"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000604/component_mask_01.png",
+        "bytes": 4635,
+        "sha256": "38da1b5527c98a9874c5cf6c1f7f7db27b79a324022c6df479d5e5f108a3255b"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 6,
+          "missedOriginalClass1": 0,
+          "matchedIous": [],
+          "proposalCount": 6,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 0,
+          "matchedIous": [],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 0,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 0,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V01",
+      "frameIndex": 818,
+      "observation": "The zoomed player and four nearby crew/official fragments receive support. Two of those supported crew proposals also overlap original class4 labels at IoU >= 0.5.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000818/native_context_overlay.png",
+        "bytes": 355163,
+        "sha256": "a3c1cb7a397fcfca535b8d3e2de0e0360bad64988c677fd110e617853d8d5fd1"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000818/native_original.png",
+        "bytes": 335619,
+        "sha256": "208c8d4e43eb84fee4e177c399ff21a0f0f4bcf83053935ad9131d87f872454c"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V01/frame_000818/component_mask_01.png",
+        "bytes": 4889,
+        "sha256": "ad6439b24e7a0329d2b384825e2a5ef85614e905febd2d5b209d95a1f5cbb93c"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 8,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.8197665458767532
+          ],
+          "proposalCount": 9,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 4,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.8197665458767532
+          ],
+          "proposalCount": 5,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V02",
+      "frameIndex": 0,
+      "observation": "The near-player fragment4 and kneeling on-grass official fragment9 receive support. The distant left player fragment12 is rejected. The supported near player is publisher-unmatched because its localization fails the fixed IoU threshold; unmatched does not mean false participant.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000000/native_context_overlay.png",
+        "bytes": 457179,
+        "sha256": "f7493df39935fbe91307f50446209f656eea8331b952adc0c6ff55dca17b5000"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000000/native_original.png",
+        "bytes": 448167,
+        "sha256": "76a8d8f3a915d9461b3fb690bf70bd7556ccdf444e967fb8f0a2329c245fb208"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000000/component_mask_01.png",
+        "bytes": 3317,
+        "sha256": "5e6e91c0ab7042400cf2c16505c18ec56405991cac4d719cc446c21cca8a9ac6"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 12,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 12,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 2,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 1,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V02",
+      "frameIndex": 99,
+      "observation": "Both visible player proposals receive support, along with a kneeling official and two distant boundary officials. Two supported officials overlap original class4 annotations.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000099/native_context_overlay.png",
+        "bytes": 432583,
+        "sha256": "e7436b36cdb38eeee951a3cf35db5f985b55700fb233de19c8e932cb0c5308ef"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000099/native_original.png",
+        "bytes": 422278,
+        "sha256": "25f930396db0979f5bb26b1e2a04b6ddd5e2b6372d90db21c8716dbbc792da39"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000099/component_mask_01.png",
+        "bytes": 3462,
+        "sha256": "a91984349048bac7c9103056fc1344825a9bffb12a809064d81d8eeb56ac1f93"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 11,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.5330606455213606,
+            0.575665866096002
+          ],
+          "proposalCount": 13,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.5330606455213606
+          ],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 3,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.5330606455213606,
+            0.575665866096002
+          ],
+          "proposalCount": 5,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.5330606455213606
+          ],
+          "proposalCount": 1,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V02",
+      "frameIndex": 484,
+      "observation": "Near-player fragment4 and a distant boundary figure receive support. Another distant figure is rejected. The kneeling official is not proposed at this frame; proposal absence is not evidence that the surface filter rejected it.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000484/native_context_overlay.png",
+        "bytes": 440711,
+        "sha256": "11c1d86e6d13846bff01ab146ef21c621b042ecaf64960e4a75761dd8571bdcc"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000484/native_original.png",
+        "bytes": 430997,
+        "sha256": "aa8bc9faf1e663f7db8890da49f821a160159051493ad493593929cbd802fe70"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000484/component_mask_01.png",
+        "bytes": 3344,
+        "sha256": "9a8c2b3cb244b0562ad112cc2eb31875c358c3381ff6ac7167cca639550500f1"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 12,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 12,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 2,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 1,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V02",
+      "frameIndex": 967,
+      "observation": "The downward foreground view has no supported cached proposal. Visible court people have no current proposal here; foreground patches are rejected or unknown.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000967/native_context_overlay.png",
+        "bytes": 373933,
+        "sha256": "62f0e54f3f4995e938d28c13e219cfb27fa427fc3d859b4a5146045a99d5e8df"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000967/native_original.png",
+        "bytes": 368105,
+        "sha256": "3e1896ef6e92cfb86cc83b3c1eb66f97e420ea899a60893197f954375aae038b"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V02/frame_000967/component_mask_01.png",
+        "bytes": 2124,
+        "sha256": "7b833cb6e56387e966ae34082f1b191d752763f91eafbf1d1dbd1cffca6746ab"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 4,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 4,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V03",
+      "frameIndex": 0,
+      "observation": "No eligible surface component exists, so all proposals abstain. Both actual players remain visible. This mask failure cannot establish nonparticipation.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000000/native_context_overlay.png",
+        "bytes": 1507701,
+        "sha256": "0e74fa1e72953f57b607f7701b6d2c55fc24605771f947203c32674da9a0a3be"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000000/native_original.png",
+        "bytes": 1467750,
+        "sha256": "1e1db4ce9d1109448e33910099183a0f7f24b3fdb6bbb72c3f6b345a79557989"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000000/component_mask_01.png",
+        "bytes": 1496,
+        "sha256": "a7d23a3accccc51b073f3e511c6a9b25aa306cb64b322180a8e87a0be35e3829"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 11,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 11,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 2,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V03",
+      "frameIndex": 140,
+      "observation": "The near player fragment4 and the right boundary official fragment51 receive support. Fragment51 overlaps original class4 identity5. The known class1 identity9 chair-umpire label remains uncorrected.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000140/native_context_overlay.png",
+        "bytes": 1501703,
+        "sha256": "75e2cdc3926de107a5999064081d1c81cd4f034fc0bd4b6ebfc001670bddc6bf"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000140/native_original.png",
+        "bytes": 1467344,
+        "sha256": "70b7ca51a8782c695f689b98d8219db0657cd9b0c08018b0d8ed569893598696"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000140/component_mask_01.png",
+        "bytes": 3246,
+        "sha256": "22b00fd65fed772963ec108963b540c9bb9b18bc7b3fa7d3f845f66c936cb265"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 10,
+          "missedOriginalClass1": 2,
+          "matchedIous": [
+            0.8649455760837516
+          ],
+          "proposalCount": 11,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [
+            0.8649455760837516
+          ],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 2,
+          "matchedIous": [
+            0.8649455760837516
+          ],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [
+            0.8649455760837516
+          ],
+          "proposalCount": 1,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V03",
+      "frameIndex": 221,
+      "observation": "Only the proposed near player receives support. The visible far player has no cached proposal. Foreground boxes are rejected or unknown.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000221/native_context_overlay.png",
+        "bytes": 1524974,
+        "sha256": "54c3ced47c319dd8b84c794cd84d803b7cf250a8858fd69018acd6f2e3a6dbcf"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000221/native_original.png",
+        "bytes": 1491402,
+        "sha256": "fdaf3154f3b6bd1e8878f58d81926c509e082af14dd7036331cd9c9d9fc8d3a7"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000221/component_mask_01.png",
+        "bytes": 3057,
+        "sha256": "88de97b477be90910e7ff93d5c3f7b9d5f9ecee02b66287eca155e503fda1ce6"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 9,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.8903140605136184
+          ],
+          "proposalCount": 10,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.8903140605136184
+          ],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.8903140605136184
+          ],
+          "proposalCount": 1,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.8903140605136184
+          ],
+          "proposalCount": 1,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V03",
+      "frameIndex": 230,
+      "observation": "Both visible player proposals receive support. Cached motion still selects only the near player and a foreground spectator; their surface intersection therefore retains only one player.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000230/native_context_overlay.png",
+        "bytes": 1527713,
+        "sha256": "f6316961c08f34b8a7a00c661c5f1341e5df96954c6c3ebac239ca782963b77c"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000230/native_original.png",
+        "bytes": 1494163,
+        "sha256": "4261b171292ffd93f646aa48f9dc452c1896b03b5a9bc7146aab28a7ae7c473b"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000230/component_mask_01.png",
+        "bytes": 3411,
+        "sha256": "85d7e2addf4ffb417e9631d688367dcb622648a5ddc3fedd38a834f5c1911096"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 9,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.8515721034215908,
+            0.7375753079814946
+          ],
+          "proposalCount": 11,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 1,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.8515721034215908
+          ],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.8515721034215908,
+            0.7375753079814946
+          ],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 1,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 1,
+          "matchedIous": [
+            0.8515721034215908
+          ],
+          "proposalCount": 1,
+          "participantPrecision": null
+        }
+      }
+    },
+    {
+      "sequence": "tennis_V03",
+      "frameIndex": 442,
+      "observation": "Both visible player proposals receive support after their source fragment identities changed. The cached motion selector is empty, so its intersection loses both. No fragment identities are merged.",
+      "overlay": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000442/native_context_overlay.png",
+        "bytes": 1460503,
+        "sha256": "6a30b7087da4e337df9be61d68a8277a9d2a79715d70e030c268d8e9c7df37c4"
+      },
+      "original": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000442/native_original.png",
+        "bytes": 1414296,
+        "sha256": "eba4f222fd5adb5ba8962b4f81d6696e78bddd5a1d6180564d5b556fba2e4c20"
+      },
+      "componentMask": {
+        "path": "artifacts/validation/product_execution/participant_surface_probe_2026-10-07/run/tennis_V03/frame_000442/component_mask_01.png",
+        "bytes": 3301,
+        "sha256": "17462534c609ffd0dcff937d3702bd4c96107269d64b75166f60acab7266cf15"
+      },
+      "counts": {
+        "cachedProposals": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 11,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.864465913241155,
+            0.8527493072716202
+          ],
+          "proposalCount": 13,
+          "participantPrecision": null
+        },
+        "cachedMotion": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        },
+        "surfaceSupported": {
+          "matchedOriginalClass1": 2,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 0,
+          "matchedIous": [
+            0.864465913241155,
+            0.8527493072716202
+          ],
+          "proposalCount": 2,
+          "participantPrecision": null
+        },
+        "motionSurfaceDiagnosticIntersection": {
+          "matchedOriginalClass1": 0,
+          "publisherUnmatched": 0,
+          "missedOriginalClass1": 2,
+          "matchedIous": [],
+          "proposalCount": 0,
+          "participantPrecision": null
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Thirteen retrospective images selected after the motion experiment, at most two source match groups.",
+    "Native originals were reviewed in the preceding motion experiment and the audit verifies exact current copies.",
+    "Overlay green tint shows actual closed component support, not a convex hull or court calibration.",
+    "Publisher-unmatched boxes include valid players with insufficient IoU and unlabeled people; they are not validated false positives.",
+    "All participant statuses remain UNKNOWN and all court roles remain null.",
+    "Four proposals repeat reduced-grid pixels; their sample multiplicity is preserved, not treated as independent evidence.",
+    "No segmentation model, video decode, detector inference, identity recovery or physical measurement was evaluated."
+  ]
+}

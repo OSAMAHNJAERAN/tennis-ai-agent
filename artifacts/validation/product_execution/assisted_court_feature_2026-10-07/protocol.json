@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "status": "PREPARED_NOT_EXECUTED",
+  "purpose": "Implement a source-bound, explicitly assisted first-frame court anchor primitive for the brief-authorized future product flow; preserve separate automatic evidence.",
+  "scope": "ISOLATED_DEVELOPMENT_SOURCE_AND_TESTS_ONLY",
+  "productionChanged": false,
+  "testsDispatched": false,
+  "modelsDispatched": false,
+  "automaticQualificationReplaced": false,
+  "inputContract": {
+    "schemaVersion": 1,
+    "mode": "ASSISTED",
+    "anchorFrameIndex": 0,
+    "coordinates": "NATIVE_NORMALIZED_VIDEO_PIXELS",
+    "pixelFormat": "BGR_UINT8_ROW_MAJOR",
+    "binding": ["parentAnalysisId", "normalizedSourceSha256", "decodedFrameSha256", "frameIndex", "width", "height", "pixelFormat"],
+    "landmarks": "6..14 strictly increasing distinct canonical indices, each with a distinct finite in-bounds imagePx and visible=true; hidden or duplicate points are rejected",
+    "provenance": "Payload annotator kind/identifier/method must equal caller-established actual actor provenance; LOCAL_OPERATOR/LOCAL_POINT_SUBMISSION, AI_AGENT/AI_IMAGE_REVIEW and TEST/SYNTHETIC_TEST are distinct. USER/HUMAN_CLICK is not an accepted actor kind; no authenticated human identity is asserted by this local primitive.",
+    "maximumPayloadBytes": 16384,
+    "unknownFields": "REJECT",
+    "duplicateJsonFields": "REJECT"
+  },
+  "fit": {
+    "implementation": "src.court.calibration.calibrate_court",
+    "settings": "UNCHANGED_DEFAULTS",
+    "ransacThresholdPx": 3.0,
+    "minimumInliers": 6,
+    "minimumInlierRatio": 0.75,
+    "suppliedPoints": "Only indexed visible correspondences enter calibration; no detector or generated points fill missing supplied observations",
+    "derivedPoints": "Full 14-point canonical template projected through the assisted fit solely for future registration/rendering, with every point marked DERIVED_FROM_ASSISTED_FIT",
+    "projectionChecks": "Finite invertible homography and homogeneous denominators with one nonzero sign over every canonical landmark; a horizon-crossing full court is rejected",
+    "invalidFit": "Return explicit assisted rejection, no effective template, and preserved automatic evidence; never silently fall back while tagging the result assisted"
+  },
+  "evidence": {
+    "automatic": "Original detector points and supplied automatic CourtCalibration are retained independently",
+    "assisted": "Normalized payload digest, exact source binding, actual annotator, supplied indexed points, sparse inlier mask, supplied-landmark fit and separate derived template",
+    "effectiveMethod": "ASSISTED_VISIBLE_LANDMARKS",
+    "fitMeaning": "SUPPLIED_POINT_CONSISTENCY_NOT_INDEPENDENT_COURT_ACCURACY",
+    "annotatorIdentityVerified": false,
+    "independentCourtAccuracyValidated": false,
+    "physicalBallSpeedEnabled": false,
+    "world3dEnabled": false
+  },
+  "futureWorkerRequirement": "Use the byte-identical normalized source video shown by the anchor endpoint, bind its SHA-256 and decode its actual frame 0 for pixel verification. Do not re-normalize/re-encode the original and assume the same frame or source hash. Copy/reuse bound normalization metadata and source-frame mapping with independently verified lineage.",
+  "testScope": [
+    "Exact trusted source and annotator binding, including boolean/type/size/hash validation and rejected extras",
+    "Finite/native-bounds/visibility/indices/duplicate-point guards and duplicate JSON key rejection",
+    "Projective recovery on unseen canonical landmarks from six sparse supplied points using independently generated geometry",
+    "Six-point fit cannot pass after losing one required inlier; seven-point fit can preserve six consistent points without changing thresholds",
+    "Degenerate sparse court correspondences and full-template horizon crossings reject without suppressing automatic evidence",
+    "Automatic calibration evidence remains separate and unmodified, including nonfinite detector components represented explicitly as null",
+    "Actual decoded uint8 BGR frame hashing is stride-independent and changes with pixel content",
+    "Local operator/AI/test provenance cannot be relabeled as verified USER/HUMAN_CLICK, and no payload can inject speed/3D/accuracy authority"
+  ],
+  "limitations": [
+    "Visibility and landmark meaning are supplied assertions, not independent human truth",
+    "Actor labels distinguish declared local operator, AI and test provenance; they do not verify a username or authenticated identity",
+    "No real video, model, worker, API or UI execution is included in preparing this primitive",
+    "Passing isolated geometry/contract tests cannot prove player, court, speed or 3D accuracy",
+    "Existing CourtPlayerTracker can still select officials/spectators after a correct court fit; original-frame positive and negative controls remain required"
+  ]
+}

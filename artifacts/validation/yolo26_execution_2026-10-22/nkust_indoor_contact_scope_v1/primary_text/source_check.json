@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "local_date": "2026-10-22",
+  "timezone": "Asia/Singapore",
+  "scope": "One bounded primary author article text check and publisher-card text check for segmentation and intended prediction task",
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11068545/",
+      "title": "Tennis shot side-view and top-view data set for player analysis in Tennist",
+      "doi": "10.1016/j.dib.2024.110438",
+      "retrieval_method": "Primary PMC article text returned by web search; no figure/image links followed",
+      "query": "\"Tennis shot side-view and top-view data set for player analysis in Tennist\" clips landing cut start end",
+      "domain_filter": "pmc.ncbi.nlm.nih.gov",
+      "body_sections_reviewed": ["Abstract", "Specifications Table", "Value of the Data", "Background", "Data Description", "Clips Information", "Dataset Information", "Experimental Design, Materials and Methods", "Limitations", "Data Availability"],
+      "article_dataset_reference": "10.17632/75m8vz7jr2.2",
+      "exact_quote_locators": ["Data Description: dataset's two components", "Background: landing prediction after contact"],
+      "quotes_retained_in": "FINDINGS.md"
+    },
+    {
+      "url": "https://data.mendeley.com/datasets/75m8vz7jr2/4",
+      "title": "Tennis Shot Side-View and Top-View Data Set for Player Analysis in Tennis",
+      "doi": "10.17632/75m8vz7jr2.4",
+      "version": 4,
+      "published": "2024-05-01",
+      "retrieval_method": "Text opening of publisher page; no file download/view links followed",
+      "sections_reviewed": ["Description", "Steps to reproduce"],
+      "exact_quote_locators": ["Description: per-player-hit clipping"],
+      "quotes_retained_in": "FINDINGS.md"
+    }
+  ],
+  "findings": {
+    "stroke_clips_and_separate_landing_outcomes_described": true,
+    "landing_prediction_after_contact_explicit": true,
+    "body_motion_only_input_explicit": false,
+    "exact_clip_start_end_definition_found": false,
+    "fixed_post_strike_duration_found": false,
+    "observed_outgoing_bounce_required_by_text": false,
+    "general_pre_landing_truncation_rule_found": false,
+    "observed_dev_pair_truncation_explicitly_documented_as_policy": false,
+    "bounded_conclusion": "Reviewed text supports landing prediction from stroke/trajectory clips but supplies no exact segmentation timing. Parent's observed DEV pair ending remains sample-specific; no universal truncation or timing is inferred."
+  },
+  "bounds": {
+    "primary_sources_only": true,
+    "new_media_downloads": 0,
+    "csv_bodies_opened": 0,
+    "frames_or_figures_opened": 0,
+    "test_targets_opened": 0,
+    "inference": false,
+    "training": false,
+    "source_or_test_edits": false,
+    "existing_doc_edits": false,
+    "additional_samples_checked": 0
+  }
+}

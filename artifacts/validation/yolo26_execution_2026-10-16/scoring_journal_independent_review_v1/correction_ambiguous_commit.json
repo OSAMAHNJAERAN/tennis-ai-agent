@@ -1,0 +1,20 @@
+{
+  "scope": "Explicit synthetic ambiguous commit boundary, not real hardware fault or model test",
+  "hashes_before": {
+    "src/utils/scoring_journal.py": "3a5422499fecaaf15a3b6ef89c758f90646d7a993936d6aac8a3cfa94b887f7a",
+    "src/scoring/scoring_engine.py": "292386502a1a1c6111147a45a8d92cace1bd13756d35263ea1588551c5dee65a"
+  },
+  "failure": {
+    "type": "OperationalError",
+    "message": "Synthetic uncertain correction publication: commit returned durably before caller error"
+  },
+  "engine_revision_after": 0,
+  "journal_active_revision_after": 1,
+  "commit_calls": 2,
+  "owner_failure_reason": null,
+  "hashes_after": {
+    "src/utils/scoring_journal.py": "3a5422499fecaaf15a3b6ef89c758f90646d7a993936d6aac8a3cfa94b887f7a",
+    "src/scoring/scoring_engine.py": "292386502a1a1c6111147a45a8d92cace1bd13756d35263ea1588551c5dee65a"
+  },
+  "forbidden_imports": []
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "prepared_utc": "2026-10-21T17:53:04.341476+00:00",
+  "status": "UNRESOLVED_REFERENCE_DEVELOPMENT_ACQUISITION_REQUIRED",
+  "scope": "NKUST_V4_PRACTICE_LANDING_SIGNED_LINE_DISTANCES_ONLY",
+  "reservation": {
+    "path": "data\\yolo26\\nkust_reference_reservation.json",
+    "sha256": "565247b940fcbb792b3d066af45610ce864dd790b68c773aa6d4d4160297718b"
+  },
+  "prior_acquisition": {
+    "path": "data\\external\\nkust_landing_reference_v4\\acquisition_receipt.json",
+    "sha256": "a9821bf674cbe6f7bffd290b58ea2992073424d338af1eede52325fc9aa98d72"
+  },
+  "development_group_id": "nkust-2023-03-02-indoor-session",
+  "test_group_id": "nkust-2023-03-01-outdoor-session",
+  "source_rights": {
+    "dataset_url": "https://data.mendeley.com/datasets/75m8vz7jr2/4",
+    "publisher_license": "CC-BY-4.0",
+    "public_examples_or_weights_release_authorized_by_this_protocol": false
+  },
+  "reference_schema": {
+    "identifier_column": "Index",
+    "measurement_columns": [
+      "To-Closest-Doubles-Sideline-Distance (m)",
+      "To-Baseline-Distance (m)"
+    ],
+    "units": "m",
+    "sign": "outside_negative",
+    "canonical_xy_not_established": true
+  },
+  "before_outdoor_evaluation_requires": [
+    "author/version-backed exact clip-to-CSV identifier join; never positional row matching",
+    "reference baseline and any side correspondence documented independently of TEST errors",
+    "line center/edge definition and measurement uncertainty documented",
+    "independent calibration check points and native-PTS contact-frame selection fixed",
+    "all eligible shot identifiers enrolled before prediction, including unavailable outputs",
+    "prediction files/checkpoints/runtime/operating settings sealed before TEST labels join",
+    "missing-source, missed-event, unresolved-contact and unavailable-measurement counts retained separately"
+  ],
+  "prohibited_selection": [
+    "try reflections/baselines/identifier joins and select by outdoor TEST residual",
+    "infer cross-camera synchronization from matching nominal FPS or clip number",
+    "claim oriented XY or physical speed from unsigned/unoriented line distances",
+    "treat practice forehands or per-clip counts as independent singles matches"
+  ],
+  "future_metrics": {
+    "coverage_denominator": "every preregistered eligible shot; missing prediction does not disappear",
+    "signed_component_bias_m": true,
+    "component_mae_m": true,
+    "component_median_absolute_error_m": true,
+    "component_p95_absolute_error_m": true,
+    "global_euclidean_error_m": "UNAVAILABLE_UNTIL_AXES_AND_JOIN_VERIFIED",
+    "independent_group_count": "whole sessions, not frames or numbered clips",
+    "reference_uncertainty": "must accompany errors; no centimeter officiating gate implied"
+  },
+  "parameters_not_yet_resolved": {
+    "indoor_source_file_ids": null,
+    "exact_clip_to_csv_join": null,
+    "reference_baseline": null,
+    "line_boundary_convention": null,
+    "reference_uncertainty_m": null,
+    "contact_frame_selection_protocol": null,
+    "independent_calibration_validation": null
+  },
+  "predictions_generated": false,
+  "accuracy_computed": false,
+  "frozen_evaluation_protocol_ready": false,
+  "master_qualification": false,
+  "test_media_frames_rendered_in_this_step": false,
+  "test_landing_values_inspected_in_this_step": false,
+  "reserved_test_access_in_this_step": "Existing reservation, acquisition receipt and retained source/label hashes only",
+  "prior_acquisition_validation": "The retained acquisition recorder parsed the CSV to validate Index/numeric column types and count rows; no target values were manually reviewed or used for model selection or accuracy in this step."
+}

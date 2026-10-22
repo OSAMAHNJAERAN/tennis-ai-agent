@@ -1,0 +1,11 @@
+# Event lookup documentation helper preparation
+
+Status: prepared, statically parsed, never imported or executed by the documentation agent. The three documentation files still match their preserved before bytes. No workload, model import, process/server action, HTTP request or SQLite access is performed by this helper.
+
+`document_evidence.py` SHA-256: `2fff72f8a5f928469dc6873436e8f84dd0c9a42c1209d65cd5312f017c144f6d`.
+
+The parent task should first run `document_evidence.py --validate-only`. This performs read-only prerequisite validation and reports planned document hashes without creating files. After review, the parent may run `document_evidence.py --apply` once. The exclusive `documentation_receipt.json` and `documentation_staging` directory prevent repeat publication; staged exact before bytes support rollback. Every document is replaced atomically and read back. Existing manifest fields, old validation/evidence entries, persistent state, release requirements and `productionQualified=false` are preserved.
+
+The selected current receipts are `backend_final/receipt.json`, `measurement_headroom/run/report.json`, `saved_diagnostic_replay_2026-10-06/replay_receipt_v3.json`, and `runtime_verification.json`. The helper also validates the genuine RED/GREEN, frozen source, original failed backend suite/test, complete first partial measurement inventory, failed replay-v2 inventory, v3 transitive/interpreter/process evidence, runtime ABSENT preflight/no-action refusals and the two historical RAM-declined worker attempts. All prerequisites are present; their acceptance has not yet been checked by executing this helper.
+
+The successful publication receipt contains disjoint `sourceBindings` and `evidenceBindings` maps, each value `{bytes, sha256}`. Those immutable maps exclude the three replaced original documentation paths. `currentDocumentHashes` and `after` bind the final three files; `before`, preserved baseline files and retained staging bytes bind their exact previous versions. `verifiedInputBindings` covers the union of the immutable maps. `derivedEvidence` keeps instrumented reads separate from uninstrumented timing and actual OS peaks. The receipt records no inference, accuracy or full-match qualification.

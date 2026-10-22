@@ -21,7 +21,13 @@ def get_center(bbox: BBox) -> Tuple[float, float]:
     return ((bbox.x1 + bbox.x2) / 2.0, (bbox.y1 + bbox.y2) / 2.0)
 
 def get_foot_position(bbox: BBox) -> Tuple[float, float]:
-    """Get the bottom center point of the bounding box, representing player foot position."""
+    """Use attached anatomical evidence, otherwise the labeled bbox estimate.
+
+    This is a ground-point estimate; visible ankles do not prove ground contact.
+    """
+    point = getattr(bbox, 'ground_point_px', None)
+    if point is not None and len(point) == 2 and all(math.isfinite(float(value)) for value in point):
+        return tuple(float(value) for value in point)
     return ((bbox.x1 + bbox.x2) / 2.0, float(bbox.y2))
 
 def get_bbox_area(bbox: BBox) -> float:

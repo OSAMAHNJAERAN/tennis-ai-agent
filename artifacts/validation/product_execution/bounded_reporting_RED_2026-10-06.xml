@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="17" skipped="0" tests="25" time="6.281" timestamp="2026-10-06T12:24:43.712628+08:00" hostname="Osamah"><testcase classname="tests.test_bounded_reporting" name="test_report_and_csv_are_exactly_equal_for_lazy_series[0]" time="0.026"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+count = 0
+
+    @pytest.mark.parametrize('count', [0, 1, 600, 601, 1201])
+    def test_report_and_csv_are_exactly_equal_for_lazy_series(original_reporting, count):
+        result = report_result(count)
+        expected_html = original_reporting.readable_report(result)
+        expected_csv = original_reporting.telemetry_csv(result)
+        lazy = lazy_result(result)
+&gt;       assert ''.join(reporting.readable_report_chunks(lazy)) == expected_html
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'
+
+tests\test_bounded_reporting.py:115: AttributeError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_report_and_csv_are_exactly_equal_for_lazy_series[1]" time="0.006"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+count = 1
+
+    @pytest.mark.parametrize('count', [0, 1, 600, 601, 1201])
+    def test_report_and_csv_are_exactly_equal_for_lazy_series(original_reporting, count):
+        result = report_result(count)
+        expected_html = original_reporting.readable_report(result)
+        expected_csv = original_reporting.telemetry_csv(result)
+        lazy = lazy_result(result)
+&gt;       assert ''.join(reporting.readable_report_chunks(lazy)) == expected_html
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'
+
+tests\test_bounded_reporting.py:115: AttributeError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_report_and_csv_are_exactly_equal_for_lazy_series[600]" time="0.088"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+count = 600
+
+    @pytest.mark.parametrize('count', [0, 1, 600, 601, 1201])
+    def test_report_and_csv_are_exactly_equal_for_lazy_series(original_reporting, count):
+        result = report_result(count)
+        expected_html = original_reporting.readable_report(result)
+        expected_csv = original_reporting.telemetry_csv(result)
+        lazy = lazy_result(result)
+&gt;       assert ''.join(reporting.readable_report_chunks(lazy)) == expected_html
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'
+
+tests\test_bounded_reporting.py:115: AttributeError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_report_and_csv_are_exactly_equal_for_lazy_series[601]" time="0.066"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+count = 601
+
+    @pytest.mark.parametrize('count', [0, 1, 600, 601, 1201])
+    def test_report_and_csv_are_exactly_equal_for_lazy_series(original_reporting, count):
+        result = report_result(count)
+        expected_html = original_reporting.readable_report(result)
+        expected_csv = original_reporting.telemetry_csv(result)
+        lazy = lazy_result(result)
+&gt;       assert ''.join(reporting.readable_report_chunks(lazy)) == expected_html
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'
+
+tests\test_bounded_reporting.py:115: AttributeError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_report_and_csv_are_exactly_equal_for_lazy_series[1201]" time="0.732"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+count = 1201
+
+    @pytest.mark.parametrize('count', [0, 1, 600, 601, 1201])
+    def test_report_and_csv_are_exactly_equal_for_lazy_series(original_reporting, count):
+        result = report_result(count)
+        expected_html = original_reporting.readable_report(result)
+        expected_csv = original_reporting.telemetry_csv(result)
+        lazy = lazy_result(result)
+&gt;       assert ''.join(reporting.readable_report_chunks(lazy)) == expected_html
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'
+
+tests\test_bounded_reporting.py:115: AttributeError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples0]" time="0.004" /><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples1]" time="0.065" /><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples2]" time="0.010"><failure message="AssertionError: Report consumers must not slice a growing series.">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+samples = [0.0, -0.0, True, False, 2.0]
+
+    @pytest.mark.parametrize('samples', [
+        [], [None, float('nan'), float('inf')], [0., -0., True, False, 2.],
+        [1e16, 1., -1e16] * 601, [0.1, 0.2, 0.3] * 401,
+        [None if index % 151 == 0 else float(index % 13) for index in range(1201)],
+    ])
+    def test_speed_bins_preserve_previous_sums_gaps_and_points(original_reporting, samples):
+        series = GeneratedSeries(len(samples), samples.__getitem__)
+&gt;       assert reporting.speed_svg(series, 60.) == original_reporting.speed_svg(samples, 60.)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_bounded_reporting.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\api\reporting.py:114: in speed_svg
+    interval = samples[index:index + stride]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.test_bounded_reporting.GeneratedSeries object at 0x0000021FCC5043D0&gt;
+index = slice(0, 1, None)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+&gt;           raise AssertionError('Report consumers must not slice a growing series.')
+E           AssertionError: Report consumers must not slice a growing series.
+
+tests\test_bounded_reporting.py:41: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples3]" time="0.003"><failure message="AssertionError: Report consumers must not slice a growing series.">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+samples = [1e+16, 1.0, -1e+16, 1e+16, 1.0, -1e+16, ...]
+
+    @pytest.mark.parametrize('samples', [
+        [], [None, float('nan'), float('inf')], [0., -0., True, False, 2.],
+        [1e16, 1., -1e16] * 601, [0.1, 0.2, 0.3] * 401,
+        [None if index % 151 == 0 else float(index % 13) for index in range(1201)],
+    ])
+    def test_speed_bins_preserve_previous_sums_gaps_and_points(original_reporting, samples):
+        series = GeneratedSeries(len(samples), samples.__getitem__)
+&gt;       assert reporting.speed_svg(series, 60.) == original_reporting.speed_svg(samples, 60.)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_bounded_reporting.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\api\reporting.py:114: in speed_svg
+    interval = samples[index:index + stride]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.test_bounded_reporting.GeneratedSeries object at 0x0000021FCC755710&gt;
+index = slice(0, 4, None)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+&gt;           raise AssertionError('Report consumers must not slice a growing series.')
+E           AssertionError: Report consumers must not slice a growing series.
+
+tests\test_bounded_reporting.py:41: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples4]" time="0.003"><failure message="AssertionError: Report consumers must not slice a growing series.">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+samples = [0.1, 0.2, 0.3, 0.1, 0.2, 0.3, ...]
+
+    @pytest.mark.parametrize('samples', [
+        [], [None, float('nan'), float('inf')], [0., -0., True, False, 2.],
+        [1e16, 1., -1e16] * 601, [0.1, 0.2, 0.3] * 401,
+        [None if index % 151 == 0 else float(index % 13) for index in range(1201)],
+    ])
+    def test_speed_bins_preserve_previous_sums_gaps_and_points(original_reporting, samples):
+        series = GeneratedSeries(len(samples), samples.__getitem__)
+&gt;       assert reporting.speed_svg(series, 60.) == original_reporting.speed_svg(samples, 60.)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_bounded_reporting.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\api\reporting.py:114: in speed_svg
+    interval = samples[index:index + stride]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.test_bounded_reporting.GeneratedSeries object at 0x0000021FCC755550&gt;
+index = slice(0, 3, None)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+&gt;           raise AssertionError('Report consumers must not slice a growing series.')
+E           AssertionError: Report consumers must not slice a growing series.
+
+tests\test_bounded_reporting.py:41: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_speed_bins_preserve_previous_sums_gaps_and_points[samples5]" time="0.002"><failure message="AssertionError: Report consumers must not slice a growing series.">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+samples = [None, 1.0, 2.0, 3.0, 4.0, 5.0, ...]
+
+    @pytest.mark.parametrize('samples', [
+        [], [None, float('nan'), float('inf')], [0., -0., True, False, 2.],
+        [1e16, 1., -1e16] * 601, [0.1, 0.2, 0.3] * 401,
+        [None if index % 151 == 0 else float(index % 13) for index in range(1201)],
+    ])
+    def test_speed_bins_preserve_previous_sums_gaps_and_points(original_reporting, samples):
+        series = GeneratedSeries(len(samples), samples.__getitem__)
+&gt;       assert reporting.speed_svg(series, 60.) == original_reporting.speed_svg(samples, 60.)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_bounded_reporting.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\api\reporting.py:114: in speed_svg
+    interval = samples[index:index + stride]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.test_bounded_reporting.GeneratedSeries object at 0x0000021FCC754D00&gt;
+index = slice(0, 3, None)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+&gt;           raise AssertionError('Report consumers must not slice a growing series.')
+E           AssertionError: Report consumers must not slice a growing series.
+
+tests\test_bounded_reporting.py:41: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_heatmap_retains_first_occupied_cell_order_and_resident_vector_rules" time="0.001" /><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[None]" time="0.001" /><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[not an array]" time="0.001" /><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[bytes]" time="0.001" /><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[frames3]" time="0.001" /><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[frames4]" time="0.002"><failure message="AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'&#10;  &#10;  - &lt;p&gt;Detected people: 0 observed boxes across 0 of 4 frames. Person evidence is available for 0 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;&#10;  + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+frames = []
+
+    @pytest.mark.parametrize('frames', [None, 'not an array', b'bytes', bytearray(b'bytes'),
+                                        [], [{'people': None}], [{'people': []}],
+                                        [{'people': []}, {'people': [1, 2]}, {'people': None},
+                                         {'people': (1, 2)}, None]])
+    def test_people_summary_preserves_missing_vs_empty_observations(original_reporting, frames):
+        result = {'summary': {'frames': 4}, 'imagePeople': {'frames': frames}}
+        expected = original_reporting.image_people_summary(result)
+        if isinstance(frames, list):
+            result['imagePeople']['frames'] = GeneratedSeries(len(frames), frames.__getitem__)
+&gt;       assert reporting.image_people_summary(result) == expected
+E       AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'
+E         
+E         - &lt;p&gt;Detected people: 0 observed boxes across 0 of 4 frames. Person evidence is available for 0 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;
+E         + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;
+
+tests\test_bounded_reporting.py:149: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[frames5]" time="0.002"><failure message="AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'&#10;  &#10;  - &lt;p&gt;Detected people: 0 observed boxes across 0 of 4 frames. Person evidence is available for 0 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;&#10;  + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+frames = [{'people': None}]
+
+    @pytest.mark.parametrize('frames', [None, 'not an array', b'bytes', bytearray(b'bytes'),
+                                        [], [{'people': None}], [{'people': []}],
+                                        [{'people': []}, {'people': [1, 2]}, {'people': None},
+                                         {'people': (1, 2)}, None]])
+    def test_people_summary_preserves_missing_vs_empty_observations(original_reporting, frames):
+        result = {'summary': {'frames': 4}, 'imagePeople': {'frames': frames}}
+        expected = original_reporting.image_people_summary(result)
+        if isinstance(frames, list):
+            result['imagePeople']['frames'] = GeneratedSeries(len(frames), frames.__getitem__)
+&gt;       assert reporting.image_people_summary(result) == expected
+E       AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'
+E         
+E         - &lt;p&gt;Detected people: 0 observed boxes across 0 of 4 frames. Person evidence is available for 0 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;
+E         + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;
+
+tests\test_bounded_reporting.py:149: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[frames6]" time="0.003"><failure message="AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'&#10;  &#10;  - &lt;p&gt;Detected people: 0 observed boxes across 0 of 4 frames. Person evidence is available for 1 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;&#10;  + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+frames = [{'people': []}]
+
+    @pytest.mark.parametrize('frames', [None, 'not an array', b'bytes', bytearray(b'bytes'),
+                                        [], [{'people': None}], [{'people': []}],
+                                        [{'people': []}, {'people': [1, 2]}, {'people': None},
+                                         {'people': (1, 2)}, None]])
+    def test_people_summary_preserves_missing_vs_empty_observations(original_reporting, frames):
+        result = {'summary': {'frames': 4}, 'imagePeople': {'frames': frames}}
+        expected = original_reporting.image_people_summary(result)
+        if isinstance(frames, list):
+            result['imagePeople']['frames'] = GeneratedSeries(len(frames), frames.__getitem__)
+&gt;       assert reporting.image_people_summary(result) == expected
+E       AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'
+E         
+E         - &lt;p&gt;Detected people: 0 observed boxes across 0 of 4 frames. Person evidence is available for 1 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;
+E         + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;
+
+tests\test_bounded_reporting.py:149: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_people_summary_preserves_missing_vs_empty_observations[frames7]" time="0.002"><failure message="AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'&#10;  &#10;  - &lt;p&gt;Detected people: 2 observed boxes across 1 of 4 frames. Person evidence is available for 2 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;&#10;  + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;">original_reporting = &lt;module 'original_bounded_reporting' from 'C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\product_execution\\result_storage_baseline_2026-10-06\\src\\api\\reporting.py'&gt;
+frames = [{'people': []}, {'people': [1, 2]}, {'people': None}, {'people': (1, 2)}, None]
+
+    @pytest.mark.parametrize('frames', [None, 'not an array', b'bytes', bytearray(b'bytes'),
+                                        [], [{'people': None}], [{'people': []}],
+                                        [{'people': []}, {'people': [1, 2]}, {'people': None},
+                                         {'people': (1, 2)}, None]])
+    def test_people_summary_preserves_missing_vs_empty_observations(original_reporting, frames):
+        result = {'summary': {'frames': 4}, 'imagePeople': {'frames': frames}}
+        expected = original_reporting.image_people_summary(result)
+        if isinstance(frames, list):
+            result['imagePeople']['frames'] = GeneratedSeries(len(frames), frames.__getitem__)
+&gt;       assert reporting.image_people_summary(result) == expected
+E       AssertionError: assert '&lt;p&gt;Image per...analysis.&lt;/p&gt;' == '&lt;p&gt;Detected ...accuracy.&lt;/p&gt;'
+E         
+E         - &lt;p&gt;Detected people: 2 observed boxes across 1 of 4 frames. Person evidence is available for 2 frames; an empty observation list means no valid person boxes were exported for that frame.&lt;/p&gt;&lt;p&gt;These detections may include spectators, officials and false detections. Active participants and persistent person identity are not independently verified. Person boxes do not establish player movement, speed or court positions. Availability is not detection accuracy.&lt;/p&gt;
+E         + &lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;
+
+tests\test_bounded_reporting.py:149: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_people_counts_fold_without_a_per_frame_count_buffer" time="0.002"><failure message="AssertionError: assert '50,000 observed boxes across 50,000 of 100,000 frames' in '&lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;'">def test_people_counts_fold_without_a_per_frame_count_buffer():
+        frames = GeneratedSeries(100_000, lambda index: {'people': [] if index % 2 else [{}]})
+        result = {'summary': {'frames': len(frames)}, 'imagePeople': {'frames': frames}}
+        tracemalloc.start()
+        try:
+            summary = reporting.image_people_summary(result)
+            _, peak = tracemalloc.get_traced_memory()
+        finally:
+            tracemalloc.stop()
+&gt;       assert '50,000 observed boxes across 50,000 of 100,000 frames' in summary
+E       AssertionError: assert '50,000 observed boxes across 50,000 of 100,000 frames' in '&lt;p&gt;Image person detections were not exported for this analysis.&lt;/p&gt;'
+
+tests\test_bounded_reporting.py:161: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_speed_svg_retains_only_bounded_generated_values" time="0.270"><failure message="AssertionError: Report consumers must not slice a growing series.">def test_speed_svg_retains_only_bounded_generated_values():
+        live = weakref.WeakSet()
+        peak_live = 0
+    
+        class ObservedFloat(float):
+            pass
+    
+        def value(index):
+            nonlocal peak_live
+            observation = ObservedFloat(index)
+            live.add(observation)
+            peak_live = max(peak_live, len(live))
+            return observation
+    
+        series = GeneratedSeries(60_001, value)
+&gt;       svg = reporting.speed_svg(series, 60.)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_bounded_reporting.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\api\reporting.py:114: in speed_svg
+    interval = samples[index:index + stride]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.test_bounded_reporting.GeneratedSeries object at 0x0000021FCC754C20&gt;
+index = slice(0, 101, None)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+&gt;           raise AssertionError('Report consumers must not slice a growing series.')
+E           AssertionError: Report consumers must not slice a growing series.
+
+tests\test_bounded_reporting.py:41: AssertionError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_event_rows_are_read_on_demand_and_report_close_stops_future_reads" time="0.001"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'">def test_event_rows_are_read_on_demand_and_report_close_stops_future_reads():
+        result = report_result(0)
+        events = GeneratedSeries(100_000, lambda index: {'event_type': f'event {index}',
+                                                       'timestamp_s': index / 60,
+                                                       'confidence': .5})
+        result['events'] = events
+&gt;       chunks = reporting.readable_report_chunks(result)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'
+
+tests\test_bounded_reporting.py:195: AttributeError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_warning_rows_are_read_on_demand" time="0.001"><failure message="AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'">def test_warning_rows_are_read_on_demand():
+        result = report_result(0)
+        warnings = GeneratedSeries(100_000, lambda index: f'&lt;warning {index}&gt;')
+        result['warnings'] = warnings
+&gt;       chunks = reporting.readable_report_chunks(result)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.api.reporting' has no attribute 'readable_report_chunks'
+
+tests\test_bounded_reporting.py:214: AttributeError</failure></testcase><testcase classname="tests.test_bounded_reporting" name="test_csv_header_and_first_chunk_do_not_prefetch_lazy_future_frames" time="0.003" /></testsuite></testsuites>

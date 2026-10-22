@@ -1,0 +1,932 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-16T02:08:31.706169+00:00",
+  "status": "FIRST8_ACTUALLY_REVIEWED_LOCALLY_FIVE_VISIBLE_BOX_PROPOSALS_FIVE_REJECTED_PROPOSALS_NO_EXPORT",
+  "review_aids_manifest": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\outputs\\ball_yolo_author_native_audit32_v1\\review_aids_manifest.json",
+    "sha256": "bab9ae8e201574ec443172f9607fd2e2bec796facc2f0d0c01f183127b8a924a"
+  },
+  "preserved_prior_root_partial_receipt": {
+    "path": "C:\\Semester 9\\FYP2\\tennis_ai_agent_bundle\\artifacts\\validation\\yolo26_execution_2026-10-16\\ball_bbox_media_audit_v1\\partial_root_visual_review8.json",
+    "sha256": "ffbff8b0d47e0acf4afd515275d8fb6b50d70c16d0d5241ec1ab5b87fa614532",
+    "unchanged": true
+  },
+  "reviewer": "AGENT:/root/ball_bbox_inventory",
+  "actual_local_view_image_calls": 16,
+  "actual_native_overlays_viewed": 8,
+  "actual_unmarked_temporal_boards_viewed": 8,
+  "actual_unmarked_native96_patches_viewed": 29,
+  "reviewed_samples": 8,
+  "reviewed_publisher_proposals": 10,
+  "visible_box_proposals_accepted_for_development_review": 5,
+  "unresolved_proposals_rejected": 5,
+  "accepted_sample_count": 5,
+  "rejected_sample_count": 3,
+  "selected_boxes_are_native_integer_xyxy": true,
+  "independent_human_review": false,
+  "qualification_evidence": false,
+  "training_export_or_split_assigned": false,
+  "training_or_gpu_runs": 0,
+  "external_frame_transmission": false,
+  "network_requests_for_this_review": 0,
+  "compilation_and_overlap_limit": "The two aliases identify source compilations, not independent matches. Keep every original source/alias connection and conservative event context together for future leakage review. Captions/scoreboard names are unverified leads only; this receipt assigns no split and proves no source independence.",
+  "speed_limit": "The127MPH USOpen graphic is broadcast text, not synchronized independent physical speed ground truth.",
+  "training_limit": "Accepted boxes remain development annotation proposals until full native640 training-crop background closure. No ambiguous or rejected proposal is converted into an empty-negative label.",
+  "rows": [
+    {
+      "id": "America_Best_10_1_f000001",
+      "source_alias": "America_Best_10_1",
+      "source_frame_index": 1,
+      "native_width": 1920,
+      "native_height": 1080,
+      "source_pts": "9032",
+      "source_time_base": "1/59940",
+      "source_timestamp_fraction": "2258/14985",
+      "label_source_path": "America_Best_10_1/America_Best_10_1_1.txt",
+      "label_sha256": "ddeb869756e3a414ec29c3c5f3a48ea3e79314a82424bced300691fba47c05a1",
+      "label_git_blob_sha1": "221dc71d6d23fb4e8be1880d9c34772eccb74f86",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 3,
+      "native_neighbor_indices": [
+        0,
+        1,
+        2
+      ],
+      "native_neighbor_pts": [
+        "8032",
+        "9032",
+        "10032"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\America_Best_10_1_f000001.png",
+        "sha256": "544eafcee19b9bc61fbc0f82d1c805959028e0e5f023163331602a2f94912e61"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\America_Best_10_1_f000001.png",
+        "sha256": "50c4143b3b22aa198388d2886201d36afc8a871b3c01442ce463a35244d72bca"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0001.png",
+          "sha256": "789658f63e183a1afd8a0f82d1972737a601839586d10fe677defca389e5d732",
+          "frame_index": 0,
+          "source_pts": "8032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0002.png",
+          "sha256": "56c18fecf750c652d5fe310f5383abec1ed243294a9770bbb71bd6e521f2fe10",
+          "frame_index": 1,
+          "source_pts": "9032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0003.png",
+          "sha256": "4855617907947273480e308745ed8b79056395bf1de5ada8365b71b3c3ac5684",
+          "frame_index": 2,
+          "source_pts": "10032"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "USOpen",
+      "source_caption_lead_not_verified_match_identity": "AugerAliassime_DeMinaur_scoreboard",
+      "observed_state": "VISIBLE_SMALL_BALL",
+      "blur_observation": "LOW",
+      "manual_review_rationale": "A small dim gray/yellow ball is detached from the near player's arm/racket and is visible against the blue court in the middle native patch. The next patch shows its movement up/right. Tightened approximately11x10px publisher bounds to a7x7px visible blob envelope, preserving the low-contrast compression halo.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.442448,
+              0.67963,
+              0.005729,
+              0.009259
+            ],
+            "publisher_box_xyxy_native_px": [
+              844.00032,
+              729.00054,
+              855.0,
+              739.0002599999999
+            ],
+            "center_native_px": [
+              849.50016,
+              734.0003999999999
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "ACCEPT_REVIEWED_VISIBLE_BOX_PENDING_FULL_CROP_CLOSURE",
+          "visible_box_proposal_accepted_for_development_review": true,
+          "selected_manual_box_xyxy_native_px": [
+            846,
+            731,
+            853,
+            738
+          ],
+          "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_REVIEW",
+          "boundary_uncertainty_px_uncalibrated": 2,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": "reviewed_visible_extent_midpoint_not_physical_ball_3d_center",
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    },
+    {
+      "id": "America_Best_10_1_f000002",
+      "source_alias": "America_Best_10_1",
+      "source_frame_index": 2,
+      "native_width": 1920,
+      "native_height": 1080,
+      "source_pts": "10032",
+      "source_time_base": "1/59940",
+      "source_timestamp_fraction": "836/4995",
+      "label_source_path": "America_Best_10_1/America_Best_10_1_2.txt",
+      "label_sha256": "8a68694ed055ee67c4e9a6ca0ec3d70f0c719fbeb89a620f4fb327116be5d68f",
+      "label_git_blob_sha1": "a2752516a97f6b51f7f11d5430a0132fffa66e49",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 3,
+      "native_neighbor_indices": [
+        1,
+        2,
+        3
+      ],
+      "native_neighbor_pts": [
+        "9032",
+        "10032",
+        "11032"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\America_Best_10_1_f000002.png",
+        "sha256": "c46b1fa3e13536a40c32b85a6305fcdf79ad836e680e5226618dff2563aa7f4d"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\America_Best_10_1_f000002.png",
+        "sha256": "a05e6841d9dc91e7c32a09619f8b4a3e553d035890857204d72168a5b249e630"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0002.png",
+          "sha256": "56c18fecf750c652d5fe310f5383abec1ed243294a9770bbb71bd6e521f2fe10",
+          "frame_index": 1,
+          "source_pts": "9032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0003.png",
+          "sha256": "4855617907947273480e308745ed8b79056395bf1de5ada8365b71b3c3ac5684",
+          "frame_index": 2,
+          "source_pts": "10032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0004.png",
+          "sha256": "33f392d012db12e6257017c61cb55cc748fa4ca931d65359e07a3ab2e6eb8d0f",
+          "frame_index": 3,
+          "source_pts": "11032"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "USOpen",
+      "source_caption_lead_not_verified_match_identity": "AugerAliassime_DeMinaur_scoreboard",
+      "observed_state": "VISIBLE_DIAGONAL_BALL_BLUR",
+      "blur_observation": "MODERATE",
+      "manual_review_rationale": "The pale/green ball streak moves up/right relative to frame1 and separates from the dark racket/arm. Retained the publisher's approximately13x13px diagonal visible-blur envelope, rounded to native integer edges. This is a blur box, not a sharp-ball diameter.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.44349,
+              0.676389,
+              0.006771,
+              0.012037
+            ],
+            "publisher_box_xyxy_native_px": [
+              845.00064,
+              724.00014,
+              858.00096,
+              737.0001000000001
+            ],
+            "center_native_px": [
+              851.5008,
+              730.50012
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "ACCEPT_REVIEWED_VISIBLE_BOX_PENDING_FULL_CROP_CLOSURE",
+          "visible_box_proposal_accepted_for_development_review": true,
+          "selected_manual_box_xyxy_native_px": [
+            845,
+            724,
+            858,
+            737
+          ],
+          "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_REVIEW",
+          "boundary_uncertainty_px_uncalibrated": 2,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": "reviewed_visible_extent_midpoint_not_physical_ball_3d_center",
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    },
+    {
+      "id": "America_Best_10_1_f000003",
+      "source_alias": "America_Best_10_1",
+      "source_frame_index": 3,
+      "native_width": 1920,
+      "native_height": 1080,
+      "source_pts": "11032",
+      "source_time_base": "1/59940",
+      "source_timestamp_fraction": "2758/14985",
+      "label_source_path": "America_Best_10_1/America_Best_10_1_3.txt",
+      "label_sha256": "e08500ab67a894eb75f665e8973824d4bbc8f88fee4bc0c5514bc724d0a5085f",
+      "label_git_blob_sha1": "e8bf58dca4011fc353cc437511e1a606f7cdc931",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 3,
+      "native_neighbor_indices": [
+        2,
+        3,
+        4
+      ],
+      "native_neighbor_pts": [
+        "10032",
+        "11032",
+        "12032"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\America_Best_10_1_f000003.png",
+        "sha256": "817e942cf06ac698af89969099cc35ed4362c45596c69c29e269b5ae25d02085"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\America_Best_10_1_f000003.png",
+        "sha256": "d18437c2232252898b71a10f4a07ccdd9e3e2552337aaa12e60178f83c099c7d"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0003.png",
+          "sha256": "4855617907947273480e308745ed8b79056395bf1de5ada8365b71b3c3ac5684",
+          "frame_index": 2,
+          "source_pts": "10032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0004.png",
+          "sha256": "33f392d012db12e6257017c61cb55cc748fa4ca931d65359e07a3ab2e6eb8d0f",
+          "frame_index": 3,
+          "source_pts": "11032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0005.png",
+          "sha256": "dc706688a8e0263e8cdad9cb8b609f0c29a5fdc11d8ccb83131fd30eb6e7dc5a",
+          "frame_index": 4,
+          "source_pts": "12032"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "USOpen",
+      "source_caption_lead_not_verified_match_identity": "AugerAliassime_DeMinaur_scoreboard",
+      "observed_state": "VISIBLE_DIAGONAL_BALL_BLUR",
+      "blur_observation": "MODERATE",
+      "manual_review_rationale": "A distinct pale/green diagonal ball streak continues away from the near player's dark racket in frames2-4. Selected a13x12px native envelope around the visible streak; the publisher left/top bounds included a small additional dark background margin.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.447396,
+              0.668981,
+              0.007292,
+              0.012037
+            ],
+            "publisher_box_xyxy_native_px": [
+              852.0000000000001,
+              715.9995,
+              866.00064,
+              728.9994600000001
+            ],
+            "center_native_px": [
+              859.00032,
+              722.4994800000001
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "ACCEPT_REVIEWED_VISIBLE_BOX_PENDING_FULL_CROP_CLOSURE",
+          "visible_box_proposal_accepted_for_development_review": true,
+          "selected_manual_box_xyxy_native_px": [
+            853,
+            717,
+            866,
+            729
+          ],
+          "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_REVIEW",
+          "boundary_uncertainty_px_uncalibrated": 2,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": "reviewed_visible_extent_midpoint_not_physical_ball_3d_center",
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    },
+    {
+      "id": "America_Best_10_1_f000175",
+      "source_alias": "America_Best_10_1",
+      "source_frame_index": 175,
+      "native_width": 1920,
+      "native_height": 1080,
+      "source_pts": "183032",
+      "source_time_base": "1/59940",
+      "source_timestamp_fraction": "45758/14985",
+      "label_source_path": "America_Best_10_1/America_Best_10_1_175.txt",
+      "label_sha256": "580829755cb10f72d28c4697b2c082be4ba6b18324ee827398f4843b0cc93ab9",
+      "label_git_blob_sha1": "1157261f852e1eaa50ffab8328bab0891743b863",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 3,
+      "native_neighbor_indices": [
+        174,
+        175,
+        176
+      ],
+      "native_neighbor_pts": [
+        "182032",
+        "183032",
+        "184032"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\America_Best_10_1_f000175.png",
+        "sha256": "c1ec14bc660d252342ae2cee92afd4c1228c73b280dd0de7c0d947b56d812dad"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\America_Best_10_1_f000175.png",
+        "sha256": "4735a295b057f97f1b9e3b12a883de0a63da3ce9fde0d63c18fe1b40479022a4"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0006.png",
+          "sha256": "543e6d91b34625be27da9fa2c6fee048282e9ec8b31df922e4de96fc8b7d3b68",
+          "frame_index": 174,
+          "source_pts": "182032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0007.png",
+          "sha256": "d8b532d8998648e79a1c808f4b566767643555a44854312fdbae85e3a67465df",
+          "frame_index": 175,
+          "source_pts": "183032"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\America_Best_10_1\\frame_0008.png",
+          "sha256": "0b934a4dac560cdef0e9ad040f7c06712e6adc35bd21a65cdbc0222c63d2e12e",
+          "frame_index": 176,
+          "source_pts": "184032"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "USOpen",
+      "source_caption_lead_not_verified_match_identity": "AugerAliassime_DeMinaur_scoreboard",
+      "observed_state": "VISIBLE_LONG_BALL_BLUR",
+      "blur_observation": "HIGH",
+      "manual_review_rationale": "The detached narrow pale ball streak moves down/left across the three unmarked native patches. Tightened approximately16x25px publisher bounds to a12x23px visible diagonal-blur envelope. Low contrast in the shaded court makes outer halo boundaries uncertain; no hidden spherical center is inferred.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.415104,
+              0.625463,
+              0.008333,
+              0.023148
+            ],
+            "publisher_box_xyxy_native_px": [
+              788.9999999999999,
+              663.00012,
+              804.99936,
+              687.99996
+            ],
+            "center_native_px": [
+              796.9996799999999,
+              675.50004
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "ACCEPT_REVIEWED_VISIBLE_BOX_PENDING_FULL_CROP_CLOSURE",
+          "visible_box_proposal_accepted_for_development_review": true,
+          "selected_manual_box_xyxy_native_px": [
+            792,
+            664,
+            804,
+            687
+          ],
+          "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_REVIEW",
+          "boundary_uncertainty_px_uncalibrated": 2,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": "reviewed_visible_extent_midpoint_not_physical_ball_3d_center",
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000000",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 0,
+      "native_width": 1280,
+      "native_height": 720,
+      "source_pts": "0",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "0",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_0.txt",
+      "label_sha256": "5931aa8a14ea25aec29d997ddee2a203a1d53381731d782506548a81fab7f60a",
+      "label_git_blob_sha1": "a5ce2dbf0f3564528f467b1a2bb1bcbc5758b647",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 2,
+      "native_neighbor_indices": [
+        0,
+        1
+      ],
+      "native_neighbor_pts": [
+        "0",
+        "275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000000.png",
+        "sha256": "74c1eee7b05a034fd7d896ccbf2f77e0c1ffde6c0766d3199d08db951b8c2f89"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000000.png",
+        "sha256": "2abc47f1fd691621acd98298a77b382d5fea71c3fdf6bc5a3cc83beccbdc0792"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0001.png",
+          "sha256": "0ce7855a6d6e07b8ff015252971d51f0efb5efe766a7114e6998ca3b6d4fb0bd",
+          "frame_index": 0,
+          "source_pts": "0"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0002.png",
+          "sha256": "8e19319763be08d9b9151232cdb6c2f81575f5783d6a1c2957a0a7c0af1bcf17",
+          "frame_index": 1,
+          "source_pts": "275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari_caption",
+      "observed_state": "VISIBLE_SMALL_BALL_BLUR",
+      "blur_observation": "MODERATE",
+      "manual_review_rationale": "A small pale horizontal/diagonal ball is distinct from the far player's body, racket and shadow, and moves down/right in the next native patch. Retained the approximately7x5px publisher visible extent, rounded to integer native edges. The video begins here, so only current/next temporal patches exist.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.448828,
+              0.290972,
+              0.005469,
+              0.006944
+            ],
+            "publisher_box_xyxy_native_px": [
+              570.99968,
+              207.00000000000003,
+              578.0,
+              211.99967999999998
+            ],
+            "center_native_px": [
+              574.49984,
+              209.49984
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "ACCEPT_REVIEWED_VISIBLE_BOX_PENDING_FULL_CROP_CLOSURE",
+          "visible_box_proposal_accepted_for_development_review": true,
+          "selected_manual_box_xyxy_native_px": [
+            571,
+            207,
+            578,
+            212
+          ],
+          "selected_box_source": "MANUAL_NATIVE_VISIBLE_EXTENT_REVIEW",
+          "boundary_uncertainty_px_uncalibrated": 2,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": "reviewed_visible_extent_midpoint_not_physical_ball_3d_center",
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000030",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 30,
+      "native_width": 1280,
+      "native_height": 720,
+      "source_pts": "29275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "1171/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_30.txt",
+      "label_sha256": "fb11828f62250a5c6a5b1b64ae9520d8eaa80c4fa48b9ffa36e99ebfd9144e0f",
+      "label_git_blob_sha1": "1175f2b94b76270c3cb564839b60f133ad226664",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 3,
+      "native_neighbor_indices": [
+        29,
+        30,
+        31
+      ],
+      "native_neighbor_pts": [
+        "28275",
+        "29275",
+        "30275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000030.png",
+        "sha256": "084b5100542871403c8aa0ea7c4ae58da6aa89428b8c34f58a5bb01daae23ced"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000030.png",
+        "sha256": "c8b923837c415423fbf392d0812561dde6ae332bce519b07b9d3a2a6af2ceb6b"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0003.png",
+          "sha256": "867b3843b5e72cf5156cc01be361e7593d9f9e2656d32b75b86030ed8ff51cd9",
+          "frame_index": 29,
+          "source_pts": "28275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0004.png",
+          "sha256": "f55e763d5edc0c83d40d9f4c7b02122e9b0f9d0f30968afc17d6a6dd9faf5f19",
+          "frame_index": 30,
+          "source_pts": "29275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0005.png",
+          "sha256": "a42b9ca88598db68d118cbd13fb44df6d466c9ee378121465b950d31722de8ce",
+          "frame_index": 31,
+          "source_pts": "30275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari_caption",
+      "observed_state": "UNRESOLVED_RACKET_PLAYER_ADJACENT_SWEEP",
+      "blur_observation": "UNRESOLVED",
+      "manual_review_rationale": "The39x33px proposal follows a large pale triangular/oval sweep above the near player's raised hand/head, spatially compatible with the racket sweep. Neighbor frames do not resolve a separate ball-only contour inside it. Reject this proposal rather than using the racket/arm or a guessed ball position.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.735547,
+              0.667361,
+              0.030469,
+              0.045833
+            ],
+            "publisher_box_xyxy_native_px": [
+              921.9999999999999,
+              464.00003999999996,
+              961.00032,
+              496.9998
+            ],
+            "center_native_px": [
+              941.5001599999999,
+              480.49992
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "REJECT_UNRESOLVED_OBJECT_IDENTITY_OR_VISIBLE_EXTENT",
+          "visible_box_proposal_accepted_for_development_review": false,
+          "selected_manual_box_xyxy_native_px": null,
+          "selected_box_source": null,
+          "boundary_uncertainty_px_uncalibrated": null,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": null,
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000058",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 58,
+      "native_width": 1280,
+      "native_height": 720,
+      "source_pts": "57275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "2291/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_58.txt",
+      "label_sha256": "8b4d1d17bc9c59d6e4e1c3a3d4ba35409004a34eede11ae95a30d26d69741961",
+      "label_git_blob_sha1": "df4a2ab35cfbce8aa60fdb9476216faf07f6327d",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 6,
+      "native_neighbor_indices": [
+        57,
+        58,
+        59
+      ],
+      "native_neighbor_pts": [
+        "56275",
+        "57275",
+        "58275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000058.png",
+        "sha256": "44225a803a4688b63f65e140ef51ff1fff19bba3d937d6cd4cdeeb0e81a3bbbc"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000058.png",
+        "sha256": "4fac9de4a46e76c19b2786080e2c879278960621fc35973c1aa3c31a94cb06cb"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0006.png",
+          "sha256": "d154ca3eb1c0702dbc3a4823a00dc2c47fc4710d54ea540dda42606a451d9a6b",
+          "frame_index": 57,
+          "source_pts": "56275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0007.png",
+          "sha256": "ad2b509874469b479e6037ae41b09838f14211f399b522219477da0ac2fa73d5",
+          "frame_index": 58,
+          "source_pts": "57275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0008.png",
+          "sha256": "80cec40af2fc4a0c6ff1dd89f98932ce21a9f6a77ba8d84380f5817a8f6d7199",
+          "frame_index": 59,
+          "source_pts": "58275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari_caption",
+      "observed_state": "UNRESOLVED_MULTIPLE_BALLLIKE_OBJECTS",
+      "blur_observation": "UNRESOLVED",
+      "manual_review_rationale": "Both proposals and all six unmarked patches were inspected. Box0 is a tiny pale near-hand object beside the near player; box1 is a far-player/racket-adjacent bright sweep. Their active-ball identity and full ball-only contours are unresolved. Neither one is admitted, and two simultaneous active balls are not assumed.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.648438,
+              0.727778,
+              0.004687,
+              0.011111
+            ],
+            "publisher_box_xyxy_native_px": [
+              827.0009599999998,
+              520.0002,
+              833.00032,
+              528.00012
+            ],
+            "center_native_px": [
+              830.00064,
+              524.00016
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "REJECT_UNRESOLVED_OBJECT_IDENTITY_OR_VISIBLE_EXTENT",
+          "visible_box_proposal_accepted_for_development_review": false,
+          "selected_manual_box_xyxy_native_px": null,
+          "selected_box_source": null,
+          "boundary_uncertainty_px_uncalibrated": null,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": null,
+          "training_admitted": false,
+          "empty_negative_label": false
+        },
+        {
+          "publisher_proposal_index": 1,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.372266,
+              0.26875,
+              0.008594,
+              0.006944
+            ],
+            "publisher_box_xyxy_native_px": [
+              471.00032,
+              191.00016000000002,
+              482.00064,
+              195.99983999999998
+            ],
+            "center_native_px": [
+              476.50048,
+              193.5
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "REJECT_UNRESOLVED_OBJECT_IDENTITY_OR_VISIBLE_EXTENT",
+          "visible_box_proposal_accepted_for_development_review": false,
+          "selected_manual_box_xyxy_native_px": null,
+          "selected_box_source": null,
+          "boundary_uncertainty_px_uncalibrated": null,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": null,
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    },
+    {
+      "id": "France_Review_Red_Court_1_f000060",
+      "source_alias": "France_Review_Red_Court_1",
+      "source_frame_index": 60,
+      "native_width": 1280,
+      "native_height": 720,
+      "source_pts": "59275",
+      "source_time_base": "1/25000",
+      "source_timestamp_fraction": "2371/1000",
+      "label_source_path": "France_Review_Red_Court_1/France_Review_Red_Court_1_60.txt",
+      "label_sha256": "d12b55bc55d802c49d867002dda6e96c0709cf0a198716af6cc8f93a6177fa4f",
+      "label_git_blob_sha1": "c96107d92d95499cabebce0d7544c4497d95dff1",
+      "reviewer": "AGENT:/root/ball_bbox_inventory",
+      "independent_human_review": false,
+      "root_personally_viewed_by_this_receipt": false,
+      "model_or_gpu_used": false,
+      "actually_viewed_original_resolution_overlay_locally": true,
+      "actually_viewed_every_unmarked_native96_temporal_patch_locally": true,
+      "actual_temporal_patches_viewed": 6,
+      "native_neighbor_indices": [
+        59,
+        60,
+        61
+      ],
+      "native_neighbor_pts": [
+        "58275",
+        "59275",
+        "60275"
+      ],
+      "native_overlay": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\overlays\\France_Review_Red_Court_1_f000060.png",
+        "sha256": "ec2eeba14f124fd553d0d6d6e7356186eaed069b7adbdce8072a79dcc6c2eba5"
+      },
+      "unmarked_native_detail_board": {
+        "path": "outputs\\ball_yolo_author_native_audit32_v1\\details\\France_Review_Red_Court_1_f000060.png",
+        "sha256": "97297d752dbe6291b942f270b7d372658321d78265825b66919a4ab0d9aa6a57"
+      },
+      "native_frames_hash_verified_not_individual_full_neighbor_frame_view_claim": [
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0008.png",
+          "sha256": "80cec40af2fc4a0c6ff1dd89f98932ce21a9f6a77ba8d84380f5817a8f6d7199",
+          "frame_index": 59,
+          "source_pts": "58275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0009.png",
+          "sha256": "1e5e44ef68cf0cf254ab2edaef1d0dbf8e1bad76b01ba915c022c683ed804299",
+          "frame_index": 60,
+          "source_pts": "59275"
+        },
+        {
+          "path": "outputs\\ball_yolo_author_native_audit32_v1\\native\\France_Review_Red_Court_1\\frame_0010.png",
+          "sha256": "77e1d74b9c8ff99b0835ecc4e12903f4db72c528bd0f7d37a948e10877e53cd3",
+          "frame_index": 61,
+          "source_pts": "60275"
+        }
+      ],
+      "view_observation": "SUPPORTED_ELEVATED_BASELINE_SINGLES",
+      "visual_event_family": "RolandGarros",
+      "source_caption_lead_not_verified_match_identity": "2021_SF_Krejcikova_vs_Sakkari_caption",
+      "observed_state": "UNRESOLVED_MULTIPLE_BALLLIKE_OBJECTS",
+      "blur_observation": "UNRESOLVED",
+      "manual_review_rationale": "Both proposals and all six unmarked patches were inspected. Box0 follows a bright far-player/racket-adjacent object; box1 follows a small near-player hand-adjacent bright object. This reverses publisher ordering relative to frame58 and provides no stable ball identity. Reject both proposals pending richer evidence; do not choose by index or size.",
+      "reviewed_proposals": [
+        {
+          "publisher_proposal_index": 0,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.383203,
+              0.269444,
+              0.007031,
+              0.008333
+            ],
+            "publisher_box_xyxy_native_px": [
+              486.0,
+              190.9998,
+              494.99968,
+              196.99956000000003
+            ],
+            "center_native_px": [
+              490.49984,
+              193.99968
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "REJECT_UNRESOLVED_OBJECT_IDENTITY_OR_VISIBLE_EXTENT",
+          "visible_box_proposal_accepted_for_development_review": false,
+          "selected_manual_box_xyxy_native_px": null,
+          "selected_box_source": null,
+          "boundary_uncertainty_px_uncalibrated": null,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": null,
+          "training_admitted": false,
+          "empty_negative_label": false
+        },
+        {
+          "publisher_proposal_index": 1,
+          "publisher_proposal_preserved": {
+            "publisher_xywh_normalized": [
+              0.640234,
+              0.726389,
+              0.007031,
+              0.011111
+            ],
+            "publisher_box_xyxy_native_px": [
+              814.9996799999999,
+              519.0001199999999,
+              823.99936,
+              527.00004
+            ],
+            "center_native_px": [
+              819.49952,
+              523.0000799999999
+            ],
+            "extends_beyond_unit_image": false
+          },
+          "review_decision": "REJECT_UNRESOLVED_OBJECT_IDENTITY_OR_VISIBLE_EXTENT",
+          "visible_box_proposal_accepted_for_development_review": false,
+          "selected_manual_box_xyxy_native_px": null,
+          "selected_box_source": null,
+          "boundary_uncertainty_px_uncalibrated": null,
+          "boundary_uncertainty_is_not_measured_calibration": true,
+          "center_definition": null,
+          "training_admitted": false,
+          "empty_negative_label": false
+        }
+      ],
+      "actual_match_id": null,
+      "camera_session_id": null,
+      "development_split": null,
+      "full_training_crop_background_closure_required": true,
+      "background_observation": "Native frame includes players/rackets, officials/ballkids, court/net lines, bright broadcast graphics and signage. No full-crop spare-ball/equipment closure or exhaustive negative annotation is established by this review."
+    }
+  ]
+}

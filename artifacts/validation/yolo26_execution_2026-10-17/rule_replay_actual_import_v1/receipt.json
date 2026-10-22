@@ -1,0 +1,310 @@
+{
+  "status": "PASS",
+  "scope": "Actual ordinary production module imports; replay of three exact native Phase6 synthetic export fixtures; no vision/media/accuracy qualification",
+  "started_utc": "2026-10-17T01:56:11.210596+00:00",
+  "ended_utc": "2026-10-17T01:56:12.597598+00:00",
+  "seconds": 1.386995200009551,
+  "source_before": {
+    "src/scoring/rule_replay.py": "18600811b51184d2d95c4c45ce79cf09f369ca7afb87ac1985a5b1a6e6d718f0",
+    "src/scoring/rule_reproduction.py": "1d486f0f9fad01ccb831311d677a455b3a18363d10de15b176f7ccd31b602a66",
+    "src/scoring/match_state_codec.py": "24f94385f76362b5fe6ccf900f46b39bf176ca7a0052184998fbbbee6cb65abc",
+    "src/scoring/match_state.py": "3bb09eda6eb26814c247044861e7ffab93571fa05a9474dbb6d9c12d98edc2ca",
+    "src/scoring/scoring_engine.py": "70eab632c1d623023bc63f1217e6f8e8c028dd69be47d512ae5e5b03fc7af03d",
+    "src/scoring/scoring_rules.py": "490ac0c74367ed8dd9bd0c4da65a3645833923255e5decef04ccddd1b336b2b7",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src/scoring/point_outcome_resolver.py": "d46f66a57b713cc291436998571c1d632f2ad97c522f1aa3a1a59418e814ca4e",
+    "src/scoring/event_history.py": "615ada1866515eab61d15406031f2918e7832a9b0d1e1c85434cf2ec1235cfb6",
+    "src/utils/scoring_journal.py": "e3e4975e6d624f9089041b67a940072077a2e0dde7ab3a9d0f8c42dabf7253c9",
+    "src/utils/point_analysis_sequence.py": "14d2b27c53d54ebc34d134c55287882ba784d31d6f793d8f7d4832336563e950",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/line_calling/line_call_engine.py": "72861963a87521368833520ec6629a09ea5b88b87c5bf55357db3e99d1dadde3",
+    "src/line_calling/line_geometry.py": "9257710fe24c2c5ce336789e274465d01fe47caa9d4fc9005216eef8bf054e05",
+    "src/line_calling/contact_refinement.py": "c9a1151441aa6bbcb74ab0f584706a8d7a00bd76a48b5cd86412a55e9e85172a",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/court/homography.py": "071b7a66ab3af3bdd87a52cc2d7985f1c24d12dc86d89b5668b3d5ed460b760a",
+    "src/shot_analysis/shot_types.py": "7334e204748734615d6f095ed1396702922dac0ebfda4cf6d97003fb2681ce84"
+  },
+  "source_after": {
+    "src/scoring/rule_replay.py": "18600811b51184d2d95c4c45ce79cf09f369ca7afb87ac1985a5b1a6e6d718f0",
+    "src/scoring/rule_reproduction.py": "1d486f0f9fad01ccb831311d677a455b3a18363d10de15b176f7ccd31b602a66",
+    "src/scoring/match_state_codec.py": "24f94385f76362b5fe6ccf900f46b39bf176ca7a0052184998fbbbee6cb65abc",
+    "src/scoring/match_state.py": "3bb09eda6eb26814c247044861e7ffab93571fa05a9474dbb6d9c12d98edc2ca",
+    "src/scoring/scoring_engine.py": "70eab632c1d623023bc63f1217e6f8e8c028dd69be47d512ae5e5b03fc7af03d",
+    "src/scoring/scoring_rules.py": "490ac0c74367ed8dd9bd0c4da65a3645833923255e5decef04ccddd1b336b2b7",
+    "src/scoring/point_timeline.py": "bd3c2df43d047d5e94b0f1b85329de8b93fc9ac90cc915cfa8b6629594ef3dea",
+    "src/scoring/point_outcome_resolver.py": "d46f66a57b713cc291436998571c1d632f2ad97c522f1aa3a1a59418e814ca4e",
+    "src/scoring/event_history.py": "615ada1866515eab61d15406031f2918e7832a9b0d1e1c85434cf2ec1235cfb6",
+    "src/utils/scoring_journal.py": "e3e4975e6d624f9089041b67a940072077a2e0dde7ab3a9d0f8c42dabf7253c9",
+    "src/utils/point_analysis_sequence.py": "14d2b27c53d54ebc34d134c55287882ba784d31d6f793d8f7d4832336563e950",
+    "src/api/result_storage.py": "4eb1d7a2dfeb33d93a6ca5fcee536ec34cbe17eaa793a55b9ac824cc02de1213",
+    "src/line_calling/line_call_engine.py": "72861963a87521368833520ec6629a09ea5b88b87c5bf55357db3e99d1dadde3",
+    "src/line_calling/line_geometry.py": "9257710fe24c2c5ce336789e274465d01fe47caa9d4fc9005216eef8bf054e05",
+    "src/line_calling/contact_refinement.py": "c9a1151441aa6bbcb74ab0f584706a8d7a00bd76a48b5cd86412a55e9e85172a",
+    "src/tracking/temporal_ball_tracker.py": "b36846b8ca1e89dc3395cbec433a8d68efc91a398c6bd65092751915f9e0a5d2",
+    "src/court/homography.py": "071b7a66ab3af3bdd87a52cc2d7985f1c24d12dc86d89b5668b3d5ed460b760a",
+    "src/shot_analysis/shot_types.py": "7334e204748734615d6f095ed1396702922dac0ebfda4cf6d97003fb2681ce84"
+  },
+  "input_before": {
+    "test_exact_native_phase6_scori0": {
+      "artifact": "9cab5e4e6261ebdc4b02d1dadfd84344a28e05a49e178ef9e9a57a3db8d87897",
+      "source": "d17b77f6e9f394630193766f472abf51a43a30b1083fa79428d850d032dd07ca"
+    },
+    "test_exact_native_phase6_scori1": {
+      "artifact": "52faca95ea8a76ff46209bfc1404f3e58126186061473a2d4bfccb0237977da9",
+      "source": "d17b77f6e9f394630193766f472abf51a43a30b1083fa79428d850d032dd07ca"
+    },
+    "test_exact_native_phase6_revie0": {
+      "artifact": "c86b69f4fe9637019eb04bec2d0e8b4b51a406af662d677e0b585f6bc7b2c261",
+      "source": "d17b77f6e9f394630193766f472abf51a43a30b1083fa79428d850d032dd07ca"
+    }
+  },
+  "input_after": {
+    "test_exact_native_phase6_scori0": {
+      "artifact": "9cab5e4e6261ebdc4b02d1dadfd84344a28e05a49e178ef9e9a57a3db8d87897",
+      "source": "d17b77f6e9f394630193766f472abf51a43a30b1083fa79428d850d032dd07ca"
+    },
+    "test_exact_native_phase6_scori1": {
+      "artifact": "52faca95ea8a76ff46209bfc1404f3e58126186061473a2d4bfccb0237977da9",
+      "source": "d17b77f6e9f394630193766f472abf51a43a30b1083fa79428d850d032dd07ca"
+    },
+    "test_exact_native_phase6_revie0": {
+      "artifact": "c86b69f4fe9637019eb04bec2d0e8b4b51a406af662d677e0b585f6bc7b2c261",
+      "source": "d17b77f6e9f394630193766f472abf51a43a30b1083fa79428d850d032dd07ca"
+    }
+  },
+  "sources_unchanged": true,
+  "inputs_unchanged": true,
+  "forbidden_import_attempts": [],
+  "forbidden_modules_present": [],
+  "rows": [
+    {
+      "fixture": "test_exact_native_phase6_scori0",
+      "authoritative": true,
+      "transitions": 13,
+      "points": 2,
+      "attempts": 4,
+      "rallies": 1,
+      "shots": 6,
+      "source_frames": 32,
+      "final_raw_state": {
+        "schema_version": 1,
+        "type": "MatchState",
+        "fields": {
+          "match_id": "fixture",
+          "format": {
+            "enum": "MatchFormat",
+            "value": "BEST_OF_3"
+          },
+          "set_format": {
+            "enum": "SetFormat",
+            "value": "TIE_BREAK_SET"
+          },
+          "player_1_id": 1,
+          "player_2_id": 2,
+          "server_id": 2,
+          "receiver_id": 1,
+          "initial_server_id": 1,
+          "current_set": 1,
+          "current_game": 2,
+          "sets_won_p1": 0,
+          "sets_won_p2": 0,
+          "games_p1": 1,
+          "games_p2": 0,
+          "points_p1": 1,
+          "points_p2": 0,
+          "serve_attempt": 1,
+          "service_side": {
+            "enum": "ServiceSide",
+            "value": "AD"
+          },
+          "tie_break_active": false,
+          "tie_break_points_p1": 0,
+          "tie_break_points_p2": 0,
+          "point_state": {
+            "enum": "PointState",
+            "value": "WAITING_FOR_SERVE"
+          },
+          "ball_state": {
+            "enum": "BallPlayState",
+            "value": "POINT_COMPLETE"
+          },
+          "completed_sets": [],
+          "match_complete": false,
+          "winner_id": null,
+          "last_point_winner": 1,
+          "last_point_reason": "Double fault by Player 2: Double fault by Player 2: Receiver Player 1 wins point.",
+          "state_version": 10,
+          "tie_break_points_to_win": 7,
+          "deciding_set_tie_break_points_to_win": null,
+          "deciding_set_format": null,
+          "player_1_court_end": {
+            "enum": "ServerCourtEnd",
+            "value": "FAR_COURT"
+          },
+          "initial_state_confirmed": true,
+          "score_confirmed": true,
+          "score_source": "configured_initial_state",
+          "match_status": "IN_PROGRESS"
+        }
+      }
+    },
+    {
+      "fixture": "test_exact_native_phase6_scori1",
+      "authoritative": false,
+      "transitions": 0,
+      "points": 0,
+      "attempts": 0,
+      "rallies": 0,
+      "shots": 0,
+      "source_frames": 32,
+      "final_raw_state": {
+        "schema_version": 1,
+        "type": "MatchState",
+        "fields": {
+          "match_id": "fixture",
+          "format": {
+            "enum": "MatchFormat",
+            "value": "BEST_OF_3"
+          },
+          "set_format": {
+            "enum": "SetFormat",
+            "value": "TIE_BREAK_SET"
+          },
+          "player_1_id": 1,
+          "player_2_id": 2,
+          "server_id": 1,
+          "receiver_id": 2,
+          "initial_server_id": 1,
+          "current_set": 1,
+          "current_game": 1,
+          "sets_won_p1": 0,
+          "sets_won_p2": 0,
+          "games_p1": 0,
+          "games_p2": 0,
+          "points_p1": 3,
+          "points_p2": 0,
+          "serve_attempt": 1,
+          "service_side": {
+            "enum": "ServiceSide",
+            "value": "DEUCE"
+          },
+          "tie_break_active": false,
+          "tie_break_points_p1": 0,
+          "tie_break_points_p2": 0,
+          "point_state": {
+            "enum": "PointState",
+            "value": "WAITING_FOR_SERVE"
+          },
+          "ball_state": {
+            "enum": "BallPlayState",
+            "value": "NOT_STARTED"
+          },
+          "completed_sets": [],
+          "match_complete": false,
+          "winner_id": null,
+          "last_point_winner": null,
+          "last_point_reason": "",
+          "state_version": 0,
+          "tie_break_points_to_win": 7,
+          "deciding_set_tie_break_points_to_win": null,
+          "deciding_set_format": null,
+          "player_1_court_end": {
+            "enum": "ServerCourtEnd",
+            "value": "NEAR_COURT"
+          },
+          "initial_state_confirmed": true,
+          "score_confirmed": true,
+          "score_source": "configured_initial_state",
+          "match_status": "IN_PROGRESS"
+        }
+      }
+    },
+    {
+      "fixture": "test_exact_native_phase6_revie0",
+      "authoritative": true,
+      "transitions": 6,
+      "points": 1,
+      "attempts": 2,
+      "rallies": 1,
+      "shots": 3,
+      "source_frames": 32,
+      "final_raw_state": {
+        "schema_version": 1,
+        "type": "MatchState",
+        "fields": {
+          "match_id": "fixture",
+          "format": {
+            "enum": "MatchFormat",
+            "value": "BEST_OF_3"
+          },
+          "set_format": {
+            "enum": "SetFormat",
+            "value": "TIE_BREAK_SET"
+          },
+          "player_1_id": 1,
+          "player_2_id": 2,
+          "server_id": 2,
+          "receiver_id": 1,
+          "initial_server_id": 1,
+          "current_set": 1,
+          "current_game": 2,
+          "sets_won_p1": 0,
+          "sets_won_p2": 0,
+          "games_p1": 1,
+          "games_p2": 0,
+          "points_p1": 0,
+          "points_p2": 0,
+          "serve_attempt": 1,
+          "service_side": {
+            "enum": "ServiceSide",
+            "value": "DEUCE"
+          },
+          "tie_break_active": false,
+          "tie_break_points_p1": 0,
+          "tie_break_points_p2": 0,
+          "point_state": {
+            "enum": "PointState",
+            "value": "WAITING_FOR_SERVE"
+          },
+          "ball_state": {
+            "enum": "BallPlayState",
+            "value": "POINT_COMPLETE"
+          },
+          "completed_sets": [],
+          "match_complete": false,
+          "winner_id": null,
+          "last_point_winner": 1,
+          "last_point_reason": "Player 2 shot landed OUT (Explicit rule fixture, not geometric GT): Player 1 wins point.",
+          "state_version": 6,
+          "tie_break_points_to_win": 7,
+          "deciding_set_tie_break_points_to_win": null,
+          "deciding_set_format": null,
+          "player_1_court_end": {
+            "enum": "ServerCourtEnd",
+            "value": "FAR_COURT"
+          },
+          "initial_state_confirmed": true,
+          "score_confirmed": true,
+          "score_source": "configured_initial_state",
+          "match_status": "IN_PROGRESS"
+        }
+      }
+    }
+  ],
+  "resources": {
+    "available_physical_ram_bytes": 3049861120,
+    "free_disk_bytes": 58427805696,
+    "owned_rss_bytes": 96419840,
+    "peak_owned_rss_bytes": 96419840
+  },
+  "numerical_image_libraries_observed": [
+    "cv2",
+    "numpy",
+    "pandas"
+  ],
+  "model_imports_used": false,
+  "model_inference_used": false,
+  "correction_publication_implemented": false,
+  "independent_accuracy_validated": false,
+  "runner_sha256": "8ae659b713b31224ffd3948da7aa6a851a62627ebbde4b8666c6e5ad32ce9fab"
+}
