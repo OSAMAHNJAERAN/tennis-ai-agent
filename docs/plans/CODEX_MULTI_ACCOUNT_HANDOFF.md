@@ -1,10 +1,10 @@
 # CURRENT HANDOFF
 
-- Checkpoint time: 2026-10-22 13:43 UTC (21:43 Asia/Singapore).
+- Checkpoint time: 2026-10-22 13:45 UTC (Asia/Singapore UTC+08:00).
 - Repository: https://github.com/OSAMAHNJAERAN/tennis-ai-agent.git
 - Working and integration branch: `codex/yolo26-platform`.
-- Last verified remote checkpoint SHA: `96fb7ff0e4912c910f7c50c6a7710ea60f00727a`; ordinary push and subsequent `git ls-remote` matched local HEAD.
-- The tested implementation described below is being committed next. A following documentation checkpoint records its verified pushed SHA; this file cannot contain its own commit SHA.
+- **Verified pushed implementation SHA: `b5a3d2c8f4a6a7f49ec328141a6a50db93e8515a`** ([commit](https://github.com/OSAMAHNJAERAN/tennis-ai-agent/commit/b5a3d2c8f4a6a7f49ec328141a6a50db93e8515a)). Ordinary push succeeded and a separate `git ls-remote origin refs/heads/codex/yolo26-platform` exactly matched local HEAD.
+- Initial continuity checkpoint `96fb7ff0e4912c910f7c50c6a7710ea60f00727a` was also pushed and independently verified. This following documentation checkpoint records the implementation SHA and retains its terminal frontend logs (selected explicitly because general `*.log` output is ignored). It cannot contain its own SHA; resolve the newest handoff commit from the live branch. Final remote HEAD is separately verified and reported in chat.
 - Pending PR: https://github.com/OSAMAHNJAERAN/tennis-ai-agent/pull/1 (`Codex/vision system upgrade`), head branch `codex/vision-system-upgrade`, SHA `f854804f4f0d3766e70218d59f06cd6ebb8aaff1`; base `master`, SHA `644808f2130ece14dabd2a502db5ff4bc78eeea6`. Its head is already an ancestor of integration. It was inspected and preserved without merging, closing or overwriting it. No new PR is required for these direct integration checkpoints.
 
 ## Last completed step
